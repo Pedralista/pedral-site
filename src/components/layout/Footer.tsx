@@ -66,6 +66,12 @@ export default function Footer() {
           >
             Contact
           </Link>
+          <Link
+            href="/account"
+            className="text-[12px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
+          >
+            My Account
+          </Link>
           <a
             href="https://www.instagram.com/pedralwatches"
             target="_blank"

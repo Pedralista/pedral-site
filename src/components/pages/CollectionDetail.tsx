@@ -27,28 +27,14 @@ export default function CollectionDetail({ collection }: { collection: Collectio
   );
   const [loading, setLoading] = useState(false);
 
-  async function handleReserve() {
+  function handleReserve() {
     if (c.isPreOrder) {
       window.location.href = "/contact";
       return;
     }
     if (!selectedVariant) return;
     setLoading(true);
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          priceId: selectedVariant.stripePriceId,
-          productName: c.name,
-          variantName: selectedVariant.name,
-        }),
-      });
-      const data = await res.json();
-      if (data.url) window.location.href = data.url;
-    } finally {
-      setLoading(false);
-    }
+    window.location.href = `/checkout?slug=${c.slug}&variant=${encodeURIComponent(selectedVariant.name)}`;
   }
 
   return (
