@@ -12,7 +12,7 @@ const testimonials = [
   },
   {
     quote:
-      "The Okapi dial is what convinced me. The guilloché at the small seconds, the frosted finish — the level of detail at this price point makes no sense until you understand that no middleman ever touched it.",
+      "The Maestro is the watch I reach for when it matters. The diagonal display, the tonneau case — it's full of decisions that only make sense once you understand them. That's rare at any price.",
     author: "Adrien L.",
     detail: "Investment analyst · Lyon — Owns Okapi Classique & Maestro",
   },
