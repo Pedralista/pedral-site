@@ -46,7 +46,7 @@ export default function ContactContent() {
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <a
-                    href="https://www.pedral.eu/contact-us/"
+                    href="mailto:hello@pedral.watch"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-[2px] bg-accent px-9 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-all hover:bg-accent-hover"
@@ -54,7 +54,7 @@ export default function ContactContent() {
                     Send a Message
                   </a>
                   <a
-                    href="mailto:info@pedral.eu"
+                    href="mailto:info@pedral.watch"
                     className="rounded-[2px] border border-accent/[0.15] bg-transparent px-9 py-4 text-[11px] font-medium tracking-[3px] uppercase text-accent transition-all hover:border-accent hover:bg-accent hover:text-background"
                   >
                     Email Directly
@@ -77,10 +77,10 @@ export default function ContactContent() {
                     Email
                   </h3>
                   <a
-                    href="mailto:info@pedral.eu"
+                    href="mailto:info@pedral.watch"
                     className="mt-2 block font-serif text-xl font-light text-foreground transition-colors hover:text-accent"
                   >
-                    info@pedral.eu
+                    info@pedral.watch
                   </a>
                 </div>
                 <div>

@@ -57,7 +57,7 @@ export default function ShippingPage() {
       <h2>Delivery Issues</h2>
       <p>
         Lost, damaged, or delayed? Email{" "}
-        <a href="mailto:hello@pedral.eu">hello@pedral.eu</a> with your order number. We&apos;ll
+        <a href="mailto:hello@pedral.watch">hello@pedral.watch</a> with your order number. We&apos;ll
         investigate and resolve promptly.
       </p>
     </LegalPage>

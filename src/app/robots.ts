@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://pedral.eu/sitemap.xml",
+    sitemap: "https://pedral.watch/sitemap.xml",
   };
 }

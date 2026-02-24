@@ -2,12 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-const navLinks = [
+const leftLinks = [
   { href: "/collections", label: "Collection" },
-  { href: "/story", label: "Brand Story" },
+  { href: "/story", label: "Story" },
   { href: "/contact", label: "Contact" },
+];
+
+const rightLinks = [
+  { href: "/journal", label: "The Rounded Square" },
+  { href: "https://www.instagram.com/pedralwatches", label: "Instagram", external: true },
+  { href: "https://shop.pedral.eu", label: "Shop", external: true },
 ];
 
 export default function Navbar() {
@@ -36,54 +43,80 @@ export default function Navbar() {
             : "bg-transparent"
         }`}
       >
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-12">
-          {/* Logo */}
-          <Link href="/" className="relative z-10">
-            <span className="font-sans text-[22px] font-light tracking-[12px] uppercase text-foreground">
-              PEDR<span className="text-accent">A</span>L
-            </span>
-          </Link>
-
-          {/* Desktop nav */}
-          <div className="hidden items-center gap-9 md:flex">
-            {navLinks.map((link) => (
+        <div className="mx-auto grid max-w-[1400px] grid-cols-[1fr_auto_1fr] items-center px-6 py-4 md:px-12">
+          {/* Left links (desktop) */}
+          <div className="hidden items-center gap-8 md:flex">
+            {leftLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="group relative text-[11px] font-normal tracking-[2.5px] uppercase text-foreground-muted transition-colors hover:text-foreground"
+                className="text-[11px] font-normal tracking-[2.5px] uppercase text-foreground-muted transition-colors hover:text-foreground"
               >
                 {link.label}
               </Link>
             ))}
-            <a
-              href="https://shop.pedral.eu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-[2px] border border-accent/30 px-6 py-2.5 text-[11px] font-medium tracking-[3px] uppercase text-accent transition-all hover:border-accent hover:bg-accent hover:text-background"
-            >
-              Shop
-            </a>
           </div>
+          {/* Spacer on mobile */}
+          <div className="md:hidden" />
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
-            aria-label="Toggle menu"
-          >
-            <motion.span
-              animate={menuOpen ? { rotate: 45, y: 5.5 } : { rotate: 0, y: 0 }}
-              className="block h-px w-6 bg-foreground"
+          {/* Center Logo */}
+          <Link href="/" className="relative z-10 justify-self-center">
+            <Image
+              src="/logo.png"
+              alt="Pedral"
+              width={420}
+              height={56}
+              className="h-[20px] w-auto invert md:h-[26px]"
+              priority
             />
-            <motion.span
-              animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block h-px w-6 bg-foreground"
-            />
-            <motion.span
-              animate={menuOpen ? { rotate: -45, y: -5.5 } : { rotate: 0, y: 0 }}
-              className="block h-px w-6 bg-foreground"
-            />
-          </button>
+          </Link>
+
+          {/* Right links (desktop) + mobile toggle */}
+          <div className="flex items-center justify-end gap-8">
+            <div className="hidden items-center gap-8 md:flex">
+              {rightLinks.map((link) =>
+                link.external ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[11px] font-normal tracking-[2.5px] uppercase text-foreground-muted transition-colors hover:text-foreground"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-[11px] font-normal tracking-[2.5px] uppercase text-foreground-muted transition-colors hover:text-foreground"
+                  >
+                    {link.label}
+                  </Link>
+                ),
+              )}
+            </div>
+
+            {/* Mobile toggle */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+              aria-label="Toggle menu"
+            >
+              <motion.span
+                animate={menuOpen ? { rotate: 45, y: 5.5 } : { rotate: 0, y: 0 }}
+                className="block h-px w-6 bg-foreground"
+              />
+              <motion.span
+                animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
+                className="block h-px w-6 bg-foreground"
+              />
+              <motion.span
+                animate={menuOpen ? { rotate: -45, y: -5.5 } : { rotate: 0, y: 0 }}
+                className="block h-px w-6 bg-foreground"
+              />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -98,36 +131,34 @@ export default function Navbar() {
             className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-background"
           >
             <nav className="flex flex-col items-center gap-8">
-              {navLinks.map((link, i) => (
+              {[...leftLinks, ...rightLinks].map((link, i) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 + 0.1 }}
                 >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="font-serif text-4xl font-light tracking-[0.1em] text-foreground"
-                  >
-                    {link.label}
-                  </Link>
+                  {"external" in link && link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setMenuOpen(false)}
+                      className="font-serif text-4xl font-light tracking-[0.1em] text-foreground"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="font-serif text-4xl font-light tracking-[0.1em] text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </motion.div>
               ))}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                <a
-                  href="https://shop.pedral.eu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 border border-accent/30 px-8 py-3 text-sm font-medium tracking-[3px] uppercase text-accent transition-all hover:bg-accent hover:text-background"
-                >
-                  Shop
-                </a>
-              </motion.div>
             </nav>
           </motion.div>
         )}

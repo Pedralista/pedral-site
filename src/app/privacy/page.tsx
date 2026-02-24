@@ -12,12 +12,12 @@ export default function PrivacyPage() {
     <LegalPage eyebrow="Legal" title="Privacy Policy" updated="Last updated: February 2026">
       <h2>1. Who We Are</h2>
       <p>
-        Pedral Watches is the trading name of [LEGAL ENTITY NAME], registered in Sweden.
-        Organisation number: [XXXXXX-XXXX]. Address: [Street Address], Stockholm, Sweden.
-        Email: <a href="mailto:hello@pedral.eu">hello@pedral.eu</a>.
+        Pedral Watches is the trading name of Pedral Design Studio AB, registered in Sweden.
+        Organisation number: 559484-4275. VAT: SE559484427501. Address: Sveavägen 117A,
+        113 49 Stockholm, Sweden. Email: <a href="mailto:hello@pedral.watch">hello@pedral.watch</a>.
       </p>
       <p>
-        We are the data controller for personal data processed through pedral.eu, shop.pedral.eu,
+        We are the data controller for personal data processed through pedral.watch, shop.pedral.eu,
         email communications, and social media.
       </p>
 
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
       <h2>6. Your Rights (GDPR)</h2>
       <p>
         Access, rectification, erasure, restriction, portability, objection, withdraw consent.
-        Contact <a href="mailto:hello@pedral.eu">hello@pedral.eu</a>. Complaints: Swedish
+        Contact <a href="mailto:hello@pedral.watch">hello@pedral.watch</a>. Complaints: Swedish
         Authority for Privacy Protection (IMY), imy.se.
       </p>
 

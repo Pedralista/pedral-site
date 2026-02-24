@@ -25,19 +25,29 @@ const timeline = [
     text: "Kevin Pedral applied to Sweden's only watchmaking school. Born in the Democratic Republic of Congo, raised in Stockholm — he didn't have the background they expected. The rejection letter was polite. Kevin's response was a decade of work.",
   },
   {
-    year: "2017",
-    title: "First Collectors",
-    text: "Word spreads through watch forums and social media. Collectors in 10+ countries begin seeking out Pedral's limited runs. The Okapi cushion case earns its first cult following.",
-  },
-  {
-    year: "2021",
-    title: "Maestro Launches",
-    text: "The refined tonneau dress watch with hexagonal bracelet links. A quieter statement that speaks volumes about craftsmanship.",
+    year: "2018",
+    title: "Okapi Launches via Kickstarter",
+    text: "The first Pedral watch goes live on Kickstarter — and sells out. The Okapi Classique, with its cushion-shaped case and frosted blue dial, finds collectors across 12 countries. Every piece spoken for. The edition remains limited to this day.",
   },
   {
     year: "2023",
+    title: "Artefact Sells Out",
+    text: "Kevin's second collection arrives and sells out entirely. Artefact pushes the design language further — a new expression, the same uncompromising philosophy. Like every Pedral edition: once it's gone, it's gone.",
+  },
+  {
+    year: "Apr 2025",
+    title: "Maestro & Watches and Art",
+    text: "Maestro launches — the refined tonneau dress watch with hexagonal bracelet links and diagonal time display. That same month, Kevin releases \"Watches and Art: Best of Both Worlds\" — a capsule collection with Boris Pjanić, bridging horology and contemporary art. Maestro sells out on release.",
+  },
+  {
+    year: "2026",
     title: "Triomphe Arrives",
-    text: "Swiss hand-wound movement meets coin-edge detailing. Hebrew, Eastern Arabic, and Pietersite stone dial variants push boundaries further.",
+    text: "The ultra-thin Triomphe — 8.8mm, Swiss hand-wound, rotating guilloché dial editions. A single canvas expressed through an evolving series of dials. Each limited to 20 pieces. When a dial edition sells out, it doesn't return.",
+  },
+  {
+    year: "Now",
+    title: "Okapi Returns",
+    text: "The watch that started everything is coming back — reimagined with a new movement, a better case, and the lessons of every collection that came after it. The Okapi Classique, evolved. Same soul. Higher standard.",
   },
 ];
 

@@ -20,7 +20,7 @@ const outfit = Outfit({
   display: "swap",
 });
 
-const siteUrl = "https://pedral.eu";
+const siteUrl = "https://pedral.watch";
 const siteDescription =
   "Stockholm-based watch microbrand blending retro-futurism with Scandinavian design. Limited editions, unlimited conviction.";
 

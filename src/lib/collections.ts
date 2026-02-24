@@ -46,7 +46,7 @@ export const collections: Collection[] = [
       "Hexagonal bracelet links trace a slender curve along your wrist. This is not a watch that announces itself. It's a watch that waits to be discovered.",
     designerNote:
       "Maestro is the watch I designed for the moments between moments. The meeting that's actually a conversation. The dinner that becomes a memory. It's a dress watch, but not a formal one — it's for people who dress deliberately.",
-    year: 2021,
+    year: 2025,
     tier: "signature",
     price: 1300,
     stock: 7,
@@ -111,7 +111,7 @@ export const collections: Collection[] = [
       "Guilloché dials in rotating colourways. Natural stone dials cut from the earth itself. When a dial edition sells out, it doesn't return. The next expression takes its place. Your Triomphe is the one that chose you.",
     designerNote:
       "The Triomphe was born from a constraint: how thin can you go before you lose presence? The answer is 8.8mm. At that thickness, the watch disappears on the wrist but the dial becomes everything. The rotating editions keep it alive — each one is a new conversation with the same architecture.",
-    year: 2023,
+    year: 2026,
     tier: "limited",
     price: 1500,
     stock: 2,

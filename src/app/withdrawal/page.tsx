@@ -17,8 +17,8 @@ export default function WithdrawalPage() {
         <strong>14 days from the day you acquire physical possession of the goods</strong>.
       </p>
       <p>
-        To exercise, notify: [Full Legal Name], [Address], Stockholm, Sweden /{" "}
-        <a href="mailto:hello@pedral.eu">hello@pedral.eu</a>
+        To exercise, notify: Pedral Design Studio AB, Sveavägen 117A, 113 49 Stockholm,
+        Sweden / <a href="mailto:hello@pedral.watch">hello@pedral.watch</a>
       </p>
 
       <h2>Pre-Orders: Additional Cancellation Rights</h2>
@@ -29,7 +29,7 @@ export default function WithdrawalPage() {
       <ul>
         <li>
           <strong>Before dispatch:</strong> You may cancel your pre-order at any time before the
-          watch is shipped. Contact <a href="mailto:hello@pedral.eu">hello@pedral.eu</a> with
+          watch is shipped. Contact <a href="mailto:hello@pedral.watch">hello@pedral.watch</a> with
           your order number. A full refund will be issued within 14 days via the original payment
           method.
         </li>
@@ -70,7 +70,7 @@ export default function WithdrawalPage() {
       </p>
 
       <h2>Model Withdrawal Form</h2>
-      <p>To: [Full Legal Name], [Address] / <a href="mailto:hello@pedral.eu">hello@pedral.eu</a></p>
+      <p>To: Pedral Design Studio AB, Sveavägen 117A, 113 49 Stockholm / <a href="mailto:hello@pedral.watch">hello@pedral.watch</a></p>
       <p>I hereby give notice that I withdraw from my contract of sale of the following goods:</p>
       <p>Product: _______________ | Order number: _______________</p>
       <p>Ordered on / Received on: _______________</p>
