@@ -22,22 +22,22 @@ const timeline = [
   {
     year: "2015",
     title: "The Beginning",
-    text: "Kevin Pedral applied to Sweden's only watchmaking school. Born in the Democratic Republic of Congo, raised in Stockholm — he didn't have the background they expected. The rejection letter was polite. Kevin's response was a decade of work.",
+    text: "I applied to Sweden's only watchmaking school. Born in the Democratic Republic of Congo, raised in Stockholm — I didn't have the background they expected. The rejection letter was polite. My response was a decade of work.",
   },
   {
     year: "2018",
     title: "Okapi Launches via Kickstarter",
-    text: "The first Pedral watch goes live on Kickstarter — and sells out. The Okapi Classique, with its cushion-shaped case and frosted blue dial, finds collectors across 12 countries. Every piece spoken for. The edition remains limited to this day.",
+    text: "My first watch goes live on Kickstarter — and sells out. The Okapi Classique, with its cushion-shaped case and frosted blue dial, finds collectors across 12 countries. Every piece spoken for. The edition remains limited to this day.",
   },
   {
     year: "2024",
     title: "Artefact Launches via Kickstarter",
-    text: "Kevin's second collection goes live on Kickstarter — and sells out. Artefact pushes the design language further, a new expression built on the same uncompromising philosophy. Like every Pedral edition: once it's gone, it's gone.",
+    text: "My second collection goes live on Kickstarter — and sells out. Artefact pushes the design language further, a new expression built on the same uncompromising philosophy. Like every Pedral edition: once it's gone, it's gone.",
   },
   {
     year: "Apr 2025",
     title: "Watches and Art: Best of Both Worlds",
-    text: "Kevin collaborates with horological dream maker Boris Pjanić on \"Watches and Art: Best of Both Worlds\" — a capsule collection bridging fine horology and contemporary art. Released in April 2025, it sells out and cements Pedral's place at the intersection of craft and culture.",
+    text: "I collaborate with horological dream maker Boris Pjanić on \"Watches and Art: Best of Both Worlds\" — a capsule collection bridging fine horology and contemporary art. Released in April 2025, it sells out.",
   },
   {
     year: "2025",
@@ -47,7 +47,7 @@ const timeline = [
   {
     year: "Dec 2025",
     title: "Triomphe Arrives",
-    text: "In December 2025, Kevin collaborates with the Micro Indy collective to launch Triomphe — the ultra-thin dress watch at 8.8mm, Swiss hand-wound, with rotating guilloché dial editions. A single canvas expressed through an evolving series of dials. Each limited to 20 pieces. When a dial edition sells out, it doesn't return.",
+    text: "In December 2025, I collaborate with the Micro Indy collective to launch Triomphe — the ultra-thin dress watch at 8.8mm, Swiss hand-wound, with rotating guilloché dial editions. A single canvas expressed through an evolving series of dials. Each limited to 20 pieces. When a dial edition sells out, it doesn't return.",
   },
   {
     year: "Now",
@@ -72,18 +72,17 @@ export default function StoryContent() {
             variants={fadeInUp}
             className="max-w-[700px] font-serif text-[clamp(36px,4vw,48px)] font-light leading-[1.25] text-foreground"
           >
-            They said no. He said watch me.
+            They said no. I said watch me.
           </motion.h1>
           <motion.div variants={fadeInUp} className="mt-6 h-px w-[60px] bg-accent" />
           <motion.p
             variants={fadeInUp}
             className="mt-6 max-w-[700px] text-[16px] font-light leading-[1.85] text-foreground-muted"
           >
-            In 2015, Kevin Pedral applied to Sweden&apos;s only watchmaking
-            school. Born in the Democratic Republic of Congo, raised in
-            Stockholm, he didn&apos;t have the background they expected. The
-            rejection letter was polite. Kevin&apos;s response was a decade of
-            work.
+            In 2015, I applied to Sweden&apos;s only watchmaking school. Born
+            in the Democratic Republic of Congo, raised in Stockholm — I
+            didn&apos;t have the background they expected. The rejection letter
+            was polite. My response was a decade of work.
           </motion.p>
         </motion.div>
       </section>
