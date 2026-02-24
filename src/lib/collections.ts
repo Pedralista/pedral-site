@@ -106,8 +106,8 @@ export const collections: Collection[] = [
       },
     ],
     variants: [
-      { name: "Lapis No.1", stripePriceId: "price_MAESTRO_LAPIS", stock: 3 },
-      { name: "Frosted Flex", stripePriceId: "price_MAESTRO_FROSTED", stock: 4 },
+      { name: "Lapis No.1", stripePriceId: "price_1T4SxjHFcqWv5vvNwE3vWrjp", stock: 3 },
+      { name: "Frosted Flex", stripePriceId: "price_1T4T1OHFcqWv5vvN7xT9nCyl", stock: 4 },
     ],
     newsletterTitle: "Don't miss the next Maestro drop.",
     newsletterSub: "Priority access for collectors. No spam.",
@@ -174,8 +174,8 @@ export const collections: Collection[] = [
       },
     ],
     variants: [
-      { name: "Tempest Stone", stripePriceId: "price_TRIOMPHE_TEMPEST", stock: 1 },
-      { name: "Émeraude Vert", stripePriceId: "price_TRIOMPHE_EMERAUDE", stock: 1 },
+      { name: "Tempest Stone", stripePriceId: "price_1T4TBPHFcqWv5vvNgkYOf0oC", stock: 1 },
+      { name: "Émeraude Vert", stripePriceId: "price_1T4TCJHFcqWv5vvNlnRSn8yo", stock: 1 },
     ],
     newsletterTitle: "Get notified when the next Triomphe dial drops.",
     newsletterSub: "Allocations fill fast. Priority goes to the list.",
