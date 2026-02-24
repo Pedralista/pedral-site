@@ -32,6 +32,7 @@ export interface Collection {
   newsletterTitle: string;
   newsletterSub: string;
   image: string;
+  comingSoonEditions?: { name: string; description: string }[];
 }
 
 export const collections: Collection[] = [
@@ -163,6 +164,16 @@ export const collections: Collection[] = [
     newsletterTitle: "Get notified when the next Triomphe dial drops.",
     newsletterSub: "Allocations fill fast. Priority goes to the list.",
     image: "/images/triomphe.jpg",
+    comingSoonEditions: [
+      {
+        name: "Saphir Azur",
+        description: "A deep, luminous blue — the colour of a clear sky at altitude. Natural stone, no two pieces identical.",
+      },
+      {
+        name: "Ember Stone",
+        description: "Warm amber tones drawn from the earth. A dial that glows under candlelight and commands attention in daylight.",
+      },
+    ],
   },
   {
     slug: "okapi",

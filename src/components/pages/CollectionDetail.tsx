@@ -373,6 +373,54 @@ export default function CollectionDetail({ collection }: { collection: Collectio
         </section>
       )}
 
+      {/* Coming Soon Editions */}
+      {c.comingSoonEditions && c.comingSoonEditions.length > 0 && (
+        <section className="bg-background py-16 md:py-24">
+          <div className="mx-auto max-w-[900px] px-6 md:px-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+                Coming Next
+              </p>
+              <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
+                The next dial editions.
+              </h2>
+              <div className="mt-6 h-px w-[60px] bg-accent" />
+              <p className="mt-5 text-[14px] font-light leading-[1.8] text-foreground-muted">
+                These editions are not yet available. Join the list to be first when allocations open — they will not be announced publicly until they sell out.
+              </p>
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="mt-10 grid gap-4 sm:grid-cols-2"
+            >
+              {c.comingSoonEditions.map((ed) => (
+                <motion.div
+                  key={ed.name}
+                  variants={fadeInUp}
+                  className="rounded-[2px] border border-accent/10 bg-background-alt p-6"
+                >
+                  <div className="mb-3 flex items-center gap-3">
+                    <span className="rounded-[2px] border border-accent/20 px-2.5 py-1 text-[10px] tracking-[2px] uppercase text-accent">
+                      Coming Soon
+                    </span>
+                  </div>
+                  <h3 className="font-serif text-[22px] font-light text-foreground">{ed.name}</h3>
+                  <p className="mt-2 text-[13px] font-light leading-[1.7] text-foreground-muted">{ed.description}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
+
       <Newsletter
         title={c.newsletterTitle}
         subtitle={c.newsletterSub}
