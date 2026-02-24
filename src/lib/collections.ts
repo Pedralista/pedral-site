@@ -2,6 +2,8 @@ export interface CollectionVariant {
   name: string;
   stripePriceId: string;
   stock: number;
+  description?: string;
+  image?: string;
 }
 
 export interface Collection {
@@ -106,8 +108,20 @@ export const collections: Collection[] = [
       },
     ],
     variants: [
-      { name: "Lapis No.1", stripePriceId: "price_1T4Tw7CfxE1lSBKRY9zmQqHV", stock: 3 },
-      { name: "Frosted Flex", stripePriceId: "price_1T4TvBCfxE1lSBKRfCkEqWVd", stock: 4 },
+      {
+        name: "Lapis No.1",
+        stripePriceId: "price_1T4Tw7CfxE1lSBKRY9zmQqHV",
+        stock: 3,
+        description: "Deep lapis lazuli blue — a dial that commands the room. The sunburst guilloché catches the light differently with every angle.",
+        image: "/images/maestro-lapis.jpg",
+      },
+      {
+        name: "Frosted Flex",
+        stripePriceId: "price_1T4TvBCfxE1lSBKRfCkEqWVd",
+        stock: 4,
+        description: "A frosted, architectural surface with a quiet confidence. Less is more — until the light hits.",
+        image: "/images/maestro-frosted.jpg",
+      },
     ],
     newsletterTitle: "Don't miss the next Maestro drop.",
     newsletterSub: "Priority access for collectors. No spam.",
@@ -174,8 +188,20 @@ export const collections: Collection[] = [
       },
     ],
     variants: [
-      { name: "Tempest Stone", stripePriceId: "price_1T4TsqCfxE1lSBKRFBCRLukn", stock: 1 },
-      { name: "Émeraude Vert", stripePriceId: "price_1T4TpQCfxE1lSBKR6aJh8nbb", stock: 1 },
+      {
+        name: "Tempest Stone",
+        stripePriceId: "price_1T4TsqCfxE1lSBKRFBCRLukn",
+        stock: 1,
+        description: "Dark, stormy tones drawn from natural stone. No two dials are identical — yours is the only one like it in the world.",
+        image: "/images/triomphe-tempest.jpg",
+      },
+      {
+        name: "Émeraude Vert",
+        stripePriceId: "price_1T4TpQCfxE1lSBKR6aJh8nbb",
+        stock: 1,
+        description: "A multi-layer guilloché dial in deep emerald green. Carreau Tissé centre, Vagues de Lumière border — layers that reward every glance.",
+        image: "/images/triomphe-emeraude.jpg",
+      },
     ],
     newsletterTitle: "Get notified when the next Triomphe dial drops.",
     newsletterSub: "Allocations fill fast. Priority goes to the list.",

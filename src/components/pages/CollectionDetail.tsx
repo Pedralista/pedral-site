@@ -91,29 +91,16 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               Edition of {c.maxStock} &middot; {c.edition}
             </span>
           </motion.div>
-          {/* Variant selector */}
-          {hasVariants && !isSoldOut && (
-            <motion.div
+          {/* Selected variant name */}
+          {hasVariants && selectedVariant && (
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.95 }}
-              className="mt-5 flex flex-wrap gap-2"
+              className="mt-4 text-[13px] font-light tracking-[1px] text-foreground-muted"
             >
-              {c.variants!.map((v) => (
-                <button
-                  key={v.name}
-                  onClick={() => setSelectedVariant(v)}
-                  className={`rounded-[2px] border px-4 py-2 text-[11px] tracking-[1.5px] uppercase transition-colors ${
-                    selectedVariant?.name === v.name
-                      ? "border-accent bg-accent text-background"
-                      : "border-accent/30 text-accent hover:border-accent"
-                  } ${v.stock === 0 ? "opacity-40 cursor-not-allowed" : ""}`}
-                  disabled={v.stock === 0}
-                >
-                  {v.name}{v.stock === 0 ? " — Sold Out" : ""}
-                </button>
-              ))}
-            </motion.div>
+              {selectedVariant.name}
+            </motion.p>
           )}
 
           <motion.div
@@ -138,6 +125,94 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           </motion.div>
         </div>
       </section>
+
+      {/* Dial Variants Browser */}
+      {hasVariants && (
+        <section className="bg-background py-14 md:py-20">
+          <div className="mx-auto max-w-[1200px] px-6 md:px-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="mb-8"
+            >
+              <p className="mb-2 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+                Dial Editions
+              </p>
+              <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
+                Choose your expression.
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="grid gap-4 sm:grid-cols-2"
+            >
+              {c.variants!.map((v) => {
+                const isSelected = selectedVariant?.name === v.name;
+                const soldOut = v.stock === 0;
+                return (
+                  <motion.button
+                    key={v.name}
+                    variants={fadeInUp}
+                    onClick={() => !soldOut && setSelectedVariant(v)}
+                    disabled={soldOut}
+                    className={`group relative overflow-hidden rounded-[2px] border text-left transition-all duration-300 ${
+                      isSelected
+                        ? "border-accent"
+                        : "border-accent/10 hover:border-accent/40"
+                    } ${soldOut ? "cursor-not-allowed opacity-50" : ""}`}
+                  >
+                    {/* Image area */}
+                    <div className="relative h-[220px] w-full overflow-hidden sm:h-[260px]">
+                      <ImagePlaceholder
+                        label={`${c.name}\n${v.name}`}
+                        className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                      {isSelected && (
+                        <div className="absolute inset-0 bg-accent/10" />
+                      )}
+                      {soldOut && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-background/60">
+                          <span className="text-[11px] tracking-[3px] uppercase text-foreground-muted">Sold Out</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Info */}
+                    <div className="p-5">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="font-serif text-[20px] font-light text-foreground">
+                            {v.name}
+                          </p>
+                          {v.description && (
+                            <p className="mt-1.5 text-[13px] font-light leading-[1.7] text-foreground-muted">
+                              {v.description}
+                            </p>
+                          )}
+                        </div>
+                        <div className={`mt-1 h-5 w-5 shrink-0 rounded-full border-2 transition-colors ${
+                          isSelected ? "border-accent bg-accent" : "border-accent/30"
+                        }`} />
+                      </div>
+                      {!soldOut && (
+                        <p className="mt-3 text-[11px] tracking-[1px] uppercase text-accent/60">
+                          {v.stock} {v.stock === 1 ? "piece" : "pieces"} remaining
+                        </p>
+                      )}
+                    </div>
+                  </motion.button>
+                );
+              })}
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Description */}
       <section className="bg-background-alt py-20 md:py-28">
