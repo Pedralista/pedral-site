@@ -30,14 +30,19 @@ const timeline = [
     text: "The first Pedral watch goes live on Kickstarter — and sells out. The Okapi Classique, with its cushion-shaped case and frosted blue dial, finds collectors across 12 countries. Every piece spoken for. The edition remains limited to this day.",
   },
   {
-    year: "2023",
-    title: "Artefact Sells Out",
-    text: "Kevin's second collection arrives and sells out entirely. Artefact pushes the design language further — a new expression, the same uncompromising philosophy. Like every Pedral edition: once it's gone, it's gone.",
+    year: "2024",
+    title: "Artefact Launches via Kickstarter",
+    text: "Kevin's second collection goes live on Kickstarter — and sells out. Artefact pushes the design language further, a new expression built on the same uncompromising philosophy. Like every Pedral edition: once it's gone, it's gone.",
   },
   {
     year: "Apr 2025",
-    title: "Maestro & Watches and Art",
-    text: "Maestro launches — the refined tonneau dress watch with hexagonal bracelet links and diagonal time display. That same month, Kevin releases \"Watches and Art: Best of Both Worlds\" — a capsule collection with Boris Pjanić, bridging horology and contemporary art. Maestro sells out on release.",
+    title: "Watches and Art: Best of Both Worlds",
+    text: "Kevin collaborates with horological dream maker Boris Pjanić on \"Watches and Art: Best of Both Worlds\" — a capsule collection bridging fine horology and contemporary art. Released in April 2025, it sells out and cements Pedral's place at the intersection of craft and culture.",
+  },
+  {
+    year: "2025",
+    title: "Maestro Launches via Kickstarter",
+    text: "Later that year, Maestro — the refined tonneau dress watch with hexagonal bracelet links and diagonal time display — goes live on Kickstarter and sells out. A watch for those who already know.",
   },
   {
     year: "2026",
