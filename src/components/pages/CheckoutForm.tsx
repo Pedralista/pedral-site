@@ -110,8 +110,11 @@ export default function CheckoutForm({
 }) {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [email, setEmail] = useState("");
+  const [initError, setInitError] = useState<string | null>(null);
 
   useEffect(() => {
+    setClientSecret(null);
+    setInitError(null);
     fetch("/api/payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -122,8 +125,23 @@ export default function CheckoutForm({
       }),
     })
       .then((r) => r.json())
-      .then((d) => setClientSecret(d.clientSecret));
+      .then((d) => {
+        if (d.clientSecret) {
+          setClientSecret(d.clientSecret);
+        } else {
+          setInitError(d.error ?? "Could not initialise payment. Please try again.");
+        }
+      })
+      .catch(() => setInitError("Network error. Please check your connection."));
   }, [collection.slug, variant.name]);
+
+  if (initError) {
+    return (
+      <div className="py-10 text-center">
+        <p className="text-[13px] font-light text-red-400">{initError}</p>
+      </div>
+    );
+  }
 
   if (!clientSecret) {
     return (
