@@ -12,13 +12,13 @@ const testimonials = [
   },
   {
     quote:
-      "I followed Kevin's journey for two years before I committed. Wearing a Pedral feels like supporting an artist whose work you believe in — not filling a corporation's quarterly target.",
+      "The Okapi dial is what convinced me. The guilloché at the small seconds, the frosted finish — the level of detail at this price point makes no sense until you understand that no middleman ever touched it.",
     author: "Adrien L.",
     detail: "Investment analyst · Lyon — Owns Okapi Classique & Maestro",
   },
   {
     quote:
-      "The finishing punches well above its price. I've handled pieces at three times the cost that don't match the Okapi's dial work. Kevin is building something collectors will be talking about for years.",
+      "The finishing punches well above its price. I've handled pieces at three times the cost that don't match the Okapi's dial work. The way this studio approaches craft — refusing to scale, refusing to compromise — is something the industry needs more of.",
     author: "Dr. Kenji N.",
     detail: "Surgeon & watch collector · Tokyo — 40+ piece collection",
   },

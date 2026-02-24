@@ -7,7 +7,7 @@ const reasons = [
   {
     num: "01",
     title: "One Designer, One Vision",
-    desc: "Every watch is designed by Kevin Pedral in Stockholm. Not a committee. Not a marketing department. One person, one vision. When you meet the creator, you're meeting the entire company.",
+    desc: "Every watch is designed by me, in Stockholm. Not a committee. Not a marketing department. One person, one vision. When you contact Pedral, you're talking to the person who made your watch.",
   },
   {
     num: "02",

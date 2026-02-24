@@ -40,7 +40,7 @@ export default function CollectionShowcase() {
           </h2>
           <p className="mt-4 max-w-[600px] text-[14px] font-light leading-[1.8] text-foreground-muted">
             Each collection is an edition of 20. When they sell out, they
-            don&apos;t return. This is how Kevin works — deliberately, not at
+            don&apos;t return. This is how I work — deliberately, not at
             scale.
           </p>
         </div>

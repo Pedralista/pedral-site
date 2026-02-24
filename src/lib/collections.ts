@@ -86,7 +86,7 @@ export const collections: Collection[] = [
       "Personal note from Kevin",
     ],
     valueAnchor:
-      "Dress watches with Swiss Sellita movements, sapphire crystal, and integrated bracelet from established houses typically start at €2,800+. Without corporate overhead, Kevin delivers the same quality — directly to you.",
+      "Dress watches with Swiss Sellita movements, sapphire crystal, and integrated bracelet from established houses typically start at €2,800+. Without corporate overhead, I deliver the same quality — directly to you.",
     valueComparePrice: "€2,800+",
     detailStrip: {
       eyebrow: "The Diagonal Display",
@@ -102,7 +102,7 @@ export const collections: Collection[] = [
       },
       {
         quote:
-          "At 37mm with that tonneau case, it wears like something that cost five times more. Kevin's pricing is almost unfair to other brands.",
+          "At 37mm with that tonneau case, it wears like something that cost five times more. The diagonal display is one of those details you don't notice until you do — then you can't unsee it.",
         name: "Pieter V.",
         bio: "Photographer · Amsterdam — Second Pedral purchase",
       },
@@ -166,7 +166,7 @@ export const collections: Collection[] = [
       "Personal note from Kevin",
     ],
     valueAnchor:
-      "Hand-wound dress watches under 9mm with multi-layer guilloché dials from established houses start at €3,500+. Without the retail markup, the Triomphe delivers the same craft — directly from the designer.",
+      "Hand-wound dress watches under 9mm with multi-layer guilloché dials from established houses start at €3,500+. Without the retail markup, I deliver the same craft — directly to you.",
     valueComparePrice: "€3,500+",
     detailStrip: {
       eyebrow: "The Dial",
@@ -182,7 +182,7 @@ export const collections: Collection[] = [
       },
       {
         quote:
-          "The Hermès-grade Epsom strap at this price point is remarkable. Kevin clearly prioritises material quality over margin. As a collector, that earns trust.",
+          "The Hermès-grade Epsom strap at this price point is remarkable. The materials tell you everything about the priorities here — quality over margin, every time. As a collector, that earns trust.",
         name: "Henrik S.",
         bio: "Tech founder · Stockholm — Triomphe Noir Profond (Sold Out Edition)",
       },

@@ -20,21 +20,20 @@ export default function StoryPreview() {
               The Story
             </p>
             <h2 className="font-serif text-[clamp(26px,3vw,40px)] font-light leading-[1.25] text-foreground">
-              In 2015, Sweden&apos;s only watchmaking school rejected Kevin
-              Pedral.
+              In 2015, Sweden&apos;s only watchmaking school rejected me.
             </h2>
             <div className="mt-6 h-px w-[60px] bg-accent" />
             <p className="mt-6 text-[15px] font-light leading-[1.8] text-foreground-muted">
-              Born in the Democratic Republic of Congo, raised in Stockholm,
-              Kevin didn&apos;t fit the profile they wanted. So he taught himself
-              — through obsessive research, hundreds of failed prototypes, and
+              Born in the Democratic Republic of Congo, raised in Stockholm —
+              I didn&apos;t fit the profile they wanted. So I taught myself
+              through obsessive research, hundreds of failed prototypes, and
               one stubborn belief: if the path to creating beautiful things has a
               gate, you can also just walk around it.
             </p>
             <p className="mt-5 text-[15px] font-light leading-[1.8] text-foreground-muted">
-              Today, every Pedral watch is designed by Kevin in Stockholm. Each
-              edition is capped at 20 pieces. Each dial tells a different story.
-              And each owner knows: this isn&apos;t a brand — it&apos;s one
+              Every watch I make is designed here in Stockholm. Each edition is
+              capped at 20 pieces. Each dial tells a different story. And each
+              owner knows: this isn&apos;t a brand — it&apos;s one
               person&apos;s obsession, made tangible.
             </p>
             <Link
