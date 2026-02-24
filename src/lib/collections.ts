@@ -111,14 +111,14 @@ export const collections: Collection[] = [
       {
         name: "Lapis No.1",
         stripePriceId: "price_1T4Tw7CfxE1lSBKRY9zmQqHV",
-        stock: 3,
+        stock: 5,
         description: "Deep lapis lazuli blue — a dial that commands the room. The sunburst guilloché catches the light differently with every angle.",
         image: "/images/maestro-lapis.jpg",
       },
       {
         name: "Frosted Flex",
         stripePriceId: "price_1T4TvBCfxE1lSBKRfCkEqWVd",
-        stock: 4,
+        stock: 18,
         description: "A frosted, architectural surface with a quiet confidence. Less is more — until the light hits.",
         image: "/images/maestro-frosted.jpg",
       },
@@ -191,7 +191,7 @@ export const collections: Collection[] = [
       {
         name: "Tempest Stone",
         stripePriceId: "price_1T4TsqCfxE1lSBKRFBCRLukn",
-        stock: 1,
+        stock: 3,
         description: "Dark, stormy tones drawn from natural stone. No two dials are identical — yours is the only one like it in the world.",
         image: "/images/triomphe-tempest.jpg",
       },
@@ -199,6 +199,7 @@ export const collections: Collection[] = [
         name: "Émeraude Vert",
         stripePriceId: "price_1T4TpQCfxE1lSBKR6aJh8nbb",
         stock: 1,
+
         description: "A multi-layer guilloché dial in deep emerald green. Carreau Tissé centre, Vagues de Lumière border — layers that reward every glance.",
         image: "/images/triomphe-emeraude.jpg",
       },
