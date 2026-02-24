@@ -9,7 +9,7 @@ export default function JournalContent() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-background pb-16 pt-32 md:pt-40">
+      <section className="relative bg-background pb-16 pt-28 md:pt-40">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(17,29,32,0.6)_0%,transparent_60%)]" />
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 text-center md:px-12">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
@@ -53,10 +53,10 @@ export default function JournalContent() {
               </div>
               <div className="flex flex-col justify-center">
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-medium tracking-[2px] uppercase text-accent">
+                  <span className="text-[11px] font-medium tracking-[1.5px] uppercase text-accent">
                     {articles[0].category}
                   </span>
-                  <span className="text-[10px] tracking-[1px] text-foreground-muted/50">
+                  <span className="text-[11px] tracking-[0.5px] text-foreground-muted/50">
                     {articles[0].date}
                   </span>
                 </div>
@@ -67,7 +67,7 @@ export default function JournalContent() {
                   {articles[0].excerpt}
                 </p>
                 <div className="mt-6 flex items-center gap-4">
-                  <span className="text-[10px] tracking-[2px] uppercase text-foreground-muted/40">
+                  <span className="text-[11px] tracking-[1px] uppercase text-foreground-muted/40">
                     {articles[0].readTime}
                   </span>
                   <span className="text-[10px] tracking-[2px] uppercase text-accent opacity-0 transition-opacity group-hover:opacity-100">
@@ -93,10 +93,10 @@ export default function JournalContent() {
                   className="group block border-b border-accent/[0.06] p-8 transition-colors hover:bg-background/50 md:p-10"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-medium tracking-[2px] uppercase text-accent">
+                    <span className="text-[11px] font-medium tracking-[1.5px] uppercase text-accent">
                       {article.category}
                     </span>
-                    <span className="text-[10px] tracking-[1px] text-foreground-muted/50">
+                    <span className="text-[11px] tracking-[0.5px] text-foreground-muted/50">
                       {article.date}
                     </span>
                   </div>
@@ -107,7 +107,7 @@ export default function JournalContent() {
                     {article.excerpt}
                   </p>
                   <div className="mt-4 flex items-center gap-3">
-                    <span className="text-[10px] tracking-[2px] uppercase text-foreground-muted/40">
+                    <span className="text-[11px] tracking-[1px] uppercase text-foreground-muted/40">
                       {article.readTime}
                     </span>
                     <span className="text-[10px] tracking-[2px] uppercase text-accent opacity-0 transition-opacity group-hover:opacity-100">
@@ -144,7 +144,7 @@ export default function JournalContent() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="bg-background py-20">
+      <section className="bg-background py-14 md:py-20">
         <div className="mx-auto max-w-[600px] px-6 text-center">
           <motion.div
             initial="hidden"
@@ -167,7 +167,7 @@ export default function JournalContent() {
               />
               <button
                 type="button"
-                className="rounded-[2px] bg-accent px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-background transition-all hover:bg-accent-hover"
+                className="w-full rounded-[2px] bg-accent px-8 py-3.5 text-[12px] font-medium tracking-[2px] uppercase text-background transition-all hover:bg-accent-hover sm:w-auto sm:text-[11px] sm:tracking-[3px]"
               >
                 Subscribe
               </button>

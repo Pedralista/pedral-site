@@ -17,20 +17,20 @@ const filters: { key: Filter; label: string }[] = [
 function BadgeLabel({ stock }: { stock: number }) {
   if (stock === 0) {
     return (
-      <span className="absolute left-4 top-4 z-10 bg-[rgba(80,80,80,0.85)] px-3 py-1 text-[9px] font-medium tracking-[1.5px] uppercase text-white">
+      <span className="absolute left-4 top-4 z-10 bg-[rgba(80,80,80,0.85)] px-3 py-1 text-[11px] font-medium tracking-[1px] uppercase text-white">
         Sold Out
       </span>
     );
   }
   if (stock <= 3) {
     return (
-      <span className="absolute left-4 top-4 z-10 bg-[rgba(180,60,40,0.85)] px-3 py-1 text-[9px] font-medium tracking-[1.5px] uppercase text-white">
+      <span className="absolute left-4 top-4 z-10 bg-[rgba(180,60,40,0.85)] px-3 py-1 text-[11px] font-medium tracking-[1px] uppercase text-white">
         Almost Gone
       </span>
     );
   }
   return (
-    <span className="absolute left-4 top-4 z-10 bg-[rgba(201,168,76,0.85)] px-3 py-1 text-[9px] font-medium tracking-[1.5px] uppercase text-background">
+    <span className="absolute left-4 top-4 z-10 bg-[rgba(201,168,76,0.85)] px-3 py-1 text-[11px] font-medium tracking-[1px] uppercase text-background">
       {stock} Remaining
     </span>
   );
@@ -69,12 +69,12 @@ export default function CollectionsContent() {
       <section className="bg-background-alt py-20 md:py-28">
         <div className="mx-auto max-w-[1400px] px-6 md:px-12">
           {/* Filters */}
-          <div className="mb-16 flex flex-wrap justify-center gap-4">
+          <div className="mb-12 flex flex-wrap justify-center gap-3 sm:gap-4 md:mb-16">
             {filters.map((f) => (
               <button
                 key={f.key}
                 onClick={() => setActive(f.key)}
-                className={`rounded-[2px] border px-6 py-2.5 text-[11px] font-medium tracking-[2px] uppercase transition-all cursor-pointer ${
+                className={`rounded-[2px] border px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase transition-all cursor-pointer sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[2px] ${
                   active === f.key
                     ? "border-accent bg-accent text-background"
                     : "border-accent/20 bg-transparent text-foreground-muted hover:border-accent hover:text-accent"
@@ -130,7 +130,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
           </p>
           <div className="flex items-end justify-between">
             <div>
-              <span className="block text-[10px] font-light tracking-[1px] uppercase text-foreground-muted">
+              <span className="block text-[11px] font-light tracking-[0.5px] uppercase text-foreground-muted">
                 From
               </span>
               <span className="text-[17px] font-normal text-foreground">
@@ -147,12 +147,12 @@ function CollectionCard({ collection }: { collection: Collection }) {
                     }}
                   />
                 </div>
-                <p className="text-right text-[10px] font-normal tracking-[1px] text-accent">
+                <p className="text-right text-[11px] font-normal tracking-[0.5px] text-accent">
                   {collection.stock} left of {collection.maxStock}
                 </p>
               </div>
             ) : (
-              <span className="text-[10px] font-normal tracking-[1px] text-foreground-muted">
+              <span className="text-[11px] font-normal tracking-[0.5px] text-foreground-muted">
                 Sold out
               </span>
             )}

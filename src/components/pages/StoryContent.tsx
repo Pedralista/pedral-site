@@ -55,11 +55,11 @@ export default function StoryContent() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-background-alt px-6 pb-16 pt-40 md:px-24 md:pt-44 md:pb-20">
+      <section className="bg-background-alt px-6 pb-14 pt-28 sm:pt-32 md:px-24 md:pt-44 md:pb-20">
         <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
           <motion.p
             variants={fadeInUp}
-            className="mb-4 text-[11px] font-normal tracking-[4px] uppercase text-accent"
+            className="mb-4 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent"
           >
             Brand Story
           </motion.p>
@@ -84,16 +84,16 @@ export default function StoryContent() {
       </section>
 
       {/* Timeline — KEPT FROM ORIGINAL */}
-      <section className="bg-background py-28 md:py-40">
+      <section className="bg-background py-16 md:py-28 lg:py-40">
         <div className="mx-auto max-w-[1400px] px-6 md:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="mb-20 text-center"
+            className="mb-12 text-center md:mb-20"
           >
-            <p className="mb-3.5 text-[11px] font-normal tracking-[4px] uppercase text-accent">
+            <p className="mb-3.5 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
               Timeline
             </p>
             <h2 className="mt-6 font-serif text-[clamp(32px,4vw,52px)] font-light text-foreground">
@@ -105,7 +105,7 @@ export default function StoryContent() {
             {/* Center line */}
             <div className="absolute left-8 top-0 bottom-0 w-px bg-accent/[0.12] md:left-1/2" />
 
-            <div className="space-y-16 md:space-y-24">
+            <div className="space-y-12 md:space-y-24">
               {timeline.map((item, i) => (
                 <motion.div
                   key={item.year}
@@ -121,7 +121,7 @@ export default function StoryContent() {
                   <div className="absolute left-8 top-2 z-10 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-accent bg-background md:left-1/2" />
 
                   {/* Content */}
-                  <div className={`ml-16 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16"}`}>
+                  <div className={`ml-14 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16"}`}>
                     <span className="font-serif text-[28px] font-light text-accent">{item.year}</span>
                     <h3 className="mt-2 font-serif text-2xl font-normal text-foreground">{item.title}</h3>
                     <p className="mt-3 text-sm font-light leading-[1.7] text-foreground-muted">{item.text}</p>
@@ -144,7 +144,7 @@ export default function StoryContent() {
       </section>
 
       {/* Design Ethos Quote */}
-      <section className="border-y border-accent/[0.06] bg-background-alt py-20 text-center md:py-28">
+      <section className="border-y border-accent/[0.06] bg-background-alt py-14 text-center md:py-20 lg:py-28">
         <div className="mx-auto max-w-[800px] px-6 md:px-12">
           <motion.div
             initial="hidden"
@@ -152,7 +152,7 @@ export default function StoryContent() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="font-serif text-[28px] font-light italic leading-[1.5] text-foreground">
+            <p className="font-serif text-[clamp(20px,5vw,28px)] font-light italic leading-[1.5] text-foreground">
               &ldquo;Pedral is not made for everyone. It is made for those who
               already understand.&rdquo;
             </p>

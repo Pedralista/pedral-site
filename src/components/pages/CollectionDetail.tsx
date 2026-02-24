@@ -29,12 +29,12 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           <ImagePlaceholder label={`${c.name}\nHero / Lifestyle Image`} className="h-full w-full" />
           <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(5,10,12,0.88)_0%,rgba(5,10,12,0.35)_50%,rgba(5,10,12,0.7)_100%)]" />
         </div>
-        <div className="relative z-10 max-w-[700px] px-6 py-32 md:px-24">
+        <div className="relative z-10 max-w-[700px] px-6 py-20 sm:py-24 md:py-32 md:px-24">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-5 text-[11px] font-normal tracking-[4px] uppercase text-accent"
+            className="mb-5 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent"
           >
             {isSoldOut
               ? `The Original — Since ${c.year}`
@@ -44,7 +44,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="font-serif text-[clamp(48px,5vw,56px)] font-light leading-[1.15] text-foreground"
+            className="font-serif text-[clamp(32px,7vw,56px)] font-light leading-[1.15] text-foreground"
           >
             {c.name}
           </motion.h1>
@@ -68,10 +68,10 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-5 inline-flex items-center gap-3 border border-accent/25 px-5 py-2 rounded-[2px]"
+            className="mt-5 flex w-fit items-center gap-3 border border-accent/25 px-4 py-2 rounded-[2px]"
           >
             <span className="h-[7px] w-[7px] animate-pulse rounded-full bg-accent" />
-            <span className="text-[11px] tracking-[2.5px] uppercase text-accent">
+            <span className="text-[11px] tracking-[1.5px] uppercase text-accent">
               Edition of {c.maxStock} &middot; {c.edition}
             </span>
           </motion.div>
@@ -81,7 +81,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             transition={{ duration: 0.8, delay: 1 }}
             className="mt-6"
           >
-            <button className="rounded-[2px] bg-accent px-12 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover">
+            <button className="w-full rounded-[2px] bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]">
               {isSoldOut ? "Join Waitlist" : `Reserve Your ${c.name.split(" ")[0]} →`}
             </button>
           </motion.div>
@@ -97,7 +97,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="mb-3 text-[11px] font-normal tracking-[4px] uppercase text-accent">
+            <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
               The Watch
             </p>
             <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
@@ -136,7 +136,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           variants={slideInRight}
           className="flex flex-col justify-center px-6 py-12 md:px-16"
         >
-          <p className="mb-3 text-[11px] font-normal tracking-[4px] uppercase text-accent">
+          <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
             {c.detailStrip.eyebrow}
           </p>
           <h3 className="font-serif text-[26px] font-light text-foreground">
@@ -159,7 +159,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="mb-3 text-[11px] font-normal tracking-[4px] uppercase text-accent">
+            <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
               Kevin&apos;s Note
             </p>
             <div className="mt-4 h-px w-[60px] bg-accent" />
@@ -193,7 +193,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="mb-3 text-[11px] font-normal tracking-[4px] uppercase text-accent">
+            <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
               Specifications
             </p>
             <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
@@ -216,7 +216,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                   variants={fadeInUp}
                   className="border-b border-accent/10"
                 >
-                  <td className="w-[180px] py-3.5 pr-6 align-top text-[11px] font-medium tracking-[2.5px] uppercase text-accent">
+                  <td className="w-[120px] py-3.5 pr-4 align-top text-[11px] font-medium tracking-[1.5px] uppercase text-accent sm:w-[180px] sm:pr-6 sm:tracking-[2.5px]">
                     {label}
                   </td>
                   <td className="py-3.5 text-[14px] font-light text-foreground-muted">
@@ -239,7 +239,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             variants={fadeInUp}
             className="rounded-[2px] border border-accent/10 bg-surface/50 p-8 md:p-10"
           >
-            <p className="mb-2 text-[11px] font-normal tracking-[4px] uppercase text-accent">
+            <p className="mb-2 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
               Complete Package
             </p>
             <h3 className="font-serif text-[20px] font-light text-foreground">
@@ -271,7 +271,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               viewport={{ once: true }}
               variants={fadeInUp}
             >
-              <p className="mb-3 text-[11px] font-normal tracking-[4px] uppercase text-accent">
+              <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
                 Value Perspective
               </p>
               <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
@@ -305,19 +305,19 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <p className="mb-3 text-[11px] font-normal tracking-[4px] uppercase text-accent">
+          <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
             Edition of {c.maxStock} &middot; {c.edition}
           </p>
           <p className="font-serif text-[48px] font-light text-foreground">
             &euro;{c.price.toLocaleString()}
           </p>
-          <button className="mt-6 rounded-[2px] bg-accent px-12 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover">
+          <button className="mt-6 w-full max-w-[300px] rounded-[2px] bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]">
             {isSoldOut ? "Join Waitlist" : `Reserve Your ${c.name.split(" ")[0]}`}
           </button>
           <p className="mt-3 text-[12px] font-light tracking-[0.5px] text-foreground-muted">
             Pre-order &middot; Full payment secures your allocation &middot; Ships in 4–6 weeks
           </p>
-          <div className="mx-auto mt-6 flex flex-wrap justify-center gap-8">
+          <div className="mx-auto mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8">
             {[
               "Cancel anytime before dispatch",
               "14-day return after delivery",
@@ -326,7 +326,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             ].map((item) => (
               <span
                 key={item}
-                className="flex items-center gap-2 text-[10px] tracking-[2px] uppercase text-foreground-muted"
+                className="flex items-center gap-2 text-[11px] tracking-[1px] uppercase text-foreground-muted"
               >
                 <span className="font-semibold text-accent">&#10003;</span>
                 {item}
@@ -348,7 +348,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             >
               <motion.p
                 variants={fadeInUp}
-                className="mb-6 text-[11px] font-normal tracking-[4px] uppercase text-accent"
+                className="mb-6 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent"
               >
                 From {c.name} Owners
               </motion.p>

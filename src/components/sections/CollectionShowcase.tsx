@@ -20,7 +20,7 @@ function ScarcityBar({ stock, maxStock }: { stock: number; maxStock: number }) {
 
 function UrgencyTag({ text }: { text: string }) {
   return (
-    <div className="mt-2.5 flex items-center gap-2 text-[10px] tracking-[1.5px] uppercase text-[#d4956a]">
+    <div className="mt-2.5 flex items-center gap-2 text-[11px] tracking-[1px] uppercase text-[#d4956a]">
       <span className="h-[5px] w-[5px] animate-pulse rounded-full bg-[#d4956a]" />
       {text}
     </div>
@@ -29,10 +29,10 @@ function UrgencyTag({ text }: { text: string }) {
 
 export default function CollectionShowcase() {
   return (
-    <section className="bg-background-alt py-24 md:py-[120px]">
+    <section className="bg-background-alt py-16 md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-[1100px] px-6 md:px-12">
         <div className="mb-6">
-          <p className="mb-3.5 text-[11px] font-normal tracking-[4px] uppercase text-accent">
+          <p className="mb-3.5 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
             The Collection
           </p>
           <h2 className="font-serif text-[clamp(32px,3.5vw,40px)] font-light text-foreground">
@@ -69,7 +69,7 @@ export default function CollectionShowcase() {
 
                 {/* Card body */}
                 <div className="p-6">
-                  <div className="text-[10px] tracking-[2.5px] uppercase text-accent">
+                  <div className="text-[11px] tracking-[1.5px] uppercase text-accent">
                     {c.badge}
                   </div>
                   <h3 className="mt-1.5 font-serif text-[22px] font-light text-foreground">
@@ -89,7 +89,7 @@ export default function CollectionShowcase() {
           ))}
         </motion.div>
 
-        <p className="mt-8 text-center text-[11px] tracking-[1px] leading-[1.7] text-foreground-muted">
+        <p className="mt-8 text-center text-[12px] tracking-[0.5px] leading-[1.7] text-foreground-muted">
           Some earlier Pedral editions were released exclusively through
           Kickstarter and are no longer available. These limited-run pieces will
           not appear on this site — once an edition is gone, it&apos;s gone.

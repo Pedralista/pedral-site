@@ -33,16 +33,16 @@ export default function Footer() {
         </p>
 
         {/* Navigation links */}
-        <div className="mt-8 flex flex-wrap justify-center gap-7">
+        <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-4 sm:gap-7">
           <Link
             href="/collections"
-            className="text-[11px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
+            className="text-[12px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
           >
             Collection
           </Link>
           <Link
             href="/story"
-            className="text-[11px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
+            className="text-[12px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
           >
             Story
           </Link>
@@ -50,19 +50,19 @@ export default function Footer() {
             href="https://shop.pedral.eu"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[11px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
+            className="text-[12px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
           >
             Shop
           </a>
           <Link
             href="/journal"
-            className="text-[11px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
+            className="text-[12px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
           >
             The Rounded Square
           </Link>
           <Link
             href="/contact"
-            className="text-[11px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
+            className="text-[12px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
           >
             Contact
           </Link>
@@ -70,48 +70,48 @@ export default function Footer() {
             href="https://www.instagram.com/pedralwatches"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[11px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
+            className="text-[12px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
           >
             Instagram
           </a>
         </div>
 
         {/* Legal links */}
-        <div className="mt-5 flex flex-wrap justify-center gap-7">
+        <div className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-3 sm:gap-7">
           <Link
             href="/privacy"
-            className="text-[10px] font-normal tracking-[1.5px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
+            className="text-[11px] font-normal tracking-[1px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
           >
             Privacy
           </Link>
           <Link
             href="/terms"
-            className="text-[10px] font-normal tracking-[1.5px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
+            className="text-[11px] font-normal tracking-[1px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
           >
             Terms
           </Link>
           <Link
             href="/shipping"
-            className="text-[10px] font-normal tracking-[1.5px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
+            className="text-[11px] font-normal tracking-[1px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
           >
             Shipping
           </Link>
           <Link
             href="/cookies"
-            className="text-[10px] font-normal tracking-[1.5px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
+            className="text-[11px] font-normal tracking-[1px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
           >
             Cookies
           </Link>
           <Link
             href="/withdrawal"
-            className="text-[10px] font-normal tracking-[1.5px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
+            className="text-[11px] font-normal tracking-[1px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
           >
             Withdrawal
           </Link>
         </div>
 
         {/* Payment icons */}
-        <div className="mt-8 flex items-center justify-center gap-5">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-5">
           {/* Visa */}
           <svg className="h-7 w-auto" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="47" height="31" rx="3.5" stroke="rgba(255,255,255,0.15)" />
@@ -147,11 +147,11 @@ export default function Footer() {
 
         {/* Business details */}
         <div className="mt-8 border-t border-accent/[0.06] pt-6 text-center">
-          <p className="text-[10px] font-light leading-relaxed tracking-[1px] text-foreground-muted/40">
+          <p className="text-[11px] font-light leading-relaxed tracking-[0.5px] text-foreground-muted/40">
             Pedral Design Studio AB &middot; Org.nr 559484-4275 &middot; VAT
             SE559484427501
           </p>
-          <p className="mt-1 text-[10px] font-light tracking-[1px] text-foreground-muted/40">
+          <p className="mt-1 text-[11px] font-light tracking-[0.5px] text-foreground-muted/40">
             Sveavägen 117A, 113 49 Stockholm, Sweden &middot; &copy;{" "}
             {new Date().getFullYear()}
           </p>

@@ -53,16 +53,16 @@ export default function TrustBar() {
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
-        className="mx-auto flex max-w-[1400px] flex-col items-center justify-center gap-4 px-6 py-7 sm:flex-row sm:gap-[56px] md:px-12"
+        className="mx-auto grid max-w-[1400px] grid-cols-2 gap-6 px-6 py-8 sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-[56px] sm:py-7 md:px-12"
       >
         {trustItems.map((item) => (
           <div key={item.title} className="flex items-center gap-3.5">
-            <div className="flex h-[38px] w-[38px] items-center justify-center rounded-full border border-accent/20 text-accent">
+            <div className="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full border border-accent/20 text-accent sm:h-[38px] sm:w-[38px]">
               {item.icon}
             </div>
             <div>
               <p className="font-serif text-lg font-light text-foreground">{item.title}</p>
-              <p className="text-[11px] font-light tracking-[1px] text-foreground-muted">{item.desc}</p>
+              <p className="text-[12px] font-light tracking-[0.5px] text-foreground-muted">{item.desc}</p>
             </div>
           </div>
         ))}

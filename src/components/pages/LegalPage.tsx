@@ -13,7 +13,7 @@ interface LegalPageProps {
 export default function LegalPage({ eyebrow, title, updated, children }: LegalPageProps) {
   return (
     <>
-      <section className="border-b border-accent/[0.06] bg-background pb-14 pt-32 text-center md:pt-36">
+      <section className="border-b border-accent/[0.06] bg-background pb-14 pt-28 text-center md:pt-36">
         <div className="mx-auto max-w-[720px] px-6 md:px-12">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.p
@@ -40,7 +40,7 @@ export default function LegalPage({ eyebrow, title, updated, children }: LegalPa
         </div>
       </section>
 
-      <section className="bg-background py-14 md:py-16">
+      <section className="bg-background py-10 md:py-14 lg:py-16">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -106,6 +106,20 @@ export default function LegalPage({ eyebrow, title, updated, children }: LegalPa
         }
         .legal-content li::marker {
           color: var(--accent);
+        }
+        @media (max-width: 640px) {
+          .legal-content h2 {
+            font-size: 22px;
+            margin-top: 36px;
+            padding-top: 18px;
+          }
+          .legal-content h3 {
+            font-size: 14px;
+          }
+          .legal-content ul,
+          .legal-content ol {
+            margin-left: 16px;
+          }
         }
       `}</style>
     </>

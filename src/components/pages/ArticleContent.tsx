@@ -19,14 +19,14 @@ export default function ArticleContent({ article }: Props) {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-background pb-12 pt-32 md:pt-40">
+      <section className="relative bg-background pb-12 pt-28 md:pt-40">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(17,29,32,0.6)_0%,transparent_60%)]" />
         <div className="relative z-10 mx-auto max-w-[800px] px-6 text-center md:px-12">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeInUp} className="flex items-center justify-center gap-3">
               <Link
                 href="/journal"
-                className="text-[10px] tracking-[2px] uppercase text-foreground-muted/50 transition-colors hover:text-accent"
+                className="text-[11px] tracking-[1.5px] uppercase text-foreground-muted/50 transition-colors hover:text-accent"
               >
                 The Rounded Square
               </Link>
@@ -113,7 +113,7 @@ export default function ArticleContent({ article }: Props) {
                 href={`/journal/${prevArticle.slug}`}
                 className="group rounded-sm border border-accent/[0.06] p-8 transition-colors hover:border-accent/20"
               >
-                <p className="text-[10px] tracking-[2px] uppercase text-foreground-muted/40">
+                <p className="text-[11px] tracking-[1.5px] uppercase text-foreground-muted/40">
                   &larr; Previous
                 </p>
                 <p className="mt-2 font-serif text-lg font-light text-foreground transition-colors group-hover:text-accent">
@@ -128,7 +128,7 @@ export default function ArticleContent({ article }: Props) {
                 href={`/journal/${nextArticle.slug}`}
                 className="group rounded-sm border border-accent/[0.06] p-8 text-right transition-colors hover:border-accent/20"
               >
-                <p className="text-[10px] tracking-[2px] uppercase text-foreground-muted/40">
+                <p className="text-[11px] tracking-[1.5px] uppercase text-foreground-muted/40">
                   Next &rarr;
                 </p>
                 <p className="mt-2 font-serif text-lg font-light text-foreground transition-colors group-hover:text-accent">
@@ -143,7 +143,7 @@ export default function ArticleContent({ article }: Props) {
           <div className="mt-12 text-center">
             <Link
               href="/journal"
-              className="text-[11px] font-normal tracking-[2.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
+              className="text-[12px] font-normal tracking-[2px] uppercase text-foreground-muted transition-colors hover:text-accent"
             >
               &larr; Back to The Rounded Square
             </Link>

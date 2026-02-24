@@ -32,9 +32,9 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="bg-background-alt py-24 md:py-[120px]">
+    <section className="bg-background-alt py-16 md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-[1000px] px-6 md:px-12">
-        <div className="mb-14 text-center">
+        <div className="mb-10 text-center md:mb-14">
           <p className="mb-3.5 text-[11px] font-normal tracking-[4px] uppercase text-accent">
             From the Collection
           </p>
@@ -54,7 +54,7 @@ export default function Testimonials() {
             <motion.div
               key={t.author}
               variants={fadeInUp}
-              className="relative border-l-2 border-accent/20 py-2 pl-8"
+              className="relative border-l-2 border-accent/20 py-2 pl-5 sm:pl-8"
             >
               <p className="mb-4 font-serif text-[17px] font-light italic leading-[1.6] text-foreground">
                 &ldquo;{t.quote}&rdquo;

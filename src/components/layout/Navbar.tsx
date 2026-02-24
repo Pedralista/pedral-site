@@ -43,7 +43,7 @@ export default function Navbar() {
             : "bg-transparent"
         }`}
       >
-        <div className="mx-auto grid max-w-[1400px] grid-cols-[1fr_auto_1fr] items-center px-6 py-4 md:px-12">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-[1fr_auto_1fr] items-center px-4 py-3 sm:px-6 sm:py-4 md:px-12">
           {/* Left links (desktop) */}
           <div className="hidden items-center gap-8 md:flex">
             {leftLinks.map((link) => (
@@ -66,7 +66,7 @@ export default function Navbar() {
               alt="Pedral"
               width={420}
               height={56}
-              className="h-[20px] w-auto invert md:h-[26px]"
+              className="h-[22px] w-auto invert md:h-[26px]"
               priority
             />
           </Link>
@@ -100,7 +100,7 @@ export default function Navbar() {
             {/* Mobile toggle */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+              className="relative z-10 flex h-11 w-11 flex-col items-center justify-center gap-1.5 md:hidden"
               aria-label="Toggle menu"
             >
               <motion.span

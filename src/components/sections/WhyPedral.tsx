@@ -23,10 +23,10 @@ const reasons = [
 
 export default function WhyPedral() {
   return (
-    <section className="bg-background py-28 md:py-[120px]">
+    <section className="bg-background py-16 md:py-28 lg:py-[120px]">
       <div className="mx-auto max-w-[1100px] px-6 md:px-12">
-        <div className="mb-16">
-          <p className="mb-3.5 text-[11px] font-normal tracking-[4px] uppercase text-accent">
+        <div className="mb-10 md:mb-16">
+          <p className="mb-3.5 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
             Why Pedral
           </p>
           <h2 className="font-serif text-[clamp(32px,3.5vw,40px)] font-light text-foreground">
@@ -39,13 +39,13 @@ export default function WhyPedral() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer}
-          className="grid gap-14 md:grid-cols-3"
+          className="grid gap-10 md:gap-14 md:grid-cols-3"
         >
           {reasons.map((r) => (
             <motion.div
               key={r.num}
               variants={fadeInUp}
-              className="border-t border-accent/[0.12] pt-9"
+              className="border-t border-accent/[0.12] pt-7 md:pt-9"
             >
               <span className="font-serif text-[44px] font-light text-accent/20">
                 {r.num}

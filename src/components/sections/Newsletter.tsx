@@ -15,7 +15,7 @@ export default function Newsletter({
   buttonText = "Get Priority Access",
 }: NewsletterProps) {
   return (
-    <section className="border-t border-accent/[0.06] bg-background py-20 md:py-[80px]">
+    <section className="border-t border-accent/[0.06] bg-background py-14 md:py-20 lg:py-[80px]">
       <div className="mx-auto max-w-[520px] px-6 text-center md:px-12">
         <motion.div
           initial="hidden"
@@ -30,13 +30,13 @@ export default function Newsletter({
             {subtitle}
           </p>
 
-          <div className="mx-auto mt-7 flex max-w-[420px]">
+          <div className="mx-auto mt-7 flex max-w-[420px] flex-col gap-3 sm:flex-row sm:gap-0">
             <input
               type="email"
               placeholder="Your email address"
-              className="flex-1 border border-r-0 border-accent/15 bg-white/[0.04] px-5 py-3.5 text-sm font-light text-foreground outline-none placeholder:text-foreground-muted/50"
+              className="w-full rounded-[2px] border border-accent/15 bg-white/[0.04] px-5 py-3.5 text-sm font-light text-foreground outline-none placeholder:text-foreground-muted/50 sm:flex-1 sm:rounded-none sm:border-r-0"
             />
-            <button className="border border-accent bg-accent px-7 py-3.5 text-[11px] font-medium tracking-[2.5px] uppercase text-background transition-colors hover:bg-accent-hover">
+            <button className="w-full rounded-[2px] border border-accent bg-accent px-7 py-3.5 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover sm:w-auto sm:rounded-none sm:text-[11px] sm:tracking-[2.5px]">
               {buttonText}
             </button>
           </div>

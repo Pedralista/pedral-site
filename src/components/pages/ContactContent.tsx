@@ -28,7 +28,7 @@ export default function ContactContent() {
       </section>
 
       {/* Content */}
-      <section className="overflow-hidden bg-background-alt py-20 md:py-28">
+      <section className="overflow-hidden bg-background-alt py-14 md:py-20 lg:py-28">
         <div className="mx-auto max-w-[1400px] px-6 md:px-12">
           <div className="grid gap-16 md:grid-cols-5 md:gap-24">
             {/* CTA */}
@@ -44,18 +44,18 @@ export default function ContactContent() {
                   Whether you have questions about our timepieces, want to discuss a collaboration,
                   or simply want to learn more about Pedral — we&apos;d love to hear from you.
                 </p>
-                <div className="mt-10 flex flex-wrap gap-4">
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                   <a
                     href="mailto:hello@pedral.watch"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-[2px] bg-accent px-9 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-all hover:bg-accent-hover"
+                    className="rounded-[2px] bg-accent px-9 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-all hover:bg-accent-hover sm:text-[11px] sm:tracking-[3px]"
                   >
                     Send a Message
                   </a>
                   <a
                     href="mailto:info@pedral.watch"
-                    className="rounded-[2px] border border-accent/[0.15] bg-transparent px-9 py-4 text-[11px] font-medium tracking-[3px] uppercase text-accent transition-all hover:border-accent hover:bg-accent hover:text-background"
+                    className="rounded-[2px] border border-accent/[0.15] bg-transparent px-9 py-4 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-all hover:border-accent hover:bg-accent hover:text-background sm:text-[11px] sm:tracking-[3px]"
                   >
                     Email Directly
                   </a>
@@ -73,7 +73,7 @@ export default function ContactContent() {
             >
               <div className="space-y-10">
                 <div>
-                  <h3 className="text-[10px] font-medium tracking-[2.5px] uppercase text-accent">
+                  <h3 className="text-[11px] font-medium tracking-[2px] uppercase text-accent">
                     Email
                   </h3>
                   <a
@@ -84,7 +84,7 @@ export default function ContactContent() {
                   </a>
                 </div>
                 <div>
-                  <h3 className="text-[10px] font-medium tracking-[2.5px] uppercase text-accent">
+                  <h3 className="text-[11px] font-medium tracking-[2px] uppercase text-accent">
                     Location
                   </h3>
                   <p className="mt-2 font-serif text-xl font-light text-foreground">
@@ -92,7 +92,7 @@ export default function ContactContent() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-[10px] font-medium tracking-[2.5px] uppercase text-accent">
+                  <h3 className="text-[11px] font-medium tracking-[2px] uppercase text-accent">
                     Follow
                   </h3>
                   <div className="mt-3 flex flex-col gap-2">
@@ -114,7 +114,7 @@ export default function ContactContent() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-[10px] font-medium tracking-[2.5px] uppercase text-accent">
+                  <h3 className="text-[11px] font-medium tracking-[2px] uppercase text-accent">
                     Shop
                   </h3>
                   <a

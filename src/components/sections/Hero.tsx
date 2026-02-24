@@ -18,13 +18,13 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 py-24 md:px-12">
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 py-20 md:py-24 md:px-12">
         <div className="max-w-[650px]">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-6 text-[11px] font-normal tracking-[4px] uppercase text-accent"
+            className="mb-6 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent"
           >
             Stockholm &middot; Limited Editions
           </motion.p>
@@ -34,7 +34,7 @@ export default function Hero() {
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="font-serif text-[clamp(48px,5vw,72px)] font-light leading-[1.05] text-foreground"
+              className="font-serif text-[clamp(36px,8vw,72px)] font-light leading-[1.05] text-foreground"
             >
               Not for everyone.
             </motion.h1>
@@ -64,7 +64,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-10 flex flex-wrap items-center gap-4"
+            className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
           >
             <Button href="/collections" variant="primary">
               Explore the Collection
@@ -83,7 +83,7 @@ export default function Hero() {
         transition={{ duration: 1, delay: 1.2 }}
         className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
       >
-        <span className="text-[10px] font-light tracking-[3px] uppercase text-foreground-muted">
+        <span className="text-[10px] font-light tracking-[1.5px] uppercase text-foreground-muted">
           Scroll
         </span>
         <motion.div
