@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedral.eu — Lansering</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    background: #0a1214;
+    color: #c8c3b8;
+    line-height: 1.7;
+    padding: 40px 20px 80px;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: #f5f2eb;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #f5f2eb;
+    margin-top: 56px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #f5f2eb;
+    margin-top: 28px;
+    margin-bottom: 8px;
+  }
+
+  p { margin-bottom: 14px; }
+
+  strong { color: #f5f2eb; font-weight: 500; }
+
+  a { color: #c9a84c; text-decoration: none; }
+  a:hover { color: #dbbf6f; }
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(201,168,76,0.08);
+    margin: 48px 0;
+  }
+
+  ul, ol { padding-left: 20px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+  }
+
+  th {
+    color: #c9a84c;
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .intro-box {
+    background: #111d20;
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 2px;
+    padding: 24px;
+    margin: 24px 0;
+  }
+
+  .intro-box p:last-child { margin-bottom: 0; }
+
+  /* Code blocks */
+  .code-wrap {
+    position: relative;
+    margin: 12px 0 20px;
+  }
+
+  pre {
+    background: #111d20;
+    border: 1px solid rgba(201,168,76,0.08);
+    border-radius: 2px;
+    padding: 16px;
+    overflow-x: auto;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #c8c3b8;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #c9a84c;
+    color: #0a1214;
+    border: none;
+    border-radius: 2px;
+    padding: 6px 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .copy-btn:hover { background: #dbbf6f; }
+  .copy-btn.copied { background: #2a5a3a; color: #f5f2eb; }
+
+  /* Collapsible CSS sections */
+  details {
+    margin: 12px 0;
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  summary {
+    background: #111d20;
+    padding: 14px 18px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 400;
+    color: #f5f2eb;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  summary::after {
+    content: '▸';
+    color: #c9a84c;
+    font-size: 14px;
+    transition: transform 0.2s;
+  }
+
+  details[open] summary::after { transform: rotate(90deg); }
+
+  summary:hover { background: #162225; }
+
+  summary .desc {
+    font-size: 12px;
+    color: #9a9589;
+    font-weight: 300;
+    margin-left: 12px;
+  }
+
+  details pre {
+    border: none;
+    border-top: 1px solid rgba(201,168,76,0.08);
+    border-radius: 0;
+    margin: 0;
+  }
+
+  /* Copy all button */
+  .copy-all-wrap {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .copy-all-btn {
+    background: #c9a84c;
+    color: #0a1214;
+    border: none;
+    border-radius: 2px;
+    padding: 14px 28px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .copy-all-btn:hover { background: #dbbf6f; }
+  .copy-all-btn.copied { background: #2a5a3a; color: #f5f2eb; }
+
+  .expand-btn {
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.15);
+    color: #c9a84c;
+    border-radius: 2px;
+    padding: 14px 28px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .expand-btn:hover { border-color: #c9a84c; background: rgba(201,168,76,0.05); }
+
+  .note {
+    font-size: 13px;
+    color: #9a9589;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Pedral.eu — Lansering</h1>
+
+<h2>Innan du börjar</h2>
+
+<div class="intro-box">
+<p>Den nya hemsidan är klar och ser bra ut. Men det blev lite krångligare än jag trodde att koppla ihop allt — inget jättestort, men det finns några saker du behöver göra.</p>
+
+<p><strong>Problemet:</strong> Din nuvarande WordPress-sida (shoppen, kontaktformuläret osv.) har sin egen styling som inte riktigt matchar nya sidan. Så om en besökare går från nya hemsidan till shoppen eller kontaktsidan ser det lite annorlunda ut.</p>
+</div>
+
+<p><strong>Du har två vägar:</strong></p>
+
+<p><strong>Alt 1 — Enklast: Allt i WordPress</strong><br>
+Om du inte vill hålla på med massa konton och setup kan du istället leta efter en snygg WordPress-mall som matchar den stil du vill ha. Då ligger allt på ett ställe — hemsida, shop, kontakt — och du sköter allt i WordPress som du redan kan. Det här är enklast om du inte riktigt orkar eller vill lära dig nya verktyg.</p>
+
+<p><strong>Alt 2 — Full kontroll: Nya sidan + fixa WordPress-stylingen</strong><br>
+Om du vill använda nya sidan vi byggt behöver du:</p>
+<ul>
+<li>Klistra in CSS-kod i WordPress så att shoppen och kontaktsidan matchar (instruktioner nedan — det tar 5 min)</li>
+<li>Skapa konto på <strong>GitHub</strong> och <strong>Vercel</strong> för att kunna publicera och ändra sidan själv (gratis, tar ca 15 min)</li>
+</ul>
+
+<p>Inget av detta är svårt och allt är gratis — men det krävs för att det ska funka. Den här guiden går igenom allt steg för steg.</p>
+
+<hr>
+
+<h2>Sidor som finns</h2>
+
+<h3>Huvudsidor</h3>
+<ul>
+<li><strong>Startsida</strong> — Hero, kollektionsöversikt med lagerstatus, testimonials, newsletter</li>
+<li><strong>Collection</strong> — Alla klockor med filter och priser</li>
+<li><strong>Produktsidor</strong> — En per klocka (Artefact, Maestro, Triomphe, Okapi Classique, Skulptur, One-Eighty)</li>
+<li><strong>Brand Story</strong> — Din resa, tidslinje, citat</li>
+<li><strong>Contact</strong> — Kontaktinfo + länk till ditt befintliga formulär</li>
+</ul>
+
+<h3>Juridiskt</h3>
+<ul>
+<li>Privacy Policy</li>
+<li>Terms & Conditions</li>
+<li>Shipping & Customs</li>
+<li>Cookie Policy</li>
+<li>Right of Withdrawal</li>
+<li>Cookie consent banner</li>
+</ul>
+
+<h3>Övrigt</h3>
+<ul>
+<li>Sökmotoroptimerat (Google hittar alla sidor)</li>
+<li>Fungerar på mobil, surfplatta och dator</li>
+<li>Animationer vid scroll</li>
+</ul>
+
+<hr>
+
+<h2>Vad du behöver skicka / lägga till</h2>
+
+<h3>Bilder</h3>
+<p>Alla bilder är placeholders just nu. Skicka dem till mig, eller lägg till dem själv med Claude (se längre ner).</p>
+
+<table>
+<tr><th>Bild</th><th>Storlek</th></tr>
+<tr><td>Hero-bild (startsidan)</td><td>800 × 960</td></tr>
+<tr><td>Artefact</td><td>800 × 1000</td></tr>
+<tr><td>Maestro</td><td>800 × 1000</td></tr>
+<tr><td>Triomphe</td><td>800 × 1000</td></tr>
+<tr><td>Okapi Classique</td><td>800 × 1000</td></tr>
+<tr><td>Skulptur</td><td>800 × 1000</td></tr>
+<tr><td>One-Eighty</td><td>800 × 1000</td></tr>
+<tr><td>Porträtt på dig</td><td>600 × 800</td></tr>
+<tr><td>Delningsbild (Facebook/LinkedIn)</td><td>1200 × 630</td></tr>
+</table>
+<p class="note">JPG-format, gärna under 300kb per bild.</p>
+
+<h3>Organisationsnummer</h3>
+<p>Behövs för Terms & Conditions-sidan.</p>
+
+<hr>
+
+<h2>Shoppen (shop.pedral.eu)</h2>
+
+<p>Shoppen ser lite annorlunda ut jämfört med nya sidan. CSS-koden nedan fixar det — samma färger, knappar och typsnitt.</p>
+
+<div class="intro-box">
+<p><strong>Obs:</strong> Jag har inte jobbat mycket i WordPress så jag kan inte garantera att allt blir perfekt — men CSS:en är byggd utifrån exakt samma färger, typsnitt och stil som nya sidan, så det borde bli snarlikt.</p>
+<p><strong>Spara en backup först!</strong> Kopiera den CSS som redan finns i WordPress och spara i en textfil på datorn innan du byter ut något. Då kan du enkelt gå tillbaka.</p>
+</div>
+
+<h3>Gör så här:</h3>
+<ol>
+<li>Logga in på <strong>shop.pedral.eu/wp-admin</strong></li>
+<li>Gå till <strong>Utseende → Anpassa → Ytterligare CSS</strong></li>
+<li><strong>Markera allt</strong> som står där (Cmd+A), <strong>kopiera</strong> (Cmd+C) och spara i en textfil som backup</li>
+<li>Ta bort allt (Cmd+A → Delete)</li>
+<li>Kopiera all CSS nedan och klistra in</li>
+<li>Klicka <strong>Publicera</strong></li>
+<li>Klicka runt i shoppen och kontaktsidan och kolla att det ser okej ut</li>
+</ol>
+<p class="note">Om det inte blir bra — klistra tillbaka din backup och allt är som förut.</p>
+
+<h3>WordPress CSS</h3>
+
+<div class="copy-all-wrap">
+<button class="copy-all-btn" onclick="copyAllCSS(this)">Kopiera all CSS</button>
+<button class="expand-btn" onclick="toggleAll()">Visa / dölj alla</button>
+</div>
+
+<details>
+<summary>1. Typsnitt <span class="desc">Laddar in Outfit + Cormorant Garamond</span></summary>
+<div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Kopiera</button>
+<pre><code>@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');</code></pre>
+</div></details>
+
+<details>
+<summary>2. Färgpalett <span class="desc">Alla färger som används</span></summary>
+<div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Kopiera</button>
+<pre><code>:root {
+  --pedral-bg: #0a1214;
+  --pedral-bg-alt: #111d20;
+  --pedral-surface: #1a2a2d;
+  --pedral-text: #f5f2eb;
+  --pedral-text-muted: #9a9589;
+  --pedral-gold: #c9a84c;
+  --pedral-gold-hover: #dbbf6f;
+  --pedral-border: rgba(201, 168, 76, 0.08);
+  --pedral-border-gold: rgba(201, 168, 76, 0.15);
+}</code></pre>
+</div></details>
+
+<details>
+<summary>3. Bakgrund & text <span class="desc">Mörk bakgrund, rätt typsnitt</span></summary>
+<div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Kopiera</button>
+<pre><code>body,
+.ast-separate-container,
+.ast-plain-container {
+  background-color: var(--pedral-bg) !important;
+  color: var(--pedral-text) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6,
+.woocommerce div.product .product_title,
+.woocommerce-loop-product__title,
+.entry-title {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-weight: 400 !important;
+  color: var(--pedral-text) !important;
+}
+
+p, span, li, td, th, label, div {
+  color: var(--pedral-text-muted);
+}
+
+a { color: var(--pedral-gold) !important; text-decoration: none !important; }
+a:hover { color: var(--pedral-gold-hover) !important; }</code></pre>
+</div></details>
+
+<details>
+<summary>4. Menyn i toppen <span class="desc">Mörk header med guldiga länkar</span></summary>
+<div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Kopiera</button>
+<pre><code>.ast-main-header-wrap,
+.ast-header-menu,
+.site-header,
+.elementor-location-header,
+.ast-above-header-wrap,
+.ast-below-header-wrap {
+  background-color: var(--pedral-bg) !important;
+  border-bottom: 1px solid var(--pedral-border) !important;
+}
+
+.ast-header-menu .menu-item > a,
+.elementor-nav-menu .menu-item a,
+.main-navigation a {
+  color: var(--pedral-text-muted) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  letter-spacing: 2.5px !important;
+  text-transform: uppercase !important;
+}
+
+.ast-header-menu .menu-item > a:hover,
+.elementor-nav-menu .menu-item a:hover {
+  color: var(--pedral-text) !important;
+}</code></pre>
+</div></details>
+
+<details>
+<summary>5. Knappar <span class="desc">Köp, kundvagn, checkout osv.</span></summary>
+<div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Kopiera</button>
+<pre><code>.ast-button, .button, .elementor-button, .wp-block-button__link,
+.woocommerce a.button, .woocommerce button.button, .woocommerce input.button,
+.woocommerce #respond input#submit, .woocommerce .cart .button,
+.woocommerce .checkout-button, .single_add_to_cart_button, input[type="submit"] {
+  background-color: var(--pedral-gold) !important;
+  color: var(--pedral-bg) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 3px !important;
+  text-transform: uppercase !important;
+  border: none !important;
+  border-radius: 2px !important;
+  padding: 16px 36px !important;
+  transition: all 0.3s ease !important;
+}
+
+.ast-button:hover, .button:hover, .elementor-button:hover,
+.wp-block-button__link:hover, .woocommerce a.button:hover,
+.woocommerce button.button:hover, .single_add_to_cart_button:hover,
+input[type="submit"]:hover {
+  background-color: var(--pedral-gold-hover) !important;
+  color: var(--pedral-bg) !important;
+}
+
+.woocommerce a.button.alt, .button.alt {
+  background-color: transparent !important;
+  border: 1px solid var(--pedral-border-gold) !important;
+  color: var(--pedral-gold) !important;
+}
+
+.woocommerce a.button.alt:hover, .button.alt:hover {
+  background-color: var(--pedral-gold) !important;
+  color: var(--pedral-bg) !important;
+}</code></pre>
+</div></details>
+
+<details>
+<summary>6. Produktkort <span class="desc">Klockorna i shop-listan</span></summary>
+<div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Kopiera</button>
+<pre><code>.woocommerce ul.products li.product,
+.ast-woo-shop-archive .product {
+  background-color: var(--pedral-bg) !important;
+  border: 1px solid var(--pedral-border) !important;
+  border-radius: 2px !important;
+  transition: all 0.4s ease !important;
+}
+
+.woocommerce ul.products li.product:hover {
+  border-color: var(--pedral-border-gold) !important;
+  transform: translateY(-3px);
+}
+
+.woocommerce ul.products li.product .price,
+.woocommerce div.product p.price {
+  color: var(--pedral-text) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 17px !important;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  color: var(--pedral-text) !important;
+}
+
+.woocommerce span.onsale {
+  background-color: var(--pedral-gold) !important;
+  color: var(--pedral-bg) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  border-radius: 2px !important;
+}</code></pre>
+</div></details>
+
+<details>
+<summary>7. Produktsida <span class="desc">Enskild klocka, flikar</span></summary>
+<div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Kopiera</button>
+<pre><code>.woocommerce div.product {
+  background-color: var(--pedral-bg) !important;
+}
+
+.woocommerce div.product .product_title {
+  font-size: 42px !important;
+  font-weight: 300 !important;
+}
+
+.woocommerce-product-details__short-description,
+.woocommerce div.product .woocommerce-tabs .panel p {
+  color: var(--pedral-text-muted) !important;
+  font-size: 15px !important;
+  font-weight: 300 !important;
+  line-height: 1.75 !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li {
+  background-color: var(--pedral-bg-alt) !important;
+  border-color: var(--pedral-border) !important;
+  border-radius: 0 !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li a {
+  color: var(--pedral-text-muted) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 11px !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active {
+  border-bottom-color: var(--pedral-gold) !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+  color: var(--pedral-text) !important;
+}</code></pre>
+</div></details>
+
+<details>
+<summary>8. Kundvagn & checkout <span class="desc">Tabell, formulär, inputfält</span></summary>
+<div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Kopiera</button>
+<pre><code>.woocommerce-cart .woocommerce table.shop_table,
+.woocommerce table.shop_table {
+  background-color: var(--pedral-bg-alt) !important;
+  border-color: var(--pedral-border) !important;
+}
+
+.woocommerce table.shop_table th,
+.woocommerce table.shop_table td {
+  border-color: var(--pedral-border) !important;
+  color: var(--pedral-text-muted) !important;
+}
+
+.woocommerce form .form-row label {
+  color: var(--pedral-text-muted) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+}
+
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea,
+.woocommerce form .form-row select,
+input[type="text"], input[type="email"], input[type="tel"],
+input[type="password"], textarea, select {
+  background-color: var(--pedral-bg-alt) !important;
+  border: 1px solid var(--pedral-border-gold) !important;
+  border-radius: 2px !important;
+  color: var(--pedral-text) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 300 !important;
+  padding: 12px 16px !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--pedral-gold) !important;
+  outline: none !important;
+}</code></pre>
+</div></details>
+
+<details>
+<summary>9. Sidfot <span class="desc">Footer</span></summary>
+<div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Kopiera</button>
+<pre><code>.site-footer, .elementor-location-footer {
+  background-color: var(--pedral-bg) !important;
+  border-top: 1px solid var(--pedral-border) !important;
+}
+
+.site-footer p, .site-footer span, .site-footer a, .site-footer .widget-title {
+  color: var(--pedral-text-muted) !important;
+}
+
+.site-footer a:hover { color: var(--pedral-gold) !important; }</code></pre>
+</div></details>
+
+<details>
+<summary>10. Övrigt <span class="desc">Meddelanden, scrollbar, markering</span></summary>
+<div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Kopiera</button>
+<pre><code>.woocommerce .woocommerce-message, .woocommerce .woocommerce-info {
+  background-color: var(--pedral-bg-alt) !important;
+  border-top-color: var(--pedral-gold) !important;
+  color: var(--pedral-text-muted) !important;
+}
+
+.woocommerce .woocommerce-error {
+  background-color: var(--pedral-bg-alt) !important;
+  border-top-color: #b43c28 !important;
+  color: var(--pedral-text-muted) !important;
+}
+
+::selection { background-color: var(--pedral-gold); color: var(--pedral-bg); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--pedral-bg); }
+::-webkit-scrollbar-thumb { background: var(--pedral-surface); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--pedral-gold); }</code></pre>
+</div></details>
+
+<details>
+<summary>11. Kontaktformulär <span class="desc">Contact Form 7</span></summary>
+<div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Kopiera</button>
+<pre><code>.wpcf7 { max-width: 600px; }
+
+.wpcf7-form label {
+  color: var(--pedral-text-muted) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  display: block !important;
+  margin-bottom: 6px !important;
+}
+
+.wpcf7-form-control.wpcf7-text,
+.wpcf7-form-control.wpcf7-email,
+.wpcf7-form-control.wpcf7-textarea {
+  background-color: var(--pedral-bg-alt) !important;
+  border: 1px solid var(--pedral-border-gold) !important;
+  border-radius: 2px !important;
+  color: var(--pedral-text) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 300 !important;
+  padding: 12px 16px !important;
+  width: 100% !important;
+  margin-bottom: 20px !important;
+}
+
+.wpcf7-form-control.wpcf7-text:focus,
+.wpcf7-form-control.wpcf7-email:focus,
+.wpcf7-form-control.wpcf7-textarea:focus {
+  border-color: var(--pedral-gold) !important;
+  outline: none !important;
+}
+
+.wpcf7-form-control.wpcf7-textarea {
+  min-height: 150px !important;
+  resize: vertical !important;
+}
+
+.wpcf7-form-control.wpcf7-submit {
+  background-color: var(--pedral-gold) !important;
+  color: var(--pedral-bg) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 3px !important;
+  text-transform: uppercase !important;
+  border: none !important;
+  border-radius: 2px !important;
+  padding: 16px 36px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.wpcf7-form-control.wpcf7-submit:hover {
+  background-color: var(--pedral-gold-hover) !important;
+}
+
+.wpcf7 .wpcf7-response-output {
+  border-color: var(--pedral-gold) !important;
+  color: var(--pedral-text-muted) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 13px !important;
+}
+
+.wpcf7 .wpcf7-not-valid-tip {
+  color: #b43c28 !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 12px !important;
+}
+
+.entry-content p, .entry-content li {
+  color: var(--pedral-text-muted) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 300 !important;
+  line-height: 1.75 !important;
+}</code></pre>
+</div></details>
+
+<hr>
+
+<h2>Redigera sidan själv</h2>
+
+<p>Du kan göra ändringar på hemsidan själv — byta texter, uppdatera priser, lägga till bilder, osv. Du behöver inte kunna programmera. Du pratar bara med en AI och beskriver vad du vill ändra, på svenska.</p>
+
+<h3>Enklaste sättet: Claude Desktop-appen (rekommenderas)</h3>
+
+<p>Det absolut enklaste är att använda <strong>Claude Desktop-appen</strong> som du förmodligen redan har med din Pro-prenumeration.</p>
+
+<ol>
+<li>Öppna <strong>Claude-appen</strong> på din Mac</li>
+<li>Dra in projektmappen (<strong>pedral-site</strong>) i chatten, eller beskriv vad du vill ändra</li>
+<li>Prata på svenska — t.ex. "Ändra priset på Artefact till 1 549 EUR"</li>
+<li>Claude gör ändringen och visar vad som ändrats</li>
+</ol>
+
+<h3>Alternativ: Claude Code i Terminal (mer kontroll)</h3>
+
+<p>Om du vill ha mer kontroll kan du använda Claude Code i Terminal istället. Det kräver lite mer setup men ger tillgång till fler verktyg.</p>
+
+<p><strong>Engångs-setup:</strong></p>
+<ol>
+<li>Öppna <strong>Terminal</strong> (Cmd + Mellanslag → skriv "Terminal")</li>
+<li>Installera Homebrew: <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></li>
+<li>Installera Node.js och Git: <code>brew install node git</code></li>
+<li>Hämta koden: <code>cd ~/Desktop && git clone REPO-LÄNK</code></li>
+<li>Installera beroenden: <code>cd ~/Desktop/pedral-site && npm install</code></li>
+<li>Installera Claude Code: <code>npm install -g @anthropic-ai/claude-code</code></li>
+</ol>
+
+<p><strong>Göra ändringar:</strong> Öppna Terminal → <code>cd ~/Desktop/pedral-site</code> → <code>claude</code> → beskriv vad du vill ändra.</p>
+
+<p><strong>Publicera:</strong> Skriv "Pusha ändringarna till GitHub" — sidan uppdateras automatiskt inom 30 sekunder.</p>
+
+<hr>
+
+<h2>Skapa Vercel-konto (gratis)</h2>
+
+<p>Vercel är tjänsten som visar din hemsida på internet. Du behöver ett eget konto så du äger allt själv.</p>
+
+<ol>
+<li>Gå till <strong>vercel.com</strong></li>
+<li>Klicka <strong>Sign Up</strong> → välj <strong>Continue with GitHub</strong></li>
+<li>Logga in med ditt GitHub-konto</li>
+<li>Klicka <strong>Add New Project</strong> → välj <strong>pedral-site</strong> från listan</li>
+<li>Klicka <strong>Deploy</strong> — vänta tills det blir grönt</li>
+<li>Klart! Sidan är live.</li>
+</ol>
+
+<p>Efter detta uppdateras sidan automatiskt varje gång du pushar till GitHub.</p>
+
+</div>
+
+<script>
+function copyCode(btn) {
+  const code = btn.parentElement.querySelector('code').textContent;
+  navigator.clipboard.writeText(code);
+  btn.textContent = 'Kopierad!';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = 'Kopiera'; btn.classList.remove('copied'); }, 2000);
+}
+
+function copyAllCSS() {
+  const blocks = document.querySelectorAll('details code');
+  const all = Array.from(blocks).map(b => b.textContent).join('\n\n');
+  navigator.clipboard.writeText(all);
+  const btn = document.querySelector('.copy-all-btn');
+  btn.textContent = 'Kopierad!';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = 'Kopiera all CSS'; btn.classList.remove('copied'); }, 2000);
+}
+
+function toggleAll() {
+  const details = document.querySelectorAll('details');
+  const allOpen = Array.from(details).every(d => d.open);
+  details.forEach(d => d.open = !allOpen);
+}
+</script>
+</body>
+</html>

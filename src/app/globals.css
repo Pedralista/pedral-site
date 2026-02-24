@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a1214;
+  --background-alt: #111d20;
+  --surface: #1a2a2d;
+  --foreground: #f5f2eb;
+  --foreground-muted: #9a9589;
+  --accent: #c9a84c;
+  --accent-hover: #dbbf6f;
+  --accent-warm: #c9a84c;
+  --accent-warm-hover: #dbbf6f;
+  --accent-secondary: #b43c28;
+  --teal: #111d20;
+  --teal-light: #1a2a2d;
+  --teal-lighter: #243a3e;
+  --border: rgba(201, 168, 76, 0.08);
+  --border-teal: rgba(201, 168, 76, 0.06);
+  --border-gold: rgba(201, 168, 76, 0.15);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-warm: var(--accent-warm);
+  --color-accent-warm-hover: var(--accent-warm-hover);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-teal: var(--teal);
+  --color-teal-light: var(--teal-light);
+  --color-teal-lighter: var(--teal-lighter);
+  --color-border: var(--border);
+  --color-border-teal: var(--border-teal);
+  --color-border-gold: var(--border-gold);
+  --font-sans: var(--font-outfit);
+  --font-serif: var(--font-cormorant);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Selection color */
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground-muted);
+}
+
+/* Horizontal scroll container */
+.horizontal-scroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Grain overlay */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 1;
+}
