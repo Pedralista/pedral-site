@@ -142,13 +142,17 @@ export default function Footer() {
             <path d="M22.4 11.5C24.5 11.5 26 13 26 15.1C26 17.2 24.5 18.7 22.3 18.7H20.4V22H18.8V11.5H22.4ZM20.4 17.3H22C23.5 17.3 24.4 16.4 24.4 15.1C24.4 13.8 23.5 12.9 22 12.9H20.4V17.3ZM29.3 22.1C28 22.1 27 21.4 27 20.3C27 19.2 27.8 18.6 29.5 18.5L31.3 18.4V17.9C31.3 17.1 30.7 16.6 29.8 16.6C29 16.6 28.4 17 28.3 17.6H26.8C26.9 16.3 28 15.3 29.8 15.3C31.7 15.3 32.8 16.3 32.8 17.8V22H31.4V20.9H31.3C30.9 21.7 30.2 22.1 29.3 22.1ZM29.7 21C30.6 21 31.3 20.4 31.3 19.6V19.1L29.7 19.2C28.9 19.3 28.5 19.6 28.5 20.1C28.5 20.6 29 21 29.7 21ZM35.5 23.8C35.3 23.8 34.9 23.8 34.7 23.7V22.4C34.9 22.4 35.2 22.5 35.4 22.5C36.1 22.5 36.5 22.2 36.7 21.5L36.8 21.2L34 15.4H35.7L37.6 20L39.5 15.4H41.1L38.2 22C37.6 23.3 36.9 23.8 35.5 23.8Z" fill="white" />
           </svg>
           {/* Google Pay */}
-          <svg className="h-8 w-auto" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="47" height="31" rx="3.5" fill="white" stroke="rgba(0,0,0,0.12)" />
-            <text x="8" y="21" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="500" fill="#4285F4">G</text>
-            <text x="15" y="21" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="500" fill="#EA4335">o</text>
-            <text x="22" y="21" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="500" fill="#FBBC05">o</text>
-            <text x="29" y="21" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="500" fill="#4285F4">g</text>
-            <text x="36" y="21" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="500" fill="#34A853">le</text>
+          <svg className="h-8 w-auto" viewBox="0 0 70 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.5" y="0.5" width="69" height="31" rx="5.5" fill="white" stroke="rgba(0,0,0,0.10)" />
+            {/* Google G — 4 colored pie sectors, center (14,16), r=8 */}
+            <path d="M14 16 L20.13 21.14 A8 8 0 0 1 8.34 21.66 Z" fill="#4285F4" />
+            <path d="M14 16 L8.34 21.66 A8 8 0 0 1 8.86 9.87 Z" fill="#EA4335" />
+            <path d="M14 16 L8.86 9.87 A8 8 0 0 1 16.74 8.48 Z" fill="#FBBC05" />
+            <path d="M14 16 L16.74 8.48 A8 8 0 0 1 20.13 10.86 Z" fill="#34A853" />
+            {/* G bar + white donut to create ring + open G shape */}
+            <rect x="14" y="14.25" width="8" height="3.5" fill="#4285F4" />
+            <circle cx="14" cy="16" r="4.5" fill="white" />
+            <text x="30" y="21" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="500" fill="#3c4043">Pay</text>
           </svg>
           {/* Klarna */}
           <svg className="h-8 w-auto" viewBox="0 0 68 32" fill="none" xmlns="http://www.w3.org/2000/svg">
