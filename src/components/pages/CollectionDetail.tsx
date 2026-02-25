@@ -269,11 +269,21 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           whileInView="visible"
           viewport={{ once: true }}
           variants={slideInLeft}
+          className="relative h-[400px] w-full md:h-[500px]"
         >
-          <ImagePlaceholder
-            label={`${c.name}\nDial Detail / Macro`}
-            className="h-[400px] w-full md:h-[500px]"
-          />
+          {c.detailImage ? (
+            <Image
+              src={c.detailImage}
+              alt={`${c.name} detail`}
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <ImagePlaceholder
+              label={`${c.name}\nDial Detail / Macro`}
+              className="h-full w-full"
+            />
+          )}
         </motion.div>
         <motion.div
           initial="hidden"
@@ -321,12 +331,25 @@ export default function CollectionDetail({ collection }: { collection: Collectio
 
       {/* Gallery Strip */}
       <section className="grid grid-cols-1 gap-[2px] md:grid-cols-3">
-        {["Angle 1", "Angle 2", "Angle 3"].map((label) => (
-          <ImagePlaceholder
-            key={label}
-            label={`${c.name}\n${label}`}
-            className="h-[250px] w-full transition-transform duration-500 hover:scale-[1.02] md:h-[380px]"
-          />
+        {(c.galleryImages && c.galleryImages.length > 0
+          ? c.galleryImages
+          : [null, null, null]
+        ).map((src, i) => (
+          <div key={i} className="relative h-[250px] w-full md:h-[380px]">
+            {src ? (
+              <Image
+                src={src}
+                alt={`${c.name} angle ${i + 1}`}
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-[1.02]"
+              />
+            ) : (
+              <ImagePlaceholder
+                label={`${c.name}\nAngle ${i + 1}`}
+                className="h-full w-full"
+              />
+            )}
+          </div>
         ))}
       </section>
 

@@ -41,6 +41,8 @@ export interface Collection {
   newsletterSub: string;
   image: string;
   heroImage?: string;
+  detailImage?: string;
+  galleryImages?: string[];
   variants?: CollectionVariant[];
   isPreOrder?: boolean;
   comingSoonEditions?: { name: string; description: string; image?: string }[];
@@ -186,7 +188,7 @@ export const collections: Collection[] = [
         quote:
           "The Hermès-grade Epsom strap at this price point is remarkable. The materials tell you everything about the priorities here — quality over margin, every time. As a collector, that earns trust.",
         name: "Henrik S.",
-        bio: "Tech founder · Stockholm — Triomphe Noir Profond (Sold Out Edition)",
+        bio: "Tech founder · Stockholm — Triomphe Noir Profond (Pièce Unique)",
       },
     ],
     variants: [
@@ -210,6 +212,12 @@ export const collections: Collection[] = [
     newsletterSub: "Allocations fill fast. Priority goes to the list.",
     image: "/images/triomphe-emeraude.jpg",
     heroImage: "/images/triomphe-hero.jpg",
+    detailImage: "/images/triomphe-detail.jpg",
+    galleryImages: [
+      "/images/triomphe-angle-1.jpg",
+      "/images/triomphe-angle-2.jpg",
+      "/images/triomphe-angle-3.jpg",
+    ],
     comingSoonEditions: [
       {
         name: "Saphir Azur",
