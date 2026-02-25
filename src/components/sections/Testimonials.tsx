@@ -7,8 +7,8 @@ const testimonials = [
   {
     quote:
       "It starts conversations because people are curious — not because of branding. It's not widely known. I prefer it that way.",
-    author: "Marcus E.",
-    detail: "Architect · Berlin — Collector since 2022",
+    author: "Swen A.",
+    detail: "Architect · Hamburg — Collector since 2022",
   },
   {
     quote:
