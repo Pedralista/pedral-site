@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { collections, Collection } from "@/lib/collections";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -115,10 +116,21 @@ function CollectionCard({ collection }: { collection: Collection }) {
       >
         <BadgeLabel stock={collection.stock} />
 
-        <div className="flex aspect-[4/5] items-center justify-center bg-[linear-gradient(160deg,var(--background-alt),var(--surface))]">
-          <span className="font-serif text-[32px] font-light text-accent/[0.12]">
-            {collection.name}
-          </span>
+        <div className="relative aspect-[4/5] overflow-hidden bg-[linear-gradient(160deg,var(--background-alt),var(--surface))]">
+          {collection.image ? (
+            <Image
+              src={collection.image}
+              alt={collection.name}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center">
+              <span className="font-serif text-[32px] font-light text-accent/[0.12]">
+                {collection.name}
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="p-6">
