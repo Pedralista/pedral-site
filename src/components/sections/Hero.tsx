@@ -1,20 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Button from "@/components/ui/Button";
 
 export default function Hero() {
   return (
     <section className="relative flex h-dvh min-h-[600px] items-center overflow-hidden bg-background">
-      {/* Background image placeholder */}
+      {/* Background image */}
       <div className="pointer-events-none absolute inset-0 md:left-[45%]">
-        <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(135deg,rgba(201,168,76,0.06)_0%,rgba(201,168,76,0.02)_50%,rgba(201,168,76,0.08)_100%)]">
-          <span className="text-center text-[10px] tracking-[3px] uppercase text-accent/30">
-            Hero Image
-            <br />
-            Lifestyle / Wrist Shot
-          </span>
-        </div>
+        <Image
+          src="/images/hero-lifestyle.jpg"
+          alt="Pedral watch lifestyle"
+          fill
+          className="object-cover"
+          priority
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
       </div>
 

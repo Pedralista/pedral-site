@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
 import Button from "@/components/ui/Button";
 import Testimonials from "@/components/sections/Testimonials";
@@ -142,9 +143,15 @@ export default function StoryContent() {
 
       {/* Workshop Gallery */}
       <section className="grid grid-cols-1 gap-[2px] md:grid-cols-3">
-        <ImagePlaceholder label="Kevin\nWorkshop Shot" className="h-[250px] w-full md:h-[380px]" />
-        <ImagePlaceholder label="Kevin\nPortrait" className="h-[250px] w-full md:h-[380px]" />
-        <ImagePlaceholder label="Kevin\nAt Work / Detail" className="h-[250px] w-full md:h-[380px]" />
+        <div className="relative h-[280px] w-full md:h-[400px]">
+          <Image src="/images/kevin-early-work.jpg" alt="Kevin early work" fill className="object-cover" />
+        </div>
+        <div className="relative h-[280px] w-full md:h-[400px]">
+          <Image src="/images/kevin-design-studio.jpg" alt="Pedral Stockholm studio" fill className="object-cover" />
+        </div>
+        <div className="relative h-[280px] w-full md:h-[400px]">
+          <Image src="/images/kevin-workshop.jpg" alt="Kevin in the workshop" fill className="object-cover" />
+        </div>
       </section>
 
       {/* Design Ethos Quote */}

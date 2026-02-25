@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { slideInLeft, slideInRight } from "@/lib/animations";
 import Link from "next/link";
 
@@ -44,23 +45,20 @@ export default function StoryPreview() {
             </Link>
           </motion.div>
 
-          {/* Right — Image placeholder */}
+          {/* Right — Portrait */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={slideInRight}
           >
-            <div className="flex aspect-[3/4] w-full flex-col items-center justify-center gap-3 rounded-[4px] border border-accent/10 bg-[linear-gradient(145deg,rgba(201,168,76,0.05),rgba(17,29,32,0.4))]">
-              <span className="font-serif text-[40px] text-accent/20">
-                &#10022;
-              </span>
-              <span className="text-[11px] tracking-[2px] uppercase text-foreground-muted">
-                Kevin Portrait
-              </span>
-              <span className="text-[11px] text-foreground-muted">
-                or Workshop Shot
-              </span>
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[4px]">
+              <Image
+                src="/images/kevin-portrait.jpeg"
+                alt="Kevin Pedral"
+                fill
+                className="object-cover"
+              />
             </div>
           </motion.div>
         </div>

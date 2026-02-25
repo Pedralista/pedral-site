@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
 import type { Collection } from "@/lib/collections";
 import Newsletter from "@/components/sections/Newsletter";
@@ -42,7 +43,17 @@ export default function CollectionDetail({ collection }: { collection: Collectio
       {/* Product Hero — Full-bleed with overlay */}
       <section className="relative flex min-h-screen items-center overflow-hidden">
         <div className="absolute inset-0">
-          <ImagePlaceholder label={`${c.name}\nHero / Lifestyle Image`} className="h-full w-full" />
+          {c.image ? (
+            <Image
+              src={c.image}
+              alt={c.name}
+              fill
+              className="object-cover"
+              priority
+            />
+          ) : (
+            <ImagePlaceholder label={`${c.name}\nHero / Lifestyle Image`} className="h-full w-full" />
+          )}
           <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(5,10,12,0.88)_0%,rgba(5,10,12,0.35)_50%,rgba(5,10,12,0.7)_100%)]" />
         </div>
         <div className="relative z-10 max-w-[700px] px-6 py-20 sm:py-24 md:py-32 md:px-24">
@@ -169,10 +180,19 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                   >
                     {/* Image area */}
                     <div className="relative h-[220px] w-full overflow-hidden sm:h-[260px]">
-                      <ImagePlaceholder
-                        label={`${c.name}\n${v.name}`}
-                        className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]"
-                      />
+                      {v.image ? (
+                        <Image
+                          src={v.image}
+                          alt={v.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      ) : (
+                        <ImagePlaceholder
+                          label={`${c.name}\n${v.name}`}
+                          className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      )}
                       {isSelected && (
                         <div className="absolute inset-0 bg-accent/10" />
                       )}
@@ -541,15 +561,29 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 <motion.div
                   key={ed.name}
                   variants={fadeInUp}
-                  className="rounded-[2px] border border-accent/10 bg-background-alt p-6"
+                  className="rounded-[2px] border border-accent/10 bg-background-alt overflow-hidden"
                 >
-                  <div className="mb-3 flex items-center gap-3">
-                    <span className="rounded-[2px] border border-accent/20 px-2.5 py-1 text-[10px] tracking-[2px] uppercase text-accent">
-                      Coming Soon
-                    </span>
+                  {ed.image ? (
+                    <div className="relative aspect-[4/3] w-full">
+                      <Image
+                        src={ed.image}
+                        alt={ed.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <ImagePlaceholder label={ed.name} className="aspect-[4/3] w-full" />
+                  )}
+                  <div className="p-6">
+                    <div className="mb-3 flex items-center gap-3">
+                      <span className="rounded-[2px] border border-accent/20 px-2.5 py-1 text-[10px] tracking-[2px] uppercase text-accent">
+                        Coming Soon
+                      </span>
+                    </div>
+                    <h3 className="font-serif text-[22px] font-light text-foreground">{ed.name}</h3>
+                    <p className="mt-2 text-[13px] font-light leading-[1.7] text-foreground-muted">{ed.description}</p>
                   </div>
-                  <h3 className="font-serif text-[22px] font-light text-foreground">{ed.name}</h3>
-                  <p className="mt-2 text-[13px] font-light leading-[1.7] text-foreground-muted">{ed.description}</p>
                 </motion.div>
               ))}
             </motion.div>

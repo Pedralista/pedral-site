@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
 import { collections } from "@/lib/collections";
@@ -58,13 +59,24 @@ export default function CollectionShowcase() {
                 href={`/collections/${c.slug}`}
                 className="group relative block cursor-pointer overflow-hidden rounded-[2px] border border-accent/[0.06] bg-background transition-all duration-400 hover:-translate-y-[3px] hover:border-accent/20"
               >
-                {/* Image placeholder */}
-                <div className="flex aspect-[4/5] items-center justify-center bg-[linear-gradient(160deg,var(--background-alt),var(--surface))]">
-                  <span className="text-center text-[10px] tracking-[2px] uppercase text-accent/30">
-                    {c.name}
-                    <br />
-                    Product Image
-                  </span>
+                {/* Product image */}
+                <div className="relative aspect-[4/5] overflow-hidden bg-[linear-gradient(160deg,var(--background-alt),var(--surface))]">
+                  {c.image ? (
+                    <Image
+                      src={c.image}
+                      alt={c.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center">
+                      <span className="text-center text-[10px] tracking-[2px] uppercase text-accent/30">
+                        {c.name}
+                        <br />
+                        Product Image
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Card body */}
