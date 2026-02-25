@@ -59,7 +59,6 @@ export default function StoryPreview() {
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(5,10,12,0.5)_0%,rgba(5,10,12,0.2)_50%,rgba(5,10,12,0.4)_100%)]" />
             </div>
           </motion.div>
         </div>
