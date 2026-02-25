@@ -185,7 +185,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                           src={v.image}
                           alt={v.name}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                       ) : (
                         <ImagePlaceholder

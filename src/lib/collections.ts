@@ -125,6 +125,18 @@ export const collections: Collection[] = [
         description: "A frosted, architectural surface with a quiet confidence. Less is more — until the light hits.",
         image: "/images/maestro-frosted.jpg",
       },
+      {
+        name: "Cosmic Tlt",
+        stripePriceId: "",
+        stock: 0,
+        description: "The diagonal time display expression. A driving watch principle — read the time without turning your wrist.",
+      },
+      {
+        name: "Laguna View",
+        stripePriceId: "",
+        stock: 0,
+        description: "The classic expression of the Maestro. Same architecture, traditional time display.",
+      },
     ],
     newsletterTitle: "Don't miss the next Maestro drop.",
     newsletterSub: "Priority access for collectors. No spam.",

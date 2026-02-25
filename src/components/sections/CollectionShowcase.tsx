@@ -65,7 +65,7 @@ export default function CollectionShowcase() {
                       src={c.image}
                       alt={c.name}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center">
