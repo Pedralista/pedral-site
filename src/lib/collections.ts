@@ -143,7 +143,7 @@ export const collections: Collection[] = [
     newsletterTitle: "Don't miss the next Maestro drop.",
     newsletterSub: "Priority access for collectors. No spam.",
     image: "/images/maestro.jpg",
-    heroImage: "/images/maestro-hero.jpg",
+    heroImage: "/images/maestro-hero2.jpg",
     detailImage: "/images/maestro-detail.jpg",
     galleryImages: [
       "/images/maestro-angle-1.jpg",
