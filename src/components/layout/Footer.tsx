@@ -125,16 +125,15 @@ export default function Footer() {
           </svg>
           {/* Mastercard */}
           <svg className="h-8 w-auto" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="47" height="31" rx="3.5" fill="#252525" stroke="rgba(255,255,255,0.15)" />
+            <rect x="0.5" y="0.5" width="47" height="31" rx="3.5" fill="#1A1A1A" stroke="rgba(255,255,255,0.15)" />
             <circle cx="19" cy="16" r="7" fill="#EB001B" />
             <circle cx="29" cy="16" r="7" fill="#F79E1B" />
-            <path d="M24 10.8C25.8 12.2 27 14 27 16C27 18 25.8 19.8 24 21.2C22.2 19.8 21 18 21 16C21 14 22.2 12.2 24 10.8Z" fill="#FF5F00" />
+            <path fillRule="evenodd" clipRule="evenodd" d="M24 10.536a7 7 0 0 1 0 10.928A7 7 0 0 1 24 10.536z" fill="#FF5F00" />
           </svg>
           {/* Amex */}
           <svg className="h-8 w-auto" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="47" height="31" rx="3.5" fill="#2E77BC" stroke="rgba(255,255,255,0.15)" />
-            <path d="M6 19V13H10.5L11.4 15.2L12.3 13H17V19H15.4V14.6L14.1 17.8H12.7L11.4 14.6V19H9.8L9.4 18H7.4L7 19H6ZM7.9 16.6H8.9L8.4 15.2L7.9 16.6Z" fill="white" />
-            <path d="M17 19V13H22.9L23.8 14.1L24.7 13H42V18.8L40.9 19.9L42 21H38.8L37.8 19.9L36.8 21H17V19ZM18.6 17.6H22.5V16.5H19.8V15.8H22.4V14.7H19.8V14.1H22.5V13H18.6V17.6ZM22.8 13L24.8 15.5L22.7 18H24.5L25.7 16.5L26.9 18H28.8L26.7 15.5L28.7 13H26.9L25.7 14.4L24.6 13H22.8ZM28.9 13V18H30.5V16.2H33.2V18H34.8V13H33.2V14.9H30.5V13H28.9ZM35.1 18H36.7L37.9 16.3L39.1 18H40.8L38.8 15.5L40.8 13H39.1L37.9 14.6L36.8 13H35.1L37 15.5L35.1 18Z" fill="white" />
+            <rect x="0.5" y="0.5" width="47" height="31" rx="3.5" fill="#016FD0" stroke="rgba(255,255,255,0.15)" />
+            <text x="24" y="21" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="700" fill="white" textAnchor="middle" letterSpacing="1">AMEX</text>
           </svg>
           {/* Apple Pay */}
           <svg className="h-8 w-auto" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -145,10 +144,11 @@ export default function Footer() {
           {/* Google Pay */}
           <svg className="h-8 w-auto" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="47" height="31" rx="3.5" fill="white" stroke="rgba(0,0,0,0.12)" />
-            <path d="M22.7 16.3L23 14.7H18.5V16.2H21C20.8 17.4 19.8 18.1 18.5 18.1C17 18.1 15.8 16.8 15.8 15.3C15.8 13.8 17 12.5 18.5 12.5C19.3 12.5 20 12.8 20.5 13.4L21.6 12.3C20.8 11.5 19.7 11 18.5 11C16.1 11 14.2 12.9 14.2 15.3C14.2 17.7 16.1 19.6 18.5 19.6C20.8 19.6 22.7 18.1 22.7 15.5V16.3Z" fill="#4285F4" />
-            <path d="M27.5 11.5H25.8V19.5H27.5V16.2H29.5C31.2 16.2 32.5 15 32.5 13.3C32.5 11.7 31.2 11.5 29.5 11.5H27.5ZM27.5 14.8V13H29.4C30.1 13 30.7 13.5 30.7 14.2C30.7 14.5 30.3 14.8 29.4 14.8H27.5Z" fill="#4285F4" />
-            <path d="M36.5 14.5C35.5 14.5 34.7 14.9 34.3 15.5L35.7 16.1C36 15.7 36.3 15.6 36.6 15.6C37.2 15.6 37.7 16 37.7 16.6V16.8C37.4 16.6 36.9 16.4 36.3 16.4C35 16.4 33.7 17.1 33.7 18.5C33.7 19.8 34.8 20.5 36 20.5C36.8 20.5 37.3 20.1 37.7 19.7V20.3H39.2V16.7C39.2 15.3 38 14.5 36.5 14.5ZM36.3 19.2C35.8 19.2 35.2 18.9 35.2 18.4C35.2 17.8 35.8 17.6 36.4 17.6C36.9 17.6 37.3 17.7 37.7 17.9C37.5 18.7 36.9 19.2 36.3 19.2Z" fill="#EA4335" />
-            <path d="M41.5 14.7L39.5 19.7L40.1 21.2L43.3 14.7H41.5Z" fill="#FBBC05" />
+            <text x="8" y="21" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="500" fill="#4285F4">G</text>
+            <text x="15" y="21" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="500" fill="#EA4335">o</text>
+            <text x="22" y="21" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="500" fill="#FBBC05">o</text>
+            <text x="29" y="21" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="500" fill="#4285F4">g</text>
+            <text x="36" y="21" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="500" fill="#34A853">le</text>
           </svg>
           {/* Klarna */}
           <svg className="h-8 w-auto" viewBox="0 0 68 32" fill="none" xmlns="http://www.w3.org/2000/svg">
