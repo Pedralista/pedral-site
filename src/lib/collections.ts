@@ -311,7 +311,7 @@ export const collections: Collection[] = [
       },
       {
         quote:
-          "The first Okapi was quietly extraordinary — the frosted blue dial, the guilloché small seconds. I've been waiting for this since it sold out. If the new one builds on that, it won't last long.",
+          "The original fumé sunburst dial had a precision and restraint that few pieces at any price achieve. The move to a frosted finish is an interesting evolution. I'm watching this closely.",
         name: "Dr. Kenji N.",
         bio: "Surgeon & watch collector · Tokyo — Original Okapi owner",
       },
