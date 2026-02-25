@@ -32,13 +32,13 @@ function BadgeLabel({ stock, isPreOrder }: { stock: number; isPreOrder?: boolean
   }
   if (stock <= 3) {
     return (
-      <span className="absolute left-4 top-4 z-10 border border-accent/30 bg-background/60 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-accent/80 backdrop-blur-sm">
+      <span className="absolute left-4 top-4 z-10 border border-red-500/40 bg-background/60 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-red-400/90 backdrop-blur-sm">
         Almost Gone
       </span>
     );
   }
   return (
-    <span className="absolute left-4 top-4 z-10 bg-[rgba(201,168,76,0.85)] px-3 py-1 text-[11px] font-medium tracking-[1px] uppercase text-background">
+    <span className="absolute left-4 top-4 z-10 border border-accent/40 bg-background/60 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-accent backdrop-blur-sm">
       {stock} Remaining
     </span>
   );
