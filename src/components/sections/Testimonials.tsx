@@ -12,7 +12,7 @@ const testimonials = [
   },
   {
     quote:
-      "I already own blue-dial pieces from established houses. The green felt more deliberate. The texture gives it structure rather than novelty.",
+      "I own blue from the usual houses. Émeraude Vert carries more presence than the photographs reveal.",
     author: "Anthony A.",
     detail: "Artist · France",
   },
