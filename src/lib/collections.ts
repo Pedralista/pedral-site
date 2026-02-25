@@ -321,6 +321,12 @@ export const collections: Collection[] = [
     newsletterSub: "Priority access. No spam. Just watches.",
     image: "/images/okapi.jpg",
     heroImage: "/images/okapi-hero.jpg",
+    detailImage: "/images/okapi-detail.jpg",
+    galleryImages: [
+      "/images/okapi-angle-1.jpg",
+      "/images/okapi-angle-2.jpg",
+      "/images/okapi-angle-3.jpg",
+    ],
   },
 ];
 
