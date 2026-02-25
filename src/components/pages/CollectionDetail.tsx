@@ -197,8 +197,8 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                         <div className="absolute inset-0 bg-accent/10" />
                       )}
                       {soldOut && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-background/60">
-                          <span className="text-[11px] tracking-[3px] uppercase text-foreground-muted">Sold Out</span>
+                        <div className="absolute inset-0 flex items-center justify-center bg-background/60 backdrop-blur-[2px]">
+                          <span className="border border-white/15 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-white/50">Sold Out</span>
                         </div>
                       )}
                     </div>

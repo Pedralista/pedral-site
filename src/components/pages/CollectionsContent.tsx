@@ -18,21 +18,21 @@ const filters: { key: Filter; label: string }[] = [
 function BadgeLabel({ stock, isPreOrder }: { stock: number; isPreOrder?: boolean }) {
   if (stock === 0 && isPreOrder) {
     return (
-      <span className="absolute left-4 top-4 z-10 bg-[rgba(201,168,76,0.85)] px-3 py-1 text-[11px] font-medium tracking-[1px] uppercase text-background">
+      <span className="absolute left-4 top-4 z-10 border border-accent/40 bg-background/60 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-accent backdrop-blur-sm">
         Pre-order Opens Soon
       </span>
     );
   }
   if (stock === 0) {
     return (
-      <span className="absolute left-4 top-4 z-10 bg-[rgba(80,80,80,0.85)] px-3 py-1 text-[11px] font-medium tracking-[1px] uppercase text-white">
+      <span className="absolute left-4 top-4 z-10 border border-white/15 bg-background/60 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-white/50 backdrop-blur-sm">
         Sold Out
       </span>
     );
   }
   if (stock <= 3) {
     return (
-      <span className="absolute left-4 top-4 z-10 bg-[rgba(180,60,40,0.85)] px-3 py-1 text-[11px] font-medium tracking-[1px] uppercase text-white">
+      <span className="absolute left-4 top-4 z-10 border border-accent/30 bg-background/60 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-accent/80 backdrop-blur-sm">
         Almost Gone
       </span>
     );
