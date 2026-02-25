@@ -262,7 +262,7 @@ export const collections: Collection[] = [
     descriptionExtra:
       "The deep blue frosted dial is framed by a coin-edge inspired fluted flange beneath the crystal, adding subtle depth. A slim steel chapter ring with fine lacquer-filled markings encircles the dial, echoed by the guilloché small seconds register at six o'clock. Slender spear-shaped hands ensure clarity without excess. Powered by the Swiss-made ETA 7001, Okapi reflects a considered approach to watchmaking — precise, composed, and enduring.",
     designerNote:
-      "Okapi was my first real watch. Not the first prototype — the first one I looked at and thought: this is what I was trying to make. The cushion case, the way light moves across the frosted surfaces, the balance between soft and sharp — I didn't plan a design language. Okapi revealed it.",
+      "Okapi was not my first prototype. It was the first that felt inevitable. A balance of curve and edge, softness held in precision. The language wasn't planned — it surfaced. The new dial does not transform it. It clarifies what was always there.",
     year: 2015,
     tier: "signature",
     price: 2000,
