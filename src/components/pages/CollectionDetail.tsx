@@ -29,22 +29,30 @@ export default function CollectionDetail({ collection }: { collection: Collectio
   );
   const [loading, setLoading] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [preOrderError, setPreOrderError] = useState<string | null>(null);
 
   async function handleReserve() {
     if (c.isPreOrder) {
       setLoading(true);
-      const res = await fetch("/api/preorder", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          collectionSlug: c.slug,
-          collectionName: c.name,
-          depositAmount: c.depositAmount ?? 500,
-        }),
-      });
-      const data = await res.json();
-      if (data.clientSecret) {
-        setClientSecret(data.clientSecret);
+      setPreOrderError(null);
+      try {
+        const res = await fetch("/api/preorder", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            collectionSlug: c.slug,
+            collectionName: c.name,
+            depositAmount: c.depositAmount ?? 500,
+          }),
+        });
+        const data = await res.json();
+        if (data.clientSecret) {
+          setClientSecret(data.clientSecret);
+        } else {
+          setPreOrderError(data.error ?? "Could not load checkout. Please try again.");
+        }
+      } catch {
+        setPreOrderError("Network error. Please try again.");
       }
       setLoading(false);
       return;
@@ -153,6 +161,9 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               <p className="mt-3 text-[11px] font-light leading-[1.7] text-foreground-muted/60">
                 €{c.depositAmount ?? 500} non-refundable deposit &middot; Secures your place in the production queue &middot; Balance invoiced before shipping
               </p>
+            )}
+            {preOrderError && (
+              <p className="mt-2 text-[12px] text-red-400">{preOrderError}</p>
             )}
           </motion.div>
         </div>
