@@ -23,37 +23,37 @@ const timeline = [
   {
     year: "2015",
     title: "The Beginning",
-    text: "I applied to Sweden's only watchmaking school. Born in the Democratic Republic of Congo, raised in Stockholm — I didn't have the background they expected. The rejection letter was polite. My response was a decade of work.",
+    text: "I applied to Sweden's only watchmaking school. Born in the Democratic Republic of Congo, raised in Stockholm. I didn't have the background they expected. The rejection letter was polite. My response was a decade of work.",
   },
   {
     year: "2018",
     title: "Okapi Launches via Kickstarter",
-    text: "My first watch goes live on Kickstarter — and sells out. The Okapi Classique, with its cushion-shaped case and frosted blue dial, finds collectors across 12 countries. Every piece spoken for. The edition remains limited to this day.",
+    text: "My first watch goes live on Kickstarter and sells out. The Okapi Classique, with its cushion-shaped case and frosted blue dial, finds collectors across 12 countries. Every piece spoken for. The edition remains limited to this day.",
   },
   {
     year: "2024",
     title: "Artefact Launches via Kickstarter",
-    text: "My second collection goes live on Kickstarter — and sells out. Artefact pushes the design language further, a new expression built on the same uncompromising philosophy. Like every Pedral edition: once it's gone, it's gone.",
+    text: "My second collection goes live on Kickstarter and sells out. Artefact pushes the design language further, a new expression built on the same uncompromising philosophy. Like every Pedral edition: once it's gone, it's gone.",
   },
   {
     year: "Apr 2025",
     title: "Watches and Art: Best of Both Worlds",
-    text: "I collaborate with horological dream maker Boris Pjanić on \"Watches and Art: Best of Both Worlds\" — a capsule collection bridging fine horology and contemporary art. Released in April 2025, it sells out.",
+    text: "I collaborate with horological dream maker Boris Pjanić on \"Watches and Art: Best of Both Worlds\", a capsule collection bridging fine horology and contemporary art. Released in April 2025, it sells out.",
   },
   {
     year: "2025",
     title: "Maestro Launches via Kickstarter",
-    text: "Later that year, Maestro — the refined tonneau dress watch with hexagonal bracelet links and diagonal time display — goes live on Kickstarter and sells out. A watch for those who already know.",
+    text: "Later that year, Maestro, the refined tonneau dress watch with hexagonal bracelet links and diagonal time display, goes live on Kickstarter and sells out.",
   },
   {
     year: "Dec 2025",
     title: "Triomphe Arrives",
-    text: "In December 2025, I collaborate with the Micro Indy collective to launch Triomphe — the ultra-thin dress watch at 8.8mm, Swiss hand-wound, with rotating guilloché dial editions. A single canvas expressed through an evolving series of dials. Each limited to 20 pieces. When a dial edition sells out, it doesn't return.",
+    text: "In December 2025, I collaborate with the Micro Indy collective to launch Triomphe. Ultra-thin at 8.8mm, Swiss hand-wound, with an evolving series of guilloché dial editions. Each limited to 20 pieces. When a dial edition sells out, it doesn't return.",
   },
   {
     year: "Now",
     title: "Okapi Returns",
-    text: "The watch that started everything is coming back — reimagined with a new movement, a better case, and the lessons of every collection that came after it. The Okapi Classique, evolved. Same soul. Higher standard.",
+    text: "The watch that started everything is coming back. Reimagined with a new movement, a better case, and the lessons of every collection that came after it. Same soul. Higher standard.",
   },
 ];
 
@@ -81,7 +81,7 @@ export default function StoryContent() {
             className="mt-6 max-w-[700px] text-[16px] font-light leading-[1.85] text-foreground-muted"
           >
             In 2015, I applied to Sweden&apos;s only watchmaking school. Born
-            in the Democratic Republic of Congo, raised in Stockholm — I
+            in the Democratic Republic of Congo, raised in Stockholm. I
             didn&apos;t have the background they expected. The rejection letter
             was polite. My response was a decade of work.
           </motion.p>

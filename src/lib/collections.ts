@@ -61,7 +61,7 @@ export const collections: Collection[] = [
     descriptionExtra:
       "Hexagonal bracelet links follow the wrist's natural curve. The watch does not announce itself.",
     designerNote:
-      "Maestro is a dress watch for people who don't need to be told it's a dress watch. The tonneau case, the diagonal display, the hexagonal bracelet — each decision has a reason. None of them are decorative.",
+      "Maestro is a dress watch for people who don't need to be told it's a dress watch. The tonneau case, the diagonal display, the hexagonal bracelet. Each decision has a reason. None of them are decorative.",
     year: 2025,
     tier: "signature",
     price: 1300,
@@ -103,13 +103,13 @@ export const collections: Collection[] = [
         quote:
           "The Maestro reflects a clear design position. The diagonal display and tonneau architecture are resolved decisions. With time, the logic becomes evident.",
         name: "Adrien L.",
-        bio: "Investment Analyst · Lyon — Maestro Owner",
+        bio: "Investment Analyst · Lyon · Maestro Owner",
       },
       {
         quote:
-          "At 37mm with that tonneau case, it wears like something that cost five times more. The diagonal display is one of those details you don't notice until you do — then you can't unsee it.",
+          "At 37mm with that tonneau case, it wears like something that cost five times more. The diagonal display is one of those details you don't notice until you do. Then you can't unsee it.",
         name: "Pieter V.",
-        bio: "Photographer · Amsterdam — Second Pedral purchase",
+        bio: "Photographer · Amsterdam · Second Pedral purchase",
       },
     ],
     variants: [
@@ -117,21 +117,21 @@ export const collections: Collection[] = [
         name: "Lapis No.1",
         stripePriceId: "price_1T4Tw7CfxE1lSBKRY9zmQqHV",
         stock: 5,
-        description: "Deep lapis lazuli blue — a dial that commands the room. The sunburst guilloché catches the light differently with every angle.",
+        description: "Deep lapis lazuli blue. A dial that commands the room. The sunburst guilloché catches the light differently with every angle.",
         image: "/images/maestro-lapis.jpg",
       },
       {
         name: "Frosted Flex",
         stripePriceId: "price_1T4TvBCfxE1lSBKRfCkEqWVd",
         stock: 18,
-        description: "A frosted, architectural surface with a quiet confidence. Less is more — until the light hits.",
+        description: "A frosted, architectural surface with a quiet confidence. Less is more. Until the light hits.",
         image: "/images/maestro-frosted.jpg",
       },
       {
         name: "Cosmic Tlt",
         stripePriceId: "",
         stock: 0,
-        description: "The diagonal time display expression. A driving watch principle — read the time without turning your wrist.",
+        description: "The diagonal time display expression. A driving watch principle: read the time without turning your wrist.",
         image: "/images/maestro-cosmic-tlt.jpg",
       },
       {
@@ -159,7 +159,7 @@ export const collections: Collection[] = [
     tagline: "Current Drop",
     hook: "8.8mm. Disappears under the cuff. Present when the light finds it.",
     description:
-      "The Triomphe is a single architecture, expressed through an evolving series of dial editions. 38mm wide, 8.8mm thin. Each release is limited, allocation-based, and built for the collector who already owns the obvious choices.",
+      "The Triomphe is a single architecture, expressed through an evolving series of dial editions. 38mm wide, 8.8mm thin. Each release is limited, allocation-based, and built for those who know exactly what they want.",
     descriptionExtra:
       "Two dial expressions. The guilloché: Carreau Tissé centre, satinée circulaire and sauté piqué borders, Vagues de Lumière moiré frame. Three recessed rings reference the Arc de Triomphe. The stone dial: each one unrepeatable. When an edition closes, it closes.",
     designerNote:
@@ -204,13 +204,13 @@ export const collections: Collection[] = [
         quote:
           "At 8.8mm, the Triomphe sits close to the wrist and maintains its balance on a slimmer hand. The proportions are disciplined. It feels neither overtly masculine nor feminine.",
         name: "Elena V.",
-        bio: "Creative Director · Milan — Collector since 2023",
+        bio: "Creative Director · Milan · Collector since 2023",
       },
       {
         quote:
-          "The Hermès-grade Epsom strap at this price point is remarkable. The materials tell you everything about the priorities here — quality over margin, every time. As a collector, that earns trust.",
+          "The Hermès-grade Epsom strap at this price point is remarkable. The materials tell you everything about the priorities here. Quality over margin, every time. As a collector, that earns trust.",
         name: "Henrik S.",
-        bio: "Tech founder · Stockholm — Triomphe Noir Profond (Pièce Unique)",
+        bio: "Tech founder · Stockholm · Triomphe Noir Profond (Pièce Unique)",
       },
     ],
     variants: [
@@ -218,7 +218,7 @@ export const collections: Collection[] = [
         name: "Tempest Stone",
         stripePriceId: "price_1T4TsqCfxE1lSBKRFBCRLukn",
         stock: 3,
-        description: "Dark, stormy tones drawn from natural stone. No two dials are identical — yours is the only one like it in the world.",
+        description: "Dark, stormy tones drawn from natural stone. No two dials are identical. Yours is the only one like it in the world.",
         image: "/images/triomphe-tempest.jpg",
       },
       {
@@ -226,7 +226,7 @@ export const collections: Collection[] = [
         stripePriceId: "price_1T4TpQCfxE1lSBKR6aJh8nbb",
         stock: 1,
 
-        description: "A multi-layer guilloché dial in deep emerald green. Carreau Tissé centre, Vagues de Lumière border — layers that reward every glance.",
+        description: "A multi-layer guilloché dial in deep emerald green. Carreau Tissé centre, Vagues de Lumière border. Layers that reward every glance.",
         image: "/images/triomphe-emeraude.jpg",
       },
     ],
@@ -243,7 +243,7 @@ export const collections: Collection[] = [
     comingSoonEditions: [
       {
         name: "Saphir Azur",
-        description: "A deep, luminous blue — the colour of a clear sky at altitude. Natural stone, no two pieces identical.",
+        description: "A deep, luminous blue. The colour of a clear sky at altitude. Natural stone, no two pieces identical.",
         image: "/images/triomphe-saphir-azur.jpg",
       },
       {
@@ -259,11 +259,11 @@ export const collections: Collection[] = [
     tagline: "The Original",
     hook: "The one that started everything.",
     description:
-      "The Okapi is defined by balance and restraint. Its 37mm cushion case combines rounded contours with precise architectural lines — a silhouette that reads as neither vintage nor modern.",
+      "The Okapi is defined by balance and restraint. Its 37mm cushion case combines rounded contours with precise architectural lines. A silhouette that reads as neither vintage nor modern.",
     descriptionExtra:
       "The frosted blue dial sits behind a coin-edge fluted flange. A slim chapter ring with lacquer-filled markings, guilloché small seconds at six, spear-shaped hands. Powered by the Swiss ETA 7001. Nothing added without reason.",
     designerNote:
-      "Okapi was not my first prototype. It was the first that felt inevitable. A balance of curve and edge, softness held in precision. The language wasn't planned — it surfaced. The new dial does not transform it. It clarifies what was always there.",
+      "Okapi was not my first prototype. It was the first that felt inevitable. A balance of curve and edge, softness held in precision. The language wasn't planned. It surfaced. The new dial does not transform it. It clarifies what was always there.",
     year: 2015,
     tier: "signature",
     price: 2000,
@@ -302,20 +302,20 @@ export const collections: Collection[] = [
     detailStrip: {
       eyebrow: "The Dial",
       title: "Nothing placed without reason.",
-      text: "The guilloché small seconds at six catches light differently with every angle. The coin-edge flange frames the dial without competing with it. These are the details that take time to notice — and don't leave once you have.",
+      text: "The guilloché small seconds at six catches light differently with every angle. The coin-edge flange frames the dial without competing with it. Details that take time to notice. They don't leave once you have.",
     },
     testimonials: [
       {
         quote:
           "I bought the original Okapi in 2018. It still gets more attention than anything else I own. Whatever this new version brings, I'm already on the list.",
         name: "Marcus E.",
-        bio: "Architect · Berlin — Original Okapi owner since 2018",
+        bio: "Architect · Berlin · Original Okapi owner since 2018",
       },
       {
         quote:
           "The original fumé sunburst dial had a precision and restraint that few pieces at any price achieve. The move to a frosted finish is an interesting evolution. I'm watching this closely.",
         name: "Dr. Kenji N.",
-        bio: "Surgeon & watch collector · Tokyo — Original Okapi owner",
+        bio: "Surgeon & watch collector · Tokyo · Original Okapi owner",
       },
     ],
     testimonialsLabel: "Those Who Wore the Original",

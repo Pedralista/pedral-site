@@ -608,7 +608,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               </h2>
               <div className="mt-6 h-px w-[60px] bg-accent" />
               <p className="mt-5 text-[15px] font-light leading-[1.85] text-foreground-muted">
-                These editions are not yet available. Join the list to be first when allocations open — they will not be announced publicly until they sell out.
+                These editions are not yet available. Join the list to be first when allocations open. They won&apos;t be announced publicly until they sell out.
               </p>
             </motion.div>
             <motion.div

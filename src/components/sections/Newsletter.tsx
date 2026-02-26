@@ -12,7 +12,7 @@ interface NewsletterProps {
 
 export default function Newsletter({
   title = "Join 1,200+ collectors who see new editions first.",
-  subtitle = "Priority access. No spam. Just watches — and they sell out fast.",
+  subtitle = "Priority access. No noise. Just new editions when they drop.",
   buttonText = "Get Priority Access",
 }: NewsletterProps) {
   const [email, setEmail] = useState("");

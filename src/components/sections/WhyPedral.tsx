@@ -7,7 +7,7 @@ const reasons = [
   {
     num: "01",
     title: "One Designer",
-    desc: "Designed in Stockholm. One person, one vision. When you contact Pedral, you reach the designer directly — not a customer service team.",
+    desc: "Designed in Stockholm. One person, one vision. When you contact Pedral, you reach Kevin. Not a customer service team.",
   },
   {
     num: "02",
@@ -17,7 +17,7 @@ const reasons = [
   {
     num: "03",
     title: "20 Pieces. No Restocks.",
-    desc: "20 pieces per colourway. One designer working at the pace the work demands. When an edition closes, it closes.",
+    desc: "20 pieces per colourway. When an edition closes, it closes.",
   },
 ];
 
@@ -30,7 +30,7 @@ export default function WhyPedral() {
             Why Pedral
           </p>
           <h2 className="font-serif text-[clamp(32px,3.5vw,40px)] font-light text-foreground">
-            What Makes This Different
+            How This Works
           </h2>
         </div>
 

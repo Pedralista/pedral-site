@@ -47,8 +47,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="mt-5 max-w-[480px] text-[17px] font-light leading-[1.9] text-foreground-muted"
           >
-            One designer. Twenty pieces per edition. Three collections for those
-            who already understand.
+            One designer. Twenty pieces per edition. Three watches.
           </motion.p>
 
           <motion.p

@@ -37,10 +37,10 @@ export default function CollectionShowcase() {
             The Collection
           </p>
           <h2 className="font-serif text-[clamp(32px,3.5vw,40px)] font-light text-foreground">
-            Three Watches. Three Decisions.
+            Three watches. One maker.
           </h2>
           <p className="mt-4 max-w-[600px] text-[15px] font-light leading-[1.85] text-foreground-muted">
-            Each edition is 20 pieces. No restocks. Not a strategy — a constraint.
+            Each edition is capped at 20 pieces. When it sells out, it&apos;s gone.
           </p>
         </div>
 
@@ -104,7 +104,7 @@ export default function CollectionShowcase() {
         </motion.div>
 
         <p className="mt-8 text-center text-[13px] tracking-[0.5px] leading-[1.7] text-foreground-muted">
-          Earlier editions are no longer available. Once closed, they don&apos;t return.
+          Earlier editions are sold out and won&apos;t return.
         </p>
       </div>
     </section>

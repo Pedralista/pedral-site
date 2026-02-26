@@ -25,7 +25,7 @@ export default function StoryPreview() {
             </h2>
             <div className="mt-6 h-px w-[60px] bg-accent" />
             <p className="mt-6 text-[16px] font-light leading-[1.9] text-foreground-muted">
-              Born in the Democratic Republic of Congo, raised in Stockholm —
+              Born in the Democratic Republic of Congo, raised in Stockholm.
               I didn&apos;t fit the profile they wanted. So I taught myself
               through obsessive research, hundreds of failed prototypes, and
               one stubborn belief: if the path to creating beautiful things has a
@@ -34,7 +34,7 @@ export default function StoryPreview() {
             <p className="mt-5 text-[16px] font-light leading-[1.9] text-foreground-muted">
               Every watch I make is designed here in Stockholm. Each edition is
               capped at 20 pieces. Each dial tells a different story. And each
-              owner knows: this isn&apos;t a brand — it&apos;s one
+              owner knows: this isn&apos;t a brand. It&apos;s one
               person&apos;s obsession, made tangible.
             </p>
             <Link
