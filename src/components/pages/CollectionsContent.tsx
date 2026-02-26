@@ -144,7 +144,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
           <h3 className="font-serif text-2xl font-normal text-foreground">
             {collection.name}
           </h3>
-          <p className="mt-1.5 mb-4 text-[13px] font-light italic leading-snug text-foreground-muted">
+          <p className="mt-1.5 mb-4 text-[14px] font-light italic leading-snug text-foreground-muted">
             &ldquo;{collection.hook}&rdquo;
           </p>
           <div className="flex items-end justify-between">

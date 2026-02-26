@@ -27,7 +27,7 @@ export default function JournalContent() {
             </motion.h1>
             <motion.p
               variants={fadeInUp}
-              className="mx-auto mt-5 max-w-lg text-[15px] font-light leading-relaxed text-foreground-muted"
+              className="mx-auto mt-5 max-w-lg text-[16px] font-light leading-relaxed text-foreground-muted"
             >
               Stories about independent watchmaking, design decisions, and the
               craft behind every Pedral edition. Written from Stockholm.
@@ -63,7 +63,7 @@ export default function JournalContent() {
                 <h2 className="mt-4 font-serif text-[clamp(24px,3vw,36px)] font-light leading-[1.2] text-foreground transition-colors group-hover:text-accent">
                   {articles[0].title}
                 </h2>
-                <p className="mt-4 text-[15px] font-light leading-relaxed text-foreground-muted">
+                <p className="mt-4 text-[16px] font-light leading-relaxed text-foreground-muted">
                   {articles[0].excerpt}
                 </p>
                 <div className="mt-6 flex items-center gap-4">
@@ -103,7 +103,7 @@ export default function JournalContent() {
                   <h3 className="mt-3 font-serif text-xl font-light leading-snug text-foreground transition-colors group-hover:text-accent">
                     {article.title}
                   </h3>
-                  <p className="mt-3 text-sm font-light leading-relaxed text-foreground-muted">
+                  <p className="mt-3 text-[15px] font-light leading-relaxed text-foreground-muted">
                     {article.excerpt}
                   </p>
                   <div className="mt-4 flex items-center gap-3">
@@ -127,7 +127,7 @@ export default function JournalContent() {
             variants={fadeInUp}
             className="mt-16 text-center"
           >
-            <p className="text-sm font-light text-foreground-muted">
+            <p className="text-[15px] font-light text-foreground-muted">
               More stories coming soon. Follow us on{" "}
               <a
                 href="https://www.instagram.com/pedralwatches"
@@ -155,7 +155,7 @@ export default function JournalContent() {
             <h2 className="font-serif text-3xl font-light text-foreground md:text-4xl">
               Don&apos;t miss an edition.
             </h2>
-            <p className="mt-3 text-sm font-light text-foreground-muted">
+            <p className="mt-3 text-[15px] font-light text-foreground-muted">
               Subscribe to The Rounded Square for new articles, early access to
               drops, and behind-the-scenes content.
             </p>

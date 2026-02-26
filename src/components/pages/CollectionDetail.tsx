@@ -244,7 +244,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                             {v.name}
                           </p>
                           {v.description && (
-                            <p className="mt-1.5 text-[13px] font-light leading-[1.7] text-foreground-muted">
+                            <p className="mt-1.5 text-[14px] font-light leading-[1.8] text-foreground-muted">
                               {v.description}
                             </p>
                           )}
@@ -283,11 +283,11 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               {c.detailStrip.title.replace(/\.$/, "")}
             </h2>
             <div className="mt-6 h-px w-[60px] bg-accent" />
-            <p className="mt-6 text-[15px] font-light leading-[1.85] text-foreground-muted">
+            <p className="mt-6 text-[16px] font-light leading-[1.9] text-foreground-muted">
               {c.description}
             </p>
             {c.descriptionExtra && (
-              <p className="mt-5 text-[15px] font-light leading-[1.85] text-foreground-muted">
+              <p className="mt-5 text-[16px] font-light leading-[1.9] text-foreground-muted">
                 {c.descriptionExtra}
               </p>
             )}
@@ -332,7 +332,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             {c.detailStrip.title}
           </h3>
           <div className="mt-4 h-px w-[60px] bg-accent" />
-          <p className="mt-5 text-[14px] font-light leading-[1.8] text-foreground-muted">
+          <p className="mt-5 text-[15px] font-light leading-[1.85] text-foreground-muted">
             {c.detailStrip.text}
           </p>
         </motion.div>
@@ -607,7 +607,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 The next dial editions.
               </h2>
               <div className="mt-6 h-px w-[60px] bg-accent" />
-              <p className="mt-5 text-[14px] font-light leading-[1.8] text-foreground-muted">
+              <p className="mt-5 text-[15px] font-light leading-[1.85] text-foreground-muted">
                 These editions are not yet available. Join the list to be first when allocations open — they will not be announced publicly until they sell out.
               </p>
             </motion.div>
@@ -643,7 +643,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                       </span>
                     </div>
                     <h3 className="font-serif text-[22px] font-light text-foreground">{ed.name}</h3>
-                    <p className="mt-2 text-[13px] font-light leading-[1.7] text-foreground-muted">{ed.description}</p>
+                    <p className="mt-2 text-[14px] font-light leading-[1.8] text-foreground-muted">{ed.description}</p>
                   </div>
                 </motion.div>
               ))}

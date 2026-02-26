@@ -53,7 +53,7 @@ export default function WhyPedral() {
               <h3 className="mt-4 font-serif text-[22px] font-normal text-foreground">
                 {r.title}
               </h3>
-              <p className="mt-3.5 text-sm font-light leading-[1.75] text-foreground-muted">
+              <p className="mt-3.5 text-[15px] font-light leading-[1.85] text-foreground-muted">
                 {r.desc}
               </p>
             </motion.div>

@@ -45,7 +45,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="mt-5 max-w-[480px] text-[16px] font-light leading-[1.8] text-foreground-muted"
+            className="mt-5 max-w-[480px] text-[17px] font-light leading-[1.9] text-foreground-muted"
           >
             One designer. Twenty pieces per edition. Three collections for those
             who already understand.

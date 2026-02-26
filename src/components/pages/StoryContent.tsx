@@ -129,7 +129,7 @@ export default function StoryContent() {
                   <div className={`ml-14 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16"}`}>
                     <span className="font-serif text-[28px] font-light text-accent">{item.year}</span>
                     <h3 className="mt-2 font-serif text-2xl font-normal text-foreground">{item.title}</h3>
-                    <p className="mt-3 text-sm font-light leading-[1.7] text-foreground-muted">{item.text}</p>
+                    <p className="mt-3 text-[15px] font-light leading-[1.85] text-foreground-muted">{item.text}</p>
                   </div>
 
                   {/* Spacer for alternation */}

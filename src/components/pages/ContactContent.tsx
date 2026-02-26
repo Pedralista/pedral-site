@@ -40,7 +40,7 @@ export default function ContactContent() {
               className="md:col-span-3"
             >
               <div className="flex min-h-[300px] flex-col justify-center">
-                <p className="max-w-lg text-[15px] font-light leading-relaxed text-foreground-muted">
+                <p className="max-w-lg text-[16px] font-light leading-relaxed text-foreground-muted">
                   Questions about a watch, a collaboration, or just want to know more about how
                   Pedral works — feel free to reach out.
                 </p>
@@ -106,7 +106,7 @@ export default function ContactContent() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-light text-foreground transition-colors hover:text-accent"
+                        className="text-[15px] font-light text-foreground transition-colors hover:text-accent"
                       >
                         {link.label} &rarr;
                       </a>

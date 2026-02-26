@@ -55,16 +55,16 @@ export default function Newsletter({
           <h2 className="font-serif text-[24px] font-light text-foreground">
             {title}
           </h2>
-          <p className="mt-2 text-[13px] font-light text-foreground-muted">
+          <p className="mt-2 text-[14px] font-light text-foreground-muted">
             {subtitle}
           </p>
 
           {status === "success" ? (
-            <p className="mt-7 text-[13px] font-light text-accent">
+            <p className="mt-7 text-[14px] font-light text-accent">
               You&apos;re on the list. We&apos;ll be in touch before the next edition drops.
             </p>
           ) : status === "exists" ? (
-            <p className="mt-7 text-[13px] font-light text-foreground-muted">
+            <p className="mt-7 text-[14px] font-light text-foreground-muted">
               You&apos;re already subscribed.
             </p>
           ) : (
