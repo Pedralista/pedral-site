@@ -21,7 +21,7 @@ function ScarcityBar({ stock, maxStock }: { stock: number; maxStock: number }) {
 
 function UrgencyTag({ text }: { text: string }) {
   return (
-    <div className="mt-3 flex items-center gap-2 text-[10px] font-light tracking-[1.5px] uppercase text-accent/60">
+    <div className="mt-3 flex items-center gap-2 text-[12px] font-light tracking-[1px] uppercase text-accent/60 sm:text-[10px] sm:tracking-[1.5px]">
       <span className="h-[4px] w-[4px] shrink-0 animate-pulse rounded-full bg-accent/60" />
       <span className="leading-tight">{text}</span>
     </div>
@@ -80,7 +80,7 @@ export default function CollectionShowcase() {
                 {/* Card body */}
                 <div className="p-5">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] tracking-[2px] uppercase text-accent/70">
+                    <span className="text-[12px] tracking-[1px] uppercase text-accent/70 sm:text-[10px] sm:tracking-[2px]">
                       {c.badge}
                     </span>
                     <span className="font-serif text-[18px] text-accent">
@@ -90,7 +90,7 @@ export default function CollectionShowcase() {
                   <h3 className="mt-2 font-serif text-[22px] font-normal text-foreground">
                     {c.name}
                   </h3>
-                  <p className="mt-1.5 line-clamp-2 text-[13px] font-serif font-light italic leading-[1.6] text-foreground-muted">
+                  <p className="mt-1.5 line-clamp-2 text-[14px] font-serif font-light italic leading-[1.6] text-foreground-muted sm:text-[13px]">
                     &ldquo;{c.hook}&rdquo;
                   </p>
                   <div className="mt-4 border-t border-accent/[0.08] pt-3">

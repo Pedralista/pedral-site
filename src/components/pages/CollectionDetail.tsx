@@ -86,7 +86,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-5 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent"
+            className="mb-5 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent"
           >
             {isSoldOut
               ? `The Original — Since ${c.year}`
@@ -181,7 +181,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               variants={fadeInUp}
               className="mb-8"
             >
-              <p className="mb-2 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+              <p className="mb-2 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
                 Dial Editions
               </p>
               <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
@@ -276,7 +276,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+            <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
               The Watch
             </p>
             <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
@@ -325,7 +325,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           variants={slideInRight}
           className="flex flex-col justify-center px-6 py-12 md:px-16"
         >
-          <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+          <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
             {c.detailStrip.eyebrow}
           </p>
           <h3 className="font-serif text-[26px] font-light text-foreground">
@@ -348,7 +348,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+            <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
               Kevin&apos;s Note
             </p>
             <div className="mt-4 h-px w-[60px] bg-accent" />
@@ -395,7 +395,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+            <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
               Specifications
             </p>
             <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
@@ -441,7 +441,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             variants={fadeInUp}
             className="rounded-[2px] border border-accent/10 bg-surface/50 p-8 md:p-10"
           >
-            <p className="mb-2 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+            <p className="mb-2 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
               Complete Package
             </p>
             <h3 className="font-serif text-[20px] font-light text-foreground">
@@ -473,7 +473,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               viewport={{ once: true }}
               variants={fadeInUp}
             >
-              <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+              <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
                 Value Perspective
               </p>
               <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
@@ -507,7 +507,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+          <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
             Edition of {c.maxStock} &middot; {c.edition}
           </p>
           <p className="font-serif text-[48px] font-light text-foreground">
@@ -565,7 +565,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             >
               <motion.p
                 variants={fadeInUp}
-                className="mb-6 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent"
+                className="mb-6 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent"
               >
                 {c.testimonialsLabel ?? `From ${c.name} Owners`}
               </motion.p>
@@ -600,7 +600,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               viewport={{ once: true }}
               variants={fadeInUp}
             >
-              <p className="mb-3 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+              <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
                 Coming Next
               </p>
               <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
