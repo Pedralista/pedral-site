@@ -97,7 +97,7 @@ export default function ContactContent() {
                   </h3>
                   <div className="mt-3 flex flex-col gap-2">
                     {[
-                      { href: "https://instagram.com/pedralwatches", label: "Instagram" },
+                      { href: "https://www.instagram.com/pedralwatches", label: "Instagram" },
                       { href: "https://facebook.com/pedralwatches", label: "Facebook" },
                       { href: "https://youtube.com/@pedralwatches", label: "YouTube" },
                     ].map((link) => (

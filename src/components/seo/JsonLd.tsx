@@ -23,7 +23,7 @@ export function OrganizationJsonLd() {
       contactType: "customer service",
     },
     sameAs: [
-      "https://instagram.com/pedralwatches",
+      "https://www.instagram.com/pedralwatches",
       "https://facebook.com/pedralwatches",
       "https://youtube.com/@pedralwatches",
     ],

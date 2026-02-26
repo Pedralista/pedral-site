@@ -130,7 +130,7 @@ export default function JournalContent() {
             <p className="text-sm font-light text-foreground-muted">
               More stories coming soon. Follow us on{" "}
               <a
-                href="https://instagram.com/pedralwatches"
+                href="https://www.instagram.com/pedralwatches"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-accent transition-colors hover:text-accent-hover"
