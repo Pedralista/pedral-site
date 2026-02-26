@@ -7,12 +7,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function OrderSuccessPage({
+export default async function OrderSuccessPage({
   searchParams,
 }: {
-  searchParams: { type?: string };
+  searchParams: Promise<{ type?: string }>;
 }) {
-  const isPreOrder = searchParams.type === "preorder";
+  const params = await searchParams;
+  const isPreOrder = params.type === "preorder";
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center">
