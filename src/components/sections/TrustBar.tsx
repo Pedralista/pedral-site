@@ -61,8 +61,8 @@ export default function TrustBar() {
               {item.icon}
             </div>
             <div>
-              <p className="font-serif text-lg font-light text-foreground">{item.title}</p>
-              <p className="text-[12px] font-light tracking-[0.5px] text-foreground-muted">{item.desc}</p>
+              <p className="font-serif text-lg font-normal text-foreground">{item.title}</p>
+              <p className="text-[12px] font-normal tracking-[0.5px] text-foreground-muted">{item.desc}</p>
             </div>
           </div>
         ))}
