@@ -9,27 +9,27 @@ import { collections } from "@/lib/collections";
 function BadgeLabel({ stock, isPreOrder }: { stock: number; isPreOrder?: boolean }) {
   if (stock === 0 && isPreOrder) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/60 px-2 py-1 text-[10px] font-normal tracking-[1px] uppercase text-accent backdrop-blur-sm">
+      <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
         Pre-order Opens Soon
       </span>
     );
   }
   if (stock === 0) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-white/15 bg-background/60 px-2 py-1 text-[10px] font-normal tracking-[1px] uppercase text-white/50 backdrop-blur-sm">
+      <span className="absolute left-3 top-3 z-10 border border-white/15 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-white/50 backdrop-blur-sm">
         Sold Out
       </span>
     );
   }
   if (stock <= 3) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-red-500/40 bg-background/60 px-2 py-1 text-[10px] font-normal tracking-[1px] uppercase text-red-400/90 backdrop-blur-sm">
+      <span className="absolute left-3 top-3 z-10 border border-red-500/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-red-400/90 backdrop-blur-sm">
         Almost Gone
       </span>
     );
   }
   return (
-    <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/60 px-2 py-1 text-[10px] font-normal tracking-[1px] uppercase text-accent backdrop-blur-sm">
+    <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
       {stock} Remaining
     </span>
   );
