@@ -22,9 +22,9 @@ export async function POST(req: NextRequest) {
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
+    ui_mode: "embedded",
     line_items: [{ price: priceId, quantity: 1 }],
-    success_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${origin}/collections`,
+    return_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
     metadata: {
       product: productName,
       variant: variantName ?? "",
@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
       ],
     },
     phone_number_collection: { enabled: true },
+    billing_address_collection: "required",
     custom_text: {
       submit: {
         message: "Your order is allocation-based. Kevin will confirm your piece within 24 hours.",
@@ -44,5 +45,5 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  return NextResponse.json({ url: session.url });
+  return NextResponse.json({ clientSecret: session.client_secret });
 }

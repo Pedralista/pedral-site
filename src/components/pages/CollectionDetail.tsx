@@ -59,9 +59,31 @@ export default function CollectionDetail({ collection }: { collection: Collectio
       }
       return;
     }
-    if (!selectedVariant) return;
+    if (!selectedVariant?.stripePriceId) return;
     setLoading(true);
-    window.location.href = `/checkout?slug=${c.slug}&variant=${encodeURIComponent(selectedVariant.name)}`;
+    setPreOrderError(null);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          priceId: selectedVariant.stripePriceId,
+          productName: c.name,
+          variantName: selectedVariant.name,
+        }),
+      });
+      const data = await res.json();
+      if (data.clientSecret) {
+        setClientSecret(data.clientSecret);
+        setLoading(false);
+      } else {
+        setPreOrderError(data.error ?? "Could not load checkout. Please try again.");
+        setLoading(false);
+      }
+    } catch {
+      setPreOrderError("Network error. Please try again.");
+      setLoading(false);
+    }
   }
 
   return (
@@ -662,7 +684,9 @@ export default function CollectionDetail({ collection }: { collection: Collectio
         <PreOrderModal
           clientSecret={clientSecret}
           collectionName={c.name}
+          isPreOrder={c.isPreOrder}
           depositAmount={c.depositAmount ?? 500}
+          price={c.price}
           onClose={() => setClientSecret(null)}
         />
       )}

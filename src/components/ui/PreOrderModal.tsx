@@ -9,7 +9,9 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 interface PreOrderModalProps {
   clientSecret: string;
   collectionName: string;
-  depositAmount: number;
+  depositAmount?: number;
+  price?: number;
+  isPreOrder?: boolean;
   onClose: () => void;
 }
 
@@ -17,6 +19,8 @@ export default function PreOrderModal({
   clientSecret,
   collectionName,
   depositAmount,
+  price,
+  isPreOrder = true,
   onClose,
 }: PreOrderModalProps) {
   useEffect(() => {
@@ -48,10 +52,10 @@ export default function PreOrderModal({
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-100 bg-white px-5 py-4">
           <div>
             <p className="text-[10px] font-medium tracking-[2px] uppercase text-gray-400">
-              Reserve your place
+              {isPreOrder ? "Reserve your place" : "Complete your order"}
             </p>
             <p className="text-[14px] font-medium text-gray-800">
-              {collectionName} — €{depositAmount} deposit
+              {collectionName} — {isPreOrder ? `€${depositAmount} deposit` : `€${price?.toLocaleString()}`}
             </p>
           </div>
           <button
