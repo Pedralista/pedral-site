@@ -6,32 +6,39 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
 import { collections } from "@/lib/collections";
 
-function ScarcityBar({ stock, maxStock }: { stock: number; maxStock: number }) {
-  const sold = maxStock - stock;
-  const pct = (sold / maxStock) * 100;
+function BadgeLabel({ stock, isPreOrder }: { stock: number; isPreOrder?: boolean }) {
+  if (stock === 0 && isPreOrder) {
+    return (
+      <span className="absolute left-4 top-4 z-10 border border-accent/40 bg-background/60 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-accent backdrop-blur-sm">
+        Pre-order Opens Soon
+      </span>
+    );
+  }
+  if (stock === 0) {
+    return (
+      <span className="absolute left-4 top-4 z-10 border border-white/15 bg-background/60 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-white/50 backdrop-blur-sm">
+        Sold Out
+      </span>
+    );
+  }
+  if (stock <= 3) {
+    return (
+      <span className="absolute left-4 top-4 z-10 border border-red-500/40 bg-background/60 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-red-400/90 backdrop-blur-sm">
+        Almost Gone
+      </span>
+    );
+  }
   return (
-    <div className="mt-3 h-[3px] overflow-hidden rounded-sm bg-accent/10">
-      <div
-        className="h-full rounded-sm bg-accent"
-        style={{ width: `${pct}%` }}
-      />
-    </div>
-  );
-}
-
-function UrgencyTag({ text }: { text: string }) {
-  return (
-    <div className="mt-3 flex items-center gap-2 text-[12px] font-light tracking-[1px] uppercase text-accent/60 sm:text-[10px] sm:tracking-[1.5px]">
-      <span className="h-[4px] w-[4px] shrink-0 animate-pulse rounded-full bg-accent/60" />
-      <span className="leading-tight">{text}</span>
-    </div>
+    <span className="absolute left-4 top-4 z-10 border border-accent/40 bg-background/60 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-accent backdrop-blur-sm">
+      {stock} Remaining
+    </span>
   );
 }
 
 export default function CollectionShowcase() {
   return (
     <section className="bg-background-alt py-16 md:py-24 lg:py-[120px]">
-      <div className="mx-auto max-w-[1100px] px-6 md:px-12">
+      <div className="mx-auto max-w-[1400px] px-6 md:px-12">
         <div className="mb-6">
           <p className="mb-3.5 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
             The Collection
@@ -57,7 +64,7 @@ export default function CollectionShowcase() {
                 href={`/collections/${c.slug}`}
                 className="group relative block cursor-pointer overflow-hidden rounded-[2px] border border-accent/[0.06] bg-background transition-all duration-400 hover:-translate-y-[3px] hover:border-accent/20"
               >
-                {/* Product image */}
+                <BadgeLabel stock={c.stock} isPreOrder={c.isPreOrder} />
                 <div className="relative aspect-[4/5] overflow-hidden bg-[var(--surface)]">
                   {c.image ? (
                     <Image
@@ -68,34 +75,46 @@ export default function CollectionShowcase() {
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center">
-                      <span className="text-center text-[10px] tracking-[2px] uppercase text-accent/30">
+                      <span className="font-serif text-[32px] font-light text-accent/[0.12]">
                         {c.name}
-                        <br />
-                        Product Image
                       </span>
                     </div>
                   )}
                 </div>
 
-                {/* Card body */}
-                <div className="p-5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[12px] tracking-[1px] uppercase text-accent/70 sm:text-[10px] sm:tracking-[2px]">
-                      {c.badge}
-                    </span>
-                    <span className="font-serif text-[18px] text-accent">
-                      &euro;{c.price.toLocaleString()}
-                    </span>
-                  </div>
-                  <h3 className="mt-2 font-serif text-[22px] font-normal text-foreground">
+                <div className="p-6">
+                  <h3 className="font-serif text-2xl font-normal text-foreground">
                     {c.name}
                   </h3>
-                  <p className="mt-1.5 line-clamp-2 text-[14px] font-serif font-light italic leading-[1.6] text-foreground-muted sm:text-[13px]">
+                  <p className="mt-1.5 mb-4 text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[14px]">
                     &ldquo;{c.hook}&rdquo;
                   </p>
-                  <div className="mt-4 border-t border-accent/[0.08] pt-3">
-                    <ScarcityBar stock={c.stock} maxStock={c.maxStock} />
-                    <UrgencyTag text={c.urgencyTag} />
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <span className="block text-[11px] font-light tracking-[0.5px] uppercase text-foreground-muted">
+                        From
+                      </span>
+                      <span className="text-[17px] font-normal text-foreground">
+                        &euro;{c.price.toLocaleString()}
+                      </span>
+                    </div>
+                    {c.stock > 0 ? (
+                      <div>
+                        <div className="mb-1 ml-auto h-[3px] w-[72px] overflow-hidden rounded-sm bg-accent/[0.12]">
+                          <div
+                            className="h-full rounded-sm bg-accent"
+                            style={{ width: `${((c.maxStock - c.stock) / c.maxStock) * 100}%` }}
+                          />
+                        </div>
+                        <p className="text-right text-[11px] font-normal tracking-[0.5px] text-accent">
+                          {c.stock} left of {c.maxStock}
+                        </p>
+                      </div>
+                    ) : (
+                      <span className="text-[11px] font-normal tracking-[0.5px] text-foreground-muted">
+                        Sold out
+                      </span>
+                    )}
                   </div>
                 </div>
               </Link>
