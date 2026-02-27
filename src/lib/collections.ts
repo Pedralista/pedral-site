@@ -87,7 +87,6 @@ export const collections: Collection[] = [
       "Polishing cloth",
       "Butterfly clasp",
       "12-month warranty card",
-      "€20 bespoke strap credit",
       "Personal note from Kevin",
     ],
     valueAnchor:
@@ -294,7 +293,6 @@ export const collections: Collection[] = [
       "Butterfly deployment clasp",
       "12-month international warranty card",
       "Handwritten note from Kevin",
-      "€20 credit toward a bespoke strap",
     ],
     valueAnchor:
       "Sapphire crystal. Swiss hand-wound movement. HV1200 scratch-resistant coating. Guilloché dial work. At any established house: €3,000+. Without the overhead cost: €2,000. Twenty pieces.",
