@@ -14,7 +14,7 @@ const leftLinks = [
 const rightLinks = [
   { href: "/journal", label: "The Rounded Square" },
   { href: "https://www.instagram.com/pedralwatches", label: "Instagram", external: true },
-  { href: "https://shop.pedral.eu", label: "Shop", external: true },
+  { href: "/account", label: "My Account" },
 ];
 
 export default function Navbar() {
