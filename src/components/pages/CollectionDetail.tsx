@@ -310,7 +310,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 <button
                   onClick={handleReserve}
                   disabled={loading || (!c.isPreOrder && !selectedVariant)}
-                  className="rounded-[2px] bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60"
+                  className="w-full rounded-[2px] bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
                   {loading
                     ? "Loading…"
@@ -547,7 +547,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               <p className="mt-6 text-[15px] font-light italic leading-[1.85] text-foreground-muted">
                 {c.valueAnchor}
               </p>
-              <div className="mt-6 flex items-baseline gap-5">
+              <div className="mt-6 flex flex-wrap items-baseline gap-x-5 gap-y-2">
                 <span className="font-serif text-[24px] font-light text-foreground-muted line-through">
                   {c.valueComparePrice}
                 </span>
