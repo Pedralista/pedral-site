@@ -250,7 +250,7 @@ export default function AccountContent() {
                   <p className="text-[13px] font-light text-foreground-muted">
                     Are you sure? You&apos;ll lose your priority collector status and early edition access.
                   </p>
-                  <div className="mt-4 flex gap-3">
+                  <div className="mt-4 flex flex-wrap gap-3">
                     <button
                       onClick={handleUnsubscribe}
                       disabled={unsubscribeLoading}
