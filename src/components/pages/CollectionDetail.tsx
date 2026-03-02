@@ -286,6 +286,47 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 );
               })}
             </motion.div>
+
+            {/* CTA after variant selection */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="mt-8 flex flex-col items-start gap-4 border-t border-accent/[0.08] pt-8 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div>
+                {selectedVariant && (
+                  <p className="text-[12px] font-light tracking-[1px] text-foreground-muted">
+                    Selected:{" "}
+                    <span className="text-foreground">{selectedVariant.name}</span>
+                  </p>
+                )}
+                <p className="mt-1 font-serif text-[22px] font-light text-foreground">
+                  &euro;{c.price.toLocaleString()}
+                </p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={handleReserve}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant)}
+                  className="rounded-[2px] bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60"
+                >
+                  {loading
+                    ? "Loading…"
+                    : c.isPreOrder
+                    ? `Reserve · €${c.depositAmount ?? 500} deposit`
+                    : isSoldOut
+                    ? "Join Waitlist"
+                    : `Reserve · €${c.price.toLocaleString()}`}
+                </button>
+                {c.isPreOrder && (
+                  <p className="text-[11px] font-light text-foreground-muted/60">
+                    Balance invoiced before shipping
+                  </p>
+                )}
+              </div>
+            </motion.div>
           </div>
         </section>
       )}
