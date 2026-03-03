@@ -97,6 +97,12 @@ export default function CollectionsContent() {
                 {f.label}
               </button>
             ))}
+            <Link
+              href="/archive"
+              className="rounded-[2px] border border-accent/20 bg-transparent px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase text-foreground-muted transition-all hover:border-accent hover:text-accent sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[2px]"
+            >
+              Archive
+            </Link>
           </div>
 
           {/* Grid */}
