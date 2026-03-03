@@ -7,7 +7,8 @@ export interface ArchivedWatch {
   editionSize: number;
   hook: string;
   description: string;
-  image: string;
+  images: string[];
+  dialNames?: string[];
 }
 
 export const archivedWatches: ArchivedWatch[] = [
@@ -21,7 +22,7 @@ export const archivedWatches: ArchivedWatch[] = [
     hook: "An object before it is a watch.",
     description:
       "The Artefact was an exercise in reduction. Every surface, every line questioned until only the essential remained. A watch that asks you to look longer before you understand it.",
-    image: "/images/archive/artefact.jpg",
+    images: ["/images/archive/artefact.jpg"],
   },
   {
     slug: "okapi-gmt",
@@ -33,7 +34,7 @@ export const archivedWatches: ArchivedWatch[] = [
     hook: "Two cities. One wrist. No compromise.",
     description:
       "The Okapi GMT extended the cushion-case language into dual-timezone territory. A 24-hour hand and bidirectional bezel. The same restraint as the original, now with a practical purpose.",
-    image: "/images/archive/okapi-gmt.jpg",
+    images: ["/images/archive/okapi-gmt.jpg"],
   },
   {
     slug: "okapi",
@@ -45,6 +46,6 @@ export const archivedWatches: ArchivedWatch[] = [
     hook: "The one that started everything.",
     description:
       "The original Okapi. A fumé sunburst dial behind a coin-edge fluted flange. Swiss ETA 7001, hand-wound. The watch that defined the Pedral language. Sold through in 2020. It will not return.",
-    image: "/images/archive/okapi.jpg",
+    images: ["/images/archive/okapi.jpg"],
   },
 ];
