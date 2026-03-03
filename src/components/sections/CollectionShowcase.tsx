@@ -125,6 +125,14 @@ export default function CollectionShowcase() {
         <p className="mt-8 text-center text-[13px] tracking-[0.5px] leading-[1.7] text-foreground-muted">
           Earlier editions are sold out and won&apos;t return.
         </p>
+        <div className="mt-3 flex justify-center">
+          <Link
+            href="/archive"
+            className="text-[12px] font-light tracking-[2px] uppercase text-foreground-muted/50 underline underline-offset-4 transition-colors hover:text-accent"
+          >
+            Browse the archive →
+          </Link>
+        </div>
       </div>
     </section>
   );

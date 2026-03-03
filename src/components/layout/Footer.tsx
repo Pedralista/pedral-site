@@ -67,6 +67,12 @@ export default function Footer() {
             Contact
           </Link>
           <Link
+            href="/archive"
+            className="text-[12px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
+          >
+            Archive
+          </Link>
+          <Link
             href="/account"
             className="text-[12px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-accent"
           >
