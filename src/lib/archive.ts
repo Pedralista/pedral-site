@@ -75,9 +75,9 @@ export const archivedWatches: ArchivedWatch[] = [
     soldYear: 2020,
     price: 1100,
     editionSize: 20,
-    hook: "The one that started everything.",
+    hook: "Where it began. Where it ended. Neither is coming back.",
     description:
-      "The original Okapi. A fumé sunburst dial behind a coin-edge fluted flange. Swiss ETA 7001, hand-wound. The watch that defined the Pedral language. Sold through in 2020. It will not return.",
+      "A fumé sunburst dial behind a coin-edge fluted flange. Swiss ETA 7001, hand-wound. The watch that made everything after it possible — and the one that made us realise what Pedral was. Twenty pieces. Sold in 2020. The language it set is still the one we speak.",
     images: [],
   },
 ];
