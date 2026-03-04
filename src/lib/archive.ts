@@ -21,9 +21,9 @@ export const archivedWatches: ArchivedWatch[] = [
     price: 1499,
     editionSize: 20,
     editionLabel: "Limited Edition",
-    hook: "An object before it is a watch.",
+    hook: "Our interpretation on the quintessential luxury sports watch.",
     description:
-      "The Artefact was an exercise in reduction. Every surface, every line questioned until only the essential remained. A watch that asks you to look longer before you understand it.",
+      "Crafted in 39mm stainless steel, 11mm thick, with a 47.5mm lug-to-lug and integrated bracelet for balanced wearability. Dials are carved from rare stones—each naturally unique—or based on original artwork, faithfully brought to life through 3D printing. Powering it is the Miyota Cal. 9039, regulated to ±10s/day for Swiss-level precision. Diamond-cut skeleton hands offer sharp legibility and refined aesthetics. Bespoke straps are paired to each dial, elevating the individuality of every piece.",
     images: [
       "/images/archive/Artefact - Boris Blue.png",
       "/images/archive/Artefact - Driving Home.png",
