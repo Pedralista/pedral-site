@@ -3,7 +3,7 @@ import { collections } from "@/lib/collections";
 import { articles } from "@/lib/journal";
 import { archivedWatches } from "@/lib/archive";
 
-const siteUrl = "https://pedral.watch";
+const siteUrl = "https://pedral.eu";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const collectionRoutes = collections.map((c) => ({
