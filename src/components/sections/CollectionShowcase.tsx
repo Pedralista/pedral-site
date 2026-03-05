@@ -65,7 +65,7 @@ export default function CollectionShowcase() {
                 className="group relative block cursor-pointer overflow-hidden rounded-lg border border-accent/[0.06] bg-background transition-all duration-400 hover:-translate-y-[3px] hover:border-accent/20"
               >
                 <BadgeLabel stock={c.stock} isPreOrder={c.isPreOrder} />
-                <div className="relative aspect-[4/5] overflow-hidden bg-[var(--surface)]">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-t-lg bg-[var(--surface)]">
                   {c.image ? (
                     <Image
                       src={c.image}

@@ -30,7 +30,7 @@ function ArchiveCard({ watch }: { watch: ArchivedWatch }) {
       </span>
 
       {/* Image area */}
-      <div className="relative aspect-[4/5] overflow-hidden bg-[var(--surface)]">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-t-lg bg-[var(--surface)]">
         {/* Greyscale overlay */}
         <div className="absolute inset-0 z-[1] bg-background/30 mix-blend-color" />
 
