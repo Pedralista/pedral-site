@@ -12,13 +12,13 @@ export default function Icon() {
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Exact coordinates extracted from Pedral-Logo-Variants.svg */}
+        <rect width="100" height="100" rx="16" fill="#0a1214" />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="
-            M 50,0  L 95,99 L 78,99 L 69,80 L 50,100 L 31,80 L 22,99 L 5,99 Z
-            M 63,65 L 50,36 L 37,65 L 50,79 Z
+            M 50,6  L 93,94 L 77,94 L 69,76 L 50,96 L 31,76 L 23,94 L 7,94 Z
+            M 63,62 L 50,34 L 37,62 L 50,75 Z
           "
           fill="#c9a84c"
         />
