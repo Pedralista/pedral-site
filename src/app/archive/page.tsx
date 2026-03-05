@@ -3,7 +3,7 @@ import ArchiveContent from "@/components/pages/ArchiveContent";
 
 export const metadata: Metadata = {
   title: "Archive — Pedral",
-  description: "Past Pedral editions that have sold through. Limited to 20 pieces each. None returning.",
+  description: "The Pedral Archive: Artefact, Okapi GMT, and Okapi — sold-out limited editions, 20 pieces each. Closed permanently. See what came before.",
 };
 
 export default function ArchivePage() {

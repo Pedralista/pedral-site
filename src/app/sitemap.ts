@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { collections } from "@/lib/collections";
 import { articles } from "@/lib/journal";
+import { archivedWatches } from "@/lib/archive";
 
 const siteUrl = "https://pedral.watch";
 
@@ -10,6 +11,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
+  }));
+
+  const archiveRoutes = archivedWatches.map((w) => ({
+    url: `${siteUrl}/archive#${w.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "yearly" as const,
+    priority: 0.6,
   }));
 
   const articleRoutes = articles.map((a) => ({
@@ -33,6 +41,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     ...collectionRoutes,
+    {
+      url: `${siteUrl}/archive`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    ...archiveRoutes,
     {
       url: `${siteUrl}/story`,
       lastModified: new Date(),

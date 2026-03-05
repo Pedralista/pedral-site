@@ -23,7 +23,7 @@ function ArchiveCard({ watch }: { watch: ArchivedWatch }) {
   }
 
   return (
-    <div className="group relative overflow-hidden rounded-[2px] border border-accent/[0.06] bg-background">
+    <div id={watch.slug} className="group relative overflow-hidden rounded-[2px] border border-accent/[0.06] bg-background">
       {/* Sold badge */}
       <span className="absolute left-3 top-3 z-10 border border-white/15 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-white/50 backdrop-blur-sm">
         Sold · {watch.soldYear}
@@ -94,9 +94,9 @@ function ArchiveCard({ watch }: { watch: ArchivedWatch }) {
         <p className="mb-1 text-[11px] font-normal tracking-[2px] uppercase text-accent/60">
           {watch.year} · {watch.editionLabel ?? `Edition of ${watch.editionSize}`}
         </p>
-        <h3 className="font-serif text-2xl font-normal text-foreground">
-          {watch.name}
-        </h3>
+        <h2 className="font-serif text-2xl font-normal text-foreground">
+          Pedral {watch.name}
+        </h2>
         {watch.dialNames?.[index] && (
           <p className="mt-1 text-[12px] font-light tracking-[1px] text-foreground-muted/60">
             {watch.dialNames[index]}
