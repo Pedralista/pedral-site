@@ -23,19 +23,13 @@ export default function Icon() {
           viewBox="0 0 100 100"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/*
-            Three subpaths with evenodd:
-            1. Outer A shape with V-notch feet
-            2. Diamond cutout (upper centre)
-            3. Inner leg hollow (below diamond to V-notch)
-          */}
           <path
             fillRule="evenodd"
             clipRule="evenodd"
             d="
-              M 50,2 L 88,93 L 64,93 L 50,74 L 36,93 L 12,93 Z
-              M 50,27 L 64,50 L 50,63 L 36,50 Z
-              M 50,63 L 64,93 L 50,74 L 36,93 Z
+              M 50,0  L 100,100  L 74,100  L 50,87  L 26,100  L 0,100  Z
+              M 50,23 L 75,53   L 50,70   L 24,53  Z
+              M 50,70 L 74,100  L 50,87   L 26,100 Z
             "
             fill="#c9a84c"
           />
