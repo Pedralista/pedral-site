@@ -57,8 +57,8 @@ export default function Hero() {
             className="mt-4 max-w-[480px] text-[15px] font-light leading-[1.8] text-foreground-muted/70"
           >
             Swiss movement. Sapphire crystal. HV1200 coating.<br />
-            At the established houses, this specification starts at &euro;3,000.<br />
-            Without the overhead, it starts at <strong className="text-accent">&euro;1,300</strong>.
+            Built to the same standard as watches twice the price.<br />
+            Pedral starts at <strong className="text-accent">&euro;1,300</strong>.
           </motion.p>
 
           <motion.div
