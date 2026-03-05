@@ -52,7 +52,7 @@ export default async function CheckoutPage({
             <p className="mb-4 text-[11px] tracking-[3px] uppercase text-accent">
               Your Order
             </p>
-            <div className="rounded-[2px] border border-accent/10 bg-background-alt p-6">
+            <div className="rounded-lg border border-accent/10 bg-background-alt p-6">
               <p className="font-serif text-[22px] font-light text-foreground">
                 {collection.name}
               </p>

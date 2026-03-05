@@ -75,7 +75,7 @@ export default function Hero() {
           >
             <Link
               href="/collections"
-              className="inline-block border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors duration-300 hover:border-accent hover:text-accent"
+              className="inline-block rounded-lg border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors duration-300 hover:border-accent hover:text-accent"
             >
               Discover the remaining pieces
             </Link>

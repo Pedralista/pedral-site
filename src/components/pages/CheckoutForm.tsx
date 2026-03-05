@@ -64,7 +64,7 @@ function PaymentForm({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="your@email.com"
-          className="w-full rounded-[2px] border border-accent/20 bg-background px-4 py-3 text-[14px] font-light text-foreground placeholder:text-foreground-muted/40 focus:border-accent focus:outline-none"
+          className="w-full rounded-lg border border-accent/20 bg-background px-4 py-3 text-[14px] font-light text-foreground placeholder:text-foreground-muted/40 focus:border-accent focus:outline-none"
         />
       </div>
 
@@ -72,7 +72,7 @@ function PaymentForm({
         <label className="mb-1.5 block text-[11px] tracking-[2px] uppercase text-accent">
           Payment Details
         </label>
-        <div className="rounded-[2px] border border-accent/20 bg-background px-4 py-3">
+        <div className="rounded-lg border border-accent/20 bg-background px-4 py-3">
           <PaymentElement
             options={{
               layout: "tabs",
@@ -89,7 +89,7 @@ function PaymentForm({
       <button
         type="submit"
         disabled={loading || !stripe}
-        className="w-full rounded-[2px] bg-accent py-4 text-[12px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60"
+        className="w-full rounded-lg bg-accent py-4 text-[12px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60"
       >
         {loading ? "Processing…" : `Confirm — €${collection.price.toLocaleString()}`}
       </button>

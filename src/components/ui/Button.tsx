@@ -16,7 +16,7 @@ export default function Button({
   className = "",
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2.5 rounded-[2px] text-[11px] font-medium tracking-[2px] sm:tracking-[3px] uppercase transition-all duration-300 cursor-pointer";
+    "inline-flex items-center justify-center gap-2.5 rounded-lg text-[11px] font-medium tracking-[2px] sm:tracking-[3px] uppercase transition-all duration-300 cursor-pointer";
 
   const variants = {
     primary:

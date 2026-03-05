@@ -88,7 +88,7 @@ export default function CollectionsContent() {
               <button
                 key={f.key}
                 onClick={() => setActive(f.key)}
-                className={`rounded-[2px] border px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase transition-all cursor-pointer sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[2px] ${
+                className={`rounded-lg border px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase transition-all cursor-pointer sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[2px] ${
                   active === f.key
                     ? "border-accent bg-accent text-background"
                     : "border-accent/20 bg-transparent text-foreground-muted hover:border-accent hover:text-accent"
@@ -99,7 +99,7 @@ export default function CollectionsContent() {
             ))}
             <Link
               href="/archive"
-              className="rounded-[2px] border border-accent/20 bg-transparent px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase text-foreground-muted transition-all hover:border-accent hover:text-accent sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[2px]"
+              className="rounded-lg border border-accent/20 bg-transparent px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase text-foreground-muted transition-all hover:border-accent hover:text-accent sm:px-6 sm:py-2.5 sm:text-[11px] sm:tracking-[2px]"
             >
               Archive
             </Link>
@@ -131,7 +131,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
     <motion.div variants={fadeInUp}>
       <Link
         href={`/collections/${collection.slug}`}
-        className="group relative block cursor-pointer overflow-hidden rounded-[2px] border border-accent/[0.06] bg-background transition-all duration-400 hover:-translate-y-[3px] hover:border-accent/20"
+        className="group relative block cursor-pointer overflow-hidden rounded-lg border border-accent/[0.06] bg-background transition-all duration-400 hover:-translate-y-[3px] hover:border-accent/20"
       >
         <BadgeLabel stock={collection.stock} isPreOrder={collection.isPreOrder} />
 

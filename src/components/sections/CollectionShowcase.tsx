@@ -62,7 +62,7 @@ export default function CollectionShowcase() {
             <motion.div key={c.slug} variants={fadeInUp}>
               <Link
                 href={`/collections/${c.slug}`}
-                className="group relative block cursor-pointer overflow-hidden rounded-[2px] border border-accent/[0.06] bg-background transition-all duration-400 hover:-translate-y-[3px] hover:border-accent/20"
+                className="group relative block cursor-pointer overflow-hidden rounded-lg border border-accent/[0.06] bg-background transition-all duration-400 hover:-translate-y-[3px] hover:border-accent/20"
               >
                 <BadgeLabel stock={c.stock} isPreOrder={c.isPreOrder} />
                 <div className="relative aspect-[4/5] overflow-hidden bg-[var(--surface)]">

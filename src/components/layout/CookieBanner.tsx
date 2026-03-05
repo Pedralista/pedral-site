@@ -45,13 +45,13 @@ export default function CookieBanner() {
             <div className="flex w-full shrink-0 gap-3 sm:w-auto">
               <button
                 onClick={decline}
-                className="flex-1 rounded-[2px] border border-accent/20 px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:border-accent/40 hover:text-foreground cursor-pointer sm:flex-none sm:py-2 sm:text-[10px] sm:tracking-[2px]"
+                className="flex-1 rounded-lg border border-accent/20 px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:border-accent/40 hover:text-foreground cursor-pointer sm:flex-none sm:py-2 sm:text-[10px] sm:tracking-[2px]"
               >
                 Decline
               </button>
               <button
                 onClick={accept}
-                className="flex-1 rounded-[2px] bg-accent px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover cursor-pointer sm:flex-none sm:py-2 sm:text-[10px] sm:tracking-[2px]"
+                className="flex-1 rounded-lg bg-accent px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover cursor-pointer sm:flex-none sm:py-2 sm:text-[10px] sm:tracking-[2px]"
               >
                 Accept
               </button>

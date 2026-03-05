@@ -134,7 +134,7 @@ export default function AccountContent() {
             </p>
             <Link
               href="/"
-              className="mt-8 inline-block rounded-[2px] border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors hover:border-accent hover:text-accent"
+              className="mt-8 inline-block rounded-lg border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors hover:border-accent hover:text-accent"
             >
               Back to Pedral
             </Link>
@@ -165,7 +165,7 @@ export default function AccountContent() {
               <p className="mb-4 text-[11px] tracking-[3px] uppercase text-foreground-muted">
                 Subscription
               </p>
-              <div className="rounded-[2px] border border-accent/15 bg-white/[0.02] p-6">
+              <div className="rounded-lg border border-accent/15 bg-white/[0.02] p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[13px] font-light text-foreground">Priority Collector</p>
@@ -175,7 +175,7 @@ export default function AccountContent() {
                       </p>
                     )}
                   </div>
-                  <span className="rounded-[2px] bg-accent/10 px-3 py-1 text-[10px] tracking-[2px] uppercase text-accent">
+                  <span className="rounded-lg bg-accent/10 px-3 py-1 text-[10px] tracking-[2px] uppercase text-accent">
                     Active
                   </span>
                 </div>
@@ -193,7 +193,7 @@ export default function AccountContent() {
                 {PERKS.map((perk) => (
                   <div
                     key={perk.title}
-                    className="flex gap-4 rounded-[2px] border border-accent/[0.08] bg-white/[0.02] px-5 py-4"
+                    className="flex gap-4 rounded-lg border border-accent/[0.08] bg-white/[0.02] px-5 py-4"
                   >
                     <div className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
                     <div>
@@ -214,13 +214,13 @@ export default function AccountContent() {
               <p className="mb-4 text-[11px] tracking-[3px] uppercase text-foreground-muted">
                 Orders
               </p>
-              <div className="rounded-[2px] border border-accent/15 bg-white/[0.02] p-6">
+              <div className="rounded-lg border border-accent/15 bg-white/[0.02] p-6">
                 <p className="text-[13px] font-light text-foreground">
                   View your order history, download invoices and track shipments.
                 </p>
                 <a
                   href={portalData.stripePortalUrl}
-                  className="mt-4 inline-block rounded-[2px] bg-accent px-6 py-3 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover"
+                  className="mt-4 inline-block rounded-lg bg-accent px-6 py-3 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover"
                 >
                   Open Order Portal →
                 </a>
@@ -246,7 +246,7 @@ export default function AccountContent() {
                   Unsubscribe from all emails
                 </button>
               ) : (
-                <div className="mt-4 rounded-[2px] border border-red-900/30 bg-red-950/10 p-5">
+                <div className="mt-4 rounded-lg border border-red-900/30 bg-red-950/10 p-5">
                   <p className="text-[13px] font-light text-foreground-muted">
                     Are you sure? You&apos;ll lose your priority collector status and early edition access.
                   </p>
@@ -254,7 +254,7 @@ export default function AccountContent() {
                     <button
                       onClick={handleUnsubscribe}
                       disabled={unsubscribeLoading}
-                      className="rounded-[2px] border border-red-700/40 px-5 py-2.5 text-[11px] font-medium tracking-[2px] uppercase text-red-400 transition-colors hover:border-red-600 hover:text-red-300 disabled:opacity-50"
+                      className="rounded-lg border border-red-700/40 px-5 py-2.5 text-[11px] font-medium tracking-[2px] uppercase text-red-400 transition-colors hover:border-red-600 hover:text-red-300 disabled:opacity-50"
                     >
                       {unsubscribeLoading ? "Removing…" : "Yes, unsubscribe"}
                     </button>
@@ -303,7 +303,7 @@ export default function AccountContent() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
-                className="w-full rounded-[2px] border border-accent/20 bg-background px-4 py-3 text-[14px] font-light text-foreground placeholder:text-foreground-muted/40 focus:border-accent focus:outline-none"
+                className="w-full rounded-lg border border-accent/20 bg-background px-4 py-3 text-[14px] font-light text-foreground placeholder:text-foreground-muted/40 focus:border-accent focus:outline-none"
               />
             </div>
 
@@ -312,7 +312,7 @@ export default function AccountContent() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-[2px] bg-accent py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60"
+              className="w-full rounded-lg bg-accent py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60"
             >
               {loading ? "Looking up…" : "Access My Account →"}
             </button>

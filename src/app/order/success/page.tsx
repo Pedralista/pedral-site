@@ -31,7 +31,7 @@ export default async function OrderSuccessPage({
       </p>
       <Link
         href="/collections"
-        className="mt-10 inline-block rounded-[2px] border border-accent/30 px-8 py-3 text-[11px] font-normal tracking-[2.5px] uppercase text-accent transition-colors hover:bg-accent hover:text-background"
+        className="mt-10 inline-block rounded-lg border border-accent/30 px-8 py-3 text-[11px] font-normal tracking-[2.5px] uppercase text-accent transition-colors hover:bg-accent hover:text-background"
       >
         Back to Collections
       </Link>

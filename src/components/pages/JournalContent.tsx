@@ -163,11 +163,11 @@ export default function JournalContent() {
               <input
                 type="email"
                 placeholder="Your email address"
-                className="flex-1 rounded-[2px] border border-accent/[0.12] bg-transparent px-5 py-3.5 text-sm font-light text-foreground outline-none transition-colors placeholder:text-foreground-muted/40 focus:border-accent/40"
+                className="flex-1 rounded-lg border border-accent/[0.12] bg-transparent px-5 py-3.5 text-sm font-light text-foreground outline-none transition-colors placeholder:text-foreground-muted/40 focus:border-accent/40"
               />
               <button
                 type="button"
-                className="w-full rounded-[2px] bg-accent px-8 py-3.5 text-[12px] font-medium tracking-[2px] uppercase text-background transition-all hover:bg-accent-hover sm:w-auto sm:text-[11px] sm:tracking-[3px]"
+                className="w-full rounded-lg bg-accent px-8 py-3.5 text-[12px] font-medium tracking-[2px] uppercase text-background transition-all hover:bg-accent-hover sm:w-auto sm:text-[11px] sm:tracking-[3px]"
               >
                 Subscribe
               </button>

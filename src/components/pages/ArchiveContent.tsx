@@ -23,7 +23,7 @@ function ArchiveCard({ watch }: { watch: ArchivedWatch }) {
   }
 
   return (
-    <div id={watch.slug} className="group relative overflow-hidden rounded-[2px] border border-accent/[0.06] bg-background">
+    <div id={watch.slug} className="group relative overflow-hidden rounded-lg border border-accent/[0.06] bg-background">
       {/* Sold badge */}
       <span className="absolute left-3 top-3 z-10 border border-white/15 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-white/50 backdrop-blur-sm">
         Sold · {watch.soldYear}
@@ -188,7 +188,7 @@ export default function ArchiveContent() {
           >
             <Link
               href="/collections"
-              className="rounded-[2px] border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors hover:border-accent hover:text-accent"
+              className="rounded-lg border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors hover:border-accent hover:text-accent"
             >
               View current editions →
             </Link>

@@ -48,13 +48,13 @@ export default function ContactContent() {
                     href="mailto:hello@pedral.watch"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-[2px] bg-accent px-9 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-all hover:bg-accent-hover sm:text-[11px] sm:tracking-[3px]"
+                    className="rounded-lg bg-accent px-9 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-all hover:bg-accent-hover sm:text-[11px] sm:tracking-[3px]"
                   >
                     Send a Message
                   </a>
                   <a
                     href="mailto:info@pedral.watch"
-                    className="rounded-[2px] border border-accent/[0.15] bg-transparent px-9 py-4 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-all hover:border-accent hover:bg-accent hover:text-background sm:text-[11px] sm:tracking-[3px]"
+                    className="rounded-lg border border-accent/[0.15] bg-transparent px-9 py-4 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-all hover:border-accent hover:bg-accent hover:text-background sm:text-[11px] sm:tracking-[3px]"
                   >
                     Email Directly
                   </a>

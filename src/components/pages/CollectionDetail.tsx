@@ -143,7 +143,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-5 flex w-fit items-center gap-3 border border-accent/25 px-4 py-2 rounded-[2px]"
+            className="mt-5 flex w-fit items-center gap-3 border border-accent/25 px-4 py-2 rounded-lg"
           >
             <span className="h-[7px] w-[7px] animate-pulse rounded-full bg-accent" />
             <span className="text-[11px] tracking-[1.5px] uppercase text-accent">
@@ -171,7 +171,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             <button
               onClick={handleReserve}
               disabled={loading || (!c.isPreOrder && !selectedVariant)}
-              className="w-full rounded-[2px] bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
+              className="w-full rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
             >
               {loading
                 ? "Loading…"
@@ -228,7 +228,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                     variants={fadeInUp}
                     onClick={() => !soldOut && setSelectedVariant(v)}
                     disabled={soldOut}
-                    className={`group relative overflow-hidden rounded-[2px] border text-left transition-all duration-300 ${
+                    className={`group relative overflow-hidden rounded-lg border text-left transition-all duration-300 ${
                       isSelected
                         ? "border-accent"
                         : "border-accent/10 hover:border-accent/40"
@@ -310,7 +310,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 <button
                   onClick={handleReserve}
                   disabled={loading || (!c.isPreOrder && !selectedVariant)}
-                  className="w-full rounded-[2px] bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
+                  className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
                   {loading
                     ? "Loading…"
@@ -503,7 +503,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="rounded-[2px] border border-accent/10 bg-surface/50 p-8 md:p-10"
+            className="rounded-lg border border-accent/10 bg-surface/50 p-8 md:p-10"
           >
             <p className="mb-2 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
               Complete Package
@@ -580,7 +580,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           <button
             onClick={handleReserve}
             disabled={loading || (!c.isPreOrder && !selectedVariant)}
-            className="mt-6 w-full max-w-[300px] rounded-[2px] bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
+            className="mt-6 w-full max-w-[300px] rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
           >
             {loading
               ? "Loading…"
@@ -686,7 +686,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 <motion.div
                   key={ed.name}
                   variants={fadeInUp}
-                  className="rounded-[2px] border border-accent/10 bg-background-alt overflow-hidden"
+                  className="rounded-lg border border-accent/10 bg-background-alt overflow-hidden"
                 >
                   {ed.image ? (
                     <div className="relative aspect-[4/3] w-full">
@@ -702,7 +702,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                   )}
                   <div className="p-6">
                     <div className="mb-3 flex items-center gap-3">
-                      <span className="rounded-[2px] border border-accent/20 px-2.5 py-1 text-[10px] tracking-[2px] uppercase text-accent">
+                      <span className="rounded-lg border border-accent/20 px-2.5 py-1 text-[10px] tracking-[2px] uppercase text-accent">
                         Coming Soon
                       </span>
                     </div>
