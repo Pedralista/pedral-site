@@ -15,20 +15,22 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          border: "1px solid #c9a84c",
         }}
       >
-        <span
-          style={{
-            fontFamily: "serif",
-            fontSize: 18,
-            fontWeight: 300,
-            color: "#c9a84c",
-            lineHeight: 1,
-          }}
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 100 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          A
-        </span>
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M50 2 L96 96 L68 96 L50 72 L32 96 L4 96 Z M50 28 L62 52 L50 64 L38 52 Z"
+            fill="#c9a84c"
+          />
+        </svg>
       </div>
     ),
     { ...size }
