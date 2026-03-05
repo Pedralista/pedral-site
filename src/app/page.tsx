@@ -1,4 +1,5 @@
 import Hero from "@/components/sections/Hero";
+import TrustBar from "@/components/sections/TrustBar";
 import StoryPreview from "@/components/sections/StoryPreview";
 import CollectionShowcase from "@/components/sections/CollectionShowcase";
 import WhyPedral from "@/components/sections/WhyPedral";
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <TrustBar />
       <StoryPreview />
       <CollectionShowcase />
       <WhyPedral />
