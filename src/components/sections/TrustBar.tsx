@@ -19,7 +19,7 @@ export default function TrustBar() {
         variants={fadeInUp}
         className="mx-auto max-w-[1400px]"
       >
-        <p className="mb-7 text-[10px] font-normal tracking-[3px] uppercase text-foreground-muted/60">
+        <p className="mb-7 text-[10px] font-normal tracking-[3px] uppercase text-accent">
           Worn by collectors in 30+ countries
         </p>
         <div className="grid grid-cols-3 gap-6 sm:gap-12 md:max-w-[600px]">
