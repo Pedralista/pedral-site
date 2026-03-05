@@ -51,7 +51,7 @@ export default function StoryPreview() {
             viewport={{ once: true, margin: "-100px" }}
             variants={slideInRight}
           >
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[4px]">
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
               <Image
                 src="/images/kevin-portrait.jpeg"
                 alt="Kevin Pedral"
