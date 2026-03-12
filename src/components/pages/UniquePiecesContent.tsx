@@ -70,13 +70,6 @@ export default function UniquePiecesContent() {
       {/* ── 2. Gallery ── */}
       <section className="border-t border-accent/[0.08] bg-background-alt pt-8 pb-10 md:pt-12 md:pb-14">
         <div className="mx-auto max-w-[720px] px-6 md:px-12">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-
           {studioPieces.length === 0 ? (
             <motion.div
               initial="hidden"
