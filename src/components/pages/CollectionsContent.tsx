@@ -15,7 +15,14 @@ const filters: { key: Filter; label: string }[] = [
   { key: "limited", label: "Limited Edition" },
 ];
 
-function BadgeLabel({ stock, isPreOrder }: { stock: number; isPreOrder?: boolean }) {
+function BadgeLabel({ stock, isPreOrder, isEnquiryOnly }: { stock: number; isPreOrder?: boolean; isEnquiryOnly?: boolean }) {
+  if (isEnquiryOnly) {
+    return (
+      <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
+        By Enquiry Only
+      </span>
+    );
+  }
   if (stock === 0 && isPreOrder) {
     return (
       <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
@@ -133,7 +140,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
         href={`/collections/${collection.slug}`}
         className="group relative block cursor-pointer overflow-hidden rounded-lg border border-accent/[0.06] bg-background transition-all duration-400 hover:-translate-y-[3px] hover:border-accent/20"
       >
-        <BadgeLabel stock={collection.stock} isPreOrder={collection.isPreOrder} />
+        <BadgeLabel stock={collection.stock} isPreOrder={collection.isPreOrder} isEnquiryOnly={collection.isEnquiryOnly} />
 
         <div className="relative aspect-[4/5] overflow-hidden rounded-t-lg bg-[var(--surface)]">
           {collection.image ? (
@@ -156,17 +163,30 @@ function CollectionCard({ collection }: { collection: Collection }) {
           <h3 className="font-serif text-2xl font-normal text-foreground">
             {collection.name}
           </h3>
-          <p className="mt-1.5 mb-4 text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[14px]">
+          <p className="mt-1.5 mb-4 min-h-[2.8rem] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[14px]">
             &ldquo;{collection.hook}&rdquo;
           </p>
           <div className="flex items-end justify-between">
             <div>
-              <span className="block text-[11px] font-light tracking-[0.5px] uppercase text-foreground-muted">
-                From
-              </span>
-              <span className="text-[17px] font-normal text-foreground">
-                €{collection.price.toLocaleString()}
-              </span>
+              {collection.isEnquiryOnly ? (
+                <>
+                  <span className="block text-[11px] font-light tracking-[0.5px] uppercase text-foreground-muted">
+                    Pricing
+                  </span>
+                  <span className="text-[17px] font-medium text-foreground">
+                    Upon request
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="block text-[11px] font-light tracking-[0.5px] uppercase text-foreground-muted">
+                    From
+                  </span>
+                  <span className="text-[17px] font-normal text-foreground">
+                    €{collection.price.toLocaleString()}
+                  </span>
+                </>
+              )}
             </div>
             {collection.stock > 0 ? (
               <div>
@@ -182,6 +202,10 @@ function CollectionCard({ collection }: { collection: Collection }) {
                   {collection.stock} left of {collection.maxStock}
                 </p>
               </div>
+            ) : collection.isEnquiryOnly ? (
+              <span className="text-[11px] font-normal tracking-[0.5px] text-accent">
+                Allocation only
+              </span>
             ) : (
               <span className="text-[11px] font-normal tracking-[0.5px] text-foreground-muted">
                 Sold out

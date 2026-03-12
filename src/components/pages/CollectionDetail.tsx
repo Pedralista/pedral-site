@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
+import Link from "next/link";
 import type { Collection } from "@/lib/collections";
 import Newsletter from "@/components/sections/Newsletter";
 import PreOrderModal from "@/components/ui/PreOrderModal";
@@ -22,7 +23,7 @@ function ImagePlaceholder({ label, className = "" }: { label: string; className?
 
 export default function CollectionDetail({ collection }: { collection: Collection }) {
   const c = collection;
-  const isSoldOut = c.stock === 0;
+  const isSoldOut = c.stock === 0 && !c.isEnquiryOnly;
   const hasVariants = c.variants && c.variants.length > 0;
   const [selectedVariant, setSelectedVariant] = useState(
     hasVariants ? c.variants![0] : null
@@ -134,14 +135,16 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           >
             {c.hook}
           </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="mt-4 font-serif text-[28px] font-light text-foreground"
-          >
-            &euro;{c.price.toLocaleString()}
-          </motion.p>
+          {!c.isEnquiryOnly && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="mt-4 font-serif text-[28px] font-light text-foreground"
+            >
+              &euro;{c.price.toLocaleString()}
+            </motion.p>
+          )}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -171,26 +174,42 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             transition={{ duration: 0.8, delay: 1 }}
             className="mt-6"
           >
-            <button
-              onClick={handleReserve}
-              disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral)}
-              className="w-full rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
-            >
-              {loading
-                ? "Loading…"
-                : c.isPreOrder
-                ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
-                : isSoldOut
-                ? "Join Waitlist"
-                : `Reserve · €${c.price.toLocaleString()}`}
-            </button>
-            {c.isPreOrder && (
-              <p className="mt-3 text-[11px] font-light leading-[1.7] text-foreground-muted/60">
-                €{c.depositAmount ?? 500} non-refundable deposit &middot; Secures your place in the production queue &middot; Balance invoiced before shipping
-              </p>
-            )}
-            {preOrderError && (
-              <p className="mt-2 text-[12px] text-red-400">{preOrderError}</p>
+            {c.isEnquiryOnly ? (
+              <div className="flex flex-col gap-3">
+                <Link
+                  href="/contact"
+                  className="inline-block w-full rounded-lg bg-accent px-8 py-4 text-center text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
+                >
+                  Request an Allocation →
+                </Link>
+                <p className="text-[11px] font-light leading-[1.7] text-foreground-muted/60">
+                  Kevin reviews each request personally. Not all are confirmed.
+                </p>
+              </div>
+            ) : (
+              <>
+                <button
+                  onClick={handleReserve}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral)}
+                  className="w-full rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
+                >
+                  {loading
+                    ? "Loading…"
+                    : c.isPreOrder
+                    ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
+                    : isSoldOut
+                    ? "Join Waitlist"
+                    : `Reserve · €${c.price.toLocaleString()}`}
+                </button>
+                {c.isPreOrder && (
+                  <p className="mt-3 text-[11px] font-light leading-[1.7] text-foreground-muted/60">
+                    €{c.depositAmount ?? 500} non-refundable deposit &middot; Secures your place in the production queue &middot; Balance invoiced before shipping
+                  </p>
+                )}
+                {preOrderError && (
+                  <p className="mt-2 text-[12px] text-red-400">{preOrderError}</p>
+                )}
+              </>
             )}
           </motion.div>
         </div>
@@ -565,7 +584,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
       </section>
 
       {/* Value Perspective */}
-      {c.valueAnchor && (
+      {c.valueAnchor && !c.isEnquiryOnly && (
         <section className="bg-background-alt py-16 md:py-24">
           <div className="mx-auto max-w-[900px] px-6 md:px-12">
             <motion.div
@@ -608,49 +627,67 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
-            Edition of {c.maxStock} &middot; {c.edition}
-          </p>
-          <p className="font-serif text-[48px] font-light text-foreground">
-            &euro;{c.price.toLocaleString()}
-          </p>
-          <button
-            onClick={handleReserve}
-            disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral)}
-            className="mt-6 w-full max-w-[300px] rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
-          >
-            {loading
-              ? "Loading…"
-              : c.isPreOrder
-              ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
-              : isSoldOut
-              ? "Join Waitlist"
-              : `Reserve · €${c.price.toLocaleString()}`}
-          </button>
-          {c.isPreOrder ? (
-            <p className="mt-3 text-[11px] font-light leading-[1.7] text-foreground-muted/60">
-              €{c.depositAmount ?? 500} non-refundable deposit &middot; Balance invoiced before shipping</p>
-          ) : (
-          <p className="mt-3 text-[12px] font-light tracking-[0.5px] text-foreground-muted">
-            Pre-order &middot; Full payment secures your allocation &middot; Ships in 4–6 weeks
-          </p>
-          )}
-          <div className="mx-auto mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8">
-            {[
-              "Cancel anytime before dispatch",
-              "14-day return after delivery",
-              "12-month warranty",
-              "Insured shipping",
-            ].map((item) => (
-              <span
-                key={item}
-                className="flex items-center gap-2 text-[11px] tracking-[1px] uppercase text-foreground-muted"
+          {c.isEnquiryOnly ? (
+            <>
+              <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                {c.edition}
+              </p>
+              <p className="font-serif text-[clamp(28px,4vw,42px)] font-light text-foreground">
+                If you already know — write directly.
+              </p>
+              <p className="mx-auto mt-4 max-w-[480px] text-[15px] font-light leading-[1.8] text-foreground-muted">
+                Allocations are not guaranteed. Kevin reviews each request and confirms personally. A short note is enough.
+              </p>
+              <Link
+                href="/contact"
+                className="mt-8 inline-block rounded-lg bg-accent px-12 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover"
               >
-                <span className="font-semibold text-accent">&#10003;</span>
-                {item}
-              </span>
-            ))}
-          </div>
+                Request an Allocation →
+              </Link>
+              <p className="mt-4 text-[11px] font-light tracking-[0.5px] text-foreground-muted/50">
+                Edition of {c.maxStock} · No public announcement
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                Edition of {c.maxStock} &middot; {c.edition}
+              </p>
+              <p className="font-serif text-[48px] font-light text-foreground">
+                &euro;{c.price.toLocaleString()}
+              </p>
+              <button
+                onClick={handleReserve}
+                disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral)}
+                className="mt-6 w-full max-w-[300px] rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
+              >
+                {loading
+                  ? "Loading…"
+                  : c.isPreOrder
+                  ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
+                  : isSoldOut
+                  ? "Join Waitlist"
+                  : `Reserve · €${c.price.toLocaleString()}`}
+              </button>
+              {c.isPreOrder ? (
+                <p className="mt-3 text-[11px] font-light leading-[1.7] text-foreground-muted/60">
+                  €{c.depositAmount ?? 500} non-refundable deposit &middot; Balance invoiced before shipping
+                </p>
+              ) : (
+                <p className="mt-3 text-[12px] font-light tracking-[0.5px] text-foreground-muted">
+                  Pre-order &middot; Full payment secures your allocation &middot; Ships in 4–6 weeks
+                </p>
+              )}
+              <div className="mx-auto mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8">
+                {["Cancel anytime before dispatch", "14-day return after delivery", "12-month warranty", "Insured shipping"].map((item) => (
+                  <span key={item} className="flex items-center gap-2 text-[11px] tracking-[1px] uppercase text-foreground-muted">
+                    <span className="font-semibold text-accent">&#10003;</span>
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </>
+          )}
         </motion.div>
       </section>
 

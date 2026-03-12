@@ -48,6 +48,7 @@ export interface Collection {
   variants?: CollectionVariant[];
   isPreOrder?: boolean;
   depositAmount?: number;
+  isEnquiryOnly?: boolean;
   comingSoonEditions?: { name: string; description: string; image?: string }[];
 }
 
@@ -262,24 +263,23 @@ export const collections: Collection[] = [
     tagline: "The Original",
     hook: "The one that started everything.",
     description:
-      "The Okapi is defined by balance and restraint. Its 37mm cushion case combines rounded contours with precise architectural lines. A silhouette that reads as neither vintage nor modern.",
+      "The Okapi is defined by balance and restraint. Its 37mm cushion case combines rounded contours with precise architectural lines — a silhouette that reads as neither vintage nor modern. The watch that began the studio.",
     descriptionExtra:
-      "The frosted blue dial sits behind a coin-edge fluted flange. A slim chapter ring with lacquer-filled markings, guilloché small seconds at six, spear-shaped hands. Powered by the Swiss ETA 7001. Nothing added without reason.",
+      "The frosted blue dial sits behind a coin-edge fluted flange. A slim chapter ring with lacquer-filled markings, guilloché small seconds at six, spear-shaped hands. Powered by the Swiss ETA 7001. Nothing placed without reason. Nothing removed that should remain.",
     designerNote:
-      "Okapi was not my first prototype. It was the first that felt inevitable. A balance of curve and edge, softness held in precision. The language wasn't planned. It surfaced. The new dial does not transform it. It clarifies what was always there.",
+      "Okapi was not my first prototype. It was the first that felt inevitable. A balance of curve and edge, softness held in precision. The language wasn't planned — it surfaced. Ten years later, I understand it better. The new version doesn't transform it. It clarifies what was always there.",
     year: 2015,
     tier: "signature",
     price: 2000,
     stock: 0,
     maxStock: 20,
-    edition: "Coming Soon",
-    badge: "The Original",
-    urgencyTag: "Pre-order · Register Interest",
-    isPreOrder: true,
-    depositAmount: 500,
+    edition: "20 pieces · Allocation only",
+    badge: "Allocation Only",
+    urgencyTag: "By enquiry · Not all requests confirmed",
+    isEnquiryOnly: true,
     specsTitle: "Built to outlast everything.",
     specs: {
-      Movement: "Swiss-made ETA 7001, hand-wound, precise, enduring",
+      Movement: "La Joux-Perret LJP7380 · Swiss hand-wound · La Chaux-de-Fonds manufacture · The same movement family trusted by independent watchmakers across the industry — chosen here because it runs honest and lasts longer than trends",
       Case: "37mm cushion-shaped, stainless steel, HV1200 scratch-resistant coating",
       Dial: "Deep blue frosted finish, coin-edge fluted flange, guilloché small seconds at 6 o'clock",
       "Chapter Ring": "Slim steel with fine lacquer-filled markings",
@@ -321,8 +321,8 @@ export const collections: Collection[] = [
       },
     ],
     testimonialsLabel: "Those Who Wore the Original",
-    newsletterTitle: "First access when Okapi opens.",
-    newsletterSub: "On the list. No noise.",
+    newsletterTitle: "Be considered for an allocation.",
+    newsletterSub: "Those on the list are reviewed first. No announcements. No noise.",
     image: "/images/okapi.jpg",
     heroImage: "/images/okapi-hero.jpg",
     detailImage: "/images/okapi-detail.jpg",
