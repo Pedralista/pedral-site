@@ -127,7 +127,7 @@ export default function UniquePiecesContent() {
             </motion.p>
             <motion.h2
               variants={fadeInUp}
-              className="font-serif text-[clamp(28px,3.5vw,42px)] font-light text-foreground"
+              className="font-serif text-[clamp(22px,2.8vw,36px)] font-light text-foreground"
             >
               Some collectors want more than what exists.
             </motion.h2>
