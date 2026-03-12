@@ -129,17 +129,17 @@ export default function UniquePiecesContent() {
                 {
                   n: "02",
                   title: "The Conversation",
-                  body: "We talk. Sketches are made, discarded, refined. Nothing is decided until it feels inevitable.",
+                  body: "We talk. Sketches are made, discarded, refined. Once the brief feels inevitable, a deposit secures your place and production is scheduled.",
                 },
                 {
                   n: "03",
                   title: "The Making",
-                  body: "Components are sourced. The dial is developed. Every detail is confirmed before a single part is ordered. There is no rushing this step.",
+                  body: "Components are sourced. The dial is developed. Every detail confirmed before a single part is ordered. There is no rushing this step.",
                 },
                 {
                   n: "04",
                   title: "The Watch",
-                  body: "It arrives as a finished object — not a configured product, but a watch that did not exist before you asked for it.",
+                  body: "It arrives as a finished object — not a configured product, but a watch that did not exist before you asked for it. The balance is settled on delivery.",
                 },
               ].map((step) => (
                 <motion.div key={step.n} variants={fadeInUp}>
