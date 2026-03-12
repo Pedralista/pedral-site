@@ -32,6 +32,13 @@ export const studioPieces: StudioPiece[] = [
     image: "/images/Piece Unique/Study- Okapi Lumos.jpg",
   },
   {
+    id: "charity-time-to-give",
+    title: "Auction Piece — Time to Give",
+    caption: "Part of 'Time to Give' — a charity auction devoted entirely to Nordic watchmaking, organised by Stockholm Time. A gold sunburst outer dial, deep black centre, small seconds at six, on a hand-stitched yellow leather strap. Every bid goes directly to the Jonte Foundation's work supporting families in need. No buyer's commission. One watch. One chance.",
+    image: "/images/Piece Unique/Study- Charity.jpeg",
+    darken: true,
+  },
+  {
     id: "triomphe-ceramic",
     title: "Dial Study — Triomphe Ceramic",
     caption: "The Triomphe case in white ceramic — a departure from steel. Orange guilloché dial in Carreau Tissé, silver chapter ring with Roman numerals, paired with a bespoke sky-blue FKM rubber strap. A study in how far the Triomphe platform can stretch without losing itself.",
