@@ -7,15 +7,16 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const leftLinks = [
   { href: "/collections", label: "Collection" },
+  { href: "/unique-pieces", label: "Unique Pieces" },
   { href: "/archive", label: "Archive" },
   { href: "/story", label: "Story" },
-  { href: "/contact", label: "Contact" },
 ];
 
 const rightLinks = [
   { href: "/journal", label: "The Rounded Square" },
   { href: "https://www.instagram.com/pedralwatches", label: "Instagram", external: true },
   { href: "/account", label: "My Account" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -46,12 +47,12 @@ export default function Navbar() {
       >
         <div className="mx-auto grid max-w-[1400px] grid-cols-[1fr_auto_1fr] items-center px-4 py-3 sm:px-6 sm:py-4 md:px-12">
           {/* Left links (desktop) */}
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center gap-5 md:flex">
             {leftLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[11px] font-normal tracking-[2.5px] uppercase text-foreground-muted transition-colors hover:text-foreground"
+                className="text-[11px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-foreground"
               >
                 {link.label}
               </Link>
@@ -73,8 +74,8 @@ export default function Navbar() {
           </Link>
 
           {/* Right links (desktop) + mobile toggle */}
-          <div className="flex items-center justify-end gap-8">
-            <div className="hidden items-center gap-8 md:flex">
+          <div className="flex items-center justify-end gap-5">
+            <div className="hidden items-center gap-5 md:flex">
               {rightLinks.map((link) =>
                 link.external ? (
                   <a
@@ -82,7 +83,7 @@ export default function Navbar() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[11px] font-normal tracking-[2.5px] uppercase text-foreground-muted transition-colors hover:text-foreground"
+                    className="text-[11px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-foreground"
                   >
                     {link.label}
                   </a>
@@ -90,7 +91,7 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-[11px] font-normal tracking-[2.5px] uppercase text-foreground-muted transition-colors hover:text-foreground"
+                    className="text-[11px] font-normal tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:text-foreground"
                   >
                     {link.label}
                   </Link>
