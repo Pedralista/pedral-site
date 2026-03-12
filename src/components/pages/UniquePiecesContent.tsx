@@ -57,7 +57,7 @@ export default function UniquePiecesContent() {
                 href="/contact"
                 className="inline-block w-full border border-accent/30 px-8 py-3 text-center text-[11px] font-normal tracking-[2.5px] uppercase text-accent transition-colors hover:border-accent hover:bg-accent hover:text-background sm:w-auto"
               >
-                Private Enquiry
+                Commission a Piece
               </Link>
               <p className="text-[12px] font-light tracking-[0.5px] text-foreground-muted/60">
                 I read every message personally.
