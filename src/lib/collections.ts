@@ -4,6 +4,7 @@ export interface CollectionVariant {
   stock: number;
   description?: string;
   image?: string;
+  numeralOptions?: string[];
 }
 
 export interface Collection {
@@ -166,11 +167,11 @@ export const collections: Collection[] = [
     year: 2025,
     tier: "limited",
     price: 1500,
-    stock: 2,
+    stock: 10,
     maxStock: 20,
-    edition: "Tempest Stone / Émeraude Vert",
-    badge: "Current Drop",
-    urgencyTag: "Current edition · Closing",
+    edition: "Saphir Azur / Ember Stone",
+    badge: "New Drop",
+    urgencyTag: "New editions · 5 pieces each",
     specsTitle: "8.8mm. Considered restraint.",
     specs: {
       Movement: "Sellita SW210-1B · Swiss hand-wound · Regulated ±5 s/day in 5 positions",
@@ -214,24 +215,38 @@ export const collections: Collection[] = [
     ],
     variants: [
       {
+        name: "Saphir Azur",
+        stripePriceId: "price_1T9xa2CfxE1lSBKR4hPpmnPR",
+        stock: 5,
+        description: "A multi-layer guilloché dial in deep sapphire blue. Carreau Tissé centre, Vagues de Lumière border. Layers that reward every glance.",
+        image: "/images/triomphe-saphir-azur.jpg",
+        numeralOptions: ["Roman", "Eastern Arabic", "Hebrew"],
+      },
+      {
+        name: "Ember Stone",
+        stripePriceId: "price_1T9xbUCfxE1lSBKR5IDT0QJ1",
+        stock: 5,
+        description: "Warm amber tones drawn from the earth. A natural stone dial that deepens in low light and commands attention in daylight.",
+        image: "/images/triomphe-ember.jpg",
+      },
+      {
         name: "Tempest Stone",
         stripePriceId: "price_1T4TsqCfxE1lSBKRFBCRLukn",
-        stock: 3,
+        stock: 0,
         description: "Dark, stormy tones drawn from natural stone. No two dials are identical. Yours is the only one like it in the world.",
         image: "/images/triomphe-tempest.jpg",
       },
       {
         name: "Émeraude Vert",
         stripePriceId: "price_1T4TpQCfxE1lSBKR6aJh8nbb",
-        stock: 1,
-
+        stock: 0,
         description: "A multi-layer guilloché dial in deep emerald green. Carreau Tissé centre, Vagues de Lumière border. Layers that reward every glance.",
         image: "/images/triomphe-emeraude.jpg",
       },
     ],
     newsletterTitle: "Notified first when the next dial edition opens.",
     newsletterSub: "Allocation-based. Priority to the list.",
-    image: "/images/triomphe-emeraude.jpg",
+    image: "/images/triomphe-saphir-azur.jpg",
     heroImage: "/images/triomphe-hero.jpg",
     detailImage: "/images/triomphe-detail.jpg",
     galleryImages: [
@@ -239,18 +254,7 @@ export const collections: Collection[] = [
       "/images/triomphe-angle-2.jpg",
       "/images/triomphe-angle-3.jpg",
     ],
-    comingSoonEditions: [
-      {
-        name: "Saphir Azur",
-        description: "A deep, luminous blue. The colour of a clear sky at altitude. Natural stone, no two pieces identical.",
-        image: "/images/triomphe-saphir-azur.jpg",
-      },
-      {
-        name: "Ember Stone",
-        description: "Warm amber tones drawn from the earth. A dial that glows under candlelight and commands attention in daylight.",
-        image: "/images/triomphe-ember.jpg",
-      },
-    ],
+    comingSoonEditions: [],
   },
   {
     slug: "okapi",

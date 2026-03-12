@@ -30,6 +30,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
   const [loading, setLoading] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [preOrderError, setPreOrderError] = useState<string | null>(null);
+  const [selectedNumeral, setSelectedNumeral] = useState<string | null>(null);
 
   async function handleReserve() {
     if (c.isPreOrder) {
@@ -69,7 +70,9 @@ export default function CollectionDetail({ collection }: { collection: Collectio
         body: JSON.stringify({
           priceId: selectedVariant.stripePriceId,
           productName: c.name,
-          variantName: selectedVariant.name,
+          variantName: selectedVariant.numeralOptions
+            ? `${selectedVariant.name} · ${selectedNumeral}`
+            : selectedVariant.name,
         }),
       });
       const data = await res.json();
@@ -170,7 +173,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           >
             <button
               onClick={handleReserve}
-              disabled={loading || (!c.isPreOrder && !selectedVariant)}
+              disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral)}
               className="w-full rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
             >
               {loading
@@ -212,6 +215,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               </h2>
             </motion.div>
 
+            {/* Available variants */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -219,75 +223,80 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               variants={staggerContainer}
               className="grid gap-4 sm:grid-cols-2"
             >
-              {c.variants!.map((v) => {
+              {c.variants!.filter(v => v.stock > 0).map((v) => {
                 const isSelected = selectedVariant?.name === v.name;
-                const soldOut = v.stock === 0;
                 return (
                   <motion.button
                     key={v.name}
                     variants={fadeInUp}
-                    onClick={() => !soldOut && setSelectedVariant(v)}
-                    disabled={soldOut}
+                    onClick={() => { setSelectedVariant(v); setSelectedNumeral(null); }}
                     className={`group relative overflow-hidden rounded-lg border text-left transition-all duration-300 ${
-                      isSelected
-                        ? "border-accent"
-                        : "border-accent/10 hover:border-accent/40"
-                    } ${soldOut ? "cursor-not-allowed opacity-50" : ""}`}
+                      isSelected ? "border-accent" : "border-accent/10 hover:border-accent/40"
+                    }`}
                   >
-                    {/* Image area */}
                     <div className="relative h-[220px] w-full overflow-hidden bg-[var(--surface)] sm:h-[260px]">
                       {v.image ? (
-                        <Image
-                          src={v.image}
-                          alt={v.name}
-                          fill
-                          className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
-                        />
+                        <Image src={v.image} alt={v.name} fill className="object-contain transition-transform duration-500 group-hover:scale-[1.03]" />
                       ) : (
-                        <ImagePlaceholder
-                          label={`${c.name}\n${v.name}`}
-                          className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]"
-                        />
+                        <ImagePlaceholder label={`${c.name}\n${v.name}`} className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]" />
                       )}
-                      {isSelected && (
-                        <div className="absolute inset-0 bg-accent/10" />
-                      )}
-                      {soldOut && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-background/60 backdrop-blur-[2px]">
-                          <span className="border border-white/15 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-white/50">Sold Out</span>
-                        </div>
-                      )}
+                      {isSelected && <div className="absolute inset-0 bg-accent/10" />}
                     </div>
-
-                    {/* Info */}
                     <div className="p-5">
                       <div className="flex items-start justify-between gap-4">
                         <div>
-                          <p className="font-serif text-[20px] font-light text-foreground">
-                            {v.name}
-                          </p>
+                          <p className="font-serif text-[20px] font-light text-foreground">{v.name}</p>
                           {v.description && (
-                            <p className="mt-1.5 text-[14px] font-light leading-[1.8] text-foreground-muted">
-                              {v.description}
-                            </p>
+                            <p className="mt-1.5 text-[14px] font-light leading-[1.8] text-foreground-muted">{v.description}</p>
                           )}
                         </div>
-                        <div className={`mt-1 h-5 w-5 shrink-0 rounded-full border-2 transition-colors ${
-                          isSelected ? "border-accent bg-accent" : "border-accent/30"
-                        }`} />
+                        <div className={`mt-1 h-5 w-5 shrink-0 rounded-full border-2 transition-colors ${isSelected ? "border-accent bg-accent" : "border-accent/30"}`} />
                       </div>
-                      {!soldOut && (
-                        <p className="mt-3 text-[11px] tracking-[1px] uppercase text-accent/60">
-                          {v.stock} {v.stock === 1 ? "piece" : "pieces"} remaining
-                        </p>
-                      )}
+                      <p className="mt-3 text-[11px] tracking-[1px] uppercase text-accent/60">
+                        {v.stock} {v.stock === 1 ? "piece" : "pieces"} remaining
+                      </p>
                     </div>
                   </motion.button>
                 );
               })}
             </motion.div>
 
-            {/* CTA after variant selection */}
+            {/* Numeral options */}
+            {selectedVariant?.numeralOptions && selectedVariant.numeralOptions.length > 0 && (
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="mt-6 border-t border-accent/[0.08] pt-6"
+              >
+                <p className="mb-3 text-[11px] font-normal tracking-[3px] uppercase text-accent">
+                  Numeral Style
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {selectedVariant.numeralOptions.map((opt) => (
+                    <button
+                      key={opt}
+                      onClick={() => setSelectedNumeral(opt)}
+                      className={`border px-5 py-2 text-[11px] tracking-[2px] uppercase transition-colors ${
+                        selectedNumeral === opt
+                          ? "border-accent bg-accent text-background"
+                          : "border-accent/30 text-accent hover:border-accent"
+                      }`}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+                {!selectedNumeral && (
+                  <p className="mt-2 text-[11px] font-light text-foreground-muted/50">
+                    Select a numeral style to continue.
+                  </p>
+                )}
+              </motion.div>
+            )}
+
+            {/* CTA */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -298,8 +307,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               <div>
                 {selectedVariant && (
                   <p className="text-[12px] font-light tracking-[1px] text-foreground-muted">
-                    Selected:{" "}
-                    <span className="text-foreground">{selectedVariant.name}</span>
+                    Selected: <span className="text-foreground">{selectedVariant.name}{selectedNumeral ? ` · ${selectedNumeral}` : ""}</span>
                   </p>
                 )}
                 <p className="mt-1 font-serif text-[22px] font-light text-foreground">
@@ -309,24 +317,53 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               <div className="flex flex-col gap-2">
                 <button
                   onClick={handleReserve}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant)}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral)}
                   className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
-                  {loading
-                    ? "Loading…"
-                    : c.isPreOrder
-                    ? `Reserve · €${c.depositAmount ?? 500} deposit`
-                    : isSoldOut
-                    ? "Join Waitlist"
-                    : `Reserve · €${c.price.toLocaleString()}`}
+                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500} deposit` : isSoldOut ? "Join Waitlist" : `Reserve · €${c.price.toLocaleString()}`}
                 </button>
                 {c.isPreOrder && (
-                  <p className="text-[11px] font-light text-foreground-muted/60">
-                    Balance invoiced before shipping
-                  </p>
+                  <p className="text-[11px] font-light text-foreground-muted/60">Balance invoiced before shipping</p>
                 )}
               </div>
             </motion.div>
+
+            {/* Sold-out variants */}
+            {c.variants!.some(v => v.stock === 0) && (
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="mt-10 border-t border-accent/[0.08] pt-8"
+              >
+                <p className="mb-4 text-[11px] font-normal tracking-[3px] uppercase text-foreground-muted/40">
+                  Previous Editions — Sold Out
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {c.variants!.filter(v => v.stock === 0).map((v) => (
+                    <div key={v.name} className="group relative overflow-hidden rounded-lg border border-accent/10 cursor-not-allowed opacity-50">
+                      <div className="relative h-[220px] w-full overflow-hidden bg-[var(--surface)] sm:h-[260px]">
+                        {v.image ? (
+                          <Image src={v.image} alt={v.name} fill className="object-contain" />
+                        ) : (
+                          <ImagePlaceholder label={`${c.name}\n${v.name}`} className="h-full w-full" />
+                        )}
+                        <div className="absolute inset-0 flex items-center justify-center bg-background/60 backdrop-blur-[2px]">
+                          <span className="border border-white/15 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-white/50">Sold Out</span>
+                        </div>
+                      </div>
+                      <div className="p-5">
+                        <p className="font-serif text-[20px] font-light text-foreground">{v.name}</p>
+                        {v.description && (
+                          <p className="mt-1.5 text-[14px] font-light leading-[1.8] text-foreground-muted">{v.description}</p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
           </div>
         </section>
       )}
@@ -579,7 +616,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           </p>
           <button
             onClick={handleReserve}
-            disabled={loading || (!c.isPreOrder && !selectedVariant)}
+            disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral)}
             className="mt-6 w-full max-w-[300px] rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
           >
             {loading
