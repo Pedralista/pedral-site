@@ -10,7 +10,7 @@ export default function UniquePiecesContent() {
   return (
     <>
       {/* ── 1. Hero intro ── */}
-      <section className="relative bg-background pb-4 pt-32 md:pt-40">
+      <section className="relative bg-background pb-0 pt-32 md:pt-40">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(17,29,32,0.6)_0%,transparent_60%)]" />
         <div className="relative z-10 mx-auto max-w-[720px] px-6 text-center md:px-12">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
@@ -68,7 +68,7 @@ export default function UniquePiecesContent() {
       </section>
 
       {/* ── 2. Gallery ── */}
-      <section className="border-t border-accent/[0.08] bg-background-alt py-6 md:py-10">
+      <section className="border-t border-accent/[0.08] bg-background-alt pt-4 pb-10 md:pt-6 md:pb-14">
         <div className="mx-auto max-w-[720px] px-6 md:px-12">
           <motion.div
             initial="hidden"
