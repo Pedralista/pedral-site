@@ -30,7 +30,6 @@ export default function UniquePiecesContent() {
               variants={fadeInUp}
               className="mx-auto mt-5 text-[16px] font-light leading-[1.8] text-foreground-muted"
             >
-              Some watches begin long before they are made.<br />
               With a material. With a dial. Or simply with an idea.
             </motion.p>
             <motion.p
