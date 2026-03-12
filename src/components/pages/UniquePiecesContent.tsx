@@ -156,17 +156,6 @@ export default function UniquePiecesContent() {
               ))}
             </div>
 
-            <motion.div
-              variants={fadeInUp}
-              className="mt-16 border-t border-accent/[0.08] pt-12 md:mt-20 md:pt-16"
-            >
-              <p className="font-serif text-[clamp(20px,2.5vw,28px)] font-light text-foreground">
-                Is a bespoke Pedral right for you?
-              </p>
-              <p className="mt-4 max-w-[560px] text-[15px] font-light leading-[1.8] text-foreground-muted">
-                Not every request becomes a watch. The process takes time and requires a genuine brief — not a mood board, but a reason. If you have one, write. That is where every bespoke piece has started.
-              </p>
-            </motion.div>
           </motion.div>
         </div>
       </section>
