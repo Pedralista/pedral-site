@@ -24,7 +24,7 @@ export default function UniquePiecesContent() {
               variants={fadeInUp}
               className="font-serif text-[clamp(36px,4.5vw,54px)] font-light leading-[1.1] text-foreground"
             >
-              Pièces Uniques
+              Some watches begin long before they are made.
             </motion.h1>
             <motion.p
               variants={fadeInUp}
