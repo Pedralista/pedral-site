@@ -32,6 +32,13 @@ export const studioPieces: StudioPiece[] = [
     image: "/images/Piece Unique/Study- Okapi Lumos.jpg",
   },
   {
+    id: "dreamchaser-gmt",
+    title: "Complication Study — DreamChaser GMT",
+    caption: "The first GMT complication explored under the Pedral name. A world map dial beneath a 24-hour inner bezel — two time zones readable at a glance. The cushion case in full brushed steel, paired with a milk-tooth bracelet. A study in what happens when the Okapi DNA meets a traveller's brief.",
+    image: "/images/Piece Unique/DreamChaser GMT Study.jpg",
+    darken: true,
+  },
+  {
     id: "zaire",
     title: "Dial Study — Zaire",
     caption: "A flag rendered in sunburst. Emerald green outer dial, gold centre, a red small seconds at six — three colours that carry the weight of a nation's history. Heritage as a design language, not decoration.",
