@@ -22,33 +22,31 @@ export default function UniquePiecesContent() {
             </motion.p>
             <motion.h1
               variants={fadeInUp}
-              className="font-serif text-[clamp(36px,4.5vw,54px)] font-light leading-[1.1] text-foreground"
+              className="font-serif text-[clamp(26px,4.5vw,54px)] font-light leading-[1.15] text-foreground"
             >
               Some watches begin long before they are made.
             </motion.h1>
             <motion.p
               variants={fadeInUp}
-              className="mx-auto mt-5 text-[16px] font-light leading-[1.8] text-foreground-muted"
+              className="mx-auto mt-4 text-[15px] font-light leading-[1.8] text-foreground-muted"
             >
               With a material. With a dial. Or simply with an idea.
             </motion.p>
             <motion.p
               variants={fadeInUp}
-              className="mx-auto mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted"
+              className="mx-auto mt-3 text-[15px] font-light leading-[1.8] text-foreground-muted"
             >
-              The watches shown here were created once and never as part of a collection.<br />
-              Each piece has already found its owner.
+              The watches shown here were created once and never as part of a collection. Each piece has already found its owner.
             </motion.p>
             <motion.p
               variants={fadeInUp}
-              className="mx-auto mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted"
+              className="mx-auto mt-3 text-[15px] font-light leading-[1.8] text-foreground-muted"
             >
-              If you are considering something particular, you are welcome to write.<br />
-              Many of the most interesting watches begin exactly that way.
+              If you are considering something particular, you are welcome to write. Many of the most interesting watches begin exactly that way.
             </motion.p>
             <motion.p
               variants={fadeInUp}
-              className="mx-auto mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted"
+              className="mx-auto mt-3 text-[15px] font-light leading-[1.8] text-foreground-muted"
             >
               A short note is enough. I read every message personally and respond myself.
             </motion.p>
@@ -90,7 +88,7 @@ export default function UniquePiecesContent() {
               </motion.p>
             </motion.div>
           ) : (
-            <div className="space-y-24 md:space-y-32">
+            <div className="space-y-14 md:space-y-24">
               {studioPieces.map((piece) => (
                 <StudyEntry key={piece.id} piece={piece} />
               ))}
@@ -112,8 +110,7 @@ export default function UniquePiecesContent() {
               variants={fadeInUp}
               className="font-serif text-[clamp(22px,2.5vw,30px)] font-light text-foreground"
             >
-              If something here stayed with you,<br />
-              that is usually where it begins.
+              If something here stayed with you, that is usually where it begins.
             </motion.p>
             <motion.p
               variants={fadeInUp}
@@ -145,7 +142,7 @@ function StudyEntry({ piece }: { piece: import("@/lib/models").StudioPiece }) {
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-40px" }}
       variants={staggerContainer}
     >
       {/* Image */}
