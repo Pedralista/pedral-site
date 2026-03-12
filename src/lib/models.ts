@@ -35,7 +35,7 @@ export const studioPieces: StudioPiece[] = [
     id: "rymd-gmt",
     title: "Complication Study — Rymd GMT",
     caption: "The first GMT complication explored under the Pedral name. A world map dial beneath a 24-hour inner bezel — two time zones, one glance. Introducing the new tonneau case in full brushed steel.",
-    image: "/images/Piece Unique/DreamChaser GMT Study.jpg",
+    image: "/images/Piece Unique/Study- Rymd GMT.jpg",
     darken: true,
   },
   {
