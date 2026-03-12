@@ -148,7 +148,7 @@ function StudyEntry({ piece }: { piece: import("@/lib/models").StudioPiece }) {
       {/* Image */}
       <motion.div
         variants={fadeInUp}
-        className="relative w-full overflow-hidden bg-[var(--surface)]"
+        className="relative w-full overflow-hidden bg-[#111]"
         style={{ aspectRatio: "16/9" }}
       >
         {piece.image ? (
@@ -157,7 +157,7 @@ function StudyEntry({ piece }: { piece: import("@/lib/models").StudioPiece }) {
               src={piece.image}
               alt={piece.title}
               fill
-              className="object-contain"
+              className="object-cover"
             />
             {piece.darken && (
               <div className="absolute inset-0 bg-black/40" />
