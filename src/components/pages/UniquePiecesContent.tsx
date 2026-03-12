@@ -30,38 +30,36 @@ export default function UniquePiecesContent() {
               variants={fadeInUp}
               className="mx-auto mt-5 text-[16px] font-light leading-[1.8] text-foreground-muted"
             >
-              Some collectors are not looking for what already exists.
+              Some watches begin long before they are made.<br />
+              With a material. With a dial. Or simply with an idea.
             </motion.p>
             <motion.p
               variants={fadeInUp}
               className="mx-auto mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted"
             >
-              The watches shown here were created once.<br />
-              Never as part of a collection.<br />
-              Never repeated.
-            </motion.p>
-            <motion.p
-              variants={fadeInUp}
-              className="mx-auto mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted"
-            >
+              The watches shown here were created once and never as part of a collection.<br />
               Each piece has already found its owner.
             </motion.p>
             <motion.p
               variants={fadeInUp}
               className="mx-auto mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted"
             >
-              If something here resonates, the studio can create one for you.
+              If you are considering something particular, you are welcome to write.<br />
+              Many of the most interesting watches begin exactly that way.
+            </motion.p>
+            <motion.p
+              variants={fadeInUp}
+              className="mx-auto mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted"
+            >
+              A short note is enough. I read every message personally and respond myself.
             </motion.p>
             <motion.div variants={fadeInUp} className="mt-5 flex flex-col items-center gap-3">
               <Link
                 href="/contact"
                 className="inline-block w-full border border-accent/30 px-8 py-3 text-center text-[11px] font-normal tracking-[2.5px] uppercase text-accent transition-colors hover:border-accent hover:bg-accent hover:text-background sm:w-auto"
               >
-                Commission a Piece
+                Begin a Commission
               </Link>
-              <p className="text-[12px] font-light tracking-[0.5px] text-foreground-muted/60">
-                I read every message personally.
-              </p>
             </motion.div>
           </motion.div>
         </div>
