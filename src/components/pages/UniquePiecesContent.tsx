@@ -30,16 +30,27 @@ export default function UniquePiecesContent() {
               variants={fadeInUp}
               className="mx-auto mt-7 text-[16px] font-light leading-[1.8] text-foreground-muted"
             >
-              These watches are not part of any collection. Each one was made
-              once — for a particular person, or as a singular expression from
-              the studio. Once made, it is not repeated.
+              Some collectors are not looking for what already exists.
             </motion.p>
             <motion.p
               variants={fadeInUp}
               className="mx-auto mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted"
             >
-              No price is listed. If something here resonates, it can exist
-              for you alone.
+              The watches shown here were created once.<br />
+              Never as part of a collection.<br />
+              Never repeated.
+            </motion.p>
+            <motion.p
+              variants={fadeInUp}
+              className="mx-auto mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted"
+            >
+              Each piece has already found its owner.
+            </motion.p>
+            <motion.p
+              variants={fadeInUp}
+              className="mx-auto mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted"
+            >
+              If something here resonates, the studio can create one for you.
             </motion.p>
             <motion.div variants={fadeInUp} className="mt-10 flex flex-col items-center gap-4">
               <Link
