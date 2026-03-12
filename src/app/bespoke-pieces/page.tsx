@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: "Bespoke Pieces",
   description:
     "Designs and prototypes by Kevin Pedral. Not for sale — for the right conversation.",
-  alternates: { canonical: "/unique-pieces" },
+  alternates: { canonical: "/bespoke-pieces" },
   openGraph: {
     title: "Bespoke Pieces — Pedral",
     description:
       "Designs and prototypes by Kevin Pedral. Not for sale — for the right conversation.",
-    url: "/unique-pieces",
+    url: "/bespoke-pieces",
   },
 };
 
