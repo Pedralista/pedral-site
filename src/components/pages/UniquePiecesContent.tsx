@@ -97,6 +97,80 @@ export default function UniquePiecesContent() {
         </div>
       </section>
 
+      {/* ── Bespoke Journey ── */}
+      <section className="bg-background py-16 md:py-24">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.p
+              variants={fadeInUp}
+              className="mb-3 text-[11px] font-normal tracking-[4px] uppercase text-accent"
+            >
+              The Process
+            </motion.p>
+            <motion.h2
+              variants={fadeInUp}
+              className="mb-12 font-serif text-[clamp(26px,3vw,38px)] font-light text-foreground md:mb-16"
+            >
+              The Bespoke Journey
+            </motion.h2>
+
+            <div className="grid gap-10 sm:grid-cols-2 md:gap-16">
+              {[
+                {
+                  n: "01",
+                  title: "The Idea",
+                  body: "It begins with something you can't find. A colour from memory. A material you've always wanted on your wrist. Or simply the feeling that nothing existing is quite right.",
+                },
+                {
+                  n: "02",
+                  title: "The Conversation",
+                  body: "We talk. Sketches are made, discarded, refined. Nothing is decided until it feels inevitable.",
+                },
+                {
+                  n: "03",
+                  title: "The Making",
+                  body: "Components are sourced. The dial is developed. Every detail is confirmed before a single part is ordered. There is no rushing this step.",
+                },
+                {
+                  n: "04",
+                  title: "The Watch",
+                  body: "It arrives as a finished object — not a configured product, but a watch that did not exist before you asked for it.",
+                },
+              ].map((step) => (
+                <motion.div key={step.n} variants={fadeInUp}>
+                  <p className="font-serif text-[clamp(48px,6vw,72px)] font-light leading-none text-accent/30">
+                    {step.n}
+                  </p>
+                  <p className="mt-3 text-[13px] font-medium tracking-[2px] uppercase text-foreground">
+                    {step.title}
+                  </p>
+                  <p className="mt-2 text-[15px] font-light leading-[1.8] text-foreground-muted">
+                    {step.body}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              variants={fadeInUp}
+              className="mt-16 border-t border-accent/[0.08] pt-12 md:mt-20 md:pt-16"
+            >
+              <p className="font-serif text-[clamp(20px,2.5vw,28px)] font-light text-foreground">
+                Is a bespoke Pedral right for you?
+              </p>
+              <p className="mt-4 max-w-[560px] text-[15px] font-light leading-[1.8] text-foreground-muted">
+                Not every request becomes a watch. The process takes time and requires a genuine brief — not a mood board, but a reason. If you have one, write. That is where every bespoke piece has started.
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section className="bg-background py-16 md:py-20">
         <div className="mx-auto max-w-[560px] px-6 text-center">
