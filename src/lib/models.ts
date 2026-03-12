@@ -15,6 +15,13 @@ export const studioPieces: StudioPiece[] = [
     darken: true,
   },
   {
+    id: "okapi-two-tone",
+    title: "Dial Study — Okapi Two-Tone",
+    caption: "A split-tone dial in amber and burnt orange — champagne sunburst upper field, deep amber lower, small seconds at six. The Okapi cushion case in brushed steel on a hand-stitched brown leather strap. An exploration of tonal contrast within a single colour family.",
+    image: "/images/Piece Unique/Study- Okapi Two tone.jpg",
+    darken: true,
+  },
+  {
     id: "betsy-ross",
     title: "Dial Study — Betsy Ross",
     caption: "Thirteen stars on a deep-blue guilloché centre. One for each original colony. Developed in 2026 — the year the United States marks 250 years of independence — as a quiet acknowledgement of a founding moment, not a souvenir of it.",
