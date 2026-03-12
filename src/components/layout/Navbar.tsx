@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const leftLinks = [
   { href: "/collections", label: "Collection" },
-  { href: "/unique-pieces", label: "Unique Pieces" },
+  { href: "/unique-pieces", label: "Bespoke Pieces" },
   { href: "/archive", label: "Archive" },
   { href: "/story", label: "Story" },
 ];
