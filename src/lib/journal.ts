@@ -6,6 +6,7 @@ export interface Article {
   excerpt: string;
   readTime: string;
   body: string[];
+  featuredImage?: string;
 }
 
 export const articles: Article[] = [
@@ -14,6 +15,7 @@ export const articles: Article[] = [
     date: "February 2026",
     category: "Philosophy",
     title: "Why Twenty Pieces? The Case for Radical Limitation",
+    featuredImage: "/images/hero-lifestyle.jpg",
     excerpt:
       "In an industry obsessed with growth, I cap every edition at twenty. Not because I can't make more — but because limitation is the point.",
     readTime: "5 min read",

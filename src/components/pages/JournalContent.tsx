@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { articles } from "@/lib/journal";
@@ -48,9 +49,18 @@ export default function JournalContent() {
             className="mb-16 border-b border-accent/[0.06] pb-16"
           >
             <Link href={`/journal/${articles[0].slug}`} className="group grid gap-8 md:grid-cols-2 md:gap-16">
-              <div className="flex aspect-[4/3] items-center justify-center rounded-sm bg-background text-[11px] tracking-[2px] uppercase text-foreground-muted/40">
-                Featured Image
-              </div>
+              {articles[0].featuredImage ? (
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm">
+                  <Image
+                    src={articles[0].featuredImage}
+                    alt={articles[0].title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+              ) : (
+                <div className="aspect-[4/3] rounded-sm bg-background" />
+              )}
               <div className="flex flex-col justify-center">
                 <div className="flex items-center gap-3">
                   <span className="text-[11px] font-medium tracking-[1.5px] uppercase text-accent">
