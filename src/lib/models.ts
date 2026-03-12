@@ -36,12 +36,14 @@ export const studioPieces: StudioPiece[] = [
     title: "Dial Study — Zaire",
     caption: "A flag rendered in sunburst. Emerald green outer dial, gold centre, a red small seconds at six — three colours that carry the weight of a nation's history. Heritage as a design language, not decoration.",
     image: "/images/Piece Unique/Study- Okapi Zaire.jpg",
+    darken: true,
   },
   {
     id: "florida-gator",
     title: "Dial Study — University Blue",
     caption: "Built for a client's daughter on the occasion of her graduation. Royal blue sunburst dial, orange small seconds — the exact colours of her university, worn on her wrist. A commission where the brief was loyalty.",
     image: "/images/Piece Unique/Study- Okapi- Florida gator inspired dial.jpg",
+    darken: true,
   },
   {
     id: "okapi-genesis",
