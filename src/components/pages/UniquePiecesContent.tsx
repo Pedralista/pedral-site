@@ -212,7 +212,7 @@ function StudyEntry({ piece }: { piece: import("@/lib/models").StudioPiece }) {
       <motion.div
         variants={fadeInUp}
         className="relative w-full overflow-hidden bg-[#111]"
-        style={{ aspectRatio: "16/9" }}
+        style={{ aspectRatio: "4/3" }}
       >
         {piece.image ? (
           <>
