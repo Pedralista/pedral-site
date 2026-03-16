@@ -253,7 +253,7 @@ export const collections: Collection[] = [
     ],
     newsletterTitle: "Notified first when the next dial edition opens.",
     newsletterSub: "Allocation-based. Priority to the list.",
-    image: "/images/triomphe-saphir-azur.jpg",
+    image: "/images/triomphe-saphir-roman.jpg",
     heroImage: "/images/triomphe-hero.jpg",
     detailImage: "/images/triomphe-detail.jpg",
     galleryImages: [
