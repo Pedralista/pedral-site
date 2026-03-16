@@ -37,7 +37,7 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly }: { stock: number; isPre
       </span>
     );
   }
-  if (stock <= 3) {
+  if (stock <= 2) {
     return (
       <span className="absolute left-3 top-3 z-10 border border-red-500/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-red-400/90 backdrop-blur-sm">
         Almost Gone
