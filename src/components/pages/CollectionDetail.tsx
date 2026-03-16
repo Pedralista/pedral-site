@@ -245,11 +245,11 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               {c.variants!.filter(v => v.stock > 0).map((v) => {
                 const isSelected = selectedVariant?.name === v.name;
                 return (
-                  <motion.button
+                  <motion.div
                     key={v.name}
                     variants={fadeInUp}
                     onClick={() => { setSelectedVariant(v); setSelectedNumeral(null); }}
-                    className={`group relative overflow-hidden rounded-lg border text-left transition-all duration-300 ${
+                    className={`group relative cursor-pointer overflow-hidden rounded-lg border text-left transition-all duration-300 ${
                       isSelected ? "border-accent" : "border-accent/10 hover:border-accent/40"
                     }`}
                   >
@@ -274,46 +274,39 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                       <p className="mt-3 text-[11px] tracking-[1px] uppercase text-accent/60">
                         {v.stock} {v.stock === 1 ? "piece" : "pieces"} remaining
                       </p>
+                      {/* Numeral options inline when this variant is selected */}
+                      {isSelected && v.numeralOptions && v.numeralOptions.length > 0 && (
+                        <div className="mt-4 border-t border-accent/[0.12] pt-4" onClick={(e) => e.stopPropagation()}>
+                          <p className="mb-3 text-[11px] font-normal tracking-[3px] uppercase text-accent">
+                            Numeral Style
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {v.numeralOptions.map((opt) => (
+                              <button
+                                key={opt}
+                                onClick={() => setSelectedNumeral(opt)}
+                                className={`border px-4 py-2.5 text-[11px] tracking-[2px] uppercase transition-colors ${
+                                  selectedNumeral === opt
+                                    ? "border-accent bg-accent text-background"
+                                    : "border-accent/30 text-accent hover:border-accent"
+                                }`}
+                              >
+                                {opt}
+                              </button>
+                            ))}
+                          </div>
+                          {!selectedNumeral && (
+                            <p className="mt-2 text-[11px] font-light text-foreground-muted/50">
+                              Select a numeral style to continue.
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </div>
-                  </motion.button>
+                  </motion.div>
                 );
               })}
             </motion.div>
-
-            {/* Numeral options */}
-            {selectedVariant?.numeralOptions && selectedVariant.numeralOptions.length > 0 && (
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                className="mt-6 border-t border-accent/[0.08] pt-6"
-              >
-                <p className="mb-3 text-[11px] font-normal tracking-[3px] uppercase text-accent">
-                  Numeral Style
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {selectedVariant.numeralOptions.map((opt) => (
-                    <button
-                      key={opt}
-                      onClick={() => setSelectedNumeral(opt)}
-                      className={`border px-5 py-3 text-[11px] tracking-[2px] uppercase transition-colors ${
-                        selectedNumeral === opt
-                          ? "border-accent bg-accent text-background"
-                          : "border-accent/30 text-accent hover:border-accent"
-                      }`}
-                    >
-                      {opt}
-                    </button>
-                  ))}
-                </div>
-                {!selectedNumeral && (
-                  <p className="mt-2 text-[11px] font-light text-foreground-muted/50">
-                    Select a numeral style to continue.
-                  </p>
-                )}
-              </motion.div>
-            )}
 
             {/* CTA */}
             <motion.div
