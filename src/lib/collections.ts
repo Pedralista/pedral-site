@@ -5,6 +5,7 @@ export interface CollectionVariant {
   description?: string;
   image?: string;
   numeralOptions?: string[];
+  numeralImages?: Record<string, string>;
 }
 
 export interface Collection {
@@ -220,8 +221,13 @@ export const collections: Collection[] = [
         stripePriceId: "price_1T9xa2CfxE1lSBKR4hPpmnPR",
         stock: 5,
         description: "A multi-layer guilloché dial in deep sapphire blue. Carreau Tissé centre, Vagues de Lumière border. Layers that reward every glance.",
-        image: "/images/triomphe-saphir-azur.jpg",
+        image: "/images/triomphe-saphir-roman.jpg",
         numeralOptions: ["Roman", "Eastern Arabic", "Hebrew"],
+        numeralImages: {
+          "Roman": "/images/triomphe-saphir-roman.jpg",
+          "Eastern Arabic": "/images/triomphe-saphir-arabic.jpg",
+          "Hebrew": "/images/triomphe-saphir-hebrew.jpg",
+        },
       },
       {
         name: "Ember Stone",

@@ -254,11 +254,14 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                     }`}
                   >
                     <div className="relative h-[220px] w-full overflow-hidden bg-[var(--surface)] sm:h-[260px]">
-                      {v.image ? (
-                        <Image src={v.image} alt={v.name} fill className="object-contain transition-transform duration-500 group-hover:scale-[1.03]" />
-                      ) : (
-                        <ImagePlaceholder label={`${c.name}\n${v.name}`} className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]" />
-                      )}
+                      {(() => {
+                        const imgSrc = (isSelected && selectedNumeral && v.numeralImages?.[selectedNumeral]) ? v.numeralImages[selectedNumeral] : v.image;
+                        return imgSrc ? (
+                          <Image src={imgSrc} alt={v.name} fill className="object-contain transition-transform duration-500 group-hover:scale-[1.03]" />
+                        ) : (
+                          <ImagePlaceholder label={`${c.name}\n${v.name}`} className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]" />
+                        );
+                      })()}
                       {isSelected && <div className="absolute inset-0 bg-accent/10" />}
                     </div>
                     <div className="p-5">
