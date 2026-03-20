@@ -173,7 +173,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="mt-6"
+            className="mt-6 sm:mt-6 fixed bottom-6 left-0 right-0 px-6 z-50 sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:px-0 sm:z-auto"
           >
             {c.isEnquiryOnly ? (
               <div className="flex flex-col gap-3">
