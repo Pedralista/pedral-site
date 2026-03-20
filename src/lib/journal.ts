@@ -11,6 +11,27 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "when-twenty-is-not-enough",
+    date: "March 2026",
+    category: "Philosophy",
+    title: "When Twenty Isn't Enough — And Why I Sometimes Go Further",
+    excerpt:
+      "Twenty pieces per edition is my rule. But some designs are too complete, too right, to stay locked behind a number. And not everyone who deserves a Pedral can afford one at €1,500.",
+    readTime: "6 min read",
+    body: [
+      "I've built Pedral around limitation. Twenty pieces per edition. When they're gone, they're gone. I wrote an entire journal post defending that number — and I stand by every word of it.",
+      "But rules exist to serve a purpose. When the purpose is better served by breaking them, you break them.",
+      "Occasionally I design something that doesn't fit the twenty-piece model. Not because I ran out of ideas within the edition — but because the design itself demands a wider audience. Some watches feel like they were made for a specific kind of collector. Others feel like they were made for anyone who cares about what a watch can be. When a design lands in the second category, twenty starts to feel like an arbitrary ceiling rather than a meaningful constraint.",
+      "Kickstarter is how I handle those moments.",
+      "I launched the original Okapi on Kickstarter in 2018. At the time, it was practical — I needed validation before committing to production. But I learned something unexpected: the platform creates a different relationship between a maker and the people who believe in the work. Backers aren't just buyers. They're early participants in something that doesn't exist yet. That dynamic suits certain designs better than a standard launch ever could.",
+      "There's also a pricing reality I can't ignore. At €1,500 and up, Pedral editions are accessible — but not to everyone. I'm aware of that. I think about it. Some of the most genuine watch enthusiasm I've encountered comes from people for whom the current price point is out of reach, not because they don't value the craft, but because life doesn't always align with want.",
+      "A Kickstarter campaign lets me design toward a different price point — one made possible by producing more units without abandoning quality. The guilloché dials, the Swiss movements, the case finishing: none of that changes. What changes is the economics. Volume absorbs cost in ways that twenty pieces never can.",
+      "This isn't a compromise. It's an acknowledgment that good design shouldn't only exist for people who can pay a premium for scarcity.",
+      "When a Kickstarter campaign is right, I'll run one. The design will tell me. The edition limit will stay for what it protects — the deep intimacy of owning one of twenty. But for the designs that are too good to shelve, too right to restrict — I'd rather put them in more hands than keep them behind a number.",
+      "Twenty pieces is a promise I make when twenty is the honest answer. When it isn't, I say so.",
+    ],
+  },
+  {
     slug: "why-twenty-pieces",
     date: "February 2026",
     category: "Philosophy",
