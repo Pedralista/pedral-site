@@ -7,6 +7,7 @@ export interface Article {
   readTime: string;
   body: string[];
   featuredImage?: string;
+  cta?: { label: string; href: string };
 }
 
 export const articles: Article[] = [
@@ -22,10 +23,11 @@ export const articles: Article[] = [
       "A watch dial is the most intimate piece of design most people will ever own. You see it dozens of times a day. Whatever is on it becomes part of how you move through the world. The guilloché, the layered finishing — that's the craft. But the numerals are the voice. And a voice should speak in the language of the person wearing it.",
       "When I introduced the original Triomphee with Émeraude Vert guilloché, I chose Roman numerals. It felt right — classical, grounded, connected to every grand complication made in Geneva, every dress watch passed across a table with two hands. But after the December release, collectors from different parts of the world asked a natural question: what if the numerals spoke their language? I listened.",
       "The Saphir Azur dial now comes in three numeral versions: Roman, Eastern Arabic, and Hebrew. There's a particularity worth noting — the Eastern Arabic and Hebrew numerals are oriented toward the centre of the dial, creating a distinctly different visual rhythm than the traditional outward-facing approach. The numeral becomes part of the dial's composition, not merely an overlay. These aren't the same watch with different fonts. They're three versions of the same idea, each one resolved on its own terms.",
-      "The non-Roman versions exist in particularly limited production and are made to order. This was deliberate. Hebrew numerals came from a specific kind of conversation: a father looking for something to give his son at his Bar Mitzvah, a daughter wanting a watch that held something of who her mother is, a collector who had spent years wearing watches that spoke only in Swiss tradition — beautiful, yes, but not entirely his. Eastern Arabic carries the same weight for those whose families counted in that script — across the Arab world and in a closely related form across Persian-speaking countries.",
+      "The non-Roman versions exist in particularly limited production and are made to order. I wanted it this way. Not to manufacture scarcity, but because these editions carry a different kind of weight — they are chosen with intention, for a specific person, at a specific moment. Keeping them limited honours that. Hebrew numerals came from a specific kind of conversation: a father looking for something to give his son at his Bar Mitzvah, a daughter wanting a watch that held something of who her mother is, a collector who had spent years wearing watches that spoke only in Swiss tradition — beautiful, yes, but not entirely his. Eastern Arabic carries the same weight for those whose families counted in that script — across the Arab world and in a closely related form across Persian-speaking countries.",
       "The Triomphee is a watch people give at moments that matter. Bar Mitzvahs. A parent's milestone birthday. A retirement gift from children who spent years looking for something worthy. These are the moments where a watch stops being an object and becomes a record. The numerals are part of that record. They say: I thought about who you are.",
       "Three scripts. One movement. One case. Three entirely different statements about identity and belonging. That's not a product range. That's a design philosophy.",
     ],
+    cta: { label: "Reserve the Triomphee", href: "/collections/triomphe" },
   },
   {
     slug: "when-twenty-is-not-enough",

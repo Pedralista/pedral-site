@@ -82,6 +82,18 @@ export default function ArticleContent({ article }: Props) {
               {paragraph}
             </motion.p>
           ))}
+
+          {/* CTA */}
+          {article.cta && (
+            <motion.div variants={fadeInUp} className="mt-10 border-t border-accent/[0.08] pt-10">
+              <Link
+                href={article.cta.href}
+                className="inline-block rounded-lg bg-accent px-10 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover"
+              >
+                {article.cta.label} →
+              </Link>
+            </motion.div>
+          )}
         </motion.div>
       </section>
 
