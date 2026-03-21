@@ -116,7 +116,7 @@ export default function TermsPage() {
 
       <h2>7. Warranty &amp; Conformity</h2>
       <p>
-        12-month international warranty covering manufacturing defects. Does not cover: normal
+        24-month international warranty covering manufacturing defects. Does not cover: normal
         wear and tear, misuse, water damage from unsecured crown, battery replacement.
       </p>
       <p>

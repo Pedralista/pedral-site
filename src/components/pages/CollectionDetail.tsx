@@ -699,7 +699,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 </p>
               )}
               <div className="mx-auto mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8">
-                {["Cancel anytime before dispatch", "14-day return after delivery", "12-month warranty", "Insured shipping"].map((item) => (
+                {["Cancel anytime before dispatch", "14-day return after delivery", "24-month warranty", "Insured shipping"].map((item) => (
                   <span key={item} className="flex items-center gap-2 text-[11px] tracking-[1px] uppercase text-foreground-muted">
                     <span className="font-semibold text-accent">&#10003;</span>
                     {item}

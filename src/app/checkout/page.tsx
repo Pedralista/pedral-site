@@ -87,7 +87,7 @@ export default async function CheckoutPage({
                 "Ships in 4–6 weeks",
                 "Insured worldwide shipping",
                 "14-day return policy",
-                "12-month warranty",
+                "24-month warranty",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2.5 text-[12px] font-light text-foreground-muted">
                   <span className="font-semibold text-accent">&#10003;</span>

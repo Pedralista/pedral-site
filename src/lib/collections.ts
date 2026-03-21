@@ -89,7 +89,7 @@ export const collections: Collection[] = [
       "Artisanal leather travel roll",
       "Polishing cloth",
       "Butterfly clasp",
-      "12-month warranty card",
+      "24-month warranty card",
       "Personal note from Kevin",
     ],
     valueAnchor:
@@ -189,7 +189,7 @@ export const collections: Collection[] = [
       "Epsom leather strap (fitted)",
       "Leather travel roll",
       "Polishing cloth",
-      "12-month warranty card",
+      "24-month warranty card",
       "Edition certificate with serial number",
       "Personal note from Kevin",
     ],
@@ -303,7 +303,7 @@ export const collections: Collection[] = [
       "Pedral leather travel roll",
       "Soft polishing cloth",
       "Butterfly deployment clasp",
-      "12-month international warranty card",
+      "24-month international warranty card",
       "Handwritten note from Kevin",
     ],
     valueAnchor:

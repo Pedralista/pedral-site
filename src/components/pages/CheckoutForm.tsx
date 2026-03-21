@@ -95,7 +95,7 @@ function PaymentForm({
       </button>
 
       <p className="text-center text-[11px] font-light tracking-[0.5px] text-foreground-muted/60">
-        Secured by Stripe · 14-day return · 12-month warranty
+        Secured by Stripe · 14-day return · 24-month warranty
       </p>
     </form>
   );
