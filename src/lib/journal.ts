@@ -39,6 +39,26 @@ export const articles: Article[] = [
     ],
   },
   {
+    slug: "triomphe-numerals-heritage",
+    date: "March 2026",
+    category: "Design",
+    title: "Three Scripts, One Watch: Why the Triomphee Speaks in Roman, Hebrew and Eastern Arabic",
+    excerpt:
+      "A watch dial is the most personal canvas in design. The Triomphee is available in Roman, Hebrew and Eastern Arabic numerals — not as a customisation option, but as a statement about identity, heritage and who you give a watch to.",
+    readTime: "7 min read",
+    body: [
+      "When I designed the Triomphee dial, I made a decision that had nothing to do with aesthetics and everything to do with meaning. The guilloché, the layered finishing, the Carreau Tissé centre — those are the craft. But the numerals are the voice. And a voice should speak in the language of the person wearing it.",
+      "A watch dial is the most intimate piece of design most people will ever own. It sits closer to you than a painting on a wall or a book on a shelf. You see it dozens of times a day — at meetings, at dinners, at quiet moments when you're waiting for something to begin. Whatever is on that dial becomes part of how you move through the world. I take that seriously.",
+      "Roman numerals were the natural starting point. They carry the full weight of classical watchmaking — a language that connects the Triomphee to every grand complication made in Geneva, every dress watch worn in a portrait, every heirloom passed across a table with two hands. There's a reason the finest watch dials in history almost all speak in Roman. It's not tradition for tradition's sake. It's the recognition that some languages were made for dials.",
+      "But then I thought about who else was going to wear this watch. And the answer changed everything.",
+      "Hebrew numerals came from a specific conversation — one I've had many times, in different forms. A father looking for something to give his son at his Bar Mitzvah. A daughter wanting to give her mother a watch that held something of who she is. A collector of Jewish heritage who had spent years wearing watches that spoke only in the language of Swiss tradition — beautiful, yes, but not his. The Hebrew numeral Triomphee exists because that conversation deserves an answer. Twelve characters from one of the oldest written languages in the world, placed on a guilloché dial, inside a case slim enough to disappear under a cuff. That watch says something no Roman-numeral edition ever could.",
+      "Eastern Arabic numerals followed the same logic. The script used across the Arabic-speaking world, across Iran and Afghanistan and Pakistan and beyond — elegant, curved, unmistakably its own. A watch face in Eastern Arabic is a quiet declaration: this is where I come from, this is the language my family counted in, this is mine. For a father receiving a watch from his children. For a milestone birthday. For a gift that crosses a generation and lands with full weight.",
+      "I want to be honest about what I'm not doing here. I'm not offering three numeral options as a personalisation gimmick or a marketing segment. Each numeral edition is its own design decision — the spacing, the scale, the relationship between the script and the guilloché beneath it. Hebrew characters have a visual rhythm that required real work to balance on a circular dial. Eastern Arabic numerals sit differently than Roman — closer to the centre, more intimate in their presence. These aren't the same watch with different fonts. They're three versions of the same idea, each one resolved on its own terms.",
+      "The Triomphee is a watch people give at moments that matter. Bar Mitzvahs. Retirement gifts from children who spent years looking for something worthy. A parent's seventieth birthday. A graduation after years of sacrifice — theirs or someone else's. These are the moments where a watch stops being an object and becomes a record. The numerals on the dial are part of that record. They say: I thought about who you are. Not just what you'd like.",
+      "Three scripts. One movement. One case. Three entirely different statements about identity and belonging. That's not a product range. That's a design philosophy.",
+    ],
+  },
+  {
     slug: "why-twenty-pieces",
     date: "February 2026",
     category: "Philosophy",
