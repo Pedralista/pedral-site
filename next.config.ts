@@ -46,8 +46,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/final-frontier",
-        destination: "/final-frontier/index.html",
+        source: "/artefact-final-frontier",
+        destination: "/artefact-final-frontier/index.html",
       },
     ];
   },
