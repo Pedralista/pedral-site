@@ -66,8 +66,8 @@
 
   .dial-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:0 3rem 4rem;max-width:1200px;margin:0 auto}
   .dial-card{background:var(--bg-card);border:1px solid var(--border-l);overflow:hidden}
-  .dial-card-img{background:#0d0d0c;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center}
-  .dial-card-img span{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-4)}
+  .dial-card-img{background:#0d0d0c;aspect-ratio:4/5;overflow:hidden}
+  .dial-card-img img{width:100%;height:100%;object-fit:contain}
   .dial-card-body{padding:2rem 2rem 2.5rem}
   .dial-card-name{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.8rem;margin-bottom:.4rem}
   .dial-card-tag{font-size:.75rem;color:var(--text-3);letter-spacing:.06em;margin-bottom:1.4rem}
@@ -186,11 +186,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <!-- Replace the placeholder below with your hero image -->
-  <!-- <img src="images/hero.jpg" alt="Artefact Final Frontier" class="hero-img"> -->
-  <div class="hero-img-placeholder">
-    <span>Hero image</span>
-  </div>
+  <img src="images/hero.png" alt="Artefact Final Frontier" class="hero-img">
   <div class="hero-overlay">
     <div class="hero-badge">Artefact · Final Edition</div>
     <h1>Final<br><em>Frontier</em></h1>
@@ -215,8 +211,7 @@
 <div class="dial-pair">
   <div class="dial-card reveal">
     <div class="dial-card-img">
-      <!-- Replace with: <img src="images/terrain-dial.jpg" alt="Terrain dial"> -->
-      <span>Terrain dial image</span>
+      <img src="images/terrain-dial.png" alt="Terrain dial">
     </div>
     <div class="dial-card-body">
       <h3 class="dial-card-name c-t">Terrain</h3>
@@ -226,8 +221,7 @@
   </div>
   <div class="dial-card reveal">
     <div class="dial-card-img">
-      <!-- Replace with: <img src="images/sector-dial.jpg" alt="Sector dial"> -->
-      <span>Sector dial image</span>
+      <img src="images/sector-dial.png" alt="Sector dial">
     </div>
     <div class="dial-card-body">
       <h3 class="dial-card-name c-s">Sector</h3>
@@ -249,9 +243,8 @@
 
 <!-- ANGLE SHOTS STRIP -->
 <div class="img-strip reveal">
-  <!-- Replace with: <img src="images/angle-1.jpg" alt=""> <img src="images/angle-2.jpg" alt=""> -->
-  <div class="img-strip-placeholder"><span>Angle shot 1</span></div>
-  <div class="img-strip-placeholder"><span>Angle shot 2</span></div>
+  <img src="images/terrain-field.jpg" alt="Artefact Terrain">
+  <img src="images/sector-field.jpg" alt="Artefact Sector">
 </div>
 
 <!-- THE WATCH -->
@@ -264,18 +257,14 @@
       <p>The integrated bracelet, tapering from 22.5mm to 18mm, was designed as a continuation of the case — not an accessory to it. Hardened to 1200 HV, the entire construction is engineered to endure.</p>
       <p>This architecture will not be produced again. Final Frontier is the last time it will exist in this form.</p>
     </div>
-    <!-- Replace with: <img src="images/watch-full.jpg" alt="Artefact watch"> -->
-    <div class="watch-img-placeholder">
-      <span>Watch image</span>
-    </div>
+    <img src="images/hero.png" alt="Artefact Final Frontier" style="width:100%;object-fit:cover">
   </div>
 </section>
 
 <!-- MACRO STRIP -->
 <div class="img-strip reveal">
-  <!-- Replace with: <img src="images/macro-1.jpg" alt=""> <img src="images/macro-2.jpg" alt=""> -->
-  <div class="img-strip-placeholder"><span>Macro detail 1</span></div>
-  <div class="img-strip-placeholder"><span>Macro detail 2</span></div>
+  <img src="images/sector-field.jpg" alt="Artefact Sector detail">
+  <img src="images/terrain-field.jpg" alt="Artefact Terrain detail">
 </div>
 
 <!-- KEVIN'S NOTE -->
@@ -289,11 +278,10 @@
 
 <!-- GALLERY -->
 <div class="gallery reveal">
-  <!-- Replace with: <img src="images/gallery-1.jpg" alt=""> etc. -->
-  <div class="gallery-placeholder"><span>Gallery 1</span></div>
-  <div class="gallery-placeholder"><span>Gallery 2</span></div>
-  <div class="gallery-placeholder"><span>Gallery 3</span></div>
-  <div class="gallery-placeholder"><span>Gallery 4</span></div>
+  <img src="images/terrain-dial.png" alt="Terrain dial">
+  <img src="images/sector-dial.png" alt="Sector dial">
+  <img src="images/terrain-field.jpg" alt="Terrain field">
+  <img src="images/sector-field.jpg" alt="Sector field">
 </div>
 
 <!-- SPECS -->
