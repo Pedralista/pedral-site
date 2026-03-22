@@ -43,6 +43,14 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/final-frontier",
+        destination: "/final-frontier/index.html",
+      },
+    ];
+  },
   async headers() {
     return [
       {
