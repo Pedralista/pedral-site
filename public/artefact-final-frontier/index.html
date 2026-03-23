@@ -102,6 +102,7 @@
 
   /* GALLERY */
   .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+  @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
   .gallery img{width:100%;aspect-ratio:1/1;object-fit:cover}
   .gallery-placeholder{aspect-ratio:1/1;background:#0e0e0d;display:flex;align-items:center;justify-content:center}
   .gallery-placeholder span{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-4)}
@@ -280,6 +281,9 @@
 
 <!-- GALLERY -->
 <div class="gallery reveal">
+  <img src="/artefact-final-frontier/images/sector-close.png" alt="Sector close-up">
+  <img src="/artefact-final-frontier/images/terrain-top.png" alt="Terrain">
+  <img src="/artefact-final-frontier/images/hero-pair.png" alt="Final Frontier pair">
   <img src="/artefact-final-frontier/images/terrain-dial.png" alt="Terrain dial">
   <img src="/artefact-final-frontier/images/sector-dial.png" alt="Sector dial">
   <img src="/artefact-final-frontier/images/terrain-field.jpg" alt="Terrain field">
