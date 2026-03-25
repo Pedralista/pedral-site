@@ -52,6 +52,7 @@
 <link rel="icon" href="/favicon-pedral.ico" sizes="any">
 <link rel="icon" href="/favicon-pedral-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon-pedral.png">
+<script src="https://js.stripe.com/v3/"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="/artefact-final-frontier/images/hero-pair-3.png">
@@ -213,7 +214,19 @@
   .trust span{font-size:.72rem;color:var(--text-3)}
   .trust span::before{content:"✓ ";color:var(--text-3)}
   .final-bottom-note{margin-top:2rem;font-size:.75rem;color:var(--text-3);font-style:italic}
-  .stripe-embed{display:flex;justify-content:center;margin:0 auto}
+  /* CHECKOUT MODAL */
+  .checkout-overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:flex-end;justify-content:center}
+  .checkout-overlay.open{display:flex}
+  @media(min-width:600px){.checkout-overlay{align-items:center}}
+  .checkout-modal{position:relative;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;background:#fff;border-radius:6px 6px 0 0}
+  @media(min-width:600px){.checkout-modal{border-radius:6px}}
+  .checkout-modal-header{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:#fff;border-bottom:1px solid #f0f0f0}
+  .checkout-modal-title{font-family:'DM Sans',sans-serif}
+  .checkout-modal-title p:first-child{font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:.2rem}
+  .checkout-modal-title p:last-child{font-size:.88rem;font-weight:500;color:#1a1a1a}
+  .checkout-modal-close{width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;color:#aaa;border-radius:50%;transition:background .2s}
+  .checkout-modal-close:hover{background:#f5f5f5;color:#333}
+  #checkout-container{padding:.5rem}
 
   /* FOOTER */
   footer{padding:3rem;border-top:1px solid var(--border-l)}
@@ -321,7 +334,7 @@
   <a href="https://www.pedral.eu" class="nav-logo">Artefact · Final Frontier</a>
   <div class="nav-right">
     <a href="https://www.instagram.com/pedralwatches" class="nav-a">Instagram</a>
-    <a href="https://buy.stripe.com/9B614m45ggkQcrJ8YcfMA02" class="nav-a btn btn-outline" style="padding:.45rem 1.4rem">Reserve</a>
+    <a href="#"  class="nav-a btn btn-outline open-checkout" style="padding:.45rem 1.4rem">Reserve</a>
   </div>
 </nav>
 
@@ -457,7 +470,7 @@
   <p>The first allocation is gone. What you see is what remains. When set 13 ships, this page goes dark.</p>
   <div class="final-price-big">€1,000</div>
   <div class="final-price-sub">Set of 2 · Terrain + Sector · Payment locks your numbered set</div>
-  <a href="https://buy.stripe.com/9B614m45ggkQcrJ8YcfMA02" class="btn btn-solid">Reserve Your Set · €1,000</a>
+  <a href="#"  class="btn btn-solid open-checkout">Reserve Your Set · €1,000</a>
   <div class="trust">
     <span>14-day return after delivery</span>
     <span>24-month warranty</span>
@@ -467,13 +480,29 @@
   <div class="final-bottom-note">Not for everyone. Made for those who understand it.</div>
 </section>
 
+<!-- CHECKOUT MODAL -->
+<div class="checkout-overlay" id="checkout-overlay">
+  <div class="checkout-modal">
+    <div class="checkout-modal-header">
+      <div class="checkout-modal-title">
+        <p>Complete your order</p>
+        <p>Artefact Final Frontier — €1,000</p>
+      </div>
+      <button class="checkout-modal-close" id="checkout-close" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div id="checkout-container"></div>
+  </div>
+</div>
+
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta">
   <div class="sticky-cta-text">
     <strong>13 sets remaining</strong>
     No reissue · No restock
   </div>
-  <a href="https://buy.stripe.com/9B614m45ggkQcrJ8YcfMA02" class="btn btn-solid" style="white-space:nowrap;padding:.7rem 1.6rem">Reserve · €1,000</a>
+  <a href="#"  class="btn btn-solid open-checkout" style="white-space:nowrap;padding:.7rem 1.6rem">Reserve · €1,000</a>
 </div>
 
 <!-- FOOTER -->
@@ -497,10 +526,47 @@
 </footer>
 
 <script>
+  // Scroll reveal
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Checkout
+  const stripe = Stripe('pk_live_51T4TgKCfxE1lSBKRwhUsPRNTOVzBchgYQPW6QxOp7m5X4E7wpwtCINGg6BOH58HN4jBrPJsNAhnu9pa6HiQaHfuz00sy9EITEJ');
+  const overlay = document.getElementById('checkout-overlay');
+  let checkout = null;
+
+  async function openCheckout() {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (checkout) return;
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        priceId: 'price_1TEVYOCfxE1lSBKRdzi2pJsj',
+        productName: 'Artefact Final Frontier',
+        variantName: 'Terrain + Sector Set'
+      })
+    });
+    const { clientSecret } = await res.json();
+    checkout = await stripe.initEmbeddedCheckout({ clientSecret });
+    checkout.mount('#checkout-container');
+  }
+
+  function closeCheckout() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('checkout-close').addEventListener('click', closeCheckout);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeCheckout(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCheckout(); });
+
+  document.querySelectorAll('.open-checkout').forEach(btn => {
+    btn.addEventListener('click', e => { e.preventDefault(); openCheckout(); });
+  });
 </script>
 
 </body>

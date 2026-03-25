@@ -9,6 +9,7 @@ const VALID_PRICE_IDS = new Set([
   "price_1T9xbUCfxE1lSBKR5IDT0QJ1",
   "price_1T4TsqCfxE1lSBKRFBCRLukn",
   "price_1T4TpQCfxE1lSBKR6aJh8nbb",
+  "price_1TEVYOCfxE1lSBKRdzi2pJsj",
 ]);
 
 export async function POST(req: NextRequest) {
