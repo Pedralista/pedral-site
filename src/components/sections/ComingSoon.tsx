@@ -7,9 +7,9 @@ import Link from "next/link";
 const upcoming = [
   {
     label: "Artefact · Final Frontier",
-    title: "The last one before something unlike anything out there.",
-    desc: "The Artefact line is being discontinued. Final Frontier is its closing chapter — 39.5mm, HV1200 steel. 13 sets remaining. No reissue, no successor. What comes next is a luxury field watch built from the ground up to a different standard entirely.",
-    eta: "Final production run · €1,000 the set",
+    title: "The end of one chapter. The start of something else.",
+    desc: "Artefact is being discontinued. Final Frontier closes it — two watches, one set, 13 remaining. When they're gone, that's it. What Kevin is building next is a luxury field watch. Not an update. Not an iteration. Something the market hasn't seen yet.",
+    eta: "13 sets remaining · €1,000 · No reissue",
     href: "/artefact-final-frontier",
   },
   {
