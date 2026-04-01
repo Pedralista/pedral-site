@@ -12,6 +12,23 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "artefact-terminal",
+    date: "April 2026",
+    category: "Studio",
+    title: "Terminal: Why I'm Closing the Artefact Line",
+    excerpt:
+      "Artefact started as an experiment. It became something people still write to me about. Final Frontier closes it — not because it failed, but because it's done. Here's what that means.",
+    readTime: "5 min read",
+    body: [
+      "Every line has a closing chapter. This is Artefact's.",
+      "When Artefact released, it sold out fast. More editions followed, each finding their people before most had time to look. The Boris Pjanić collaboration brought in collectors who had never encountered Pedral before and stayed. Something grew around it that I didn't design for — a community of people who came through Kickstarter, backed the work before it existed, and kept showing up.",
+      "Terrain and Sector are my take on a field watch. Two dials, one case, one set. Grounded, material, built to go anywhere without announcing itself. This 39mm case will not exist again after Final Frontier. The next iteration of the field watch concept will sit in a different bracket entirely — different movement, different price, different standard. This one was built as a collector's value proposition: the Pedral approach to a genre I care deeply about, at a price that makes it accessible.",
+      "Thirteen sets remain. When they're gone, this case is gone with them.",
+      "What I'm working on next is the field watch I've always wanted to make — without constraints. More on that when it's ready.",
+    ],
+    cta: { label: "Reserve the Final Set", href: "/artefact-final-frontier" },
+  },
+  {
     slug: "triomphe-numerals-heritage",
     date: "March 2026",
     category: "Design",
