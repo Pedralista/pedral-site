@@ -7,8 +7,8 @@ import Link from "next/link";
 const upcoming = [
   {
     label: "Artefact · Final Frontier",
-    title: "The Luxury Field Watch.",
-    desc: "39.5mm. HV1200 steel. Miyota 9039 automatic. Two dial expressions — Terrain and Sector. A matched pair that resolves the Artefact line. 13 sets remaining. No reissue.",
+    title: "The last one before something unlike anything out there.",
+    desc: "The Artefact line is being discontinued. Final Frontier is its closing chapter — 39.5mm, HV1200 steel, Japanese automatic movement. 13 sets remaining. No reissue, no successor. What comes next is a luxury field watch built from the ground up to a different standard entirely.",
     eta: "Final production run · €1,000 the set",
     href: "/artefact-final-frontier",
   },
