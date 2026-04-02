@@ -75,7 +75,7 @@ export default function CollectionsContent() {
               variants={fadeInUp}
               className="font-serif text-[clamp(40px,5vw,60px)] font-light text-foreground"
             >
-              Three watches. One maker.
+              Three watches. One designer.
             </motion.h1>
             <motion.p
               variants={fadeInUp}
