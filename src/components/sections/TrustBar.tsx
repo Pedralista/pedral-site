@@ -17,12 +17,12 @@ export default function TrustBar() {
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
-        className="mx-auto max-w-[1400px]"
+        className="mx-auto max-w-[1400px] text-center"
       >
         <p className="mb-7 text-[10px] font-normal tracking-[3px] uppercase text-accent">
           Worn by collectors in 30+ countries
         </p>
-        <div className="grid grid-cols-3 gap-6 sm:gap-12 md:max-w-[600px]">
+        <div className="grid grid-cols-3 gap-6 sm:gap-12 md:max-w-[600px] mx-auto">
           {stats.map((s) => (
             <div key={s.label}>
               <p className="font-serif text-[20px] font-normal text-foreground">{s.label}</p>
