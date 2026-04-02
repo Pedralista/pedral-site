@@ -11,7 +11,7 @@ interface NewsletterProps {
 }
 
 export default function Newsletter({
-  title = "1,200+ collectors see new editions first.",
+  title = "Friends of the brand see new editions first.",
   subtitle = "Priority access. No noise. An email when a new edition opens. Nothing else.",
   buttonText = "Get Priority Access",
 }: NewsletterProps) {

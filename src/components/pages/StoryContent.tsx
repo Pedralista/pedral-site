@@ -174,7 +174,7 @@ export default function StoryContent() {
       <Testimonials />
 
       <Newsletter
-        title="Join 1,200+ collectors."
+        title="Friends of the brand see new editions first."
         subtitle="Be first when the next edition drops."
       />
     </>
