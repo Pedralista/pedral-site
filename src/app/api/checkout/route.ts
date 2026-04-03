@@ -52,6 +52,7 @@ export async function POST(req: NextRequest) {
         "US", "CA", "AU", "JP", "SG", "AE",
       ],
     },
+    allow_promotion_codes: true,
     phone_number_collection: { enabled: true },
     billing_address_collection: "required",
     custom_text: {
