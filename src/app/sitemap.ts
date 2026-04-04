@@ -62,6 +62,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...articleRoutes,
     {
+      url: `${siteUrl}/artefact-final-frontier`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.95,
+    },
+    {
       url: `${siteUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: "yearly",
