@@ -28,7 +28,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
   const isSoldOut = c.stock === 0 && !c.isEnquiryOnly;
   const hasVariants = c.variants && c.variants.length > 0;
   const [selectedVariant, setSelectedVariant] = useState(
-    hasVariants ? c.variants![0] : null
+    hasVariants ? (c.variants!.find(v => v.stock > 0) ?? c.variants![0]) : null
   );
   const [loading, setLoading] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
@@ -266,15 +266,20 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               variants={staggerContainer}
               className="grid gap-4 sm:grid-cols-2"
             >
-              {c.variants!.filter(v => v.stock > 0).map((v) => {
+              {c.variants!.map((v) => {
                 const isSelected = selectedVariant?.name === v.name;
+                const isSoldOutVariant = v.stock === 0;
                 return (
                   <motion.div
                     key={v.name}
                     variants={fadeInUp}
-                    onClick={() => { setSelectedVariant(v); setSelectedNumeral(null); }}
-                    className={`group relative cursor-pointer overflow-hidden rounded-lg border text-left transition-all duration-300 ${
-                      isSelected ? "border-accent" : "border-accent/10 hover:border-accent/40"
+                    onClick={() => { if (!isSoldOutVariant) { setSelectedVariant(v); setSelectedNumeral(null); } }}
+                    className={`group relative overflow-hidden rounded-lg border text-left transition-all duration-300 ${
+                      isSoldOutVariant
+                        ? "cursor-not-allowed opacity-50 border-accent/10"
+                        : isSelected
+                        ? "cursor-pointer border-accent"
+                        : "cursor-pointer border-accent/10 hover:border-accent/40"
                     }`}
                   >
                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--surface)]">
@@ -287,6 +292,11 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                         );
                       })()}
                       {isSelected && <div className="absolute inset-0 bg-accent/10" />}
+                      {isSoldOutVariant && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="border border-foreground-muted/30 px-4 py-1.5 text-[11px] tracking-[3px] uppercase text-foreground-muted/60">Sold Out</span>
+                        </div>
+                      )}
                     </div>
                     <div className="p-5">
                       <div className="flex items-start justify-between gap-4">
@@ -296,10 +306,10 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                             <p className="mt-1.5 text-[14px] font-light leading-[1.8] text-foreground-muted">{v.description}</p>
                           )}
                         </div>
-                        <div className={`mt-1 h-5 w-5 shrink-0 rounded-full border-2 transition-colors ${isSelected ? "border-accent bg-accent" : "border-accent/30"}`} />
+                        {!isSoldOutVariant && <div className={`mt-1 h-5 w-5 shrink-0 rounded-full border-2 transition-colors ${isSelected ? "border-accent bg-accent" : "border-accent/30"}`} />}
                       </div>
                       <p className="mt-3 text-[11px] tracking-[1px] uppercase text-accent/60">
-                        {v.stock} {v.stock === 1 ? "piece" : "pieces"} remaining
+                        {isSoldOutVariant ? "Sold out" : `${v.stock} ${v.stock === 1 ? "piece" : "pieces"} remaining`}
                       </p>
                       {/* Numeral options inline when this variant is selected */}
                       {isSelected && v.numeralOptions && v.numeralOptions.length > 0 && (
@@ -369,42 +379,6 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               </div>
             </motion.div>
 
-            {/* Sold-out variants */}
-            {c.variants!.some(v => v.stock === 0) && (
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                className="mt-10 border-t border-accent/[0.08] pt-8"
-              >
-                <p className="mb-4 text-[11px] font-normal tracking-[3px] uppercase text-foreground-muted/40">
-                  Previous Editions — Sold Out
-                </p>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {c.variants!.filter(v => v.stock === 0).map((v) => (
-                    <div key={v.name} className="group relative overflow-hidden rounded-lg border border-accent/10 cursor-not-allowed opacity-50">
-                      <div className="relative h-[220px] w-full overflow-hidden bg-[var(--surface)] sm:h-[260px]">
-                        {v.image ? (
-                          <Image src={v.image} alt={v.name} fill className="object-contain" />
-                        ) : (
-                          <ImagePlaceholder label={`${c.name}\n${v.name}`} className="h-full w-full" />
-                        )}
-                        <div className="absolute inset-0 flex items-center justify-center bg-background/60 backdrop-blur-[2px]">
-                          <span className="border border-white/15 px-3 py-1.5 text-[10px] font-light tracking-[2.5px] uppercase text-white/50">Sold Out</span>
-                        </div>
-                      </div>
-                      <div className="p-5">
-                        <p className="font-serif text-[20px] font-light text-foreground">{v.name}</p>
-                        {v.description && (
-                          <p className="mt-1.5 text-[14px] font-light leading-[1.8] text-foreground-muted">{v.description}</p>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
           </div>
         </section>
       )}
