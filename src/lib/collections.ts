@@ -371,7 +371,7 @@ export const collections: Collection[] = [
     },
     newsletterTitle: "Be considered for an allocation.",
     newsletterSub: "Those on the list are reviewed first. No announcements. No noise.",
-    image: "/images/okapi.jpg",
+    image: "/images/okapi-classique.png",
     heroImage: "/images/okapi-hero.jpg",
     detailImage: "/images/okapi-detail.jpg",
     galleryImages: [
@@ -386,7 +386,7 @@ export const collections: Collection[] = [
         stock: 20,
         price: 2800,
         description: "Swiss hand-wound. Slim, direct, reliable. The honest choice — everything in its right place.",
-        image: "/images/okapi.jpg",
+        image: "/images/okapi-classique.png",
       },
       {
         name: "LJP7380",
@@ -394,7 +394,7 @@ export const collections: Collection[] = [
         stock: 20,
         price: 3900,
         description: "La Joux-Perret LJP7380. High-grade decorated. La Chaux-de-Fonds manufacture. The movement independent watchmakers choose when they refuse to compromise.",
-        image: "/images/okapi.jpg",
+        image: "/images/okapi-classique.png",
       },
     ],
   },
