@@ -341,7 +341,7 @@ export const collections: Collection[] = [
       "Handwritten note from Kevin",
     ],
     valueAnchor:
-      "The traditional watch industry applies a 3× multiplier — components, movement, finishing, then retail margin stacked on top. Sapphire crystal. Swiss hand-wound movement. HV1200 scratch-resistant coating. Guilloché dial work. We sell direct. No showroom. No distribution chain. ETA 7001: €2,800. LJP7380 high-grade decorated: €3,900. Both priced deliberately below where the 3× model would place them. Twenty pieces.",
+      "I priced these deliberately. The LJP7380 at €3,900 — high-grade decorated, La Chaux-de-Fonds — carries the same calibre family as watches that sell for three times that elsewhere. The ETA 7001 at €2,800. Both sit below where the 3× model would place them. The difference isn't in the watch. It's in what surrounds it at other brands. We don't have that. The price reflects it.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Dial",
