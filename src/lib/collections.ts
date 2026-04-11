@@ -321,7 +321,7 @@ export const collections: Collection[] = [
     specsTitle: "Built to outlast everything.",
     specs: {
       Movement: "ETA 7001 or La Joux-Perret LJP7380 · Swiss hand-wound · La Chaux-de-Fonds manufacture · Choice of calibre at reservation",
-      Case: "37mm cushion-shaped · 316L stainless steel · HV1200 scratch-resistant coating",
+      Case: "37mm cushion-shaped · 7mm thin · 316L stainless steel · HV1200 scratch-resistant coating",
       Dial: "Deep blue frosted finish · Coin-edge fluted flange · Guilloché small seconds at 6 o'clock",
       "Chapter Ring": "Slim steel with fine lacquer-filled markings",
       Hands: "Slender, spear-shaped. Clarity without excess.",
