@@ -341,8 +341,8 @@ export const collections: Collection[] = [
       "Handwritten note from Kevin",
     ],
     valueAnchor:
-      "Sapphire crystal. Swiss hand-wound movement. HV1200 scratch-resistant coating. Guilloché dial work. At any established house: €3,000+. Without the overhead cost: €2,000. Twenty pieces.",
-    valueComparePrice: "€3,000+",
+      "Sapphire crystal. Swiss hand-wound movement. HV1200 scratch-resistant coating. Guilloché dial work. The La Joux-Perret LJP7380 — high-grade decorated — is the calibre family chosen by established independents charging €6,000+ for comparable specifications. Without the overhead cost: €3,900. ETA 7001 variant: €2,800. Twenty pieces. The difference doesn't disappear. It remains in the watch.",
+    valueComparePrice: "€6,000+",
     detailStrip: {
       eyebrow: "The Dial",
       title: "Nothing placed without reason.",

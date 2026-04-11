@@ -700,7 +700,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                   Established Brands &rarr;
                 </span>
                 <span className="font-serif text-[36px] font-normal text-accent">
-                  &euro;{c.price.toLocaleString()}
+                  {hasVariants && c.variants!.some(v => v.price && v.price !== c.price) ? "From " : ""}&euro;{c.price.toLocaleString()}
                 </span>
               </div>
             </motion.div>
