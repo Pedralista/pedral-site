@@ -323,7 +323,7 @@ export const collections: Collection[] = [
     specsTitle: "Built to outlast everything.",
     specs: {
       Movement: "ETA 7001 or La Joux-Perret LJP7380 · Swiss hand-wound · La Chaux-de-Fonds manufacture · Choice of calibre at reservation",
-      Case: "37mm cushion-shaped · 7mm thin · 316L stainless steel · HV1200 scratch-resistant coating",
+      Case: "37mm cushion-shaped · 7mm thin · 47mm lug-to-lug · 18mm lug width · 316L stainless steel · HV1200 scratch-resistant coating",
       Dial: "Deep blue frosted finish · Coin-edge fluted flange · Guilloché small seconds at 6 o'clock",
       "Chapter Ring": "Slim steel with fine lacquer-filled markings",
       Hands: "Slender, spear-shaped. Clarity without excess.",
@@ -367,6 +367,7 @@ export const collections: Collection[] = [
     testimonialsLabel: "Those Who Wore the Original",
     wristFit: {
       caseDiameter: "37mm",
+      lugToLug: "47mm",
       lugWidth: "18mm",
       wristRange: "15–19cm",
       note: "The cushion case contours the wrist more naturally than a round case — the curved case back follows the arm rather than sitting flat against it. Owners consistently describe it as wearing smaller and lighter than the 37mm diameter suggests.",
