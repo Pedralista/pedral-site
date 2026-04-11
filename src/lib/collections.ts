@@ -393,7 +393,7 @@ export const collections: Collection[] = [
       {
         name: "LJP7380",
         stripePriceId: "price_1TKw7wCfxE1lSBKRcFLiQiu6",
-        stock: 4,
+        stock: 5,
         price: 3900,
         description: "La Joux-Perret LJP7380. High-grade decorated. La Chaux-de-Fonds manufacture. The movement independent watchmakers choose when they refuse to compromise.",
         image: "/images/okapi-classique.png",
