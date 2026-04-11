@@ -686,7 +686,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 Value Perspective
               </p>
               <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
-                What this specification actually costs elsewhere.
+                {c.valuePerspectiveTitle ?? "What this specification actually costs elsewhere."}
               </h2>
               <div className="mt-6 h-px w-[60px] bg-accent" />
               <p className="mt-6 text-[15px] font-light italic leading-[1.85] text-foreground-muted">

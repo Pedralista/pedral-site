@@ -62,6 +62,7 @@ export interface Collection {
   isEnquiryOnly?: boolean;
   hidePriceOnCard?: boolean;
   variantLabel?: string;
+  valuePerspectiveTitle?: string;
   comingSoonEditions?: { name: string; description: string; image?: string }[];
 }
 
@@ -318,6 +319,7 @@ export const collections: Collection[] = [
     hidePriceOnCard: true,
     nonRefundable: true, // made-to-order pre-order — qualifies under EU Art. 16(c)
     variantLabel: "Movement",
+    valuePerspectiveTitle: "What this specification tends to represent elsewhere.",
     specsTitle: "Built to outlast everything.",
     specs: {
       Movement: "ETA 7001 or La Joux-Perret LJP7380 · Swiss hand-wound · La Chaux-de-Fonds manufacture · Choice of calibre at reservation",
@@ -341,7 +343,7 @@ export const collections: Collection[] = [
       "Handwritten note from Kevin",
     ],
     valueAnchor:
-      "I priced these deliberately. The LJP7380 at €3,900 — high-grade decorated, La Chaux-de-Fonds — carries the same calibre family as watches that sell for three times that elsewhere. The ETA 7001 at €2,800. Both sit below where the 3× model would place them. The difference isn't in the watch. It's in what surrounds it at other brands. We don't have that. The price reflects it.",
+      "The LJP7380 is set at €3,900. A high-grade, decorated calibre from La Chaux-de-Fonds, typically found in watches positioned significantly higher. The ETA 7001 is set at €2,800. A classic, proven movement, executed here with the same level of care. Both sit below where the conventional pricing structure would place them. The difference isn't in the watch. It's in everything built around it elsewhere. This is simply where it felt right to place them.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Dial",
