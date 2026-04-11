@@ -341,8 +341,8 @@ export const collections: Collection[] = [
       "Handwritten note from Kevin",
     ],
     valueAnchor:
-      "Sapphire crystal. Swiss hand-wound movement. HV1200 scratch-resistant coating. Guilloché dial work. The La Joux-Perret LJP7380 — high-grade decorated — is the calibre family chosen by established independents charging €6,000+ for comparable specifications. Without the overhead cost: €3,900. ETA 7001 variant: €2,800. Twenty pieces. The difference doesn't disappear. It remains in the watch.",
-    valueComparePrice: "€6,000+",
+      "The traditional watch industry applies a 3× multiplier — components, movement, finishing, then retail margin stacked on top. Sapphire crystal. Swiss hand-wound movement. HV1200 scratch-resistant coating. Guilloché dial work. We sell direct. No showroom. No distribution chain. ETA 7001: €2,800. LJP7380 high-grade decorated: €3,900. Both priced deliberately below where the 3× model would place them. Twenty pieces.",
+    valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Dial",
       title: "Nothing placed without reason.",

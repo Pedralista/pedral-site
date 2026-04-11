@@ -693,12 +693,16 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 {c.valueAnchor}
               </p>
               <div className="mt-6 flex flex-wrap items-baseline gap-x-5 gap-y-2">
-                <span className="font-serif text-[24px] font-light text-foreground-muted line-through">
-                  {c.valueComparePrice}
-                </span>
-                <span className="text-[12px] tracking-[1.5px] uppercase text-foreground-muted">
-                  Established Brands &rarr;
-                </span>
+                {c.valueComparePrice && (
+                  <>
+                    <span className="font-serif text-[24px] font-light text-foreground-muted line-through">
+                      {c.valueComparePrice}
+                    </span>
+                    <span className="text-[12px] tracking-[1.5px] uppercase text-foreground-muted">
+                      Established Brands &rarr;
+                    </span>
+                  </>
+                )}
                 <span className="font-serif text-[36px] font-normal text-accent">
                   {hasVariants && c.variants!.some(v => v.price && v.price !== c.price) ? "From " : ""}&euro;{c.price.toLocaleString()}
                 </span>
