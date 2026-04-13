@@ -386,7 +386,7 @@ export const collections: Collection[] = [
       {
         name: "ETA 7001",
         stripePriceId: "price_1TKw2kCfxE1lSBKRLqfS1Lvb",
-        stock: 7,
+        stock: 5,
         price: 2800,
         description: "Swiss hand-wound. Slim, direct, reliable. The honest choice — everything in its right place.",
         image: "/images/okapi-classique.png",
