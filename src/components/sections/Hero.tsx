@@ -45,16 +45,6 @@ export default function Hero() {
             </motion.h1>
           </div>
 
-          {/* 3. Philosophy clarification */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.75 }}
-            className="mt-5 text-[18px] font-light leading-snug text-foreground-muted italic"
-          >
-            Selection, not exclusion.
-          </motion.p>
-
           {/* 4. Craft proof */}
           <motion.p
             initial={{ opacity: 0, y: 12 }}
