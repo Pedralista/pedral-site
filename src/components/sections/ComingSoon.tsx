@@ -6,6 +6,13 @@ import Link from "next/link";
 
 const upcoming = [
   {
+    label: "Maestro · Petite Seconde",
+    title: "The Maestro. Now with a small seconds.",
+    desc: "Same tonneau case, same considered architecture. A guilloché dial, proprietary Roman numerals, a subsidiary seconds at six, and a Sellita SW260 automatic movement. The Maestro taken one step further.",
+    eta: "Q2 2026 · €1,650",
+    href: null,
+  },
+  {
     label: "Artefact · Final Frontier",
     title: "The last Artefact. Resolved and complete.",
     desc: "Artefact is being discontinued. Final Frontier closes it — two dials, one set. Versatile enough to go anywhere, resolved enough to belong everywhere. Friends of the brand get priority access before any public release.",
@@ -46,7 +53,7 @@ export default function ComingSoon() {
 
           <motion.div
             variants={staggerContainer}
-            className="mt-12 grid gap-6 sm:grid-cols-2"
+            className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
             {upcoming.map((item) => {
               const inner = (
