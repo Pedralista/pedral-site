@@ -3,8 +3,8 @@ import Stripe from "stripe";
 import { rateLimit, getIp } from "@/lib/rateLimit";
 
 const VALID_PRICE_IDS = new Set([
-  "price_1T4Tw7CfxE1lSBKRY9zmQqHV",
-  "price_1T4TvBCfxE1lSBKRfCkEqWVd",
+  "price_1TOwepCfxE1lSBKRI7sNBLcW", // Maestro — Lapis No.1 (€1,450)
+  "price_1TOwodCfxE1lSBKRaUZJ0s7O", // Maestro — Frosted Flex (€1,450)
   "price_1T9xa2CfxE1lSBKR4hPpmnPR",
   "price_1T9xbUCfxE1lSBKR5IDT0QJ1",
   "price_1T4TsqCfxE1lSBKRFBCRLukn",
