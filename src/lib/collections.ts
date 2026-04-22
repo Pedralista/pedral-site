@@ -80,7 +80,7 @@ export const collections: Collection[] = [
       "Maestro is a dress watch for people who don't need to be told it's a dress watch. The tonneau case, the diagonal display, the hexagonal bracelet. Each decision has a reason. None of them are decorative.",
     year: 2025,
     tier: "signature",
-    price: 1300,
+    price: 1450,
     stock: 5,
     maxStock: 20,
     edition: "Frosted Flex",
@@ -109,7 +109,7 @@ export const collections: Collection[] = [
       "Personal note from Kevin",
     ],
     valueAnchor:
-      "Dress watches with Swiss Sellita movements, sapphire crystal, and an integrated bracelet. At the established houses: €2,800+. Without the overhead cost, the showroom, the retail chain, the advertising: €1,300. Edition of 20. The difference didn't disappear. It remains in the watch.",
+      "Dress watches with Swiss Sellita movements, sapphire crystal, and an integrated bracelet. At the established houses: €2,800+. Without the overhead cost, the showroom, the retail chain, the advertising: €1,450. Edition of 20. The difference didn't disappear. It remains in the watch.",
     valueComparePrice: "€2,800+",
     detailStrip: {
       eyebrow: "The Diagonal Display",
@@ -192,7 +192,7 @@ export const collections: Collection[] = [
       "The Triomphe started with a constraint: how thin before you lose presence? 8.8mm is the answer. At that thickness, the watch disappears on the wrist and the dial becomes everything. Each new edition doesn't change the watch. It deepens it. Every Triomphe owner wears the same architecture, but no two of them wear the same dial.",
     year: 2025,
     tier: "limited",
-    price: 1500,
+    price: 1750,
     stock: 3,
     maxStock: 20,
     edition: "Saphir Azur / Ember Stone",
@@ -218,7 +218,7 @@ export const collections: Collection[] = [
       "Personal note from Kevin",
     ],
     valueAnchor:
-      "Hand-wound dress watches under 9mm with multi-layer guilloché dials. At the established houses: €3,500+. Without the overhead cost: €1,500. Edition of 20. The difference isn't absorbed. It remains in the materials, the movement, and the finishing.",
+      "Hand-wound dress watches under 9mm with multi-layer guilloché dials. At the established houses: €3,500+. Without the overhead cost: €1,750. Edition of 20. The difference isn't absorbed. It remains in the materials, the movement, and the finishing.",
     valueComparePrice: "€3,500+",
     detailStrip: {
       eyebrow: "The Dial",
