@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const upcoming = [
   {
-    label: "Maestro · Petite Seconde",
+    label: "Maestro · Solis",
     title: "The Maestro. Now with a small seconds.",
     desc: "Same tonneau case, same considered architecture. A guilloché dial, proprietary Roman numerals, a subsidiary seconds at six, and a Sellita SW260 automatic movement. The Maestro taken one step further.",
     eta: "Q2 2026 · €1,650",
@@ -23,8 +23,8 @@ const upcoming = [
     label: "Triomphe",
     title: "A new dial. The same architecture.",
     desc: "The Triomphe continues — same 8.8mm case, new expression. Each edition closes when it closes. No restocks, no second run. Friends of the brand hear before any public announcement. Allocation-based, as always.",
-    eta: "Coming 2026",
-    href: null,
+    eta: "Available Now",
+    href: "/collections/triomphe",
   },
 ];
 
