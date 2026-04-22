@@ -5,8 +5,8 @@ import { rateLimit, getIp } from "@/lib/rateLimit";
 const VALID_PRICE_IDS = new Set([
   "price_1TOwepCfxE1lSBKRI7sNBLcW", // Maestro — Lapis No.1 (€1,450)
   "price_1TOwodCfxE1lSBKRaUZJ0s7O", // Maestro — Frosted Flex (€1,450)
-  "price_1T9xa2CfxE1lSBKR4hPpmnPR",
-  "price_1T9xbUCfxE1lSBKR5IDT0QJ1",
+  "price_1TOxPMCfxE1lSBKRFQfT9aRT", // Triomphe — Saphir Azur (€1,750)
+  "price_1TOxO4CfxE1lSBKR8hiQjgiE", // Triomphe — Ember Stone (€1,750)
   "price_1T4TsqCfxE1lSBKRFBCRLukn",
   "price_1T4TpQCfxE1lSBKR6aJh8nbb",
   "price_1TEVYOCfxE1lSBKRdzi2pJsj",
