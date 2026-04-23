@@ -62,13 +62,23 @@ export default function Newsletter({
           </p>
 
           {status === "success" ? (
-            <p className="mt-7 text-[14px] font-light text-accent">
-              You&apos;re on the list. We&apos;ll be in touch before the next edition drops.
-            </p>
+            <div className="mt-7">
+              <p className="text-[14px] font-light text-accent">
+                You&apos;re on the list.
+              </p>
+              <p className="mt-2 text-[13px] font-light text-foreground-muted">
+                Maestro Solis drops Q2 2026 — you&apos;ll hear before anyone else. No noise in between.
+              </p>
+            </div>
           ) : status === "exists" ? (
-            <p className="mt-7 text-[14px] font-light text-foreground-muted">
-              You&apos;re already subscribed.
-            </p>
+            <div className="mt-7">
+              <p className="text-[14px] font-light text-foreground-muted">
+                You&apos;re already on the list.
+              </p>
+              <p className="mt-2 text-[13px] font-light text-foreground-muted/60">
+                Maestro Solis · Q2 2026. We&apos;ll be in touch.
+              </p>
+            </div>
           ) : (
             <form onSubmit={handleSubmit} className="mx-auto mt-7 flex max-w-[420px] flex-col gap-3 sm:flex-row sm:gap-0">
               {/* Honeypot — hidden from humans, filled by bots */}

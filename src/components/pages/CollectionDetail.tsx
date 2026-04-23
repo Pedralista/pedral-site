@@ -33,6 +33,8 @@ export default function CollectionDetail({ collection }: { collection: Collectio
   const [loading, setLoading] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [preOrderError, setPreOrderError] = useState<string | null>(null);
+  const [notifyEmail, setNotifyEmail] = useState("");
+  const [notifyStatus, setNotifyStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const firstVariant = hasVariants ? c.variants![0] : null;
   const [selectedNumeral, setSelectedNumeral] = useState<string | null>(
     firstVariant?.numeralOptions?.[0] ?? null
@@ -93,6 +95,23 @@ export default function CollectionDetail({ collection }: { collection: Collectio
     } catch {
       setPreOrderError("Network error. Please try again.");
       setLoading(false);
+    }
+  }
+
+  async function handleNotify(e: React.FormEvent) {
+    e.preventDefault();
+    if (!notifyEmail) return;
+    setNotifyStatus("loading");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: notifyEmail, website: "" }),
+      });
+      const data = await res.json();
+      setNotifyStatus(data.success || data.alreadySubscribed ? "success" : "error");
+    } catch {
+      setNotifyStatus("error");
     }
   }
 
@@ -162,6 +181,16 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               Edition of {c.maxStock} &middot; {c.edition}
             </span>
           </motion.div>
+          {!c.isEnquiryOnly && !isSoldOut && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+              className="mt-3 text-[11px] font-light tracking-[0.5px] text-foreground-muted/50"
+            >
+              Once this edition closes, it never returns.
+            </motion.p>
+          )}
           {/* Selected variant name */}
           {hasVariants && selectedVariant && (
             <motion.p
@@ -344,6 +373,50 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 );
               })}
             </motion.div>
+
+            {/* Notify Me — Sold-out editions */}
+            {c.variants!.some(v => v.stock === 0) && (
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="mt-6 rounded-lg border border-accent/10 bg-background-alt p-6"
+              >
+                <p className="text-[12px] font-normal tracking-[3px] uppercase text-accent">
+                  Sold-out editions
+                </p>
+                <p className="mt-2 text-[14px] font-light leading-[1.8] text-foreground-muted">
+                  Some editions above are closed. Join the list to be notified when a new expression opens — or if a sold-out edition ever returns.
+                </p>
+                {notifyStatus === "success" ? (
+                  <p className="mt-4 text-[13px] font-light text-accent">
+                    You&apos;re on the list. We&apos;ll be in touch before the next edition opens.
+                  </p>
+                ) : (
+                  <form onSubmit={handleNotify} className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-0">
+                    <input
+                      type="email"
+                      value={notifyEmail}
+                      onChange={(e) => setNotifyEmail(e.target.value)}
+                      placeholder="Your email address"
+                      required
+                      className="w-full rounded-lg border border-accent/15 bg-white/[0.04] px-5 py-3 text-sm font-light text-foreground outline-none placeholder:text-foreground-muted/50 sm:flex-1 sm:rounded-none sm:border-r-0"
+                    />
+                    <button
+                      type="submit"
+                      disabled={notifyStatus === "loading"}
+                      className="w-full rounded-lg border border-accent bg-accent px-6 py-3 text-[11px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:rounded-none"
+                    >
+                      {notifyStatus === "loading" ? "..." : "Notify me"}
+                    </button>
+                  </form>
+                )}
+                {notifyStatus === "error" && (
+                  <p className="mt-2 text-[12px] font-light text-red-400">Something went wrong. Please try again.</p>
+                )}
+              </motion.div>
+            )}
 
             {/* CTA */}
             <motion.div
@@ -737,6 +810,8 @@ export default function CollectionDetail({ collection }: { collection: Collectio
         </div>
       </section>
 
+      <TrustIcons />
+
       {/* Price CTA */}
       <section className="bg-[linear-gradient(180deg,var(--background)_0%,var(--background-alt)_100%)] py-16 text-center md:py-20">
         <motion.div
@@ -907,8 +982,6 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           </div>
         </section>
       )}
-
-      <TrustIcons />
 
       <Newsletter
         title={c.newsletterTitle}

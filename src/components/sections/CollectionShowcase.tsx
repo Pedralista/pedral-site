@@ -116,6 +116,11 @@ export default function CollectionShowcase() {
                           <span className="text-[17px] font-normal text-foreground">
                             &euro;{c.price.toLocaleString()}
                           </span>
+                          {c.valueComparePrice && (
+                            <span className="block text-[11px] font-light tracking-[0.3px] text-foreground-muted/40">
+                              Elsewhere {c.valueComparePrice}
+                            </span>
+                          )}
                         </>
                       )}
                     </div>
