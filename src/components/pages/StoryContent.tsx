@@ -7,27 +7,51 @@ import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/ani
 import Testimonials from "@/components/sections/Testimonials";
 import Newsletter from "@/components/sections/Newsletter";
 
-// ─── Proof stats ────────────────────────────────────────────────────────────
-const stats = [
-  { value: "6", label: "Collections" },
-  { value: "6/6", label: "Sold out" },
-  { value: "30+", label: "Countries" },
-  { value: "20", label: "Pieces per edition — never more" },
+const timeline = [
+  {
+    year: "2015",
+    title: "The rejection",
+    text: "I applied to Sweden's only watchmaking school. They said no. So I taught myself — obsessive research, hundreds of failed prototypes, three years of evenings nobody saw. In 2017 I nearly stopped. I didn't.",
+  },
+  {
+    year: "2018",
+    title: "Okapi sells out",
+    text: "The first watch went live on Kickstarter. Every piece spoken for. Collectors in 12 countries. Proof that the obsession wasn't just mine.",
+  },
+  {
+    year: "2024",
+    title: "Artefact",
+    text: "A new collection. A different design language. The same conviction: when it's gone, it's gone. Sold out.",
+  },
+  {
+    year: "Apr 2025",
+    title: "Watches and Art",
+    text: "A collaboration with Boris Pjanić bridging fine horology and contemporary art. Released April 2025. Sold out.",
+  },
+  {
+    year: "2025",
+    title: "Maestro",
+    text: "The refined tonneau dress watch with hexagonal bracelet links and diagonal time display. Sold out.",
+  },
+  {
+    year: "Dec 2025",
+    title: "Triomphe",
+    text: "Ultra-thin at 8.8mm, Swiss hand-wound, guilloché dials. Each edition capped at 20. When a dial closes, it does not return.",
+  },
+  {
+    year: "Now",
+    title: "Okapi returns",
+    text: "The watch that started everything — reimagined with a new movement, a better case, and the lessons of every collection that came after it.",
+  },
 ];
 
 export default function StoryContent() {
   return (
     <>
-
-      {/* ── ACT I · ATTENTION ─────────────────────────────────────────────────
-          Emotional priming: injustice + outsider identity.
-          The reader feels before they think.
-      ──────────────────────────────────────────────────────────────────────── */}
+      {/* Hero */}
       <section className="bg-background-alt px-6 pb-14 pt-28 sm:pt-32 md:px-24 md:pt-44 md:pb-20">
         <div className="mx-auto max-w-[1200px]">
           <div className="grid items-center gap-12 md:grid-cols-2 md:gap-20">
-
-            {/* Text */}
             <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
               <motion.p
                 variants={fadeInUp}
@@ -53,7 +77,6 @@ export default function StoryContent() {
               </motion.p>
             </motion.div>
 
-            {/* Portrait — face first, trust before product */}
             <motion.div
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -68,218 +91,70 @@ export default function StoryContent() {
                 />
               </div>
             </motion.div>
-
           </div>
         </div>
       </section>
 
-
-      {/* ── ACT II · INTEREST ─────────────────────────────────────────────────
-          The years nobody saw. Struggle, doubt, near-failure.
-          Reciprocity: vulnerability is a gift — reader owes attention back.
-          Anchoring: the decade of cost anchors the value of every watch.
-      ──────────────────────────────────────────────────────────────────────── */}
-      <section className="bg-background py-16 md:py-28">
-        <div className="mx-auto max-w-[760px] px-6 md:px-12">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <motion.p
-              variants={fadeInUp}
-              className="mb-4 text-[11px] font-normal tracking-[4px] uppercase text-accent"
-            >
-              2015 – 2018
-            </motion.p>
-            <motion.h2
-              variants={fadeInUp}
-              className="font-serif text-[clamp(28px,3.5vw,42px)] font-light leading-[1.25] text-foreground"
-            >
-              The years nobody saw.
-            </motion.h2>
-            <motion.div variants={fadeInUp} className="mt-6 h-px w-[60px] bg-accent" />
-
-            <motion.div
-              variants={staggerContainer}
-              className="mt-8 space-y-5 text-[16px] font-light leading-[1.9] text-foreground-muted"
-            >
-              <motion.p variants={fadeInUp}>
-                Three years of evenings and weekends. Movements ordered from
-                Switzerland, disassembled on a kitchen table. Prototypes that
-                failed — not by a little, but completely. Books that answered one
-                question and opened five more.
-              </motion.p>
-              <motion.p variants={fadeInUp}>
-                There was no audience. No validation. Suppliers wouldn&apos;t take
-                the call. Manufacturers quoted minimum orders I couldn&apos;t meet.
-                One told me to come back when I had ten thousand units. I had a
-                budget for twenty.
-              </motion.p>
-              <motion.p variants={fadeInUp}>
-                In 2017 I nearly stopped. The parts wouldn&apos;t cooperate. The
-                industry had no interest in making space for someone like me. And
-                for a moment, the doubt was louder than the conviction.
-              </motion.p>
-              <motion.p variants={fadeInUp}>
-                But I kept returning to the same question: if the watch I had in
-                my head didn&apos;t exist, and nobody else was going to make it —
-                what was I waiting for?
-              </motion.p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-
-      {/* ── TURNING POINT ─────────────────────────────────────────────────────
-          The breakthrough. Proof the obsession wasn't his alone.
-          Social proof + dopamine peak — the story earns its resolution here.
-      ──────────────────────────────────────────────────────────────────────── */}
-      <section className="bg-background-alt py-16 md:py-24">
-        <div className="mx-auto max-w-[1200px] px-6 md:px-12">
-          <div className="grid items-center gap-12 md:grid-cols-2 md:gap-20">
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideInLeft}
-            >
-              <p className="mb-4 text-[11px] font-normal tracking-[4px] uppercase text-accent">
-                2018
-              </p>
-              <h2 className="font-serif text-[clamp(28px,3.5vw,40px)] font-light leading-[1.25] text-foreground">
-                The Okapi sold out. The obsession wasn&apos;t just mine.
-              </h2>
-              <div className="mt-6 h-px w-[60px] bg-accent" />
-              <p className="mt-6 text-[16px] font-light leading-[1.9] text-foreground-muted">
-                The first watch went live on Kickstarter. Within weeks, every piece
-                was spoken for. Collectors in twelve countries. People I had never
-                met, who had never heard of Pedral, saw what I saw.
-              </p>
-              <p className="mt-5 text-[16px] font-light leading-[1.9] text-foreground-muted">
-                It wasn&apos;t a sale. It was confirmation. The market existed. The
-                established houses just weren&apos;t serving it.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideInRight}
-              className="grid grid-cols-3 gap-px overflow-hidden rounded-lg"
-            >
-              {[
-                { src: "/images/kevin-early-work.jpg", alt: "Kevin early work" },
-                { src: "/images/kevin-design-studio.jpg", alt: "Pedral Stockholm studio" },
-                { src: "/images/kevin-workshop.jpg", alt: "Kevin in the workshop" },
-              ].map(({ src, alt }) => (
-                <div key={src} className="relative aspect-square overflow-hidden bg-[#111]">
-                  <Image src={src} alt={alt} fill className="object-cover opacity-90" />
-                </div>
-              ))}
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-
-
-      {/* ── PROOF STATS ───────────────────────────────────────────────────────
-          Cognitive ease + social proof: four numbers, no prose needed.
-          Scarcity anchor: "20 pieces — never more" repeated before desire peak.
-      ──────────────────────────────────────────────────────────────────────── */}
-      <section className="bg-background py-14 md:py-20">
+      {/* Timeline */}
+      <section className="bg-background py-16 md:py-28 lg:py-40">
         <div className="mx-auto max-w-[1400px] px-6 md:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-accent/[0.06] md:grid-cols-4"
+            variants={fadeInUp}
+            className="mb-12 text-center md:mb-20"
           >
-            {stats.map((s) => (
-              <motion.div
-                key={s.label}
-                variants={fadeInUp}
-                className="bg-background-alt px-8 py-10 text-center"
-              >
-                <p className="font-serif text-[clamp(36px,4vw,52px)] font-light text-accent">
-                  {s.value}
-                </p>
-                <p className="mt-2 text-[11px] font-light tracking-[1px] text-foreground-muted/60">
-                  {s.label}
-                </p>
-              </motion.div>
-            ))}
+            <p className="mb-3.5 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
+              Timeline
+            </p>
+            <h2 className="mt-6 font-serif text-[clamp(32px,4vw,52px)] font-light text-foreground">
+              The Journey <em className="italic text-accent-hover">So Far</em>
+            </h2>
           </motion.div>
+
+          <div className="relative">
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-accent/[0.12] md:left-1/2" />
+            <div className="space-y-12 md:space-y-24">
+              {timeline.map((item, i) => (
+                <motion.div
+                  key={item.year}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-50px" }}
+                  variants={fadeInUp}
+                  className={`relative flex items-start gap-8 md:gap-16 ${
+                    i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  }`}
+                >
+                  <div className="absolute left-8 top-2 z-10 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-accent bg-background md:left-1/2" />
+                  <div className={`ml-14 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16"}`}>
+                    <span className="font-serif text-[28px] font-light text-accent">{item.year}</span>
+                    <h3 className="mt-2 font-serif text-2xl font-normal text-foreground">{item.title}</h3>
+                    <p className="mt-3 text-[15px] font-light leading-[1.85] text-foreground-muted">{item.text}</p>
+                  </div>
+                  <div className="hidden md:block md:w-1/2" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-
-      {/* ── ACT III · DESIRE ──────────────────────────────────────────────────
-          The design philosophy — what Pedral *is*.
-          Identity + tribe: "Not made for everyone" arrives after the arc is earned.
-          Loss aversion: squarcle exists nowhere else — you can't find this elsewhere.
-      ──────────────────────────────────────────────────────────────────────── */}
-      <section className="bg-background py-16 md:py-28">
-        <div className="mx-auto max-w-[760px] px-6 md:px-12">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <motion.p
-              variants={fadeInUp}
-              className="mb-4 text-[11px] font-normal tracking-[4px] uppercase text-accent"
-            >
-              The Design
-            </motion.p>
-            <motion.h2
-              variants={fadeInUp}
-              className="font-serif text-[clamp(28px,3.5vw,42px)] font-light leading-[1.25] text-foreground"
-            >
-              A shape found nowhere else. A number that never changes.
-            </motion.h2>
-            <motion.div variants={fadeInUp} className="mt-6 h-px w-[60px] bg-accent" />
-
-            <motion.div
-              variants={staggerContainer}
-              className="mt-8 space-y-5 text-[16px] font-light leading-[1.9] text-foreground-muted"
-            >
-              <motion.p variants={fadeInUp}>
-                Every Pedral carries the squarcle — a case geometry that exists
-                nowhere else in watchmaking. Not a rounded square, not a cushion
-                case. Something that required years of refinement to arrive at,
-                and that is immediately recognisable once you know it.
-              </motion.p>
-              <motion.p variants={fadeInUp}>
-                Every edition is capped at twenty pieces. Not as a marketing
-                decision. As a commitment. When an edition closes, it closes
-                permanently — no reissue, no sequel, no &ldquo;by popular demand.&rdquo;
-                The collectors who own them know they hold something the market
-                will never produce again.
-              </motion.p>
-              <motion.p variants={fadeInUp}>
-                Watches today are born in boardrooms, built to please everyone. I
-                took a different route. Every Pedral is made to reflect the person
-                who wears it. Not everyone gets a design like this in their
-                collection.
-              </motion.p>
-            </motion.div>
-          </motion.div>
+      {/* Workshop Gallery */}
+      <section className="grid grid-cols-1 gap-4 px-6 py-6 md:grid-cols-3 md:px-12">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-lg md:h-[400px]">
+          <Image src="/images/kevin-early-work.jpg" alt="Kevin early work" fill className="object-cover" />
+        </div>
+        <div className="relative h-[220px] w-full overflow-hidden rounded-lg md:h-[400px]">
+          <Image src="/images/kevin-design-studio.jpg" alt="Pedral Stockholm studio" fill className="object-cover" />
+        </div>
+        <div className="relative h-[220px] w-full overflow-hidden rounded-lg md:h-[400px]">
+          <Image src="/images/kevin-workshop.jpg" alt="Kevin in the workshop" fill className="object-cover" />
         </div>
       </section>
 
-
-      {/* ── PEAK MOMENT · QUOTE ───────────────────────────────────────────────
-          Peak-end rule: this is the emotional high — place it after desire,
-          before social proof, so the reader feels belonging before they act.
-      ──────────────────────────────────────────────────────────────────────── */}
+      {/* Quote */}
       <section className="border-y border-accent/[0.06] bg-background-alt py-14 text-center md:py-20 lg:py-28">
         <div className="mx-auto max-w-[800px] px-6 md:px-12">
           <motion.div
@@ -299,44 +174,31 @@ export default function StoryContent() {
         </div>
       </section>
 
-
-      {/* ── SOCIAL PROOF ──────────────────────────────────────────────────────
-          Testimonials arrive after identity is established.
-          Reader is now in the tribe — proof confirms they belong.
-      ──────────────────────────────────────────────────────────────────────── */}
       <Testimonials />
 
-
-      {/* ── ACTION · SCARCITY ─────────────────────────────────────────────────
-          Loss aversion: "every watch in this story is in the archive" = if you
-          wait, this one joins them. The current collection is the open window.
-          Peak-end rule: end on urgency + belonging, not a generic product CTA.
-      ──────────────────────────────────────────────────────────────────────── */}
-      <section className="bg-background py-16 md:py-24">
+      {/* CTA */}
+      <section className="bg-background py-16 md:py-20">
         <div className="mx-auto max-w-[900px] px-6 md:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerContainer}
+            variants={fadeInUp}
             className="grid gap-8 md:grid-cols-2 md:gap-16"
           >
-            <motion.div variants={fadeInUp}>
+            <div>
               <p className="mb-3 text-[11px] font-normal tracking-[4px] uppercase text-accent">
                 Now Available
               </p>
               <h2 className="font-serif text-[clamp(24px,3vw,34px)] font-light text-foreground">
-                Every watch in this story is in the archive. The current edition is not.
+                Every watch in this story sold out. A few pieces remain.
               </h2>
               <div className="mt-5 h-px w-[60px] bg-accent" />
               <p className="mt-5 text-[15px] font-light leading-[1.85] text-foreground-muted">
-                Six collections. Six sell-outs. None came back. The current edition
-                follows the same rule — 20 pieces, no reissue. When it closes, it
-                joins the archive permanently. A few pieces remain.
+                The current collection follows the same rule — 20 pieces, no reissue. When it closes, it joins the archive permanently.
               </p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="flex flex-col justify-center gap-4">
+            </div>
+            <div className="flex flex-col justify-center gap-4">
               <Link
                 href="/collections"
                 className="inline-block rounded-lg bg-accent px-8 py-4 text-center text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover"
@@ -352,21 +214,15 @@ export default function StoryContent() {
               <p className="text-[11px] font-light text-foreground-muted/40">
                 Maestro · Triomphe · Okapi Classique — limited pieces remaining
               </p>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
 
-
-      {/* ── NEWSLETTER ────────────────────────────────────────────────────────
-          Reciprocity close: the story was a gift. Subscribing is the natural
-          next step for someone who now feels part of the narrative.
-      ──────────────────────────────────────────────────────────────────────── */}
       <Newsletter
         title="Be part of the story."
         subtitle="Join collectors in 30+ countries. First access to new editions — before any public announcement."
       />
-
     </>
   );
 }
