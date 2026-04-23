@@ -118,22 +118,22 @@ export default function CollectionDetail({ collection }: { collection: Collectio
   return (
     <>
       {/* Product Hero — Full-bleed with overlay */}
-      <section className={`relative flex items-center overflow-hidden ${c.heroFit === "contain" ? "min-h-[70vh] sm:min-h-[80vh]" : "min-h-[60vh] sm:min-h-screen"}`}>
+      <section className={`relative flex items-center overflow-hidden ${c.heroFit === "contain" ? "min-h-[50vh] sm:min-h-[70vh]" : "min-h-[60vh] sm:min-h-screen"}`}>
         <div className="absolute inset-0">
           {(c.heroImage || c.image) ? (
             <Image
               src={c.heroImage ?? c.image}
               alt={c.name}
               fill
-              className={c.heroFit === "contain" ? "object-contain object-right" : "object-contain sm:object-cover"}
+              className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
               priority
             />
           ) : (
             <ImagePlaceholder label={`${c.name}\nHero / Lifestyle Image`} className="h-full w-full" />
           )}
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,10,12,0.95)_0%,rgba(5,10,12,0.6)_50%,rgba(5,10,12,0.1)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(5,10,12,0.88)_0%,rgba(5,10,12,0.35)_50%,rgba(5,10,12,0.7)_100%)]" />
         </div>
-        <div className="relative z-10 max-w-[500px] px-6 py-20 sm:py-24 md:py-32 md:px-40">
+        <div className="relative z-10 max-w-[700px] px-6 py-20 sm:py-24 md:py-32 md:px-24">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
