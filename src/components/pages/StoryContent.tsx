@@ -51,7 +51,7 @@ export default function StoryContent() {
       {/* Hero */}
       <section className="bg-background-alt px-6 pb-14 pt-28 sm:pt-32 md:px-24 md:pt-44 md:pb-20">
         <div className="mx-auto max-w-[1200px]">
-          <div className="grid items-center gap-12 md:grid-cols-2 md:gap-20">
+          <div className="grid items-center gap-8 md:grid-cols-2 md:gap-10">
             <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
               <motion.p
                 variants={fadeInUp}
