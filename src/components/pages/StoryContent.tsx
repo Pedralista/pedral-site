@@ -61,7 +61,7 @@ export default function StoryContent() {
               </motion.p>
               <motion.h1
                 variants={fadeInUp}
-                className="font-serif text-[clamp(36px,4vw,48px)] font-light leading-[1.25] text-foreground"
+                className="font-serif text-[clamp(24px,3.5vw,42px)] font-light leading-[1.25] text-foreground whitespace-nowrap"
               >
                 They said no. I said watch me.
               </motion.h1>
