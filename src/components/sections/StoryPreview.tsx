@@ -22,9 +22,9 @@ export default function StoryPreview() {
           {/* Headline — full width */}
           <motion.h2
             variants={fadeInUp}
-            className="font-serif text-[clamp(26px,3.5vw,44px)] font-light leading-[1.2] text-foreground"
+            className="max-w-[560px] font-serif text-[clamp(26px,3.5vw,44px)] font-light leading-[1.2] text-foreground"
           >
-            Watches today are born in boardrooms, built to please everyone. I took a different route.
+            Watches today are born in boardrooms, built to please everyone.<br />I took a different route.
           </motion.h2>
 
           {/* Body + CTA */}
