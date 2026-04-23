@@ -60,6 +60,7 @@ export interface Collection {
   depositAmount?: number;
   nonRefundable?: boolean; // true only for custom/made-to-order pieces (EU Art. 16(c) exemption)
   isEnquiryOnly?: boolean;
+  hidden?: boolean; // true = not shown publicly, page returns 404
   hidePriceOnCard?: boolean;
   variantLabel?: string;
   valuePerspectiveTitle?: string;
@@ -136,6 +137,7 @@ export const collections: Collection[] = [
       "/images/maestro-angle-3.jpg",
     ],
     isPreOrder: true,
+    hidden: true,
     variants: [
       {
         name: "Céleste",

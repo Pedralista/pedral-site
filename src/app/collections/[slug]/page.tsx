@@ -5,7 +5,7 @@ import CollectionDetail from "@/components/pages/CollectionDetail";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export function generateStaticParams() {
-  return collections.map((c) => ({ slug: c.slug }));
+  return collections.filter((c) => !c.hidden).map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
@@ -36,7 +36,7 @@ export default async function CollectionPage({
 }) {
   const { slug } = await params;
   const collection = getCollection(slug);
-  if (!collection) notFound();
+  if (!collection || collection.hidden) notFound();
   return (
     <>
       <ProductJsonLd

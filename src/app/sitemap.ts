@@ -6,7 +6,7 @@ import { archivedWatches } from "@/lib/archive";
 const siteUrl = "https://www.pedral.eu";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const collectionRoutes = collections.map((c) => ({
+  const collectionRoutes = collections.filter((c) => !c.hidden).map((c) => ({
     url: `${siteUrl}/collections/${c.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
