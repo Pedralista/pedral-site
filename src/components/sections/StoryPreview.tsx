@@ -19,34 +19,31 @@ export default function StoryPreview() {
             The Story
           </motion.p>
 
-          <div className="grid gap-10 md:grid-cols-2 md:gap-16">
-            <motion.div variants={fadeInUp} className="flex flex-col gap-5">
-              <h2 className="font-serif text-[clamp(26px,3vw,38px)] font-light leading-[1.3] text-foreground">
-                Watches today are born in boardrooms, built to please everyone. I took a different route.
-              </h2>
-              <p className="text-[15px] font-light leading-[1.85] text-foreground-muted">
-                Every Pedral is made to reflect the person who wears it rather than the widest
-                possible market. The squarcle is its signature, a shape found nowhere else in
-                watchmaking and the quiet mark of an edition capped at twenty. Not everyone gets
-                a design like this in their collection.
-              </p>
-            </motion.div>
+          {/* Headline — full width */}
+          <motion.h2
+            variants={fadeInUp}
+            className="font-serif text-[clamp(26px,3.5vw,44px)] font-light leading-[1.2] text-foreground"
+          >
+            Watches today are born in boardrooms, built to please everyone. I took a different route.
+          </motion.h2>
 
-            <motion.div variants={fadeInUp} className="flex flex-col justify-center gap-3">
-              <Link
-                href="/contact"
-                className="inline-block rounded-lg bg-accent px-7 py-3.5 text-center text-[11px] font-medium tracking-[2.5px] uppercase text-background transition-colors hover:bg-accent-hover"
-              >
-                Request private access
-              </Link>
+          {/* Body + CTA */}
+          <motion.div variants={fadeInUp} className="mt-8 grid gap-8 md:grid-cols-2 md:gap-16">
+            <p className="text-[15px] font-light leading-[1.85] text-foreground-muted">
+              Every Pedral is made to reflect the person who wears it rather than the widest
+              possible market. The squarcle is its signature, a shape found nowhere else in
+              watchmaking and the quiet mark of an edition capped at twenty. Not everyone gets
+              a design like this in their collection.
+            </p>
+            <div className="flex items-center">
               <Link
                 href="/story"
                 className="inline-flex items-center gap-2 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-colors hover:text-accent-hover"
               >
                 Read the full story &rarr;
               </Link>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
