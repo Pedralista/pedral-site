@@ -171,7 +171,7 @@ export const collections: Collection[] = [
     stock: 5,
     maxStock: 20,
     edition: "Frosted Flex",
-    badge: "Limited Allocation",
+    badge: "",
     urgencyTag: "Limited pieces remaining",
     specsTitle: "Swiss precision. Stockholm soul.",
     specs: {
@@ -283,7 +283,7 @@ export const collections: Collection[] = [
     stock: 3,
     maxStock: 20,
     edition: "Saphir Azur / Ember Stone",
-    badge: "New Drop",
+    badge: "",
     urgencyTag: "New editions · 5 pieces each",
     specsTitle: "8.8mm. Considered restraint.",
     specs: {
