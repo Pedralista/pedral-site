@@ -16,11 +16,18 @@ const filters: { key: Filter; label: string }[] = [
   { key: "limited", label: "Limited Edition" },
 ];
 
-function BadgeLabel({ stock, isPreOrder, isEnquiryOnly }: { stock: number; isPreOrder?: boolean; isEnquiryOnly?: boolean }) {
+function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number; isPreOrder?: boolean; isEnquiryOnly?: boolean; badge?: string }) {
   if (isEnquiryOnly) {
     return (
       <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
         By Enquiry Only
+      </span>
+    );
+  }
+  if (badge) {
+    return (
+      <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
+        {badge}
       </span>
     );
   }
@@ -143,7 +150,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
         href={`/collections/${collection.slug}`}
         className="group relative block cursor-pointer overflow-hidden rounded-lg border border-accent/[0.06] bg-background transition-all duration-400 hover:-translate-y-[3px] hover:border-accent/20"
       >
-        <BadgeLabel stock={collection.stock} isPreOrder={collection.isPreOrder} isEnquiryOnly={collection.isEnquiryOnly} />
+        <BadgeLabel stock={collection.stock} isPreOrder={collection.isPreOrder} isEnquiryOnly={collection.isEnquiryOnly} badge={collection.isEnquiryOnly ? undefined : collection.badge} />
 
         <div className="relative aspect-[4/5] overflow-hidden rounded-t-lg bg-[var(--surface)]">
           {collection.image ? (

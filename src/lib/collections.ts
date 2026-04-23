@@ -86,7 +86,7 @@ export const collections: Collection[] = [
     stock: 20,
     maxStock: 20,
     edition: "Céleste / Solaire",
-    badge: "Q2 2026",
+    badge: "New Release",
     urgencyTag: "Two dials · 20 pieces each",
     specsTitle: "Swedish in form. Swiss at heart.",
     specs: {
