@@ -118,7 +118,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
   return (
     <>
       {/* Product Hero — Full-bleed with overlay */}
-      <section className={`relative flex items-center overflow-hidden ${c.heroFit === "contain" ? "min-h-[50vh] sm:min-h-[70vh]" : "min-h-[60vh] sm:min-h-screen"}`}>
+      <section className={`relative flex items-center overflow-hidden ${c.heroFit === "contain" ? "min-h-[70vh] sm:min-h-screen justify-center" : "min-h-[60vh] sm:min-h-screen"}`}>
         <div className="absolute inset-0">
           {(c.heroImage || c.image) ? (
             <Image
@@ -131,9 +131,13 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           ) : (
             <ImagePlaceholder label={`${c.name}\nHero / Lifestyle Image`} className="h-full w-full" />
           )}
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(5,10,12,0.88)_0%,rgba(5,10,12,0.35)_50%,rgba(5,10,12,0.7)_100%)]" />
+          {c.heroFit === "contain" ? (
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(5,10,12,0.82)_0%,rgba(5,10,12,0.55)_40%,rgba(5,10,12,0.2)_70%,transparent_100%)]" />
+          ) : (
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(5,10,12,0.88)_0%,rgba(5,10,12,0.35)_50%,rgba(5,10,12,0.7)_100%)]" />
+          )}
         </div>
-        <div className="relative z-10 max-w-[700px] px-6 py-20 sm:py-24 md:py-32 md:px-24">
+        <div className={`relative z-10 py-20 sm:py-24 md:py-32 ${c.heroFit === "contain" ? "mx-auto max-w-[560px] px-6 text-center translate-x-[8%]" : "max-w-[700px] px-6 md:px-24"}`}>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -174,7 +178,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-5 flex w-fit items-center gap-3 border border-accent/25 px-4 py-2 rounded-lg"
+            className={`mt-5 flex w-fit items-center gap-3 border border-accent/25 px-4 py-2 rounded-lg ${c.heroFit === "contain" ? "mx-auto" : ""}`}
           >
             <span className="h-[7px] w-[7px] animate-pulse rounded-full bg-accent" />
             <span className="text-[11px] tracking-[1.5px] uppercase text-accent">
@@ -210,16 +214,13 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             className="mt-6"
           >
             {c.isEnquiryOnly ? (
-              <div className="flex flex-col gap-3">
+              <div className={`flex flex-col gap-3 ${c.heroFit === "contain" ? "items-center" : ""}`}>
                 <Link
                   href="/contact"
                   className="inline-block w-full rounded-lg bg-accent px-8 py-4 text-center text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
                 >
                   Request an Allocation →
                 </Link>
-                <p className="text-[11px] font-light leading-[1.7] text-foreground-muted/60">
-                  Kevin reviews each request personally. Not all are confirmed.
-                </p>
               </div>
             ) : (
               <>
@@ -248,19 +249,26 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             )}
           </motion.div>
 
-          {/* Reassurance strip */}
+        </div>
+      </section>
+
+      {/* Reassurance strip */}
+      <section className="bg-background border-b border-accent/[0.06]">
+        <div className="mx-auto max-w-[1100px] px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-8 border-t border-accent/[0.08] pt-6 flex flex-col gap-2"
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid gap-0 divide-y divide-accent/[0.06] sm:grid-cols-4 sm:divide-x sm:divide-y-0"
           >
             {[
+              "Kevin reviews each request personally. Not all are confirmed.",
               "Sapphire crystal · Swiss automatic movement · HV1200 steel",
               "Direct communication with Kevin — not a support team",
               "Ships tracked & insured from Stockholm",
             ].map((item) => (
-              <p key={item} className="text-[12px] font-light leading-[1.9] text-foreground-muted/50 md:text-[11px]">
+              <p key={item} className="px-0 py-5 text-[12px] font-light leading-[1.7] text-foreground-muted/50 sm:px-6 sm:py-6 md:text-[11px]">
                 {item}
               </p>
             ))}
