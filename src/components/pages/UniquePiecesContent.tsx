@@ -48,14 +48,20 @@ export default function UniquePiecesContent() {
               variants={fadeInUp}
               className="mx-auto mt-3 text-[15px] font-light leading-[1.8] text-foreground-muted"
             >
-              A short note is enough. I read every message personally and respond myself.
+              A short note is enough. I read every message personally and respond within 24 hours.
             </motion.p>
-            <motion.div variants={fadeInUp} className="mt-5 flex flex-col items-center gap-3">
+            <motion.p
+              variants={fadeInUp}
+              className="mx-auto mt-4 text-[12px] font-light tracking-[0.5px] text-foreground-muted/50"
+            >
+              Custom commissions from €2,500 · Typical timeline: 6–8 months from concept to wrist
+            </motion.p>
+            <motion.div variants={fadeInUp} className="mt-6 flex flex-col items-center gap-3">
               <Link
                 href="/contact"
-                className="inline-block w-full border border-accent/30 px-8 py-3 text-center text-[11px] font-normal tracking-[2.5px] uppercase text-accent transition-colors hover:border-accent hover:bg-accent hover:text-background sm:w-auto"
+                className="inline-block w-full rounded-lg bg-accent px-8 py-3.5 text-center text-[11px] font-medium tracking-[2.5px] uppercase text-background transition-colors hover:bg-accent-hover sm:w-auto"
               >
-                Begin a Commission
+                Start the Conversation
               </Link>
             </motion.div>
           </motion.div>
@@ -77,14 +83,13 @@ export default function UniquePiecesContent() {
                 variants={fadeInUp}
                 className="font-serif text-[22px] font-light text-foreground"
               >
-                Studies are being prepared.
+                Custom commissions are underway.
               </motion.p>
               <motion.p
                 variants={fadeInUp}
                 className="mt-3 text-[15px] font-light text-foreground-muted"
               >
-                If you are looking for something that does not exist yet —
-                write directly. That is how these things start.
+                If you are looking for something that does not exist yet — write directly. Typical timeline: 6–8 months from first conversation to finished watch.
               </motion.p>
             </motion.div>
           ) : (
@@ -184,12 +189,12 @@ export default function UniquePiecesContent() {
             <motion.div variants={fadeInUp} className="mt-8 flex flex-col items-center gap-3">
               <Link
                 href="/contact"
-                className="inline-block w-full border border-accent/30 px-8 py-3 text-center text-[11px] font-normal tracking-[2.5px] uppercase text-accent transition-colors hover:border-accent hover:bg-accent hover:text-background sm:w-auto"
+                className="inline-block w-full rounded-lg bg-accent px-8 py-3.5 text-center text-[11px] font-medium tracking-[2.5px] uppercase text-background transition-colors hover:bg-accent-hover sm:w-auto"
               >
-                Begin a Commission
+                Start the Conversation
               </Link>
               <p className="text-[12px] font-light tracking-[0.5px] text-foreground-muted/50">
-                I respond to every message personally.
+                Kevin responds personally within 24 hours · Commissions from €2,500
               </p>
             </motion.div>
           </motion.div>

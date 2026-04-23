@@ -139,14 +139,20 @@ export default function ArchiveContent() {
               variants={fadeInUp}
               className="font-serif text-[clamp(36px,5vw,56px)] font-light text-foreground"
             >
-              Editions that closed.
+              The watches that found their owners.
             </motion.h1>
             <motion.div variants={fadeInUp} className="mt-4 h-px w-[60px] bg-accent" />
             <motion.p
               variants={fadeInUp}
               className="mt-5 max-w-[520px] text-[15px] font-light leading-[1.85] text-foreground-muted"
             >
-              Every Pedral edition is limited to 20 pieces. When it sells through, it stays closed. These are the watches that came before — each one complete, none returning.
+              Every edition is capped at 20 pieces. When it closes, it stays closed — no reissue, no sequel. These are the watches that proved there was a market for something different. None are coming back.
+            </motion.p>
+            <motion.p
+              variants={fadeInUp}
+              className="mt-3 max-w-[520px] text-[13px] font-light text-foreground-muted/50"
+            >
+              Most sold out within 2–8 weeks. The current collection is next.
             </motion.p>
           </motion.div>
         </div>
@@ -169,29 +175,28 @@ export default function ArchiveContent() {
             ))}
           </motion.div>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="mt-10 text-center text-[13px] font-light leading-[1.7] tracking-[0.5px] text-foreground-muted/60"
-          >
-            None of these editions will reopen. Subscribe to hear about new ones first.
-          </motion.p>
-
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="mt-5 flex justify-center"
+            className="mt-12 rounded-lg border border-accent/10 bg-background p-8 text-center md:p-12"
           >
+            <p className="font-serif text-[clamp(18px,2vw,24px)] font-light text-foreground">
+              None of these editions will reopen.
+            </p>
+            <p className="mx-auto mt-3 max-w-[480px] text-[14px] font-light leading-[1.85] text-foreground-muted">
+              This is the exclusivity Pedral collectors depend on. The current collection follows the same rule — when it closes, it closes. A few pieces remain.
+            </p>
             <Link
               href="/collections"
-              className="rounded-lg border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors hover:border-accent hover:text-accent"
+              className="mt-7 inline-block rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover"
             >
-              View current editions →
+              See what&apos;s still available →
             </Link>
+            <p className="mt-4 text-[11px] font-light text-foreground-muted/40">
+              Maestro · Triomphe · Okapi Classique — limited pieces remaining
+            </p>
           </motion.div>
         </div>
       </section>

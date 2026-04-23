@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
 import Button from "@/components/ui/Button";
 import Testimonials from "@/components/sections/Testimonials";
@@ -167,15 +168,61 @@ export default function StoryContent() {
               &ldquo;Pedral is not made for everyone. It is made for those who
               already understand.&rdquo;
             </p>
+            <p className="mt-5 text-[12px] font-light tracking-[2px] uppercase text-foreground-muted/50">
+              Kevin Pedral, Stockholm
+            </p>
           </motion.div>
         </div>
       </section>
 
       <Testimonials />
 
+      {/* Bridge to current collections */}
+      <section className="bg-background py-16 md:py-20">
+        <div className="mx-auto max-w-[900px] px-6 md:px-12">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="grid gap-8 md:grid-cols-2 md:gap-16"
+          >
+            <div>
+              <p className="mb-3 text-[11px] font-normal tracking-[4px] uppercase text-accent">
+                Now Available
+              </p>
+              <h2 className="font-serif text-[clamp(24px,3vw,34px)] font-light text-foreground">
+                The story continues. A few pieces remain.
+              </h2>
+              <div className="mt-5 h-px w-[60px] bg-accent" />
+              <p className="mt-5 text-[15px] font-light leading-[1.85] text-foreground-muted">
+                Every watch in this story sold out. The current collection follows the same principle — 20 pieces, no reissue. When it closes, it joins the archive permanently.
+              </p>
+            </div>
+            <div className="flex flex-col justify-center gap-4">
+              <Link
+                href="/collections"
+                className="inline-block rounded-lg bg-accent px-8 py-4 text-center text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover"
+              >
+                See current collection →
+              </Link>
+              <Link
+                href="/archive"
+                className="inline-block rounded-lg border border-accent/20 px-8 py-4 text-center text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors hover:border-accent hover:text-accent"
+              >
+                Browse the archive →
+              </Link>
+              <p className="text-[11px] font-light text-foreground-muted/40">
+                Maestro · Triomphe · Okapi Classique — limited pieces remaining
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       <Newsletter
-        title="Friends of the brand see new editions first."
-        subtitle="Be first when the next edition drops."
+        title="Be part of the story."
+        subtitle="Join collectors in 30+ countries. First access to new editions — before any public announcement."
       />
     </>
   );

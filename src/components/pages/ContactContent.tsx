@@ -21,7 +21,7 @@ export default function ContactContent() {
               variants={fadeInUp}
               className="font-serif text-[clamp(40px,5vw,60px)] font-light text-foreground"
             >
-              Reach Kevin directly.
+              Have a conversation that matters.
             </motion.h1>
           </motion.div>
         </div>
@@ -41,23 +41,25 @@ export default function ContactContent() {
             >
               <div className="flex min-h-[300px] flex-col justify-center">
                 <p className="max-w-lg text-[16px] font-light leading-relaxed text-foreground-muted">
-                  Questions about a watch, a collaboration, or how Pedral works. Reach out and I&apos;ll respond personally.
+                  Questions about a watch, a collaboration, a custom commission, or how Pedral works. Kevin reads and responds to every message personally — within 24 hours.
                 </p>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {["Product question", "Custom commission", "Partnership", "Press inquiry"].map((type) => (
+                    <span key={type} className="rounded-full border border-accent/15 px-3 py-1 text-[11px] font-light tracking-[0.5px] text-foreground-muted/60">
+                      {type}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-7">
                   <a
                     href="mailto:info@pedral.watch"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-lg bg-accent px-9 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-all hover:bg-accent-hover sm:text-[11px] sm:tracking-[3px]"
+                    className="inline-block rounded-lg bg-accent px-9 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-all hover:bg-accent-hover"
                   >
-                    Send a Message
+                    Send a Message →
                   </a>
-                  <a
-                    href="mailto:info@pedral.watch"
-                    className="rounded-lg border border-accent/[0.15] bg-transparent px-9 py-4 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-all hover:border-accent hover:bg-accent hover:text-background sm:text-[11px] sm:tracking-[3px]"
-                  >
-                    Email Directly
-                  </a>
+                  <p className="mt-3 text-[12px] font-light text-foreground-muted/50">
+                    Kevin responds personally · Average reply time: under 24 hours
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -92,7 +94,7 @@ export default function ContactContent() {
                 </div>
                 <div>
                   <h3 className="text-[11px] font-medium tracking-[2px] uppercase text-accent">
-                    Follow
+                    See what we&apos;re building
                   </h3>
                   <div className="mt-3 flex flex-col gap-2">
                     {[

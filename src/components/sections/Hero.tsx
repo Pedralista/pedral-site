@@ -62,14 +62,17 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.1 }}
-            className="mt-10"
+            className="mt-10 flex flex-col gap-4"
           >
             <Link
               href="/collections"
-              className="inline-block rounded-lg border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors duration-300 hover:border-accent hover:text-accent"
+              className="inline-block w-fit rounded-lg border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors duration-300 hover:border-accent hover:text-accent"
             >
-              Discover the remaining pieces
+              See what&apos;s available now
             </Link>
+            <p className="text-[11px] font-light tracking-[0.5px] text-foreground-muted/40">
+              Worn by collectors in 30+ countries &middot; Max 20 pieces per edition &middot; No restocks
+            </p>
           </motion.div>
 
 

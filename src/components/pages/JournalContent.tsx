@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { articles } from "@/lib/journal";
+import Newsletter from "@/components/sections/Newsletter";
 
 export default function JournalContent() {
   return (
@@ -78,6 +79,10 @@ export default function JournalContent() {
                 </p>
                 <div className="mt-6 flex items-center gap-4">
                   <span className="text-[11px] tracking-[1px] uppercase text-foreground-muted/40">
+                    By Kevin Pedral
+                  </span>
+                  <span className="text-foreground-muted/20">·</span>
+                  <span className="text-[11px] tracking-[1px] uppercase text-foreground-muted/40">
                     {articles[0].readTime}
                   </span>
                   <span className="text-[10px] tracking-[2px] uppercase text-accent opacity-0 transition-opacity group-hover:opacity-100">
@@ -138,53 +143,25 @@ export default function JournalContent() {
             className="mt-16 text-center"
           >
             <p className="text-[15px] font-light text-foreground-muted">
-              More stories coming soon. Follow us on{" "}
+              Next article: Inside the Maestro Solis workshop &mdash; dropping Q2 2026.{" "}
               <a
                 href="https://www.instagram.com/pedralwatches"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-accent transition-colors hover:text-accent-hover"
               >
-                Instagram
+                Follow on Instagram
               </a>{" "}
-              for updates.
+              for behind-the-scenes.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Newsletter CTA */}
-      <section className="bg-background py-14 md:py-20">
-        <div className="mx-auto max-w-[600px] px-6 text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
-            <h2 className="font-serif text-3xl font-light text-foreground md:text-4xl">
-              Don&apos;t miss an edition.
-            </h2>
-            <p className="mt-3 text-[15px] font-light text-foreground-muted">
-              Subscribe to The Rounded Square for new articles, early access to
-              drops, and behind-the-scenes content.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="flex-1 rounded-lg border border-accent/[0.12] bg-transparent px-5 py-3.5 text-sm font-light text-foreground outline-none transition-colors placeholder:text-foreground-muted/40 focus:border-accent/40"
-              />
-              <button
-                type="button"
-                className="w-full rounded-lg bg-accent px-8 py-3.5 text-[12px] font-medium tracking-[2px] uppercase text-background transition-all hover:bg-accent-hover sm:w-auto sm:text-[11px] sm:tracking-[3px]"
-              >
-                Subscribe
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <Newsletter
+        title="Get the stories before anyone else."
+        subtitle="New articles, behind-the-scenes from the studio, and early access to new editions. No noise."
+      />
     </>
   );
 }
