@@ -129,8 +129,8 @@ export const collections: Collection[] = [
     },
     newsletterTitle: "Be first when Maestro Petite Seconde opens.",
     newsletterSub: "Three dials. 20 pieces each. Collectors on the list are notified first.",
-    image: "/images/maestro-ps-hero.png",
-    heroImage: "/images/maestro-ps-hero.png",
+    image: "/images/maestro-ps-hero-2.png",
+    heroImage: "/images/maestro-ps-hero-2.png",
     heroFit: "contain",
     detailImage: "/images/maestro-ps-solaire-2.png",
     galleryImages: [
