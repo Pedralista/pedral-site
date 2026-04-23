@@ -39,7 +39,7 @@ export default function Hero() {
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="font-serif text-[clamp(52px,8vw,88px)] font-light leading-[1.0] tracking-[-0.5px] text-foreground"
+              className="font-serif text-[clamp(40px,8vw,88px)] font-light leading-[1.0] tracking-[-0.5px] text-foreground"
             >
               Not for everyone.
             </motion.h1>

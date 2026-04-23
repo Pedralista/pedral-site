@@ -71,7 +71,7 @@ export default function CollectionShowcase() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer}
-          className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-8 grid grid-cols-2 gap-4 md:gap-5 lg:grid-cols-4"
         >
           {collections.filter((c) => !c.hidden).map((c) => (
             <motion.div key={c.slug} variants={fadeInUp}>

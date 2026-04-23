@@ -53,7 +53,7 @@ export default function ComingSoon() {
 
           <motion.div
             variants={staggerContainer}
-            className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-12 grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           >
             {upcoming.map((item) => {
               const inner = (
@@ -62,7 +62,7 @@ export default function ComingSoon() {
                     <p className="mb-3 text-[10px] font-normal tracking-[3px] uppercase text-accent/60">
                       {item.label}
                     </p>
-                    <h3 className="font-serif text-[26px] font-light text-foreground">
+                    <h3 className="font-serif text-[20px] md:text-[26px] font-light text-foreground">
                       {item.title}
                     </h3>
                     <p className="mt-4 text-[15px] font-light leading-[1.85] text-foreground-muted">
@@ -81,12 +81,12 @@ export default function ComingSoon() {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="flex flex-col justify-between rounded-lg border border-accent/[0.08] bg-background p-6 md:p-10 transition-all duration-300 hover:border-accent/30 hover:-translate-y-[2px]"
+                      className="flex flex-col justify-between rounded-lg border border-accent/[0.08] bg-background p-5 md:p-8 lg:p-10 transition-all duration-300 hover:border-accent/30 hover:-translate-y-[2px]"
                     >
                       {inner}
                     </Link>
                   ) : (
-                    <div className="flex flex-col justify-between rounded-lg border border-accent/[0.08] bg-background p-6 md:p-10">
+                    <div className="flex flex-col justify-between rounded-lg border border-accent/[0.08] bg-background p-5 md:p-8 lg:p-10">
                       {inner}
                     </div>
                   )}

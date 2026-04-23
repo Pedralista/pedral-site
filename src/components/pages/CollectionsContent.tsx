@@ -129,7 +129,7 @@ export default function CollectionsContent() {
               animate="visible"
               exit="hidden"
               variants={staggerContainer}
-              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+              className="grid grid-cols-2 gap-4 md:gap-5 lg:grid-cols-4"
             >
               {filtered.map((collection) => (
                 <CollectionCard key={collection.slug} collection={collection} />

@@ -58,7 +58,7 @@ export default function TrustIcons() {
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
-        className="mx-auto grid max-w-[900px] grid-cols-2 gap-8 px-6 text-center sm:grid-cols-4 md:px-12"
+        className="mx-auto grid max-w-[900px] grid-cols-2 gap-5 px-6 text-center md:grid-cols-4 md:gap-8 md:px-12"
       >
         {items.map(({ label, icon }) => (
           <div key={label} className="flex flex-col items-center gap-3">

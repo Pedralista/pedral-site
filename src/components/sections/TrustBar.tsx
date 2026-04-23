@@ -22,11 +22,11 @@ export default function TrustBar() {
         <p className="mb-10 text-[11px] font-normal tracking-[3px] uppercase text-accent">
           Worn by collectors in 30+ countries
         </p>
-        <div className="grid grid-cols-3 gap-6 sm:gap-16 md:max-w-[700px] mx-auto">
+        <div className="grid grid-cols-3 gap-4 md:gap-10 lg:gap-16 md:max-w-[700px] mx-auto">
           {stats.map((s) => (
             <div key={s.label}>
-              <p className="font-serif text-[clamp(22px,3vw,32px)] font-light text-foreground">{s.label}</p>
-              <p className="mt-2 text-[13px] font-light leading-[1.7] text-foreground-muted/70">
+              <p className="font-serif text-[clamp(20px,3vw,32px)] font-light text-foreground">{s.label}</p>
+              <p className="mt-2 text-[11px] md:text-[13px] font-light leading-[1.7] text-foreground-muted/70">
                 {s.sub1}<br />{s.sub2}
               </p>
             </div>
