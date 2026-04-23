@@ -53,6 +53,7 @@ export interface Collection {
   newsletterSub: string;
   image: string;
   heroImage?: string;
+  heroFit?: "cover" | "contain";
   detailImage?: string;
   galleryImages?: string[];
   variants?: CollectionVariant[];
@@ -130,6 +131,7 @@ export const collections: Collection[] = [
     newsletterSub: "Three dials. 20 pieces each. Collectors on the list are notified first.",
     image: "/images/maestro-ps-hero.png",
     heroImage: "/images/maestro-ps-hero.png",
+    heroFit: "contain",
     detailImage: "/images/maestro-ps-solaire-2.png",
     galleryImages: [
       "/images/maestro-ps-celeste-2.png",
