@@ -133,7 +133,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           )}
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,10,12,0.95)_0%,rgba(5,10,12,0.6)_50%,rgba(5,10,12,0.1)_100%)]" />
         </div>
-        <div className="relative z-10 max-w-[500px] px-6 py-20 sm:py-24 md:py-32 md:px-24">
+        <div className="relative z-10 max-w-[500px] px-6 py-20 sm:py-24 md:py-32 md:px-40">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
