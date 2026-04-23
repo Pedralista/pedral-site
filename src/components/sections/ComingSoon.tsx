@@ -6,11 +6,11 @@ import Link from "next/link";
 
 const upcoming = [
   {
-    label: "Maestro · Solis",
+    label: "Maestro · Petite Seconde",
     title: "The Maestro. Now with a small seconds.",
-    desc: "Same tonneau case, same considered architecture. A guilloché dial, proprietary Roman numerals, a subsidiary seconds at six, and a Sellita SW260 automatic movement. The Maestro taken one step further.",
-    eta: "Q2 2026 · €1,650",
-    href: null,
+    desc: "Same tonneau case, same considered architecture. A guilloché dial, proprietary Roman numerals, a subsidiary seconds at six, and a Sellita SW260 automatic movement. Three dials: Céleste, Solaire, Éclipse.",
+    eta: "Q2 2026 · €1,600",
+    href: "/collections/maestro-petite-seconde",
   },
   {
     label: "Artefact · Final Frontier",

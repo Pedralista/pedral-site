@@ -143,7 +143,7 @@ export default function JournalContent() {
             className="mt-16 text-center"
           >
             <p className="text-[15px] font-light text-foreground-muted">
-              Next article: Inside the Maestro Solis workshop &mdash; dropping Q2 2026.{" "}
+              Next article: Inside the Maestro Petite Seconde workshop &mdash; dropping Q2 2026.{" "}
               <a
                 href="https://www.instagram.com/pedralwatches"
                 target="_blank"
