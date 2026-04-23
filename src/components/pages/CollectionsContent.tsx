@@ -55,7 +55,7 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly }: { stock: number; isPre
 export default function CollectionsContent() {
   const [active, setActive] = useState<Filter>("all");
 
-  const visible = collections.filter((c) => !isHidden(c));
+  const visible = collections.filter((c) => !c.hidden);
   const filtered =
     active === "all" ? visible : visible.filter((c) => c.tier === active);
 

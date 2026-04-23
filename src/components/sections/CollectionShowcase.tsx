@@ -66,7 +66,7 @@ export default function CollectionShowcase() {
           variants={staggerContainer}
           className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {collections.filter((c) => !isHidden(c)).map((c) => (
+          {collections.filter((c) => !c.hidden).map((c) => (
             <motion.div key={c.slug} variants={fadeInUp}>
               <Link
                 href={`/collections/${c.slug}`}
