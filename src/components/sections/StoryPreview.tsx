@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function StoryPreview() {
   return (
-    <section className="bg-background-alt py-16 md:py-28 lg:py-[120px]">
+    <section className="bg-background-alt py-14 md:py-20">
       <div className="mx-auto max-w-[1100px] px-6 md:px-12">
         <motion.div
           initial="hidden"
@@ -28,21 +28,19 @@ export default function StoryPreview() {
           </motion.h2>
 
           {/* Body + CTA */}
-          <motion.div variants={fadeInUp} className="mt-8 grid gap-8 md:grid-cols-2 md:gap-16">
+          <motion.div variants={fadeInUp} className="mt-8 max-w-[560px]">
             <p className="text-[15px] font-light leading-[1.85] text-foreground-muted">
               Every Pedral is made to reflect the person who wears it rather than the widest
               possible market. The squarcle is its signature, a shape found nowhere else in
               watchmaking and the quiet mark of an edition capped at twenty. Not everyone gets
               a design like this in their collection.
             </p>
-            <div className="flex items-center">
-              <Link
-                href="/story"
-                className="inline-flex items-center gap-2 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-colors hover:text-accent-hover"
-              >
-                Read the full story &rarr;
-              </Link>
-            </div>
+            <Link
+              href="/story"
+              className="mt-5 inline-flex items-center gap-2 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-colors hover:text-accent-hover"
+            >
+              Read the full story &rarr;
+            </Link>
           </motion.div>
         </motion.div>
       </div>
