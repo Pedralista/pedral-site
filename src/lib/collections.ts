@@ -137,7 +137,7 @@ export const collections: Collection[] = [
       "/images/maestro-ps-celeste-2.png",
       "/images/maestro-ps-solaire-2.png",
     ],
-    isPreOrder: true,
+    isEnquiryOnly: true,
     hidden: true,
     variants: [
       {
