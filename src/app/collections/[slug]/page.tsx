@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { collections, getCollection } from "@/lib/collections";
+import { collections, getCollection, isHidden } from "@/lib/collections";
 import CollectionDetail from "@/components/pages/CollectionDetail";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export function generateStaticParams() {
-  return collections.filter((c) => !c.hidden).map((c) => ({ slug: c.slug }));
+  return collections.filter((c) => !isHidden(c)).map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
@@ -36,7 +36,7 @@ export default async function CollectionPage({
 }) {
   const { slug } = await params;
   const collection = getCollection(slug);
-  if (!collection || collection.hidden) notFound();
+  if (!collection || isHidden(collection)) notFound();
   return (
     <>
       <ProductJsonLd

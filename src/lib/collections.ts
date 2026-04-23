@@ -501,3 +501,7 @@ export const collections: Collection[] = [
 export function getCollection(slug: string): Collection | undefined {
   return collections.find((c) => c.slug === slug);
 }
+
+export function isHidden(c: Collection): boolean {
+  return !!c.hidden && process.env.NODE_ENV === "production";
+}

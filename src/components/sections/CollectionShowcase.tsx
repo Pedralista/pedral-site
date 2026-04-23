@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
-import { collections } from "@/lib/collections";
+import { collections, isHidden } from "@/lib/collections";
 import TrustIcons from "@/components/sections/TrustIcons";
 
 function BadgeLabel({ stock, isPreOrder, isEnquiryOnly }: { stock: number; isPreOrder?: boolean; isEnquiryOnly?: boolean }) {
@@ -66,7 +66,7 @@ export default function CollectionShowcase() {
           variants={staggerContainer}
           className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {collections.filter((c) => !c.hidden).map((c) => (
+          {collections.filter((c) => !isHidden(c)).map((c) => (
             <motion.div key={c.slug} variants={fadeInUp}>
               <Link
                 href={`/collections/${c.slug}`}

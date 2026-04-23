@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { collections, Collection } from "@/lib/collections";
+import { collections, Collection, isHidden } from "@/lib/collections";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import ComingSoon from "@/components/sections/ComingSoon";
 
@@ -55,7 +55,7 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly }: { stock: number; isPre
 export default function CollectionsContent() {
   const [active, setActive] = useState<Filter>("all");
 
-  const visible = collections.filter((c) => !c.hidden);
+  const visible = collections.filter((c) => !isHidden(c));
   const filtered =
     active === "all" ? visible : visible.filter((c) => c.tier === active);
 
