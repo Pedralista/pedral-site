@@ -40,8 +40,13 @@ const timeline = [
   },
   {
     year: "Now",
+    title: "Maestro Solis",
+    text: "The Maestro Petite Seconde. SW260 automatic movement, guilloché dial, proprietary Roman numerals, small seconds complication. The most considered Maestro yet.",
+  },
+  {
+    year: "Late 2026",
     title: "Okapi returns",
-    text: "The watch that started everything — reimagined with a new movement, a better case, and the lessons of every collection that came after it.",
+    text: "The watch that started everything — reimagined with a new movement, a better case, and the lessons of every collection that came after it. Same soul. Higher standard.",
   },
 ];
 
