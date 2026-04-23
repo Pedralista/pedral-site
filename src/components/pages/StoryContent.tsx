@@ -72,8 +72,9 @@ export default function StoryContent() {
               >
                 In 2015, I applied to Sweden&apos;s only watchmaking school. Born in
                 the Democratic Republic of Congo, raised in Stockholm. I didn&apos;t
-                have the background they expected. The rejection letter was polite.
-                My response was a decade of work.
+                have the background they expected — or the steady hands, or the
+                eyesight. What I had was resourcefulness. The rejection letter was
+                polite. My response was a decade of work.
               </motion.p>
             </motion.div>
 
