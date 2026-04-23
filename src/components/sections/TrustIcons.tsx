@@ -75,7 +75,7 @@ export default function TrustIcons() {
             >
               {icon}
             </svg>
-            <span className="font-mono text-[10px] tracking-[2px] uppercase text-foreground-muted/60">
+            <span className="font-mono text-[10px] tracking-[2px] uppercase text-accent/70">
               {label}
             </span>
           </div>
