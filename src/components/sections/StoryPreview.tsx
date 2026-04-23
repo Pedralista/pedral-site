@@ -25,9 +25,10 @@ export default function StoryPreview() {
                 Watches today are born in boardrooms, built to please everyone. I took a different route.
               </h2>
               <p className="text-[15px] font-light leading-[1.85] text-foreground-muted">
-                Every Pedral is made to reflect the person who wears it. The squarcle is its
-                signature — a shape found nowhere else and the quiet mark of an edition capped at
-                twenty. Not everyone gets a design like this in their collection.
+                Every Pedral is made to reflect the person who wears it rather than the widest
+                possible market. The squarcle is its signature, a shape found nowhere else in
+                watchmaking and the quiet mark of an edition capped at twenty. Not everyone gets
+                a design like this in their collection.
               </p>
             </motion.div>
 
