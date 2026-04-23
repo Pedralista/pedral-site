@@ -76,7 +76,7 @@ export const collections: Collection[] = [
     description:
       "Same tonneau case, same considered architecture. A guilloché dial, proprietary Roman numerals, and a subsidiary seconds at six o'clock. Powered by the Sellita SW260 automatic movement.",
     descriptionExtra:
-      "Three dials. Céleste in sky blue. Solaire in gold. Éclipse in blue and orange. Each capped at twenty pieces. When a dial closes, it does not return.",
+      "Two dials: Céleste in sky blue, Solaire in gold. Each capped at twenty pieces. When a dial closes, it does not return.",
     designerNote:
       "The Petite Seconde is the Maestro at its most complete. The small seconds complication adds a layer of visual depth without disrupting the dial's clarity. Three dials, three characters — the same architecture underneath each one.",
     year: 2026,
@@ -84,7 +84,7 @@ export const collections: Collection[] = [
     price: 1600,
     stock: 20,
     maxStock: 20,
-    edition: "Céleste / Solaire / Éclipse",
+    edition: "Céleste / Solaire",
     badge: "Q2 2026",
     urgencyTag: "Three dials · 20 pieces each",
     specsTitle: "Swiss automatic. Stockholm soul.",
@@ -134,7 +134,6 @@ export const collections: Collection[] = [
     galleryImages: [
       "/images/maestro-ps-celeste-2.png",
       "/images/maestro-ps-solaire-2.png",
-      "/images/maestro-ps-eclipse.png",
     ],
     isPreOrder: true,
     hidden: true,
@@ -152,13 +151,6 @@ export const collections: Collection[] = [
         stock: 20,
         description: "Gold and warmth. A dial that commands without asking. The sun caught in a guilloché pattern.",
         image: "/images/maestro-ps-solaire-2.png",
-      },
-      {
-        name: "Éclipse",
-        stripePriceId: "",
-        stock: 20,
-        description: "Blue and orange. Contrast that works because it shouldn't. The most striking of the three.",
-        image: "/images/maestro-ps-eclipse.png",
       },
     ],
   },
