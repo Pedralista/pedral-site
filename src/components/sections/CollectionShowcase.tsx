@@ -7,11 +7,18 @@ import Link from "next/link";
 import { collections, isHidden } from "@/lib/collections";
 import TrustIcons from "@/components/sections/TrustIcons";
 
-function BadgeLabel({ stock, isPreOrder, isEnquiryOnly }: { stock: number; isPreOrder?: boolean; isEnquiryOnly?: boolean }) {
+function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number; isPreOrder?: boolean; isEnquiryOnly?: boolean; badge?: string }) {
   if (isEnquiryOnly) {
     return (
       <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
         By Enquiry Only
+      </span>
+    );
+  }
+  if (badge) {
+    return (
+      <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
+        {badge}
       </span>
     );
   }
@@ -72,7 +79,7 @@ export default function CollectionShowcase() {
                 href={`/collections/${c.slug}`}
                 className="group relative block cursor-pointer overflow-hidden rounded-lg border border-accent/[0.06] bg-background transition-all duration-400 hover:-translate-y-[3px] hover:border-accent/20"
               >
-                <BadgeLabel stock={c.stock} isPreOrder={c.isPreOrder} isEnquiryOnly={c.isEnquiryOnly} />
+                <BadgeLabel stock={c.stock} isPreOrder={c.isPreOrder} isEnquiryOnly={c.isEnquiryOnly} badge={c.isEnquiryOnly ? undefined : c.badge} />
                 <div className="relative aspect-[4/5] overflow-hidden rounded-t-lg bg-[var(--surface)]">
                   {c.image ? (
                     <Image
