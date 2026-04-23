@@ -63,30 +63,51 @@ export default function StoryContent() {
     <>
       {/* Hero */}
       <section className="bg-background-alt px-6 pb-14 pt-28 sm:pt-32 md:px-24 md:pt-44 md:pb-20">
-        <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-          <motion.p
-            variants={fadeInUp}
-            className="mb-4 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent"
-          >
-            Brand Story
-          </motion.p>
-          <motion.h1
-            variants={fadeInUp}
-            className="max-w-[700px] font-serif text-[clamp(36px,4vw,48px)] font-light leading-[1.25] text-foreground"
-          >
-            They said no. I said watch me.
-          </motion.h1>
-          <motion.div variants={fadeInUp} className="mt-6 h-px w-[60px] bg-accent" />
-          <motion.p
-            variants={fadeInUp}
-            className="mt-6 max-w-[700px] text-[16px] font-light leading-[1.85] text-foreground-muted"
-          >
-            In 2015, I applied to Sweden&apos;s only watchmaking school. Born
-            in the Democratic Republic of Congo, raised in Stockholm. I
-            didn&apos;t have the background they expected. The rejection letter
-            was polite. My response was a decade of work.
-          </motion.p>
-        </motion.div>
+        <div className="mx-auto max-w-[1200px]">
+          <div className="grid items-center gap-12 md:grid-cols-2 md:gap-20">
+            {/* Text */}
+            <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
+              <motion.p
+                variants={fadeInUp}
+                className="mb-4 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent"
+              >
+                Brand Story
+              </motion.p>
+              <motion.h1
+                variants={fadeInUp}
+                className="font-serif text-[clamp(36px,4vw,48px)] font-light leading-[1.25] text-foreground"
+              >
+                They said no. I said watch me.
+              </motion.h1>
+              <motion.div variants={fadeInUp} className="mt-6 h-px w-[60px] bg-accent" />
+              <motion.p
+                variants={fadeInUp}
+                className="mt-6 text-[16px] font-light leading-[1.85] text-foreground-muted"
+              >
+                In 2015, I applied to Sweden&apos;s only watchmaking school. Born
+                in the Democratic Republic of Congo, raised in Stockholm. I
+                didn&apos;t have the background they expected. The rejection letter
+                was polite. My response was a decade of work.
+              </motion.p>
+            </motion.div>
+
+            {/* Portrait */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
+                <Image
+                  src="/images/kevin-portrait.jpeg"
+                  alt="Kevin Pedral"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Timeline — KEPT FROM ORIGINAL */}
