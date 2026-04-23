@@ -404,6 +404,7 @@ export const collections: Collection[] = [
     badge: "Allocation Only",
     urgencyTag: "20 pieces · First run now open",
     hidePriceOnCard: true,
+    isEnquiryOnly: true,
     nonRefundable: true, // made-to-order pre-order — qualifies under EU Art. 16(c)
     variantLabel: "Movement",
     valuePerspectiveTitle: "What this specification tends to represent elsewhere.",
