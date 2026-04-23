@@ -1,38 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { slideInLeft, slideInRight } from "@/lib/animations";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
 
 export default function StoryPreview() {
   return (
     <section className="bg-background py-16 md:py-28 lg:py-[120px]">
-      <div className="mx-auto max-w-[900px] px-6 md:px-12">
-        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-          {/* Left — Portrait */}
+      <div className="mx-auto max-w-[640px] px-6 md:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            variants={slideInLeft}
-          >
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
-              <Image
-                src="/images/kevin-portrait.jpeg"
-                alt="Kevin Pedral"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </motion.div>
-
-          {/* Right — Text */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={slideInRight}
+            variants={staggerContainer}
           >
             <p className="mb-6 text-[11px] font-normal tracking-[2px] sm:tracking-[4px] uppercase text-accent">
               The Story
@@ -61,7 +41,6 @@ export default function StoryPreview() {
               </Link>
             </div>
           </motion.div>
-        </div>
       </div>
     </section>
   );

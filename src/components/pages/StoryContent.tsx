@@ -82,8 +82,9 @@ export default function StoryContent() {
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex justify-center md:justify-end"
             >
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
+              <div className="relative aspect-[3/4] w-[220px] overflow-hidden rounded-lg md:w-[260px]">
                 <Image
                   src="/images/kevin-portrait.jpeg"
                   alt="Kevin Pedral"
