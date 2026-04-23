@@ -54,7 +54,7 @@ export default function UniquePiecesContent() {
               variants={fadeInUp}
               className="mx-auto mt-4 text-[12px] font-light tracking-[0.5px] text-foreground-muted/50"
             >
-              Custom commissions from €2,500 · Typical timeline: 6–8 months from concept to wrist
+              Custom commissions from €7,000 · Typical timeline: 6–8 months from concept to wrist
             </motion.p>
             <motion.div variants={fadeInUp} className="mt-6 flex flex-col items-center gap-3">
               <Link
@@ -194,7 +194,7 @@ export default function UniquePiecesContent() {
                 Start the Conversation
               </Link>
               <p className="text-[12px] font-light tracking-[0.5px] text-foreground-muted/50">
-                Kevin responds personally within 24 hours · Commissions from €2,500
+                Kevin responds personally within 24 hours · Commissions from €7,000
               </p>
             </motion.div>
           </motion.div>
