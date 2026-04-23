@@ -142,7 +142,7 @@ export const collections: Collection[] = [
         stripePriceId: "",
         stock: 20,
         description: "Sky blue guilloché dial. Light and depth in the same surface. The colour of something just out of reach.",
-        image: "/images/maestro.jpg",
+        image: "/images/maestro-ps-celeste.png",
       },
       {
         name: "Solaire",
@@ -156,7 +156,7 @@ export const collections: Collection[] = [
         stripePriceId: "",
         stock: 20,
         description: "Blue and orange. Contrast that works because it shouldn't. The most striking of the three.",
-        image: "/images/maestro.jpg",
+        image: "/images/maestro-ps-eclipse.png",
       },
     ],
   },
