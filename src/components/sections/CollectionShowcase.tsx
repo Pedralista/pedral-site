@@ -59,7 +59,7 @@ export default function CollectionShowcase() {
             The Collection
           </p>
           <h2 className="font-serif text-[clamp(32px,3.5vw,40px)] font-light text-foreground">
-            Three watches. One designer.
+            Four watches. One designer.
           </h2>
           <p className="mt-4 max-w-[600px] text-[15px] font-light leading-[1.85] text-foreground-muted">
             Each edition is limited to 20 pieces. When it sells out, it stays gone. Not a strategy. One person behind every decision.
