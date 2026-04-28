@@ -11,19 +11,19 @@ import Newsletter from "@/components/sections/Newsletter";
 export const metadata: Metadata = {
   title: "Pedral — Not For Everyone",
   description:
-    "Stockholm-based watch microbrand. Three collections. Limited editions worn in 30+ countries. Designed by one independent creator.",
+    "Stockholm-based watch microbrand. Four collections. Limited editions worn in 30+ countries. Designed by one independent creator.",
   alternates: { canonical: "https://www.pedral.eu" },
   openGraph: {
     title: "Pedral — Not For Everyone",
     description:
-      "Stockholm-based watch microbrand. Three collections. Limited editions worn in 30+ countries. Designed by one independent creator.",
+      "Stockholm-based watch microbrand. Four collections. Limited editions worn in 30+ countries. Designed by one independent creator.",
     url: "https://www.pedral.eu",
     images: [{ url: "/images/hero-lifestyle.jpg", width: 1200, height: 630, alt: "Pedral Watches" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pedral — Not For Everyone",
-    description: "Stockholm-based watch microbrand. Three collections. Limited editions worn in 30+ countries.",
+    description: "Stockholm-based watch microbrand. Four collections. Limited editions worn in 30+ countries.",
     images: ["/images/hero-lifestyle.jpg"],
   },
 };

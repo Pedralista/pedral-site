@@ -7,6 +7,7 @@ import Link from "next/link";
 import { collections, Collection, isHidden } from "@/lib/collections";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import ComingSoon from "@/components/sections/ComingSoon";
+import Newsletter from "@/components/sections/Newsletter";
 
 type Filter = "all" | "signature" | "limited";
 
@@ -139,6 +140,10 @@ export default function CollectionsContent() {
         </div>
       </section>
       <ComingSoon />
+      <Newsletter
+        title="First access. No noise."
+        subtitle="Collectors on the list are notified before any public announcement. New editions, closed dials, studio releases."
+      />
     </>
   );
 }

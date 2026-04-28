@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
-import Testimonials from "@/components/sections/Testimonials";
 import Newsletter from "@/components/sections/Newsletter";
 
 const timeline = [
@@ -181,7 +180,6 @@ export default function StoryContent() {
         </div>
       </section>
 
-      <Testimonials />
 
       {/* CTA */}
       <section className="bg-background py-16 md:py-20">

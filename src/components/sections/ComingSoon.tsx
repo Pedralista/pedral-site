@@ -6,25 +6,25 @@ import Link from "next/link";
 
 const upcoming = [
   {
-    label: "Maestro · Petite Seconde",
-    title: "The Maestro. Now with a small seconds.",
-    desc: "Same tonneau case, same considered architecture. A guilloché dial, proprietary Roman numerals, a subsidiary seconds at six, and a Sellita SW260 automatic movement. Two dials: Céleste and Solaire.",
-    eta: "Q2 2026 · €1,600",
-    href: "/collections/maestro-petite-seconde",
-  },
-  {
-    label: "Artefact · Final Frontier",
-    title: "The last Artefact. Resolved and complete.",
-    desc: "Artefact is being discontinued. Final Frontier closes it — two dials, one set. Versatile enough to go anywhere, resolved enough to belong everywhere. Friends of the brand get priority access before any public release.",
-    eta: "20 sets remaining · €1,000 · No reissue",
-    href: "/artefact-final-frontier",
-  },
-  {
     label: "Triomphe",
     title: "A new dial. The same architecture.",
     desc: "The Triomphe continues — same 8.8mm case, new expression. Each edition closes when it closes. No restocks, no second run. Friends of the brand hear before any public announcement. Allocation-based, as always.",
     eta: "Available Now",
     href: "/collections/triomphe",
+  },
+  {
+    label: "Okapi · Returns",
+    title: "The watch that started everything. Reimagined.",
+    desc: "Okapi is coming back — new movement, refined case, the lessons of every collection that followed. Same soul. Higher standard. Those on the list are considered first.",
+    eta: "Late 2026 · Allocation only",
+    href: "/collections/okapi",
+  },
+  {
+    label: "Maestro Petite Seconde",
+    title: "Now available. Two dials.",
+    desc: "Céleste in sky blue. Solaire in gold. The same tonneau case with a subsidiary seconds at six. 20 pieces per dial. When a dial closes, it does not return.",
+    eta: "Available Now · €1,600",
+    href: "/collections/maestro-petite-seconde",
   },
 ];
 

@@ -9,13 +9,13 @@ export const metadata: Metadata = {
     title: "Archive — Pedral",
     description: "Sold-out limited editions. Artefact, Okapi GMT, Okapi — 20 pieces each. Closed permanently.",
     url: "/archive",
-    images: [{ url: "/images/hero-lifestyle.jpg", width: 1200, height: 630, alt: "Pedral Archive" }],
+    images: [{ url: "/images/okapi-classique.png", width: 1200, height: 630, alt: "Pedral Archive" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Archive — Pedral",
     description: "Sold-out limited editions. Artefact, Okapi GMT, Okapi — 20 pieces each. Closed permanently.",
-    images: ["/images/hero-lifestyle.jpg"],
+    images: ["/images/okapi-classique.png"],
   },
 };
 

@@ -11,14 +11,14 @@ export const metadata: Metadata = {
     description:
       "The story of Kevin Pedral — a self-taught watchmaker from Stockholm who turned rejection into a brand worn in 30+ countries.",
     url: "/story",
-    images: [{ url: "/images/hero-lifestyle.jpg", width: 1200, height: 630, alt: "Kevin Pedral — The Story" }],
+    images: [{ url: "/images/kevin-portrait.jpeg", width: 1200, height: 630, alt: "Kevin Pedral — The Story" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Our Story — Pedral",
     description:
       "The story of Kevin Pedral — a self-taught watchmaker from Stockholm who turned rejection into a brand worn in 30+ countries.",
-    images: ["/images/hero-lifestyle.jpg"],
+    images: ["/images/kevin-portrait.jpeg"],
   },
 };
 
