@@ -11,13 +11,13 @@ export const metadata: Metadata = {
     description:
       "Stories about independent watchmaking, design philosophy, and the craft behind Pedral watches. Written from Stockholm.",
     url: "/journal",
-    images: [{ url: "/images/hero-lifestyle.jpg", width: 1200, height: 630, alt: "The Rounded Square — Pedral Journal" }],
+    images: [{ url: "/images/kevin-design-studio.jpg", width: 1200, height: 630, alt: "The Rounded Square — Pedral Journal" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "The Rounded Square — Pedral Journal",
     description: "Stories about independent watchmaking, design philosophy, and the craft behind Pedral watches.",
-    images: ["/images/hero-lifestyle.jpg"],
+    images: ["/images/kevin-design-studio.jpg"],
   },
 };
 

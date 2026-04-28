@@ -42,13 +42,13 @@ export default function ComingSoon() {
             variants={fadeInUp}
             className="mb-3.5 text-[11px] font-normal tracking-[4px] uppercase text-accent"
           >
-            Coming
+            From the Studio
           </motion.p>
           <motion.h2
             variants={fadeInUp}
             className="font-serif text-[clamp(32px,3.5vw,48px)] font-light text-foreground"
           >
-            What&apos;s next from the studio.
+            What&apos;s available. What&apos;s next.
           </motion.h2>
 
           <motion.div
