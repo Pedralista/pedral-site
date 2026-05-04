@@ -326,7 +326,6 @@ export const collections: Collection[] = [
       Crystal: "Sapphire front & back · AR coating",
       Bracelet: "Integrated hexagonal links · Quick-release",
       Strap: "Customised Epsom leather strap included",
-      Lume: "Swiss Super-LumiNova® BGW9",
       "Water Resist.": "100 meters / 330 feet",
       Warranty: "24-month international coverage",
       Edition: "20 pieces per dial · No restocks · No reissues",
