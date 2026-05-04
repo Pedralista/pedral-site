@@ -12,6 +12,8 @@ const VALID_PRICE_IDS = new Set([
   "price_1TEVYOCfxE1lSBKRdzi2pJsj",
   "price_1TKw2kCfxE1lSBKRLqfS1Lvb", // Okapi — ETA 7001
   "price_1TKw7wCfxE1lSBKRcFLiQiu6", // Okapi — LJP7380
+  "price_1TPWFUCfxE1lSBKRrOHlguJc", // Maestro Petite Seconde — Céleste (€1,600)
+  "price_1TPWI7CfxE1lSBKR6eBgMdJl", // Maestro Petite Seconde — Solaire (€1,600)
 ]);
 
 export async function POST(req: NextRequest) {
