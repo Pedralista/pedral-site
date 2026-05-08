@@ -40,7 +40,7 @@ const timeline = [
   {
     year: "Now",
     title: "Maestro Petite Seconde",
-    text: "SW260 automatic movement, guilloché dial, proprietary Roman numerals, small seconds at six. Two dials: Céleste and Solaire. The most considered Maestro yet.",
+    text: "SW260 automatic movement, guilloché dial, proprietary Roman numerals, small seconds at six. Two dials: Soul Blue and Solaire. The most considered Maestro yet.",
   },
   {
     year: "Late 2026",

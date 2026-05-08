@@ -22,7 +22,7 @@ const upcoming = [
   {
     label: "Maestro Petite Seconde",
     title: "Now available. Two dials.",
-    desc: "Céleste in sky blue. Solaire in gold. The same tonneau case with a subsidiary seconds at six. 20 pieces per dial. When a dial closes, it does not return.",
+    desc: "Soul Blue. Solaire in gold. The same tonneau case with a subsidiary seconds at six. 20 pieces per dial. When a dial closes, it does not return.",
     eta: "Available Now · €1,600",
     href: "/collections/maestro-petite-seconde",
   },
