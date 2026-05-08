@@ -307,7 +307,7 @@ export const collections: Collection[] = [
     description:
       "Same tonneau case, same considered architecture. A guilloché dial, proprietary Roman numerals, and a subsidiary seconds at six o'clock. Powered by the Sellita SW260 automatic movement.",
     descriptionExtra:
-      "Two dials: Soul Blue, Solaire in gold. Each capped at twenty pieces. When a dial closes, it does not return.",
+      "Two dials: Soul Blue, Aura Gold. Each capped at twenty pieces. When a dial closes, it does not return.",
     designerNote:
       "The Petite Seconde is the Maestro at its most complete. The small seconds complication adds a layer of visual depth without disrupting the dial's clarity. Two dials, two characters — the same architecture underneath each one.",
     year: 2026,
@@ -315,7 +315,7 @@ export const collections: Collection[] = [
     price: 1600,
     stock: 20,
     maxStock: 20,
-    edition: "Soul Blue / Solaire",
+    edition: "Soul Blue / Aura Gold",
     badge: "New Release",
     urgencyTag: "Two dials · 20 pieces each",
     specsTitle: "Swedish in form. Swiss at heart.",
@@ -375,7 +375,7 @@ export const collections: Collection[] = [
         image: "/images/maestro-ps-celeste-2.png",
       },
       {
-        name: "Solaire",
+        name: "Aura Gold",
         stripePriceId: "price_1TPWI7CfxE1lSBKR6eBgMdJl",
         stock: 20,
         description: "Gold and warmth. A dial that commands without asking. The sun caught in a guilloché pattern.",
