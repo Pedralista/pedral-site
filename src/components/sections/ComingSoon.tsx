@@ -22,7 +22,7 @@ const upcoming = [
   {
     label: "Maestro Petite Seconde",
     title: "Now available. Two dials.",
-    desc: "Soul Blue. Aura Gold. The same tonneau case with a subsidiary seconds at six. 20 pieces per dial. When a dial closes, it does not return.",
+    desc: "Soul Blue. Aura Gold. The same tonneau case with a subsidiary seconds at six. Limited pieces remaining. When a dial closes, it does not return.",
     eta: "Available Now · €1,600",
     href: "/collections/maestro-petite-seconde",
   },

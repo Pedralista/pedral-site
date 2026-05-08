@@ -307,17 +307,17 @@ export const collections: Collection[] = [
     description:
       "Same tonneau case, same considered architecture. A guilloché dial, proprietary Roman numerals, and a subsidiary seconds at six o'clock. Powered by the Sellita SW260 automatic movement.",
     descriptionExtra:
-      "Two dials: Soul Blue, Aura Gold. Each capped at twenty pieces. When a dial closes, it does not return.",
+      "Two dials: Soul Blue, Aura Gold. Limited pieces remaining. When a dial closes, it does not return.",
     designerNote:
       "The Petite Seconde is the Maestro at its most complete. The small seconds complication adds a layer of visual depth without disrupting the dial's clarity. Two dials, two characters — the same architecture underneath each one.",
     year: 2026,
     tier: "signature",
     price: 1600,
-    stock: 20,
+    stock: 17,
     maxStock: 20,
     edition: "Soul Blue / Aura Gold",
     badge: "New Release",
-    urgencyTag: "Two dials · 20 pieces each",
+    urgencyTag: "Two dials · Pieces remaining",
     specsTitle: "Swedish in form. Swiss at heart.",
     specs: {
       Movement: "Sellita SW260 · Swiss automatic · 38-hour power reserve",
@@ -328,7 +328,7 @@ export const collections: Collection[] = [
       Strap: "Customised Epsom leather strap included",
       "Water Resist.": "100 meters / 330 feet",
       Warranty: "24-month international coverage",
-      Edition: "20 pieces per dial · No restocks · No reissues",
+      Edition: "Limited per dial · No restocks · No reissues",
     },
     boxContents: [
       "Maestro Petite Seconde timepiece",
@@ -357,7 +357,7 @@ export const collections: Collection[] = [
       note: "The same tonneau case as the Maestro. Owners who typically wear 38–40mm describe it as wearing larger than expected. The integrated bracelet follows the natural curve of the arm.",
     },
     newsletterTitle: "Be first when Maestro Petite Seconde opens.",
-    newsletterSub: "Two dials. 20 pieces each. Collectors on the list are notified first.",
+    newsletterSub: "Two dials. Limited pieces remaining. Collectors on the list are notified first.",
     image: "/images/maestro-ps-celeste-2.png",
     heroImage: "/images/maestro-ps-hero-2.png",
     heroFit: "contain",
@@ -370,14 +370,14 @@ export const collections: Collection[] = [
       {
         name: "Soul Blue",
         stripePriceId: "price_1TPWFUCfxE1lSBKRrOHlguJc",
-        stock: 20,
+        stock: 17,
         description: "Sky blue guilloché dial. Light and depth in the same surface. The colour of something just out of reach.",
         image: "/images/maestro-ps-celeste-2.png",
       },
       {
         name: "Aura Gold",
         stripePriceId: "price_1TPWI7CfxE1lSBKR6eBgMdJl",
-        stock: 20,
+        stock: 15,
         description: "Gold and warmth. A dial that commands without asking. The sun caught in a guilloché pattern.",
         image: "/images/maestro-ps-solaire-2.png",
       },
