@@ -203,7 +203,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
                 </>
               )}
             </div>
-            {collection.stock > 0 ? (
+            {collection.stock > 0 && !collection.isEnquiryOnly ? (
               <div>
                 <div className="mb-1 ml-auto h-[3px] w-[72px] overflow-hidden rounded-sm bg-accent/[0.12]">
                   <div

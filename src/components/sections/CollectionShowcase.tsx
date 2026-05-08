@@ -131,7 +131,7 @@ export default function CollectionShowcase() {
                         </>
                       )}
                     </div>
-                    {c.stock > 0 ? (
+                    {c.stock > 0 && !c.isEnquiryOnly ? (
                       <div>
                         <div className="mb-1 ml-auto h-[3px] w-[72px] overflow-hidden rounded-sm bg-accent/[0.12]">
                           <div
