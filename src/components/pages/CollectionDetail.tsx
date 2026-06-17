@@ -226,7 +226,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               <>
                 <button
                   onClick={handleReserve}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral)}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
                 >
                   {loading
@@ -355,19 +355,28 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                             Numeral Style
                           </p>
                           <div className="flex flex-wrap gap-2">
-                            {v.numeralOptions.map((opt) => (
-                              <button
-                                key={opt}
-                                onClick={() => setSelectedNumeral(opt)}
-                                className={`border px-4 py-2.5 text-[11px] tracking-[2px] uppercase transition-colors ${
-                                  selectedNumeral === opt
-                                    ? "border-accent bg-accent text-background"
-                                    : "border-accent/30 text-accent hover:border-accent"
-                                }`}
-                              >
-                                {opt}
-                              </button>
-                            ))}
+                            {v.numeralOptions.map((opt) => {
+                              const isSoldOut = v.soldOutNumerals?.includes(opt);
+                              const stock = v.numeralStock?.[opt];
+                              return (
+                                <button
+                                  key={opt}
+                                  onClick={() => setSelectedNumeral(opt)}
+                                  className={`flex flex-col items-start border px-4 py-2.5 text-[11px] tracking-[2px] uppercase transition-colors ${
+                                    selectedNumeral === opt
+                                      ? "border-accent bg-accent text-background"
+                                      : "border-accent/30 text-accent hover:border-accent"
+                                  }`}
+                                >
+                                  {opt}
+                                  {stock !== undefined && (
+                                    <span className={`mt-0.5 text-[10px] tracking-[0.5px] normal-case font-medium ${selectedNumeral === opt ? "text-background/80" : isSoldOut ? "text-accent/50" : "text-accent/70"}`}>
+                                      {isSoldOut ? "0 available" : `${stock} available`}
+                                    </span>
+                                  )}
+                                </button>
+                              );
+                            })}
                           </div>
                           {!selectedNumeral && (
                             <p className="mt-2 text-[11px] font-light text-foreground-muted/50">
@@ -452,7 +461,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               <div className="flex flex-col gap-2">
                 <button
                   onClick={handleReserve}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral)}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
                   {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `Reserve Allocation · €${(selectedVariant?.price ?? c.price).toLocaleString()}`}
@@ -859,7 +868,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               </p>
               <button
                 onClick={handleReserve}
-                disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral)}
+                disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                 className="mt-6 w-full max-w-[300px] rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
               >
                 {loading

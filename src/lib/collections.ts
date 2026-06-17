@@ -7,6 +7,8 @@ export interface CollectionVariant {
   image?: string;
   numeralOptions?: string[];
   numeralImages?: Record<string, string>;
+  soldOutNumerals?: string[];
+  numeralStock?: Record<string, number>;
 }
 
 export interface Collection {
@@ -75,11 +77,11 @@ export const collections: Collection[] = [
     tagline: "Limited Allocation",
     hook: "The person who notices this watch already understands it.",
     description:
-      "At 37mm, the monobloc tonneau case and fluted bezel frame a textured sunburst dial where lumed Roman numerals meet a diagonal time display. A detail most will pass over.",
+      "At 37mm, the monobloc tonneau case and fluted bezel frame a textured sunburst dial with lumed Roman numerals and a traditional time display. A detail most will pass over.",
     descriptionExtra:
-      "Hexagonal bracelet links follow the wrist's natural curve. The watch does not announce itself.",
+      "Hexagonal bracelet links follow the wrist's natural curve. The watch does not announce itself. Earlier editions included a driver's dial variant — a diagonal time display built around a driving watch principle.",
     designerNote:
-      "Maestro is a dress watch for people who don't need to be told it's a dress watch. The tonneau case, the diagonal display, the hexagonal bracelet. Each decision has a reason. None of them are decorative.",
+      "Maestro is a dress watch for people who don't need to be told it's a dress watch. The tonneau case, the classic dial, the hexagonal bracelet. Each decision has a reason. None of them are decorative.",
     year: 2025,
     tier: "signature",
     price: 1450,
@@ -92,7 +94,7 @@ export const collections: Collection[] = [
     specs: {
       Movement: "Sellita SW200-1b · Swiss automatic · 38-hour power reserve",
       Case: "37mm tonneau · 9.8mm slim · 47.5mm lug-to-lug · 316L stainless steel · HV1200 scratch-resistant coating",
-      Dial: "Angled driver's dial — two-tier guilloché: rhombus centre, angular rooftops, sunburst outer ring · Classic non-angled dial with Roman numerals available",
+      Dial: "Classic dial with Roman numerals · Lapis No.1: sunburst guilloché finish · Frosted Flex: architectural frosted finish",
       Crystal: "Sapphire front & back · 5× internal AR coating · scratch-resistant",
       Bracelet: "Integrated hexagonal links · 22.5mm at lugs, tapers to 18mm · HV1200 coating · quick-release",
       Strap: "Customised Epsom leather strap included · 20mm",
@@ -114,17 +116,11 @@ export const collections: Collection[] = [
       "Dress watches with Swiss Sellita movements, sapphire crystal, and an integrated bracelet. At the established houses: €2,800+. Without the overhead cost, the showroom, the retail chain, the advertising: €1,450. Edition of 20. The difference didn't disappear. It remains in the watch.",
     valueComparePrice: "€2,800+",
     detailStrip: {
-      eyebrow: "The Diagonal Display",
-      title: "A principle, not a detail.",
-      text: "The diagonal time display is a driving watch principle. Read the time without turning your wrist. It is one of those decisions that, once understood, makes everything else seem obvious.",
+      eyebrow: "The Classic Expression",
+      title: "Everything in its place.",
+      text: "The Maestro's tonneau case and hexagonal bracelet are designed to disappear when worn and reappear when noticed. The classic dial keeps the time readable. Nothing more, nothing less.",
     },
     testimonials: [
-      {
-        quote:
-          "Honestly, the diagonal display seemed like a gimmick to me at first. Then I wore it for a week and couldn't go back to a normal layout. It just makes sense once your wrist gets used to it.",
-        name: "Pieter V.",
-        bio: "Photographer · Amsterdam · Second Pedral purchase",
-      },
       {
         quote:
           "I wasn't sure about 37mm. I usually wear 40. But the tonneau shape carries the size differently. It wears bigger than you'd expect. The whole thing is more considered than the price suggests.",
@@ -249,6 +245,8 @@ export const collections: Collection[] = [
         description: "A multi-layer guilloché dial in deep sapphire blue. Carreau Tissé centre, Vagues de Lumière border. Layers that reward every glance.",
         image: "/images/triomphe-saphir-roman.jpg",
         numeralOptions: ["Roman", "Eastern Arabic", "Hebrew"],
+        soldOutNumerals: ["Hebrew"],
+        numeralStock: { "Roman": 2, "Eastern Arabic": 3, "Hebrew": 0 },
         numeralImages: {
           "Roman": "/images/triomphe-saphir-roman.jpg",
           "Eastern Arabic": "/images/triomphe-saphir-arabic.jpg",
