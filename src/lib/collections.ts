@@ -311,7 +311,7 @@ export const collections: Collection[] = [
     year: 2026,
     tier: "signature",
     price: 1600,
-    stock: 17,
+    stock: 9,
     maxStock: 20,
     edition: "Soul Blue / Aura Gold",
     badge: "New Release",
