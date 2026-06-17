@@ -368,14 +368,14 @@ export const collections: Collection[] = [
       {
         name: "Soul Blue",
         stripePriceId: "price_1TPWFUCfxE1lSBKRrOHlguJc",
-        stock: 17,
+        stock: 7,
         description: "Sky blue guilloché dial. Light and depth in the same surface. The colour of something just out of reach.",
         image: "/images/maestro-ps-celeste-2.png",
       },
       {
         name: "Aura Gold",
         stripePriceId: "price_1TPWI7CfxE1lSBKR6eBgMdJl",
-        stock: 15,
+        stock: 9,
         description: "Gold and warmth. A dial that commands without asking. The sun caught in a guilloché pattern.",
         image: "/images/maestro-ps-solaire-2.png",
       },
