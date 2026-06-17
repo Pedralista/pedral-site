@@ -241,7 +241,7 @@ export const collections: Collection[] = [
       {
         name: "Saphir Azur",
         stripePriceId: "price_1TOxPMCfxE1lSBKRFQfT9aRT",
-        stock: 3,
+        stock: 5,
         description: "A multi-layer guilloché dial in deep sapphire blue. Carreau Tissé centre, Vagues de Lumière border. Layers that reward every glance.",
         image: "/images/triomphe-saphir-roman.jpg",
         numeralOptions: ["Roman", "Eastern Arabic", "Hebrew"],
@@ -256,7 +256,7 @@ export const collections: Collection[] = [
       {
         name: "Ember Stone",
         stripePriceId: "price_1TOxO4CfxE1lSBKR8hiQjgiE",
-        stock: 3,
+        stock: 0,
         description: "Warm amber tones drawn from the earth. A natural stone dial that deepens in low light and commands attention in daylight.",
         image: "/images/triomphe-ember.jpg",
       },
