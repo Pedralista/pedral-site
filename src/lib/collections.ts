@@ -132,14 +132,14 @@ export const collections: Collection[] = [
       {
         name: "Lapis No.1",
         stripePriceId: "price_1TOwepCfxE1lSBKRI7sNBLcW",
-        stock: 8,
+        stock: 2,
         description: "Deep lapis lazuli blue. A dial that commands the room. The sunburst guilloché catches the light differently with every angle.",
         image: "/images/maestro-lapis.jpg",
       },
       {
         name: "Frosted Flex",
         stripePriceId: "price_1TOwodCfxE1lSBKRaUZJ0s7O",
-        stock: 7,
+        stock: 5,
         description: "A frosted, architectural surface with a quiet confidence. Less is more. Until the light hits.",
         image: "/images/maestro-frosted.jpg",
       },
