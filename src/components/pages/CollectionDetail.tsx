@@ -185,16 +185,28 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               Edition of {c.maxStock} &middot; {c.edition}
             </span>
           </motion.div>
-          {!c.isEnquiryOnly && !isSoldOut && (
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-              className="mt-3 text-[11px] font-light tracking-[0.5px] text-foreground-muted/50"
-            >
-              Once this edition closes, it never returns.
-            </motion.p>
-          )}
+          {!c.isEnquiryOnly && !isSoldOut && (() => {
+            const stockToShow = (hasVariants && selectedVariant) ? selectedVariant.stock : c.stock;
+            return stockToShow <= 5 && stockToShow > 0 ? (
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1.0 }}
+                className="mt-3 text-[11px] font-medium tracking-[1.5px] uppercase text-red-400/80"
+              >
+                Only {stockToShow} {stockToShow === 1 ? "piece" : "pieces"} remaining
+              </motion.p>
+            ) : (
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1.0 }}
+                className="mt-3 text-[11px] font-light tracking-[0.5px] text-foreground-muted/50"
+              >
+                Once this edition closes, it never returns.
+              </motion.p>
+            );
+          })()}
           {/* Selected variant name */}
           {hasVariants && selectedVariant && (
             <motion.p
