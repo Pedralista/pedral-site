@@ -14,6 +14,8 @@ export interface CollectionVariant {
 export interface Collection {
   slug: string;
   name: string;
+  metaTitle?: string;
+  metaDescription?: string;
   tagline: string;
   hook: string;
   description: string;
@@ -74,6 +76,8 @@ export const collections: Collection[] = [
   {
     slug: "maestro",
     name: "Maestro",
+    metaTitle: "Pedral Maestro — Limited Edition Dress Watch | Klocka från Stockholm",
+    metaDescription: "Maestro är en limiterad klocka från Stockholm. 37mm tonneau-fodral, guilloché-urtavla, hexagonalt armband. Handgjord i begränsad upplaga. Från €1,450.",
     tagline: "Limited Allocation",
     hook: "The person who notices this watch already understands it.",
     description:
@@ -384,6 +388,8 @@ export const collections: Collection[] = [
   {
     slug: "okapi",
     name: "Okapi Classique",
+    metaTitle: "Pedral Okapi Classique — La Joux-Perret LJP7380 | Limited Watch",
+    metaDescription: "The Okapi Classique is powered by the La Joux-Perret LJP7380 — a high-grade movement from La Chaux-de-Fonds. 37mm cushion case, guilloché dial, limited pieces. From €2,800.",
     tagline: "The Original",
     hook: "The one that started everything.",
     description:

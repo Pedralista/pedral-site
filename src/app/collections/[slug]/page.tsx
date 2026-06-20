@@ -16,20 +16,22 @@ export async function generateMetadata({
   const { slug } = await params;
   const collection = getCollection(slug);
   if (!collection) return { title: "Not Found" };
+  const metaTitle = collection.metaTitle ?? `${collection.name} — Pedral`;
+  const metaDescription = collection.metaDescription ?? collection.description;
   return {
-    title: collection.name,
-    description: collection.description,
+    title: collection.metaTitle ?? collection.name,
+    description: metaDescription,
     alternates: { canonical: `/collections/${collection.slug}` },
     openGraph: {
-      title: `${collection.name} — Pedral`,
-      description: collection.description,
+      title: metaTitle,
+      description: metaDescription,
       url: `/collections/${collection.slug}`,
       images: [{ url: collection.image, width: 1200, height: 630, alt: `Pedral ${collection.name} watch` }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${collection.name} — Pedral`,
-      description: collection.description,
+      title: metaTitle,
+      description: metaDescription,
       images: [collection.image],
     },
   };
