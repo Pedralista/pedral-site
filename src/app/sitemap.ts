@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const archiveRoutes = archivedWatches.map((w) => ({
-    url: `${siteUrl}/archive#${w.slug}`,
+    url: `${siteUrl}/archive/${w.slug}`,
     lastModified: new Date(),
     changeFrequency: "yearly" as const,
     priority: 0.6,

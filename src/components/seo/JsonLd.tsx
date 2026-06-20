@@ -43,10 +43,38 @@ interface ProductJsonLdProps {
   image: string;
   slug: string;
   year: number;
+  price: number;
+  stock: number;
+  testimonials?: { quote: string; name: string }[];
 }
 
-export function ProductJsonLd({ name, description, image, slug, year }: ProductJsonLdProps) {
-  const schema = {
+export function ProductJsonLd({ name, description, image, slug, year, price, stock, testimonials }: ProductJsonLdProps) {
+  const availability =
+    stock === 0
+      ? "https://schema.org/OutOfStock"
+      : stock <= 5
+      ? "https://schema.org/LimitedAvailability"
+      : "https://schema.org/InStock";
+
+  const reviews = testimonials && testimonials.length > 0
+    ? testimonials.map((t) => ({
+        "@type": "Review",
+        reviewBody: t.quote,
+        author: { "@type": "Person", name: t.name },
+        reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
+      }))
+    : undefined;
+
+  const aggregateRating = testimonials && testimonials.length > 0
+    ? {
+        "@type": "AggregateRating",
+        ratingValue: 5,
+        reviewCount: testimonials.length,
+        bestRating: 5,
+      }
+    : undefined;
+
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: `Pedral ${name}`,
@@ -64,11 +92,16 @@ export function ProductJsonLd({ name, description, image, slug, year }: ProductJ
     releaseDate: `${year}-01-01`,
     offers: {
       "@type": "Offer",
-      url: "https://shop.pedral.eu",
-      availability: "https://schema.org/LimitedAvailability",
+      url: `https://www.pedral.eu/collections/${slug}`,
+      availability,
       priceCurrency: "EUR",
+      price: price.toFixed(2),
+      priceValidUntil: `${year + 2}-12-31`,
     },
   };
+
+  if (reviews) schema.review = reviews;
+  if (aggregateRating) schema.aggregateRating = aggregateRating;
 
   return (
     <script
@@ -107,6 +140,25 @@ export function ArticleJsonLd({ title, description, slug, date }: ArticleJsonLdP
       name: "The Rounded Square",
       url: "https://www.pedral.eu/journal",
     },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function FaqJsonLd({ items }: { items: { q: string; a: string }[] }) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
   };
 
   return (
