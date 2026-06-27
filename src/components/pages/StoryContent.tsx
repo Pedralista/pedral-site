@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
 import Newsletter from "@/components/sections/Newsletter";
 
 const timeline = [

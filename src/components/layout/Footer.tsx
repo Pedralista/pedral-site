@@ -107,6 +107,12 @@ export default function Footer() {
             Cookies
           </Link>
           <Link
+            href="/returns"
+            className="text-[11px] font-normal tracking-[1px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
+          >
+            Returns
+          </Link>
+          <Link
             href="/withdrawal"
             className="text-[11px] font-normal tracking-[1px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
           >

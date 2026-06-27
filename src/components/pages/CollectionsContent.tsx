@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { collections, Collection, isHidden } from "@/lib/collections";
+import { collections, Collection } from "@/lib/collections";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import ComingSoon from "@/components/sections/ComingSoon";
 import Newsletter from "@/components/sections/Newsletter";

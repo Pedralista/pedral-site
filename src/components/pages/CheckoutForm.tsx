@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -14,16 +14,12 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 
 function PaymentForm({
   collection,
-  variant,
   email,
   setEmail,
-  clientSecret,
 }: {
   collection: Collection;
-  variant: CollectionVariant;
   email: string;
   setEmail: (e: string) => void;
-  clientSecret: string;
 }) {
   const stripe = useStripe();
   const elements = useElements();
@@ -111,28 +107,40 @@ export default function CheckoutForm({
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [initError, setInitError] = useState<string | null>(null);
+  const emailRef = useRef(email);
+  useLayoutEffect(() => {
+    emailRef.current = email;
+  }, [email]);
 
   useEffect(() => {
-    setClientSecret(null);
-    setInitError(null);
+    let cancelled = false;
     fetch("/api/payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         slug: collection.slug,
         variantName: variant.name,
-        email: email || undefined,
+        email: emailRef.current || undefined,
       }),
     })
       .then((r) => r.json())
       .then((d) => {
+        if (cancelled) return;
         if (d.clientSecret) {
           setClientSecret(d.clientSecret);
+          setInitError(null);
         } else {
+          setClientSecret(null);
           setInitError(d.error ?? "Could not initialise payment. Please try again.");
         }
       })
-      .catch(() => setInitError("Network error. Please check your connection."));
+      .catch(() => {
+        if (!cancelled) {
+          setClientSecret(null);
+          setInitError("Network error. Please check your connection.");
+        }
+      });
+    return () => { cancelled = true; };
   }, [collection.slug, variant.name]);
 
   if (initError) {
@@ -173,10 +181,8 @@ export default function CheckoutForm({
     >
       <PaymentForm
         collection={collection}
-        variant={variant}
         email={email}
         setEmail={setEmail}
-        clientSecret={clientSecret}
       />
     </Elements>
   );

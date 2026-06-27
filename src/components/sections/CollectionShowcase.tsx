@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
-import { collections, isHidden } from "@/lib/collections";
+import { collections } from "@/lib/collections";
 import TrustIcons from "@/components/sections/TrustIcons";
 
 function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number; isPreOrder?: boolean; isEnquiryOnly?: boolean; badge?: string }) {
