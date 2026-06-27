@@ -5,6 +5,7 @@ export interface CollectionVariant {
   price?: number;
   description?: string;
   image?: string;
+  color?: string;
   numeralOptions?: string[];
   numeralImages?: Record<string, string>;
   soldOutNumerals?: string[];
@@ -137,6 +138,7 @@ export const collections: Collection[] = [
         name: "Lapis No.1",
         stripePriceId: "price_1TOwepCfxE1lSBKRI7sNBLcW",
         stock: 2,
+        color: "Blue",
         description: "Deep lapis lazuli blue. A dial that commands the room. The sunburst guilloché catches the light differently with every angle.",
         image: "/images/maestro-lapis.jpg",
       },
@@ -144,6 +146,7 @@ export const collections: Collection[] = [
         name: "Frosted Flex",
         stripePriceId: "price_1TOwodCfxE1lSBKRaUZJ0s7O",
         stock: 5,
+        color: "Silver",
         description: "A frosted, architectural surface with a quiet confidence. Less is more. Until the light hits.",
         image: "/images/maestro-frosted.jpg",
       },
@@ -151,6 +154,7 @@ export const collections: Collection[] = [
         name: "Cosmic Tlt",
         stripePriceId: "",
         stock: 0,
+        color: "Black",
         description: "The diagonal time display expression. A driving watch principle: read the time without turning your wrist.",
         image: "/images/maestro-cosmic-tlt.jpg",
       },
@@ -158,6 +162,7 @@ export const collections: Collection[] = [
         name: "Laguna View",
         stripePriceId: "",
         stock: 0,
+        color: "Blue",
         description: "The classic expression of the Maestro. Same architecture, traditional time display.",
         image: "/images/maestro-laguna-view.jpg",
       },
@@ -246,6 +251,7 @@ export const collections: Collection[] = [
         name: "Saphir Azur",
         stripePriceId: "price_1TOxPMCfxE1lSBKRFQfT9aRT",
         stock: 5,
+        color: "Blue",
         description: "A multi-layer guilloché dial in deep sapphire blue. Carreau Tissé centre, Vagues de Lumière border. Layers that reward every glance.",
         image: "/images/triomphe-saphir-roman.jpg",
         numeralOptions: ["Roman", "Eastern Arabic", "Hebrew"],
@@ -261,6 +267,7 @@ export const collections: Collection[] = [
         name: "Ember Stone",
         stripePriceId: "price_1TOxO4CfxE1lSBKR8hiQjgiE",
         stock: 0,
+        color: "Amber",
         description: "Warm amber tones drawn from the earth. A natural stone dial that deepens in low light and commands attention in daylight.",
         image: "/images/triomphe-ember.jpg",
       },
@@ -268,6 +275,7 @@ export const collections: Collection[] = [
         name: "Tempest Stone",
         stripePriceId: "price_1T4TsqCfxE1lSBKRFBCRLukn",
         stock: 0,
+        color: "Gray",
         description: "Dark, stormy tones drawn from natural stone. No two dials are identical. Yours is the only one like it in the world.",
         image: "/images/triomphe-tempest.jpg",
       },
@@ -275,6 +283,7 @@ export const collections: Collection[] = [
         name: "Émeraude Vert",
         stripePriceId: "price_1T4TpQCfxE1lSBKR6aJh8nbb",
         stock: 0,
+        color: "Green",
         description: "A multi-layer guilloché dial in deep emerald green. Carreau Tissé centre, Vagues de Lumière border. Layers that reward every glance.",
         image: "/images/triomphe-emeraude.jpg",
       },
@@ -373,6 +382,7 @@ export const collections: Collection[] = [
         name: "Soul Blue",
         stripePriceId: "price_1TPWFUCfxE1lSBKRrOHlguJc",
         stock: 7,
+        color: "Blue",
         description: "Sky blue guilloché dial. Light and depth in the same surface. The colour of something just out of reach.",
         image: "/images/maestro-ps-celeste-2.png",
       },
@@ -380,6 +390,7 @@ export const collections: Collection[] = [
         name: "Aura Gold",
         stripePriceId: "price_1TPWI7CfxE1lSBKR6eBgMdJl",
         stock: 9,
+        color: "Gold",
         description: "Gold and warmth. A dial that commands without asking. The sun caught in a guilloché pattern.",
         image: "/images/maestro-ps-solaire-2.png",
       },
@@ -478,6 +489,7 @@ export const collections: Collection[] = [
         name: "ETA 7001",
         stripePriceId: "price_1TKw2kCfxE1lSBKRLqfS1Lvb",
         stock: 3,
+        color: "Blue",
         price: 2800,
         description: "Swiss hand-wound. Slim, direct, reliable. The honest choice — everything in its right place.",
         image: "/images/okapi-classique.png",
@@ -486,6 +498,7 @@ export const collections: Collection[] = [
         name: "LJP7380",
         stripePriceId: "price_1TKw7wCfxE1lSBKRcFLiQiu6",
         stock: 1,
+        color: "Blue",
         price: 3900,
         description: "La Joux-Perret LJP7380. High-grade decorated. La Chaux-de-Fonds manufacture. The movement independent watchmakers choose when they refuse to compromise.",
         image: "/images/okapi-classique.png",

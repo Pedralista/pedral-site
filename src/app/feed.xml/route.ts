@@ -23,6 +23,7 @@ export async function GET() {
       for (const v of c.variants) {
         const id = `${c.slug}-${v.name.toLowerCase().replace(/\s+/g, "-")}`;
         const price = v.price ?? c.price;
+        const color = v.color ?? "Silver";
         items.push(`
     <item>
       <g:id>${escapeXml(id)}</g:id>
@@ -35,6 +36,9 @@ export async function GET() {
       <g:availability>${availability(v.stock)}</g:availability>
       <g:brand>${brand}</g:brand>
       <g:condition>new</g:condition>
+      <g:color>${escapeXml(color)}</g:color>
+      <g:gender>unisex</g:gender>
+      <g:age_group>adult</g:age_group>
       <g:product_type>Watches &gt; Dress Watches</g:product_type>
       <g:google_product_category>201</g:google_product_category>
     </item>`);
@@ -51,6 +55,9 @@ export async function GET() {
       <g:availability>${availability(c.stock)}</g:availability>
       <g:brand>${brand}</g:brand>
       <g:condition>new</g:condition>
+      <g:color>Silver</g:color>
+      <g:gender>unisex</g:gender>
+      <g:age_group>adult</g:age_group>
       <g:product_type>Watches &gt; Dress Watches</g:product_type>
       <g:google_product_category>201</g:google_product_category>
     </item>`);
