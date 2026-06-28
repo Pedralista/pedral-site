@@ -4,6 +4,7 @@ import "./globals.css";
 import ClientLayout from "@/components/layout/ClientLayout";
 import CookieBanner from "@/components/layout/CookieBanner";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import MetaPixel from "@/components/analytics/MetaPixel";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -95,6 +96,7 @@ export default function RootLayout({
         <OrganizationJsonLd />
         <ClientLayout>{children}</ClientLayout>
         <CookieBanner />
+        <MetaPixel />
       </body>
     </html>
   );

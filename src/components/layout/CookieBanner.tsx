@@ -17,6 +17,7 @@ export default function CookieBanner() {
 
   function accept() {
     localStorage.setItem("pedral-cookies", "accepted");
+    window.dispatchEvent(new Event("pedral-cookies-accepted"));
     setVisible(false);
   }
 
