@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { archivedWatches, ArchivedWatch } from "@/lib/archive";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
+import Newsletter from "@/components/sections/Newsletter";
 
 function ArchiveCard({ watch }: { watch: ArchivedWatch }) {
   const [index, setIndex] = useState(0);
@@ -170,7 +171,9 @@ export default function ArchiveContent() {
           >
             {archivedWatches.map((watch) => (
               <motion.div key={watch.slug} variants={fadeInUp}>
-                <ArchiveCard watch={watch} />
+                <Link href={`/archive/${watch.slug}`} className="block">
+                  <ArchiveCard watch={watch} />
+                </Link>
               </motion.div>
             ))}
           </motion.div>
@@ -200,6 +203,13 @@ export default function ArchiveContent() {
           </motion.div>
         </div>
       </section>
+
+      {/* Waitlist */}
+      <Newsletter
+        title="If it ever returns, you'll know first."
+        subtitle="These editions won't reopen — but new ones do. Leave your email and you'll hear before anyone else. Nothing else."
+        buttonText="Join the List"
+      />
     </>
   );
 }
