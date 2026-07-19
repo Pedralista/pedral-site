@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/pages/LegalPage";
-import { FaqJsonLd } from "@/components/seo/JsonLd";
+import { FaqJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -59,6 +59,7 @@ export default function FaqPage() {
   return (
     <>
       <FaqJsonLd items={FAQ_ITEMS} />
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "FAQ", url: "/faq" }]} />
       <LegalPage eyebrow="Help" title="Frequently Asked Questions" updated="Ordering, shipping, returns, warranty, sizing">
         <h2>About Pedral</h2>
         <p>

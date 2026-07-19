@@ -6,6 +6,7 @@ import CollectionShowcase from "@/components/sections/CollectionShowcase";
 import ComingSoon from "@/components/sections/ComingSoon";
 import WhyPedral from "@/components/sections/WhyPedral";
 import Testimonials from "@/components/sections/Testimonials";
+import Press from "@/components/sections/Press";
 import Newsletter from "@/components/sections/Newsletter";
 
 export const metadata: Metadata = {
@@ -41,6 +42,7 @@ export default function Home() {
       <ComingSoon />
       <WhyPedral />
       <Testimonials />
+      <Press />
       <Newsletter />
     </>
   );

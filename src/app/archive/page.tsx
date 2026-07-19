@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ArchiveContent from "@/components/pages/ArchiveContent";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Archive",
@@ -23,5 +24,10 @@ export const metadata: Metadata = {
 };
 
 export default function ArchivePage() {
-  return <ArchiveContent />;
+  return (
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Archive", url: "/archive" }]} />
+      <ArchiveContent />
+    </>
+  );
 }

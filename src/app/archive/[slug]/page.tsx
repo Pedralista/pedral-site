@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { archivedWatches } from "@/lib/archive";
 import ArchiveDetailContent from "@/components/pages/ArchiveDetailContent";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 function getArchivedWatch(slug: string) {
   return archivedWatches.find((w) => w.slug === slug);
@@ -52,5 +53,16 @@ export default async function ArchiveDetailPage({
   const { slug } = await params;
   const watch = getArchivedWatch(slug);
   if (!watch) notFound();
-  return <ArchiveDetailContent watch={watch} />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Archive", url: "/archive" },
+          { name: watch.name, url: `/archive/${watch.slug}` },
+        ]}
+      />
+      <ArchiveDetailContent watch={watch} />
+    </>
+  );
 }

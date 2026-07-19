@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CollectionsContent from "@/components/pages/CollectionsContent";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Collections",
@@ -25,5 +26,10 @@ export const metadata: Metadata = {
 };
 
 export default function CollectionsPage() {
-  return <CollectionsContent />;
+  return (
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Collections", url: "/collections" }]} />
+      <CollectionsContent />
+    </>
+  );
 }

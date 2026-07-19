@@ -7,6 +7,17 @@ function availability(stock: number): string {
   return stock > 0 ? "in_stock" : "out_of_stock";
 }
 
+function productType(movement: string | undefined): string {
+  const m = (movement ?? "").toLowerCase();
+  if (m.includes("hand-wound") || m.includes("hand wound") || m.includes("manual")) {
+    return "Watches &gt; Dress Watches &gt; Hand-Wound";
+  }
+  if (m.includes("automatic")) {
+    return "Watches &gt; Dress Watches &gt; Automatic";
+  }
+  return "Watches &gt; Dress Watches";
+}
+
 function escapeXml(str: string): string {
   return str
     .replace(/&/g, "&amp;")
@@ -36,10 +47,11 @@ export async function GET() {
       <g:availability>${availability(v.stock)}</g:availability>
       <g:brand>${brand}</g:brand>
       <g:condition>new</g:condition>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:color>${escapeXml(color)}</g:color>
       <g:gender>unisex</g:gender>
       <g:age_group>adult</g:age_group>
-      <g:product_type>Watches &gt; Dress Watches</g:product_type>
+      <g:product_type>${productType(c.specs.Movement)}</g:product_type>
       <g:google_product_category>201</g:google_product_category>
     </item>`);
       }
@@ -55,10 +67,11 @@ export async function GET() {
       <g:availability>${availability(c.stock)}</g:availability>
       <g:brand>${brand}</g:brand>
       <g:condition>new</g:condition>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:color>Silver</g:color>
       <g:gender>unisex</g:gender>
       <g:age_group>adult</g:age_group>
-      <g:product_type>Watches &gt; Dress Watches</g:product_type>
+      <g:product_type>${productType(c.specs.Movement)}</g:product_type>
       <g:google_product_category>201</g:google_product_category>
     </item>`);
     }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/pages/LegalPage";
 import { WARRANTY_TERMS } from "@/lib/warranty";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Warranty",
@@ -10,7 +11,9 @@ export const metadata: Metadata = {
 
 export default function WarrantyPage() {
   return (
-    <LegalPage eyebrow="Legal" title="Warranty" updated="24-month international warranty">
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Warranty", url: "/warranty" }]} />
+      <LegalPage eyebrow="Legal" title="Warranty" updated="24-month international warranty">
       <h2>{WARRANTY_TERMS.coverage.title}</h2>
       <p>{WARRANTY_TERMS.coverage.text}</p>
 
@@ -37,5 +40,6 @@ export default function WarrantyPage() {
         personally.
       </p>
     </LegalPage>
+    </>
   );
 }

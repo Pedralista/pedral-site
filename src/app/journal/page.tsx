@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JournalContent from "@/components/pages/JournalContent";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "The Rounded Square — Journal",
@@ -25,5 +26,10 @@ export const metadata: Metadata = {
 };
 
 export default function JournalPage() {
-  return <JournalContent />;
+  return (
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Journal", url: "/journal" }]} />
+      <JournalContent />
+    </>
+  );
 }

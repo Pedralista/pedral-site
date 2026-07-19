@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import StoryContent from "@/components/pages/StoryContent";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Our Story",
@@ -26,5 +27,10 @@ export const metadata: Metadata = {
 };
 
 export default function StoryPage() {
-  return <StoryContent />;
+  return (
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Our Story", url: "/story" }]} />
+      <StoryContent />
+    </>
+  );
 }

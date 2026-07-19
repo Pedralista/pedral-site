@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import UniquePiecesContent from "@/components/pages/UniquePiecesContent";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Bespoke Pieces",
@@ -18,5 +19,10 @@ export const metadata: Metadata = {
 };
 
 export default function UniquePiecesPage() {
-  return <UniquePiecesContent />;
+  return (
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Bespoke Pieces", url: "/bespoke-pieces" }]} />
+      <UniquePiecesContent />
+    </>
+  );
 }
