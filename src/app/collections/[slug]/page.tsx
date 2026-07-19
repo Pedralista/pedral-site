@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { collections, getCollection, isHidden } from "@/lib/collections";
 import CollectionDetail from "@/components/pages/CollectionDetail";
 import { ProductJsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
+import ViewItemTracker from "@/components/analytics/ViewItemTracker";
 
 export function generateStaticParams() {
   return collections.filter((c) => !isHidden(c)).map((c) => ({ slug: c.slug }));
@@ -75,6 +76,16 @@ export default async function CollectionPage({
         { q: "I can't see it in person before buying.", a: "Most owners say the watch is better in person than in photos. High-resolution images and full specifications are available for every edition. The 14-day return policy exists precisely for this reason." },
       ]} />
       <CollectionDetail collection={collection} />
+      {/* Fires GA4 view_item + Pixel ViewContent without touching CollectionDetail. */}
+      <ViewItemTracker
+        item={{
+          item_id: collection.slug,
+          item_name: collection.name,
+          price: collection.price,
+          quantity: 1,
+        }}
+        value={collection.price}
+      />
     </>
   );
 }

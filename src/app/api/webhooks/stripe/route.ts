@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { sendMetaCapiPurchase } from "@/lib/metaCapi";
 
 export async function POST(req: NextRequest) {
   if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
@@ -36,6 +37,10 @@ export async function POST(req: NextRequest) {
           ? `Pre-order deposit received: ${session.metadata?.collection} — ${session.customer_details?.email}`
           : `Order completed: ${session.metadata?.product} ${session.metadata?.variant} — ${session.customer_details?.email}`
       );
+
+      // Server-side Meta Conversions API Purchase. No-ops if unconfigured and
+      // never throws — the webhook's 200 to Stripe is unaffected.
+      await sendMetaCapiPurchase(session);
       break;
     }
 
