@@ -4,7 +4,10 @@ import LegalPage from "@/components/pages/LegalPage";
 export const metadata: Metadata = {
   title: "Returns & Refunds",
   description: "Pedral Watches returns policy — 14-day free returns, refund to original payment method.",
-  alternates: { canonical: "/returns" },
+  alternates: {
+    canonical: "/returns",
+    languages: { en: "/returns", "x-default": "/returns" },
+  },
 };
 
 export default function ReturnsPage() {
@@ -61,6 +64,13 @@ export default function ReturnsPage() {
       <p>
         You will be clearly informed before purchase if this exception applies. All other editions —
         including pre-orders — are fully returnable within 14 days of delivery.
+      </p>
+
+      <h2>Warranty</h2>
+      <p>
+        Beyond the 14-day return window, every Pedral watch carries a 24-month international
+        warranty covering movement and manufacturing defects. See the{" "}
+        <a href="/warranty">Warranty</a> page for full terms.
       </p>
 
       <h2>Damaged or Incorrect Items</h2>
