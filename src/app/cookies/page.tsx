@@ -4,7 +4,10 @@ import LegalPage from "@/components/pages/LegalPage";
 export const metadata: Metadata = {
   title: "Cookie Policy",
   description: "Pedral Watches cookie policy — how we use cookies and similar technologies.",
-  alternates: { canonical: "/cookies" },
+  alternates: {
+    canonical: "/cookies",
+    languages: { en: "/cookies", "x-default": "/cookies" },
+  },
 };
 
 export default function CookiePolicyPage() {

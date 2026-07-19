@@ -4,7 +4,10 @@ import LegalPage from "@/components/pages/LegalPage";
 export const metadata: Metadata = {
   title: "Right of Withdrawal",
   description: "Pedral Watches right of withdrawal — your 14-day cooling-off period under EU law.",
-  alternates: { canonical: "/withdrawal" },
+  alternates: {
+    canonical: "/withdrawal",
+    languages: { en: "/withdrawal", "x-default": "/withdrawal" },
+  },
 };
 
 export default function WithdrawalPage() {

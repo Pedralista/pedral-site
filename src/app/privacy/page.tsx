@@ -4,7 +4,10 @@ import LegalPage from "@/components/pages/LegalPage";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Pedral Watches privacy policy — how we collect, use, and protect your personal data.",
-  alternates: { canonical: "/privacy" },
+  alternates: {
+    canonical: "/privacy",
+    languages: { en: "/privacy", "x-default": "/privacy" },
+  },
 };
 
 export default function PrivacyPage() {

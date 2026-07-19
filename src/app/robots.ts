@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/api/", "/checkout", "/account", "/order/"],
     },
     sitemap: "https://www.pedral.eu/sitemap.xml",
   };

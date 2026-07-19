@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import JournalContent from "@/components/pages/JournalContent";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "The Rounded Square — Journal",
   description:
     "The Rounded Square: stories about independent watchmaking, design philosophy, and the craft behind Pedral watches. Written from Stockholm.",
-  alternates: { canonical: "/journal" },
+  alternates: {
+    canonical: "/journal",
+    languages: { en: "/journal", "x-default": "/journal" },
+  },
   openGraph: {
     title: "The Rounded Square — Pedral Journal",
     description:
@@ -22,5 +26,10 @@ export const metadata: Metadata = {
 };
 
 export default function JournalPage() {
-  return <JournalContent />;
+  return (
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Journal", url: "/journal" }]} />
+      <JournalContent />
+    </>
+  );
 }

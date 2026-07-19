@@ -1,16 +1,26 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/pages/LegalPage";
+import { SHIPPING_LINE } from "@/lib/shipping";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Shipping & Customs",
   description: "Pedral Watches shipping information, delivery times, and customs duties.",
-  alternates: { canonical: "/shipping" },
+  alternates: {
+    canonical: "/shipping",
+    languages: { en: "/shipping", "x-default": "/shipping" },
+  },
 };
 
 export default function ShippingPage() {
   return (
-    <LegalPage eyebrow="Legal" title="Shipping &amp; Customs" updated="International delivery information">
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Shipping & Customs", url: "/shipping" }]} />
+      <LegalPage eyebrow="Legal" title="Shipping &amp; Customs" updated="International delivery information">
       <h2>Shipping</h2>
+      <p>
+        <strong>{SHIPPING_LINE}.</strong>
+      </p>
       <p>
         All watches shipped from Stockholm, Sweden via insured, tracked courier. Tracking number
         sent by email upon dispatch.
@@ -61,5 +71,6 @@ export default function ShippingPage() {
         investigate and resolve promptly.
       </p>
     </LegalPage>
+    </>
   );
 }

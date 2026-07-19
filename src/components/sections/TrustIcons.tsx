@@ -1,11 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
+import { SHIPPING_LINE } from "@/lib/shipping";
 
 const items = [
   {
     label: "24-Month Warranty",
+    href: "/warranty",
     icon: (
       <>
         <circle cx="22" cy="22" r="20" />
@@ -24,7 +27,7 @@ const items = [
     ),
   },
   {
-    label: "Express Insured Shipping",
+    label: SHIPPING_LINE,
     icon: (
       <>
         <rect x="4" y="16" width="24" height="14" rx="2" />
@@ -60,26 +63,42 @@ export default function TrustIcons() {
         variants={fadeInUp}
         className="mx-auto grid max-w-[900px] grid-cols-2 gap-5 px-6 text-center md:grid-cols-4 md:gap-8 md:px-12"
       >
-        {items.map(({ label, icon }) => (
-          <div key={label} className="flex flex-col items-center gap-3">
-            <svg
-              width="44"
-              height="44"
-              viewBox="0 0 44 44"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-foreground-muted/40"
+        {items.map(({ label, icon, href }) => {
+          const content = (
+            <>
+              <svg
+                width="44"
+                height="44"
+                viewBox="0 0 44 44"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-foreground-muted/40"
+              >
+                {icon}
+              </svg>
+              <span className="font-mono text-[10px] tracking-[2px] uppercase text-accent/70 underline-offset-4 group-hover:underline">
+                {label}
+              </span>
+            </>
+          );
+
+          return href ? (
+            <Link
+              key={label}
+              href={href}
+              className="group flex flex-col items-center gap-3"
             >
-              {icon}
-            </svg>
-            <span className="font-mono text-[10px] tracking-[2px] uppercase text-accent/70">
-              {label}
-            </span>
-          </div>
-        ))}
+              {content}
+            </Link>
+          ) : (
+            <div key={label} className="flex flex-col items-center gap-3">
+              {content}
+            </div>
+          );
+        })}
       </motion.div>
     </section>
   );

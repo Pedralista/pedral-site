@@ -1,23 +1,17 @@
 "use client";
 
 import Script from "next/script";
-import { useState, useEffect } from "react";
+import { useCookieConsent } from "@/lib/useCookieConsent";
 
-const PIXEL_ID = "1567304517174881";
+// Server value can reuse META_PIXEL_ID; the client needs the NEXT_PUBLIC_ copy.
+const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 export default function MetaPixel() {
-  const [consented, setConsented] = useState(false);
+  const consented = useCookieConsent();
 
-  useEffect(() => {
-    if (localStorage.getItem("pedral-cookies") === "accepted") {
-      setConsented(true);
-      return;
-    }
-    const handler = () => setConsented(true);
-    window.addEventListener("pedral-cookies-accepted", handler);
-    return () => window.removeEventListener("pedral-cookies-accepted", handler);
-  }, []);
-
+  // No-op when the Pixel isn't configured — renders nothing, never throws.
+  if (!PIXEL_ID) return null;
+  // Respect consent — nothing loads before the user accepts cookies.
   if (!consented) return null;
 
   return (

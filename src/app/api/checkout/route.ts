@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { rateLimit, getIp } from "@/lib/rateLimit";
+import { collections } from "@/lib/collections";
+import {
+  addOnsEnabledFor,
+  getStrapAddon,
+  engravingAddon,
+  sanitizeEngraving,
+} from "@/lib/addons";
 
 const VALID_PRICE_IDS = new Set([
   "price_1TOwepCfxE1lSBKRI7sNBLcW", // Maestro — Lapis No.1 (€1,450)
@@ -26,7 +33,7 @@ export async function POST(req: NextRequest) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2026-01-28.clover",
   });
-  const { priceId, productName, variantName, isPreOrder } = await req.json();
+  const { priceId, productName, variantName, isPreOrder, addOns } = await req.json();
 
   if (!priceId || !productName) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -36,6 +43,44 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid price" }, { status: 400 });
   }
 
+  // ── Add-on line items ──────────────────────────────────────────────────────
+  // Optional, additive, and never trusted from the client: prices are re-derived
+  // server-side and only accepted when add-ons are enabled for this product.
+  // Absent `addOns` (old request bodies) leaves the flow completely unchanged.
+  const addOnLineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
+  const collection = collections.find((c) => c.name === productName);
+
+  if (addOns && collection && addOnsEnabledFor(collection)) {
+    const strapSlug = typeof addOns.strapSlug === "string" ? addOns.strapSlug : undefined;
+    if (strapSlug) {
+      const strap = getStrapAddon(strapSlug);
+      if (strap && strap.compatibleWith.includes(collection.slug)) {
+        addOnLineItems.push({
+          price_data: {
+            currency: "eur",
+            product_data: { name: strap.name },
+            unit_amount: Math.round(strap.price * 100),
+          },
+          quantity: 1,
+        });
+      }
+    }
+
+    const rawEngraving =
+      typeof addOns.engravingText === "string" ? addOns.engravingText : "";
+    const engravingText = sanitizeEngraving(rawEngraving).trim();
+    if (engravingText.length > 0) {
+      addOnLineItems.push({
+        price_data: {
+          currency: "eur",
+          product_data: { name: `Case-back engraving: "${engravingText}"` },
+          unit_amount: Math.round(engravingAddon.price * 100),
+        },
+        quantity: 1,
+      });
+    }
+  }
+
   const ALLOWED_ORIGINS = new Set(["https://pedral.eu", "https://www.pedral.eu", "https://pedral.watch", "https://www.pedral.watch"]);
   const requestOrigin = req.headers.get("origin") ?? "";
   const origin = ALLOWED_ORIGINS.has(requestOrigin) ? requestOrigin : "https://pedral.eu";
@@ -43,7 +88,7 @@ export async function POST(req: NextRequest) {
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     ui_mode: "embedded",
-    line_items: [{ price: priceId, quantity: 1 }],
+    line_items: [{ price: priceId, quantity: 1 }, ...addOnLineItems],
     return_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
     metadata: {
       product: productName,

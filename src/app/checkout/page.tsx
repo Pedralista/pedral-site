@@ -4,9 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { collections } from "@/lib/collections";
 import CheckoutForm from "@/components/pages/CheckoutForm";
+import BeginCheckoutTracker from "@/components/analytics/BeginCheckoutTracker";
 
 export const metadata: Metadata = {
-  title: "Checkout — Pedral",
+  title: "Checkout",
   robots: { index: false, follow: false },
 };
 
@@ -25,6 +26,17 @@ export default async function CheckoutPage({
 
   return (
     <main className="min-h-screen bg-background">
+      {/* Fires GA4 add_to_cart + begin_checkout and Pixel AddToCart + InitiateCheckout. */}
+      <BeginCheckoutTracker
+        item={{
+          item_id: collection.slug,
+          item_name: collection.name,
+          price: collection.price,
+          quantity: 1,
+          item_variant: variant.name,
+        }}
+        value={collection.price}
+      />
       {/* Header */}
       <div className="border-b border-accent/[0.06] px-6 py-5 md:px-12">
         <div className="mx-auto flex max-w-[900px] items-center justify-between">

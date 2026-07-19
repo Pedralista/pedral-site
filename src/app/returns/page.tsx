@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/pages/LegalPage";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Returns & Refunds",
   description: "Pedral Watches returns policy — 14-day free returns, refund to original payment method.",
-  alternates: { canonical: "/returns" },
+  alternates: {
+    canonical: "/returns",
+    languages: { en: "/returns", "x-default": "/returns" },
+  },
 };
 
 export default function ReturnsPage() {
   return (
-    <LegalPage eyebrow="Legal" title="Returns &amp; Refunds" updated="14-day free returns">
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Returns & Refunds", url: "/returns" }]} />
+      <LegalPage eyebrow="Legal" title="Returns &amp; Refunds" updated="14-day free returns">
       <h2>Return Window</h2>
       <p>
         You may return any standard Pedral watch within <strong>14 days</strong> of receiving your
@@ -63,6 +69,13 @@ export default function ReturnsPage() {
         including pre-orders — are fully returnable within 14 days of delivery.
       </p>
 
+      <h2>Warranty</h2>
+      <p>
+        Beyond the 14-day return window, every Pedral watch carries a 24-month international
+        warranty covering movement and manufacturing defects. See the{" "}
+        <a href="/warranty">Warranty</a> page for full terms.
+      </p>
+
       <h2>Damaged or Incorrect Items</h2>
       <p>
         Received something damaged or not what you ordered? Email{" "}
@@ -84,5 +97,6 @@ export default function ReturnsPage() {
         <a href="mailto:info@pedral.watch">info@pedral.watch</a>
       </p>
     </LegalPage>
+    </>
   );
 }
