@@ -63,6 +63,8 @@ export interface Collection {
   galleryImages?: string[];
   variants?: CollectionVariant[];
   isPreOrder?: boolean;
+  /** Per-product opt-in for checkout add-ons (straps / engraving). Gated together with ADDONS_ENABLED in src/lib/addons.ts. Defaults off. */
+  addOnsEnabled?: boolean;
   depositAmount?: number;
   nonRefundable?: boolean; // true only for custom/made-to-order pieces (EU Art. 16(c) exemption)
   isEnquiryOnly?: boolean;

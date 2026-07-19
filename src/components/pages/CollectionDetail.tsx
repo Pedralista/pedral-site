@@ -6,6 +6,14 @@ import Image from "next/image";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
 import type { Collection } from "@/lib/collections";
+import {
+  addOnsEnabledFor,
+  strapsForCollection,
+  getStrapAddon,
+  engravingAddon,
+  sanitizeEngraving,
+  hasDisallowedEngravingChars,
+} from "@/lib/addons";
 import { getArticleBySlug } from "@/lib/journal";
 import { SHIPPING_LINE, klarnaLine } from "@/lib/shipping";
 import Newsletter from "@/components/sections/Newsletter";
@@ -45,6 +53,19 @@ export default function CollectionDetail({ collection }: { collection: Collectio
   const [selectedNumeral, setSelectedNumeral] = useState<string | null>(
     firstVariant?.numeralOptions?.[0] ?? null
   );
+
+  // ── Checkout add-ons (feature-flagged OFF by default) ──────────────────────
+  const addOnsActive = addOnsEnabledFor(c);
+  const availableStraps = addOnsActive ? strapsForCollection(c.slug) : [];
+  const [selectedStrapSlug, setSelectedStrapSlug] = useState<string | null>(null);
+  const [engravingEnabled, setEngravingEnabled] = useState(false);
+  const [engravingText, setEngravingText] = useState("");
+  const engravingClean = sanitizeEngraving(engravingText).trim();
+  const engravingActive = engravingEnabled && engravingClean.length > 0;
+  const selectedStrap = selectedStrapSlug ? getStrapAddon(selectedStrapSlug) : undefined;
+  const addOnsTotal =
+    (selectedStrap?.price ?? 0) + (engravingActive ? engravingAddon.price : 0);
+  const runningTotal = (selectedVariant?.price ?? c.price) + addOnsTotal;
 
   function trackReserveIntent() {
     const price = selectedVariant?.price ?? c.price;
@@ -105,6 +126,14 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             ? `${selectedVariant.name} · ${selectedNumeral}`
             : selectedVariant.name,
           isPreOrder: c.nonRefundable ?? false,
+          ...(addOnsActive && (selectedStrapSlug || engravingActive)
+            ? {
+                addOns: {
+                  ...(selectedStrapSlug ? { strapSlug: selectedStrapSlug } : {}),
+                  ...(engravingActive ? { engravingText: engravingClean } : {}),
+                },
+              }
+            : {}),
         }),
       });
       const data = await res.json();
@@ -470,6 +499,132 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               </motion.div>
             )}
 
+            {/* Add-ons — feature-flagged; renders only when enabled for this product */}
+            {addOnsActive && (
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="mt-8 border-t border-accent/[0.08] pt-8"
+              >
+                <p className="mb-2 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                  Make It Yours
+                </p>
+                <h3 className="font-serif text-[clamp(22px,3vw,32px)] font-light text-foreground">
+                  Optional additions.
+                </h3>
+
+                {/* Strap add-on */}
+                {availableStraps.length > 0 && (
+                  <div className="mt-6">
+                    <p className="mb-3 text-[11px] font-normal tracking-[3px] uppercase text-accent">
+                      Additional Strap
+                    </p>
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      {/* None — the default, always valid */}
+                      <div
+                        onClick={() => setSelectedStrapSlug(null)}
+                        className={`flex cursor-pointer items-center gap-4 rounded-lg border p-4 transition-all duration-300 ${
+                          selectedStrapSlug === null
+                            ? "border-accent"
+                            : "border-accent/10 hover:border-accent/40"
+                        }`}
+                      >
+                        <div className="min-w-0 flex-1">
+                          <p className="font-serif text-[16px] font-light text-foreground">No additional strap</p>
+                          <p className="mt-1 text-[13px] font-light text-foreground-muted">Included strap only.</p>
+                        </div>
+                        <div className={`h-5 w-5 shrink-0 rounded-full border-2 transition-colors ${selectedStrapSlug === null ? "border-accent bg-accent" : "border-accent/30"}`} />
+                      </div>
+                      {availableStraps.map((strap) => {
+                        const isSelected = selectedStrapSlug === strap.slug;
+                        return (
+                          <div
+                            key={strap.slug}
+                            onClick={() => setSelectedStrapSlug(strap.slug)}
+                            className={`flex cursor-pointer items-center gap-4 rounded-lg border p-4 transition-all duration-300 ${
+                              isSelected ? "border-accent" : "border-accent/10 hover:border-accent/40"
+                            }`}
+                          >
+                            <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-[var(--surface)]">
+                              {strap.image ? (
+                                <Image src={strap.image} alt={strap.name} fill className="object-cover" />
+                              ) : (
+                                <ImagePlaceholder label="Strap" className="h-full w-full" />
+                              )}
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <p className="font-serif text-[16px] font-light text-foreground">{strap.name}</p>
+                              <p className="mt-1 text-[13px] font-light text-accent/70">+€{strap.price.toLocaleString()}</p>
+                            </div>
+                            <div className={`h-5 w-5 shrink-0 rounded-full border-2 transition-colors ${isSelected ? "border-accent bg-accent" : "border-accent/30"}`} />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* Engraving add-on */}
+                <div className="mt-6">
+                  <label
+                    className={`flex cursor-pointer items-center gap-4 rounded-lg border p-4 transition-all duration-300 ${
+                      engravingEnabled ? "border-accent" : "border-accent/10 hover:border-accent/40"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={engravingEnabled}
+                      onChange={(e) => setEngravingEnabled(e.target.checked)}
+                      className="sr-only"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className="font-serif text-[16px] font-light text-foreground">Case-back engraving</p>
+                      <p className="mt-1 text-[13px] font-light text-foreground-muted">
+                        Up to {engravingAddon.maxLength} characters. +€{engravingAddon.price.toLocaleString()}
+                      </p>
+                    </div>
+                    <div className={`flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors ${engravingEnabled ? "border-accent bg-accent" : "border-accent/30"}`}>
+                      {engravingEnabled && <span className="text-[11px] font-semibold text-background">&#10003;</span>}
+                    </div>
+                  </label>
+                  {engravingEnabled && (
+                    <div className="mt-4">
+                      <input
+                        type="text"
+                        value={engravingText}
+                        maxLength={engravingAddon.maxLength}
+                        onChange={(e) => setEngravingText(e.target.value)}
+                        placeholder="Your engraving"
+                        className="w-full rounded-lg border border-accent/15 bg-white/[0.04] px-5 py-3 text-sm font-light text-foreground outline-none placeholder:text-foreground-muted/50"
+                      />
+                      <div className="mt-2 flex items-center justify-between">
+                        {hasDisallowedEngravingChars(engravingText) ? (
+                          <p className="text-[11px] font-light text-red-400">
+                            Only letters, numbers, spaces and basic punctuation ( . , &apos; &amp; - ) can be engraved.
+                          </p>
+                        ) : (
+                          <p className="text-[11px] font-light text-foreground-muted/50">
+                            Letters, numbers and basic punctuation.
+                          </p>
+                        )}
+                        <p className="text-[11px] font-light text-foreground-muted/50">
+                          {engravingText.length}/{engravingAddon.maxLength}
+                        </p>
+                      </div>
+                      {engravingClean.length > 0 && (
+                        <div className="mt-3 rounded-lg border border-accent/10 bg-background-alt px-5 py-4 text-center">
+                          <p className="text-[10px] tracking-[2px] uppercase text-accent/50">Preview</p>
+                          <p className="mt-2 font-mono text-[16px] tracking-[3px] text-foreground">{engravingClean}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            )}
+
             {/* CTA */}
             <motion.div
               initial="hidden"
@@ -485,8 +640,15 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                   </p>
                 )}
                 <p className="mt-1 font-serif text-[22px] font-light text-foreground">
-                  &euro;{(selectedVariant?.price ?? c.price).toLocaleString()}
+                  &euro;{runningTotal.toLocaleString()}
                 </p>
+                {addOnsActive && addOnsTotal > 0 && (
+                  <p className="mt-1 text-[11px] font-light tracking-[0.5px] text-foreground-muted/60">
+                    €{(selectedVariant?.price ?? c.price).toLocaleString()} watch
+                    {selectedStrap ? ` · +€${selectedStrap.price.toLocaleString()} strap` : ""}
+                    {engravingActive ? ` · +€${engravingAddon.price.toLocaleString()} engraving` : ""}
+                  </p>
+                )}
                 {!c.isEnquiryOnly && (
                   <>
                     <p className="mt-1.5 text-[11px] font-light tracking-[0.5px] text-foreground-muted/60">
@@ -509,7 +671,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                   disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
-                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `Reserve Allocation · €${(selectedVariant?.price ?? c.price).toLocaleString()}`}
+                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `Reserve Allocation · €${runningTotal.toLocaleString()}`}
                 </button>
               </div>
             </motion.div>
