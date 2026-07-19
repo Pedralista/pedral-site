@@ -6,9 +6,12 @@ import Image from "next/image";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
 import type { Collection } from "@/lib/collections";
+import { getArticleBySlug } from "@/lib/journal";
+import { SHIPPING_LINE, klarnaLine } from "@/lib/shipping";
 import Newsletter from "@/components/sections/Newsletter";
 import TrustIcons from "@/components/sections/TrustIcons";
 import PreOrderModal from "@/components/ui/PreOrderModal";
+import { gaEvent, fbqTrack, type AnalyticsItem } from "@/lib/analytics";
 
 function ImagePlaceholder({ label, className = "" }: { label: string; className?: string }) {
   return (
@@ -25,6 +28,9 @@ function ImagePlaceholder({ label, className = "" }: { label: string; className?
 
 export default function CollectionDetail({ collection }: { collection: Collection }) {
   const c = collection;
+  const relatedArticles = (c.relatedArticleSlugs ?? [])
+    .map((slug) => getArticleBySlug(slug))
+    .filter((a): a is NonNullable<ReturnType<typeof getArticleBySlug>> => Boolean(a));
   const isSoldOut = c.stock === 0 && !c.isEnquiryOnly;
   const hasVariants = c.variants && c.variants.length > 0;
   const [selectedVariant, setSelectedVariant] = useState(
@@ -40,7 +46,24 @@ export default function CollectionDetail({ collection }: { collection: Collectio
     firstVariant?.numeralOptions?.[0] ?? null
   );
 
+  function trackReserveIntent() {
+    const price = selectedVariant?.price ?? c.price;
+    const item: AnalyticsItem = {
+      item_id: c.slug,
+      item_name: c.name,
+      price,
+      quantity: 1,
+      item_variant: selectedVariant?.name,
+    };
+    const value = c.isPreOrder ? c.depositAmount ?? 500 : price;
+    gaEvent("add_to_cart", { currency: "EUR", value, items: [item] });
+    gaEvent("begin_checkout", { currency: "EUR", value, items: [item] });
+    fbqTrack("AddToCart", { currency: "EUR", value, content_ids: [c.slug], content_type: "product" });
+    fbqTrack("InitiateCheckout", { currency: "EUR", value, content_ids: [c.slug], content_type: "product" });
+  }
+
   async function handleReserve() {
+    trackReserveIntent();
     if (c.isPreOrder) {
       setLoading(true);
       setPreOrderError(null);
@@ -464,6 +487,16 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 <p className="mt-1 font-serif text-[22px] font-light text-foreground">
                   &euro;{(selectedVariant?.price ?? c.price).toLocaleString()}
                 </p>
+                {!c.isEnquiryOnly && (
+                  <>
+                    <p className="mt-1.5 text-[11px] font-light tracking-[0.5px] text-foreground-muted/60">
+                      {SHIPPING_LINE}
+                    </p>
+                    <p className="mt-1 text-[11px] font-light tracking-[0.5px] text-foreground-muted/60">
+                      {klarnaLine(selectedVariant?.price ?? c.price)}
+                    </p>
+                  </>
+                )}
                 {c.nonRefundable && (
                   <p className="mt-2 text-[11px] font-light leading-[1.7] text-foreground-muted/60">
                     Pre-order · 3–6 months delivery · Non-refundable · Full payment upfront
@@ -878,6 +911,12 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               <p className="font-serif text-[48px] font-light text-foreground">
                 &euro;{c.price.toLocaleString()}
               </p>
+              <p className="mt-2 text-[12px] font-light tracking-[0.5px] text-foreground-muted/70">
+                {SHIPPING_LINE}
+              </p>
+              <p className="mt-1 text-[12px] font-light tracking-[0.5px] text-foreground-muted/70">
+                {klarnaLine(c.price)}
+              </p>
               <button
                 onClick={handleReserve}
                 disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
@@ -901,13 +940,33 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 </p>
               )}
               <div className="mx-auto mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8">
-                {["Cancel anytime before dispatch", "14-day return after delivery", "24-month warranty", "Insured shipping"].map((item) => (
-                  <span key={item} className="flex items-center gap-2 text-[11px] tracking-[1px] uppercase text-foreground-muted">
-                    <span className="font-semibold text-accent">&#10003;</span>
-                    {item}
-                  </span>
-                ))}
+                {[
+                  { label: "24-month warranty", href: "/warranty" },
+                  { label: "14-day return after delivery", href: "/returns" },
+                  { label: "Secure payment · Klarna", href: undefined },
+                  { label: "Insured express shipping", href: undefined },
+                ].map(({ label, href }) => {
+                  const inner = (
+                    <>
+                      <span className="font-semibold text-accent">&#10003;</span>
+                      {label}
+                    </>
+                  );
+                  return href ? (
+                    <Link key={label} href={href} className="flex items-center gap-2 text-[11px] tracking-[1px] uppercase text-foreground-muted underline-offset-4 transition-colors hover:text-accent">
+                      {inner}
+                    </Link>
+                  ) : (
+                    <span key={label} className="flex items-center gap-2 text-[11px] tracking-[1px] uppercase text-foreground-muted">
+                      {inner}
+                    </span>
+                  );
+                })}
               </div>
+              <p className="mt-5 text-[11px] font-light tracking-[0.5px] text-foreground-muted/50">
+                More questions? See our{" "}
+                <Link href="/faq" className="text-accent underline-offset-4 hover:underline">FAQ</Link>.
+              </p>
             </>
           )}
         </motion.div>
@@ -1011,6 +1070,55 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           </div>
         </section>
       )}
+
+      {/* Bespoke cross-link + Related reading */}
+      <section className="bg-background-alt py-16 md:py-24">
+        <div className="mx-auto max-w-[900px] px-6 md:px-12">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+              Beyond the Edition
+            </p>
+            <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
+              One of twenty. Or one of one.
+            </h2>
+            <div className="mt-6 h-px w-[60px] bg-accent" />
+            <p className="mt-6 text-[15px] font-light leading-[1.85] text-foreground-muted">
+              When an edition is not quite yours, a bespoke commission begins from a blank sheet — designed with Kevin, made once, carrying only your name.
+            </p>
+            <Link
+              href="/bespoke-pieces"
+              className="mt-6 inline-block text-[12px] font-normal tracking-[1.5px] uppercase text-accent underline-offset-4 hover:underline"
+            >
+              Explore Bespoke Commissions &rarr;
+            </Link>
+
+            {relatedArticles.length > 0 && (
+              <div className="mt-10 border-t border-accent/[0.08] pt-8">
+                <p className="mb-4 text-[11px] font-normal tracking-[3px] uppercase text-accent/70">
+                  From the Journal
+                </p>
+                <ul className="space-y-3">
+                  {relatedArticles.map((a) => (
+                    <li key={a.slug}>
+                      <Link
+                        href={`/journal/${a.slug}`}
+                        className="text-[15px] font-light leading-[1.7] text-foreground-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
+                      >
+                        Read: {a.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </motion.div>
+        </div>
+      </section>
 
       <Newsletter
         title={c.newsletterTitle}

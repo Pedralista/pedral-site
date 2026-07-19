@@ -71,6 +71,8 @@ export interface Collection {
   variantLabel?: string;
   valuePerspectiveTitle?: string;
   comingSoonEditions?: { name: string; description: string; image?: string }[];
+  /** Journal article slugs relevant to this product (inverse of Article.relatedCollectionSlug). */
+  relatedArticleSlugs?: string[];
 }
 
 export const collections: Collection[] = [
@@ -185,6 +187,7 @@ export const collections: Collection[] = [
       "/images/maestro-angle-2.jpg",
       "/images/maestro-angle-3.jpg",
     ],
+    relatedArticleSlugs: ["maestro-boris-pjanic-collab"],
   },
   {
     slug: "triomphe",
@@ -311,6 +314,7 @@ export const collections: Collection[] = [
       "/images/triomphe-wrist-arabic.jpg",
     ],
     comingSoonEditions: [],
+    relatedArticleSlugs: ["triomphe-numerals-heritage", "triomphe-guilloche-dial", "hand-wound-vs-automatic"],
   },
   {
     slug: "maestro-petite-seconde",
@@ -508,6 +512,7 @@ export const collections: Collection[] = [
         image: "/images/okapi-classique.png",
       },
     ],
+    relatedArticleSlugs: ["okapi-returns"],
   },
 ];
 

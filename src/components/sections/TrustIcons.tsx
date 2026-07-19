@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
+import { SHIPPING_LINE } from "@/lib/shipping";
 
 const items = [
   {
@@ -26,7 +27,7 @@ const items = [
     ),
   },
   {
-    label: "Express Insured Shipping",
+    label: SHIPPING_LINE,
     icon: (
       <>
         <rect x="4" y="16" width="24" height="14" rx="2" />

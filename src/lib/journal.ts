@@ -8,6 +8,8 @@ export interface Article {
   body: string[];
   featuredImage?: string;
   cta?: { label: string; href: string };
+  /** Collection slug this article is most relevant to (for product ↔ journal cross-linking). Unset for brand/studio-level articles. */
+  relatedCollectionSlug?: string;
 }
 
 export const articles: Article[] = [
@@ -45,6 +47,7 @@ export const articles: Article[] = [
       "Three scripts. One movement. One case. Three entirely different statements about identity and belonging. That's not a product range. That's a design philosophy.",
     ],
     cta: { label: "Reserve the Triomphee", href: "/collections/triomphe" },
+    relatedCollectionSlug: "triomphe",
   },
   {
     slug: "when-twenty-is-not-enough",
@@ -127,6 +130,7 @@ export const articles: Article[] = [
       "With only twenty pieces per dial variation, each guilloché pattern is genuinely rare. When a dial sells out, that specific pattern doesn't return. The Triomphe becomes a rotating canvas: same case, same movement, but a different visual language each time.",
       "At 8.8mm, the Triomphe disappears under a shirt cuff. At €1,750, it disappears the assumptions about what an independent watchmaker can achieve.",
     ],
+    relatedCollectionSlug: "triomphe",
   },
   {
     slug: "okapi-returns",
@@ -146,6 +150,7 @@ export const articles: Article[] = [
       "The Okapi returns at €2,800 (ETA 7001) or €3,900 (LJP7380). Twenty pieces. Register your interest now — when it drops, it won't be announced publicly until it's sold out.",
       "Some things are worth waiting eight years for.",
     ],
+    relatedCollectionSlug: "okapi",
   },
   {
     slug: "what-is-a-microbrand",
@@ -180,6 +185,7 @@ export const articles: Article[] = [
       "What made the collaboration work was a shared belief: that the things worth making are the things that reward close attention. A Boris Pjanić painting reveals new details the longer you look. A Pedral watch does the same. Combining them wasn't a stretch — it was inevitable.",
       "The capsule was limited, of course. Twenty pieces. They're gone now. But my relationship with the art world isn't. More collaborations are coming. Different artists, different approaches, same conviction: the best of both worlds.",
     ],
+    relatedCollectionSlug: "maestro",
   },
   {
     slug: "designing-in-stockholm",
@@ -213,6 +219,7 @@ export const articles: Article[] = [
       "I chose hand-wound for the Triomphe because the watch is about intention. Intentionally thin. Intentionally limited. Intentionally demanding of the person who wears it. Not in a burdensome way — in a rewarding one.",
       "The crown on the Triomphe is designed for this ritual. Slightly larger than typical for a dress watch, with just enough grip texture to make the winding action satisfying. Twenty turns. Two days of power reserve. A small daily ceremony that connects you to what's on your wrist.",
     ],
+    relatedCollectionSlug: "triomphe",
   },
 ];
 
