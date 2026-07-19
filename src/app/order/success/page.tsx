@@ -82,6 +82,19 @@ export default async function OrderSuccessPage({
       >
         Back to Collections
       </Link>
+      {purchase?.items[0]?.item_name && (
+        <div className="mt-16 max-w-[440px] border-t border-accent/[0.08] pt-8">
+          <p className="text-[13px] font-light leading-[1.8] text-foreground-muted/70">
+            Your {purchase.items[0].item_name} is one of twenty. The next step is one of one.
+          </p>
+          <Link
+            href="/bespoke-pieces"
+            className="mt-3 inline-block text-[11px] font-normal tracking-[1px] text-accent underline underline-offset-2 hover:text-accent-hover"
+          >
+            Explore bespoke commissions →
+          </Link>
+        </div>
+      )}
     </main>
   );
 }
