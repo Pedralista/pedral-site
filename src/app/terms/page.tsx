@@ -4,7 +4,10 @@ import LegalPage from "@/components/pages/LegalPage";
 export const metadata: Metadata = {
   title: "Terms & Conditions",
   description: "Pedral Watches terms and conditions of sale.",
-  alternates: { canonical: "/terms" },
+  alternates: {
+    canonical: "/terms",
+    languages: { en: "/terms", "x-default": "/terms" },
+  },
 };
 
 export default function TermsPage() {

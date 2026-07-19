@@ -22,7 +22,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${article.title} — The Rounded Square`,
     description: article.excerpt,
-    alternates: { canonical: `/journal/${article.slug}` },
+    alternates: {
+      canonical: `/journal/${article.slug}`,
+      languages: {
+        en: `/journal/${article.slug}`,
+        "x-default": `/journal/${article.slug}`,
+      },
+    },
     openGraph: {
       title: article.title,
       description: article.excerpt,

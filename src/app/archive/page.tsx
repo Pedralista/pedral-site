@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import ArchiveContent from "@/components/pages/ArchiveContent";
 
 export const metadata: Metadata = {
-  title: "Archive — Pedral",
+  title: "Archive",
   description: "The Pedral Archive: Artefact, Okapi GMT, and Okapi — sold-out limited editions, 20 pieces each. Closed permanently. See what came before.",
-  alternates: { canonical: "/archive" },
+  alternates: {
+    canonical: "/archive",
+    languages: { en: "/archive", "x-default": "/archive" },
+  },
   openGraph: {
     title: "Archive — Pedral",
     description: "Sold-out limited editions. Artefact, Okapi GMT, Okapi — 20 pieces each. Closed permanently.",

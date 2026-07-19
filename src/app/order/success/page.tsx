@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Order Confirmed — Pedral",
+  title: "Order Confirmed",
   description: "Your Pedral allocation is secured.",
   robots: { index: false, follow: false },
 };

@@ -77,8 +77,8 @@ export const collections: Collection[] = [
   {
     slug: "maestro",
     name: "Maestro",
-    metaTitle: "Pedral Maestro — Limited Edition Dress Watch | Klocka från Stockholm",
-    metaDescription: "Maestro är en limiterad klocka från Stockholm. 37mm tonneau-fodral, guilloché-urtavla, hexagonalt armband. Handgjord i begränsad upplaga. Från €1,450.",
+    metaTitle: "Pedral Maestro — Swiss Automatic Dress Watch, Limited to 20 | Pedral",
+    metaDescription: "A 37mm tonneau dress watch with a Sellita Swiss automatic movement. Stockholm-designed by an independent Swedish maker. Edition of 20, no restocks.",
     tagline: "Limited Allocation",
     hook: "The person who notices this watch already understands it.",
     description:
@@ -189,6 +189,8 @@ export const collections: Collection[] = [
   {
     slug: "triomphe",
     name: "Triomphe",
+    metaTitle: "Pedral Triomphe — Ultra-Thin Swiss Hand-Wound, Limited to 20 | Pedral",
+    metaDescription: "An 8.8mm ultra-thin dress watch with a Sellita Swiss hand-wound movement. Stockholm-designed by an independent Swedish maker. Editions of 20, no restocks.",
     tagline: "Current Drop",
     hook: "8.8mm. Disappears under the cuff. Present when the light finds it.",
     description:
@@ -313,6 +315,8 @@ export const collections: Collection[] = [
   {
     slug: "maestro-petite-seconde",
     name: "Maestro Petite Seconde",
+    metaTitle: "Pedral Maestro Petite Seconde — Swiss Automatic, Small Seconds | Pedral",
+    metaDescription: "A 37mm tonneau dress watch with small seconds and a Sellita Swiss automatic movement. Stockholm-designed by an independent Swedish maker. Edition of 20.",
     tagline: "Q2 2026",
     hook: "Maestro, taken one step further.",
     description:
@@ -399,8 +403,8 @@ export const collections: Collection[] = [
   {
     slug: "okapi",
     name: "Okapi Classique",
-    metaTitle: "Pedral Okapi Classique — La Joux-Perret LJP7380 | Limited Watch",
-    metaDescription: "The Okapi Classique is powered by the La Joux-Perret LJP7380 — a high-grade movement from La Chaux-de-Fonds. 37mm cushion case, guilloché dial, limited pieces. From €2,800.",
+    metaTitle: "Pedral Okapi Classique — Swiss Hand-Wound, Limited to 20 | Pedral",
+    metaDescription: "A 37mm cushion dress watch. ETA 7001 or La Joux-Perret LJP7380 Swiss hand-wound. Stockholm-designed, independent Swedish maker. Edition of 20.",
     tagline: "The Original",
     hook: "The one that started everything.",
     description:

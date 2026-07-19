@@ -97,7 +97,7 @@ export const articles: Article[] = [
     slug: "swiss-movement-independent-price",
     date: "January 2026",
     category: "Craft",
-    title: "Swiss Movements at an Independent Price: How I Do It",
+    title: "Swiss Movements at a Microbrand Price: How an Independent Watchmaker Does It",
     excerpt:
       "Every Pedral watch runs on a Swiss movement — Sellita, ETA, or hand-wound calibres selected for each collection. But I don't charge what the big houses charge.",
     readTime: "7 min read",

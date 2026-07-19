@@ -4,7 +4,10 @@ import LegalPage from "@/components/pages/LegalPage";
 export const metadata: Metadata = {
   title: "Shipping & Customs",
   description: "Pedral Watches shipping information, delivery times, and customs duties.",
-  alternates: { canonical: "/shipping" },
+  alternates: {
+    canonical: "/shipping",
+    languages: { en: "/shipping", "x-default": "/shipping" },
+  },
 };
 
 export default function ShippingPage() {

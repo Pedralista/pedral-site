@@ -18,10 +18,14 @@ export async function generateMetadata({
   if (!collection) return { title: "Not Found" };
   const metaTitle = collection.metaTitle ?? `${collection.name} — Pedral`;
   const metaDescription = collection.metaDescription ?? collection.description;
+  const canonical = `/collections/${collection.slug}`;
   return {
-    title: collection.metaTitle ?? collection.name,
+    title: { absolute: metaTitle },
     description: metaDescription,
-    alternates: { canonical: `/collections/${collection.slug}` },
+    alternates: {
+      canonical,
+      languages: { en: canonical, "x-default": canonical },
+    },
     openGraph: {
       title: metaTitle,
       description: metaDescription,

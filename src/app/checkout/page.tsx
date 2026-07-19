@@ -6,7 +6,7 @@ import { collections } from "@/lib/collections";
 import CheckoutForm from "@/components/pages/CheckoutForm";
 
 export const metadata: Metadata = {
-  title: "Checkout — Pedral",
+  title: "Checkout",
   robots: { index: false, follow: false },
 };
 

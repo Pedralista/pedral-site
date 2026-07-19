@@ -5,7 +5,10 @@ export const metadata: Metadata = {
   title: "Our Story",
   description:
     "The story of Kevin Pedral — a self-taught watchmaker from Stockholm who turned rejection into a brand worn in 30+ countries.",
-  alternates: { canonical: "/story" },
+  alternates: {
+    canonical: "/story",
+    languages: { en: "/story", "x-default": "/story" },
+  },
   openGraph: {
     title: "Our Story — Pedral",
     description:

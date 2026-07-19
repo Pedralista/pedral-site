@@ -22,7 +22,7 @@ const outfit = Outfit({
 
 const siteUrl = "https://www.pedral.eu";
 const siteDescription =
-  "Stockholm-based watch microbrand blending retro-futurism with Scandinavian design. Limited editions, unlimited conviction.";
+  "Independent Swedish watchmaker in Stockholm. Swiss automatic dress watches in editions of 20, no restocks. Worn in 30+ countries. Not for everyone.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -79,6 +79,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
+    languages: { en: siteUrl, "x-default": siteUrl },
   },
   verification: {
     google: "mfStinMfbViK6AVnBbU3LeT2MMQq1vBynAtB1lt0AVc",

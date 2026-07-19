@@ -5,7 +5,10 @@ export const metadata: Metadata = {
   title: "Collections",
   description:
     "Explore all Pedral watch collections — Maestro, Triomphe, Maestro Petite Seconde, and Okapi Classique. Four limited editions. One independent designer. Worn in 30+ countries.",
-  alternates: { canonical: "/collections" },
+  alternates: {
+    canonical: "/collections",
+    languages: { en: "/collections", "x-default": "/collections" },
+  },
   openGraph: {
     title: "Collections — Pedral",
     description:
