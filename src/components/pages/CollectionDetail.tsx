@@ -416,7 +416,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                       {isSelected && v.numeralOptions && v.numeralOptions.length > 0 && (
                         <div className="mt-4 border-t border-accent/[0.12] pt-4" onClick={(e) => e.stopPropagation()}>
                           <p className="mb-3 text-[11px] font-normal tracking-[3px] uppercase text-accent">
-                            Numeral Style
+                            {c.numeralOptionsLabel ?? "Numeral Style"}
                           </p>
                           <div className="flex flex-wrap gap-2">
                             {v.numeralOptions.map((opt) => {
