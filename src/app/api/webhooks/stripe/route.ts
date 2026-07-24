@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { sendMetaCapiPurchase } from "@/lib/metaCapi";
+import { collections } from "@/lib/collections";
+import { decrementStock, resolveStockTargets } from "@/lib/stock";
 
 export async function POST(req: NextRequest) {
   if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
@@ -37,6 +39,23 @@ export async function POST(req: NextRequest) {
           ? `Pre-order deposit received: ${session.metadata?.collection} — ${session.customer_details?.email}`
           : `Order completed: ${session.metadata?.product} ${session.metadata?.variant} — ${session.customer_details?.email}`
       );
+
+      // Decrement live stock counters. No-ops safely if the collection/variant
+      // can't be resolved or Redis isn't configured — never blocks the
+      // webhook's 200 response to Stripe.
+      try {
+        const collection = isPreOrder
+          ? collections.find((c) => c.slug === session.metadata?.collection)
+          : collections.find((c) => c.name === session.metadata?.product);
+        if (collection) {
+          const targets = resolveStockTargets(collection, session.metadata?.variant);
+          for (const t of targets) {
+            await decrementStock(collection.slug, t.part, t.fallback);
+          }
+        }
+      } catch (err) {
+        console.error("Stock decrement failed:", err);
+      }
 
       // Server-side Meta Conversions API Purchase. No-ops if unconfigured and
       // never throws — the webhook's 200 to Stripe is unaffected.

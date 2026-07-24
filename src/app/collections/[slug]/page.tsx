@@ -4,6 +4,11 @@ import { collections, getCollection, isHidden } from "@/lib/collections";
 import CollectionDetail from "@/components/pages/CollectionDetail";
 import { ProductJsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import ViewItemTracker from "@/components/analytics/ViewItemTracker";
+import { getLiveStock, slugifyPart } from "@/lib/stock";
+
+// Live stock changes when an order completes — revalidate this page
+// periodically instead of serving the build-time snapshot forever.
+export const revalidate = 30;
 
 export function generateStaticParams() {
   return collections.filter((c) => !isHidden(c)).map((c) => ({ slug: c.slug }));
@@ -48,8 +53,33 @@ export default async function CollectionPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const collection = getCollection(slug);
-  if (!collection || isHidden(collection)) notFound();
+  const staticCollection = getCollection(slug);
+  if (!staticCollection || isHidden(staticCollection)) notFound();
+
+  // Overlay live stock (from Redis, seeded from the static numbers) so every
+  // sold-out check, disabled button, and JSON-LD availability signal reflects
+  // real remaining inventory instead of the build-time snapshot.
+  const liveBase = await getLiveStock(staticCollection.slug, "base", staticCollection.stock);
+  const liveVariants = staticCollection.variants
+    ? await Promise.all(
+        staticCollection.variants.map(async (v) => {
+          const liveVariantStock = await getLiveStock(staticCollection.slug, slugifyPart(v.name), v.stock);
+          let liveNumeralStock = v.numeralStock;
+          if (v.numeralStock) {
+            const entries = await Promise.all(
+              Object.entries(v.numeralStock).map(async ([dial, fallback]) => [
+                dial,
+                await getLiveStock(staticCollection.slug, `${slugifyPart(v.name)}-${slugifyPart(dial)}`, fallback),
+              ] as const)
+            );
+            liveNumeralStock = Object.fromEntries(entries);
+          }
+          return { ...v, stock: liveVariantStock, numeralStock: liveNumeralStock };
+        })
+      )
+    : undefined;
+  const collection = { ...staticCollection, stock: liveBase, variants: liveVariants };
+
   return (
     <>
       <ProductJsonLd
