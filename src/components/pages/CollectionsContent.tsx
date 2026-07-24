@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { collections, Collection } from "@/lib/collections";
+import { collections, collectionCountWord, Collection } from "@/lib/collections";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import ComingSoon from "@/components/sections/ComingSoon";
 import Newsletter from "@/components/sections/Newsletter";
@@ -98,7 +98,7 @@ export default function CollectionsContent() {
               variants={fadeInUp}
               className="font-serif text-[clamp(40px,5vw,60px)] font-light text-foreground"
             >
-              Four watches. One designer.
+              {collectionCountWord(visible.length)} watches. One designer.
             </motion.h1>
             <motion.p
               variants={fadeInUp}

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
-import { collections } from "@/lib/collections";
+import { collections, collectionCountWord } from "@/lib/collections";
 import TrustIcons from "@/components/sections/TrustIcons";
 
 function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number; isPreOrder?: boolean; isEnquiryOnly?: boolean; badge?: string }) {
@@ -51,6 +51,7 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
 }
 
 export default function CollectionShowcase() {
+  const visibleCount = collections.filter((c) => !c.hidden).length;
   return (
     <section className="bg-background-alt py-16 md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-[1400px] px-6 md:px-12">
@@ -59,7 +60,7 @@ export default function CollectionShowcase() {
             The Collection
           </p>
           <h2 className="font-serif text-[clamp(32px,3.5vw,40px)] font-light text-foreground">
-            Four watches. One designer.
+            {collectionCountWord(visibleCount)} watches. One designer.
           </h2>
           <p className="mt-4 max-w-[600px] text-[15px] font-light leading-[1.85] text-foreground-muted">
             Each edition is limited to 20 pieces. When it sells out, it stays gone. Not a strategy. One person behind every decision.

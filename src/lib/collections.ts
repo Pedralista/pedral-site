@@ -635,3 +635,12 @@ export function getCollection(slug: string): Collection | undefined {
 export function isHidden(c: Collection): boolean {
   return !!c.hidden && process.env.NODE_ENV === "production";
 }
+
+// Spells out a small collection count for headline copy (e.g. "Five watches.
+// One designer.") so it never drifts out of sync with the actual catalog —
+// used instead of a hardcoded number that has to be remembered and updated
+// by hand every time a product is added or removed.
+const COUNT_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
+export function collectionCountWord(count: number): string {
+  return COUNT_WORDS[count] ?? String(count);
+}
