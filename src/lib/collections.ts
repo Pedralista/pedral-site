@@ -593,7 +593,7 @@ export const collections: Collection[] = [
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Contour and future editions. No noise.",
-    image: "/images/contour-black-mop.png",
+    image: "/images/contour-product-black-mop.png",
     heroImage: "/images/contour-hero.png",
     heroFit: "contain",
     variants: [
