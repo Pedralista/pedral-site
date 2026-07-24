@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -62,8 +62,21 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
 
 export default function CollectionsContent() {
   const [active, setActive] = useState<Filter>("all");
+  const [liveStock, setLiveStock] = useState<Record<string, { stock: number }> | null>(null);
 
-  const visible = collections.filter((c) => !c.hidden);
+  useEffect(() => {
+    fetch("/api/stock")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => data && setLiveStock(data))
+      .catch(() => {
+        // Live stock is a progressive enhancement — the static numbers already
+        // rendered server-side stay correct if this fetch fails.
+      });
+  }, []);
+
+  const visible = collections
+    .filter((c) => !c.hidden)
+    .map((c) => (liveStock?.[c.slug] ? { ...c, stock: liveStock[c.slug].stock } : c));
   const filtered =
     active === "all" ? visible : visible.filter((c) => c.tier === active);
 
