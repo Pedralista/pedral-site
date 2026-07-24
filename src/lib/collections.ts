@@ -523,13 +523,13 @@ export const collections: Collection[] = [
     metaDescription:
       "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Stone and mother-of-pearl dials. Stockholm-designed. Coming soon.",
     tagline: "Coming Soon",
-    hook: "A watch drawn in one line.",
+    hook: "Jewelry that happens to tell time.",
     description:
-      "The Contour began with a question I could not let go of: what happens when the case and bracelet stop being two separate things? The answer is a single unbroken silhouette, hundreds of polished scales running from one end of the wrist to the other, with the dial sitting inside the form rather than on top of it.",
+      "The Contour doesn't sit on the wrist. It wraps it. Hundreds of polished steel scales move like fabric, finished the way a fine bracelet is finished — not a case with a strap bolted on, but one continuous line from clasp to dial. Something meant to be touched as much as read.",
     descriptionExtra:
-      "In the 1970s, a handful of makers treated the bracelet as the watch itself, woven and finished like fine jewellery. That idea largely disappeared. I wanted to bring it back at a scale I could stand behind, in steel, made properly, in numbers small enough that I know where each one goes. At 35mm across and 6.9mm in height, the Contour disappears under a cuff and settles flat on the wrist. There is no bezel to speak of, no lugs in the traditional sense. Just the line.",
+      "In the 1970s, a handful of makers understood that a watch could carry itself like jewelry — worn low on the wrist, catching light before it told you anything about the time. That instinct mostly disappeared under decades of tool-watch sensibility. The Contour brings it back deliberately: 35mm across, 6.9mm thin, close enough to the skin to move like a bracelet, substantial enough to be felt in the room. It doesn't ask to be noticed. It simply is.",
     designerNote:
-      "There is no logo on the dial. There never needed to be one. The squarcle pattern on the mother-of-pearl dials is built from the Pedral A mirrored into itself, and the stone dials carry nothing but the hands — so the watch has no right way up. Wear it on the left wrist or the right, crown in or crown out. Most watches are designed for one wrist and tolerated on the other. This one is symmetrical by intention.",
+      "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. The stone dials carry nothing but the hands. The mother-of-pearl carries the squarcle, mirrored so the watch has no right way up. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed.",
     year: 2026,
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
@@ -544,7 +544,7 @@ export const collections: Collection[] = [
     urgencyTag: "Not yet open · Join the list",
     hidePriceOnCard: true,
     isEnquiryOnly: true,
-    specsTitle: "A silhouette, not an assembly.",
+    specsTitle: "Presence, not permission.",
     specs: {
       Price: "€895 quartz · €1,950 hand-wound",
       Movement:
@@ -575,7 +575,7 @@ export const collections: Collection[] = [
     detailStrip: {
       eyebrow: "Either Wrist",
       title: "Symmetrical by intention.",
-      text: "The squarcle pattern shares one marker length all the way round, so the dial reads the same from every direction. Turn the Contour around and nothing is upside down — worn on either wrist, crown in or crown out, the watch does not mind.",
+      text: "The squarcle pattern shares one marker length all the way round, so the dial reads the same from every direction. Turn the Contour around and nothing is upside down — worn on either wrist, crown in or crown out, it doesn't mind. It was never built for one particular way of being seen.",
     },
     testimonials: [],
     wristFit: {
