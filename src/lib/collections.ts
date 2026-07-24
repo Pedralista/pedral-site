@@ -523,13 +523,13 @@ export const collections: Collection[] = [
     metaDescription:
       "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Stone and mother-of-pearl dials. Stockholm-designed. Coming soon.",
     tagline: "Coming Soon",
-    hook: "Jewelry that happens to tell time.",
+    hook: "Not a watch. A presence.",
     description:
       "The Contour doesn't sit on the wrist. It wraps it. Hundreds of polished steel scales move like fabric, finished the way a fine bracelet is finished — not a case with a strap bolted on, but one continuous line from clasp to dial. Something meant to be touched as much as read.",
     descriptionExtra:
       "In the 1970s, a handful of makers understood that a watch could carry itself like jewelry — worn low on the wrist, catching light before it told you anything about the time. That instinct mostly disappeared under decades of tool-watch sensibility. The Contour brings it back deliberately: 35mm across, 6.9mm thin, close enough to the skin to move like a bracelet, substantial enough to be felt in the room. It doesn't ask to be noticed. It simply is.",
     designerNote:
-      "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. The stone dials carry nothing but the hands. The mother-of-pearl carries the squarcle, mirrored so the watch has no right way up. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed.",
+      "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. The stone dials carry nothing but the hands. The mother-of-pearl carries the squarcle, mirrored so the watch has no right way up. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed. Call it aura, if you need a word for it — the sense that something walked into the room before you did.",
     year: 2026,
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
@@ -548,10 +548,10 @@ export const collections: Collection[] = [
     specs: {
       Price: "€895 quartz · €1,950 hand-wound",
       Movement:
-        "ETA 7001 or La Joux-Perret D101 · Swiss hand-wound · 2.5mm calibre height · choice at reservation — or Ronda 1069 quartz",
+        "ETA 7001 · Swiss hand-wound · 2.5mm calibre height — or Ronda 1069, Swiss-made quartz",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
       Dial:
-        "Natural stone (Red Agate, Verdite, Lapis Lazuli) or mother-of-pearl (White, Blue, Brown, Black) with an openworked squarcle motif — the same signature cut through rather than printed on. Seven references.",
+        "Quartz: White Mother of Pearl or Lapis Lazuli. Hand-wound: Black Mother of Pearl or Orange Agate. Mother-of-pearl dials carry an openworked squarcle motif — the same signature cut through rather than printed on.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "To be confirmed",
@@ -570,7 +570,7 @@ export const collections: Collection[] = [
     ],
     valuePerspectiveTitle: "Two ways to own it.",
     valueAnchor:
-      "€895 for the Ronda 1069 quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 or La Joux-Perret D101 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height.",
+      "€895 for the Ronda 1069, Swiss-made quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "Either Wrist",
@@ -585,7 +585,9 @@ export const collections: Collection[] = [
     },
     newsletterTitle: "Hear about it before anyone else.",
     newsletterSub: "One email, when Contour opens. Nothing else.",
-    image: "",
+    image: "/images/contour-black-mop.png",
+    heroImage: "/images/contour-black-mop.png",
+    heroFit: "contain",
   },
 ];
 
