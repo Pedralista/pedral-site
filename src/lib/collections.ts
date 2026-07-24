@@ -521,7 +521,7 @@ export const collections: Collection[] = [
     name: "Contour",
     metaTitle: "Pedral Contour — Integrated Bracelet, Swiss Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch. Stone and mother-of-pearl dials, symmetrical by design. Stockholm-designed. Coming soon, allocation only.",
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €1,000 quartz, €2,000 hand-wound. Stone and mother-of-pearl dials. Stockholm-designed. Coming soon.",
     tagline: "Coming Soon",
     hook: "A watch drawn in one line.",
     description:
@@ -532,18 +532,21 @@ export const collections: Collection[] = [
       "There is no logo on the dial. There never needed to be one. The squarcle pattern on the mother-of-pearl dials is built from the Pedral A mirrored into itself, and the stone dials carry nothing but the hands — so the watch has no right way up. Wear it on the left wrist or the right, crown in or crown out. Most watches are designed for one wrist and tolerated on the other. This one is symmetrical by intention.",
     year: 2026,
     tier: "limited",
-    // TODO: Kevin confirm final price per movement before this can accept real orders.
-    price: 0,
+    // Base/entry price (quartz). Hand-wound is €2,000 — see specs.Price below.
+    // No Stripe Price objects exist for either yet, so isEnquiryOnly stays on
+    // (see note below) until Kevin creates them and real variants can be added.
+    price: 1000,
     // TODO: Kevin confirm actual edition size — placeholder matches the studio's usual run.
     stock: 20,
     maxStock: 20,
-    edition: "Allocation only",
-    badge: "Coming Soon",
-    urgencyTag: "Not yet available",
+    edition: "20 pieces · Allocation only",
+    badge: "Allocation Only",
+    urgencyTag: "Coming soon · Allocation only",
     hidePriceOnCard: true,
     isEnquiryOnly: true,
     specsTitle: "A silhouette, not an assembly.",
     specs: {
+      Price: "€1,000 quartz · €2,000 hand-wound",
       Movement:
         "ETA 7001 or La Joux-Perret D101 · Swiss hand-wound · 2.5mm calibre height · choice at reservation — or Ronda 1069 quartz",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
@@ -554,16 +557,20 @@ export const collections: Collection[] = [
       "Water Resist.": "To be confirmed",
       Edition: "Allocation only · Coming soon",
     },
-    // Standard Pedral packaging — carried over from the rest of the line; confirm before launch if Contour's box differs.
+    // The bracelet is fully integrated (no separate strap), so the box swaps
+    // Maestro/Okapi's strap-adapter tool for a bracelet micro-adjustment tool.
+    // Confirm exact contents before launch.
     boxContents: [
       "Contour timepiece",
-      "Strap adapter tool",
-      "Artisanal leather travel roll",
-      "Polishing cloth",
-      "24-month warranty card",
-      "Personal note from Kevin",
+      "Bracelet micro-adjustment tool",
+      "Pedral leather travel roll",
+      "Soft polishing cloth",
+      "24-month international warranty card",
+      "Handwritten note from Kevin",
     ],
-    valueAnchor: "Pricing will be announced closer to release.",
+    valuePerspectiveTitle: "Two ways to own it.",
+    valueAnchor:
+      "€1,000 for the Ronda 1069 quartz — the same silhouette, nothing to think about. €2,000 for the ETA 7001 or La Joux-Perret D101 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "Either Wrist",
@@ -571,6 +578,11 @@ export const collections: Collection[] = [
       text: "The squarcle pattern shares one marker length all the way round, so the dial reads the same from every direction. Turn the Contour around and nothing is upside down — worn on either wrist, crown in or crown out, the watch does not mind.",
     },
     testimonials: [],
+    wristFit: {
+      caseDiameter: "35mm",
+      thickness: "6.9mm",
+      note: "There are no traditional lugs to measure — the bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case-to-wrist proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than sitting high off the wrist.",
+    },
     newsletterTitle: "Be considered for an allocation.",
     newsletterSub: "Those on the list hear first when Contour opens. No noise.",
     image: "",
