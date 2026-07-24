@@ -551,10 +551,10 @@ export const collections: Collection[] = [
         "ETA 7001 · Swiss hand-wound · 2.5mm calibre height — or Ronda 1069, Swiss-made quartz",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
       Dial:
-        "Quartz: White Mother of Pearl or Lapis Lazuli. Hand-wound: Black Mother of Pearl or Orange Agate. Mother-of-pearl dials carry an openworked squarcle motif — the same signature cut through rather than printed on.",
+        "Quartz: Orange Agate. Hand-wound: Black or White Mother of Pearl, guilloché finish, with an openworked squarcle motif — the same signature cut through rather than printed on.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
-      "Water Resist.": "To be confirmed",
+      "Water Resist.": "5 ATM / 50 meters",
       Edition: "Allocation only · Coming soon",
     },
     // The bracelet is fully integrated (no separate strap), so the box swaps
@@ -586,7 +586,7 @@ export const collections: Collection[] = [
     newsletterTitle: "Hear about it before anyone else.",
     newsletterSub: "One email, when Contour opens. Nothing else.",
     image: "/images/contour-black-mop.png",
-    heroImage: "/images/contour-black-mop.png",
+    heroImage: "/images/contour-hero.png",
     heroFit: "contain",
   },
 ];
