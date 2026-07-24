@@ -516,6 +516,65 @@ export const collections: Collection[] = [
     ],
     relatedArticleSlugs: ["okapi-returns"],
   },
+  {
+    slug: "contour",
+    name: "Contour",
+    metaTitle: "Pedral Contour — Integrated Bracelet, Swiss Hand-Wound | Pedral",
+    metaDescription:
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch. Stone and mother-of-pearl dials, symmetrical by design. Stockholm-designed. Coming soon, allocation only.",
+    tagline: "Coming Soon",
+    hook: "A watch drawn in one line.",
+    description:
+      "The Contour began with a question I could not let go of: what happens when the case and bracelet stop being two separate things? The answer is a single unbroken silhouette, hundreds of polished scales running from one end of the wrist to the other, with the dial sitting inside the form rather than on top of it.",
+    descriptionExtra:
+      "In the 1970s, a handful of makers treated the bracelet as the watch itself, woven and finished like fine jewellery. That idea largely disappeared. I wanted to bring it back at a scale I could stand behind, in steel, made properly, in numbers small enough that I know where each one goes. At 35mm across and 6.9mm in height, the Contour disappears under a cuff and settles flat on the wrist. There is no bezel to speak of, no lugs in the traditional sense. Just the line.",
+    designerNote:
+      "There is no logo on the dial. There never needed to be one. The squarcle pattern on the mother-of-pearl dials is built from the Pedral A mirrored into itself, and the stone dials carry nothing but the hands — so the watch has no right way up. Wear it on the left wrist or the right, crown in or crown out. Most watches are designed for one wrist and tolerated on the other. This one is symmetrical by intention.",
+    year: 2026,
+    tier: "limited",
+    // TODO: Kevin confirm final price per movement before this can accept real orders.
+    price: 0,
+    // TODO: Kevin confirm actual edition size — placeholder matches the studio's usual run.
+    stock: 20,
+    maxStock: 20,
+    edition: "Allocation only",
+    badge: "Coming Soon",
+    urgencyTag: "Not yet available",
+    hidePriceOnCard: true,
+    isEnquiryOnly: true,
+    specsTitle: "A silhouette, not an assembly.",
+    specs: {
+      Movement:
+        "ETA 7001 or La Joux-Perret D101 · Swiss hand-wound · 2.5mm calibre height · choice at reservation — or Ronda 1069 quartz",
+      Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
+      Dial:
+        "Natural stone (Red Agate, Verdite, Lapis Lazuli) or mother-of-pearl (White, Blue, Brown, Black) with an openworked squarcle motif — the same signature cut through rather than printed on. Seven references.",
+      Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
+      Crystal: "Sapphire",
+      "Water Resist.": "To be confirmed",
+      Edition: "Allocation only · Coming soon",
+    },
+    // Standard Pedral packaging — carried over from the rest of the line; confirm before launch if Contour's box differs.
+    boxContents: [
+      "Contour timepiece",
+      "Strap adapter tool",
+      "Artisanal leather travel roll",
+      "Polishing cloth",
+      "24-month warranty card",
+      "Personal note from Kevin",
+    ],
+    valueAnchor: "Pricing will be announced closer to release.",
+    valueComparePrice: "",
+    detailStrip: {
+      eyebrow: "Either Wrist",
+      title: "Symmetrical by intention.",
+      text: "The squarcle pattern shares one marker length all the way round, so the dial reads the same from every direction. Turn the Contour around and nothing is upside down — worn on either wrist, crown in or crown out, the watch does not mind.",
+    },
+    testimonials: [],
+    newsletterTitle: "Be considered for an allocation.",
+    newsletterSub: "Those on the list hear first when Contour opens. No noise.",
+    image: "",
+  },
 ];
 
 export function getCollection(slug: string): Collection | undefined {
