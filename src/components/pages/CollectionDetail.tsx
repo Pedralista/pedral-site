@@ -198,7 +198,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           >
             {isSoldOut
               ? `The Original · Since ${c.year}`
-              : `Limited Edition · 20 Pieces`}
+              : `Limited Edition · ${c.maxStock} Pieces`}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -1293,7 +1293,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           collectionName={c.name}
           isPreOrder={c.isPreOrder}
           depositAmount={c.depositAmount ?? 500}
-          price={c.price}
+          price={runningTotal}
           onClose={() => setClientSecret(null)}
         />
       )}

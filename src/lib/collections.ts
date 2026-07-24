@@ -538,11 +538,11 @@ export const collections: Collection[] = [
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
     price: 895,
-    // TODO: Kevin confirm actual edition size — placeholder matches the studio's usual run,
-    // split evenly across the two movement variants below.
-    stock: 20,
-    maxStock: 20,
-    edition: "Limited run · Pre-orders open now",
+    // 20 pieces per dial variant: Orange Agate (quartz) + Black MOP + White MOP
+    // (hand-wound) = 60 total. See per-variant/numeralStock breakdown below.
+    stock: 60,
+    maxStock: 60,
+    edition: "20 pieces per dial · 60 total · Pre-orders open now",
     badge: "Limited Run — Pre-Orders Open",
     urgencyTag: "Limited run · Pre-orders open now",
     // Real checkout is live (Stripe variants below), so this is no longer an
@@ -563,7 +563,7 @@ export const collections: Collection[] = [
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "Limited run · Pre-orders open now",
+      Edition: "20 pieces per dial (Orange Agate, Black MOP, White MOP) · 60 total",
     },
     // The bracelet is fully integrated (no separate strap), so the box swaps
     // Maestro/Okapi's strap-adapter tool for a bracelet micro-adjustment tool.
@@ -600,24 +600,29 @@ export const collections: Collection[] = [
       {
         name: "Quartz",
         stripePriceId: "price_1TwoeRCfxE1lSBKRIp2Acccy",
-        stock: 10, // TODO: Kevin confirm real edition split
+        stock: 20, // 20 pieces — single dial (Orange Agate)
         color: "Orange",
         price: 895,
         description: "Ronda 1069, Swiss-made quartz. Orange Agate dial.",
-        image: "",
+        image: "/images/contour-product-orange-agate.png",
       },
       {
         name: "Hand-Wound",
         stripePriceId: "price_1TwoiWCfxE1lSBKRmX0ByV0c",
-        stock: 10, // TODO: Kevin confirm real edition split
+        stock: 40, // 20 pieces per dial (Black + White Mother of Pearl) — see numeralStock
         color: "Silver",
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Choice of Black or White Mother of Pearl dial, guilloché finish.",
         numeralOptions: ["Black Mother of Pearl", "White Mother of Pearl"],
-        numeralImages: {
-          "Black Mother of Pearl": "/images/contour-black-mop.png",
+        numeralStock: {
+          "Black Mother of Pearl": 20,
+          "White Mother of Pearl": 20,
         },
-        image: "",
+        numeralImages: {
+          "Black Mother of Pearl": "/images/contour-product-black-mop.png",
+          "White Mother of Pearl": "/images/contour-product-white-mop.png",
+        },
+        image: "/images/contour-product-black-mop.png",
       },
     ],
   },
