@@ -299,7 +299,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                     ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                     : isSoldOut
                     ? "Join Waitlist"
-                    : `Reserve Allocation · €${(selectedVariant?.price ?? c.price).toLocaleString()}`}
+                    : `${c.reserveButtonLabel ?? "Reserve Allocation"} · €${(selectedVariant?.price ?? c.price).toLocaleString()}`}
                 </button>
                 {c.isPreOrder && (
                   <p className="mt-3 text-[11px] font-light leading-[1.7] text-foreground-muted/60">
@@ -671,7 +671,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                   disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
-                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `Reserve Allocation · €${runningTotal.toLocaleString()}`}
+                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `${c.reserveButtonLabel ?? "Reserve Allocation"} · €${runningTotal.toLocaleString()}`}
                 </button>
               </div>
             </motion.div>

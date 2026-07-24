@@ -77,6 +77,8 @@ export interface Collection {
   relatedArticleSlugs?: string[];
   /** Label shown above a variant's sub-choice picker (e.g. dial color). Defaults to "Numeral Style" to preserve existing Triomphe behavior. */
   numeralOptionsLabel?: string;
+  /** Overrides the "Reserve Allocation" checkout button label for products that aren't a curated/reviewed allocation (e.g. plain first-come-first-served pre-order). Defaults to "Reserve Allocation". */
+  reserveButtonLabel?: string;
 }
 
 export const collections: Collection[] = [
@@ -523,8 +525,8 @@ export const collections: Collection[] = [
     name: "Contour",
     metaTitle: "Pedral Contour — Integrated Bracelet, Swiss Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Stone and mother-of-pearl dials. Stockholm-designed. Coming soon.",
-    tagline: "Coming Soon",
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Stone and mother-of-pearl dials. Stockholm-designed. Limited run, pre-orders open now.",
+    tagline: "Pre-Orders Open",
     hook: "Not a watch. A presence.",
     description:
       "The Contour doesn't sit on the wrist. It wraps it. Hundreds of polished steel scales move like fabric, finished the way a fine bracelet is finished — not a case with a strap bolted on, but one continuous line from clasp to dial. Something meant to be touched as much as read.",
@@ -540,17 +542,16 @@ export const collections: Collection[] = [
     // split evenly across the two movement variants below.
     stock: 20,
     maxStock: 20,
-    edition: "First run · Small numbers, on purpose",
-    badge: "Coming Soon",
-    urgencyTag: "Not yet open · Join the list",
-    hidePriceOnCard: true,
-    // isEnquiryOnly stays on (matches Okapi's pattern): the self-serve
-    // "Reserve Allocation" button above now works via real variants/Stripe
-    // prices, but the bottom fallback section still routes to /contact for
-    // anyone who'd rather not commit to a specific dial online.
-    isEnquiryOnly: true,
+    edition: "Limited run · Pre-orders open now",
+    badge: "Limited Run — Pre-Orders Open",
+    urgencyTag: "Limited run · Pre-orders open now",
+    // Real checkout is live (Stripe variants below), so this is no longer an
+    // enquiry-gated product — pricing, stock, and the standard Reserve CTA
+    // all show normally now, same as Maestro/Triomphe.
     variantLabel: "Movement",
     numeralOptionsLabel: "Dial",
+    // First-come-first-served pre-order, not a curated/reviewed allocation.
+    reserveButtonLabel: "Pre-Order Now",
     specsTitle: "Presence, not permission.",
     specs: {
       Price: "€895 quartz · €1,950 hand-wound",
@@ -562,7 +563,7 @@ export const collections: Collection[] = [
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "Allocation only · Coming soon",
+      Edition: "Limited run · Pre-orders open now",
     },
     // The bracelet is fully integrated (no separate strap), so the box swaps
     // Maestro/Okapi's strap-adapter tool for a bracelet micro-adjustment tool.
@@ -590,8 +591,8 @@ export const collections: Collection[] = [
       thickness: "6.9mm",
       note: "There are no traditional lugs to measure — the bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case-to-wrist proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than sitting high off the wrist.",
     },
-    newsletterTitle: "Hear about it before anyone else.",
-    newsletterSub: "One email, when Contour opens. Nothing else.",
+    newsletterTitle: "Stay close to the studio.",
+    newsletterSub: "Updates on Contour and future editions. No noise.",
     image: "/images/contour-black-mop.png",
     heroImage: "/images/contour-hero.png",
     heroFit: "contain",
