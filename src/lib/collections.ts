@@ -538,11 +538,10 @@ export const collections: Collection[] = [
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
     price: 895,
-    // Edition of 35 total. 7 pieces (2 Agate, 2 White MOP, 3 Black MOP) are
-    // allocated outside the public pre-order (press/bespoke/etc.) — `stock`
-    // below is the 28 actually available for sale: 10 Agate, 15 Black MOP,
-    // 3 White MOP. See per-variant/numeralStock breakdown below.
-    stock: 28,
+    // Edition of 35 total, some allocated outside the public pre-order
+    // (press/bespoke/etc.) — `stock` below is what's actually available for
+    // sale: 10 Agate, 8 Black MOP, 12 White MOP. See numeralStock below.
+    stock: 30,
     maxStock: 35,
     edition: "35 pieces total · Pre-orders open now",
     badge: "Limited Run — Pre-Orders Open",
@@ -565,7 +564,7 @@ export const collections: Collection[] = [
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "35 pieces total · 28 available for pre-order (10 Orange Agate, 15 Black MOP, 3 White MOP)",
+      Edition: "35 pieces total · 30 available for pre-order (10 Orange Agate, 8 Black MOP, 12 White MOP)",
     },
     // The bracelet is fully integrated (no separate strap), so the box swaps
     // Maestro/Okapi's strap-adapter tool for a bracelet micro-adjustment tool.
@@ -611,14 +610,14 @@ export const collections: Collection[] = [
       {
         name: "Hand-Wound",
         stripePriceId: "price_1TwoiWCfxE1lSBKRmX0ByV0c",
-        stock: 18, // 15 Black MOP + 3 White MOP available for pre-order — see numeralStock
+        stock: 20, // 8 Black MOP + 12 White MOP available for pre-order — see numeralStock
         color: "Silver",
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Choice of Black or White Mother of Pearl dial, guilloché finish.",
         numeralOptions: ["Black Mother of Pearl", "White Mother of Pearl"],
         numeralStock: {
-          "Black Mother of Pearl": 15, // 3 more allocated elsewhere
-          "White Mother of Pearl": 3, // 2 more allocated elsewhere
+          "Black Mother of Pearl": 8,
+          "White Mother of Pearl": 12,
         },
         numeralImages: {
           "Black Mother of Pearl": "/images/contour-product-black-mop.png",
