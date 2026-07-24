@@ -75,6 +75,8 @@ export interface Collection {
   comingSoonEditions?: { name: string; description: string; image?: string }[];
   /** Journal article slugs relevant to this product (inverse of Article.relatedCollectionSlug). */
   relatedArticleSlugs?: string[];
+  /** Label shown above a variant's sub-choice picker (e.g. dial color). Defaults to "Numeral Style" to preserve existing Triomphe behavior. */
+  numeralOptionsLabel?: string;
 }
 
 export const collections: Collection[] = [
@@ -533,17 +535,22 @@ export const collections: Collection[] = [
     year: 2026,
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
-    // No Stripe Price objects exist for either yet, so isEnquiryOnly stays on
-    // (see note below) until Kevin creates them and real variants can be added.
     price: 895,
-    // TODO: Kevin confirm actual edition size — placeholder matches the studio's usual run.
+    // TODO: Kevin confirm actual edition size — placeholder matches the studio's usual run,
+    // split evenly across the two movement variants below.
     stock: 20,
     maxStock: 20,
     edition: "First run · Small numbers, on purpose",
     badge: "Coming Soon",
     urgencyTag: "Not yet open · Join the list",
     hidePriceOnCard: true,
+    // isEnquiryOnly stays on (matches Okapi's pattern): the self-serve
+    // "Reserve Allocation" button above now works via real variants/Stripe
+    // prices, but the bottom fallback section still routes to /contact for
+    // anyone who'd rather not commit to a specific dial online.
     isEnquiryOnly: true,
+    variantLabel: "Movement",
+    numeralOptionsLabel: "Dial",
     specsTitle: "Presence, not permission.",
     specs: {
       Price: "€895 quartz · €1,950 hand-wound",
@@ -588,6 +595,30 @@ export const collections: Collection[] = [
     image: "/images/contour-black-mop.png",
     heroImage: "/images/contour-hero.png",
     heroFit: "contain",
+    variants: [
+      {
+        name: "Quartz",
+        stripePriceId: "price_1TwoeRCfxE1lSBKRIp2Acccy",
+        stock: 10, // TODO: Kevin confirm real edition split
+        color: "Orange",
+        price: 895,
+        description: "Ronda 1069, Swiss-made quartz. Orange Agate dial.",
+        image: "",
+      },
+      {
+        name: "Hand-Wound",
+        stripePriceId: "price_1TwoiWCfxE1lSBKRmX0ByV0c",
+        stock: 10, // TODO: Kevin confirm real edition split
+        color: "Silver",
+        price: 1950,
+        description: "ETA 7001, Swiss hand-wound. Choice of Black or White Mother of Pearl dial, guilloché finish.",
+        numeralOptions: ["Black Mother of Pearl", "White Mother of Pearl"],
+        numeralImages: {
+          "Black Mother of Pearl": "/images/contour-black-mop.png",
+        },
+        image: "",
+      },
+    ],
   },
 ];
 
