@@ -521,7 +521,7 @@ export const collections: Collection[] = [
     name: "Contour",
     metaTitle: "Pedral Contour — Integrated Bracelet, Swiss Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €1,000 quartz, €2,000 hand-wound. Stone and mother-of-pearl dials. Stockholm-designed. Coming soon.",
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Stone and mother-of-pearl dials. Stockholm-designed. Coming soon.",
     tagline: "Coming Soon",
     hook: "A watch drawn in one line.",
     description:
@@ -532,21 +532,21 @@ export const collections: Collection[] = [
       "There is no logo on the dial. There never needed to be one. The squarcle pattern on the mother-of-pearl dials is built from the Pedral A mirrored into itself, and the stone dials carry nothing but the hands — so the watch has no right way up. Wear it on the left wrist or the right, crown in or crown out. Most watches are designed for one wrist and tolerated on the other. This one is symmetrical by intention.",
     year: 2026,
     tier: "limited",
-    // Base/entry price (quartz). Hand-wound is €2,000 — see specs.Price below.
+    // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
     // No Stripe Price objects exist for either yet, so isEnquiryOnly stays on
     // (see note below) until Kevin creates them and real variants can be added.
-    price: 1000,
+    price: 895,
     // TODO: Kevin confirm actual edition size — placeholder matches the studio's usual run.
     stock: 20,
     maxStock: 20,
-    edition: "20 pieces · Allocation only",
-    badge: "Allocation Only",
-    urgencyTag: "Coming soon · Allocation only",
+    edition: "First run · Small numbers, on purpose",
+    badge: "Coming Soon",
+    urgencyTag: "Not yet open · Join the list",
     hidePriceOnCard: true,
     isEnquiryOnly: true,
     specsTitle: "A silhouette, not an assembly.",
     specs: {
-      Price: "€1,000 quartz · €2,000 hand-wound",
+      Price: "€895 quartz · €1,950 hand-wound",
       Movement:
         "ETA 7001 or La Joux-Perret D101 · Swiss hand-wound · 2.5mm calibre height · choice at reservation — or Ronda 1069 quartz",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
@@ -563,14 +563,14 @@ export const collections: Collection[] = [
     boxContents: [
       "Contour timepiece",
       "Bracelet micro-adjustment tool",
-      "Pedral leather travel roll",
-      "Soft polishing cloth",
-      "24-month international warranty card",
-      "Handwritten note from Kevin",
+      "Leather travel roll",
+      "Polishing cloth",
+      "24-month warranty card",
+      "A note from Kevin",
     ],
     valuePerspectiveTitle: "Two ways to own it.",
     valueAnchor:
-      "€1,000 for the Ronda 1069 quartz — the same silhouette, nothing to think about. €2,000 for the ETA 7001 or La Joux-Perret D101 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height.",
+      "€895 for the Ronda 1069 quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 or La Joux-Perret D101 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "Either Wrist",
@@ -583,8 +583,8 @@ export const collections: Collection[] = [
       thickness: "6.9mm",
       note: "There are no traditional lugs to measure — the bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case-to-wrist proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than sitting high off the wrist.",
     },
-    newsletterTitle: "Be considered for an allocation.",
-    newsletterSub: "Those on the list hear first when Contour opens. No noise.",
+    newsletterTitle: "Hear about it before anyone else.",
+    newsletterSub: "One email, when Contour opens. Nothing else.",
     image: "",
   },
 ];
