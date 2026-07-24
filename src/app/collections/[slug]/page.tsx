@@ -61,6 +61,7 @@ export default async function CollectionPage({
         price={collection.price}
         stock={collection.stock}
         testimonials={collection.testimonials}
+        isEnquiryOnly={collection.isEnquiryOnly}
       />
       <BreadcrumbJsonLd
         items={[

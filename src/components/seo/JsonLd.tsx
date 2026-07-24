@@ -46,9 +46,11 @@ interface ProductJsonLdProps {
   price: number;
   stock: number;
   testimonials?: { quote: string; name: string }[];
+  /** Enquiry-only / not-yet-priced products (e.g. pre-launch allocation requests) — omits the Offer block rather than emitting an inaccurate price. */
+  isEnquiryOnly?: boolean;
 }
 
-export function ProductJsonLd({ name, description, image, slug, year, price, stock, testimonials }: ProductJsonLdProps) {
+export function ProductJsonLd({ name, description, image, slug, year, price, stock, testimonials, isEnquiryOnly }: ProductJsonLdProps) {
   const availability =
     stock === 0
       ? "https://schema.org/OutOfStock"
@@ -79,7 +81,6 @@ export function ProductJsonLd({ name, description, image, slug, year, price, sto
     "@type": "Product",
     name: `Pedral ${name}`,
     description,
-    image: `https://www.pedral.eu${image}`,
     url: `https://www.pedral.eu/collections/${slug}`,
     brand: {
       "@type": "Brand",
@@ -90,15 +91,22 @@ export function ProductJsonLd({ name, description, image, slug, year, price, sto
       name: "Pedral Watches",
     },
     releaseDate: `${year}-01-01`,
-    offers: {
+  };
+
+  if (image) schema.image = `https://www.pedral.eu${image}`;
+
+  // Enquiry-only products have no confirmed price yet — omit the Offer
+  // entirely rather than emit a placeholder/zero price as structured data.
+  if (!isEnquiryOnly) {
+    schema.offers = {
       "@type": "Offer",
       url: `https://www.pedral.eu/collections/${slug}`,
       availability,
       priceCurrency: "EUR",
       price: price.toFixed(2),
       priceValidUntil: `${year + 2}-12-31`,
-    },
-  };
+    };
+  }
 
   if (reviews) schema.review = reviews;
   if (aggregateRating) schema.aggregateRating = aggregateRating;
