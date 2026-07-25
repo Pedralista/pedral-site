@@ -117,13 +117,13 @@ export default async function CollectionPage({
         </>
       )}
       <ProductJsonLd
-        name={collection.name}
+        name={metaVariant ? `${collection.name} — ${metaVariant.name}` : collection.name}
         description={collection.description}
-        image={collection.image}
+        image={metaVariant?.image || collection.image}
         slug={collection.slug}
         year={collection.year}
-        price={collection.price}
-        stock={collection.stock}
+        price={metaPrice}
+        stock={metaStock}
         testimonials={collection.testimonials}
         isEnquiryOnly={collection.isEnquiryOnly}
       />
