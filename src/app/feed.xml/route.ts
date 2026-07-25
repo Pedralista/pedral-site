@@ -42,7 +42,7 @@ export async function GET() {
       <g:item_group_id>${escapeXml(c.slug)}</g:item_group_id>
       <title>${escapeXml(`Pedral ${c.name} — ${v.name}`)}</title>
       <description>${escapeXml(v.description ?? c.description)}</description>
-      <link>${siteUrl}/collections/${c.slug}?variant=${escapeXml(variantSlug)}</link>
+      <link>${siteUrl}/collections/${c.slug}/${escapeXml(variantSlug)}</link>
       <g:image_link>${siteUrl}${v.image ?? c.image}</g:image_link>
       <g:price>${price.toFixed(2)} EUR</g:price>
       <g:availability>${availability(v.stock)}</g:availability>
