@@ -539,10 +539,10 @@ export const collections: Collection[] = [
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
     price: 895,
     // Edition of 60 total. ~35 already sold via pre-orders and other
-    // channels before this went live on the site — `stock` below is the
-    // ~25 actually remaining: 8 Orange Agate, 7 Black MOP, 10 White MOP.
-    // See numeralStock below.
-    stock: 25,
+    // channels before this went live on the site. White Mother of Pearl is
+    // now sold out — `stock` below is the ~15 actually remaining across the
+    // other two dials: 8 Orange Agate, 7 Black MOP. See numeralStock below.
+    stock: 15,
     maxStock: 60,
     edition: "Pre-orders open now",
     badge: "Limited Run — Pre-Orders Open",
@@ -565,7 +565,7 @@ export const collections: Collection[] = [
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "60 pieces total · 25 remaining (8 Orange Agate, 7 Black MOP, 10 White MOP)",
+      Edition: "60 pieces total · 15 remaining (8 Orange Agate, 7 Black MOP). White Mother of Pearl is sold out.",
     },
     // The bracelet is fully integrated (no separate strap), so the box swaps
     // Maestro/Okapi's strap-adapter tool for a bracelet micro-adjustment tool.
@@ -611,14 +611,15 @@ export const collections: Collection[] = [
       {
         name: "Hand-Wound",
         stripePriceId: "price_1TwoiWCfxE1lSBKRmX0ByV0c",
-        stock: 17, // 7 Black MOP + 10 White MOP remaining — see numeralStock
+        stock: 7, // 7 Black MOP remaining — White MOP sold out, see numeralStock
         color: "Silver",
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Choice of Black or White Mother of Pearl dial, guilloché finish.",
         numeralOptions: ["Black Mother of Pearl", "White Mother of Pearl"],
+        soldOutNumerals: ["White Mother of Pearl"],
         numeralStock: {
           "Black Mother of Pearl": 7,
-          "White Mother of Pearl": 10,
+          "White Mother of Pearl": 0,
         },
         numeralImages: {
           "Black Mother of Pearl": "/images/contour-product-black-mop.png",
