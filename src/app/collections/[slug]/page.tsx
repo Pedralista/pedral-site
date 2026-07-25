@@ -16,15 +16,25 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ variant?: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const { variant: variantSlug } = await searchParams;
   const collection = getCollection(slug);
   if (!collection) return { title: "Not Found" };
   const metaTitle = collection.metaTitle ?? `${collection.name} — Pedral`;
   const metaDescription = collection.metaDescription ?? collection.description;
+  // Canonical always points at the base product URL (avoids duplicate-content
+  // SEO issues from ?variant= links) — but the OG image below still reflects
+  // the specific variant, since that's what a social share should show.
   const canonical = `/collections/${collection.slug}`;
+  const matchedVariant = variantSlug
+    ? collection.variants?.find((v) => v.name.toLowerCase().replace(/\s+/g, "-") === variantSlug)
+    : undefined;
+  const ogImage = matchedVariant?.image || collection.image;
   return {
     title: { absolute: metaTitle },
     description: metaDescription,
@@ -36,23 +46,26 @@ export async function generateMetadata({
       title: metaTitle,
       description: metaDescription,
       url: `/collections/${collection.slug}`,
-      images: [{ url: collection.image, width: 1200, height: 630, alt: `Pedral ${collection.name} watch` }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `Pedral ${collection.name} watch` }],
     },
     twitter: {
       card: "summary_large_image",
       title: metaTitle,
       description: metaDescription,
-      images: [collection.image],
+      images: [ogImage],
     },
   };
 }
 
 export default async function CollectionPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ variant?: string }>;
 }) {
   const { slug } = await params;
+  const { variant: initialVariantSlug } = await searchParams;
   const staticCollection = getCollection(slug);
   if (!staticCollection || isHidden(staticCollection)) notFound();
 
@@ -80,21 +93,27 @@ export default async function CollectionPage({
     : undefined;
   const collection = { ...staticCollection, stock: liveBase, variants: liveVariants };
 
+  // Open Graph Product tags, read by Instagram's "Link a product" (paste a
+  // URL, no separate catalog needed) and similar tools. Must use `property=`,
+  // not `name=` — Next's metadata `other` field only emits `name=`, which OG
+  // parsers ignore, so these are rendered directly below. When the URL
+  // includes ?variant=slug (as every variant's Merchant/Meta feed entry now
+  // does), price/availability reflect that specific variant instead of the
+  // base price — otherwise every variant sharing one product page would
+  // report the same price regardless of which was actually tagged/shared.
+  const metaVariant = initialVariantSlug
+    ? collection.variants?.find((v) => v.name.toLowerCase().replace(/\s+/g, "-") === initialVariantSlug)
+    : undefined;
+  const metaPrice = metaVariant?.price ?? collection.price;
+  const metaStock = metaVariant?.stock ?? collection.stock;
+
   return (
     <>
-      {/* Open Graph Product tags — read by Instagram's "Link a product" (paste
-          a URL, no separate catalog needed) and similar tools. Must use
-          `property=`, not `name=` — Next's metadata `other` field only emits
-          `name=`, which OG parsers ignore, so these are rendered directly.
-          Omitted for enquiry-only/no-fixed-price products. Note: exposes only
-          the base/entry price for multi-variant products (e.g. Contour's
-          cheaper Quartz option) — a real limitation of this lightweight
-          tagging flow, not something a single meta tag can fix. */}
       {!collection.isEnquiryOnly && (
         <>
-          <meta property="product:price:amount" content={String(collection.price)} />
+          <meta property="product:price:amount" content={String(metaPrice)} />
           <meta property="product:price:currency" content="EUR" />
-          <meta property="product:availability" content={collection.stock > 0 ? "in stock" : "out of stock"} />
+          <meta property="product:availability" content={metaStock > 0 ? "in stock" : "out of stock"} />
         </>
       )}
       <ProductJsonLd
@@ -121,7 +140,7 @@ export default async function CollectionPage({
         { q: "What about production delays?", a: "Timeline updates are sent directly from Kevin throughout production — not automated emails. If something changes, you hear it from the person responsible." },
         { q: "I can't see it in person before buying.", a: "Most owners say the watch is better in person than in photos. High-resolution images and full specifications are available for every edition. The 14-day return policy exists precisely for this reason." },
       ]} />
-      <CollectionDetail collection={collection} />
+      <CollectionDetail collection={collection} initialVariantSlug={initialVariantSlug} />
       {/* Fires GA4 view_item + Pixel ViewContent without touching CollectionDetail. */}
       <ViewItemTracker
         item={{
