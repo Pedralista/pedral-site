@@ -44,12 +44,19 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   // Honors a ?variant=slug link (e.g. from the Merchant/Meta product feed,
   // where each variant gets its own URL) by preselecting that variant instead
   // of always defaulting to the first in-stock one.
+  const requestedVariant = initialVariantSlug
+    ? c.variants?.find((v) => v.name.toLowerCase().replace(/\s+/g, "-") === initialVariantSlug)
+    : undefined;
+  // When a specific variant was linked directly, show only that one — not
+  // the sibling variants — so the page reads as a single product rather than
+  // several. (Real issue this fixes: Instagram's "Add products" rejected a
+  // ?variant= link as "more than one product" even though the meta tags were
+  // already variant-specific, because the page still visually offered every
+  // other variant too.)
+  const visibleVariants = requestedVariant ? [requestedVariant] : (c.variants ?? []);
   const [selectedVariant, setSelectedVariant] = useState(() => {
     if (!hasVariants) return null;
-    const requested = initialVariantSlug
-      ? c.variants!.find((v) => v.name.toLowerCase().replace(/\s+/g, "-") === initialVariantSlug)
-      : undefined;
-    return requested ?? c.variants!.find((v) => v.stock > 0) ?? c.variants![0];
+    return requestedVariant ?? c.variants!.find((v) => v.stock > 0) ?? c.variants![0];
   });
   const [loading, setLoading] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
@@ -362,7 +369,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 {c.variantLabel ?? "Dial Editions"}
               </p>
               <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
-                {c.variantLabel === "Movement" ? "Choose your calibre." : "Choose your expression."}
+                {requestedVariant
+                  ? requestedVariant.name
+                  : c.variantLabel === "Movement" ? "Choose your calibre." : "Choose your expression."}
               </h2>
             </motion.div>
 
@@ -374,7 +383,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               variants={staggerContainer}
               className="grid gap-4 sm:grid-cols-2"
             >
-              {c.variants!.map((v) => {
+              {visibleVariants.map((v) => {
                 const isSelected = selectedVariant?.name === v.name;
                 const isSoldOutVariant = v.stock === 0;
                 return (
@@ -463,7 +472,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             </motion.div>
 
             {/* Notify Me — Sold-out editions */}
-            {c.variants!.some(v => v.stock === 0) && (
+            {visibleVariants.some(v => v.stock === 0) && (
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -982,7 +991,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   </>
                 )}
                 <span className="font-serif text-[36px] font-normal text-accent">
-                  {hasVariants && c.variants!.some(v => v.price && v.price !== c.price) ? "From " : ""}&euro;{c.price.toLocaleString()}
+                  {!requestedVariant && hasVariants && c.variants!.some(v => v.price && v.price !== c.price) ? "From " : ""}&euro;{(requestedVariant?.price ?? c.price).toLocaleString()}
                 </span>
               </div>
             </motion.div>
