@@ -351,7 +351,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               variants={fadeInUp}
               className="mb-8"
             >
-              <p className="mb-2 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+              <p className="mb-2 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
                 {c.variantLabel ?? "Dial Editions"}
               </p>
               <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
@@ -404,12 +404,12 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                         <div>
                           <p className="font-serif text-[20px] font-light text-foreground">{v.name}</p>
                           {v.description && (
-                            <p className="mt-1.5 text-[14px] font-light leading-[1.8] text-foreground-muted">{v.description}</p>
+                            <p className="mt-1.5 text-[15px] font-light leading-[1.8] text-foreground-muted">{v.description}</p>
                           )}
                         </div>
                         {!isSoldOutVariant && <div className={`mt-1 h-5 w-5 shrink-0 rounded-full border-2 transition-colors ${isSelected ? "border-accent bg-accent" : "border-accent/30"}`} />}
                       </div>
-                      <p className="mt-3 text-[11px] tracking-[1px] uppercase text-accent/60">
+                      <p className="mt-3 text-[13px] tracking-[0.5px] sm:text-[11px] sm:tracking-[1px] uppercase text-accent/60">
                         {isSoldOutVariant ? "Sold out" : `${v.stock} ${v.stock === 1 ? "piece" : "pieces"} remaining`}
                       </p>
                       {/* Numeral options inline when this variant is selected */}
@@ -508,7 +508,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 variants={fadeInUp}
                 className="mt-8 border-t border-accent/[0.08] pt-8"
               >
-                <p className="mb-2 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                <p className="mb-2 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
                   Make It Yours
                 </p>
                 <h3 className="font-serif text-[clamp(22px,3vw,32px)] font-light text-foreground">
@@ -643,7 +643,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                   &euro;{runningTotal.toLocaleString()}
                 </p>
                 {addOnsActive && addOnsTotal > 0 && (
-                  <p className="mt-1 text-[11px] font-light tracking-[0.5px] text-foreground-muted/60">
+                  <p className="mt-1 text-[13px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[11px]">
                     €{(selectedVariant?.price ?? c.price).toLocaleString()} watch
                     {selectedStrap ? ` · +€${selectedStrap.price.toLocaleString()} strap` : ""}
                     {engravingActive ? ` · +€${engravingAddon.price.toLocaleString()} engraving` : ""}
@@ -651,16 +651,16 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                 )}
                 {!c.isEnquiryOnly && (
                   <>
-                    <p className="mt-1.5 text-[11px] font-light tracking-[0.5px] text-foreground-muted/60">
+                    <p className="mt-1.5 text-[13px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[11px]">
                       {SHIPPING_LINE}
                     </p>
-                    <p className="mt-1 text-[11px] font-light tracking-[0.5px] text-foreground-muted/60">
+                    <p className="mt-1 text-[13px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[11px]">
                       {klarnaLine(selectedVariant?.price ?? c.price)}
                     </p>
                   </>
                 )}
                 {c.nonRefundable && (
-                  <p className="mt-2 text-[11px] font-light leading-[1.7] text-foreground-muted/60">
+                  <p className="mt-2 text-[13px] font-light leading-[1.7] text-foreground-muted/60 sm:text-[11px]">
                     Pre-order · 3–6 months delivery · Non-refundable · Full payment upfront
                   </p>
                 )}
@@ -689,7 +689,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+            <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
               The Watch
             </p>
             <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
@@ -718,7 +718,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               viewport={{ once: true }}
               variants={fadeInUp}
             >
-              <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+              <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
                 Fit & Dimensions
               </p>
               <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
@@ -735,16 +735,16 @@ export default function CollectionDetail({ collection }: { collection: Collectio
                   ...(c.wristFit.wristRange ? [{ label: "Wrist Range", value: c.wristFit.wristRange }] : []),
                 ].map(({ label, value }) => (
                   <div key={label} className="border-t border-accent/[0.12] pt-4">
-                    <p className="text-[11px] font-normal tracking-[2px] uppercase text-accent/70">{label}</p>
-                    <p className="mt-1.5 font-serif text-[18px] font-light text-foreground md:text-[20px]">{value}</p>
+                    <p className="text-[13px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[2px] uppercase text-accent/70">{label}</p>
+                    <p className="mt-1.5 font-serif text-[20px] font-light text-foreground">{value}</p>
                   </div>
                 ))}
               </div>
 
-              <p className="mt-8 text-[15px] font-light leading-[1.9] text-foreground-muted">
+              <p className="mt-8 text-[16px] font-light leading-[1.9] text-foreground-muted sm:text-[15px]">
                 {c.wristFit.note}
               </p>
-              <p className="mt-4 text-[13px] font-light text-foreground-muted/50">
+              <p className="mt-4 text-[14px] font-light text-foreground-muted/60 sm:text-[13px] sm:text-foreground-muted/50">
                 Unsure about fit? Write to Kevin directly — he&apos;ll give you an honest answer.
               </p>
             </motion.div>
@@ -782,7 +782,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
           variants={slideInRight}
           className="flex flex-col justify-center px-6 py-12 md:px-16"
         >
-          <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+          <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
             {c.detailStrip.eyebrow}
           </p>
           <h3 className="font-serif text-[26px] font-light text-foreground">
@@ -805,7 +805,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+            <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
               Kevin&apos;s Note
             </p>
             <div className="mt-4 h-px w-[60px] bg-accent" />
@@ -872,7 +872,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+            <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
               Specifications
             </p>
             <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
@@ -918,7 +918,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             variants={fadeInUp}
             className="rounded-lg border border-accent/10 bg-surface/50 p-8 md:p-10"
           >
-            <p className="mb-2 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+            <p className="mb-2 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
               Complete Package
             </p>
             <h3 className="font-serif text-[20px] font-light text-foreground">
@@ -953,7 +953,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               viewport={{ once: true }}
               variants={fadeInUp}
             >
-              <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+              <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
                 Value Perspective
               </p>
               <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
@@ -992,7 +992,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+            <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
               Before You Commit
             </p>
             <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
@@ -1046,7 +1046,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
         >
           {c.isEnquiryOnly ? (
             <>
-              <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+              <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
                 {c.edition}
               </p>
               <p className="font-serif text-[clamp(28px,4vw,42px)] font-light text-foreground">
@@ -1067,7 +1067,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             </>
           ) : (
             <>
-              <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+              <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
                 Edition of {c.maxStock} &middot; {c.edition}
               </p>
               <p className="font-serif text-[48px] font-light text-foreground">
@@ -1146,7 +1146,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             >
               <motion.p
                 variants={fadeInUp}
-                className="mb-6 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent"
+                className="mb-6 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent"
               >
                 {c.testimonialsLabel ?? `From ${c.name} Owners`}
               </motion.p>
@@ -1181,7 +1181,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
               viewport={{ once: true }}
               variants={fadeInUp}
             >
-              <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+              <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
                 Coming Next
               </p>
               <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
@@ -1242,7 +1242,7 @@ export default function CollectionDetail({ collection }: { collection: Collectio
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <p className="mb-3 text-[12px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+            <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
               Beyond the Edition
             </p>
             <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
