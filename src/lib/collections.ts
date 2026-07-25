@@ -538,12 +538,13 @@ export const collections: Collection[] = [
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
     price: 895,
-    // Edition of 35 total, some allocated outside the public pre-order
-    // (press/bespoke/etc.) — `stock` below is what's actually available for
-    // sale: 10 Agate, 8 Black MOP, 12 White MOP. See numeralStock below.
-    stock: 30,
-    maxStock: 35,
-    edition: "35 pieces total · Pre-orders open now",
+    // Edition of 60 total. ~35 already sold via pre-orders and other
+    // channels before this went live on the site — `stock` below is the
+    // ~25 actually remaining: 8 Orange Agate, 7 Black MOP, 10 White MOP.
+    // See numeralStock below.
+    stock: 25,
+    maxStock: 60,
+    edition: "Pre-orders open now",
     badge: "Limited Run — Pre-Orders Open",
     urgencyTag: "Limited run · Pre-orders open now",
     // Real checkout is live (Stripe variants below), so this is no longer an
@@ -564,7 +565,7 @@ export const collections: Collection[] = [
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "35 pieces total · 30 available for pre-order (10 Orange Agate, 8 Black MOP, 12 White MOP)",
+      Edition: "60 pieces total · 25 remaining (8 Orange Agate, 7 Black MOP, 10 White MOP)",
     },
     // The bracelet is fully integrated (no separate strap), so the box swaps
     // Maestro/Okapi's strap-adapter tool for a bracelet micro-adjustment tool.
@@ -601,7 +602,7 @@ export const collections: Collection[] = [
       {
         name: "Quartz",
         stripePriceId: "price_1TwoeRCfxE1lSBKRIp2Acccy",
-        stock: 10, // Orange Agate — 10 available for pre-order (2 more allocated elsewhere)
+        stock: 8, // Orange Agate — 8 remaining
         color: "Orange",
         price: 895,
         description: "Ronda 1069, Swiss-made quartz. Orange Agate dial.",
@@ -610,14 +611,14 @@ export const collections: Collection[] = [
       {
         name: "Hand-Wound",
         stripePriceId: "price_1TwoiWCfxE1lSBKRmX0ByV0c",
-        stock: 20, // 8 Black MOP + 12 White MOP available for pre-order — see numeralStock
+        stock: 17, // 7 Black MOP + 10 White MOP remaining — see numeralStock
         color: "Silver",
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Choice of Black or White Mother of Pearl dial, guilloché finish.",
         numeralOptions: ["Black Mother of Pearl", "White Mother of Pearl"],
         numeralStock: {
-          "Black Mother of Pearl": 8,
-          "White Mother of Pearl": 12,
+          "Black Mother of Pearl": 7,
+          "White Mother of Pearl": 10,
         },
         numeralImages: {
           "Black Mother of Pearl": "/images/contour-product-black-mop.png",
