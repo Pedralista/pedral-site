@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
@@ -82,6 +82,45 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     (selectedStrap?.price ?? 0) + (engravingActive ? engravingAddon.price : 0);
   const runningTotal = (selectedVariant?.price ?? c.price) + addOnsTotal;
   const { addLine: addCartLine } = useCart();
+
+  // Persistent sticky buy bar: appears once the hero (with the primary CTA)
+  // has scrolled out of view, so Add to Bag/Reserve stay one tap away no
+  // matter how far down the page someone has scrolled, instead of only
+  // existing at three fixed points in the page.
+  const heroRef = useRef<HTMLElement>(null);
+  const [showStickyBar, setShowStickyBar] = useState(false);
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowStickyBar(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // The cookie consent banner is also fixed to the bottom of the screen —
+  // without this, it would sit on top of (and swallow clicks meant for) the
+  // sticky buy bar below whenever both are visible at once. Measuring its
+  // real rendered height and shifting the buy bar up by that amount keeps
+  // both fully usable instead of overlapping.
+  const [cookieBannerHeight, setCookieBannerHeight] = useState(0);
+  useEffect(() => {
+    function measure() {
+      const el = document.getElementById("pedral-cookie-banner");
+      setCookieBannerHeight(el ? el.offsetHeight : 0);
+    }
+    measure();
+    const observer = new MutationObserver(measure);
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
   // Add to Cart shares the same "is this selection actually purchasable" gate
   // as Reserve, minus the deposit pre-order flow — that one charges a fixed
   // deposit rather than the item's real price, which doesn't compose with a
@@ -230,7 +269,10 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   return (
     <>
       {/* Product Hero — Full-bleed with overlay */}
-      <section className={`relative flex items-end sm:items-center overflow-hidden ${c.heroFit === "contain" ? "min-h-[85vh] sm:min-h-screen justify-center" : "min-h-[60vh] sm:min-h-screen"}`}>
+      <section
+        ref={heroRef}
+        className={`relative flex items-end sm:items-center overflow-hidden ${c.heroFit === "contain" ? "min-h-[85vh] sm:min-h-screen justify-center" : "min-h-[60vh] sm:min-h-screen"}`}
+      >
         <div className="absolute inset-0">
           {(c.heroImage || c.image) ? (
             <Image
@@ -1376,6 +1418,56 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         title={c.newsletterTitle}
         subtitle={c.newsletterSub}
       />
+
+      {/* Sticky buy bar — appears once the hero (with the primary CTA) has
+          scrolled out of view, so the purchase actions stay reachable from
+          anywhere on the page. */}
+      <AnimatePresence>
+        {showStickyBar && !c.isEnquiryOnly && (
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
+            style={{ bottom: cookieBannerHeight }}
+            className="fixed inset-x-0 z-40 border-t border-accent/10 bg-background/95 backdrop-blur-md"
+          >
+            <div className="mx-auto flex max-w-[1400px] items-center gap-3 px-4 py-3 sm:px-8">
+              <div className="relative hidden h-12 w-10 shrink-0 overflow-hidden rounded-md bg-[var(--surface)] sm:block">
+                {(selectedVariant?.image || c.image) && (
+                  <Image src={selectedVariant?.image || c.image} alt={c.name} fill className="object-cover" />
+                )}
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="truncate font-serif text-[15px] font-normal text-foreground sm:text-[16px]">
+                  {c.name}
+                  {hasVariants && selectedVariant ? ` — ${selectedVariant.name}` : ""}
+                </p>
+                <p className="text-[13px] font-light text-foreground-muted">
+                  &euro;{runningTotal.toLocaleString()}
+                </p>
+              </div>
+              <div className="flex shrink-0 items-center gap-2">
+                {canAddToCart && (
+                  <button
+                    onClick={handleAddToCart}
+                    className="rounded-lg border border-accent/30 px-4 py-2.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent transition-colors hover:bg-accent hover:text-background sm:px-6 sm:text-[11px] sm:tracking-[2px]"
+                  >
+                    Add to Bag
+                  </button>
+                )}
+                <button
+                  onClick={handleReserve}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:px-8 sm:text-[11px] sm:tracking-[2px]"
+                >
+                  {loading ? "…" : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Reserve"}
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {clientSecret && (
         <PreOrderModal
