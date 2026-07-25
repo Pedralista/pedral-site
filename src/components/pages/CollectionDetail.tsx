@@ -34,16 +34,23 @@ function ImagePlaceholder({ label, className = "" }: { label: string; className?
 }
 
 
-export default function CollectionDetail({ collection }: { collection: Collection }) {
+export default function CollectionDetail({ collection, initialVariantSlug }: { collection: Collection; initialVariantSlug?: string }) {
   const c = collection;
   const relatedArticles = (c.relatedArticleSlugs ?? [])
     .map((slug) => getArticleBySlug(slug))
     .filter((a): a is NonNullable<ReturnType<typeof getArticleBySlug>> => Boolean(a));
   const isSoldOut = c.stock === 0 && !c.isEnquiryOnly;
   const hasVariants = c.variants && c.variants.length > 0;
-  const [selectedVariant, setSelectedVariant] = useState(
-    hasVariants ? (c.variants!.find(v => v.stock > 0) ?? c.variants![0]) : null
-  );
+  // Honors a ?variant=slug link (e.g. from the Merchant/Meta product feed,
+  // where each variant gets its own URL) by preselecting that variant instead
+  // of always defaulting to the first in-stock one.
+  const [selectedVariant, setSelectedVariant] = useState(() => {
+    if (!hasVariants) return null;
+    const requested = initialVariantSlug
+      ? c.variants!.find((v) => v.name.toLowerCase().replace(/\s+/g, "-") === initialVariantSlug)
+      : undefined;
+    return requested ?? c.variants!.find((v) => v.stock > 0) ?? c.variants![0];
+  });
   const [loading, setLoading] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [preOrderError, setPreOrderError] = useState<string | null>(null);

@@ -32,7 +32,8 @@ export async function GET() {
   for (const c of collections.filter((col) => !isHidden(col) && !col.isEnquiryOnly)) {
     if (c.variants && c.variants.length > 0) {
       for (const v of c.variants) {
-        const id = `${c.slug}-${v.name.toLowerCase().replace(/\s+/g, "-")}`;
+        const variantSlug = v.name.toLowerCase().replace(/\s+/g, "-");
+        const id = `${c.slug}-${variantSlug}`;
         const price = v.price ?? c.price;
         const color = v.color ?? "Silver";
         items.push(`
@@ -41,7 +42,7 @@ export async function GET() {
       <g:item_group_id>${escapeXml(c.slug)}</g:item_group_id>
       <title>${escapeXml(`Pedral ${c.name} — ${v.name}`)}</title>
       <description>${escapeXml(v.description ?? c.description)}</description>
-      <link>${siteUrl}/collections/${c.slug}</link>
+      <link>${siteUrl}/collections/${c.slug}?variant=${escapeXml(variantSlug)}</link>
       <g:image_link>${siteUrl}${v.image ?? c.image}</g:image_link>
       <g:price>${price.toFixed(2)} EUR</g:price>
       <g:availability>${availability(v.stock)}</g:availability>
