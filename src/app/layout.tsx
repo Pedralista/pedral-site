@@ -6,6 +6,7 @@ import CookieBanner from "@/components/layout/CookieBanner";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import MetaPixel from "@/components/analytics/MetaPixel";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import { CartProvider } from "@/lib/cart-context";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -96,7 +97,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${cormorant.variable} ${outfit.variable} antialiased`}>
         <OrganizationJsonLd />
-        <ClientLayout>{children}</ClientLayout>
+        <CartProvider>
+          <ClientLayout>{children}</ClientLayout>
+        </CartProvider>
         <CookieBanner />
         <GoogleAnalytics />
         <MetaPixel />

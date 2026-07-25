@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Stripe from "stripe";
 import PurchaseTracker from "@/components/analytics/PurchaseTracker";
+import ClearCartOnSuccess from "@/components/cart/ClearCartOnSuccess";
 import type { AnalyticsItem } from "@/lib/analytics";
 
 export const metadata: Metadata = {
@@ -32,22 +33,27 @@ export default async function OrderSuccessPage({
       if (session.payment_status === "paid" || session.status === "complete") {
         const value = (session.amount_total ?? 0) / 100;
         const currency = (session.currency ?? "eur").toUpperCase();
-        const productName =
-          session.metadata?.product ?? session.metadata?.collection ?? "Pedral";
-        const itemId = session.metadata?.product ?? session.metadata?.collection ?? "pedral";
-        purchase = {
-          value,
-          currency,
-          items: [
-            {
-              item_id: itemId,
-              item_name: productName,
-              price: value,
-              quantity: 1,
-              item_variant: session.metadata?.variant || undefined,
-            },
-          ],
-        };
+        const cartItems = session.metadata?.cartItems
+          ? (JSON.parse(session.metadata.cartItems) as { p: string; v?: string; q: number }[])
+          : null;
+        const items: AnalyticsItem[] = cartItems
+          ? cartItems.map((i) => ({
+              item_id: i.p,
+              item_name: i.p,
+              price: value / cartItems.reduce((sum, x) => sum + x.q, 0),
+              quantity: i.q,
+              item_variant: i.v || undefined,
+            }))
+          : [
+              {
+                item_id: session.metadata?.product ?? session.metadata?.collection ?? "pedral",
+                item_name: session.metadata?.product ?? session.metadata?.collection ?? "Pedral",
+                price: value,
+                quantity: 1,
+                item_variant: session.metadata?.variant || undefined,
+              },
+            ];
+        purchase = { value, currency, items };
       }
     } catch {
       // Retrieval failed — skip client purchase tracking, keep the page working.
@@ -56,6 +62,7 @@ export default async function OrderSuccessPage({
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center">
+      {sessionId && <ClearCartOnSuccess />}
       {sessionId && purchase && (
         <PurchaseTracker
           sessionId={sessionId}

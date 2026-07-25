@@ -37,6 +37,8 @@ export async function POST(req: NextRequest) {
       console.log(
         isPreOrder
           ? `Pre-order deposit received: ${session.metadata?.collection} — ${session.customer_details?.email}`
+          : session.metadata?.cartItems
+          ? `Cart order completed: ${session.metadata.cartItems} — ${session.customer_details?.email}`
           : `Order completed: ${session.metadata?.product} ${session.metadata?.variant} — ${session.customer_details?.email}`
       );
 
@@ -44,13 +46,29 @@ export async function POST(req: NextRequest) {
       // can't be resolved or Redis isn't configured — never blocks the
       // webhook's 200 response to Stripe.
       try {
-        const collection = isPreOrder
-          ? collections.find((c) => c.slug === session.metadata?.collection)
-          : collections.find((c) => c.name === session.metadata?.product);
-        if (collection) {
-          const targets = resolveStockTargets(collection, session.metadata?.variant);
-          for (const t of targets) {
-            await decrementStock(collection.slug, t.part, t.fallback);
+        if (session.metadata?.cartItems) {
+          // Cart checkout — one session can cover several distinct
+          // product/variant lines, each with its own quantity.
+          const cartItems = JSON.parse(session.metadata.cartItems) as { p: string; v?: string; q: number }[];
+          for (const item of cartItems) {
+            const collection = collections.find((c) => c.name === item.p);
+            if (!collection) continue;
+            const targets = resolveStockTargets(collection, item.v || undefined);
+            for (let i = 0; i < item.q; i++) {
+              for (const t of targets) {
+                await decrementStock(collection.slug, t.part, t.fallback);
+              }
+            }
+          }
+        } else {
+          const collection = isPreOrder
+            ? collections.find((c) => c.slug === session.metadata?.collection)
+            : collections.find((c) => c.name === session.metadata?.product);
+          if (collection) {
+            const targets = resolveStockTargets(collection, session.metadata?.variant);
+            for (const t of targets) {
+              await decrementStock(collection.slug, t.part, t.fallback);
+            }
           }
         }
       } catch (err) {

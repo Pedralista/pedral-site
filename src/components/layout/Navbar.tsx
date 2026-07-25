@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/lib/cart-context";
 
 const leftLinks = [
   { href: "/collections", label: "Collection" },
@@ -22,6 +23,7 @@ const rightLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { count, openCart } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -98,6 +100,28 @@ export default function Navbar() {
                 ),
               )}
             </div>
+
+            {/* Cart */}
+            <button
+              onClick={openCart}
+              aria-label={`Open cart${count > 0 ? `, ${count} items` : ""}`}
+              className="relative z-10 flex h-11 w-11 items-center justify-center text-foreground-muted transition-colors hover:text-foreground"
+            >
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M6 8h12l-1 12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 8Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+                <path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              {count > 0 && (
+                <span className="absolute right-1 top-1 flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-accent px-[3px] text-[9px] font-medium text-background">
+                  {count}
+                </span>
+              )}
+            </button>
 
             {/* Mobile toggle */}
             <button
