@@ -82,6 +82,21 @@ export default async function CollectionPage({
 
   return (
     <>
+      {/* Open Graph Product tags — read by Instagram's "Link a product" (paste
+          a URL, no separate catalog needed) and similar tools. Must use
+          `property=`, not `name=` — Next's metadata `other` field only emits
+          `name=`, which OG parsers ignore, so these are rendered directly.
+          Omitted for enquiry-only/no-fixed-price products. Note: exposes only
+          the base/entry price for multi-variant products (e.g. Contour's
+          cheaper Quartz option) — a real limitation of this lightweight
+          tagging flow, not something a single meta tag can fix. */}
+      {!collection.isEnquiryOnly && (
+        <>
+          <meta property="product:price:amount" content={String(collection.price)} />
+          <meta property="product:price:currency" content="EUR" />
+          <meta property="product:availability" content={collection.stock > 0 ? "in stock" : "out of stock"} />
+        </>
+      )}
       <ProductJsonLd
         name={collection.name}
         description={collection.description}
