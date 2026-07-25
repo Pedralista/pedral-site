@@ -28,6 +28,12 @@ function escapeXml(str: string): string {
 
 export async function GET() {
   const items: string[] = [];
+  // No g:item_group_id here on purpose: grouping variants tells Meta's catalog
+  // "these belong to one product," which is exactly what makes Instagram's
+  // in-app "Add products" URL search reject either variant's link as
+  // "more than one product" — it resolves the URL to the group, not the item.
+  // Each variant needs to exist as a fully independent catalog product to be
+  // individually taggable.
 
   for (const c of collections.filter((col) => !isHidden(col) && !col.isEnquiryOnly)) {
     if (c.variants && c.variants.length > 0) {
@@ -39,7 +45,6 @@ export async function GET() {
         items.push(`
     <item>
       <g:id>${escapeXml(id)}</g:id>
-      <g:item_group_id>${escapeXml(c.slug)}</g:item_group_id>
       <title>${escapeXml(`Pedral ${c.name} — ${v.name}`)}</title>
       <description>${escapeXml(v.description ?? c.description)}</description>
       <link>${siteUrl}/collections/${c.slug}/${escapeXml(variantSlug)}</link>
