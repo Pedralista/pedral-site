@@ -34,6 +34,7 @@ export default function CookieBanner() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.4 }}
+          id="pedral-cookie-banner"
           className="fixed bottom-0 left-0 right-0 z-50 border-t border-accent/[0.08] bg-[rgba(10,18,20,0.97)] backdrop-blur-md"
         >
           <div className="mx-auto flex max-w-[1400px] flex-col items-center gap-4 px-6 py-5 sm:flex-row sm:justify-between md:px-12">
