@@ -128,6 +128,7 @@ export default async function CollectionVariantPage({
         stock={variant.stock}
         testimonials={collection.testimonials}
         isEnquiryOnly={collection.isEnquiryOnly}
+        url={`https://www.pedral.eu/collections/${collection.slug}/${variantSlug}`}
       />
       <BreadcrumbJsonLd
         items={[

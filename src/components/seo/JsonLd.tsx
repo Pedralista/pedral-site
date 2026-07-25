@@ -48,9 +48,11 @@ interface ProductJsonLdProps {
   testimonials?: { quote: string; name: string }[];
   /** Enquiry-only / not-yet-priced products (e.g. pre-launch allocation requests) — omits the Offer block rather than emitting an inaccurate price. */
   isEnquiryOnly?: boolean;
+  /** Overrides the schema's self-identifying url/offers.url — needed on per-variant product pages, otherwise this defaults to the shared multi-variant collection URL even when the page itself is scoped to one variant. */
+  url?: string;
 }
 
-export function ProductJsonLd({ name, description, image, slug, year, price, stock, testimonials, isEnquiryOnly }: ProductJsonLdProps) {
+export function ProductJsonLd({ name, description, image, slug, year, price, stock, testimonials, isEnquiryOnly, url }: ProductJsonLdProps) {
   const availability =
     stock === 0
       ? "https://schema.org/OutOfStock"
@@ -81,7 +83,7 @@ export function ProductJsonLd({ name, description, image, slug, year, price, sto
     "@type": "Product",
     name: `Pedral ${name}`,
     description,
-    url: `https://www.pedral.eu/collections/${slug}`,
+    url: url ?? `https://www.pedral.eu/collections/${slug}`,
     brand: {
       "@type": "Brand",
       name: "Pedral",
@@ -100,7 +102,7 @@ export function ProductJsonLd({ name, description, image, slug, year, price, sto
   if (!isEnquiryOnly) {
     schema.offers = {
       "@type": "Offer",
-      url: `https://www.pedral.eu/collections/${slug}`,
+      url: url ?? `https://www.pedral.eu/collections/${slug}`,
       availability,
       priceCurrency: "EUR",
       price: price.toFixed(2),
