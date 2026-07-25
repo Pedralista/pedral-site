@@ -111,6 +111,10 @@ export default async function CollectionVariantPage({
 
   return (
     <>
+      {/* og:type is required for the product:* Open Graph tags below to be valid
+          per spec — Next's typed Metadata API has no "product" literal for
+          openGraph.type, so (like the product:* tags) this is rendered raw. */}
+      <meta property="og:type" content="product" />
       {!collection.isEnquiryOnly && (
         <>
           <meta property="product:price:amount" content={String(variant.price ?? collection.price)} />
