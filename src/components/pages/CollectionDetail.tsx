@@ -444,7 +444,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               "Direct communication with Kevin — not a support team",
               "Ships tracked & insured from Stockholm",
             ].map((item) => (
-              <p key={item} className="px-0 py-5 text-[14px] font-light leading-[1.7] text-foreground-muted/60 sm:px-6 sm:py-6 sm:text-[12px]">
+              <p key={item} className="px-0 py-5 text-[15px] font-light leading-[1.7] text-foreground-muted/60 sm:px-6 sm:py-6 sm:text-[13px]">
                 {item}
               </p>
             ))}
@@ -757,7 +757,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   &euro;{runningTotal.toLocaleString()}
                 </p>
                 {addOnsActive && addOnsTotal > 0 && (
-                  <p className="mt-1 text-[13px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[11px]">
+                  <p className="mt-1 text-[15px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[12px]">
                     €{(selectedVariant?.price ?? c.price).toLocaleString()} watch
                     {selectedStrap ? ` · +€${selectedStrap.price.toLocaleString()} strap` : ""}
                     {engravingActive ? ` · +€${engravingAddon.price.toLocaleString()} engraving` : ""}
@@ -765,16 +765,16 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 )}
                 {!c.isEnquiryOnly && (
                   <>
-                    <p className="mt-1.5 text-[13px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[11px]">
+                    <p className="mt-1.5 text-[15px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[12px]">
                       {SHIPPING_LINE}
                     </p>
-                    <p className="mt-1 text-[13px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[11px]">
+                    <p className="mt-1 text-[15px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[12px]">
                       {klarnaLine(selectedVariant?.price ?? c.price)}
                     </p>
                   </>
                 )}
                 {c.nonRefundable && (
-                  <p className="mt-2 text-[13px] font-light leading-[1.7] text-foreground-muted/60 sm:text-[11px]">
+                  <p className="mt-2 text-[15px] font-light leading-[1.7] text-foreground-muted/60 sm:text-[12px]">
                     Pre-order · 3–6 months delivery · Non-refundable · Full payment upfront
                   </p>
                 )}
@@ -1020,7 +1020,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   <td className="w-[80px] py-3.5 pr-4 align-top text-[11px] font-medium tracking-[1.5px] uppercase text-accent sm:w-[120px] md:w-[180px] sm:pr-6 sm:tracking-[2.5px]">
                     {label}
                   </td>
-                  <td className="py-3.5 text-[14px] font-light text-foreground-muted">
+                  <td className="py-3.5 text-[15px] font-light text-foreground-muted">
                     {value}
                   </td>
                 </motion.tr>
@@ -1051,7 +1051,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               {c.boxContents.map((item) => (
                 <div
                   key={item}
-                  className="flex items-center gap-3 text-[14px] font-light text-foreground-muted"
+                  className="flex items-center gap-3 text-[15px] font-light text-foreground-muted"
                 >
                   <span className="text-[9px] text-accent">&#10022;</span>
                   {item}
@@ -1149,7 +1149,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             ].map(({ q, a }) => (
               <motion.div key={q} variants={fadeInUp} className="py-4 md:py-5">
                 <p className="font-serif text-[15px] font-light text-foreground md:text-[17px]">{q}</p>
-                <p className="mt-2 text-[13px] font-light leading-[1.85] text-foreground-muted md:text-[14px]">{a}</p>
+                <p className="mt-2 text-[15px] font-light leading-[1.85] text-foreground-muted">{a}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -1356,7 +1356,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       </span>
                     </div>
                     <h3 className="font-serif text-[22px] font-light text-foreground">{ed.name}</h3>
-                    <p className="mt-2 text-[14px] font-light leading-[1.8] text-foreground-muted">{ed.description}</p>
+                    <p className="mt-2 text-[15px] font-light leading-[1.8] text-foreground-muted">{ed.description}</p>
                   </div>
                 </motion.div>
               ))}
