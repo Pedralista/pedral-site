@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ExitIntentModal from "@/components/ui/ExitIntentModal";
+import CartDrawer from "@/components/cart/CartDrawer";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -15,6 +16,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       {children}
       {!hideChrome && <Footer />}
       {!hideChrome && <ExitIntentModal />}
+      {!hideChrome && <CartDrawer />}
     </>
   );
 }

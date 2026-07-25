@@ -20,6 +20,7 @@ import Newsletter from "@/components/sections/Newsletter";
 import TrustIcons from "@/components/sections/TrustIcons";
 import PreOrderModal from "@/components/ui/PreOrderModal";
 import { gaEvent, fbqTrack, type AnalyticsItem } from "@/lib/analytics";
+import { useCart } from "@/lib/cart-context";
 
 function ImagePlaceholder({ label, className = "" }: { label: string; className?: string }) {
   return (
@@ -80,6 +81,51 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const addOnsTotal =
     (selectedStrap?.price ?? 0) + (engravingActive ? engravingAddon.price : 0);
   const runningTotal = (selectedVariant?.price ?? c.price) + addOnsTotal;
+  const { addLine: addCartLine } = useCart();
+  // Add to Cart shares the same "is this selection actually purchasable" gate
+  // as Reserve, minus the deposit pre-order flow — that one charges a fixed
+  // deposit rather than the item's real price, which doesn't compose with a
+  // multi-item Stripe session the way a normal priced line item does.
+  const canAddToCart =
+    !c.isEnquiryOnly &&
+    !c.isPreOrder &&
+    !isSoldOut &&
+    !!selectedVariant?.stripePriceId &&
+    !(selectedVariant?.numeralOptions && !selectedNumeral) &&
+    !(selectedNumeral && selectedVariant?.soldOutNumerals?.includes(selectedNumeral));
+
+  function handleAddToCart() {
+    if (!selectedVariant?.stripePriceId) return;
+    const price = selectedVariant.price ?? c.price;
+    addCartLine({
+      slug: c.slug,
+      productName: c.name,
+      variantName: selectedVariant.numeralOptions
+        ? `${selectedVariant.name} · ${selectedNumeral}`
+        : selectedVariant.name,
+      priceId: selectedVariant.stripePriceId,
+      unitPrice: price,
+      image: selectedVariant.image || c.image,
+      nonRefundable: c.nonRefundable ?? false,
+      ...(addOnsActive && (selectedStrapSlug || engravingActive)
+        ? {
+            addOns: {
+              ...(selectedStrap ? { strapSlug: selectedStrap.slug, strapName: selectedStrap.name, strapPrice: selectedStrap.price } : {}),
+              ...(engravingActive ? { engravingText: engravingClean, engravingPrice: engravingAddon.price } : {}),
+            },
+          }
+        : {}),
+    });
+    const item: AnalyticsItem = {
+      item_id: c.slug,
+      item_name: c.name,
+      price,
+      quantity: 1,
+      item_variant: selectedVariant.name,
+    };
+    gaEvent("add_to_cart", { currency: "EUR", value: price, items: [item] });
+    fbqTrack("AddToCart", { currency: "EUR", value: price, content_ids: [c.slug], content_type: "product" });
+  }
 
   function trackReserveIntent() {
     const price = selectedVariant?.price ?? c.price;
@@ -302,19 +348,29 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               </div>
             ) : (
               <>
-                <button
-                  onClick={handleReserve}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
-                  className="w-full rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
-                >
-                  {loading
-                    ? "Loading…"
-                    : c.isPreOrder
-                    ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
-                    : isSoldOut
-                    ? "Join Waitlist"
-                    : `${c.reserveButtonLabel ?? "Reserve Allocation"} · €${(selectedVariant?.price ?? c.price).toLocaleString()}`}
-                </button>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <button
+                    onClick={handleReserve}
+                    disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                    className="w-full rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
+                  >
+                    {loading
+                      ? "Loading…"
+                      : c.isPreOrder
+                      ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
+                      : isSoldOut
+                      ? "Join Waitlist"
+                      : `${c.reserveButtonLabel ?? "Reserve Allocation"} · €${(selectedVariant?.price ?? c.price).toLocaleString()}`}
+                  </button>
+                  {canAddToCart && (
+                    <button
+                      onClick={handleAddToCart}
+                      className="w-full rounded-lg border border-accent/30 px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-colors hover:bg-accent hover:text-background sm:w-auto sm:px-10 sm:text-[11px] sm:tracking-[3px]"
+                    >
+                      Add to Bag
+                    </button>
+                  )}
+                </div>
                 {c.isPreOrder && (
                   <p className="mt-3 text-[11px] font-light leading-[1.7] text-foreground-muted/60">
                     €{c.depositAmount ?? 500} non-refundable deposit &middot; Secures your place in the production queue &middot; Balance invoiced before shipping
@@ -689,6 +745,14 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 >
                   {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `${c.reserveButtonLabel ?? "Reserve Allocation"} · €${runningTotal.toLocaleString()}`}
                 </button>
+                {canAddToCart && (
+                  <button
+                    onClick={handleAddToCart}
+                    className="w-full rounded-lg border border-accent/30 px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-accent transition-colors hover:bg-accent hover:text-background sm:w-auto"
+                  >
+                    Add to Bag
+                  </button>
+                )}
               </div>
             </motion.div>
 
@@ -1095,19 +1159,29 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <p className="mt-1 text-[12px] font-light tracking-[0.5px] text-foreground-muted/70">
                 {klarnaLine(c.price)}
               </p>
-              <button
-                onClick={handleReserve}
-                disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
-                className="mt-6 w-full max-w-[300px] rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
-              >
-                {loading
-                  ? "Loading…"
-                  : c.isPreOrder
-                  ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
-                  : isSoldOut
-                  ? "Join Waitlist"
-                  : `Reserve · €${c.price.toLocaleString()}`}
-              </button>
+              <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                <button
+                  onClick={handleReserve}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  className="w-full max-w-[300px] rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
+                >
+                  {loading
+                    ? "Loading…"
+                    : c.isPreOrder
+                    ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
+                    : isSoldOut
+                    ? "Join Waitlist"
+                    : `Reserve · €${c.price.toLocaleString()}`}
+                </button>
+                {canAddToCart && (
+                  <button
+                    onClick={handleAddToCart}
+                    className="w-full max-w-[300px] rounded-lg border border-accent/30 px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-colors hover:bg-accent hover:text-background sm:w-auto sm:px-10 sm:text-[11px] sm:tracking-[3px]"
+                  >
+                    Add to Bag
+                  </button>
+                )}
+              </div>
               {c.isPreOrder ? (
                 <p className="mt-3 text-[11px] font-light leading-[1.7] text-foreground-muted/60">
                   €{c.depositAmount ?? 500} non-refundable deposit &middot; Balance invoiced before shipping

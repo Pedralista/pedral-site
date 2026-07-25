@@ -42,8 +42,21 @@ export async function sendMetaCapiPurchase(session: Stripe.Checkout.Session): Pr
     const value = (session.amount_total ?? 0) / 100;
     const currency = (session.currency ?? "eur").toUpperCase();
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pedral.eu";
-    const productName = session.metadata?.product ?? session.metadata?.collection ?? "Pedral";
+
+    // Cart orders cover several distinct products in one session — build
+    // per-item contents from the cart metadata instead of assuming one
+    // product/id for the whole purchase.
+    const cartItems = session.metadata?.cartItems
+      ? (JSON.parse(session.metadata.cartItems) as { p: string; v?: string; q: number }[])
+      : null;
+    const totalQty = cartItems?.reduce((sum, i) => sum + i.q, 0) ?? 1;
+    const productName = cartItems
+      ? cartItems.map((i) => i.p).join(", ")
+      : session.metadata?.product ?? session.metadata?.collection ?? "Pedral";
     const contentId = session.metadata?.product ?? session.metadata?.collection ?? "pedral";
+    const contents = cartItems
+      ? cartItems.map((i) => ({ id: i.p, quantity: i.q, item_price: value / totalQty }))
+      : [{ id: contentId, quantity: 1, item_price: value }];
 
     const payload = {
       data: [
@@ -59,7 +72,7 @@ export async function sendMetaCapiPurchase(session: Stripe.Checkout.Session): Pr
             value,
             content_type: "product",
             content_name: productName,
-            contents: [{ id: contentId, quantity: 1, item_price: value }],
+            contents,
           },
         },
       ],
