@@ -538,11 +538,10 @@ export const collections: Collection[] = [
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
     price: 895,
-    // Edition of 60 total. ~35 already sold via pre-orders and other
-    // channels before this went live on the site. White Mother of Pearl is
-    // now sold out — `stock` below is the ~15 actually remaining across the
-    // other two dials: 8 Orange Agate, 7 Black MOP. See numeralStock below.
-    stock: 15,
+    // Edition of 60 total. White Mother of Pearl is sold out — `stock`
+    // below is the remaining count across the other two dials: 6 Orange
+    // Agate, 5 Black MOP. See numeralStock below.
+    stock: 11,
     maxStock: 60,
     edition: "Pre-orders open now",
     badge: "Limited Run — Pre-Orders Open",
@@ -565,7 +564,7 @@ export const collections: Collection[] = [
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "60 pieces total · 15 remaining (8 Orange Agate, 7 Black MOP). White Mother of Pearl is sold out.",
+      Edition: "60 pieces total · 11 remaining (6 Orange Agate, 5 Black MOP). White Mother of Pearl is sold out.",
     },
     // The bracelet is fully integrated (no separate strap), so the box swaps
     // Maestro/Okapi's strap-adapter tool for a bracelet micro-adjustment tool.
@@ -602,7 +601,7 @@ export const collections: Collection[] = [
       {
         name: "Quartz",
         stripePriceId: "price_1TwoeRCfxE1lSBKRIp2Acccy",
-        stock: 8, // Orange Agate — 8 remaining
+        stock: 6, // Orange Agate — 6 remaining
         color: "Orange",
         price: 895,
         description: "Ronda 1069, Swiss-made quartz. Orange Agate dial.",
@@ -611,14 +610,14 @@ export const collections: Collection[] = [
       {
         name: "Hand-Wound",
         stripePriceId: "price_1TwoiWCfxE1lSBKRmX0ByV0c",
-        stock: 7, // 7 Black MOP remaining — White MOP sold out, see numeralStock
+        stock: 5, // 5 Black MOP remaining — White MOP sold out, see numeralStock
         color: "Silver",
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Choice of Black or White Mother of Pearl dial, guilloché finish.",
         numeralOptions: ["Black Mother of Pearl", "White Mother of Pearl"],
         soldOutNumerals: ["White Mother of Pearl"],
         numeralStock: {
-          "Black Mother of Pearl": 7,
+          "Black Mother of Pearl": 5,
           "White Mother of Pearl": 0,
         },
         numeralImages: {
