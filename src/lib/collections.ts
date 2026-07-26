@@ -540,8 +540,8 @@ export const collections: Collection[] = [
     price: 895,
     // Edition of 60 total. White Mother of Pearl is sold out — `stock`
     // below is the remaining count across the other two dials: 6 Orange
-    // Agate, 5 Black MOP. See numeralStock below.
-    stock: 11,
+    // Agate, 4 Black MOP. See numeralStock below.
+    stock: 10,
     maxStock: 60,
     edition: "Pre-orders open now",
     badge: "Limited Run — Pre-Orders Open",
@@ -564,7 +564,7 @@ export const collections: Collection[] = [
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "60 pieces total · 11 remaining (6 Orange Agate, 5 Black MOP). White Mother of Pearl is sold out.",
+      Edition: "60 pieces total · 10 remaining (6 Orange Agate, 4 Black MOP). White Mother of Pearl is sold out.",
     },
     // The bracelet is fully integrated (no separate strap), so the box swaps
     // Maestro/Okapi's strap-adapter tool for a bracelet micro-adjustment tool.
@@ -610,14 +610,14 @@ export const collections: Collection[] = [
       {
         name: "Hand-Wound",
         stripePriceId: "price_1TwoiWCfxE1lSBKRmX0ByV0c",
-        stock: 5, // 5 Black MOP remaining — White MOP sold out, see numeralStock
+        stock: 4, // 4 Black MOP remaining — White MOP sold out, see numeralStock
         color: "Silver",
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Choice of Black or White Mother of Pearl dial, guilloché finish.",
         numeralOptions: ["Black Mother of Pearl", "White Mother of Pearl"],
         soldOutNumerals: ["White Mother of Pearl"],
         numeralStock: {
-          "Black Mother of Pearl": 5,
+          "Black Mother of Pearl": 4,
           "White Mother of Pearl": 0,
         },
         numeralImages: {
