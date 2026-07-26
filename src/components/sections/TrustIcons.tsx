@@ -79,7 +79,7 @@ export default function TrustIcons() {
               >
                 {icon}
               </svg>
-              <span className="font-mono text-[10px] tracking-[2px] uppercase text-accent/70 underline-offset-4 group-hover:underline">
+              <span className="font-mono text-[11px] tracking-[2px] uppercase text-accent/70 underline-offset-4 group-hover:underline">
                 {label}
               </span>
             </>

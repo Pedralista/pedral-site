@@ -68,7 +68,7 @@ export default async function CheckoutPage({
               <p className="font-serif text-[22px] font-light text-foreground">
                 {collection.name}
               </p>
-              <p className="mt-1 text-[13px] font-light text-foreground-muted">
+              <p className="mt-1 text-[16px] font-light text-foreground-muted">
                 {variant.name}
               </p>
               <div className="my-5 h-px bg-accent/10" />
@@ -85,7 +85,7 @@ export default async function CheckoutPage({
                 {collection.boxContents.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-2.5 text-[13px] font-light text-foreground-muted"
+                    className="flex items-start gap-2.5 text-[16px] font-light text-foreground-muted"
                   >
                     <span className="mt-0.5 text-[9px] text-accent">&#10022;</span>
                     {item}
@@ -101,7 +101,7 @@ export default async function CheckoutPage({
                 "14-day return policy",
                 "24-month warranty",
               ].map((item) => (
-                <div key={item} className="flex items-center gap-2.5 text-[12px] font-light text-foreground-muted">
+                <div key={item} className="flex items-center gap-2.5 text-[15px] font-light text-foreground-muted">
                   <span className="font-semibold text-accent">&#10003;</span>
                   {item}
                 </div>

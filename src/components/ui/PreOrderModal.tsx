@@ -51,10 +51,10 @@ export default function PreOrderModal({
         {/* Header */}
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-100 bg-white px-5 py-4">
           <div>
-            <p className="text-[10px] font-medium tracking-[2px] uppercase text-gray-400">
+            <p className="text-[11px] font-medium tracking-[2px] uppercase text-gray-400">
               {isPreOrder ? "Reserve your place" : "Complete your order"}
             </p>
-            <p className="text-[14px] font-medium text-gray-800">
+            <p className="text-[16px] font-medium text-gray-800">
               {collectionName} — {isPreOrder ? `€${depositAmount} deposit` : `€${price?.toLocaleString()}`}
             </p>
           </div>

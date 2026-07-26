@@ -102,7 +102,7 @@ export default function CollectionShowcase() {
                   <h3 className="font-serif text-2xl font-normal text-foreground">
                     {c.name}
                   </h3>
-                  <p className="mt-1.5 mb-4 min-h-[2.8rem] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[14px]">
+                  <p className="mt-1.5 mb-4 min-h-[2.8rem] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[16px]">
                     &ldquo;{c.hook}&rdquo;
                   </p>
                   <div className="flex items-end justify-between">
@@ -125,7 +125,7 @@ export default function CollectionShowcase() {
                             &euro;{c.price.toLocaleString()}
                           </span>
                           {c.valueComparePrice && (
-                            <span className="block text-[11px] font-light tracking-[0.3px] text-foreground-muted/40">
+                            <span className="block text-[14px] font-light tracking-[0.3px] text-foreground-muted/40">
                               Elsewhere {c.valueComparePrice}
                             </span>
                           )}
@@ -140,16 +140,16 @@ export default function CollectionShowcase() {
                             style={{ width: `${((c.maxStock - c.stock) / c.maxStock) * 100}%` }}
                           />
                         </div>
-                        <p className="text-right text-[11px] font-normal tracking-[0.5px] text-accent">
+                        <p className="text-right text-[14px] font-normal tracking-[0.5px] text-accent">
                           {c.stock} left of {c.maxStock}
                         </p>
                       </div>
                     ) : c.isEnquiryOnly ? (
-                      <span className="text-[11px] font-normal tracking-[0.5px] text-accent">
+                      <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
                         Allocation only
                       </span>
                     ) : (
-                      <span className="text-[11px] font-normal tracking-[0.5px] text-foreground-muted">
+                      <span className="text-[14px] font-normal tracking-[0.5px] text-foreground-muted">
                         Sold out
                       </span>
                     )}
@@ -160,7 +160,7 @@ export default function CollectionShowcase() {
           ))}
         </motion.div>
 
-        <p className="mt-8 text-center text-[13px] tracking-[0.5px] leading-[1.7] text-foreground-muted">
+        <p className="mt-8 text-center text-[16px] tracking-[0.5px] leading-[1.7] text-foreground-muted">
           Earlier editions are sold out and won&apos;t return.
         </p>
         <div className="mt-3 flex justify-center">

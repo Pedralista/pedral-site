@@ -192,7 +192,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
           <h3 className="font-serif text-2xl font-normal text-foreground">
             {collection.name}
           </h3>
-          <p className="mt-1.5 mb-4 min-h-[2.8rem] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[14px]">
+          <p className="mt-1.5 mb-4 min-h-[2.8rem] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[16px]">
             &ldquo;{collection.hook}&rdquo;
           </p>
           <div className="flex items-end justify-between">
@@ -227,16 +227,16 @@ function CollectionCard({ collection }: { collection: Collection }) {
                     }}
                   />
                 </div>
-                <p className="text-right text-[11px] font-normal tracking-[0.5px] text-accent">
+                <p className="text-right text-[14px] font-normal tracking-[0.5px] text-accent">
                   {collection.stock} left of {collection.maxStock}
                 </p>
               </div>
             ) : collection.isEnquiryOnly ? (
-              <span className="text-[11px] font-normal tracking-[0.5px] text-accent">
+              <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
                 Allocation only
               </span>
             ) : (
-              <span className="text-[11px] font-normal tracking-[0.5px] text-foreground-muted">
+              <span className="text-[14px] font-normal tracking-[0.5px] text-foreground-muted">
                 Sold out
               </span>
             )}

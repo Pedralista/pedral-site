@@ -67,7 +67,7 @@ export default function JournalContent() {
                   <span className="text-[11px] font-medium tracking-[1.5px] uppercase text-accent">
                     {articles[0].category}
                   </span>
-                  <span className="text-[11px] tracking-[0.5px] text-foreground-muted/50">
+                  <span className="text-[14px] tracking-[0.5px] text-foreground-muted/50">
                     {articles[0].date}
                   </span>
                 </div>
@@ -85,7 +85,7 @@ export default function JournalContent() {
                   <span className="text-[11px] tracking-[1px] uppercase text-foreground-muted/40">
                     {articles[0].readTime}
                   </span>
-                  <span className="text-[10px] tracking-[2px] uppercase text-accent opacity-0 transition-opacity group-hover:opacity-100">
+                  <span className="text-[11px] tracking-[2px] uppercase text-accent opacity-0 transition-opacity group-hover:opacity-100">
                     Read article &rarr;
                   </span>
                 </div>
@@ -111,7 +111,7 @@ export default function JournalContent() {
                     <span className="text-[11px] font-medium tracking-[1.5px] uppercase text-accent">
                       {article.category}
                     </span>
-                    <span className="text-[11px] tracking-[0.5px] text-foreground-muted/50">
+                    <span className="text-[14px] tracking-[0.5px] text-foreground-muted/50">
                       {article.date}
                     </span>
                   </div>
@@ -125,7 +125,7 @@ export default function JournalContent() {
                     <span className="text-[11px] tracking-[1px] uppercase text-foreground-muted/40">
                       {article.readTime}
                     </span>
-                    <span className="text-[10px] tracking-[2px] uppercase text-accent opacity-0 transition-opacity group-hover:opacity-100">
+                    <span className="text-[11px] tracking-[2px] uppercase text-accent opacity-0 transition-opacity group-hover:opacity-100">
                       Read &rarr;
                     </span>
                   </div>

@@ -129,7 +129,7 @@ export default function AccountContent() {
               You&apos;ve been removed.
             </h1>
             <div className="mx-auto mt-5 h-px w-[60px] bg-accent" />
-            <p className="mt-5 text-[14px] font-light leading-[1.8] text-foreground-muted">
+            <p className="mt-5 text-[16px] font-light leading-[1.8] text-foreground-muted">
               You&apos;ll no longer receive priority access emails from Pedral. We&apos;re sorry to see you go.
             </p>
             <Link
@@ -168,14 +168,14 @@ export default function AccountContent() {
               <div className="rounded-lg border border-accent/15 bg-white/[0.02] p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-[13px] font-light text-foreground">Priority Collector</p>
+                    <p className="text-[16px] font-light text-foreground">Priority Collector</p>
                     {memberSince && (
-                      <p className="mt-1 text-[12px] font-light text-foreground-muted">
+                      <p className="mt-1 text-[15px] font-light text-foreground-muted">
                         Member since {memberSince}
                       </p>
                     )}
                   </div>
-                  <span className="rounded-lg bg-accent/10 px-3 py-1 text-[10px] tracking-[2px] uppercase text-accent">
+                  <span className="rounded-lg bg-accent/10 px-3 py-1 text-[11px] tracking-[2px] uppercase text-accent">
                     Active
                   </span>
                 </div>
@@ -197,8 +197,8 @@ export default function AccountContent() {
                   >
                     <div className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
                     <div>
-                      <p className="text-[13px] font-light text-foreground">{perk.title}</p>
-                      <p className="mt-0.5 text-[12px] font-light text-foreground-muted">
+                      <p className="text-[16px] font-light text-foreground">{perk.title}</p>
+                      <p className="mt-0.5 text-[15px] font-light text-foreground-muted">
                         {perk.desc}
                       </p>
                     </div>
@@ -215,7 +215,7 @@ export default function AccountContent() {
                 Orders
               </p>
               <div className="rounded-lg border border-accent/15 bg-white/[0.02] p-6">
-                <p className="text-[13px] font-light text-foreground">
+                <p className="text-[16px] font-light text-foreground">
                   View your order history, download invoices and track shipments.
                 </p>
                 <a
@@ -234,20 +234,20 @@ export default function AccountContent() {
               <p className="mb-2 text-[11px] tracking-[3px] uppercase text-foreground-muted">
                 Email Preferences
               </p>
-              <p className="text-[13px] font-light text-foreground-muted">
+              <p className="text-[16px] font-light text-foreground-muted">
                 You&apos;re currently receiving priority access notifications and collector correspondence.
               </p>
 
               {!showUnsubscribeConfirm ? (
                 <button
                   onClick={() => setShowUnsubscribeConfirm(true)}
-                  className="mt-4 text-[12px] font-light text-foreground-muted/50 underline underline-offset-4 transition-colors hover:text-foreground-muted"
+                  className="mt-4 text-[15px] font-light text-foreground-muted/50 underline underline-offset-4 transition-colors hover:text-foreground-muted"
                 >
                   Unsubscribe from all emails
                 </button>
               ) : (
                 <div className="mt-4 rounded-lg border border-red-900/30 bg-red-950/10 p-5">
-                  <p className="text-[13px] font-light text-foreground-muted">
+                  <p className="text-[16px] font-light text-foreground-muted">
                     Are you sure? You&apos;ll lose your priority collector status and early edition access.
                   </p>
                   <div className="mt-4 flex flex-wrap gap-3">
@@ -286,7 +286,7 @@ export default function AccountContent() {
             View your orders.
           </h1>
           <div className="mt-5 h-px w-[60px] bg-accent" />
-          <p className="mt-5 text-[14px] font-light leading-[1.8] text-foreground-muted">
+          <p className="mt-5 text-[16px] font-light leading-[1.8] text-foreground-muted">
             Enter the email address you used when placing your order or subscribing. We&apos;ll open
             your personal portal where you can view orders, download invoices, track shipments and
             manage your subscription.
@@ -303,11 +303,11 @@ export default function AccountContent() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
-                className="w-full rounded-lg border border-accent/20 bg-background px-4 py-3 text-[14px] font-light text-foreground placeholder:text-foreground-muted/40 focus:border-accent focus:outline-none"
+                className="w-full rounded-lg border border-accent/20 bg-background px-4 py-3 text-[16px] font-light text-foreground placeholder:text-foreground-muted/40 focus:border-accent focus:outline-none"
               />
             </div>
 
-            {error && <p className="text-[13px] font-light text-red-400">{error}</p>}
+            {error && <p className="text-[16px] font-light text-red-400">{error}</p>}
 
             <button
               type="submit"
@@ -318,7 +318,7 @@ export default function AccountContent() {
             </button>
           </form>
 
-          <p className="mt-6 text-center text-[12px] font-light text-foreground-muted/60">
+          <p className="mt-6 text-center text-[15px] font-light text-foreground-muted/60">
             No account? Your profile is created automatically when you place an order or subscribe.
           </p>
         </div>

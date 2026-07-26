@@ -216,7 +216,7 @@ export default function StoryContent() {
               >
                 Browse the archive →
               </Link>
-              <p className="text-[11px] font-light text-foreground-muted/40">
+              <p className="text-[14px] font-light text-foreground-muted/40">
                 Maestro · Triomphe · Okapi Classique — limited pieces remaining
               </p>
             </div>

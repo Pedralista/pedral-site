@@ -70,7 +70,7 @@ export default function Hero() {
             >
               See what&apos;s available now
             </Link>
-            <p className="text-[11px] font-light tracking-[0.5px] text-foreground-muted/40">
+            <p className="text-[14px] font-light tracking-[0.5px] text-foreground-muted/40">
               Worn by collectors in 30+ countries &middot; Max 20 pieces per edition &middot; No restocks
             </p>
           </motion.div>
@@ -86,7 +86,7 @@ export default function Hero() {
         transition={{ duration: 1, delay: 1.5 }}
         className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
       >
-        <span className="text-[10px] font-light tracking-[1.5px] uppercase text-foreground-muted/40">
+        <span className="text-[11px] font-light tracking-[1.5px] uppercase text-foreground-muted/40">
           Scroll
         </span>
         <motion.div

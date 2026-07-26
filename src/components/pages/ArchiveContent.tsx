@@ -99,18 +99,18 @@ function ArchiveCard({ watch }: { watch: ArchivedWatch }) {
           Pedral {watch.name}
         </h2>
         {watch.dialNames?.[index] && (
-          <p className="mt-1 text-[12px] font-light tracking-[1px] text-foreground-muted/60">
+          <p className="mt-1 text-[15px] font-light tracking-[1px] text-foreground-muted/60">
             {watch.dialNames[index]}
           </p>
         )}
-        <p className="mt-1.5 text-[14px] font-light italic leading-snug text-foreground-muted">
+        <p className="mt-1.5 text-[16px] font-light italic leading-snug text-foreground-muted">
           &ldquo;{watch.hook}&rdquo;
         </p>
-        <p className="mt-3 text-[13px] font-light leading-[1.8] text-foreground-muted/70">
+        <p className="mt-3 text-[15px] font-light leading-[1.8] text-foreground-muted/70">
           {watch.description}
         </p>
         <div className="mt-4 flex items-center justify-between border-t border-accent/[0.06] pt-4">
-          <span className="text-[13px] font-light text-foreground-muted">
+          <span className="text-[16px] font-light text-foreground-muted">
             Sold for €{watch.price.toLocaleString()}
           </span>
           <span className="text-[11px] font-normal tracking-[1px] uppercase text-foreground-muted/40">
@@ -151,7 +151,7 @@ export default function ArchiveContent() {
             </motion.p>
             <motion.p
               variants={fadeInUp}
-              className="mt-3 max-w-[520px] text-[13px] font-light text-foreground-muted/50"
+              className="mt-3 max-w-[520px] text-[16px] font-light text-foreground-muted/50"
             >
               Most sold out within 2–8 weeks. The current collection is next.
             </motion.p>
@@ -188,7 +188,7 @@ export default function ArchiveContent() {
             <p className="font-serif text-[clamp(18px,2vw,24px)] font-light text-foreground">
               None of these editions will reopen.
             </p>
-            <p className="mx-auto mt-3 max-w-[480px] text-[14px] font-light leading-[1.85] text-foreground-muted">
+            <p className="mx-auto mt-3 max-w-[480px] text-[16px] font-light leading-[1.85] text-foreground-muted">
               This is the exclusivity Pedral collectors depend on. The current collection follows the same rule — when it closes, it closes. A few pieces remain.
             </p>
             <Link
@@ -197,7 +197,7 @@ export default function ArchiveContent() {
             >
               See what&apos;s still available →
             </Link>
-            <p className="mt-4 text-[11px] font-light text-foreground-muted/40">
+            <p className="mt-4 text-[14px] font-light text-foreground-muted/40">
               Maestro · Triomphe · Okapi Classique — limited pieces remaining
             </p>
           </motion.div>

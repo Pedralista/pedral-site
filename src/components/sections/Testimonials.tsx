@@ -71,10 +71,10 @@ export default function Testimonials() {
               <p className="mb-4 font-serif text-[17px] font-light italic leading-[1.6] text-foreground">
                 &ldquo;{t.quote}&rdquo;
               </p>
-              <p className="text-[12px] font-normal tracking-[1.5px] text-accent">
+              <p className="text-[15px] font-normal tracking-[1.5px] text-accent">
                 {t.author}
               </p>
-              <p className="mt-0.5 text-[11px] font-light text-foreground-muted">
+              <p className="mt-0.5 text-[14px] font-light text-foreground-muted">
                 {t.detail}
               </p>
             </motion.div>

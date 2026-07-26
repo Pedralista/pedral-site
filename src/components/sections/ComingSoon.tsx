@@ -59,7 +59,7 @@ export default function ComingSoon() {
               const inner = (
                 <>
                   <div>
-                    <p className="mb-3 text-[10px] font-normal tracking-[3px] uppercase text-accent/60">
+                    <p className="mb-3 text-[11px] font-normal tracking-[3px] uppercase text-accent/60">
                       {item.label}
                     </p>
                     <h3 className="font-serif text-[20px] md:text-[26px] font-light text-foreground">

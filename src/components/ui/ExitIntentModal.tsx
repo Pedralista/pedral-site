@@ -71,7 +71,7 @@ export default function ExitIntentModal() {
             {status === "success" ? (
               <div className="text-center">
                 <p className="font-serif text-[22px] font-light text-foreground">You&apos;re on the list.</p>
-                <p className="mt-3 text-[13px] font-light leading-[1.8] text-foreground-muted">
+                <p className="mt-3 text-[16px] font-light leading-[1.8] text-foreground-muted">
                   New editions are notified here first — before any public announcement.
                 </p>
                 <button
@@ -87,7 +87,7 @@ export default function ExitIntentModal() {
                 <p className="font-serif text-[24px] font-light leading-[1.3] text-foreground">
                   New editions sell out in hours.
                 </p>
-                <p className="mt-3 text-[13px] font-light leading-[1.8] text-foreground-muted">
+                <p className="mt-3 text-[16px] font-light leading-[1.8] text-foreground-muted">
                   Collectors on the list are notified first — before Instagram, before the public. No noise in between.
                 </p>
                 <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-0">
@@ -108,11 +108,11 @@ export default function ExitIntentModal() {
                   </button>
                 </form>
                 {status === "error" && (
-                  <p className="mt-2 text-[11px] text-red-400">Something went wrong. Please try again.</p>
+                  <p className="mt-2 text-[14px] text-red-400">Something went wrong. Please try again.</p>
                 )}
                 <button
                   onClick={() => setVisible(false)}
-                  className="mt-4 text-[11px] tracking-[1px] text-foreground-muted/40 hover:text-foreground-muted/70 transition-colors"
+                  className="mt-4 text-[14px] tracking-[1px] text-foreground-muted/40 hover:text-foreground-muted/70 transition-colors"
                 >
                   No thanks
                 </button>

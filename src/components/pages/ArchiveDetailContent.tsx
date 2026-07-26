@@ -81,7 +81,7 @@ export default function ArchiveDetailContent({ watch }: { watch: ArchivedWatch }
                     />
                   </div>
                   {watch.dialNames?.[i] && (
-                    <p className="px-5 py-4 text-[12px] font-light tracking-[1px] text-foreground-muted/60">
+                    <p className="px-5 py-4 text-[15px] font-light tracking-[1px] text-foreground-muted/60">
                       {watch.dialNames[i]}
                     </p>
                   )}
@@ -109,7 +109,7 @@ export default function ArchiveDetailContent({ watch }: { watch: ArchivedWatch }
               {watch.description}
             </p>
             <div className="mt-8 flex items-center justify-between border-t border-accent/[0.06] pt-6">
-              <span className="text-[13px] font-light text-foreground-muted">
+              <span className="text-[16px] font-light text-foreground-muted">
                 Sold for €{watch.price.toLocaleString()}
               </span>
               <span className="text-[11px] font-normal tracking-[1px] uppercase text-foreground-muted/40">
@@ -133,7 +133,7 @@ export default function ArchiveDetailContent({ watch }: { watch: ArchivedWatch }
             <p className="font-serif text-[clamp(18px,2vw,24px)] font-light text-foreground">
               This edition is closed. It stays closed.
             </p>
-            <p className="mx-auto mt-3 max-w-[480px] text-[14px] font-light leading-[1.85] text-foreground-muted">
+            <p className="mx-auto mt-3 max-w-[480px] text-[16px] font-light leading-[1.85] text-foreground-muted">
               Every Pedral edition is capped at {watch.editionSize} pieces. No reissue, no sequel. The current collection follows the same rule — when it closes, it closes.
             </p>
             <Link
