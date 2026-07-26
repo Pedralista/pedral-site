@@ -142,15 +142,15 @@ export default function CartDrawer() {
                         <div className="flex flex-1 flex-col">
                           <p className="font-serif text-[16px] font-normal text-foreground">{l.productName}</p>
                           {l.variantName && (
-                            <p className="mt-0.5 text-[12px] font-light text-foreground-muted">{l.variantName}</p>
+                            <p className="mt-0.5 text-[15px] font-light text-foreground-muted">{l.variantName}</p>
                           )}
                           {l.addOns?.strapName && (
-                            <p className="mt-0.5 text-[11px] font-light text-foreground-muted/70">
+                            <p className="mt-0.5 text-[14px] font-light text-foreground-muted/70">
                               + {l.addOns.strapName}
                             </p>
                           )}
                           {l.addOns?.engravingText && (
-                            <p className="mt-0.5 text-[11px] font-light text-foreground-muted/70">
+                            <p className="mt-0.5 text-[14px] font-light text-foreground-muted/70">
                               Engraving: &ldquo;{l.addOns.engravingText}&rdquo;
                             </p>
                           )}
@@ -163,7 +163,7 @@ export default function CartDrawer() {
                               >
                                 −
                               </button>
-                              <span className="min-w-[1ch] text-center text-[12px] text-foreground">
+                              <span className="min-w-[1ch] text-center text-[15px] text-foreground">
                                 {l.quantity}
                               </span>
                               <button
@@ -174,7 +174,7 @@ export default function CartDrawer() {
                                 +
                               </button>
                             </div>
-                            <p className="text-[14px] font-normal text-foreground">
+                            <p className="text-[16px] font-normal text-foreground">
                               &euro;
                               {(
                                 (l.unitPrice + (l.addOns?.strapPrice ?? 0) + (l.addOns?.engravingPrice ?? 0)) *
@@ -208,10 +208,10 @@ export default function CartDrawer() {
                       &euro;{subtotal.toLocaleString()}
                     </span>
                   </div>
-                  <p className="mt-1 text-[11px] font-light tracking-[0.3px] text-foreground-muted/60">
+                  <p className="mt-1 text-[14px] font-light tracking-[0.3px] text-foreground-muted/60">
                     {SHIPPING_LINE}
                   </p>
-                  {error && <p className="mt-2 text-[12px] text-red-400">{error}</p>}
+                  {error && <p className="mt-2 text-[15px] text-red-400">{error}</p>}
                   <button
                     onClick={handleCheckout}
                     disabled={loading}

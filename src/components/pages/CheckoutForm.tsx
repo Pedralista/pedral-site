@@ -60,7 +60,7 @@ function PaymentForm({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="your@email.com"
-          className="w-full rounded-lg border border-accent/20 bg-background px-4 py-3 text-[14px] font-light text-foreground placeholder:text-foreground-muted/40 focus:border-accent focus:outline-none"
+          className="w-full rounded-lg border border-accent/20 bg-background px-4 py-3 text-[16px] font-light text-foreground placeholder:text-foreground-muted/40 focus:border-accent focus:outline-none"
         />
       </div>
 
@@ -79,7 +79,7 @@ function PaymentForm({
       </div>
 
       {error && (
-        <p className="text-[13px] font-light text-red-400">{error}</p>
+        <p className="text-[16px] font-light text-red-400">{error}</p>
       )}
 
       <button
@@ -90,7 +90,7 @@ function PaymentForm({
         {loading ? "Processing…" : `Confirm — €${collection.price.toLocaleString()}`}
       </button>
 
-      <p className="text-center text-[11px] font-light tracking-[0.5px] text-foreground-muted/60">
+      <p className="text-center text-[14px] font-light tracking-[0.5px] text-foreground-muted/60">
         Secured by Stripe · 14-day return · 24-month warranty
       </p>
     </form>
@@ -146,7 +146,7 @@ export default function CheckoutForm({
   if (initError) {
     return (
       <div className="py-10 text-center">
-        <p className="text-[13px] font-light text-red-400">{initError}</p>
+        <p className="text-[16px] font-light text-red-400">{initError}</p>
       </div>
     );
   }

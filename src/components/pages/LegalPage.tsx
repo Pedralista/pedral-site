@@ -31,7 +31,7 @@ export default function LegalPage({ eyebrow, title, updated, children }: LegalPa
             {updated && (
               <motion.p
                 variants={fadeInUp}
-                className="mt-4 text-[13px] font-light text-foreground-muted"
+                className="mt-4 text-[16px] font-light text-foreground-muted"
               >
                 {updated}
               </motion.p>

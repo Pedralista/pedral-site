@@ -45,7 +45,7 @@ export default function ContactContent() {
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {["Product question", "Custom commission", "Partnership", "Press inquiry"].map((type) => (
-                    <span key={type} className="rounded-full border border-accent/15 px-3 py-1 text-[11px] font-light tracking-[0.5px] text-foreground-muted/60">
+                    <span key={type} className="rounded-full border border-accent/15 px-3 py-1 text-[14px] font-light tracking-[0.5px] text-foreground-muted/60">
                       {type}
                     </span>
                   ))}
@@ -57,7 +57,7 @@ export default function ContactContent() {
                   >
                     Send a Message →
                   </a>
-                  <p className="mt-3 text-[12px] font-light text-foreground-muted/50">
+                  <p className="mt-3 text-[15px] font-light text-foreground-muted/50">
                     Kevin responds personally · Average reply time: under 24 hours
                   </p>
                 </div>

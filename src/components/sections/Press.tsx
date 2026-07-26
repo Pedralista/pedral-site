@@ -12,7 +12,7 @@ export default function Press() {
   return (
     <section className="border-y border-accent/[0.06] bg-background-alt py-12">
       <div className="mx-auto max-w-[1000px] px-6 md:px-12">
-        <p className="mb-8 text-center font-mono text-[10px] tracking-[2px] uppercase text-accent/70">
+        <p className="mb-8 text-center font-mono text-[11px] tracking-[2px] uppercase text-accent/70">
           As Featured In
         </p>
         <motion.div
@@ -33,7 +33,7 @@ export default function Press() {
                 {mention.outlet}
               </a>
               {mention.quote ? (
-                <p className="font-serif text-[13px] font-light italic leading-[1.6] text-foreground-muted/70">
+                <p className="font-serif text-[15px] font-light italic leading-[1.6] text-foreground-muted/70">
                   &ldquo;{mention.quote}&rdquo;
                 </p>
               ) : null}

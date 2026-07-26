@@ -31,7 +31,7 @@ export default function ArticleContent({ article }: Props) {
                 The Rounded Square
               </Link>
               <span className="text-foreground-muted/20">/</span>
-              <span className="text-[10px] font-medium tracking-[2px] uppercase text-accent">
+              <span className="text-[11px] font-medium tracking-[2px] uppercase text-accent">
                 {article.category}
               </span>
             </motion.div>
@@ -43,7 +43,7 @@ export default function ArticleContent({ article }: Props) {
             </motion.h1>
             <motion.div
               variants={fadeInUp}
-              className="mt-5 flex items-center justify-center gap-4 text-[11px] tracking-[1.5px] text-foreground-muted/50"
+              className="mt-5 flex items-center justify-center gap-4 text-[14px] tracking-[1.5px] text-foreground-muted/50"
             >
               <span>{article.date}</span>
               <span className="text-foreground-muted/20">·</span>
@@ -107,7 +107,7 @@ export default function ArticleContent({ article }: Props) {
               </div>
               <div>
                 <p className="text-sm font-light text-foreground">Kevin Pedral</p>
-                <p className="text-[11px] font-light text-foreground-muted/50">
+                <p className="text-[14px] font-light text-foreground-muted/50">
                   Founder &amp; Designer, Pedral Watches
                 </p>
               </div>

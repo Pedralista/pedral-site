@@ -26,7 +26,7 @@ export default function TrustBar() {
           {stats.map((s) => (
             <div key={s.label}>
               <p className="font-serif text-[clamp(20px,3vw,32px)] font-light text-foreground">{s.label}</p>
-              <p className="mt-2 text-[11px] md:text-[13px] font-light leading-[1.7] text-foreground-muted/70">
+              <p className="mt-2 text-[16px] font-light leading-[1.7] text-foreground-muted/70">
                 {s.sub1}<br />{s.sub2}
               </p>
             </div>

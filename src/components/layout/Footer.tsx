@@ -179,11 +179,11 @@ export default function Footer() {
 
         {/* Business details */}
         <div className="mt-8 border-t border-accent/[0.06] pt-6 text-center">
-          <p className="text-[11px] font-light leading-relaxed tracking-[0.5px] text-foreground-muted/40">
+          <p className="text-[14px] font-light leading-relaxed tracking-[0.5px] text-foreground-muted/40">
             Pedral Design Studio AB &middot; Org.nr 559484-4275 &middot; VAT
             SE559484427501
           </p>
-          <p className="mt-1 text-[11px] font-light tracking-[0.5px] text-foreground-muted/40">
+          <p className="mt-1 text-[14px] font-light tracking-[0.5px] text-foreground-muted/40">
             Sveavägen 117A, 113 49 Stockholm, Sweden &middot; &copy;{" "}
             {new Date().getFullYear()}
           </p>

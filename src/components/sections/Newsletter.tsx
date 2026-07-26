@@ -57,25 +57,25 @@ export default function Newsletter({
           <h2 className="font-serif text-[24px] font-light text-foreground">
             {title}
           </h2>
-          <p className="mt-2 text-[14px] font-light text-foreground-muted">
+          <p className="mt-2 text-[16px] font-light text-foreground-muted">
             {subtitle}
           </p>
 
           {status === "success" ? (
             <div className="mt-7">
-              <p className="text-[14px] font-light text-accent">
+              <p className="text-[16px] font-light text-accent">
                 You&apos;re on the list.
               </p>
-              <p className="mt-2 text-[13px] font-light text-foreground-muted">
+              <p className="mt-2 text-[16px] font-light text-foreground-muted">
                 Maestro Petite Seconde drops Q2 2026 — you&apos;ll hear before anyone else. No noise in between.
               </p>
             </div>
           ) : status === "exists" ? (
             <div className="mt-7">
-              <p className="text-[14px] font-light text-foreground-muted">
+              <p className="text-[16px] font-light text-foreground-muted">
                 You&apos;re already on the list.
               </p>
-              <p className="mt-2 text-[13px] font-light text-foreground-muted/60">
+              <p className="mt-2 text-[16px] font-light text-foreground-muted/60">
                 Maestro Petite Seconde · Q2 2026. We&apos;ll be in touch.
               </p>
             </div>
@@ -102,7 +102,7 @@ export default function Newsletter({
           )}
 
           {status === "error" && (
-            <p className="mt-3 text-[12px] font-light text-red-400">
+            <p className="mt-3 text-[15px] font-light text-red-400">
               Something went wrong. Please try again.
             </p>
           )}

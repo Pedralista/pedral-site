@@ -38,7 +38,7 @@ export default function CookieBanner() {
           className="fixed bottom-0 left-0 right-0 z-50 border-t border-accent/[0.08] bg-[rgba(10,18,20,0.97)] backdrop-blur-md"
         >
           <div className="mx-auto flex max-w-[1400px] flex-col items-center gap-4 px-6 py-5 sm:flex-row sm:justify-between md:px-12">
-            <p className="text-[13px] font-light text-foreground-muted">
+            <p className="text-[16px] font-light text-foreground-muted">
               We use essential cookies to make this site work. Analytics cookies are optional.{" "}
               <Link href="/cookies" className="text-accent underline underline-offset-2 hover:text-accent-hover">
                 Learn more
@@ -47,13 +47,13 @@ export default function CookieBanner() {
             <div className="flex w-full shrink-0 gap-3 sm:w-auto">
               <button
                 onClick={decline}
-                className="flex-1 rounded-lg border border-accent/20 px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:border-accent/40 hover:text-foreground cursor-pointer sm:flex-none sm:py-2 sm:text-[10px] sm:tracking-[2px]"
+                className="flex-1 rounded-lg border border-accent/20 px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase text-foreground-muted transition-colors hover:border-accent/40 hover:text-foreground cursor-pointer sm:flex-none sm:py-2 sm:text-[11px] sm:tracking-[2px]"
               >
                 Decline
               </button>
               <button
                 onClick={accept}
-                className="flex-1 rounded-lg bg-accent px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover cursor-pointer sm:flex-none sm:py-2 sm:text-[10px] sm:tracking-[2px]"
+                className="flex-1 rounded-lg bg-accent px-5 py-3 text-[12px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover cursor-pointer sm:flex-none sm:py-2 sm:text-[11px] sm:tracking-[2px]"
               >
                 Accept
               </button>
