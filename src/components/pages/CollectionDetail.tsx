@@ -325,7 +325,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               transition={{ duration: 0.8, delay: 0.8 }}
               className="mt-4 font-serif text-[28px] font-light text-foreground"
             >
-              &euro;{c.price.toLocaleString()}
+              &euro;{(selectedVariant?.price ?? c.price).toLocaleString()}
             </motion.p>
           )}
           <motion.div
@@ -371,6 +371,49 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             >
               {selectedVariant.name}
             </motion.p>
+          )}
+          {/* Also available — real customers (often landing on a single-variant
+              URL shared via Instagram, where the sibling variant is
+              deliberately hidden below) were missing that other options
+              exist at all. This surfaces it right in the hero, either linking
+              straight to the sibling's own page (single-variant view) or
+              jumping down to the picker (full multi-variant view). */}
+          {hasVariants && c.variants && c.variants.length > 1 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.05 }}
+              className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] font-light text-foreground-muted/80"
+            >
+              <span>Also available:</span>
+              {c.variants
+                .filter((v) => v.name !== selectedVariant?.name)
+                .map((v) => {
+                  const label = `${v.name} — €${(v.price ?? c.price).toLocaleString()}`;
+                  return requestedVariant ? (
+                    <Link
+                      key={v.name}
+                      href={`/collections/${c.slug}/${v.name.toLowerCase().replace(/\s+/g, "-")}`}
+                      className="text-accent underline underline-offset-4 hover:text-accent-hover"
+                    >
+                      {label}
+                    </Link>
+                  ) : (
+                    <button
+                      key={v.name}
+                      type="button"
+                      onClick={() => {
+                        setSelectedVariant(v);
+                        setSelectedNumeral(v.numeralOptions?.[0] ?? null);
+                        document.getElementById("dial-variants")?.scrollIntoView({ behavior: "smooth" });
+                      }}
+                      className="text-accent underline underline-offset-4 hover:text-accent-hover"
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+            </motion.div>
           )}
 
           <motion.div
@@ -454,7 +497,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
 
       {/* Dial Variants Browser */}
       {hasVariants && (
-        <section className="bg-background py-14 md:py-20">
+        <section id="dial-variants" className="bg-background py-14 md:py-20">
           <div className="mx-auto max-w-[1200px] px-6 md:px-12">
             <motion.div
               initial="hidden"
@@ -1193,13 +1236,13 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 Edition of {c.maxStock} &middot; {c.edition}
               </p>
               <p className="font-serif text-[48px] font-light text-foreground">
-                &euro;{c.price.toLocaleString()}
+                &euro;{(selectedVariant?.price ?? c.price).toLocaleString()}
               </p>
               <p className="mt-2 text-[12px] font-light tracking-[0.5px] text-foreground-muted/70">
                 {SHIPPING_LINE}
               </p>
               <p className="mt-1 text-[12px] font-light tracking-[0.5px] text-foreground-muted/70">
-                {klarnaLine(c.price)}
+                {klarnaLine(selectedVariant?.price ?? c.price)}
               </p>
               <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <button
@@ -1213,7 +1256,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                     : isSoldOut
                     ? "Join Waitlist"
-                    : `Reserve · €${c.price.toLocaleString()}`}
+                    : `Reserve · €${(selectedVariant?.price ?? c.price).toLocaleString()}`}
                 </button>
                 {canAddToCart && (
                   <button
