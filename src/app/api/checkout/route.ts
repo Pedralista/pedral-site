@@ -148,6 +148,11 @@ export async function POST(req: NextRequest) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       ui_mode: "embedded",
+      // One-time-payment sessions default to only creating a Stripe Customer
+      // "if_required" (e.g. saving a card) — without this, most real orders
+      // never get a Customer record, and /account's lookup (which checks for
+      // exactly that) tells genuine buyers they have no account.
+      customer_creation: "always",
       line_items: lineItems,
       return_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
       metadata: {
@@ -190,6 +195,8 @@ export async function POST(req: NextRequest) {
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     ui_mode: "embedded",
+    // See the cart branch above for why this is needed.
+    customer_creation: "always",
     line_items: [{ price: priceId, quantity: 1 }, ...addOnLineItems],
     return_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
     metadata: {

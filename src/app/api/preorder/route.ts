@@ -55,6 +55,11 @@ export async function POST(req: NextRequest) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       ui_mode: "embedded",
+      // Without this, one-time-payment sessions only create a Stripe Customer
+      // "if_required" — most deposits wouldn't get one, and /account's lookup
+      // (which checks for exactly that) would tell genuine buyers they have
+      // no account.
+      customer_creation: "always",
       line_items: [
         {
           quantity: 1,
