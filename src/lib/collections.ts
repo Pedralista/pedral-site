@@ -100,7 +100,7 @@ export const collections: Collection[] = [
     price: 1450,
     stock: 5,
     maxStock: 20,
-    edition: "Frosted Flex",
+    edition: "Lapis No.1 / Frosted Flex",
     badge: "",
     urgencyTag: "Limited pieces remaining",
     specsTitle: "Swiss precision. Stockholm soul.",
@@ -113,7 +113,7 @@ export const collections: Collection[] = [
       Strap: "Customised Epsom leather strap included · 20mm",
       Lume: "Swiss Super-LumiNova® BGW9 on hands and indices",
       "Water Resist.": "100 meters / 330 feet",
-      Warranty: "12 months international coverage for workmanship defects",
+      Warranty: "24-month international coverage",
       VAT: "Included for EU orders · Duties and taxes outside EU not included",
     },
     boxContents: [
@@ -159,7 +159,7 @@ export const collections: Collection[] = [
         image: "/images/maestro-frosted.jpg",
       },
       {
-        name: "Cosmic Tlt",
+        name: "Cosmic Tilt",
         stripePriceId: "",
         stock: 0,
         color: "Black",
