@@ -83,6 +83,25 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const runningTotal = (selectedVariant?.price ?? c.price) + addOnsTotal;
   const { addLine: addCartLine } = useCart();
 
+  // The specs table's "Edition" row used to be a hand-typed string with the
+  // per-dial stock counts baked in — which silently went stale the moment a
+  // real sale decremented live stock, since nothing re-generated it. Every
+  // other stock figure on this page (hero badge, variant cards) already
+  // reads live data; this makes the specs row do the same instead of ever
+  // needing another manual edit.
+  const displaySpecs = (() => {
+    if (c.slug !== "contour" || !c.variants) return c.specs;
+    const quartz = c.variants.find((v) => v.name === "Quartz");
+    const handWound = c.variants.find((v) => v.name === "Hand-Wound");
+    if (!quartz || !handWound) return c.specs;
+    const blackMop = handWound.numeralStock?.["Black Mother of Pearl"] ?? handWound.stock;
+    const total = quartz.stock + handWound.stock;
+    return {
+      ...c.specs,
+      Edition: `${c.maxStock} pieces total · ${total} remaining (${quartz.stock} Orange Agate, ${blackMop} Black MOP). White Mother of Pearl is sold out.`,
+    };
+  })();
+
   // Persistent sticky buy bar: appears once the hero (with the primary CTA)
   // has scrolled out of view, so Add to Bag/Reserve stay one tap away no
   // matter how far down the page someone has scrolled, instead of only
@@ -1054,7 +1073,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             className="mt-8 w-full border-collapse"
           >
             <tbody>
-              {Object.entries(c.specs).map(([label, value]) => (
+              {Object.entries(displaySpecs).map(([label, value]) => (
                 <motion.tr
                   key={label}
                   variants={fadeInUp}
