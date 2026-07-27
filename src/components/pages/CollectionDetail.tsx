@@ -64,9 +64,16 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const [preOrderError, setPreOrderError] = useState<string | null>(null);
   const [notifyEmail, setNotifyEmail] = useState("");
   const [notifyStatus, setNotifyStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const firstVariant = hasVariants ? c.variants![0] : null;
+  // Must derive from selectedVariant (the actually-selected default, which
+  // skips sold-out variants), not blindly from c.variants[0] — otherwise
+  // whenever the first-listed variant sells out and a later one with its own
+  // dial options becomes the default, this stays null while that variant
+  // requires a dial pick, permanently disabling Reserve/Add to Bag until the
+  // shopper manually re-clicks a dial. Confirmed live: with Quartz (no dial
+  // options) sold out and Hand-Wound (has dial options) as the new default,
+  // every purchase button on the page was disabled on load.
   const [selectedNumeral, setSelectedNumeral] = useState<string | null>(
-    firstVariant?.numeralOptions?.[0] ?? null
+    selectedVariant?.numeralOptions?.[0] ?? null
   );
 
   // ── Checkout add-ons (feature-flagged OFF by default) ──────────────────────
