@@ -105,7 +105,10 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     const total = quartz.stock + handWound.stock;
     return {
       ...c.specs,
-      Edition: `${c.maxStock} pieces total · ${total} remaining (${quartz.stock} Orange Agate, ${blackMop} Black MOP). White Mother of Pearl is sold out.`,
+      Edition:
+        total === 0
+          ? `${c.maxStock} pieces total · First run sold out across every dial. Second drop coming soon — join the list below.`
+          : `${c.maxStock} pieces total · ${total} remaining (${quartz.stock} Orange Agate, ${blackMop} Black MOP). White Mother of Pearl is sold out.`,
     };
   })();
 
@@ -648,10 +651,12 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 className="mt-6 rounded-lg border border-accent/10 bg-background-alt p-6"
               >
                 <p className="text-[12px] font-normal tracking-[3px] uppercase text-accent">
-                  Sold-out editions
+                  {isSoldOut ? "Second Drop Coming Soon" : "Sold-out editions"}
                 </p>
                 <p className="mt-2 text-[16px] font-light leading-[1.8] text-foreground-muted">
-                  Some editions above are closed. Join the list to be notified when a new expression opens — or if a sold-out edition ever returns.
+                  {isSoldOut
+                    ? "The first run is fully sold out. Join the list to hear first when the next drop opens."
+                    : "Some editions above are closed. Join the list to be notified when a new expression opens — or if a sold-out edition ever returns."}
                 </p>
                 {notifyStatus === "success" ? (
                   <p className="mt-4 text-[16px] font-light text-accent">
