@@ -79,8 +79,8 @@ export interface Collection {
   numeralOptionsLabel?: string;
   /** Overrides the "Reserve Allocation" checkout button label for products that aren't a curated/reviewed allocation (e.g. plain first-come-first-served pre-order). Defaults to "Reserve Allocation". */
   reserveButtonLabel?: string;
-  /** Capsule/collab credit shown near the hero — e.g. a partner boutique co-releasing a limited run. */
-  collaboration?: { name: string; url: string };
+  /** Capsule/collab credit shown near the hero — e.g. a partner boutique co-releasing a limited run. `bio` (optional) renders a full section about the partner further down the page. */
+  collaboration?: { name: string; url: string; bio?: string };
 }
 
 export const collections: Collection[] = [
@@ -644,7 +644,7 @@ export const collections: Collection[] = [
     tagline: "Capsule Collaboration",
     hook: "The same presence. A different stone.",
     description:
-      "Sodalite reads almost black until the light finds it — then it opens into a royal blue, mottled with white calcite the way marble is veined. No two dials cut from it carry the same pattern. It sits inside the same Contour case: 35mm across, 6.9mm thin, the bracelet fully integrated so the watch moves like fabric rather than sitting bolted to a strap. A different stone, the same instinct — jewelry that happens to tell time.",
+      "Sodalite reads almost black until the light finds it — then it opens into a royal blue, mottled with white calcite the way marble is veined. Ruby moissanite baguettes mark the hours, cut and set rather than printed. No two dials cut from this stone carry the same pattern. It sits inside the same Contour case: 35mm across, 6.9mm thin, the bracelet fully integrated so the watch moves like fabric rather than sitting bolted to a strap. A different stone, the same instinct — jewelry that happens to tell time.",
     descriptionExtra:
       "This one is made with Seconds Society, not by Pedral alone. Fifteen pieces, no more. When they're gone, this dial doesn't come back — not as a restock, not as a future Contour expression. It exists once, for the people who see it in time.",
     designerNote:
@@ -663,7 +663,7 @@ export const collections: Collection[] = [
       Price: "€895",
       Movement: "Ronda 1069, Swiss-made quartz",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
-      Dial: "Sodalite natural stone — royal blue, mottled with white calcite veining. Each dial is unrepeatable.",
+      Dial: "Sodalite natural stone — royal blue, mottled with white calcite veining — with ruby moissanite baguette indices. Each dial is unrepeatable.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
@@ -695,7 +695,11 @@ export const collections: Collection[] = [
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on this capsule and future collaborations. No noise.",
-    collaboration: { name: "Seconds Society", url: "https://www.secondssociety.com/" },
+    collaboration: {
+      name: "Seconds Society",
+      url: "https://www.secondssociety.com/",
+      bio: "Seconds Society is a collector-led watch studio founded by Wahhaj, Ash, and Ray, built on a simple idea: some of the best watches come from collectors working directly with independent makers, not from a boardroom. Past releases include a Mercury-inspired sector dial with Isotope, the Brunswick 40.5 Jump Hour reimagined in blue with FEars, a one-of-one piece with independent watchmaker Boyu Tang, and The Twelve: Watch Collectors Edition with Christopher Ward. The pairing with Pedral runs on the same instinct that carries through both studios — small, collector-facing, and more interested in making fifteen pieces once than a thousand pieces twice.",
+    },
     image: "/images/contour-seconds-society-sodalite.jpg",
     heroImage: "/images/contour-seconds-society-sodalite.jpg",
     heroFit: "contain",
@@ -707,7 +711,7 @@ export const collections: Collection[] = [
         stock: 15,
         color: "Blue",
         price: 895,
-        description: "Ronda 1069, Swiss-made quartz. Sodalite dial — royal blue, mottled with white calcite.",
+        description: "Ronda 1069, Swiss-made quartz. Sodalite dial — royal blue, mottled with white calcite — with ruby moissanite baguette indices.",
         image: "/images/contour-seconds-society-sodalite.jpg",
       },
     ],
