@@ -644,7 +644,7 @@ export const collections: Collection[] = [
     tagline: "Capsule Collaboration",
     hook: "The same presence. A different stone.",
     description:
-      "Sodalite reads almost black until the light finds it — then it opens into deep blue, veined with white calcite the way marble is veined. No two dials cut from it are identical. It sits inside the same Contour case: 35mm across, 6.9mm thin, the bracelet fully integrated so the watch moves like fabric rather than sitting bolted to a strap. A different stone, the same instinct — jewelry that happens to tell time.",
+      "Sodalite reads almost black until the light finds it — then it opens into a royal blue, mottled with white calcite the way marble is veined. No two dials cut from it carry the same pattern. It sits inside the same Contour case: 35mm across, 6.9mm thin, the bracelet fully integrated so the watch moves like fabric rather than sitting bolted to a strap. A different stone, the same instinct — jewelry that happens to tell time.",
     descriptionExtra:
       "This one is made with Seconds Society, not by Pedral alone. Fifteen pieces, no more. When they're gone, this dial doesn't come back — not as a restock, not as a future Contour expression. It exists once, for the people who see it in time.",
     designerNote:
@@ -663,7 +663,7 @@ export const collections: Collection[] = [
       Price: "€895",
       Movement: "Ronda 1069, Swiss-made quartz",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
-      Dial: "Sodalite natural stone — deep blue, veined with white calcite. Each dial is unrepeatable.",
+      Dial: "Sodalite natural stone — royal blue, mottled with white calcite veining. Each dial is unrepeatable.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
@@ -685,7 +685,7 @@ export const collections: Collection[] = [
     detailStrip: {
       eyebrow: "The Stone",
       title: "No two alike.",
-      text: "Sodalite is cut, not printed — the veining in each dial is whatever the stone happened to carry. Buy this piece and you're buying the one dial that came out of that cut, not a pattern that can be repeated on the next.",
+      text: "Sodalite is cut, not printed — the mottling in each dial is whatever the stone happened to carry at that slice. Buy this piece and you're buying the one dial that came out of that cut, not a pattern that can be repeated on the next.",
     },
     testimonials: [],
     wristFit: {
@@ -707,7 +707,7 @@ export const collections: Collection[] = [
         stock: 15,
         color: "Blue",
         price: 895,
-        description: "Ronda 1069, Swiss-made quartz. Sodalite dial — deep blue, veined with white calcite.",
+        description: "Ronda 1069, Swiss-made quartz. Sodalite dial — royal blue, mottled with white calcite.",
         image: "/images/contour-seconds-society-sodalite.jpg",
       },
     ],
