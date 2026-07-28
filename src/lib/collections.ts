@@ -525,8 +525,8 @@ export const collections: Collection[] = [
     name: "Contour",
     metaTitle: "Pedral Contour — Integrated Bracelet, Swiss Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Stone and mother-of-pearl dials. Stockholm-designed. Limited run, pre-orders open now.",
-    tagline: "Pre-Orders Open",
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Stone and mother-of-pearl dials. Stockholm-designed. First run sold out — second drop coming soon.",
+    tagline: "Second Drop Coming Soon",
     hook: "Not a watch. A presence.",
     description:
       "The Contour doesn't sit on the wrist. It wraps it. Hundreds of polished steel scales move like fabric, finished the way a fine bracelet is finished — not a case with a strap bolted on, but one continuous line from clasp to dial. Something meant to be touched as much as read.",
@@ -538,14 +538,13 @@ export const collections: Collection[] = [
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
     price: 895,
-    // Edition of 60 total. White Mother of Pearl is sold out — `stock`
-    // below is the remaining count across the other two dials: 6 Orange
-    // Agate, 4 Black MOP. See numeralStock below.
-    stock: 10,
+    // First run (edition of 60) is fully sold out across all dials —
+    // second drop TBC. Update stock/badge/edition together when it opens.
+    stock: 0,
     maxStock: 60,
-    edition: "Pre-orders open now",
-    badge: "Limited Run — Pre-Orders Open",
-    urgencyTag: "Limited run · Pre-orders open now",
+    edition: "Second drop coming soon",
+    badge: "Second Drop Coming Soon",
+    urgencyTag: "First run sold out · Second drop coming soon",
     // Real checkout is live (Stripe variants below), so this is no longer an
     // enquiry-gated product — pricing, stock, and the standard Reserve CTA
     // all show normally now, same as Maestro/Triomphe.
@@ -601,7 +600,7 @@ export const collections: Collection[] = [
       {
         name: "Quartz",
         stripePriceId: "price_1TwoeRCfxE1lSBKRIp2Acccy",
-        stock: 6, // Orange Agate — 6 remaining
+        stock: 0, // Sold out — first run
         color: "Orange",
         price: 895,
         description: "Ronda 1069, Swiss-made quartz. Orange Agate dial.",
@@ -610,14 +609,14 @@ export const collections: Collection[] = [
       {
         name: "Hand-Wound",
         stripePriceId: "price_1TwoiWCfxE1lSBKRmX0ByV0c",
-        stock: 4, // 4 Black MOP remaining — White MOP sold out, see numeralStock
+        stock: 0, // Sold out — first run
         color: "Silver",
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Choice of Black or White Mother of Pearl dial, guilloché finish.",
         numeralOptions: ["Black Mother of Pearl", "White Mother of Pearl"],
-        soldOutNumerals: ["White Mother of Pearl"],
+        soldOutNumerals: ["Black Mother of Pearl", "White Mother of Pearl"],
         numeralStock: {
-          "Black Mother of Pearl": 4,
+          "Black Mother of Pearl": 0,
           "White Mother of Pearl": 0,
         },
         numeralImages: {
