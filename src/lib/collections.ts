@@ -79,6 +79,8 @@ export interface Collection {
   numeralOptionsLabel?: string;
   /** Overrides the "Reserve Allocation" checkout button label for products that aren't a curated/reviewed allocation (e.g. plain first-come-first-served pre-order). Defaults to "Reserve Allocation". */
   reserveButtonLabel?: string;
+  /** Capsule/collab credit shown near the hero — e.g. a partner boutique co-releasing a limited run. */
+  collaboration?: { name: string; url: string };
 }
 
 export const collections: Collection[] = [
@@ -624,6 +626,89 @@ export const collections: Collection[] = [
           "White Mother of Pearl": "/images/contour-product-white-mop.png",
         },
         image: "/images/contour-product-black-mop.png",
+      },
+    ],
+  },
+  {
+    // Capsule collaboration with Seconds Society (https://www.secondssociety.com/):
+    // the Contour Quartz platform in a Sodalite dial, 15 pieces only, €895
+    // (same price as the standard Contour Quartz — confirmed by Kevin, not a
+    // typo). TODO: Kevin — set `hidden: false` and the real variant
+    // stripePriceId below once the Stripe price exists. Until then this page
+    // 404s in production (see isHidden()) but is fully previewable locally.
+    slug: "contour-seconds-society",
+    name: "Contour × Seconds Society",
+    metaTitle: "Pedral Contour × Seconds Society — Sodalite Capsule, 15 Pieces | Pedral",
+    metaDescription:
+      "A 15-piece capsule collaboration with Seconds Society. Contour's integrated-bracelet quartz platform in a Sodalite dial. €895. Stockholm-designed.",
+    tagline: "Capsule Collaboration",
+    hook: "The same presence. A different stone.",
+    description:
+      "Sodalite reads almost black until the light finds it — then it opens into deep blue, veined with white calcite the way marble is veined. No two dials cut from it are identical. It sits inside the same Contour case: 35mm across, 6.9mm thin, the bracelet fully integrated so the watch moves like fabric rather than sitting bolted to a strap. A different stone, the same instinct — jewelry that happens to tell time.",
+    descriptionExtra:
+      "This one is made with Seconds Society, not by Pedral alone. Fifteen pieces, no more. When they're gone, this dial doesn't come back — not as a restock, not as a future Contour expression. It exists once, for the people who see it in time.",
+    designerNote:
+      "Every so often a stone shows up that changes how you think about a case you already know well. Sodalite did that. Seconds Society saw the same thing in it I did, and a fifteen-piece run felt like the right size for something this specific — small enough to stay rare, real enough to actually make.",
+    year: 2026,
+    tier: "limited",
+    price: 895,
+    stock: 15,
+    maxStock: 15,
+    edition: "15 pieces only",
+    badge: "Capsule · 15 Pieces",
+    urgencyTag: "Capsule release · 15 pieces only",
+    reserveButtonLabel: "Reserve Now",
+    specsTitle: "Presence, not permission.",
+    specs: {
+      Price: "€895",
+      Movement: "Ronda 1069, Swiss-made quartz",
+      Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
+      Dial: "Sodalite natural stone — deep blue, veined with white calcite. Each dial is unrepeatable.",
+      Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
+      Crystal: "Sapphire",
+      "Water Resist.": "5 ATM / 50 meters",
+      Warranty: "24-month international coverage",
+      Edition: "15 pieces total · a collaboration with Seconds Society, not part of the standard Contour run.",
+    },
+    boxContents: [
+      "Contour timepiece",
+      "Bracelet micro-adjustment tool",
+      "Leather travel roll",
+      "Polishing cloth",
+      "24-month warranty card",
+      "A note from Kevin",
+    ],
+    valuePerspectiveTitle: "Same price. Rarer stone.",
+    valueAnchor:
+      "€895 — the same as the standard Contour Quartz. No premium for the rarer material; Seconds Society wanted this capsule priced like the line it comes from, not gated behind a markup. What's different is scarcity: fifteen pieces, each dial genuinely one of one, made once in partnership with Seconds Society.",
+    valueComparePrice: "",
+    detailStrip: {
+      eyebrow: "The Stone",
+      title: "No two alike.",
+      text: "Sodalite is cut, not printed — the veining in each dial is whatever the stone happened to carry. Buy this piece and you're buying the one dial that came out of that cut, not a pattern that can be repeated on the next.",
+    },
+    testimonials: [],
+    wristFit: {
+      caseDiameter: "35mm",
+      thickness: "6.9mm",
+      note: "There are no traditional lugs to measure — the bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case-to-wrist proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than sitting high off the wrist.",
+    },
+    newsletterTitle: "Stay close to the studio.",
+    newsletterSub: "Updates on this capsule and future collaborations. No noise.",
+    collaboration: { name: "Seconds Society", url: "https://www.secondssociety.com/" },
+    image: "/images/contour-seconds-society-sodalite.jpg",
+    heroImage: "/images/contour-seconds-society-sodalite.jpg",
+    heroFit: "contain",
+    hidden: true,
+    variants: [
+      {
+        name: "Sodalite",
+        stripePriceId: "", // TODO: Kevin — real Stripe price ID for €895
+        stock: 15,
+        color: "Blue",
+        price: 895,
+        description: "Ronda 1069, Swiss-made quartz. Sodalite dial — deep blue, veined with white calcite.",
+        image: "/images/contour-seconds-society-sodalite.jpg",
       },
     ],
   },

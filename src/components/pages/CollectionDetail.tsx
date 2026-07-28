@@ -347,6 +347,24 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           >
             {c.hook}
           </motion.p>
+          {c.collaboration && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.75 }}
+              className="mt-3 text-[15px] font-light tracking-[1px] text-foreground-muted"
+            >
+              In collaboration with{" "}
+              <a
+                href={c.collaboration.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent underline underline-offset-4 hover:text-accent-hover"
+              >
+                {c.collaboration.name}
+              </a>
+            </motion.p>
+          )}
           {!c.isEnquiryOnly && !c.hidePriceOnCard && (
             <motion.p
               initial={{ opacity: 0, y: 20 }}
