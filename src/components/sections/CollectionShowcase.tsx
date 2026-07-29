@@ -51,7 +51,7 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
 }
 
 export default function CollectionShowcase() {
-  const visibleCount = collections.filter((c) => !c.hidden).length;
+  const visibleCount = collections.filter((c) => !c.hidden && !c.standalone).length;
   return (
     <section className="bg-background-alt py-16 md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-[1400px] px-6 md:px-12">
@@ -74,7 +74,7 @@ export default function CollectionShowcase() {
           variants={staggerContainer}
           className="mt-8 grid grid-cols-2 gap-4 md:gap-5 lg:grid-cols-4"
         >
-          {collections.filter((c) => !c.hidden).map((c) => (
+          {collections.filter((c) => !c.hidden && !c.standalone).map((c) => (
             <motion.div key={c.slug} variants={fadeInUp}>
               <Link
                 href={`/collections/${c.slug}`}

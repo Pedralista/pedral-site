@@ -75,7 +75,7 @@ export default function CollectionsContent() {
   }, []);
 
   const visible = collections
-    .filter((c) => !c.hidden)
+    .filter((c) => !c.hidden && !c.standalone)
     .map((c) => (liveStock?.[c.slug] ? { ...c, stock: liveStock[c.slug].stock } : c))
     .sort((a, b) => a.price - b.price);
   const filtered =

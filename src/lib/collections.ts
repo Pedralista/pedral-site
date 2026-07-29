@@ -69,6 +69,7 @@ export interface Collection {
   nonRefundable?: boolean; // true only for custom/made-to-order pieces (EU Art. 16(c) exemption)
   isEnquiryOnly?: boolean;
   hidden?: boolean; // true = not shown publicly, page returns 404
+  standalone?: boolean; // true = fully live (page, sitemap, feed) but excluded from the /collections grid and homepage showcase — e.g. a one-off capsule reached only via its own direct link
   hidePriceOnCard?: boolean;
   variantLabel?: string;
   valuePerspectiveTitle?: string;
@@ -702,6 +703,10 @@ export const collections: Collection[] = [
     heroImage: "/images/contour-seconds-society-sodalite.jpg",
     heroFit: "contain",
     hidden: false,
+    // A standalone capsule, not part of the core lineup — reachable only
+    // via its own direct link (Instagram, Seconds Society, etc.), not
+    // listed on /collections or the homepage showcase.
+    standalone: true,
     variants: [
       {
         name: "Sodalite",
