@@ -633,9 +633,7 @@ export const collections: Collection[] = [
     // Capsule collaboration with Seconds Society (https://www.secondssociety.com/):
     // the Contour Quartz platform in a Sodalite dial, 15 pieces only, €895
     // (same price as the standard Contour Quartz — confirmed by Kevin, not a
-    // typo). TODO: Kevin — set `hidden: false` and the real variant
-    // stripePriceId below once the Stripe price exists. Until then this page
-    // 404s in production (see isHidden()) but is fully previewable locally.
+    // typo). Live as of launch — real Stripe price wired in.
     slug: "contour-seconds-society",
     name: "Contour × Seconds Society",
     metaTitle: "Pedral Contour × Seconds Society — Sodalite Capsule, 15 Pieces | Pedral",
@@ -703,7 +701,7 @@ export const collections: Collection[] = [
     image: "/images/contour-seconds-society-sodalite.jpg",
     heroImage: "/images/contour-seconds-society-sodalite.jpg",
     heroFit: "contain",
-    hidden: true,
+    hidden: false,
     variants: [
       {
         name: "Sodalite",
