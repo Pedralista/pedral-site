@@ -542,6 +542,41 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         </div>
       </section>
 
+      {/* Collaboration credit — placed before the variant picker so it's
+          clear this is a collaboration before a shopper starts choosing a
+          dial, not something they discover after the fact further down. */}
+      {c.collaboration?.bio && (
+        <section className="bg-background-alt py-16 md:py-24">
+          <div className="mx-auto max-w-[900px] px-6 md:px-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                The Collaboration
+              </p>
+              <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
+                About {c.collaboration.name}.
+              </h2>
+              <div className="mt-6 h-px w-[60px] bg-accent" />
+              <p className="mt-6 text-[16px] font-light leading-[1.9] text-foreground-muted">
+                {c.collaboration.bio}
+              </p>
+              <a
+                href={c.collaboration.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-block text-[15px] font-normal text-accent underline-offset-4 hover:underline"
+              >
+                {c.collaboration.url.replace(/^https?:\/\//, "").replace(/\/$/, "")} →
+              </a>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
       {/* Dial Variants Browser */}
       {hasVariants && (
         <section id="dial-variants" className="bg-background py-14 md:py-20">
@@ -1032,39 +1067,6 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           </motion.div>
         </div>
       </section>
-
-      {/* Collaboration credit */}
-      {c.collaboration?.bio && (
-        <section className="bg-background-alt py-16 md:py-24">
-          <div className="mx-auto max-w-[900px] px-6 md:px-12">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-            >
-              <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
-                The Collaboration
-              </p>
-              <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
-                About {c.collaboration.name}.
-              </h2>
-              <div className="mt-6 h-px w-[60px] bg-accent" />
-              <p className="mt-6 text-[16px] font-light leading-[1.9] text-foreground-muted">
-                {c.collaboration.bio}
-              </p>
-              <a
-                href={c.collaboration.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-block text-[15px] font-normal text-accent underline-offset-4 hover:underline"
-              >
-                {c.collaboration.url.replace(/^https?:\/\//, "").replace(/\/$/, "")} →
-              </a>
-            </motion.div>
-          </div>
-        </section>
-      )}
 
       {/* Gallery Strip */}
       {(() => {
