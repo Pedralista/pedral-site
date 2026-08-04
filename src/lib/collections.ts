@@ -700,7 +700,13 @@ export const collections: Collection[] = [
       bio: "Seconds Society is a collector-led watch studio founded by Wahhaj, Ash, and Ray, built on a simple idea: some of the best watches come from collectors working directly with independent makers, not from a boardroom. Past releases include a Mercury-inspired sector dial with Isotope, the Brunswick 40.5 Jump Hour reimagined in blue with FEARS, a one-of-one piece with independent watchmaker Boyu Tang, and The Twelve: Watch Collectors Edition with Christopher Ward. The pairing with Pedral runs on the same instinct that carries through both studios — small, collector-facing, and more interested in making fifteen pieces once than a thousand pieces twice.",
     },
     image: "/images/contour-seconds-society-sodalite.jpg",
-    heroImage: "/images/contour-seconds-society-sodalite.jpg",
+    heroImage: "/images/contour-seconds-society-hero.png",
+    detailImage: "/images/contour-seconds-society-macro.png",
+    galleryImages: [
+      "/images/contour-seconds-society-hero.png",
+      "/images/contour-seconds-society-angle.png",
+      "/images/contour-seconds-society-macro.png",
+    ],
     heroFit: "contain",
     hidden: false,
     // A standalone capsule, not part of the core lineup — reachable only
@@ -715,7 +721,7 @@ export const collections: Collection[] = [
         color: "Blue",
         price: 895,
         description: "Ronda 1069, Swiss-made quartz. Sodalite dial — royal blue, mottled with white calcite — with ruby-red synthetic moissanite baguette indices.",
-        image: "/images/contour-seconds-society-sodalite.jpg",
+        image: "/images/contour-seconds-society-angle.png",
       },
     ],
   },
