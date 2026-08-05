@@ -621,7 +621,7 @@ export const collections: Collection[] = [
     variants: [
       {
         // Second drop: same Ronda quartz platform, updated to the 1063.
-        name: "Quartz",
+        name: "Swiss Quartz",
         stripePriceId: "price_1U16isCfxE1lSBKRSMBWzhCO",
         stock: 30, // Placeholder split of the 60-piece edition — confirm with Kevin
         color: "Black/White",
