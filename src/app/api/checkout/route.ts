@@ -21,8 +21,8 @@ const VALID_PRICE_IDS = new Set([
   "price_1TKw7wCfxE1lSBKRcFLiQiu6", // Okapi — LJP7380
   "price_1TPWFUCfxE1lSBKRrOHlguJc", // Maestro Petite Seconde — Soul Blue (€1,600)
   "price_1TPWI7CfxE1lSBKR6eBgMdJl", // Maestro Petite Seconde — Aura Gold (€1,600)
-  "price_1TwoeRCfxE1lSBKRIp2Acccy", // Contour — Quartz, Orange Agate (€895)
-  "price_1TwoiWCfxE1lSBKRmX0ByV0c", // Contour — Hand-Wound, Mother of Pearl (€1,950)
+  "price_1U0suACfxE1lSBKRLKOtor1r", // Contour — Micro-Rotor, Nacre (€895)
+  "price_1U0sqHCfxE1lSBKRl7VPZnh7", // Contour — Hand-Wound, Onyx (€1,950)
   "price_1TyJgICfxE1lSBKRRyl9DzAp", // Contour × Seconds Society — Sodalite (€895)
 ]);
 

@@ -619,12 +619,9 @@ export const collections: Collection[] = [
     heroFit: "contain",
     variants: [
       {
-        // Second drop: replaces the first run's Ronda 1069 quartz. Same
-        // €895 price point and Stripe price ID reused (product unchanged
-        // for Stripe purposes — swap in a dedicated price ID if Kevin wants
-        // this tracked separately).
+        // Second drop: replaces the first run's Ronda 1069 quartz.
         name: "Micro-Rotor",
-        stripePriceId: "price_1TwoeRCfxE1lSBKRIp2Acccy",
+        stripePriceId: "price_1U0suACfxE1lSBKRLKOtor1r",
         stock: 30, // Placeholder split of the 60-piece edition — confirm with Kevin
         color: "Black/White",
         price: 895,
@@ -634,7 +631,7 @@ export const collections: Collection[] = [
       },
       {
         name: "Hand-Wound",
-        stripePriceId: "price_1TwoiWCfxE1lSBKRmX0ByV0c",
+        stripePriceId: "price_1U0sqHCfxE1lSBKRl7VPZnh7",
         stock: 30, // Placeholder split of the 60-piece edition — confirm with Kevin
         color: "Black",
         price: 1950,
