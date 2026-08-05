@@ -1327,6 +1327,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 q: "I can't see it in person before buying.",
                 a: "Most owners say the watch is better in person than in photos. High-resolution images and full specifications are available for every edition. The 14-day return policy exists precisely for this reason.",
               },
+              ...(c.extraFaqs ?? []),
             ].map(({ q, a }) => (
               <motion.div key={q} variants={fadeInUp} className="py-4 md:py-5">
                 <p className="font-serif text-[15px] font-light text-foreground md:text-[17px]">{q}</p>

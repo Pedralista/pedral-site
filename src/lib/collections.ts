@@ -91,6 +91,8 @@ export interface Collection {
   reserveButtonLabel?: string;
   /** Capsule/collab credit shown near the hero — e.g. a partner boutique co-releasing a limited run. `bio` (optional) renders a full section about the partner further down the page. */
   collaboration?: { name: string; url: string; bio?: string };
+  /** Appended to the generic "Before You Commit" FAQ list — for product-specific questions (materials, sizing quirks) that don't apply to every collection. */
+  extraFaqs?: { q: string; a: string }[];
 }
 
 export const collections: Collection[] = [
@@ -568,6 +570,12 @@ export const collections: Collection[] = [
     // First-come-first-served pre-order, not a curated/reviewed allocation.
     reserveButtonLabel: "Pre-Order Now",
     shipsBy: "Ships end of November",
+    extraFaqs: [
+      {
+        q: "Is the Onyx dial real stone, or glass?",
+        a: "Real stone — genuine black onyx, a natural quartz mineral (chalcedony), not glass or a printed imitation. It's denser than glass, stays cool to the touch longer, and carries the faint internal character of a real mineral rather than the too-perfect uniformity of a cast substitute.",
+      },
+    ],
     specsTitle: "Presence, not permission.",
     specs: {
       Price: "€895 quartz · €1,950 hand-wound",
@@ -575,7 +583,7 @@ export const collections: Collection[] = [
         "Ronda 1063, Swiss-made quartz — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
       Dial:
-        "Swiss Quartz: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx — a single sheet of glass-black, cut in the same squarcle silhouette.",
+        "Swiss Quartz: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
@@ -635,7 +643,7 @@ export const collections: Collection[] = [
         stock: 30, // Confirmed 30/30 split with Kevin
         color: "Black",
         price: 1950,
-        description: "ETA 7001, Swiss hand-wound. Onyx dial — a single sheet of glass-black, cut in the same squarcle silhouette as Nacre.",
+        description: "ETA 7001, Swiss hand-wound. Onyx dial — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette as Nacre.",
         image: "/images/contour-onyx-product.png",
         heroImage: "/images/contour-onyx-hero.png",
       },
@@ -682,7 +690,6 @@ export const collections: Collection[] = [
     },
     boxContents: [
       "Contour timepiece",
-      "Bracelet micro-adjustment tool",
       "Leather travel roll",
       "Polishing cloth",
       "24-month warranty card",
@@ -701,7 +708,9 @@ export const collections: Collection[] = [
     wristFit: {
       caseDiameter: "35mm",
       thickness: "6.9mm",
+      wristRange: "13.5–20cm (5.3–7.9\")",
       note: "There are no traditional lugs to measure — the bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case-to-wrist proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than sitting high off the wrist.",
+      noteExtra: "The bracelet closes with a slide adjustment clasp. Release the lock, place it exactly where your wrist wants it, and close it again. The fit is continuous rather than stepped, so there are no holes to compromise between and no links to remove. It fits wrists from around 13.5cm to 20cm (5.3\" to 7.9\").",
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on this capsule and future collaborations. No noise.",
