@@ -5,6 +5,12 @@ export interface CollectionVariant {
   price?: number;
   description?: string;
   image?: string;
+  // Full-bleed hero background for this variant — used to crossfade the
+  // product hero between variants (e.g. showing each dial in turn) with the
+  // price/name/CTA text staying in sync, since both read from the same
+  // selectedVariant. Falls back to the collection-level heroImage/image when
+  // unset.
+  heroImage?: string;
   color?: string;
   numeralOptions?: string[];
   numeralImages?: Record<string, string>;
@@ -53,6 +59,7 @@ export interface Collection {
     lugWidth?: string;
     wristRange?: string;
     note: string;
+    noteExtra?: string;
   };
   newsletterTitle: string;
   newsletterSub: string;
@@ -526,10 +533,10 @@ export const collections: Collection[] = [
   {
     slug: "contour",
     name: "Contour",
-    metaTitle: "Pedral Contour — Integrated Bracelet, Swiss Hand-Wound | Pedral",
+    metaTitle: "Pedral Contour — Integrated Bracelet, Swiss Micro-Rotor & Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Stone and mother-of-pearl dials. Stockholm-designed. First run sold out — second drop coming soon.",
-    tagline: "Second Drop Coming Soon",
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 micro-rotor, €1,950 hand-wound. Nacre and Onyx dials. Stockholm-designed. Second drop now available.",
+    tagline: "Second Drop",
     hook: "Not a watch. A presence.",
     description:
       "The Contour doesn't sit on the wrist. It wraps it. Hundreds of polished steel scales move like fabric, finished the way a fine bracelet is finished — not a case with a strap bolted on, but one continuous line from clasp to dial. Something meant to be touched as much as read.",
@@ -539,15 +546,18 @@ export const collections: Collection[] = [
       "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. The stone dials carry nothing but the hands. The mother-of-pearl carries the squarcle, mirrored so the watch has no right way up. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed. Call it aura, if you need a word for it — the sense that something walked into the room before you did.",
     year: 2026,
     tier: "limited",
-    // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
+    // Base/entry price (micro-rotor). Hand-wound is €1,950 — see specs.Price below.
     price: 895,
-    // First run (edition of 60) is fully sold out across all dials —
-    // second drop TBC. Update stock/badge/edition together when it opens.
-    stock: 0,
+    // Second drop (edition of 60): first run's Ronda 1069 quartz is retired,
+    // replaced by an HZ Series 5 Micro-Rotor (Caliber 5000A) automatic,
+    // same €895 price point. New dials: Nacre (Micro-Rotor) and
+    // Onyx (Hand-Wound). Stock split 30/30 is a placeholder — confirm
+    // exact per-variant counts with Kevin before launch.
+    stock: 60,
     maxStock: 60,
-    edition: "Second drop coming soon",
-    badge: "Second Drop Coming Soon",
-    urgencyTag: "First run sold out · Second drop coming soon",
+    edition: "Second drop",
+    badge: "Second Drop · Now Available",
+    urgencyTag: "Second drop · 60 pieces only",
     // Real checkout is live (Stripe variants below), so this is no longer an
     // enquiry-gated product — pricing, stock, and the standard Reserve CTA
     // all show normally now, same as Maestro/Triomphe.
@@ -557,16 +567,16 @@ export const collections: Collection[] = [
     reserveButtonLabel: "Pre-Order Now",
     specsTitle: "Presence, not permission.",
     specs: {
-      Price: "€895 quartz · €1,950 hand-wound",
+      Price: "€895 micro-rotor · €1,950 hand-wound",
       Movement:
-        "ETA 7001 · Swiss hand-wound · 2.5mm calibre height — or Ronda 1069, Swiss-made quartz",
+        "HZ Series 5 Micro-Rotor, Caliber 5000A — 30mm, 3.95mm thin automatic, 34 jewels, 42-hour power reserve, 28,800 vph — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
       Dial:
-        "Quartz: Orange Agate. Hand-wound: Black or White Mother of Pearl, guilloché finish, with an openworked squarcle motif — the same signature cut through rather than printed on.",
+        "Micro-Rotor: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "60 pieces total · 10 remaining (6 Orange Agate, 4 Black MOP). White Mother of Pearl is sold out.",
+      Edition: "Second drop · 60 pieces total (30 Micro-Rotor, 30 Hand-Wound).",
     },
     // The bracelet is fully integrated (no separate strap), so the box swaps
     // Maestro/Okapi's strap-adapter tool for a bracelet micro-adjustment tool.
@@ -581,7 +591,7 @@ export const collections: Collection[] = [
     ],
     valuePerspectiveTitle: "Two ways to own it.",
     valueAnchor:
-      "€895 for the Ronda 1069, Swiss-made quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price.",
+      "€895 for the HZ Series 5 Micro-Rotor, Caliber 5000A — a 3.95mm automatic built specifically for slim dress-watch profiles, running at 28,800 vph with a 42-hour reserve, at the same price the entry point has always been. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "Either Wrist",
@@ -592,41 +602,46 @@ export const collections: Collection[] = [
     wristFit: {
       caseDiameter: "35mm",
       thickness: "6.9mm",
-      note: "There are no traditional lugs to measure — the bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case-to-wrist proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than sitting high off the wrist.",
+      wristRange: "13.5–20cm",
+      note: "There are no traditional lugs to measure. The bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than standing off the wrist.",
+      noteExtra: "The bracelet closes with a slide adjustment clasp. Release the lock, place it exactly where your wrist wants it, and close it again. The fit is continuous rather than stepped, so there are no holes to compromise between and no links to remove. It fits wrists from around 13.5cm to 20cm.",
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Contour and future editions. No noise.",
-    image: "/images/contour-product-black-mop.png",
-    heroImage: "/images/contour-hero.png",
+    image: "/images/contour-dual-mop-hero.png",
+    heroImage: "/images/contour-dual-mop-hero.png",
+    detailImage: "/images/contour-dual-mop-macro.png",
+    galleryImages: [
+      "/images/contour-dual-mop-hero.png",
+      "/images/contour-onyx-hero.png",
+      "/images/contour-dual-mop-angle.png",
+      "/images/contour-onyx-angle.png",
+    ],
     heroFit: "contain",
     variants: [
       {
-        name: "Quartz",
+        // Second drop: replaces the first run's Ronda 1069 quartz. Same
+        // €895 price point and Stripe price ID reused (product unchanged
+        // for Stripe purposes — swap in a dedicated price ID if Kevin wants
+        // this tracked separately).
+        name: "Micro-Rotor",
         stripePriceId: "price_1TwoeRCfxE1lSBKRIp2Acccy",
-        stock: 0, // Sold out — first run
-        color: "Orange",
+        stock: 30, // Placeholder split of the 60-piece edition — confirm with Kevin
+        color: "Black/White",
         price: 895,
-        description: "Ronda 1069, Swiss-made quartz. Orange Agate dial.",
-        image: "/images/contour-product-orange-agate.png",
+        description: "HZ Series 5 Micro-Rotor, Caliber 5000A. Nacre dial — black and white mother-of-pearl combined.",
+        image: "/images/contour-dual-mop-product.png",
+        heroImage: "/images/contour-dual-mop-hero.png",
       },
       {
         name: "Hand-Wound",
         stripePriceId: "price_1TwoiWCfxE1lSBKRmX0ByV0c",
-        stock: 0, // Sold out — first run
-        color: "Silver",
+        stock: 30, // Placeholder split of the 60-piece edition — confirm with Kevin
+        color: "Black",
         price: 1950,
-        description: "ETA 7001, Swiss hand-wound. Choice of Black or White Mother of Pearl dial, guilloché finish.",
-        numeralOptions: ["Black Mother of Pearl", "White Mother of Pearl"],
-        soldOutNumerals: ["Black Mother of Pearl", "White Mother of Pearl"],
-        numeralStock: {
-          "Black Mother of Pearl": 0,
-          "White Mother of Pearl": 0,
-        },
-        numeralImages: {
-          "Black Mother of Pearl": "/images/contour-product-black-mop.png",
-          "White Mother of Pearl": "/images/contour-product-white-mop.png",
-        },
-        image: "/images/contour-product-black-mop.png",
+        description: "ETA 7001, Swiss hand-wound. Onyx dial.",
+        image: "/images/contour-onyx-product.png",
+        heroImage: "/images/contour-onyx-hero.png",
       },
     ],
   },

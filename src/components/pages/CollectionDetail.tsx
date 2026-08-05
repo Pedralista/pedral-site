@@ -90,6 +90,25 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const runningTotal = (selectedVariant?.price ?? c.price) + addOnsTotal;
   const { addLine: addCartLine } = useCart();
 
+  // Auto-cycles the hero through variants that define their own heroImage
+  // (e.g. showing each dial in turn), keeping the price/name/CTA text in
+  // sync since they all read from selectedVariant. Stops permanently the
+  // moment the shopper interacts with a variant themselves, so it never
+  // fights their choice.
+  const heroVariants = (c.variants ?? []).filter((v) => v.heroImage);
+  const [userPickedVariant, setUserPickedVariant] = useState(false);
+  useEffect(() => {
+    if (userPickedVariant || heroVariants.length < 2) return;
+    const interval = setInterval(() => {
+      setSelectedVariant((current) => {
+        const currentIndex = heroVariants.findIndex((v) => v.name === current?.name);
+        return heroVariants[(currentIndex + 1) % heroVariants.length];
+      });
+    }, 7000);
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userPickedVariant, heroVariants.length]);
+
   // The specs table's "Edition" row used to be a hand-typed string with the
   // per-dial stock counts baked in — which silently went stale the moment a
   // real sale decremented live stock, since nothing re-generated it. Every
@@ -303,24 +322,48 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         className={`relative flex items-end sm:items-center overflow-hidden ${c.heroFit === "contain" ? "min-h-[85vh] sm:min-h-screen justify-center" : "min-h-[60vh] sm:min-h-screen"}`}
       >
         <div className="absolute inset-0">
-          {(c.heroImage || c.image) ? (
-            <Image
-              src={c.heroImage ?? c.image}
-              alt={c.name}
-              fill
-              className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
-              priority
-            />
-          ) : (
-            <ImagePlaceholder label={`${c.name}\nHero / Lifestyle Image`} className="h-full w-full" />
-          )}
+          {(() => {
+            const heroSrc = selectedVariant?.heroImage ?? c.heroImage ?? c.image;
+            return heroSrc ? (
+              heroVariants.length > 1 ? (
+                <AnimatePresence mode="sync">
+                  <motion.div
+                    key={heroSrc}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.2, ease: "easeInOut" }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={heroSrc}
+                      alt={c.name}
+                      fill
+                      className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
+                      priority
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              ) : (
+                <Image
+                  src={heroSrc}
+                  alt={c.name}
+                  fill
+                  className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
+                  priority
+                />
+              )
+            ) : (
+              <ImagePlaceholder label={`${c.name}\nHero / Lifestyle Image`} className="h-full w-full" />
+            );
+          })()}
           {c.heroFit === "contain" ? (
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,10,12,0.15)_0%,rgba(5,10,12,0.35)_45%,rgba(5,10,12,0.92)_75%,rgba(5,10,12,0.97)_100%)] sm:bg-[radial-gradient(ellipse_at_center,rgba(5,10,12,0.82)_0%,rgba(5,10,12,0.55)_40%,rgba(5,10,12,0.2)_70%,transparent_100%)]" />
           ) : (
             <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(5,10,12,0.88)_0%,rgba(5,10,12,0.35)_50%,rgba(5,10,12,0.7)_100%)]" />
           )}
         </div>
-        <div className={`relative z-10 py-10 sm:py-24 md:py-32 ${c.heroFit === "contain" ? `mx-auto max-w-[560px] px-6 text-center${c.slug === "contour" ? " sm:translate-x-[8%]" : ""}` : "max-w-[700px] px-6 md:px-24"}`}>
+        <div className={`relative z-10 py-10 sm:py-24 md:py-32 ${c.heroFit === "contain" ? "mx-auto max-w-[560px] px-6 text-center" : "max-w-[700px] px-6 md:px-24"}`}>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -452,6 +495,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       onClick={() => {
                         setSelectedVariant(v);
                         setSelectedNumeral(v.numeralOptions?.[0] ?? null);
+                        setUserPickedVariant(true);
                         document.getElementById("dial-variants")?.scrollIntoView({ behavior: "smooth" });
                       }}
                       className="text-accent underline underline-offset-4 hover:text-accent-hover"
@@ -613,7 +657,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   <motion.div
                     key={v.name}
                     variants={fadeInUp}
-                    onClick={() => { if (!isSoldOutVariant) { setSelectedVariant(v); setSelectedNumeral(null); } }}
+                    onClick={() => { if (!isSoldOutVariant) { setSelectedVariant(v); setSelectedNumeral(null); setUserPickedVariant(true); } }}
                     className={`group relative overflow-hidden rounded-lg border text-left transition-all duration-300 ${
                       isSoldOutVariant
                         ? "cursor-not-allowed opacity-50 border-accent/10"
@@ -993,6 +1037,11 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <p className="mt-8 text-[16px] font-light leading-[1.9] text-foreground-muted sm:text-[15px]">
                 {c.wristFit.note}
               </p>
+              {c.wristFit.noteExtra && (
+                <p className="mt-4 text-[16px] font-light leading-[1.9] text-foreground-muted sm:text-[15px]">
+                  {c.wristFit.noteExtra}
+                </p>
+              )}
               <p className="mt-4 text-[15px] font-light text-foreground-muted/60 sm:text-[16px] sm:text-foreground-muted/50">
                 Unsure about fit? Write to Kevin directly — he&apos;ll give you an honest answer.
               </p>
