@@ -73,6 +73,8 @@ export interface Collection {
   /** Per-product opt-in for checkout add-ons (straps / engraving). Gated together with ADDONS_ENABLED in src/lib/addons.ts. Defaults off. */
   addOnsEnabled?: boolean;
   depositAmount?: number;
+  // Expected dispatch window shown near the buy CTA, e.g. "Ships end of November".
+  shipsBy?: string;
   nonRefundable?: boolean; // true only for custom/made-to-order pieces (EU Art. 16(c) exemption)
   isEnquiryOnly?: boolean;
   hidden?: boolean; // true = not shown publicly, page returns 404
@@ -565,6 +567,7 @@ export const collections: Collection[] = [
     numeralOptionsLabel: "Dial",
     // First-come-first-served pre-order, not a curated/reviewed allocation.
     reserveButtonLabel: "Pre-Order Now",
+    shipsBy: "Ships end of November",
     specsTitle: "Presence, not permission.",
     specs: {
       Price: "€895 micro-rotor · €1,950 hand-wound",
@@ -578,12 +581,8 @@ export const collections: Collection[] = [
       "Water Resist.": "5 ATM / 50 meters",
       Edition: "Second drop · 60 pieces total (30 Micro-Rotor, 30 Hand-Wound).",
     },
-    // The bracelet is fully integrated (no separate strap), so the box swaps
-    // Maestro/Okapi's strap-adapter tool for a bracelet micro-adjustment tool.
-    // Confirm exact contents before launch.
     boxContents: [
       "Contour timepiece",
-      "Bracelet micro-adjustment tool",
       "Leather travel roll",
       "Polishing cloth",
       "24-month warranty card",
@@ -602,9 +601,9 @@ export const collections: Collection[] = [
     wristFit: {
       caseDiameter: "35mm",
       thickness: "6.9mm",
-      wristRange: "13.5–20cm",
+      wristRange: "13.5–20cm (5.3–7.9\")",
       note: "There are no traditional lugs to measure. The bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than standing off the wrist.",
-      noteExtra: "The bracelet closes with a slide adjustment clasp. Release the lock, place it exactly where your wrist wants it, and close it again. The fit is continuous rather than stepped, so there are no holes to compromise between and no links to remove. It fits wrists from around 13.5cm to 20cm.",
+      noteExtra: "The bracelet closes with a slide adjustment clasp. Release the lock, place it exactly where your wrist wants it, and close it again. The fit is continuous rather than stepped, so there are no holes to compromise between and no links to remove. It fits wrists from around 13.5cm to 20cm (5.3\" to 7.9\").",
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Contour and future editions. No noise.",

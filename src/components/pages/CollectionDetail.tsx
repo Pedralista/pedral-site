@@ -552,6 +552,11 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     €{c.depositAmount ?? 500} non-refundable deposit &middot; Secures your place in the production queue &middot; Balance invoiced before shipping
                   </p>
                 )}
+                {!c.isPreOrder && c.shipsBy && !isSoldOut && (
+                  <p className="mt-3 text-[16px] font-light leading-[1.7] text-foreground-muted/60">
+                    {c.shipsBy}
+                  </p>
+                )}
                 {preOrderError && (
                   <p className="mt-2 text-[16px] text-red-400">{preOrderError}</p>
                 )}
@@ -1406,7 +1411,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 </p>
               ) : (
                 <p className="mt-3 text-[16px] font-light tracking-[0.5px] text-foreground-muted">
-                  Pre-order &middot; Full payment secures your allocation &middot; Ships in 4–6 weeks
+                  Pre-order &middot; Full payment secures your allocation &middot; {c.shipsBy ?? "Ships in 4–6 weeks"}
                 </p>
               )}
               <div className="mx-auto mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8">
