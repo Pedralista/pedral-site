@@ -545,7 +545,7 @@ export const collections: Collection[] = [
     descriptionExtra:
       "In the 1970s, a handful of makers understood that a watch could carry itself like jewelry — worn low on the wrist, catching light before it told you anything about the time. That instinct mostly disappeared under decades of tool-watch sensibility. The Contour brings it back deliberately: 35mm across, 6.9mm thin, close enough to the skin to move like a bracelet, substantial enough to be felt in the room. It doesn't ask to be noticed. It simply is.",
     designerNote:
-      "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. The stone dials carry nothing but the hands. The mother-of-pearl carries the squarcle, mirrored so the watch has no right way up. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed. Call it aura, if you need a word for it — the sense that something walked into the room before you did.",
+      "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. Both dials carry nothing but the hands. Nacre carries the squarcle in mirrored mother-of-pearl, so the watch has no right way up. Onyx keeps it simpler still — a single sheet of black, letting the hands do all the talking. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed. Call it aura, if you need a word for it — the sense that something walked into the room before you did.",
     year: 2026,
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
@@ -565,7 +565,6 @@ export const collections: Collection[] = [
     // enquiry-gated product — pricing, stock, and the standard Reserve CTA
     // all show normally now, same as Maestro/Triomphe.
     variantLabel: "Movement",
-    numeralOptionsLabel: "Dial",
     // First-come-first-served pre-order, not a curated/reviewed allocation.
     reserveButtonLabel: "Pre-Order Now",
     shipsBy: "Ships end of November",
@@ -576,11 +575,11 @@ export const collections: Collection[] = [
         "Ronda 1063, Swiss-made quartz — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
       Dial:
-        "Quartz: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx.",
+        "Swiss Quartz: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx — a single sheet of glass-black, cut in the same squarcle silhouette.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "Second drop · 60 pieces total (30 Quartz, 30 Hand-Wound).",
+      Edition: "Second drop · 60 pieces total (30 Swiss Quartz, 30 Hand-Wound).",
     },
     boxContents: [
       "Contour timepiece",
@@ -636,7 +635,7 @@ export const collections: Collection[] = [
         stock: 30, // Placeholder split of the 60-piece edition — confirm with Kevin
         color: "Black",
         price: 1950,
-        description: "ETA 7001, Swiss hand-wound. Onyx dial.",
+        description: "ETA 7001, Swiss hand-wound. Onyx dial — a single sheet of glass-black, cut in the same squarcle silhouette as Nacre.",
         image: "/images/contour-onyx-product.png",
         heroImage: "/images/contour-onyx-hero.png",
       },
