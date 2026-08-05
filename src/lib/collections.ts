@@ -622,7 +622,7 @@ export const collections: Collection[] = [
         // Second drop: same Ronda quartz platform, updated to the 1063.
         name: "Swiss Quartz",
         stripePriceId: "price_1U16isCfxE1lSBKRSMBWzhCO",
-        stock: 30, // Placeholder split of the 60-piece edition — confirm with Kevin
+        stock: 30, // Confirmed 30/30 split with Kevin
         color: "Black/White",
         price: 895,
         description: "Ronda 1063, Swiss-made quartz. Nacre dial — black and white mother-of-pearl combined.",
@@ -632,7 +632,7 @@ export const collections: Collection[] = [
       {
         name: "Hand-Wound",
         stripePriceId: "price_1U0sqHCfxE1lSBKRl7VPZnh7",
-        stock: 30, // Placeholder split of the 60-piece edition — confirm with Kevin
+        stock: 30, // Confirmed 30/30 split with Kevin
         color: "Black",
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Onyx dial — a single sheet of glass-black, cut in the same squarcle silhouette as Nacre.",
