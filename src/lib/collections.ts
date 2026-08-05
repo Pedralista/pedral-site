@@ -535,9 +535,9 @@ export const collections: Collection[] = [
   {
     slug: "contour",
     name: "Contour",
-    metaTitle: "Pedral Contour — Integrated Bracelet, Swiss Micro-Rotor & Hand-Wound | Pedral",
+    metaTitle: "Pedral Contour — Integrated Bracelet, Swiss Quartz & Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 micro-rotor, €1,950 hand-wound. Nacre and Onyx dials. Stockholm-designed. Second drop now available.",
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Nacre and Onyx dials. Stockholm-designed. Second drop now available.",
     tagline: "Second Drop",
     hook: "Not a watch. A presence.",
     description:
@@ -548,13 +548,14 @@ export const collections: Collection[] = [
       "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. The stone dials carry nothing but the hands. The mother-of-pearl carries the squarcle, mirrored so the watch has no right way up. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed. Call it aura, if you need a word for it — the sense that something walked into the room before you did.",
     year: 2026,
     tier: "limited",
-    // Base/entry price (micro-rotor). Hand-wound is €1,950 — see specs.Price below.
+    // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
     price: 895,
-    // Second drop (edition of 60): first run's Ronda 1069 quartz is retired,
-    // replaced by an HZ Series 5 Micro-Rotor (Caliber 5000A) automatic,
-    // same €895 price point. New dials: Nacre (Micro-Rotor) and
-    // Onyx (Hand-Wound). Stock split 30/30 is a placeholder — confirm
-    // exact per-variant counts with Kevin before launch.
+    // Second drop (edition of 60): same Ronda quartz platform as the first
+    // run (1063 instead of 1069 — case dimensions unchanged), same €895
+    // price point. New dials: Nacre (Quartz) and Onyx (Hand-Wound). An HZ
+    // Series 5 Micro-Rotor automatic was considered but dropped — it would
+    // have altered the case thickness. Stock split 30/30 is a placeholder —
+    // confirm exact per-variant counts with Kevin before launch.
     stock: 60,
     maxStock: 60,
     edition: "Second drop",
@@ -570,16 +571,16 @@ export const collections: Collection[] = [
     shipsBy: "Ships end of November",
     specsTitle: "Presence, not permission.",
     specs: {
-      Price: "€895 micro-rotor · €1,950 hand-wound",
+      Price: "€895 quartz · €1,950 hand-wound",
       Movement:
-        "HZ Series 5 Micro-Rotor, Caliber 5000A — 30mm, 3.95mm thin automatic, 34 jewels, 42-hour power reserve, 28,800 vph — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
+        "Ronda 1063, Swiss-made quartz — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
       Dial:
-        "Micro-Rotor: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx.",
+        "Quartz: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "Second drop · 60 pieces total (30 Micro-Rotor, 30 Hand-Wound).",
+      Edition: "Second drop · 60 pieces total (30 Quartz, 30 Hand-Wound).",
     },
     boxContents: [
       "Contour timepiece",
@@ -590,7 +591,7 @@ export const collections: Collection[] = [
     ],
     valuePerspectiveTitle: "Two ways to own it.",
     valueAnchor:
-      "€895 for the HZ Series 5 Micro-Rotor, Caliber 5000A — a 3.95mm automatic built specifically for slim dress-watch profiles, running at 28,800 vph with a 42-hour reserve, at the same price the entry point has always been. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price.",
+      "€895 for the Ronda 1063, Swiss-made quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "Either Wrist",
@@ -619,13 +620,13 @@ export const collections: Collection[] = [
     heroFit: "contain",
     variants: [
       {
-        // Second drop: replaces the first run's Ronda 1069 quartz.
-        name: "Micro-Rotor",
-        stripePriceId: "price_1U0suACfxE1lSBKRLKOtor1r",
+        // Second drop: same Ronda quartz platform, updated to the 1063.
+        name: "Quartz",
+        stripePriceId: "price_1U16isCfxE1lSBKRSMBWzhCO",
         stock: 30, // Placeholder split of the 60-piece edition — confirm with Kevin
         color: "Black/White",
         price: 895,
-        description: "HZ Series 5 Micro-Rotor, Caliber 5000A. Nacre dial — black and white mother-of-pearl combined.",
+        description: "Ronda 1063, Swiss-made quartz. Nacre dial — black and white mother-of-pearl combined.",
         image: "/images/contour-dual-mop-product.png",
         heroImage: "/images/contour-dual-mop-hero.png",
       },
