@@ -133,7 +133,6 @@ export const collections: Collection[] = [
     boxContents: [
       "Maestro timepiece",
       "Strap adapter tool",
-      "Artisanal leather travel roll",
       "Polishing cloth",
       "Butterfly clasp",
       "24-month warranty card",
@@ -243,7 +242,6 @@ export const collections: Collection[] = [
     boxContents: [
       "Triomphe timepiece (current dial edition)",
       "Epsom leather strap (fitted)",
-      "Leather travel roll",
       "Polishing cloth",
       "24-month warranty card",
       "Edition certificate with serial number",
@@ -372,7 +370,6 @@ export const collections: Collection[] = [
     boxContents: [
       "Maestro Petite Seconde timepiece",
       "Strap adapter tool",
-      "Artisanal leather travel roll",
       "Polishing cloth",
       "Butterfly clasp",
       "24-month warranty card",
@@ -466,7 +463,6 @@ export const collections: Collection[] = [
     boxContents: [
       "Okapi Classique – Kivu timepiece",
       "Quick-release leather strap (fitted)",
-      "Pedral leather travel roll",
       "Soft polishing cloth",
       "Butterfly deployment clasp",
       "24-month international warranty card",
@@ -591,7 +587,6 @@ export const collections: Collection[] = [
     },
     boxContents: [
       "Contour timepiece",
-      "Leather travel roll",
       "Polishing cloth",
       "24-month warranty card",
       "A note from Kevin",
@@ -690,7 +685,6 @@ export const collections: Collection[] = [
     },
     boxContents: [
       "Contour timepiece",
-      "Leather travel roll",
       "Polishing cloth",
       "24-month warranty card",
       "A note from Kevin",
