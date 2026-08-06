@@ -154,6 +154,11 @@ export async function POST(req: NextRequest) {
       // never get a Customer record, and /account's lookup (which checks for
       // exactly that) tells genuine buyers they have no account.
       customer_creation: "always",
+      // A Customer record alone still isn't enough: the Billing Portal's
+      // "order history" is really invoice history, and "payment" mode
+      // sessions don't generate an invoice by default — so without this,
+      // customers can log in but still see nothing under Order History.
+      invoice_creation: { enabled: true },
       line_items: lineItems,
       return_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
       metadata: {
@@ -196,8 +201,9 @@ export async function POST(req: NextRequest) {
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     ui_mode: "embedded",
-    // See the cart branch above for why this is needed.
+    // See the cart branch above for why both of these are needed.
     customer_creation: "always",
+    invoice_creation: { enabled: true },
     line_items: [{ price: priceId, quantity: 1 }, ...addOnLineItems],
     return_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
     metadata: {
