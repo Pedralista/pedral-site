@@ -535,7 +535,7 @@ export const collections: Collection[] = [
     name: "Contour",
     metaTitle: "Pedral Contour — Integrated Bracelet, Swiss Quartz & Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Nacre and Onyx dials. Stockholm-designed. Second drop now available.",
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Nacre, Onyx, and Lapis dials. Stockholm-designed. Second drop now available.",
     tagline: "Second Drop",
     hook: "Not a watch. A presence.",
     description:
@@ -543,22 +543,23 @@ export const collections: Collection[] = [
     descriptionExtra:
       "In the 1970s, a handful of makers understood that a watch could carry itself like jewelry — worn low on the wrist, catching light before it told you anything about the time. That instinct mostly disappeared under decades of tool-watch sensibility. The Contour brings it back deliberately: 35mm across, 6.9mm thin, close enough to the skin to move like a bracelet, substantial enough to be felt in the room. It doesn't ask to be noticed. It simply is.",
     designerNote:
-      "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. Both dials carry nothing but the hands. Nacre carries the squarcle in mirrored mother-of-pearl, so the watch has no right way up. Onyx keeps it simpler still — a single sheet of black, letting the hands do all the talking. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed. Call it aura, if you need a word for it — the sense that something walked into the room before you did.",
+      "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. All three dials carry nothing but the hands. Nacre carries the squarcle in mirrored mother-of-pearl, so the watch has no right way up. Onyx keeps it simpler still — a single sheet of black, letting the hands do all the talking. Lapis carries its own sky — natural stone flecked with gold, no two dials alike. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed. Call it aura, if you need a word for it — the sense that something walked into the room before you did.",
     year: 2026,
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
     price: 895,
-    // Second drop (edition of 60): same Ronda quartz platform as the first
+    // Second drop (edition of 50): same Ronda quartz platform as the first
     // run (1063 instead of 1069 — case dimensions unchanged), same €895
-    // price point. New dials: Nacre (Quartz) and Onyx (Hand-Wound). An HZ
-    // Series 5 Micro-Rotor automatic was considered but dropped — it would
-    // have altered the case thickness. Stock split 30/30 is a placeholder —
-    // confirm exact per-variant counts with Kevin before launch.
-    stock: 60,
-    maxStock: 60,
+    // price point. Dials: Nacre (Swiss Quartz), Onyx (Hand-Wound), and Lapis
+    // (Golden Quartz — gold-plated case). An HZ Series 5 Micro-Rotor
+    // automatic was considered but dropped — it would have altered the case
+    // thickness. Stock split 20 Nacre / 20 Onyx / 10 Golden Quartz,
+    // confirmed with Kevin — total edition size is 50, not 60.
+    stock: 50,
+    maxStock: 50,
     edition: "Second drop",
     badge: "Second Drop · Now Available",
-    urgencyTag: "Second drop · 60 pieces only",
+    urgencyTag: "Second drop · 50 pieces only",
     // Real checkout is live (Stripe variants below), so this is no longer an
     // enquiry-gated product — pricing, stock, and the standard Reserve CTA
     // all show normally now, same as Maestro/Triomphe.
@@ -571,19 +572,23 @@ export const collections: Collection[] = [
         q: "Is the Onyx dial real stone, or glass?",
         a: "Real stone — genuine black onyx, a natural quartz mineral (chalcedony), not glass or a printed imitation. It's denser than glass, stays cool to the touch longer, and carries the faint internal character of a real mineral rather than the too-perfect uniformity of a cast substitute.",
       },
+      {
+        q: "Is the Golden Quartz case solid gold?",
+        a: "No — it's a gold-plated finish over the same 316L stainless steel case as the rest of the Contour line, not solid gold. The Lapis dial is genuine natural stone, so the gold flecking you see in it is real pyrite, not paint.",
+      },
     ],
     specsTitle: "Presence, not permission.",
     specs: {
       Price: "€895 quartz · €1,950 hand-wound",
       Movement:
         "Ronda 1063, Swiss-made quartz — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
-      Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
+      Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel (Golden Quartz: gold-plated 316L stainless steel)",
       Dial:
-        "Swiss Quartz: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette.",
+        "Swiss Quartz: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette. Golden Quartz: Lapis — natural lapis lazuli, deep blue flecked with gold pyrite, no two dials alike.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "Second drop · 60 pieces total (30 Swiss Quartz, 30 Hand-Wound).",
+      Edition: "Second drop · 50 pieces total (20 Swiss Quartz, 20 Hand-Wound, 10 Golden Quartz).",
     },
     boxContents: [
       "Contour timepiece",
@@ -616,6 +621,7 @@ export const collections: Collection[] = [
     galleryImages: [
       "/images/contour-dual-mop-hero.png",
       "/images/contour-onyx-hero.png",
+      "/images/contour-gold-lapis-hero.png",
       "/images/contour-dual-mop-angle.png",
       "/images/contour-onyx-angle.png",
     ],
@@ -625,7 +631,7 @@ export const collections: Collection[] = [
         // Second drop: same Ronda quartz platform, updated to the 1063.
         name: "Swiss Quartz",
         stripePriceId: "price_1U16isCfxE1lSBKRSMBWzhCO",
-        stock: 30, // Confirmed 30/30 split with Kevin
+        stock: 20, // Confirmed 20/20/10 split with Kevin
         color: "Black/White",
         price: 895,
         description: "Ronda 1063, Swiss-made quartz. Nacre dial — black and white mother-of-pearl combined.",
@@ -635,12 +641,22 @@ export const collections: Collection[] = [
       {
         name: "Hand-Wound",
         stripePriceId: "price_1U0sqHCfxE1lSBKRl7VPZnh7",
-        stock: 30, // Confirmed 30/30 split with Kevin
+        stock: 20, // Confirmed 20/20/10 split with Kevin
         color: "Black",
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Onyx dial — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette as Nacre.",
         image: "/images/contour-onyx-product.png",
         heroImage: "/images/contour-onyx-hero.png",
+      },
+      {
+        name: "Golden Quartz",
+        stripePriceId: "price_1U2D6YCfxE1lSBKRGssCRRL6",
+        stock: 10, // Confirmed 20/20/10 split with Kevin
+        color: "Gold/Blue",
+        price: 895,
+        description: "Ronda 1063, Swiss-made quartz. Lapis dial — natural lapis lazuli, deep blue flecked with gold pyrite. Gold-plated case.",
+        image: "/images/contour-gold-lapis-hero.png",
+        heroImage: "/images/contour-gold-lapis-hero.png",
       },
     ],
   },
