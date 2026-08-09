@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
-import type { Collection } from "@/lib/collections";
+import { collections, type Collection } from "@/lib/collections";
 import {
   addOnsEnabledFor,
   strapsForCollection,
@@ -40,6 +40,12 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const relatedArticles = (c.relatedArticleSlugs ?? [])
     .map((slug) => getArticleBySlug(slug))
     .filter((a): a is NonNullable<ReturnType<typeof getArticleBySlug>> => Boolean(a));
+  // "Also from the studio" cross-sell — every other publicly-listed
+  // collection, so a shopper who bounces off this page (sold out, wrong
+  // price point, wrong style) still has somewhere to go besides leaving.
+  const crossSellCollections = collections
+    .filter((other) => other.slug !== c.slug && !other.hidden && !other.standalone)
+    .slice(0, 3);
   const isSoldOut = c.stock === 0 && !c.isEnquiryOnly;
   const hasVariants = c.variants && c.variants.length > 0;
   // Honors a ?variant=slug link (e.g. from the Merchant/Meta product feed,
@@ -700,6 +706,24 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       <p className="mt-3 text-[13px] tracking-[0.5px] sm:text-[11px] sm:tracking-[1px] uppercase text-accent/60">
                         {isSoldOutVariant ? "Sold out" : `${v.stock} ${v.stock === 1 ? "piece" : "pieces"} remaining`}
                       </p>
+                      {isSoldOutVariant && (() => {
+                        const inStockSibling = visibleVariants.find((sibling) => sibling.name !== v.name && sibling.stock > 0);
+                        if (!inStockSibling) return null;
+                        return (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedVariant(inStockSibling);
+                              setSelectedNumeral(inStockSibling.numeralOptions?.[0] ?? null);
+                              setUserPickedVariant(true);
+                            }}
+                            className="mt-2 text-[14px] font-light text-accent underline-offset-4 hover:underline"
+                          >
+                            Try {inStockSibling.name} instead →
+                          </button>
+                        );
+                      })()}
                       {/* Numeral options inline when this variant is selected */}
                       {isSelected && v.numeralOptions && v.numeralOptions.length > 0 && (
                         <div className="mt-4 border-t border-accent/[0.12] pt-4" onClick={(e) => e.stopPropagation()}>
@@ -1595,6 +1619,62 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           </motion.div>
         </div>
       </section>
+
+      {crossSellCollections.length > 0 && (
+        <section className="bg-background py-16 md:py-24">
+          <div className="mx-auto max-w-[1100px] px-6 md:px-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                Also From the Studio
+              </p>
+              <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
+                Other pieces, if this isn&apos;t the one.
+              </h2>
+              <div className="mt-6 h-px w-[60px] bg-accent" />
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="mt-10 grid gap-8 sm:grid-cols-3"
+            >
+              {crossSellCollections.map((other) => (
+                <motion.div key={other.slug} variants={fadeInUp}>
+                  <Link href={`/collections/${other.slug}`} className="group block">
+                    <div className="relative aspect-[4/5] w-full overflow-hidden bg-background-alt">
+                      {other.image ? (
+                        <Image
+                          src={other.image}
+                          alt={other.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        />
+                      ) : (
+                        <ImagePlaceholder label={other.name} className="h-full w-full" />
+                      )}
+                    </div>
+                    <p className="mt-4 font-serif text-[20px] font-light text-foreground transition-colors group-hover:text-accent">
+                      {other.name}
+                    </p>
+                    <p className="mt-1 text-[14px] font-light italic text-foreground-muted">
+                      {other.hook}
+                    </p>
+                    <p className="mt-2 text-[14px] font-light tracking-[0.5px] text-foreground-muted/70">
+                      From &euro;{other.price.toLocaleString()}
+                    </p>
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       <Newsletter
         title={c.newsletterTitle}

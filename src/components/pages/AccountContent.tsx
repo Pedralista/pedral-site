@@ -224,6 +224,9 @@ export default function AccountContent() {
                 >
                   Open Order Portal →
                 </a>
+                <p className="mt-5 border-t border-accent/[0.08] pt-5 text-[15px] font-light leading-[1.7] text-foreground-muted">
+                  Already own a piece? Owners get first refusal on future editions, and Kevin personally honors a referral discount for a friend's first piece — just write in.
+                </p>
               </div>
             </div>
           )}
