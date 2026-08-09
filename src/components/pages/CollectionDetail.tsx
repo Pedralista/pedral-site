@@ -146,6 +146,31 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userPickedVariant, heroFrames.length]);
 
+  const heroSrc =
+    (selectedNumeral && selectedVariant?.numeralHeroImages?.[selectedNumeral]) ??
+    selectedVariant?.heroImage ??
+    c.heroImage ??
+    c.image;
+  // Two persistent image layers that never mount/unmount — only their src
+  // and opacity change. AnimatePresence's enter/exit sequencing (mode=
+  // "wait") could get stuck showing a stale image if a new heroSrc arrived
+  // before the previous exit animation finished (e.g. the auto-cycle timer
+  // firing right as someone clicks a dial) — this crossfade can't get
+  // stuck that way since both layers always exist. Uses the functional
+  // setState form (reading prev, not the closed-over showLayerA) so it
+  // stays correct even if heroSrc changes again before the previous update
+  // has committed — reading the render-time showLayerA instead would race
+  // and could leave both layers targeting opacity 1 at once.
+  const [heroCrossfade, setHeroCrossfade] = useState(() => ({ a: heroSrc, b: heroSrc, showA: true }));
+  const lastHeroSrcRef = useRef(heroSrc);
+  useEffect(() => {
+    if (heroSrc === lastHeroSrcRef.current) return;
+    lastHeroSrcRef.current = heroSrc;
+    setHeroCrossfade((prev) =>
+      prev.showA ? { a: prev.a, b: heroSrc, showA: false } : { a: heroSrc, b: prev.b, showA: true }
+    );
+  }, [heroSrc]);
+
   // The specs table's "Edition" row used to be a hand-typed string with the
   // per-dial stock counts baked in — which silently went stale the moment a
   // real sale decremented live stock, since nothing re-generated it. Every
@@ -359,51 +384,48 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         className={`relative flex items-end sm:items-center overflow-hidden ${c.heroFit === "contain" ? "min-h-[85vh] sm:min-h-screen justify-center" : "min-h-[60vh] sm:min-h-screen"}`}
       >
         <div className="absolute inset-0">
-          {(() => {
-            const heroSrc =
-              (selectedNumeral && selectedVariant?.numeralHeroImages?.[selectedNumeral]) ??
-              selectedVariant?.heroImage ??
-              c.heroImage ??
-              c.image;
-            return heroSrc ? (
-              heroFrames.length > 1 ? (
-                // mode="wait" (not "sync") — the outgoing image fully fades
-                // out before the incoming one fades in. With "sync" both
-                // were visible simultaneously mid-transition, so a shopper
-                // could catch two different watches ghosted together
-                // (looked like the wrong watch, or a misaligned double
-                // exposure, if the two hero shots aren't framed identically).
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={heroSrc}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={heroSrc}
-                      alt={c.name}
-                      fill
-                      className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
-                      priority
-                    />
-                  </motion.div>
-                </AnimatePresence>
-              ) : (
-                <Image
-                  src={heroSrc}
-                  alt={c.name}
-                  fill
-                  className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
-                  priority
-                />
-              )
+          {heroSrc ? (
+            heroFrames.length > 1 ? (
+              <>
+                <motion.div
+                  animate={{ opacity: heroCrossfade.showA ? 1 : 0 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={heroCrossfade.a}
+                    alt={c.name}
+                    fill
+                    className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
+                    priority
+                  />
+                </motion.div>
+                <motion.div
+                  animate={{ opacity: heroCrossfade.showA ? 0 : 1 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={heroCrossfade.b}
+                    alt={c.name}
+                    fill
+                    className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
+                    priority
+                  />
+                </motion.div>
+              </>
             ) : (
-              <ImagePlaceholder label={`${c.name}\nHero / Lifestyle Image`} className="h-full w-full" />
-            );
-          })()}
+              <Image
+                src={heroSrc}
+                alt={c.name}
+                fill
+                className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
+                priority
+              />
+            )
+          ) : (
+            <ImagePlaceholder label={`${c.name}\nHero / Lifestyle Image`} className="h-full w-full" />
+          )}
           {c.heroFit === "contain" ? (
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,10,12,0.15)_0%,rgba(5,10,12,0.35)_45%,rgba(5,10,12,0.92)_75%,rgba(5,10,12,0.97)_100%)] sm:bg-[radial-gradient(ellipse_at_center,rgba(5,10,12,0.82)_0%,rgba(5,10,12,0.55)_40%,rgba(5,10,12,0.2)_70%,transparent_100%)]" />
           ) : (
@@ -797,7 +819,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                           </div>
                           {!selectedNumeral && (
                             <p className="mt-2 text-[14px] font-light text-foreground-muted/50">
-                              Select a numeral style to continue.
+                              Select a {(c.numeralOptionsLabel ?? "Numeral Style").toLowerCase()} to continue.
                             </p>
                           )}
                         </div>
