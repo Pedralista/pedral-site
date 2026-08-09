@@ -633,7 +633,7 @@ export const collections: Collection[] = [
     galleryImages: [
       "/images/contour-nacre-product-v2.jpg",
       "/images/contour-nacre-product-angle2.jpg",
-      "/images/contour-aurum-product.jpg",
+      "/images/contour-aurum-product-v2.jpg",
       "/images/contour-onyx-product-angle2.jpg",
       "/images/contour-onyx-product-v2.jpg",
     ],
@@ -664,12 +664,12 @@ export const collections: Collection[] = [
         numeralStock: { "Nacre": 20, "Aurum": 10, "Solaire": 0 },
         numeralImages: {
           "Nacre": "/images/contour-nacre-product-v2.jpg",
-          "Aurum": "/images/contour-aurum-product.jpg",
+          "Aurum": "/images/contour-aurum-product-v2.jpg",
           "Solaire": "/images/contour-orange-agate-product-v2.jpg",
         },
         numeralHeroImages: {
           "Nacre": "/images/contour-nacre-product-v2.jpg",
-          "Aurum": "/images/contour-aurum-product.jpg",
+          "Aurum": "/images/contour-aurum-product-v2.jpg",
         },
         numeralPriceIds: {
           "Nacre": "price_1U16isCfxE1lSBKRSMBWzhCO",
