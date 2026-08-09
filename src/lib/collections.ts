@@ -616,7 +616,7 @@ export const collections: Collection[] = [
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Contour and future editions. No noise.",
     image: "/images/contour-nacre-product-front.png",
-    heroImage: "/images/contour-nacre-product-front.png",
+    heroImage: "/images/contour-nacre-hero2.png",
     detailImage: "/images/contour-nacre-product-angle2.png",
     galleryImages: [
       "/images/contour-nacre-product-front.png",
@@ -636,7 +636,7 @@ export const collections: Collection[] = [
         price: 895,
         description: "Ronda 1063, Swiss-made quartz. Nacre dial — black and white mother-of-pearl combined.",
         image: "/images/contour-nacre-product-front.png",
-        heroImage: "/images/contour-nacre-product-front.png",
+        heroImage: "/images/contour-nacre-hero2.png",
       },
       {
         name: "Hand-Wound",
@@ -646,7 +646,7 @@ export const collections: Collection[] = [
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Onyx dial — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette as Nacre.",
         image: "/images/contour-onyx-product-front.png",
-        heroImage: "/images/contour-onyx-product-front.png",
+        heroImage: "/images/contour-onyx-hero2.png",
       },
       {
         name: "Contour Aurum",
