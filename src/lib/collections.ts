@@ -551,10 +551,10 @@ export const collections: Collection[] = [
     // Second drop (edition of 60): same Ronda quartz platform as the first
     // run (1063 instead of 1069 — case dimensions unchanged), same €895
     // price point. Dials: Nacre (Swiss Quartz), Onyx (Hand-Wound), and Lapis
-    // (Golden Quartz — gold-plated case). An HZ Series 5 Micro-Rotor
+    // (Contour Aurum — gold-plated case). An HZ Series 5 Micro-Rotor
     // automatic was considered but dropped — it would have altered the case
     // thickness. 50 remaining per Kevin: 5 Swiss Quartz and 5 Hand-Wound
-    // already sold (25 each originally), Golden Quartz untouched at 10.
+    // already sold (25 each originally), Contour Aurum untouched at 10.
     stock: 50,
     maxStock: 60,
     edition: "Second drop",
@@ -573,7 +573,7 @@ export const collections: Collection[] = [
         a: "Real stone — genuine black onyx, a natural quartz mineral (chalcedony), not glass or a printed imitation. It's denser than glass, stays cool to the touch longer, and carries the faint internal character of a real mineral rather than the too-perfect uniformity of a cast substitute.",
       },
       {
-        q: "Is the Golden Quartz case solid gold?",
+        q: "Is the Contour Aurum case solid gold?",
         a: "No — it's a gold-plated finish over the same 316L stainless steel case as the rest of the Contour line, not solid gold. The Lapis dial is genuine natural stone, so the gold flecking you see in it is real pyrite, not paint. A solid gold version is planned for the future — write to Kevin directly for pricing.",
       },
     ],
@@ -582,13 +582,13 @@ export const collections: Collection[] = [
       Price: "€895 quartz · €1,950 hand-wound",
       Movement:
         "Ronda 1063, Swiss-made quartz — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
-      Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel (Golden Quartz: gold-plated 316L stainless steel)",
+      Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel (Contour Aurum: gold-plated 316L stainless steel)",
       Dial:
-        "Swiss Quartz: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette. Golden Quartz: Lapis — natural lapis lazuli, deep blue flecked with gold pyrite, no two dials alike.",
+        "Swiss Quartz: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette. Contour Aurum: Lapis — natural lapis lazuli, deep blue flecked with gold pyrite, no two dials alike.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "Second drop · 60 pieces total · 50 remaining (20 Swiss Quartz, 20 Hand-Wound, 10 Golden Quartz).",
+      Edition: "Second drop · 60 pieces total · 50 remaining (20 Swiss Quartz, 20 Hand-Wound, 10 Contour Aurum).",
     },
     boxContents: [
       "Contour timepiece",
@@ -615,15 +615,15 @@ export const collections: Collection[] = [
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Contour and future editions. No noise.",
-    image: "/images/contour-dual-mop-hero.png",
+    image: "/images/contour-nacre-product-front.png",
     heroImage: "/images/contour-dual-mop-hero.png",
-    detailImage: "/images/contour-dual-mop-macro.png",
+    detailImage: "/images/contour-nacre-product-angle2.png",
     galleryImages: [
-      "/images/contour-dual-mop-hero.png",
-      "/images/contour-dual-mop-angle.png",
+      "/images/contour-nacre-product-front.png",
+      "/images/contour-nacre-product-angle2.png",
       "/images/contour-gold-lapis-hero.png",
-      "/images/contour-onyx-angle.png",
-      "/images/contour-onyx-hero.png",
+      "/images/contour-onyx-product-angle2.png",
+      "/images/contour-onyx-product-front.png",
     ],
     heroFit: "contain",
     variants: [
@@ -635,7 +635,7 @@ export const collections: Collection[] = [
         color: "Black/White",
         price: 895,
         description: "Ronda 1063, Swiss-made quartz. Nacre dial — black and white mother-of-pearl combined.",
-        image: "/images/contour-dual-mop-product.png",
+        image: "/images/contour-nacre-product-front.png",
         heroImage: "/images/contour-dual-mop-hero.png",
       },
       {
@@ -645,11 +645,11 @@ export const collections: Collection[] = [
         color: "Black",
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Onyx dial — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette as Nacre.",
-        image: "/images/contour-onyx-product.png",
+        image: "/images/contour-onyx-product-front.png",
         heroImage: "/images/contour-onyx-hero.png",
       },
       {
-        name: "Golden Quartz",
+        name: "Contour Aurum",
         stripePriceId: "price_1U2D6YCfxE1lSBKRGssCRRL6",
         stock: 10, // Confirmed 20/20/10 split with Kevin
         color: "Gold/Blue",
