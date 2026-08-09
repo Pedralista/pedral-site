@@ -633,7 +633,7 @@ export const collections: Collection[] = [
     galleryImages: [
       "/images/contour-nacre-product-front.jpg",
       "/images/contour-nacre-product-angle2.jpg",
-      "/images/contour-gold-lapis-hero.jpg",
+      "/images/contour-gold-lapis-product2.jpg",
       "/images/contour-onyx-product-angle2.jpg",
       "/images/contour-onyx-product-front.jpg",
     ],
