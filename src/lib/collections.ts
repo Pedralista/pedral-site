@@ -112,7 +112,7 @@ export const collections: Collection[] = [
     year: 2025,
     tier: "signature",
     price: 1450,
-    stock: 5,
+    stock: 3,
     maxStock: 20,
     edition: "Lapis No.1 / Frosted Flex",
     badge: "",
@@ -158,7 +158,7 @@ export const collections: Collection[] = [
       {
         name: "Lapis No.1",
         stripePriceId: "price_1TOwepCfxE1lSBKRI7sNBLcW",
-        stock: 2,
+        stock: 3,
         color: "Blue",
         description: "Deep lapis lazuli blue. A dial that commands the room. The sunburst guilloché catches the light differently with every angle.",
         image: "/images/maestro-lapis.jpg",
@@ -166,7 +166,7 @@ export const collections: Collection[] = [
       {
         name: "Frosted Flex",
         stripePriceId: "price_1TOwodCfxE1lSBKRaUZJ0s7O",
-        stock: 5,
+        stock: 0,
         color: "Silver",
         description: "A frosted, architectural surface with a quiet confidence. Less is more. Until the light hits.",
         image: "/images/maestro-frosted.jpg",
