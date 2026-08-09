@@ -171,27 +171,13 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     );
   }, [heroSrc]);
 
-  // The specs table's "Edition" row used to be a hand-typed string with the
-  // per-dial stock counts baked in — which silently went stale the moment a
-  // real sale decremented live stock, since nothing re-generated it. Every
-  // other stock figure on this page (hero badge, variant cards) already
-  // reads live data; this makes the specs row do the same instead of ever
-  // needing another manual edit.
-  const displaySpecs = (() => {
-    if (c.slug !== "contour" || !c.variants) return c.specs;
-    const quartz = c.variants.find((v) => v.name === "Quartz");
-    const handWound = c.variants.find((v) => v.name === "Hand-Wound");
-    if (!quartz || !handWound) return c.specs;
-    const blackMop = handWound.numeralStock?.["Black Mother of Pearl"] ?? handWound.stock;
-    const total = quartz.stock + handWound.stock;
-    return {
-      ...c.specs,
-      Edition:
-        total === 0
-          ? `${c.maxStock} pieces total · First run sold out across every dial. Second drop coming soon — join the list below.`
-          : `${c.maxStock} pieces total · ${total} remaining (${quartz.stock} Orange Agate, ${blackMop} Black MOP). White Mother of Pearl is sold out.`,
-    };
-  })();
+  // Note: the specs table reads c.specs directly (see displaySpecs usage
+  // below) — it previously had a Contour-specific override here that
+  // regenerated the Edition row from live stock, but it hardcoded dial
+  // names ("Orange Agate", "Black MOP") that silently went stale and
+  // started overriding the real content the moment those dials were
+  // renamed, which is worse than the staleness it was meant to prevent.
+  const displaySpecs = c.specs;
 
   // Persistent sticky buy bar: appears once the hero (with the primary CTA)
   // has scrolled out of view, so Add to Bag/Reserve stay one tap away no
