@@ -413,7 +413,13 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             <ImagePlaceholder label={`${c.name}\nHero / Lifestyle Image`} className="h-full w-full" />
           )}
           {c.heroFit === "contain" ? (
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,10,12,0.15)_0%,rgba(5,10,12,0.35)_45%,rgba(5,10,12,0.92)_75%,rgba(5,10,12,0.97)_100%)] sm:bg-[radial-gradient(ellipse_at_center,rgba(5,10,12,0.82)_0%,rgba(5,10,12,0.55)_40%,rgba(5,10,12,0.2)_70%,transparent_100%)]" />
+            // On mobile (below sm:), content is bottom-anchored (items-end)
+            // over the middle-to-lower part of the image, but the old
+            // gradient only got properly dark below 75% — the title/price/
+            // badge landed in a 0.35-opacity zone, unreadable against a
+            // bright watch (confirmed on a gold dial: text nearly invisible
+            // against the band). Darkens that zone earlier and more.
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,10,12,0.25)_0%,rgba(5,10,12,0.65)_40%,rgba(5,10,12,0.92)_70%,rgba(5,10,12,0.97)_100%)] sm:bg-[radial-gradient(ellipse_at_center,rgba(5,10,12,0.82)_0%,rgba(5,10,12,0.55)_40%,rgba(5,10,12,0.2)_70%,transparent_100%)]" />
           ) : (
             <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(5,10,12,0.88)_0%,rgba(5,10,12,0.35)_50%,rgba(5,10,12,0.7)_100%)]" />
           )}
