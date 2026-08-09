@@ -548,18 +548,18 @@ export const collections: Collection[] = [
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
     price: 895,
-    // Second drop (edition of 50): same Ronda quartz platform as the first
+    // Second drop (edition of 60): same Ronda quartz platform as the first
     // run (1063 instead of 1069 — case dimensions unchanged), same €895
     // price point. Dials: Nacre (Swiss Quartz), Onyx (Hand-Wound), and Lapis
     // (Golden Quartz — gold-plated case). An HZ Series 5 Micro-Rotor
     // automatic was considered but dropped — it would have altered the case
-    // thickness. Stock split 20 Nacre / 20 Onyx / 10 Golden Quartz,
-    // confirmed with Kevin — total edition size is 50, not 60.
+    // thickness. 50 remaining per Kevin: 5 Swiss Quartz and 5 Hand-Wound
+    // already sold (25 each originally), Golden Quartz untouched at 10.
     stock: 50,
-    maxStock: 50,
+    maxStock: 60,
     edition: "Second drop",
     badge: "Second Drop · Now Available",
-    urgencyTag: "Second drop · 50 pieces only",
+    urgencyTag: "Second drop · 50 pieces remaining",
     // Real checkout is live (Stripe variants below), so this is no longer an
     // enquiry-gated product — pricing, stock, and the standard Reserve CTA
     // all show normally now, same as Maestro/Triomphe.
@@ -588,7 +588,7 @@ export const collections: Collection[] = [
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "Second drop · 50 pieces total (20 Swiss Quartz, 20 Hand-Wound, 10 Golden Quartz).",
+      Edition: "Second drop · 60 pieces total · 50 remaining (20 Swiss Quartz, 20 Hand-Wound, 10 Golden Quartz).",
     },
     boxContents: [
       "Contour timepiece",
@@ -655,7 +655,7 @@ export const collections: Collection[] = [
         color: "Gold/Blue",
         price: 895,
         description: "Ronda 1063, Swiss-made quartz. Lapis dial — natural lapis lazuli, deep blue flecked with gold pyrite. Gold-plated case.",
-        image: "/images/contour-gold-lapis-hero.png",
+        image: "/images/contour-gold-lapis-product.png",
         heroImage: "/images/contour-gold-lapis-hero.png",
       },
     ],
