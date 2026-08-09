@@ -660,7 +660,7 @@ export const collections: Collection[] = [
         numeralStock: { "Nacre": 20, "Contour Aurum": 10, "Orange Agate": 0 },
         numeralImages: {
           "Nacre": "/images/contour-nacre-product-front.jpg",
-          "Contour Aurum": "/images/contour-gold-lapis-product.jpg",
+          "Contour Aurum": "/images/contour-gold-lapis-product2.jpg",
           "Orange Agate": "/images/contour-product-orange-agate.jpg",
         },
         numeralHeroImages: {
