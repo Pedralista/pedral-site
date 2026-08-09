@@ -367,13 +367,19 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               c.image;
             return heroSrc ? (
               heroFrames.length > 1 ? (
-                <AnimatePresence mode="sync">
+                // mode="wait" (not "sync") — the outgoing image fully fades
+                // out before the incoming one fades in. With "sync" both
+                // were visible simultaneously mid-transition, so a shopper
+                // could catch two different watches ghosted together
+                // (looked like the wrong watch, or a misaligned double
+                // exposure, if the two hero shots aren't framed identically).
+                <AnimatePresence mode="wait">
                   <motion.div
                     key={heroSrc}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 1.2, ease: "easeInOut" }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
                     className="absolute inset-0"
                   >
                     <Image
