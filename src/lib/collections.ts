@@ -574,7 +574,7 @@ export const collections: Collection[] = [
       },
       {
         q: "Is the Golden Quartz case solid gold?",
-        a: "No — it's a gold-plated finish over the same 316L stainless steel case as the rest of the Contour line, not solid gold. The Lapis dial is genuine natural stone, so the gold flecking you see in it is real pyrite, not paint.",
+        a: "No — it's a gold-plated finish over the same 316L stainless steel case as the rest of the Contour line, not solid gold. The Lapis dial is genuine natural stone, so the gold flecking you see in it is real pyrite, not paint. A solid gold version is planned for the future — write to Kevin directly for pricing.",
       },
     ],
     specsTitle: "Presence, not permission.",
@@ -620,10 +620,10 @@ export const collections: Collection[] = [
     detailImage: "/images/contour-dual-mop-macro.png",
     galleryImages: [
       "/images/contour-dual-mop-hero.png",
-      "/images/contour-onyx-hero.png",
-      "/images/contour-gold-lapis-hero.png",
       "/images/contour-dual-mop-angle.png",
+      "/images/contour-gold-lapis-hero.png",
       "/images/contour-onyx-angle.png",
+      "/images/contour-onyx-hero.png",
     ],
     heroFit: "contain",
     variants: [
