@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
-import { collections, type Collection } from "@/lib/collections";
+import { collections, type Collection, type CollectionVariant } from "@/lib/collections";
 import {
   addOnsEnabledFor,
   strapsForCollection,
@@ -81,6 +81,16 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const [selectedNumeral, setSelectedNumeral] = useState<string | null>(
     selectedVariant?.numeralOptions?.[0] ?? null
   );
+  // The Stripe price actually charged: a numeral/dial choice with its own
+  // dedicated price (numeralPriceIds) overrides the variant's base price —
+  // e.g. Contour's Quartz variant charges a different price for Nacre vs.
+  // Aurum even though both are cosmetic "dial" choices in the UI.
+  const effectivePriceId =
+    (selectedNumeral && selectedVariant?.numeralPriceIds?.[selectedNumeral]) ||
+    selectedVariant?.stripePriceId;
+  const selectedVariantImage =
+    (selectedNumeral && selectedVariant?.numeralImages?.[selectedNumeral]) ||
+    selectedVariant?.image;
 
   // ── Checkout add-ons (feature-flagged OFF by default) ──────────────────────
   const addOnsActive = addOnsEnabledFor(c);
@@ -96,24 +106,45 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const runningTotal = (selectedVariant?.price ?? c.price) + addOnsTotal;
   const { addLine: addCartLine } = useCart();
 
-  // Auto-cycles the hero through variants that define their own heroImage
-  // (e.g. showing each dial in turn), keeping the price/name/CTA text in
-  // sync since they all read from selectedVariant. Stops permanently the
-  // moment the shopper interacts with a variant themselves, so it never
-  // fights their choice.
-  const heroVariants = (c.variants ?? []).filter((v) => v.heroImage);
+  // Auto-cycles the hero through every "frame" that defines its own hero
+  // image — a plain variant with heroImage, or (for a variant with dial
+  // sub-choices like Contour's Quartz/Nacre+Aurum) each numeral choice that
+  // defines its own numeralHeroImages entry — keeping the price/name/CTA
+  // text in sync since they all read from selectedVariant/selectedNumeral.
+  // Stops permanently the moment the shopper interacts themselves, so it
+  // never fights their choice.
+  type HeroFrame = { variant: CollectionVariant; numeral: string | null; heroImage: string };
+  const heroFrames: HeroFrame[] = (c.variants ?? []).flatMap((v): HeroFrame[] => {
+    if (v.numeralOptions && v.numeralOptions.length > 0 && v.numeralHeroImages) {
+      return v.numeralOptions
+        .filter((opt) => v.numeralHeroImages?.[opt])
+        .map((opt) => ({ variant: v, numeral: opt, heroImage: v.numeralHeroImages![opt] }));
+    }
+    return v.heroImage ? [{ variant: v, numeral: null, heroImage: v.heroImage }] : [];
+  });
   const [userPickedVariant, setUserPickedVariant] = useState(false);
+  // setInterval's closure only sees selectedNumeral as it was when the
+  // effect last (re)ran — a ref keeps it live across ticks without having
+  // to restart the interval on every numeral change.
+  const selectedNumeralRef = useRef(selectedNumeral);
   useEffect(() => {
-    if (userPickedVariant || heroVariants.length < 2) return;
+    selectedNumeralRef.current = selectedNumeral;
+  }, [selectedNumeral]);
+  useEffect(() => {
+    if (userPickedVariant || heroFrames.length < 2) return;
     const interval = setInterval(() => {
       setSelectedVariant((current) => {
-        const currentIndex = heroVariants.findIndex((v) => v.name === current?.name);
-        return heroVariants[(currentIndex + 1) % heroVariants.length];
+        const currentIndex = heroFrames.findIndex(
+          (f) => f.variant.name === current?.name && f.numeral === selectedNumeralRef.current
+        );
+        const next = heroFrames[(currentIndex + 1) % heroFrames.length];
+        setSelectedNumeral(next.numeral);
+        return next.variant;
       });
     }, 7000);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userPickedVariant, heroVariants.length]);
+  }, [userPickedVariant, heroFrames.length]);
 
   // The specs table's "Edition" row used to be a hand-typed string with the
   // per-dial stock counts baked in — which silently went stale the moment a
@@ -183,12 +214,12 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     !c.isEnquiryOnly &&
     !c.isPreOrder &&
     !isSoldOut &&
-    !!selectedVariant?.stripePriceId &&
+    !!effectivePriceId &&
     !(selectedVariant?.numeralOptions && !selectedNumeral) &&
     !(selectedNumeral && selectedVariant?.soldOutNumerals?.includes(selectedNumeral));
 
   function handleAddToCart() {
-    if (!selectedVariant?.stripePriceId) return;
+    if (!effectivePriceId) return;
     const price = selectedVariant.price ?? c.price;
     addCartLine({
       slug: c.slug,
@@ -196,9 +227,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
       variantName: selectedVariant.numeralOptions
         ? `${selectedVariant.name} · ${selectedNumeral}`
         : selectedVariant.name,
-      priceId: selectedVariant.stripePriceId,
+      priceId: effectivePriceId,
       unitPrice: price,
-      image: selectedVariant.image || c.image,
+      image: selectedVariantImage || c.image,
       nonRefundable: c.nonRefundable ?? false,
       ...(addOnsActive && (selectedStrapSlug || engravingActive)
         ? {
@@ -265,7 +296,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
       }
       return;
     }
-    if (!selectedVariant?.stripePriceId) return;
+    if (!effectivePriceId) return;
     setLoading(true);
     setPreOrderError(null);
     try {
@@ -273,7 +304,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          priceId: selectedVariant.stripePriceId,
+          priceId: effectivePriceId,
           productName: c.name,
           variantName: selectedVariant.numeralOptions
             ? `${selectedVariant.name} · ${selectedNumeral}`
@@ -329,9 +360,13 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
       >
         <div className="absolute inset-0">
           {(() => {
-            const heroSrc = selectedVariant?.heroImage ?? c.heroImage ?? c.image;
+            const heroSrc =
+              (selectedNumeral && selectedVariant?.numeralHeroImages?.[selectedNumeral]) ??
+              selectedVariant?.heroImage ??
+              c.heroImage ??
+              c.image;
             return heroSrc ? (
-              heroVariants.length > 1 ? (
+              heroFrames.length > 1 ? (
                 <AnimatePresence mode="sync">
                   <motion.div
                     key={heroSrc}
@@ -737,7 +772,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                               return (
                                 <button
                                   key={opt}
-                                  onClick={() => setSelectedNumeral(opt)}
+                                  onClick={() => { setSelectedNumeral(opt); setUserPickedVariant(true); }}
                                   className={`flex flex-col items-start border px-4 py-2.5 text-[11px] tracking-[2px] uppercase transition-colors ${
                                     selectedNumeral === opt
                                       ? "border-accent bg-accent text-background"
@@ -1696,8 +1731,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           >
             <div className="mx-auto flex max-w-[1400px] items-center gap-3 px-4 py-3 sm:px-8">
               <div className="relative hidden h-12 w-10 shrink-0 overflow-hidden rounded-md bg-[var(--surface)] sm:block">
-                {(selectedVariant?.image || c.image) && (
-                  <Image src={selectedVariant?.image || c.image} alt={c.name} fill className="object-cover" />
+                {(selectedVariantImage || c.image) && (
+                  <Image src={selectedVariantImage || c.image} alt={c.name} fill className="object-cover" />
                 )}
               </div>
               <div className="min-w-0 flex-1">

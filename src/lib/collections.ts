@@ -16,6 +16,15 @@ export interface CollectionVariant {
   numeralImages?: Record<string, string>;
   soldOutNumerals?: string[];
   numeralStock?: Record<string, number>;
+  // Overrides stripePriceId per numeral/dial choice, for cases where each
+  // sub-choice is its own separately-tracked Stripe price (not just a
+  // cosmetic variant of the same SKU). Falls back to stripePriceId when a
+  // choice has no entry here.
+  numeralPriceIds?: Record<string, string>;
+  // Full-bleed hero background per numeral/dial choice — lets the
+  // auto-cycling hero give a sub-choice (e.g. a gold-case dial) its own
+  // hero moment instead of only the parent variant's heroImage.
+  numeralHeroImages?: Record<string, string>;
 }
 
 export interface Collection {
@@ -533,9 +542,9 @@ export const collections: Collection[] = [
   {
     slug: "contour",
     name: "Contour",
-    metaTitle: "Pedral Contour — Integrated Bracelet, Swiss Quartz & Hand-Wound | Pedral",
+    metaTitle: "Pedral Contour — Integrated Bracelet, Quartz & Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Nacre, Onyx, and Lapis dials. Stockholm-designed. Second drop now available.",
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Nacre, Contour Aurum, and Onyx dials. Stockholm-designed. Second drop now available.",
     tagline: "Second Drop",
     hook: "Not a watch. A presence.",
     description:
@@ -550,11 +559,13 @@ export const collections: Collection[] = [
     price: 895,
     // Second drop (edition of 60): same Ronda quartz platform as the first
     // run (1063 instead of 1069 — case dimensions unchanged), same €895
-    // price point. Dials: Nacre (Swiss Quartz), Onyx (Hand-Wound), and Lapis
-    // (Contour Aurum — gold-plated case). An HZ Series 5 Micro-Rotor
-    // automatic was considered but dropped — it would have altered the case
-    // thickness. 50 remaining per Kevin: 5 Swiss Quartz and 5 Hand-Wound
-    // already sold (25 each originally), Contour Aurum untouched at 10.
+    // price point. Restructured (like Triomphe's numeral styles) into two
+    // movements: Quartz — pick Nacre or Contour Aurum (gold-plated case),
+    // each its own dedicated Stripe price — and Hand-Wound (Onyx). An HZ
+    // Series 5 Micro-Rotor automatic was considered but dropped — it would
+    // have altered the case thickness. 50 remaining per Kevin: 5 Nacre and
+    // 5 Onyx already sold (25 each originally), Contour Aurum untouched at
+    // 10. First run's Orange Agate and MOP dials kept as sold-out options.
     stock: 50,
     maxStock: 60,
     edition: "Second drop",
@@ -564,6 +575,7 @@ export const collections: Collection[] = [
     // enquiry-gated product — pricing, stock, and the standard Reserve CTA
     // all show normally now, same as Maestro/Triomphe.
     variantLabel: "Movement",
+    numeralOptionsLabel: "Dial",
     // First-come-first-served pre-order, not a curated/reviewed allocation.
     reserveButtonLabel: "Pre-Order Now",
     shipsBy: "Ships end of November",
@@ -584,11 +596,11 @@ export const collections: Collection[] = [
         "Ronda 1063, Swiss-made quartz — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel (Contour Aurum: gold-plated 316L stainless steel)",
       Dial:
-        "Swiss Quartz: Nacre — black and white mother-of-pearl combined in one dial. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette. Contour Aurum: Lapis — natural lapis lazuli, deep blue flecked with gold pyrite, no two dials alike.",
+        "Quartz: Nacre — black and white mother-of-pearl combined in one dial — or Contour Aurum, natural lapis lazuli flecked with gold pyrite, no two dials alike. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "Second drop · 60 pieces total · 50 remaining (20 Swiss Quartz, 20 Hand-Wound, 10 Contour Aurum).",
+      Edition: "Second drop · 60 pieces total · 50 remaining (20 Nacre, 10 Contour Aurum, 20 Onyx). First run's Orange Agate and mother-of-pearl dials are sold out.",
     },
     boxContents: [
       "Contour timepiece",
@@ -615,48 +627,73 @@ export const collections: Collection[] = [
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Contour and future editions. No noise.",
-    image: "/images/contour-nacre-product-front.png",
-    heroImage: "/images/contour-nacre-hero2.png",
-    detailImage: "/images/contour-nacre-product-angle2.png",
+    image: "/images/contour-nacre-product-front.jpg",
+    heroImage: "/images/contour-dual-mop-hero.jpg",
+    detailImage: "/images/contour-nacre-product-angle2.jpg",
     galleryImages: [
-      "/images/contour-nacre-product-front.png",
-      "/images/contour-nacre-product-angle2.png",
-      "/images/contour-gold-lapis-hero.png",
-      "/images/contour-onyx-product-angle2.png",
-      "/images/contour-onyx-product-front.png",
+      "/images/contour-nacre-product-front.jpg",
+      "/images/contour-nacre-product-angle2.jpg",
+      "/images/contour-gold-lapis-hero.jpg",
+      "/images/contour-onyx-product-angle2.jpg",
+      "/images/contour-onyx-product-front.jpg",
     ],
     heroFit: "contain",
     variants: [
       {
         // Second drop: same Ronda quartz platform, updated to the 1063.
-        name: "Swiss Quartz",
+        // Restructured to a single "Quartz" variant with a dial picker
+        // (Nacre / Contour Aurum), matching Triomphe's numeral-style
+        // pattern — plus the first run's sold-out Orange Agate for anyone
+        // curious what came before. Each live dial keeps its own dedicated
+        // Stripe price via numeralPriceIds since they're priced/tracked
+        // separately, not just cosmetic variants of one SKU.
+        name: "Quartz",
         stripePriceId: "price_1U16isCfxE1lSBKRSMBWzhCO",
-        stock: 20, // Confirmed 20/20/10 split with Kevin
+        stock: 30,
         color: "Black/White",
         price: 895,
-        description: "Ronda 1063, Swiss-made quartz. Nacre dial — black and white mother-of-pearl combined.",
-        image: "/images/contour-nacre-product-front.png",
-        heroImage: "/images/contour-nacre-hero2.png",
+        description: "Ronda 1063, Swiss-made quartz. Choose Nacre or Contour Aurum.",
+        image: "/images/contour-nacre-product-front.jpg",
+        heroImage: "/images/contour-dual-mop-hero.jpg",
+        numeralOptions: ["Nacre", "Contour Aurum", "Orange Agate"],
+        soldOutNumerals: ["Orange Agate"],
+        numeralStock: { "Nacre": 20, "Contour Aurum": 10, "Orange Agate": 0 },
+        numeralImages: {
+          "Nacre": "/images/contour-nacre-product-front.jpg",
+          "Contour Aurum": "/images/contour-gold-lapis-product.jpg",
+          "Orange Agate": "/images/contour-product-orange-agate.jpg",
+        },
+        numeralHeroImages: {
+          "Nacre": "/images/contour-dual-mop-hero.jpg",
+          "Contour Aurum": "/images/contour-gold-lapis-hero.jpg",
+        },
+        numeralPriceIds: {
+          "Nacre": "price_1U16isCfxE1lSBKRSMBWzhCO",
+          "Contour Aurum": "price_1U2D6YCfxE1lSBKRGssCRRL6",
+        },
       },
       {
+        // First run's Hand-Wound MOP dials are included as sold-out
+        // options for anyone curious what came before Onyx.
         name: "Hand-Wound",
         stripePriceId: "price_1U0sqHCfxE1lSBKRl7VPZnh7",
         stock: 20, // Confirmed 20/20/10 split with Kevin
         color: "Black",
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Onyx dial — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette as Nacre.",
-        image: "/images/contour-onyx-product-front.png",
-        heroImage: "/images/contour-onyx-hero2.png",
-      },
-      {
-        name: "Contour Aurum",
-        stripePriceId: "price_1U2D6YCfxE1lSBKRGssCRRL6",
-        stock: 10, // Confirmed 20/20/10 split with Kevin
-        color: "Gold/Blue",
-        price: 895,
-        description: "Ronda 1063, Swiss-made quartz. Lapis dial — natural lapis lazuli, deep blue flecked with gold pyrite. Gold-plated case.",
-        image: "/images/contour-gold-lapis-product.png",
-        heroImage: "/images/contour-gold-lapis-hero.png",
+        image: "/images/contour-onyx-product-front.jpg",
+        heroImage: "/images/contour-onyx-hero.jpg",
+        numeralOptions: ["Onyx", "Black Mother of Pearl", "White Mother of Pearl"],
+        soldOutNumerals: ["Black Mother of Pearl", "White Mother of Pearl"],
+        numeralStock: { "Onyx": 20, "Black Mother of Pearl": 0, "White Mother of Pearl": 0 },
+        numeralImages: {
+          "Onyx": "/images/contour-onyx-product-front.jpg",
+          "Black Mother of Pearl": "/images/contour-product-black-mop.jpg",
+          "White Mother of Pearl": "/images/contour-product-white-mop.jpg",
+        },
+        numeralHeroImages: {
+          "Onyx": "/images/contour-onyx-hero.jpg",
+        },
       },
     ],
   },
