@@ -656,7 +656,7 @@ export const collections: Collection[] = [
         stock: 30,
         color: "Black/White",
         price: 895,
-        description: "Ronda 1063, Swiss-made quartz. Choose Nacre — mirrored mother-of-pearl — or Aurum, natural lapis lazuli flecked with real gold pyrite.",
+        description: "Ronda 1063, Swiss-made quartz. Choose Nacre, a luminous expression of mother-of-pearl duality, or Aurum, natural lapis lazuli flecked with genuine gold pyrite.",
         image: "/images/contour-nacre-product-v2.jpg",
         heroImage: "/images/contour-nacre-product-v2.jpg",
         numeralOptions: ["Nacre", "Aurum", "Solaire"],
