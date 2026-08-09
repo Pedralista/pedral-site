@@ -380,7 +380,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 >
                   <Image
                     src={heroCrossfade.a}
-                    alt={c.name}
+                    alt=""
                     fill
                     className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
                     priority
@@ -393,7 +393,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 >
                   <Image
                     src={heroCrossfade.b}
-                    alt={c.name}
+                    alt=""
                     fill
                     className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
                     priority
@@ -403,7 +403,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             ) : (
               <Image
                 src={heroSrc}
-                alt={c.name}
+                alt=""
                 fill
                 className={c.heroFit === "contain" ? "object-contain" : "object-contain sm:object-cover"}
                 priority
@@ -736,7 +736,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       {(() => {
                         const imgSrc = (isSelected && selectedNumeral && v.numeralImages?.[selectedNumeral]) ? v.numeralImages[selectedNumeral] : v.image;
                         return imgSrc ? (
-                          <Image src={imgSrc} alt={v.name} fill className="object-contain transition-transform duration-500 group-hover:scale-[1.03]" />
+                          <Image src={imgSrc} alt="" fill className="object-contain transition-transform duration-500 group-hover:scale-[1.03]" />
                         ) : (
                           <ImagePlaceholder label={`${c.name}\n${v.name}`} className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]" />
                         );
@@ -918,7 +918,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                           >
                             <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-[var(--surface)]">
                               {strap.image ? (
-                                <Image src={strap.image} alt={strap.name} fill className="object-cover" />
+                                <Image src={strap.image} alt="" fill className="object-cover" />
                               ) : (
                                 <ImagePlaceholder label="Strap" className="h-full w-full" />
                               )}
@@ -1602,7 +1602,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     <div className="relative aspect-[4/3] w-full">
                       <Image
                         src={ed.image}
-                        alt={ed.name}
+                        alt=""
                         fill
                         className="object-cover"
                       />
@@ -1706,7 +1706,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       {other.image ? (
                         <Image
                           src={other.image}
-                          alt={other.name}
+                          alt=""
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                         />
@@ -1752,7 +1752,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             <div className="mx-auto flex max-w-[1400px] items-center gap-3 px-4 py-3 sm:px-8">
               <div className="relative hidden h-12 w-10 shrink-0 overflow-hidden rounded-md bg-[var(--surface)] sm:block">
                 {(selectedVariantImage || c.image) && (
-                  <Image src={selectedVariantImage || c.image} alt={c.name} fill className="object-cover" />
+                  <Image src={selectedVariantImage || c.image} alt="" fill className="object-cover" />
                 )}
               </div>
               <div className="min-w-0 flex-1">
