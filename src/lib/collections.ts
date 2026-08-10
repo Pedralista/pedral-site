@@ -628,7 +628,7 @@ export const collections: Collection[] = [
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Contour and future editions. No noise.",
     image: "/images/contour-nacre-product-v2.jpg",
-    heroImage: "/images/contour-nacre-product-v2.jpg",
+    heroImage: "/images/contour-nacre-hero-v3.jpg",
     detailImage: "/images/contour-nacre-product-angle2.jpg",
     galleryImages: [
       "/images/contour-nacre-product-v2.jpg",
@@ -647,10 +647,9 @@ export const collections: Collection[] = [
         // what came before. Each live dial keeps its own dedicated Stripe
         // price via numeralPriceIds since they're priced/tracked
         // separately, not just cosmetic variants of one SKU. The hero
-        // crossfade reuses these same product shots (numeralHeroImages)
-        // instead of separate hero-only assets, since a matched batch from
-        // the same render session is what actually guarantees consistent
-        // scale/framing between dials.
+        // crossfade uses a dedicated "pose" batch (numeralHeroImages) from
+        // one shared render session — same lighting/surface/framing across
+        // all three dials — separate from the product-card shots.
         name: "Quartz",
         stripePriceId: "price_1U16isCfxE1lSBKRSMBWzhCO",
         stock: 30,
@@ -658,7 +657,7 @@ export const collections: Collection[] = [
         price: 895,
         description: "Ronda 1063, Swiss-made quartz. Choose Nacre, a luminous expression of mother-of-pearl duality, or Aurum, natural lapis lazuli flecked with genuine gold pyrite.",
         image: "/images/contour-nacre-product-v2.jpg",
-        heroImage: "/images/contour-nacre-product-v2.jpg",
+        heroImage: "/images/contour-nacre-hero-v3.jpg",
         numeralOptions: ["Nacre", "Aurum", "Solaire"],
         soldOutNumerals: ["Solaire"],
         numeralStock: { "Nacre": 20, "Aurum": 10, "Solaire": 0 },
@@ -668,8 +667,8 @@ export const collections: Collection[] = [
           "Solaire": "/images/contour-orange-agate-product-v2.jpg",
         },
         numeralHeroImages: {
-          "Nacre": "/images/contour-nacre-product-v2.jpg",
-          "Aurum": "/images/contour-aurum-product-v2.jpg",
+          "Nacre": "/images/contour-nacre-hero-v3.jpg",
+          "Aurum": "/images/contour-aurum-hero-v3.jpg",
         },
         numeralPriceIds: {
           "Nacre": "price_1U16isCfxE1lSBKRSMBWzhCO",
@@ -686,7 +685,7 @@ export const collections: Collection[] = [
         price: 1950,
         description: "ETA 7001, Swiss hand-wound. Onyx dial — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette as Nacre.",
         image: "/images/contour-onyx-product-v2.jpg",
-        heroImage: "/images/contour-onyx-product-v2.jpg",
+        heroImage: "/images/contour-onyx-hero-v3.jpg",
         numeralOptions: ["Onyx", "Nébuleuse", "Lumière"],
         soldOutNumerals: ["Nébuleuse", "Lumière"],
         numeralStock: { "Onyx": 20, "Nébuleuse": 0, "Lumière": 0 },
@@ -696,7 +695,7 @@ export const collections: Collection[] = [
           "Lumière": "/images/contour-white-mop-product-v2.jpg",
         },
         numeralHeroImages: {
-          "Onyx": "/images/contour-onyx-product-v2.jpg",
+          "Onyx": "/images/contour-onyx-hero-v3.jpg",
         },
       },
     ],
