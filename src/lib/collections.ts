@@ -730,7 +730,7 @@ export const collections: Collection[] = [
     specsTitle: "Presence, not permission.",
     specs: {
       Price: "€895",
-      Movement: "Ronda 1069, Swiss-made quartz",
+      Movement: "Ronda 1063, Swiss-made quartz",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
       Dial: "Sodalite natural stone — royal blue, mottled with white calcite veining — with ruby-red synthetic moissanite baguette indices. Each dial is unrepeatable.",
       Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
@@ -790,7 +790,7 @@ export const collections: Collection[] = [
         stock: 15,
         color: "Blue",
         price: 895,
-        description: "Ronda 1069, Swiss-made quartz. Sodalite dial — royal blue, mottled with white calcite — with ruby-red synthetic moissanite baguette indices.",
+        description: "Ronda 1063, Swiss-made quartz. Sodalite dial — royal blue, mottled with white calcite — with ruby-red synthetic moissanite baguette indices.",
         image: "/images/contour-seconds-society-angle.png",
       },
     ],
