@@ -774,7 +774,7 @@ export const collections: Collection[] = [
     detailImage: "/images/contour-seconds-society-macro.png",
     galleryImages: [
       "/images/contour-seconds-society-hero-v2.jpg",
-      "/images/contour-seconds-society-angle.png",
+      "/images/contour-seconds-society-angle-v2.jpg",
       "/images/contour-seconds-society-macro.png",
     ],
     heroFit: "contain",
