@@ -1094,8 +1094,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
 
       {/* How it Wears */}
       {c.wristFit && (
-        <section className="bg-background py-16 md:py-20">
-          <div className="mx-auto max-w-[900px] px-6 md:px-12">
+        <section className="relative overflow-hidden bg-background pb-16 pt-16 md:pb-20 md:pt-20">
+          <div className="relative z-10 mx-auto max-w-[900px] px-6 md:px-12">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -1109,8 +1109,36 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 How it wears.
               </h2>
               <div className="mt-6 h-px w-[60px] bg-accent" />
+            </motion.div>
+          </div>
 
-              <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="relative mt-10 h-[360px] w-full md:h-[480px]"
+          >
+            {(c.detailImage || c.heroImage || c.image) && (
+              <Image
+                src={c.detailImage || c.heroImage || c.image}
+                alt=""
+                fill
+                className="object-cover"
+              />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+          </motion.div>
+
+          <div className="relative z-10 mx-auto -mt-[220px] max-w-[900px] px-6 md:-mt-[300px] md:px-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="rounded-lg border border-accent/10 bg-background/80 p-6 backdrop-blur-sm md:p-10"
+            >
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
                 {[
                   { label: "Case", value: c.wristFit.caseDiameter },
                   ...(c.wristFit.thickness ? [{ label: "Thickness", value: c.wristFit.thickness }] : []),
