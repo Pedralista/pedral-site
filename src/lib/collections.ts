@@ -21,6 +21,11 @@ export interface CollectionVariant {
   // cosmetic variant of the same SKU). Falls back to stripePriceId when a
   // choice has no entry here.
   numeralPriceIds?: Record<string, string>;
+  // Overrides the displayed/charged price per numeral/dial choice, for cases
+  // where a sub-choice costs more than the parent variant's base price (e.g.
+  // a gold-plated case option). Falls back to the variant's price when a
+  // choice has no entry here.
+  numeralPrices?: Record<string, number>;
   // Full-bleed hero background per numeral/dial choice — lets the
   // auto-cycling hero give a sub-choice (e.g. a gold-case dial) its own
   // hero moment instead of only the parent variant's heroImage.
@@ -672,7 +677,10 @@ export const collections: Collection[] = [
         },
         numeralPriceIds: {
           "Nacre": "price_1U16isCfxE1lSBKRSMBWzhCO",
-          "Aurum": "price_1U2D6YCfxE1lSBKRGssCRRL6",
+          "Aurum": "price_1U3blkCfxE1lSBKR3ZwxlQ60",
+        },
+        numeralPrices: {
+          "Aurum": 1000,
         },
       },
       {

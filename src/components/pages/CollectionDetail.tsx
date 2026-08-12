@@ -88,6 +88,13 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const effectivePriceId =
     (selectedNumeral && selectedVariant?.numeralPriceIds?.[selectedNumeral]) ||
     selectedVariant?.stripePriceId;
+  // The price actually shown/charged: a numeral/dial choice with its own
+  // numeralPrices entry overrides the variant's base price (e.g. Aurum's
+  // gold-plated case costs more than Nacre despite sharing the Quartz variant).
+  const effectivePrice =
+    (selectedNumeral ? selectedVariant?.numeralPrices?.[selectedNumeral] : undefined) ??
+    selectedVariant?.price ??
+    c.price;
   const selectedVariantImage =
     (selectedNumeral && selectedVariant?.numeralImages?.[selectedNumeral]) ||
     selectedVariant?.image;
@@ -103,7 +110,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const selectedStrap = selectedStrapSlug ? getStrapAddon(selectedStrapSlug) : undefined;
   const addOnsTotal =
     (selectedStrap?.price ?? 0) + (engravingActive ? engravingAddon.price : 0);
-  const runningTotal = (selectedVariant?.price ?? c.price) + addOnsTotal;
+  const runningTotal = (effectivePrice) + addOnsTotal;
   const { addLine: addCartLine } = useCart();
 
   // Auto-cycles the hero through every "frame" that defines its own hero
@@ -231,7 +238,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
 
   function handleAddToCart() {
     if (!effectivePriceId) return;
-    const price = selectedVariant.price ?? c.price;
+    const price = effectivePrice;
     addCartLine({
       slug: c.slug,
       productName: c.name,
@@ -263,7 +270,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   }
 
   function trackReserveIntent() {
-    const price = selectedVariant?.price ?? c.price;
+    const price = effectivePrice;
     const item: AnalyticsItem = {
       item_id: c.slug,
       item_name: c.name,
@@ -476,7 +483,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               transition={{ duration: 0.8, delay: 0.8 }}
               className="mt-4 font-serif text-[28px] font-light text-foreground"
             >
-              &euro;{(selectedVariant?.price ?? c.price).toLocaleString()}
+              &euro;{(effectivePrice).toLocaleString()}
             </motion.p>
           )}
           <motion.div
@@ -597,7 +604,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                       : isSoldOut
                       ? "Join Waitlist"
-                      : `${c.reserveButtonLabel ?? "Reserve Allocation"} · €${(selectedVariant?.price ?? c.price).toLocaleString()}`}
+                      : `${c.reserveButtonLabel ?? "Reserve Allocation"} · €${(effectivePrice).toLocaleString()}`}
                   </button>
                   {canAddToCart && (
                     <button
@@ -1013,7 +1020,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 </p>
                 {addOnsActive && addOnsTotal > 0 && (
                   <p className="mt-1 text-[15px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[15px]">
-                    €{(selectedVariant?.price ?? c.price).toLocaleString()} watch
+                    €{(effectivePrice).toLocaleString()} watch
                     {selectedStrap ? ` · +€${selectedStrap.price.toLocaleString()} strap` : ""}
                     {engravingActive ? ` · +€${engravingAddon.price.toLocaleString()} engraving` : ""}
                   </p>
@@ -1024,7 +1031,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       {SHIPPING_LINE}
                     </p>
                     <p className="mt-1 text-[15px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[15px]">
-                      {klarnaLine(selectedVariant?.price ?? c.price)}
+                      {klarnaLine(effectivePrice)}
                     </p>
                   </>
                 )}
@@ -1454,13 +1461,13 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 Edition of {c.maxStock} &middot; {c.edition}
               </p>
               <p className="font-serif text-[48px] font-light text-foreground">
-                &euro;{(selectedVariant?.price ?? c.price).toLocaleString()}
+                &euro;{(effectivePrice).toLocaleString()}
               </p>
               <p className="mt-2 text-[16px] font-light tracking-[0.5px] text-foreground-muted/70">
                 {SHIPPING_LINE}
               </p>
               <p className="mt-1 text-[16px] font-light tracking-[0.5px] text-foreground-muted/70">
-                {klarnaLine(selectedVariant?.price ?? c.price)}
+                {klarnaLine(effectivePrice)}
               </p>
               <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <button
@@ -1474,7 +1481,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                     : isSoldOut
                     ? "Join Waitlist"
-                    : `Reserve · €${(selectedVariant?.price ?? c.price).toLocaleString()}`}
+                    : `Reserve · €${(effectivePrice).toLocaleString()}`}
                 </button>
                 {canAddToCart && (
                   <button
