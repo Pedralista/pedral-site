@@ -556,7 +556,7 @@ export const collections: Collection[] = [
     tagline: "Second Drop",
     hook: "Not a watch. A presence.",
     description:
-      "The Contour doesn't sit on the wrist. It wraps it. Hundreds of polished steel scales move like fabric, finished the way a fine bracelet is finished — not a case with a strap bolted on, but one continuous line from clasp to dial. Something meant to be touched as much as read.",
+      "The Contour doesn't sit on the wrist. It wraps it. Hundreds of brushed steel scales move like fabric, finished the way a fine bracelet is finished — not a case with a strap bolted on, but one continuous line from clasp to dial. Something meant to be touched as much as read.",
     descriptionExtra:
       "In the 1970s, a handful of makers understood that a watch could carry itself like jewelry — worn low on the wrist, catching light before it told you anything about the time. That instinct mostly disappeared under decades of tool-watch sensibility. The Contour brings it back deliberately: 35mm across, 6.9mm thin, close enough to the skin to move like a bracelet, substantial enough to be felt in the room. It doesn't ask to be noticed. It simply is.",
     designerNote:
@@ -605,7 +605,7 @@ export const collections: Collection[] = [
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel (Aurum: gold-plated 316L stainless steel)",
       Dial:
         "Quartz: Nacre — black and white mother-of-pearl combined in one dial — or Aurum, natural lapis lazuli flecked with gold pyrite, no two dials alike. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette.",
-      Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
+      Bracelet: "Fully integrated, hundreds of brushed scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
       Edition: "Second drop · 60 pieces total · 50 remaining (20 Nacre, 10 Aurum, 20 Onyx). First run's Solaire and mother-of-pearl dials are sold out.",
@@ -623,7 +623,7 @@ export const collections: Collection[] = [
     detailStrip: {
       eyebrow: "The Era",
       title: "Jewelry first. A watch second.",
-      text: "There's a particular sophistication to 1970s design — when a handful of makers understood that a watch could carry itself like jewelry, catching light on the wrist before it told you anything about the time. The Contour draws directly from that instinct: polished scales that move like a bracelet, a case worn close enough to the skin to be felt rather than just seen. It doesn't perform utility. It simply carries itself well.",
+      text: "There's a particular sophistication to 1970s design — when a handful of makers understood that a watch could carry itself like jewelry, catching light on the wrist before it told you anything about the time. The Contour draws directly from that instinct: brushed scales that move like a bracelet, a case worn close enough to the skin to be felt rather than just seen. It doesn't perform utility. It simply carries itself well.",
     },
     testimonials: [],
     wristFit: {
@@ -745,7 +745,7 @@ export const collections: Collection[] = [
       Movement: "Ronda 1063, Swiss-made quartz",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
       Dial: "Sodalite natural stone — royal blue, mottled with white calcite veining — with ruby-red synthetic moissanite baguette indices. Each dial is unrepeatable.",
-      Bracelet: "Fully integrated, hundreds of polished scales, no visible lugs",
+      Bracelet: "Fully integrated, hundreds of brushed scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
       Warranty: "24-month international coverage",
