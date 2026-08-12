@@ -1119,9 +1119,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             variants={fadeInUp}
             className="relative mt-10 h-[360px] w-full md:h-[480px]"
           >
-            {(c.detailImage || c.heroImage || c.image) && (
+            {(c.wristFit.image || c.detailImage || c.heroImage || c.image) && (
               <Image
-                src={c.detailImage || c.heroImage || c.image}
+                src={c.wristFit.image || c.detailImage || c.heroImage || c.image}
                 alt=""
                 fill
                 className="object-cover"

@@ -74,6 +74,9 @@ export interface Collection {
     wristRange?: string;
     note: string;
     noteExtra?: string;
+    // Dedicated arching background shot for the "How it wears" section.
+    // Falls back to detailImage/heroImage/image when unset.
+    image?: string;
   };
   newsletterTitle: string;
   newsletterSub: string;
@@ -629,6 +632,7 @@ export const collections: Collection[] = [
       wristRange: "13.5–20cm (5.3–7.9\")",
       note: "There are no traditional lugs to measure. The bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than standing off the wrist.",
       noteExtra: "The bracelet closes with a slide adjustment clasp. Release the lock, place it exactly where your wrist wants it, and close it again. The fit is continuous rather than stepped, so there are no holes to compromise between and no links to remove. It fits wrists from around 13.5cm to 20cm (5.3\" to 7.9\").",
+      image: "/images/contour-wristfit-arch.jpg",
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Contour and future editions. No noise.",
