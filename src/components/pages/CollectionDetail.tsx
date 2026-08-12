@@ -1124,7 +1124,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 src={c.wristFit.image || c.detailImage || c.heroImage || c.image}
                 alt=""
                 fill
-                className="object-cover"
+                className={c.wristFit.image ? "object-cover object-top" : "object-cover"}
               />
             )}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
