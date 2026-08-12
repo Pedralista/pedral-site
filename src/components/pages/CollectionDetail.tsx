@@ -1117,7 +1117,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="relative mt-10 h-[360px] w-full md:h-[480px]"
+            className="relative mt-10 h-[170px] w-full sm:h-[240px] md:h-[420px]"
           >
             {(c.wristFit.image || c.detailImage || c.heroImage || c.image) && (
               <Image
@@ -1130,7 +1130,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
           </motion.div>
 
-          <div className="relative z-10 mx-auto -mt-[220px] max-w-[900px] px-6 md:-mt-[300px] md:px-12">
+          <div className="relative z-10 mx-auto -mt-[100px] max-w-[900px] px-6 sm:-mt-[140px] md:-mt-[260px] md:px-12">
             <motion.div
               initial="hidden"
               whileInView="visible"
