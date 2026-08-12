@@ -637,7 +637,7 @@ export const collections: Collection[] = [
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Contour and future editions. No noise.",
     image: "/images/contour-nacre-product-v2.jpg",
-    heroImage: "/images/contour-nacre-hero-v4.jpg",
+    heroImage: "/images/contour-wristfit-arch.jpg",
     detailImage: "/images/contour-nacre-product-angle2.jpg",
     galleryImages: [
       "/images/contour-nacre-product-v2.jpg",

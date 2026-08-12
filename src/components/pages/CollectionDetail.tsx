@@ -1130,7 +1130,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
           </motion.div>
 
-          <div className="relative z-10 mx-auto mt-8 max-w-[900px] px-6 md:mt-10 md:px-12">
+          <div className="relative z-10 mx-auto -mt-[30px] max-w-[900px] px-6 md:-mt-[50px] md:px-12">
             <motion.div
               initial="hidden"
               whileInView="visible"
