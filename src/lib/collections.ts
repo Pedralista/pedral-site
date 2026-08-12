@@ -621,9 +621,9 @@ export const collections: Collection[] = [
       "€895 for the Ronda 1063, Swiss-made quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price.",
     valueComparePrice: "",
     detailStrip: {
-      eyebrow: "The Era",
-      title: "Jewelry first. A watch second.",
-      text: "There's a particular sophistication to 1970s design — when a handful of makers understood that a watch could carry itself like jewelry, catching light on the wrist before it told you anything about the time. The Contour draws directly from that instinct: brushed scales that move like a bracelet, a case worn close enough to the skin to be felt rather than just seen. It doesn't perform utility. It simply carries itself well.",
+      eyebrow: "For the Modern Collector",
+      title: "Haute joaillerie meets haute horlogerie.",
+      text: "The Contour sits at the intersection of the two — jewelry-grade presence built on real watchmaking underneath. Not a tool watch dressed up, and not a bracelet with a movement bolted in. Brushed scales that move like a bracelet, a case worn close enough to the skin to be felt rather than just seen. Built for a collector who wants both at once, not a compromise between them.",
     },
     testimonials: [],
     wristFit: {
