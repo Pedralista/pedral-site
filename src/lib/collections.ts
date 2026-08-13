@@ -41,6 +41,8 @@ export interface Collection {
   hook: string;
   description: string;
   descriptionExtra?: string;
+  /** Heading for the description section ("The Watch"). Falls back to detailStrip.title when unset — set explicitly to avoid sharing a heading with the separate Detail Strip section further down the page. */
+  descriptionTitle?: string;
   designerNote: string;
   year: number;
   tier: "signature" | "limited";
@@ -555,6 +557,7 @@ export const collections: Collection[] = [
       "Contour: a 35mm, 6.9mm integrated-bracelet watch. From €895 quartz, €1,950 hand-wound. Nacre, Aurum, and Onyx dials. Stockholm-designed. Second drop now available.",
     tagline: "Second Drop",
     hook: "Not a watch. A presence.",
+    descriptionTitle: "Designed as a watch. Built like jewellery.",
     description:
       "The Contour doesn't sit on the wrist. It wraps it. Hundreds of articulated links move like fabric, finished with the care of a fine bracelet and shaped to form one continuous line from clasp to dial. Something meant to be touched as much as read.",
     descriptionExtra:

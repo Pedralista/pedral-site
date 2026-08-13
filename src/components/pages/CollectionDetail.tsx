@@ -1077,7 +1077,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               The Watch
             </p>
             <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
-              {c.detailStrip.title.replace(/\.$/, "")}
+              {(c.descriptionTitle ?? c.detailStrip.title).replace(/\.$/, "")}
             </h2>
             <div className="mt-6 h-px w-[60px] bg-accent" />
             <p className="mt-6 text-[16px] font-light leading-[1.9] text-foreground-muted">
