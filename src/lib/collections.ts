@@ -621,9 +621,9 @@ export const collections: Collection[] = [
       "€895 for the Ronda 1063, Swiss-made quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price.",
     valueComparePrice: "",
     detailStrip: {
-      eyebrow: "For the Modern Collector",
-      title: "Designed as a watch. Built like jewellery.",
-      text: "The Contour sits at the intersection of the two — jewelry-grade presence built on real watchmaking underneath. Not a tool watch dressed up, and not a bracelet with a movement bolted in. Brushed scales that move like a bracelet, a case worn close enough to the skin to be felt rather than just seen. Built for a collector who wants both at once, not a compromise between them.",
+      eyebrow: "The Dials",
+      title: "Real stone. No two alike.",
+      text: "Nacre pairs black and white mother-of-pearl in one dial, so the watch has no right way up. Aurum carries natural lapis lazuli, flecked with genuine gold pyrite. Onyx is a single sheet of genuine black stone, cut in the same squarcle silhouette. None of it is printed or cast — each dial is a slice of real material, so no two pieces ever come out quite the same.",
     },
     testimonials: [],
     wristFit: {
