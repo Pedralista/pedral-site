@@ -622,7 +622,7 @@ export const collections: Collection[] = [
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "For the Modern Collector",
-      title: "Designed as jewellery. Built as a watch.",
+      title: "Designed as a watch. Built like jewellery.",
       text: "The Contour sits at the intersection of the two — jewelry-grade presence built on real watchmaking underneath. Not a tool watch dressed up, and not a bracelet with a movement bolted in. Brushed scales that move like a bracelet, a case worn close enough to the skin to be felt rather than just seen. Built for a collector who wants both at once, not a compromise between them.",
     },
     testimonials: [],
