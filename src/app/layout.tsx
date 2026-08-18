@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: "/images/hero-lifestyle.jpg",
+        url: "/images/hero-contour-onyx.png",
         width: 1200,
         height: 630,
         alt: "Pedral Watches — Not For Everyone",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pedral — Not For Everyone",
     description: siteDescription,
-    images: ["/images/hero-lifestyle.jpg"],
+    images: ["/images/hero-contour-onyx.png"],
   },
   robots: {
     index: true,

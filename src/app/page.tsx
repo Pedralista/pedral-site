@@ -22,13 +22,13 @@ export const metadata: Metadata = {
     description:
       "Independent Swedish watchmaker in Stockholm. Swiss automatic dress watches in editions of 20, no restocks. Worn in 30+ countries. Not for everyone.",
     url: "https://www.pedral.eu",
-    images: [{ url: "/images/hero-lifestyle.jpg", width: 1200, height: 630, alt: "Pedral Watches" }],
+    images: [{ url: "/images/hero-contour-onyx.png", width: 1200, height: 630, alt: "Pedral Watches" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pedral — Not For Everyone",
     description: "Independent Swedish watchmaker in Stockholm. Swiss automatic dress watches in editions of 20, no restocks.",
-    images: ["/images/hero-lifestyle.jpg"],
+    images: ["/images/hero-contour-onyx.png"],
   },
 };
 

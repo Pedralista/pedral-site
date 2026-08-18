@@ -4,7 +4,7 @@ export function OrganizationJsonLd() {
     "@type": "Organization",
     name: "Pedral Watches",
     url: "https://www.pedral.eu",
-    logo: "https://www.pedral.eu/images/hero-lifestyle.jpg",
+    logo: "https://www.pedral.eu/images/pedral-logo.png",
     description:
       "Stockholm-based watch microbrand blending retro-futurism with Scandinavian design. Limited editions, unlimited conviction.",
     foundingDate: "2015",
