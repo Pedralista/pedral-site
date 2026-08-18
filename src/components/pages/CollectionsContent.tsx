@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +8,22 @@ import { collections, collectionCountWord, Collection } from "@/lib/collections"
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import ComingSoon from "@/components/sections/ComingSoon";
 import Newsletter from "@/components/sections/Newsletter";
+
+function ChevronIcon({ direction }: { direction: "left" | "right" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d={direction === "left" ? "M15 18l-6-6 6-6" : "M9 18l6-6-6-6"} />
+    </svg>
+  );
+}
 
 type Filter = "all" | "signature" | "limited";
 
@@ -77,9 +93,19 @@ export default function CollectionsContent() {
   const visible = collections
     .filter((c) => !c.hidden && !c.standalone)
     .map((c) => (liveStock?.[c.slug] ? { ...c, stock: liveStock[c.slug].stock } : c))
-    .sort((a, b) => a.price - b.price);
+    .sort((a, b) => a.price - b.price)
+    .sort((a, b) => (a.slug === "contour" ? -1 : b.slug === "contour" ? 1 : 0));
   const filtered =
     active === "all" ? visible : visible.filter((c) => c.tier === active);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (direction: "left" | "right") => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-carousel-card]");
+    const amount = (card?.offsetWidth ?? el.clientWidth * 0.7) + 16;
+    el.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -136,21 +162,50 @@ export default function CollectionsContent() {
             </Link>
           </div>
 
-          {/* Grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              variants={staggerContainer}
-              className="grid grid-cols-2 gap-4 md:gap-5 lg:grid-cols-4"
+          <div className="mb-4 hidden justify-end gap-2 sm:flex">
+            <button
+              type="button"
+              aria-label="Previous"
+              onClick={() => scrollByCard("left")}
+              className="flex h-9 w-9 items-center justify-center border border-foreground-muted/20 text-foreground-muted transition-colors hover:border-accent hover:text-accent"
             >
-              {filtered.map((collection) => (
-                <CollectionCard key={collection.slug} collection={collection} />
-              ))}
-            </motion.div>
-          </AnimatePresence>
+              <ChevronIcon direction="left" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next"
+              onClick={() => scrollByCard("right")}
+              className="flex h-9 w-9 items-center justify-center border border-foreground-muted/20 text-foreground-muted transition-colors hover:border-accent hover:text-accent"
+            >
+              <ChevronIcon direction="right" />
+            </button>
+          </div>
+
+          {/* Carousel */}
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background-alt to-transparent md:w-24" />
+            <AnimatePresence mode="wait">
+              <motion.div
+                ref={scrollerRef}
+                key={active}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={staggerContainer}
+                className="horizontal-scroll -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 md:-mx-12 md:gap-5 md:px-12"
+              >
+                {filtered.map((collection) => (
+                  <div
+                    key={collection.slug}
+                    data-carousel-card
+                    className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[24%]"
+                  >
+                    <CollectionCard collection={collection} />
+                  </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </section>
       <ComingSoon />
@@ -167,11 +222,11 @@ function CollectionCard({ collection }: { collection: Collection }) {
     <motion.div variants={fadeInUp}>
       <Link
         href={`/collections/${collection.slug}`}
-        className="group relative block cursor-pointer overflow-hidden rounded-lg border border-accent/[0.06] bg-background transition-all duration-400 hover:-translate-y-[3px] hover:border-accent/20"
+        className="group relative block cursor-pointer"
       >
         <BadgeLabel stock={collection.stock} isPreOrder={collection.isPreOrder} isEnquiryOnly={collection.isEnquiryOnly} badge={collection.isEnquiryOnly ? undefined : collection.badge} />
 
-        <div className="relative aspect-[4/5] overflow-hidden rounded-t-lg bg-[var(--surface)]">
+        <div className="relative aspect-[3/4] overflow-hidden rounded-md bg-[var(--surface)]">
           {collection.image ? (
             <Image
               src={collection.image}
@@ -188,14 +243,14 @@ function CollectionCard({ collection }: { collection: Collection }) {
           )}
         </div>
 
-        <div className="p-6">
+        <div className="pt-5 text-center">
           <h3 className="font-serif text-2xl font-normal text-foreground">
             {collection.name}
           </h3>
-          <p className="mt-1.5 mb-4 min-h-[2.8rem] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[16px]">
+          <p className="mx-auto mt-1.5 mb-4 max-w-[85%] min-h-[2.8rem] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[16px]">
             &ldquo;{collection.hook}&rdquo;
           </p>
-          <div className="flex items-end justify-between">
+          <div className="flex flex-col items-center gap-2">
             <div>
               {collection.isEnquiryOnly || collection.hidePriceOnCard ? (
                 <>
@@ -219,7 +274,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
             </div>
             {collection.stock > 0 && !collection.isEnquiryOnly ? (
               <div>
-                <div className="mb-1 ml-auto h-[3px] w-[72px] overflow-hidden rounded-sm bg-accent/[0.12]">
+                <div className="mb-1 mx-auto h-[3px] w-[72px] overflow-hidden rounded-sm bg-accent/[0.12]">
                   <div
                     className="h-full rounded-sm bg-accent"
                     style={{
@@ -227,7 +282,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
                     }}
                   />
                 </div>
-                <p className="text-right text-[14px] font-normal tracking-[0.5px] text-accent">
+                <p className="text-center text-[14px] font-normal tracking-[0.5px] text-accent">
                   {collection.stock} left of {collection.maxStock}
                 </p>
               </div>
