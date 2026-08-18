@@ -19,7 +19,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((i) => (i + 1) % HERO_IMAGES.length);
-    }, 8000);
+    }, 4000);
     return () => clearInterval(timer);
   }, []);
 
@@ -33,7 +33,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 2.2, ease: "easeInOut" }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
             className="absolute inset-0"
           >
             <Image
