@@ -1,22 +1,50 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
+const HERO_IMAGES = [
+  { src: "/images/hero-contour-onyx.png", alt: "Pedral Contour Onyx" },
+  { src: "/images/hero-contour-gold-lapis.png", alt: "Pedral Contour gold lapis" },
+  { src: "/images/hero-maestro-founders-lapis.png", alt: "Pedral Maestro Founders lapis" },
+  { src: "/images/hero-pedral-blue.jpeg", alt: "Pedral watch, blue dial" },
+  { src: "/images/okapi-hero.jpg", alt: "Pedral Okapi" },
+];
 
 export default function Hero() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((i) => (i + 1) % HERO_IMAGES.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative flex h-dvh min-h-[600px] items-center overflow-hidden bg-background">
       {/* Background image */}
       <div className="pointer-events-none absolute inset-0 md:left-[45%]">
-        <Image
-          src="/images/hero-lifestyle.jpg"
-          alt="Pedral watch lifestyle"
-          fill
-          className="object-cover"
-          priority
-        />
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={HERO_IMAGES[index].src}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2.2, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={HERO_IMAGES[index].src}
+              alt={HERO_IMAGES[index].alt}
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
+          </motion.div>
+        </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
       </div>
 
