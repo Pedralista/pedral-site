@@ -662,10 +662,9 @@ export const collections: Collection[] = [
     heroImage: "/images/contour-wristfit-arch.jpg",
     detailImage: "/images/contour-onyx-product-angle2.jpg",
     galleryImages: [
-      "/images/contour-aventurine-product-v2.jpg",
+      "/images/contour-ituri-front-v1.jpg",
       "/images/contour-ituri-wrist-v1.jpg",
-      "/images/contour-okapi-cloisonne-product-v2.jpg",
-      "/images/contour-aventurine-standing-v1.jpg",
+      "/images/contour-aventurine-front-v1.jpg",
       "/images/contour-aurum-product-v2.jpg",
       "/images/contour-onyx-product-angle2.jpg",
       "/images/contour-onyx-product-v2.jpg",
