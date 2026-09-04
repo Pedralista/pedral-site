@@ -86,8 +86,10 @@ export default async function CollectionVariantPage({
   if (!staticMatch || isHidden(staticMatch.collection)) notFound();
   const { collection: staticCollection } = staticMatch;
 
-  // Same live-stock overlay as the parent product page.
-  const liveBase = await getLiveStock(staticCollection.slug, "base", staticCollection.stock);
+  // Same live-stock overlay as the parent product page — including
+  // excluding manually-retired dials (soldOutNumerals) from a variant's
+  // displayed total, so a stale per-dial Redis count can't inflate "X
+  // pieces remaining" with inventory nobody can actually buy.
   const liveVariants = await Promise.all(
     (staticCollection.variants ?? []).map(async (v) => {
       const liveVariantStock = await getLiveStock(staticCollection.slug, slugifyPart(v.name), v.stock);
@@ -101,9 +103,17 @@ export default async function CollectionVariantPage({
         );
         liveNumeralStock = Object.fromEntries(entries);
       }
-      return { ...v, stock: liveVariantStock, numeralStock: liveNumeralStock };
+      const soldOut = new Set(v.soldOutNumerals ?? []);
+      const sellableStock = liveNumeralStock
+        ? Object.entries(liveNumeralStock).reduce(
+            (sum, [dial, n]) => sum + (soldOut.has(dial) ? 0 : n),
+            0
+          )
+        : liveVariantStock;
+      return { ...v, stock: sellableStock, numeralStock: liveNumeralStock };
     })
   );
+  const liveBase = liveVariants.reduce((sum, v) => sum + v.stock, 0);
   const collection = { ...staticCollection, stock: liveBase, variants: liveVariants };
   const variant = collection.variants!.find(
     (v) => v.name.toLowerCase().replace(/\s+/g, "-") === variantSlug

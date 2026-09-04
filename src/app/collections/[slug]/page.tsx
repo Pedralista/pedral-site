@@ -72,7 +72,14 @@ export default async function CollectionPage({
   // Overlay live stock (from Redis, seeded from the static numbers) so every
   // sold-out check, disabled button, and JSON-LD availability signal reflects
   // real remaining inventory instead of the build-time snapshot.
-  const liveBase = await getLiveStock(staticCollection.slug, "base", staticCollection.stock);
+  //
+  // A variant's raw Redis counter only decrements on real sales — it has no
+  // way to learn that a dial was manually retired (e.g. Contour's Nacre,
+  // marked soldOutNumerals after the third drop while its Redis counter
+  // still held pre-retirement stock). Left alone, that stale per-dial count
+  // would inflate "X pieces remaining" with inventory nobody can actually
+  // buy. So whenever a variant tracks per-dial stock, its displayed total is
+  // the sum of only the still-sellable dials, not the raw counter.
   const liveVariants = staticCollection.variants
     ? await Promise.all(
         staticCollection.variants.map(async (v) => {
@@ -87,10 +94,20 @@ export default async function CollectionPage({
             );
             liveNumeralStock = Object.fromEntries(entries);
           }
-          return { ...v, stock: liveVariantStock, numeralStock: liveNumeralStock };
+          const soldOut = new Set(v.soldOutNumerals ?? []);
+          const sellableStock = liveNumeralStock
+            ? Object.entries(liveNumeralStock).reduce(
+                (sum, [dial, n]) => sum + (soldOut.has(dial) ? 0 : n),
+                0
+              )
+            : liveVariantStock;
+          return { ...v, stock: sellableStock, numeralStock: liveNumeralStock };
         })
       )
     : undefined;
+  const liveBase = liveVariants
+    ? liveVariants.reduce((sum, v) => sum + v.stock, 0)
+    : await getLiveStock(staticCollection.slug, "base", staticCollection.stock);
   const collection = { ...staticCollection, stock: liveBase, variants: liveVariants };
 
   // Open Graph Product tags, read by Instagram's "Link a product" (paste a
