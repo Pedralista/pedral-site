@@ -11,6 +11,8 @@ const HERO_IMAGES = [
   { src: "/images/hero-maestro-founders-lapis.png", alt: "Pedral Maestro Founders lapis" },
   { src: "/images/hero-pedral-blue.jpeg", alt: "Pedral watch, blue dial" },
   { src: "/images/okapi-hero.jpg", alt: "Pedral Okapi" },
+  { src: "/images/hero-contour-aventurine.png", alt: "Pedral Contour Aventurine, 39mm" },
+  { src: "/images/hero-contour-ituri.png", alt: "Pedral Contour Ituri cloisonné, 39mm" },
 ];
 
 export default function Hero() {
