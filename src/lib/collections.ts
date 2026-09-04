@@ -575,11 +575,13 @@ export const collections: Collection[] = [
     // Aventurine + moissanite baguette indices, and an Okapi cloisonné
     // enamel dial on a gold-plated case — both on the LJP D100 (a modern,
     // 50h-power-reserve successor to the Peseux 7001/ETA 7001, not a
-    // higher grade than it — see valueAnchor). Stock counts for the two
-    // new 39mm dials are a PLACEHOLDER (10 each) pending Kevin
-    // confirming real edition size + Stripe price IDs.
+    // higher grade than it — see valueAnchor). 10 pieces each, confirmed
+    // by Kevin (20 total for the third drop). maxStock is the cumulative
+    // edition size across all three drops: 140 total, confirmed by Kevin
+    // (up from the 60 documented after the second drop alone — that
+    // number undercounted the first drop, not this addition).
     stock: 50,
-    maxStock: 80,
+    maxStock: 140,
     edition: "Third drop",
     badge: "Third Drop · Now Available",
     urgencyTag: "Third drop · 50 pieces remaining",
@@ -740,9 +742,8 @@ export const collections: Collection[] = [
         // Quartz's Nacre/Aurum split. Deliberately not branded "Grande" —
         // Kevin felt that read as too loud next to the rest of the line's
         // understated naming (Nacre/Aurum/Onyx); plain size instead.
-        // Both dials' real Stripe price IDs are wired in. TODO(Kevin):
-        // still need confirmed stock counts (currently a placeholder 10
-        // each) before this goes live.
+        // Both dials' real Stripe price IDs are wired in. 10 pieces each,
+        // confirmed by Kevin.
         name: "Hand-Wound — 39mm",
         stripePriceId: "price_1UBz4bCfxE1lSBKRxoKbUr0w",
         stock: 10,
