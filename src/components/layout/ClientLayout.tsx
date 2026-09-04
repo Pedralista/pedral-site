@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ExitIntentModal from "@/components/ui/ExitIntentModal";
+import ReturningVisitorBanner from "@/components/ui/ReturningVisitorBanner";
 import CartDrawer from "@/components/cart/CartDrawer";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
@@ -12,6 +13,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <>
+      {!hideChrome && <ReturningVisitorBanner />}
       {!hideChrome && <Navbar />}
       {children}
       {!hideChrome && <Footer />}
