@@ -658,11 +658,11 @@ export const collections: Collection[] = [
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Contour and future editions. No noise.",
-    image: "/images/contour-okapi-cloisonne-product-v2.jpg",
+    image: "/images/contour-ituri-closeup-v2.jpg",
     heroImage: "/images/contour-wristfit-arch.jpg",
     detailImage: "/images/contour-onyx-product-angle2.jpg",
     galleryImages: [
-      "/images/contour-okapi-cloisonne-product-v2.jpg",
+      "/images/contour-ituri-closeup-v2.jpg",
       "/images/contour-ituri-wrist-v1.jpg",
       "/images/contour-aventurine-product-v2.jpg",
       "/images/contour-aurum-product-v2.jpg",
@@ -755,7 +755,7 @@ export const collections: Collection[] = [
         numeralStock: { "Aventurine": 10, "Ituri": 10 },
         numeralImages: {
           "Aventurine": "/images/contour-aventurine-product-v2.jpg",
-          "Ituri": "/images/contour-okapi-cloisonne-product-v2.jpg",
+          "Ituri": "/images/contour-ituri-closeup-v2.jpg",
         },
         numeralPriceIds: {
           "Aventurine": "price_1UBz4bCfxE1lSBKRxoKbUr0w",
