@@ -26,7 +26,7 @@ const VALID_PRICE_IDS = new Set([
   "price_1U3blkCfxE1lSBKR3ZwxlQ60", // Contour — Contour Aurum, Lapis (€1,000)
   "price_1TyJgICfxE1lSBKRRyl9DzAp", // Contour × Seconds Society — Sodalite (€895)
   "price_1UBz4bCfxE1lSBKRxoKbUr0w", // Contour — Hand-Wound 39mm, Aventurine (€2,200)
-  "price_1UBz7uCfxE1lSBKRLZGUEFVq", // Contour — Hand-Wound 39mm, Ituri (€3,500)
+  "price_1UBz7uCfxE1lSBKRLZGUEFVq", // Contour — Hand-Wound 39mm, Ituri (€5,000)
 ]);
 
 const ALLOWED_ORIGINS = new Set(["https://pedral.eu", "https://www.pedral.eu", "https://pedral.watch", "https://www.pedral.watch"]);

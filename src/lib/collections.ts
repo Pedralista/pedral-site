@@ -554,7 +554,7 @@ export const collections: Collection[] = [
     name: "Contour",
     metaTitle: "Pedral Contour — Integrated Bracelet, Quartz & Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch, now also in 39mm (7.3mm). From €895 quartz, €1,950 hand-wound, €3,500 Ituri cloisonné. Stockholm-designed. Third drop now available.",
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch, now also in 39mm (7.3mm). From €895 quartz, €1,950 hand-wound, €5,000 Ituri cloisonné. Stockholm-designed. Third drop now available.",
     tagline: "Third Drop",
     hook: "Not a watch. A presence.",
     descriptionTitle: "Designed as a watch. Built like jewellery.",
@@ -621,7 +621,7 @@ export const collections: Collection[] = [
     ],
     specsTitle: "Presence, not permission.",
     specs: {
-      Price: "€895 quartz · €1,950 hand-wound · €2,200 Aventurine (39mm) · €3,500 Ituri (39mm)",
+      Price: "€895 quartz · €1,950 hand-wound · €2,200 Aventurine (39mm) · €5,000 Ituri (39mm)",
       Movement:
         "Ronda 1063, Swiss-made quartz — ETA 7001, Swiss hand-wound, 2.5mm calibre height — or LJP D100, Swiss hand-wound, 2.5mm calibre height, 50-hour power reserve (39mm dials)",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel (Aurum: gold-plated 316L stainless steel) — or 39mm · 7.3mm thin · woven-link bracelet (Aventurine: steel · Ituri: gold-plated steel)",
@@ -640,7 +640,7 @@ export const collections: Collection[] = [
     ],
     valuePerspectiveTitle: "Two ways to own it.",
     valueAnchor:
-      "€895 for the Ronda 1063, Swiss-made quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price. The 39mm dials move to the LJP D100 — a modern successor to that same Peseux/ETA 7001 family with a longer 50-hour reserve, not a higher-grade movement — so what separates €2,200 Aventurine and €3,500 Ituri from €1,950 Onyx is the dial: hand-set moissanite stone-setting on one, hand-fired gold cloisonné enamel — the studio's namesake motif — on the other.",
+      "€895 for the Ronda 1063, Swiss-made quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price. The 39mm dials move to the LJP D100 — a modern successor to that same Peseux/ETA 7001 family with a longer 50-hour reserve, not a higher-grade movement — so what separates €2,200 Aventurine and €5,000 Ituri from €1,950 Onyx is the dial: hand-set moissanite stone-setting on one, hand-fired gold cloisonné enamel — the studio's namesake motif — on the other.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Dials",
@@ -762,7 +762,7 @@ export const collections: Collection[] = [
           "Ituri": "price_1UBz7uCfxE1lSBKRLZGUEFVq",
         },
         numeralPrices: {
-          "Ituri": 3500,
+          "Ituri": 5000,
         },
       },
       // Aventurine also comes in Ronda 1063 quartz — same 39mm/7.3mm case
