@@ -171,7 +171,7 @@ export async function POST(req: NextRequest) {
         allowed_countries: [
           "SE", "NO", "DK", "FI", "DE", "NL", "BE", "FR", "IT", "ES",
           "PT", "AT", "CH", "GB", "IE", "PL", "CZ", "SK", "HU", "RO",
-          "US", "CA", "AU", "JP", "SG", "AE",
+          "US", "CA", "AU", "JP", "SG", "AE", "SA",
         ],
       },
       phone_number_collection: { enabled: true },
@@ -217,7 +217,7 @@ export async function POST(req: NextRequest) {
       allowed_countries: [
         "SE", "NO", "DK", "FI", "DE", "NL", "BE", "FR", "IT", "ES",
         "PT", "AT", "CH", "GB", "IE", "PL", "CZ", "SK", "HU", "RO",
-        "US", "CA", "AU", "JP", "SG", "AE",
+        "US", "CA", "AU", "JP", "SG", "AE", "SA",
       ],
     },
     ...(priceId === "price_1TEVYOCfxE1lSBKRdzi2pJsj" && { allow_promotion_codes: true }),
