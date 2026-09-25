@@ -787,6 +787,7 @@ export const collections: Collection[] = [
       //   heroImage: "/images/contour-aventurine-closeup-v2.jpg",
       // },
     ],
+    relatedArticleSlugs: ["contour-three-drops"],
   },
   {
     // Capsule collaboration with Seconds Society (https://www.secondssociety.com/):

@@ -6,6 +6,13 @@ import Link from "next/link";
 
 const upcoming = [
   {
+    label: "Contour",
+    title: "A larger case. Two new dials.",
+    desc: "The third drop introduces a 39mm woven-link case alongside the original 35mm — Aventurine with hand-set moissanite indices, and Ituri, a hand-fired gold cloisonné dial carrying the studio's own motif. 140 pieces total, across three drops.",
+    eta: "Available Now · From €2,200",
+    href: "/collections/contour",
+  },
+  {
     label: "Triomphe",
     title: "A new dial. The same architecture.",
     desc: "The Triomphe continues — same 8.8mm case, new expression. Each edition closes when it closes. No restocks, no second run. Friends of the brand hear before any public announcement. Allocation-based, as always.",

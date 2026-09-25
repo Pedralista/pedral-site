@@ -31,10 +31,12 @@ export default function WithdrawalPage() {
       </p>
       <ul>
         <li>
-          <strong>Before dispatch:</strong> You may cancel your pre-order at any time before the
-          watch is shipped. Contact <a href="mailto:info@pedral.watch">info@pedral.watch</a> with
-          your order number. A full refund will be issued within 14 days via the original payment
-          method.
+          <strong>Before dispatch:</strong> Pre-orders are a binding commitment once confirmed —
+          production is scheduled and materials are sourced specifically against your order. A
+          pre-order cannot be cancelled once production has begun, except if production is
+          delayed more than <strong>60 days</strong> past the estimated delivery window, in which
+          case you may cancel for a full refund. Contact{" "}
+          <a href="mailto:info@pedral.watch">info@pedral.watch</a> with your order number.
         </li>
         <li>
           <strong>After delivery:</strong> The standard 14-day withdrawal period applies. The
@@ -43,8 +45,9 @@ export default function WithdrawalPage() {
         </li>
       </ul>
       <p>
-        Pre-order payment secures your allocation in a limited edition of 20 pieces. This does not
-        reduce or alter your statutory withdrawal rights in any way.
+        Pre-order payment secures your allocation in a limited edition of 20 pieces and commits
+        production. This does not reduce or alter your statutory withdrawal rights after delivery
+        in any way.
       </p>
 
       <h2>Effects of Withdrawal</h2>

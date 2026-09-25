@@ -221,6 +221,26 @@ export const articles: Article[] = [
     ],
     relatedCollectionSlug: "triomphe",
   },
+  {
+    slug: "contour-three-drops",
+    date: "September 2026",
+    category: "Design",
+    title: "Contour: Three Drops, One Instinct",
+    featuredImage: "/images/contour-wristfit-arch.jpg",
+    excerpt:
+      "Contour started as a reaction against decades of tool-watch thinking — the belief that a watch could carry itself like jewellery. Three drops later, that instinct has taken it somewhere I didn't fully expect when I started.",
+    readTime: "5 min read",
+    body: [
+      "In the 1970s, a handful of makers understood something the industry has mostly forgotten since: a watch doesn't have to behave like a tool. It can carry itself like jewellery — worn low on the wrist, catching the light before it tells you anything about the time. Then decades of tool-watch thinking took over, and that instinct quietly disappeared from most of the market. Contour was my attempt to bring it back on purpose, not as a nostalgia piece, but as something built for how people actually want to wear a watch today.",
+      "The first drop was deliberately restrained: 35mm across, 6.9mm thin, a fully integrated bracelet with hundreds of brushed scales so the whole thing moves like fabric rather than sitting bolted to a strap. No visible lugs. No hard edges announcing themselves. The dials leaned into that same instinct — mother-of-pearl in a few different expressions, a warm orange agate, a case that asked to be touched as much as looked at. It found its people quickly, and the mother-of-pearl and agate dials from that first run are long gone now.",
+      "The second drop was about refining the platform rather than reinventing it. I updated the quartz movement to the Ronda 1063, restructured the line into a clearer choice — Quartz in Nacre or Aurum, Hand-Wound in Onyx — and gave each dial its own dedicated pricing rather than treating them as cosmetic variants of one SKU. Aurum, in particular, let me use a real natural lapis lazuli dial flecked with genuine gold pyrite, which is a different proposition entirely from a printed pattern: no two dials come out quite the same. Around that same time, Contour also became the platform for a fifteen-piece capsule with Seconds Society — a sodalite dial with moissanite baguette indices, made once, priced the same as the standard quartz edition because scarcity, not markup, was the point of that collaboration.",
+      "By the third drop, I wanted to see how far the Contour idea could stretch without losing what made it Contour in the first place. That's where the 39mm case came from — the same integrated-bracelet philosophy, just built slightly larger, on a woven-link construction instead of the original's brushed scales, and powered by the LJP D100. Worth being honest about that movement: it's not a higher-grade caliber than the ETA 7001 already used elsewhere in the line — it's a modern successor to the same Peseux architecture, mainly earning its keep with a longer 50-hour power reserve. So the two new dials at this size had to earn their place on craft, not on a movement upgrade.",
+      "Aventurine does that with material and setting: a natural stone dial with moissanite baguette indices, cut and hand-set rather than printed. Ituri does it with technique — genuine cloisonné enamel, gold wire hand-bent into the outline of the studio's own Okapi motif, the cells filled with enamel powder and fired in a kiln multiple times until the colour sets. I named it after the Ituri Rainforest in the Democratic Republic of Congo, because that's the okapi's actual native habitat, not just a decorative animal borrowed for a dial. It felt more honest than naming a dial after the technique alone.",
+      "Three drops, one case philosophy, a hundred and forty pieces total. What ties them together isn't a spec sheet — it's the same instinct I started with: a watch that doesn't need to announce itself before it's noticed. Call it aura, if you need a word for it. That's still the whole idea.",
+    ],
+    cta: { label: "Explore Contour", href: "/collections/contour" },
+    relatedCollectionSlug: "contour",
+  },
 ];
 
 export function getArticleBySlug(slug: string): Article | undefined {
