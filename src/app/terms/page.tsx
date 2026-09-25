@@ -41,8 +41,8 @@ export default function TermsPage() {
 
       <h3>In-Stock Orders</h3>
       <p>
-        Full payment is taken at time of order. Your watch ships within 5 business days of order
-        confirmation.
+        Full payment is taken at time of order. If your watch is already in stock, it dispatches
+        quickly — within 5 business days of order confirmation.
       </p>
 
       <h3>Pre-Orders</h3>
@@ -53,12 +53,19 @@ export default function TermsPage() {
       <ul>
         <li>Full payment is taken at time of order to secure your allocation</li>
         <li>
-          The estimated delivery window (typically 4–8 weeks) is clearly stated on the product
-          page and in your order confirmation email
+          For a <strong>standard pre-order</strong> (an existing, already-tooled design), the
+          estimated delivery window is typically <strong>4–6 weeks</strong>, clearly stated on
+          the product page and in your order confirmation email
         </li>
         <li>
-          If production delays exceed the estimated window by more than 30 days, you will be
-          notified by email and may cancel for a full refund
+          For an <strong>entirely new production run</strong> (a new design or edition being
+          produced for the first time, with new tooling and materials sourced from scratch), the
+          estimated delivery window is typically <strong>16–20 weeks</strong> — this will be
+          clearly stated on the product page if it applies to your order
+        </li>
+        <li>
+          If production delays push delivery more than <strong>60 days</strong> past the
+          estimated window, you will be notified by email and may cancel for a full refund
         </li>
         <li>
           You may cancel your pre-order at any time before dispatch for a full refund — email{" "}
