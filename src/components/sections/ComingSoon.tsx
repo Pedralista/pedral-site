@@ -7,8 +7,8 @@ import Link from "next/link";
 const upcoming = [
   {
     label: "Contour",
-    title: "A larger case. Two new dials.",
-    desc: "The third drop introduces a 39mm woven-link case alongside the original 35mm — Aventurine with hand-set moissanite indices, and Ituri, a hand-fired gold cloisonné dial carrying the studio's own motif. 140 pieces total, across three drops.",
+    title: "A larger case. New craft.",
+    desc: "Contour continues — same integrated-bracelet idea, now also in 39mm. Aventurine, hand-set with moissanite. Ituri, hand-fired gold cloisonné. 140 pieces, across three drops.",
     eta: "Available Now · From €2,200",
     href: "/collections/contour",
   },
