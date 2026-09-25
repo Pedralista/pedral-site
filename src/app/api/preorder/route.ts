@@ -60,6 +60,10 @@ export async function POST(req: NextRequest) {
       // (which checks for exactly that) would tell genuine buyers they have
       // no account.
       customer_creation: "always",
+      // Same reasoning as the main checkout route (see src/app/api/checkout/route.ts):
+      // without this, a Customer exists but has no invoice, so the Billing
+      // Portal's "My Account" order history stays empty for genuine deposit payers.
+      invoice_creation: { enabled: true },
       line_items: [
         {
           quantity: 1,
@@ -83,7 +87,7 @@ export async function POST(req: NextRequest) {
         allowed_countries: [
           "SE", "NO", "DK", "FI", "DE", "NL", "BE", "FR", "IT", "ES",
           "PT", "AT", "CH", "GB", "IE", "PL", "CZ", "SK", "HU", "RO",
-          "US", "CA", "AU", "JP", "SG", "AE",
+          "US", "CA", "AU", "JP", "SG", "AE", "SA",
         ],
       },
       billing_address_collection: "required",
