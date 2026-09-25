@@ -67,11 +67,24 @@ export default function TermsPage() {
           If production delays push delivery more than <strong>60 days</strong> past the
           estimated window, you will be notified by email and may cancel for a full refund
         </li>
-        <li>
-          You may cancel your pre-order at any time before dispatch for a full refund — email{" "}
-          <a href="mailto:info@pedral.watch">info@pedral.watch</a> with your order number
-        </li>
       </ul>
+      <p>
+        <strong>Placing a pre-order is a binding commitment.</strong> Once your order is
+        confirmed, we source materials and schedule production specifically against it. Outside
+        of the production-delay right above, pre-orders cannot be cancelled once production has
+        begun, and are non-refundable prior to delivery except where required by law. This does
+        not affect your statutory 14-day right of withdrawal after you receive the goods (see
+        Section 6).
+      </p>
+      <p>
+        <strong>Chargebacks and payment disputes:</strong> If you have a question or concern
+        about your order, please contact us at{" "}
+        <a href="mailto:info@pedral.watch">info@pedral.watch</a> before raising a dispute with
+        your bank or payment provider — most issues can be resolved directly and faster this way.
+        Where a charge was properly authorised and the order is proceeding on schedule (or within
+        the delay terms above), we will contest unfounded chargebacks using your order
+        confirmation, these Terms, and evidence of production progress.
+      </p>
       <p>
         <strong>Why we charge upfront:</strong> Each edition is limited to 20 pieces. Payment at
         time of order ensures your allocation is secured and production is committed. This model
@@ -100,8 +113,9 @@ export default function TermsPage() {
       <h3>Pre-Orders: Your Cancellation Rights</h3>
       <ul>
         <li>
-          <strong>Before dispatch:</strong> You may cancel at any time for a full refund. Email{" "}
-          <a href="mailto:info@pedral.watch">info@pedral.watch</a> with your order number.
+          <strong>Before dispatch:</strong> Pre-orders are a binding commitment once confirmed
+          (see Section 4) and cannot be cancelled once production has begun, except where
+          production is delayed more than 60 days past the estimated window.
         </li>
         <li>
           <strong>After delivery:</strong> The standard 14-day withdrawal period applies from
