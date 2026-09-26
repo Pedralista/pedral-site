@@ -56,7 +56,10 @@ export default function WithdrawalPage() {
         goods back or proof of return shipment. Same payment method. No fees. We may withhold
         reimbursement until goods are received or proof of return provided.
       </p>
-      <p>You bear the direct cost of returning the goods.</p>
+      <p>
+        Return shipping is free of charge — we provide a prepaid return label covering all costs.
+        See our <a href="/returns">Returns</a> page for the step-by-step process.
+      </p>
       <p>
         You are liable for any diminished value resulting from handling beyond what is necessary to
         establish the nature, characteristics and functioning of the goods.
