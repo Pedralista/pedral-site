@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage eyebrow="Legal" title="Privacy Policy" updated="Last updated: February 2026">
+    <LegalPage eyebrow="Legal" title="Privacy Policy" updated="Last updated: September 2026">
       <h2>1. Who We Are</h2>
       <p>
         Pedral Watches is the trading name of Pedral Design Studio AB, registered in Sweden.
@@ -46,8 +46,9 @@ export default function PrivacyPage() {
       <h2>3. Who We Share Data With</h2>
       <p>
         Payment processor (Stripe/Klarna), Shipping courier, Email platform (e.g. Mailchimp/Klaviyo),
-        Analytics (Google Analytics or Plausible). No data is sold. Processors are bound by data
-        processing agreements.
+        Analytics (Google Analytics), and infrastructure providers (e.g. Upstash, for rate-limiting
+        and stock-tracking — processes IP addresses only, no personal profile). No data is sold.
+        Processors are bound by data processing agreements.
       </p>
 
       <h2>4. International Transfers</h2>

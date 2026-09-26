@@ -96,7 +96,7 @@ export default async function CheckoutPage({
 
             <div className="mt-6 space-y-3">
               {[
-                "Ships in 4–6 weeks",
+                collection.shipsBy ?? "Ships in 4–6 weeks",
                 "Insured worldwide shipping",
                 "14-day return policy",
                 "24-month warranty",

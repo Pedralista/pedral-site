@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function CookiePolicyPage() {
   return (
-    <LegalPage eyebrow="Legal" title="Cookie Policy" updated="Last updated: February 2026">
+    <LegalPage eyebrow="Legal" title="Cookie Policy" updated="Last updated: September 2026">
       <h2>What Are Cookies</h2>
       <p>
         Cookies are small text files placed on your device when you visit a website. They help the
@@ -34,17 +34,22 @@ export default function CookiePolicyPage() {
 
       <h2>Analytics Cookies (Require Consent)</h2>
       <p>
-        We do not currently use any analytics cookies or tracking tools. If we introduce analytics
-        in the future (for example, a privacy-first tool such as Plausible Analytics, which is
-        EU-hosted and cookie-free), this policy will be updated before any tracking begins and your
-        consent will be re-requested where required.
+        We use <strong>Google Analytics 4 (GA4)</strong> to understand how visitors use this site
+        (pages viewed, general traffic patterns) so we can improve it. GA4 only loads after you
+        accept cookies in the banner below — nothing is set before you consent, and declining means
+        it never loads at all. Data collected this way may be processed by Google on servers
+        outside the EU/EEA; see{" "}
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+          Google&apos;s Privacy Policy
+        </a>{" "}
+        for details on how Google handles this data.
       </p>
 
       <h2>Marketing &amp; Advertising Cookies (Require Consent)</h2>
       <p>
-        We do not currently use marketing or advertising cookies. No Facebook pixel, Google Ads
-        tag, or similar tracking is loaded on this site. If this changes, this policy will be
-        updated and consent obtained before any such cookies are set.
+        We do not currently use marketing or advertising cookies. No Facebook/Meta pixel, Google
+        Ads tag, or similar advertising tracking is loaded on this site. If this changes, this
+        policy will be updated and consent obtained before any such cookies are set.
       </p>
 
       <h2>Third-Party Services</h2>
