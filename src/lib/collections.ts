@@ -752,7 +752,8 @@ export const collections: Collection[] = [
         image: "/images/contour-aventurine-closeup-v2.jpg",
         heroImage: "/images/contour-aventurine-closeup-v2.jpg",
         numeralOptions: ["Aventurine", "Ituri"],
-        numeralStock: { "Aventurine": 10, "Ituri": 10 },
+        soldOutNumerals: ["Ituri"],
+        numeralStock: { "Aventurine": 10, "Ituri": 0 },
         numeralImages: {
           "Aventurine": "/images/contour-aventurine-closeup-v2.jpg",
           "Ituri": "/images/contour-ituri-closeup-v2.jpg",
