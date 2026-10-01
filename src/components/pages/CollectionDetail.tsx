@@ -751,7 +751,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       {isSelected && <div className="absolute inset-0 bg-accent/10" />}
                       {isSoldOutVariant && (
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="border border-foreground-muted/30 px-4 py-1.5 text-[11px] tracking-[3px] uppercase text-foreground-muted/60">Sold Out</span>
+                          <span className="border border-foreground-muted/30 px-4 py-1.5 text-[11px] tracking-[3px] uppercase text-foreground-muted/60">Unavailable</span>
                         </div>
                       )}
                     </div>
@@ -766,7 +766,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                         {!isSoldOutVariant && <div className={`mt-1 h-5 w-5 shrink-0 rounded-full border-2 transition-colors ${isSelected ? "border-accent bg-accent" : "border-accent/30"}`} />}
                       </div>
                       <p className="mt-3 text-[13px] tracking-[0.5px] sm:text-[11px] sm:tracking-[1px] uppercase text-accent/60">
-                        {isSoldOutVariant ? "Sold out" : `${v.stock} ${v.stock === 1 ? "piece" : "pieces"} remaining`}
+                        {isSoldOutVariant ? "Unavailable" : `${v.stock} ${v.stock === 1 ? "piece" : "pieces"} remaining`}
                       </p>
                       {isSoldOutVariant && (() => {
                         const inStockSibling = visibleVariants.find((sibling) => sibling.name !== v.name && sibling.stock > 0);
@@ -809,7 +809,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                                   {opt}
                                   {stock !== undefined && (
                                     <span className={`mt-0.5 text-[14px] tracking-[0.5px] normal-case font-medium ${selectedNumeral === opt ? "text-background/80" : isSoldOut ? "text-accent/50" : "text-accent/70"}`}>
-                                      {isSoldOut ? "0 available" : `${stock} available`}
+                                      {isSoldOut ? "Unavailable" : `${stock} available`}
                                     </span>
                                   )}
                                 </button>

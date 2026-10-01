@@ -58,7 +58,7 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
   if (stock === 0) {
     return (
       <span className="absolute left-3 top-3 z-10 border border-white/15 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-white/50 backdrop-blur-sm">
-        Sold Out
+        Unavailable
       </span>
     );
   }
@@ -292,7 +292,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
               </span>
             ) : (
               <span className="text-[14px] font-normal tracking-[0.5px] text-foreground-muted">
-                Sold out
+                Unavailable
               </span>
             )}
           </div>
