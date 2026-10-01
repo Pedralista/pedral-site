@@ -630,7 +630,7 @@ export const collections: Collection[] = [
       Bracelet: "Fully integrated, hundreds of brushed scales, no visible lugs (39mm: woven-link construction)",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "Third drop · Nacre now sold out. Aurum and Onyx carry over from the second drop. Aventurine and Ituri are new, exclusive to this drop, on the 39mm case.",
+      Edition: "Third drop · Nacre now fully allocated. Aurum and Onyx carry over from the second drop. Aventurine and Ituri are new, exclusive to this drop, on the 39mm case.",
     },
     boxContents: [
       "Contour timepiece",
@@ -687,7 +687,7 @@ export const collections: Collection[] = [
         stock: 30,
         color: "Black/White",
         price: 895,
-        description: "Ronda 1063, Swiss-made quartz. Aurum, natural lapis lazuli flecked with genuine gold pyrite. Nacre is now sold out.",
+        description: "Ronda 1063, Swiss-made quartz. Aurum, natural lapis lazuli flecked with genuine gold pyrite. Nacre is now fully allocated.",
         image: "/images/contour-aurum-product-v2.jpg",
         heroImage: "/images/contour-aurum-hero-v4.jpg",
         numeralOptions: ["Nacre", "Aurum", "Solaire"],
