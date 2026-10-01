@@ -17,7 +17,7 @@ function copyFor(count: number): { text: string; cta: string; href: string } | n
   }
   if (count === 3) {
     return {
-      text: "You've been here before — each edition is produced in limited numbers and doesn't return once sold out.",
+      text: "You've been here before — each edition is produced in limited numbers and doesn't return once fully allocated.",
       cta: "View collections",
       href: "/collections",
     };

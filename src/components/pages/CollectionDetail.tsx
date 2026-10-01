@@ -751,7 +751,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       {isSelected && <div className="absolute inset-0 bg-accent/10" />}
                       {isSoldOutVariant && (
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="border border-foreground-muted/30 px-4 py-1.5 text-[11px] tracking-[3px] uppercase text-foreground-muted/60">Unavailable</span>
+                          <span className="border border-foreground-muted/30 px-4 py-1.5 text-[11px] tracking-[3px] uppercase text-foreground-muted/60">Fully Allocated</span>
                         </div>
                       )}
                     </div>
@@ -766,7 +766,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                         {!isSoldOutVariant && <div className={`mt-1 h-5 w-5 shrink-0 rounded-full border-2 transition-colors ${isSelected ? "border-accent bg-accent" : "border-accent/30"}`} />}
                       </div>
                       <p className="mt-3 text-[13px] tracking-[0.5px] sm:text-[11px] sm:tracking-[1px] uppercase text-accent/60">
-                        {isSoldOutVariant ? "Unavailable" : `${v.stock} ${v.stock === 1 ? "piece" : "pieces"} remaining`}
+                        {isSoldOutVariant ? "Fully Allocated" : `${v.stock} ${v.stock === 1 ? "piece" : "pieces"} remaining`}
                       </p>
                       {isSoldOutVariant && (() => {
                         const inStockSibling = visibleVariants.find((sibling) => sibling.name !== v.name && sibling.stock > 0);
@@ -809,7 +809,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                                   {opt}
                                   {stock !== undefined && (
                                     <span className={`mt-0.5 text-[14px] tracking-[0.5px] normal-case font-medium ${selectedNumeral === opt ? "text-background/80" : isSoldOut ? "text-accent/50" : "text-accent/70"}`}>
-                                      {isSoldOut ? "Unavailable" : `${stock} available`}
+                                      {isSoldOut ? "Fully Allocated" : `${stock} available`}
                                     </span>
                                   )}
                                 </button>
@@ -829,7 +829,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               })}
             </motion.div>
 
-            {/* Notify Me — Sold-out editions */}
+            {/* Notify Me — Fully allocated editions */}
             {visibleVariants.some(v => v.stock === 0) && (
               <motion.div
                 initial="hidden"
@@ -839,12 +839,12 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 className="mt-6 rounded-lg border border-accent/10 bg-background-alt p-6"
               >
                 <p className="text-[12px] font-normal tracking-[3px] uppercase text-accent">
-                  {isSoldOut ? "Second Drop Coming Soon" : "Sold-out editions"}
+                  {isSoldOut ? "Second Drop Coming Soon" : "Fully allocated editions"}
                 </p>
                 <p className="mt-2 text-[16px] font-light leading-[1.8] text-foreground-muted">
                   {isSoldOut
-                    ? "The first run is fully sold out. Join the list to hear first when the next drop opens."
-                    : "Some editions above are closed. Join the list to be notified when a new expression opens — or if a sold-out edition ever returns."}
+                    ? "The first run is fully allocated. Join the list to hear first when the next drop opens."
+                    : "Some editions above are closed. Join the list to be notified when a new expression opens — or if a fully allocated edition ever returns."}
                 </p>
                 {notifyStatus === "success" ? (
                   <p className="mt-4 text-[16px] font-light text-accent">

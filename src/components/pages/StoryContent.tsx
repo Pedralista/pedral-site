@@ -20,17 +20,17 @@ const timeline = [
   {
     year: "2024",
     title: "Artefact",
-    text: "A new collection. A different design language. The same conviction: when it's gone, it's gone. Sold out.",
+    text: "A new collection. A different design language. The same conviction: when it's gone, it's gone. Fully allocated.",
   },
   {
     year: "Apr 2025",
     title: "Watches and Art",
-    text: "A collaboration with Boris Pjanić bridging fine horology and contemporary art. Released April 2025. Sold out.",
+    text: "A collaboration with Boris Pjanić bridging fine horology and contemporary art. Released April 2025. Fully allocated.",
   },
   {
     year: "2025",
     title: "Maestro",
-    text: "The refined tonneau dress watch with hexagonal bracelet links and diagonal time display. Sold out.",
+    text: "The refined tonneau dress watch with hexagonal bracelet links and diagonal time display. Fully allocated.",
   },
   {
     year: "Dec 2025",
@@ -196,7 +196,7 @@ export default function StoryContent() {
                 Now Available
               </p>
               <h2 className="font-serif text-[clamp(24px,3vw,34px)] font-light text-foreground">
-                Every watch in this story sold out. A few pieces remain.
+                Every watch in this story is fully allocated. A few pieces remain.
               </h2>
               <div className="mt-5 h-px w-[60px] bg-accent" />
               <p className="mt-5 text-[15px] font-light leading-[1.85] text-foreground-muted">

@@ -153,7 +153,7 @@ export default function ArchiveContent() {
               variants={fadeInUp}
               className="mt-3 max-w-[520px] text-[16px] font-light text-foreground-muted/50"
             >
-              Most sold out within 2–8 weeks. The current collection is next.
+              Most were fully allocated within 2–8 weeks. The current collection is next.
             </motion.p>
           </motion.div>
         </div>

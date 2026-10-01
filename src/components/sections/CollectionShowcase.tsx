@@ -49,7 +49,7 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
   if (stock === 0) {
     return (
       <span className="absolute left-3 top-3 z-10 border border-white/15 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-white/50 backdrop-blur-sm">
-        Unavailable
+        Fully Allocated
       </span>
     );
   }
@@ -208,7 +208,7 @@ export default function CollectionShowcase() {
                       </span>
                     ) : (
                       <span className="text-[14px] font-normal tracking-[0.5px] text-foreground-muted">
-                        Unavailable
+                        Fully Allocated
                       </span>
                     )}
                   </div>
@@ -220,7 +220,7 @@ export default function CollectionShowcase() {
         </div>
 
         <p className="mt-8 text-center text-[16px] tracking-[0.5px] leading-[1.7] text-foreground-muted">
-          Earlier editions are sold out and won&apos;t return.
+          Earlier editions are fully allocated and won&apos;t return.
         </p>
         <div className="mt-3 flex justify-center">
           <Link
