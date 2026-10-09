@@ -159,6 +159,35 @@ export default function ArchiveContent() {
         </div>
       </section>
 
+      {/* Stockholm Time banner */}
+      <section className="bg-background pb-14">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="flex flex-col items-start justify-between gap-4 rounded-lg border border-accent/20 bg-background-alt p-6 md:flex-row md:items-center md:p-7"
+          >
+            <div>
+              <p className="mb-1 text-[11px] font-normal tracking-[2px] uppercase text-accent/70">
+                One Exception · October 10
+              </p>
+              <p className="text-[15px] font-light leading-[1.7] text-foreground-muted">
+                A handful of original Artefact and Okapi pieces are available again, in person
+                only, at Stockholm Time 2026. Nothing online, nothing shipped.
+              </p>
+            </div>
+            <Link
+              href="/stockholm-time"
+              className="inline-block whitespace-nowrap rounded-lg border border-accent/30 px-6 py-3 text-[11px] font-medium tracking-[2px] uppercase text-foreground transition-colors hover:border-accent hover:text-accent"
+            >
+              See the Stockholm Time sale →
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Grid */}
       <section className="bg-background-alt py-14 md:py-20">
         <div className="mx-auto max-w-[1400px] px-6 md:px-12">

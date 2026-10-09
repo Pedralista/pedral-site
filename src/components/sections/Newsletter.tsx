@@ -17,10 +17,12 @@ export default function Newsletter({
 }: NewsletterProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "exists" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("loading");
+    setErrorMessage(null);
 
     try {
       const form = e.target as HTMLFormElement;
@@ -38,6 +40,10 @@ export default function Newsletter({
       } else if (data.alreadySubscribed) {
         setStatus("exists");
       } else {
+        // Surface Mailchimp's actual reason (e.g. a flagged/disposable
+        // address) instead of a generic message that leaves a real
+        // customer with no idea what to try differently.
+        setErrorMessage(typeof data.error === "string" ? data.error : null);
         setStatus("error");
       }
     } catch {
@@ -103,7 +109,7 @@ export default function Newsletter({
 
           {status === "error" && (
             <p className="mt-3 text-[15px] font-light text-red-400">
-              Something went wrong. Please try again.
+              {errorMessage ?? "Something went wrong. Please try again."}
             </p>
           )}
         </motion.div>
