@@ -22,16 +22,23 @@ export default function ShippingPage() {
         <strong>{SHIPPING_LINE}.</strong>
       </p>
       <p>
-        All watches shipped from Stockholm, Sweden via insured, tracked courier. Tracking number
-        sent by email upon dispatch.
+        All watches are shipped via insured, tracked courier. Tracking number sent by email upon
+        dispatch. <strong>Orders to the EU/EEA always ship from our studio in Stockholm,
+        Sweden.</strong> Orders outside the EU/EEA may ship from Stockholm or from our Hong Kong
+        location, depending on stock — this does not change pricing, customs treatment, or your
+        rights under this policy.
       </p>
       <ul>
         <li><strong>Sweden:</strong> 2–4 business days</li>
         <li><strong>EU &amp; EEA:</strong> 3–7 business days</li>
-        <li><strong>United Kingdom:</strong> 5–10 business days</li>
-        <li><strong>United States &amp; Canada:</strong> 5–10 business days</li>
-        <li><strong>Rest of world:</strong> 7–14 business days</li>
+        <li><strong>United Kingdom:</strong> 5–12 business days</li>
+        <li><strong>United States &amp; Canada:</strong> 5–12 business days</li>
+        <li><strong>Rest of world:</strong> 7–16 business days</li>
       </ul>
+      <p className="text-foreground-muted/60">
+        Non-EU/EEA ranges allow for either fulfilment location — actual transit time depends on
+        which one ships your order.
+      </p>
       <p>All shipments insured for full purchase value.</p>
 
       <h2>Customs, Duties &amp; Import Taxes</h2>

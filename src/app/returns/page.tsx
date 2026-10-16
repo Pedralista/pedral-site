@@ -72,8 +72,8 @@ export default function ReturnsPage() {
       <h2>Pre-Orders — Customers Outside the EU/EEA</h2>
       <p>
         The full, fee-free policy above is your statutory right as an EU/EEA consumer. It applies
-        based on where you, the buyer, are located — not on the fact that every order ships from
-        our studio in Stockholm. For customers ordering from <strong>outside the EU/EEA</strong>,
+        based on where you, the buyer, are located — not on which of our fulfilment locations
+        ships your order. For customers ordering from <strong>outside the EU/EEA</strong>,
         where this statutory right does not apply, we offer cancellation of a pre-order or return
         of a delivered watch as a goodwill policy, with{" "}
         <strong>30% of the amount paid retained</strong> to cover tooling, materials, and

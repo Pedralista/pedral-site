@@ -93,8 +93,11 @@ export default function TermsPage() {
 
       <h2>5. Delivery</h2>
       <p>
-        Shipped from Stockholm via insured tracked courier. Estimated delivery times provided at
-        checkout and in your confirmation email. Risk passes to you upon delivery.
+        Shipped via insured tracked courier. EU/EEA orders always ship from our studio in
+        Stockholm, Sweden; orders outside the EU/EEA may ship from Stockholm or from our Hong
+        Kong location depending on stock. Estimated delivery times provided at checkout and in
+        your confirmation email. Risk passes to you upon delivery. See{" "}
+        <a href="/shipping">Shipping &amp; Customs</a> for details.
       </p>
       <p>
         <strong>Pre-order deliveries:</strong> You will receive a shipping notification with
