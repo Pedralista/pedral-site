@@ -15,9 +15,12 @@ export default function WithdrawalPage() {
     <LegalPage eyebrow="Legal" title="Right of Withdrawal" updated="EU Consumer Rights">
       <h2>Your Right</h2>
       <p>
-        You have the right to withdraw from this contract within <strong>14 days</strong> without
-        giving any reason. The withdrawal period expires{" "}
-        <strong>14 days from the day you acquire physical possession of the goods</strong>.
+        If you are ordering as a consumer in the <strong>EU or EEA</strong>, you have the right to
+        withdraw from this contract within <strong>14 days</strong> without giving any reason. The
+        withdrawal period expires <strong>14 days from the day you acquire physical possession of
+        the goods</strong>. If you are ordering from outside the EU/EEA, see &quot;Customers
+        Outside the EU/EEA&quot; below instead — the statutory right described on this page does
+        not apply to your order, though we offer a comparable goodwill policy.
       </p>
       <p>
         To exercise, notify: Pedral Design Studio AB, Sveavägen 117A, 113 49 Stockholm,
@@ -74,8 +77,21 @@ export default function WithdrawalPage() {
       </p>
       <p>
         <strong>
-          For all standard editions, including pre-orders: the 14-day right applies in full.
+          For all standard editions, including pre-orders: the 14-day right applies in full to
+          EU/EEA consumers.
         </strong>
+      </p>
+
+      <h2>Customers Outside the EU/EEA</h2>
+      <p>
+        The statutory 14-day right of withdrawal described above is an EU/EEA consumer right and
+        does not extend to orders shipping outside the EU/EEA. As a goodwill policy — not a legal
+        entitlement in your jurisdiction — we will cancel a pre-order before dispatch or accept a
+        return of a delivered watch, refunding <strong>70% of the amount paid</strong>. The
+        remaining 30% is retained to cover tooling, materials, and low-volume production costs
+        already committed against your order. Contact{" "}
+        <a href="mailto:info@pedral.watch">info@pedral.watch</a> with your order number to
+        request this.
       </p>
 
       <h2>Model Withdrawal Form</h2>

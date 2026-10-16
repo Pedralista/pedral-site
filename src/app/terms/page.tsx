@@ -104,10 +104,16 @@ export default function TermsPage() {
 
       <h2>6. Right of Withdrawal</h2>
       <p>
-        Under EU law (Consumer Rights Directive 2011/83/EU), you have{" "}
-        <strong>14 days from the day you receive the goods</strong> to withdraw without giving
-        any reason. This applies to both in-stock orders and pre-orders. See full{" "}
-        <a href="/withdrawal">Right of Withdrawal</a> page.
+        If you are an <strong>EU/EEA consumer</strong>, under the Consumer Rights Directive
+        2011/83/EU you have <strong>14 days from the day you receive the goods</strong> to
+        withdraw without giving any reason, with a full refund and no fees. This applies to both
+        in-stock orders and pre-orders. See full <a href="/withdrawal">Right of Withdrawal</a>{" "}
+        page.
+      </p>
+      <p>
+        This statutory right does not extend to orders shipping{" "}
+        <strong>outside the EU/EEA</strong> — see &quot;Pre-Orders: Customers Outside the
+        EU/EEA&quot; below.
       </p>
 
       <h3>Pre-Orders: Your Cancellation Rights</h3>
@@ -134,8 +140,18 @@ export default function TermsPage() {
       <p>
         <strong>
           For all standard, non-personalised editions (including pre-orders): the 14-day
-          withdrawal right applies in full.
+          withdrawal right applies in full to EU/EEA consumers.
         </strong>
+      </p>
+
+      <h3>Pre-Orders: Customers Outside the EU/EEA</h3>
+      <p>
+        The 14-day statutory withdrawal right above is an EU/EEA consumer right and does not
+        apply to orders shipping outside the EU/EEA. As a goodwill policy — not a legal
+        entitlement in your jurisdiction — we will cancel a pre-order before dispatch or accept a
+        return of a delivered watch, refunding <strong>70% of the amount paid</strong>, with the
+        remaining 30% retained to cover tooling, materials, and low-volume production costs
+        already committed against your order.
       </p>
 
       <h2>7. Warranty &amp; Conformity</h2>
