@@ -896,7 +896,7 @@ export const collections: Collection[] = [
     stock: 20, // sum of the variant (dial) stocks below
     maxStock: 20, // Edition of 20, consistent with Maestro / Triomphe / Okapi (Kevin, Oct 2026)
     edition: "Pre-order · First run",
-    badge: "Pre-order",
+    badge: "New",
     urgencyTag: "Pre-order open",
     reserveButtonLabel: "Pre-order",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
