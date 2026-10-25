@@ -35,6 +35,13 @@ const VALID_PRICE_IDS = new Set([
   "price_1UUF8YCfxE1lSBKRMREPi5B7", // Étiquette — Nocturne · Swiss Hand-Wound (€1,800)
   "price_1UUFARCfxE1lSBKREzsyJnrM", // Étiquette — Ambiance · Japanese Hand-Wound (€1,100)
   "price_1UUFCICfxE1lSBKRHBF1I95p", // Étiquette — Ambiance · Swiss Hand-Wound (€1,800)
+  // Étiquette numeral editions (standalone pages)
+  "price_1UUOovCfxE1lSBKRZltUibsZ", // Étiquette Hebrew — Tchelet · Japanese Hand-Wound (€1,100)
+  "price_1UUOqaCfxE1lSBKRZ0PFXRKD", // Étiquette Hebrew — Tchelet · Swiss Hand-Wound (€1,800)
+  "price_1UUOsdCfxE1lSBKRzIQMNG8X", // Étiquette Hebrew — Layla · Japanese Hand-Wound (€1,100)
+  "price_1UUOtmCfxE1lSBKRpwNV6Bpc", // Étiquette Hebrew — Layla · Swiss Hand-Wound (€1,800)
+  "price_1UUPTrCfxE1lSBKRy4L1h1fg", // Étiquette Bangla — Ekushey (€1,100)
+  "price_1UUPNOCfxE1lSBKR7Zr4TfjN", // Étiquette Bangla — Sondhya (€1,100)
 ]);
 
 const ALLOWED_ORIGINS = new Set(["https://pedral.eu", "https://www.pedral.eu", "https://pedral.watch", "https://www.pedral.watch"]);

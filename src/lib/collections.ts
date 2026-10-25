@@ -1043,9 +1043,8 @@ export const collections: Collection[] = [
     // Étiquette numeral edition (Oct 2026, Kevin's request): its own
     // standalone landing page — live by direct link only, never listed on
     // /collections, the homepage carousel or the nav. Same case, movements,
-    // prices and delivery as Étiquette; edition of 10, made to order.
-    // TODO: Stripe price IDs (one per movement) — until they're filled in
-    // (and added to VALID_PRICE_IDS) the Pre-order button stays disabled.
+    // prices and delivery as Étiquette (Japanese or Swiss hand-wound); edition
+    // of 10, made to order. Live Stripe prices wired in 2026-10-25.
     slug: "etiquette-hebrew",
     name: "Étiquette Hebrew",
     metaTitle: "Pedral Étiquette Hebrew — Hebrew Numeral Dress Watch, Edition of 10 | Pedral",
@@ -1080,6 +1079,16 @@ export const collections: Collection[] = [
       "Direct communication with Kevin — not a support team",
       "Tracked & insured shipping",
     ],
+    story: {
+      eyebrow: "The Story",
+      title: "Written with respect.",
+      paragraphs: [
+        "Hebrew is one of the oldest written languages still read every day, and its letters have always doubled as numbers. Aleph is one, Bet is two, Yud is ten. The same letters counted the years on coins struck in Jerusalem two thousand years ago, and they still number the days of the Hebrew calendar today. Watches with Hebrew dials have existed for well over a century, made for families who wanted to read the hours in their own script.",
+        "The Jewish community has been an integral part of Pedral's evolution. Some of the most personal commissions I have ever made came from it — a father looking for something to give his son at his Bar Mitzvah, a daughter wanting a watch that held something of her mother, collectors who had spent years wearing watches that spoke only in someone else's tradition. The Triomphe in Hebrew numerals grew out of those conversations, and it has sold out. Much of what Pedral is today was shaped by them.",
+        "A script this old deserves care. Distort it carelessly and a numeral turns into a costume — a caricature of a culture rather than a tribute to it. That was never going to happen here. These numerals weren't drawn in Stockholm alone: they were developed together with members of the Jewish Enthusiasts Watch Society (J.E.W.S), a global community of watchmakers and collectors, who reviewed and refined them with me until every letter was right — playful in the Étiquette way, but never at the expense of what it means.",
+        "Two dials — Tchelet, sky blue on ivory, and Layla, ivory on night blue. Japanese or Swiss hand-wound. Ten pieces, made to order. Thank you to everyone who helped make it.",
+      ],
+    },
     specsTitle: "Not for everyone.",
     specs: {
       Price: "€1,100 Japanese hand-wound · €1,800 Swiss hand-wound",
@@ -1102,7 +1111,7 @@ export const collections: Collection[] = [
     detailStrip: {
       eyebrow: "The Movement",
       title: "Shaped for the case.",
-      text: "Inside is a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays at 7.7 mm. You wind it by the crown — the small ritual that comes with a hand-wound watch. Prefer Swiss? Tchelet and Layla are also available with the La Joux-Perret LJP D100, Swiss hand-wound, with a 50-hour power reserve.",
+      text: "The Japanese version runs on a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays at 7.7 mm. You wind it by the crown — the small ritual that comes with a hand-wound watch. Only the Japanese movement is shaped to the case. Prefer Swiss? Tchelet and Layla are also available with the La Joux-Perret LJP D100 — a conventional Swiss hand-wound calibre with a 50-hour power reserve.",
     },
     testimonials: [],
     wristFit: {
@@ -1127,7 +1136,7 @@ export const collections: Collection[] = [
       },
       {
         q: "Why Hebrew numerals?",
-        a: "Because the numerals on a dial can carry something of who you are. The Hebrew edition grew out of conversations with collectors looking for a watch that held their heritage — often as a gift, for a moment that matters. Ten pieces only, made to order.",
+        a: "Because the numerals on a dial can carry something of who you are. The Hebrew edition grew out of conversations with collectors looking for a watch that held their heritage — often as a gift, for a moment that matters — and its numerals were developed together with members of the Jewish Enthusiasts Watch Society (J.E.W.S). Ten pieces only, made to order.",
       },
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
@@ -1149,8 +1158,8 @@ export const collections: Collection[] = [
         numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {
-          "Japanese Hand-Wound": "", // TODO: Étiquette Hebrew — Tchelet · Japanese Hand-Wound (€1,100)
-          "Swiss Hand-Wound": "", // TODO: Étiquette Hebrew — Tchelet · Swiss Hand-Wound (€1,800)
+          "Japanese Hand-Wound": "price_1UUOovCfxE1lSBKRZltUibsZ", // Étiquette Hebrew — Tchelet · Japanese Hand-Wound (€1,100)
+          "Swiss Hand-Wound": "price_1UUOqaCfxE1lSBKRZ0PFXRKD", // Étiquette Hebrew — Tchelet · Swiss Hand-Wound (€1,800)
         },
       },
       {
@@ -1164,8 +1173,8 @@ export const collections: Collection[] = [
         numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {
-          "Japanese Hand-Wound": "", // TODO: Étiquette Hebrew — Layla · Japanese Hand-Wound (€1,100)
-          "Swiss Hand-Wound": "", // TODO: Étiquette Hebrew — Layla · Swiss Hand-Wound (€1,800)
+          "Japanese Hand-Wound": "price_1UUOsdCfxE1lSBKRzIQMNG8X", // Étiquette Hebrew — Layla · Japanese Hand-Wound (€1,100)
+          "Swiss Hand-Wound": "price_1UUOtmCfxE1lSBKRpwNV6Bpc", // Étiquette Hebrew — Layla · Swiss Hand-Wound (€1,800)
         },
       },
     ],
@@ -1287,8 +1296,7 @@ export const collections: Collection[] = [
     // /collections, the homepage carousel or the nav. Same case, movements,
     // delivery as Étiquette, but hand-wound only (Pedral-modified Miyota 9015, rectangular, €1,100) with
     // a lacquered dial (Kevin, Oct 2026); edition of 10, made to order.
-    // TODO: one Stripe price per dial — until filled in (and added to
-    // VALID_PRICE_IDS) the Pre-order button stays disabled.
+    // Live Stripe prices wired in 2026-10-25.
     slug: "etiquette-bangla",
     name: "Étiquette Bangla",
     metaTitle: "Pedral Étiquette Bangla — Bangla (Bengali) Numeral Dress Watch, Edition of 10 | Pedral",
@@ -1392,7 +1400,7 @@ export const collections: Collection[] = [
     variants: [
       {
         name: "Ekushey",
-        stripePriceId: "", // TODO: Stripe price (€1,100) — Pre-order stays disabled until filled
+        stripePriceId: "price_1UUPTrCfxE1lSBKRy4L1h1fg", // Étiquette Bangla — Ekushey (€1,100)
         stock: 5,
         price: 1100,
         description: "Ekushey — twenty-one, in Bangla. Lacquered green dial with a red centre and custom distorted Bangla numerals in silver.",
@@ -1401,7 +1409,7 @@ export const collections: Collection[] = [
       },
       {
         name: "Sondhya",
-        stripePriceId: "", // TODO: Stripe price (€1,100) — Pre-order stays disabled until filled
+        stripePriceId: "price_1UUPNOCfxE1lSBKR7Zr4TfjN", // Étiquette Bangla — Sondhya (€1,100)
         stock: 5,
         price: 1100,
         description: "Sondhya — evening, in Bangla. Lacquered black onyx dial with custom distorted Bangla numerals and hands in gold.",
