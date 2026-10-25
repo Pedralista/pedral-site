@@ -1,7 +1,9 @@
 // Community discount codes for the Étiquette Hebrew / Bangla pages (Kevin,
-// Oct 2026). Customers type the code on the product page; the checkout route
-// re-checks it server-side and applies the matching Stripe coupon directly
-// (Stripe's own promotion-code box rejected every code on these sessions).
+// Oct 2026). Currently UNUSED: Kevin wants the discount to appear only at
+// checkout, so customers enter the codes in Stripe's own promotion-code box
+// (allow_promotion_codes). Kept as a fallback — set `communityCodes: true` on
+// a collection to show an on-page code box that applies the coupon server-side.
+// (Stripe's box rejects codes typed by automated browsers, so test by hand.)
 //
 // Codes are stored only as SHA-256 hashes, so they can't be read from the
 // page source. The plain codes are the promotion codes in Kevin's Stripe.

@@ -1076,7 +1076,6 @@ export const collections: Collection[] = [
     variantLabel: "Dial",
     numeralOptionsLabel: "Movement",
     standalone: true,
-    communityCodes: true,
     excludeFromFeed: true, // Kevin: not in the Instagram/Google catalogue
     nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
     reassurance: [
@@ -1330,7 +1329,6 @@ export const collections: Collection[] = [
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
     standalone: true,
-    communityCodes: true,
     excludeFromFeed: true, // Kevin: not in the Instagram/Google catalogue
     nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
     reassurance: [
