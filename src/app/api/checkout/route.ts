@@ -44,6 +44,18 @@ const VALID_PRICE_IDS = new Set([
   "price_1UUPNOCfxE1lSBKR7Zr4TfjN", // Étiquette Bangla — Sondhya (€1,100)
 ]);
 
+// Étiquette Hebrew / Bangla prices: the checkout shows a discount-code box so
+// community members can use the codes Kevin shared in the groups (codes and
+// their expiry, 3 Nov 2026, live in Stripe — nothing about them is on the site).
+const PROMO_CODE_PRICE_IDS = new Set([
+  "price_1UUOovCfxE1lSBKRZltUibsZ", // Tchelet · Japanese
+  "price_1UUOqaCfxE1lSBKRZ0PFXRKD", // Tchelet · Swiss
+  "price_1UUOsdCfxE1lSBKRzIQMNG8X", // Layla · Japanese
+  "price_1UUOtmCfxE1lSBKRpwNV6Bpc", // Layla · Swiss
+  "price_1UUPTrCfxE1lSBKRy4L1h1fg", // Ekushey
+  "price_1UUPNOCfxE1lSBKR7Zr4TfjN", // Sondhya
+]);
+
 const ALLOWED_ORIGINS = new Set(["https://pedral.eu", "https://www.pedral.eu", "https://pedral.watch", "https://www.pedral.watch"]);
 // Generous ceilings for a low-SKU microbrand catalogue — just abuse guards,
 // not real usage limits.
@@ -178,6 +190,7 @@ export async function POST(req: NextRequest) {
       // customers can log in but still see nothing under Order History.
       invoice_creation: { enabled: true },
       line_items: lineItems,
+      ...(lineItems.some((li) => !!li.price && PROMO_CODE_PRICE_IDS.has(li.price)) && { allow_promotion_codes: true }),
       return_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
       metadata: {
         cartItems: cartMetadataJson,
@@ -235,7 +248,7 @@ export async function POST(req: NextRequest) {
         "US", "CA", "AU", "JP", "SG", "AE", "SA",
       ],
     },
-    ...(priceId === "price_1TEVYOCfxE1lSBKRdzi2pJsj" && { allow_promotion_codes: true }),
+    ...((priceId === "price_1TEVYOCfxE1lSBKRdzi2pJsj" || PROMO_CODE_PRICE_IDS.has(priceId)) && { allow_promotion_codes: true }),
     phone_number_collection: { enabled: true },
     billing_address_collection: "required",
     custom_text: {
