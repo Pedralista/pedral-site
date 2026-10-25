@@ -51,6 +51,22 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // Maestro Petite Seconde merged into Maestro (Oct 2026) — keep old
+      // links (Instagram, Google, Stockholm Time) working.
+      {
+        source: "/collections/maestro-petite-seconde",
+        destination: "/collections/maestro",
+        permanent: true,
+      },
+      {
+        source: "/collections/maestro-petite-seconde/:variant",
+        destination: "/collections/maestro/:variant",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

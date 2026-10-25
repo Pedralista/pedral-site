@@ -83,13 +83,13 @@ export default async function CollectionPage({
   const liveVariants = staticCollection.variants
     ? await Promise.all(
         staticCollection.variants.map(async (v) => {
-          const liveVariantStock = await getLiveStock(staticCollection.slug, slugifyPart(v.name), v.stock);
+          const liveVariantStock = await getLiveStock(v.stockSlug ?? staticCollection.slug, slugifyPart(v.name), v.stock);
           let liveNumeralStock = v.numeralStock;
           if (v.numeralStock) {
             const entries = await Promise.all(
               Object.entries(v.numeralStock).map(async ([dial, fallback]) => [
                 dial,
-                await getLiveStock(staticCollection.slug, `${slugifyPart(v.name)}-${slugifyPart(dial)}`, fallback),
+                await getLiveStock(v.stockSlug ?? staticCollection.slug, `${slugifyPart(v.name)}-${slugifyPart(dial)}`, fallback),
               ] as const)
             );
             liveNumeralStock = Object.fromEntries(entries);

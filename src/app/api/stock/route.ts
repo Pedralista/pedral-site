@@ -19,7 +19,7 @@ export async function GET() {
     if (c.variants) {
       let totalSellable = 0;
       for (const v of c.variants) {
-        const rawVariantStock = await getLiveStock(c.slug, slugifyPart(v.name), v.stock);
+        const rawVariantStock = await getLiveStock(v.stockSlug ?? c.slug, slugifyPart(v.name), v.stock);
         const soldOut = new Set(v.soldOutNumerals ?? []);
         let sellableVariantStock = rawVariantStock;
 
@@ -28,7 +28,7 @@ export async function GET() {
           sellableVariantStock = 0;
           for (const [dial, fallback] of Object.entries(v.numeralStock)) {
             const dialStock = await getLiveStock(
-              c.slug,
+              v.stockSlug ?? c.slug,
               `${slugifyPart(v.name)}-${slugifyPart(dial)}`,
               fallback
             );

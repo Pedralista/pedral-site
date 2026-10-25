@@ -78,7 +78,7 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
 
 export default function CollectionsContent() {
   const [active, setActive] = useState<Filter>("all");
-  const [liveStock, setLiveStock] = useState<Record<string, { stock: number }> | null>(null);
+  const [liveStock, setLiveStock] = useState<Record<string, { stock: number; variants?: Record<string, number> }> | null>(null);
 
   useEffect(() => {
     fetch("/api/stock")
@@ -93,6 +93,13 @@ export default function CollectionsContent() {
   const visible = collections
     .filter((c) => !c.hidden && !c.standalone)
     .map((c) => (liveStock?.[c.slug] ? { ...c, stock: liveStock[c.slug].stock } : c))
+    .map((c) => {
+      // Featured dial: show its picture and its own remaining count.
+      const featured = c.cardVariant ? c.variants?.find((v) => v.name === c.cardVariant) : undefined;
+      if (!featured) return c;
+      const liveCount = liveStock?.[c.slug]?.variants?.[featured.name];
+      return { ...c, image: featured.image ?? c.image, stock: liveCount ?? featured.stock };
+    })
     .sort((a, b) => a.price - b.price)
     .sort((a, b) => (a.slug === "contour" ? -1 : b.slug === "contour" ? 1 : 0));
   const filtered =
@@ -272,7 +279,11 @@ function CollectionCard({ collection }: { collection: Collection }) {
                 </>
               )}
             </div>
-            {collection.stock > 0 && !collection.isEnquiryOnly ? (
+            {collection.stock > 0 && collection.hideEditionSize && !collection.isEnquiryOnly ? (
+              <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
+                {collection.stock} remaining
+              </span>
+            ) : collection.stock > 0 && !collection.isEnquiryOnly ? (
               <div>
                 <div className="mb-1 mx-auto h-[3px] w-[72px] overflow-hidden rounded-sm bg-accent/[0.12]">
                   <div

@@ -83,6 +83,9 @@ export async function decrementStock(
 export interface StockTarget {
   part: string;
   fallback: number;
+  /** Collection slug the counter lives under, when it differs from the
+   * product's own (a variant carried over from a merged product line). */
+  slug?: string;
 }
 
 /**
@@ -104,7 +107,7 @@ export function resolveStockTargets(
   );
   if (!variant) return targets;
 
-  targets.push({ part: slugifyPart(variant.name), fallback: variant.stock });
+  targets.push({ part: slugifyPart(variant.name), fallback: variant.stock, slug: variant.stockSlug });
 
   if (variant.numeralOptions && variant.numeralStock) {
     const dial = variant.numeralOptions.find((opt) => variantName.endsWith(opt));
@@ -112,6 +115,7 @@ export function resolveStockTargets(
       targets.push({
         part: `${slugifyPart(variant.name)}-${slugifyPart(dial)}`,
         fallback: variant.numeralStock[dial],
+        slug: variant.stockSlug,
       });
     }
   }

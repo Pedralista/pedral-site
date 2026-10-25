@@ -51,23 +51,25 @@ export async function POST(req: NextRequest) {
           // product/variant lines, each with its own quantity.
           const cartItems = JSON.parse(session.metadata.cartItems) as { p: string; v?: string; q: number }[];
           for (const item of cartItems) {
-            const collection = collections.find((c) => c.name === item.p);
+            const collection = collections.find((c) => c.name === item.p || c.formerNames?.includes(item.p));
             if (!collection) continue;
             const targets = resolveStockTargets(collection, item.v || undefined);
             for (let i = 0; i < item.q; i++) {
               for (const t of targets) {
-                await decrementStock(collection.slug, t.part, t.fallback);
+                await decrementStock(t.slug ?? collection.slug, t.part, t.fallback);
               }
             }
           }
         } else {
           const collection = isPreOrder
             ? collections.find((c) => c.slug === session.metadata?.collection)
-            : collections.find((c) => c.name === session.metadata?.product);
+            : collections.find(
+                (c) => c.name === session.metadata?.product || c.formerNames?.includes(session.metadata?.product ?? "")
+              );
           if (collection) {
             const targets = resolveStockTargets(collection, session.metadata?.variant);
             for (const t of targets) {
-              await decrementStock(collection.slug, t.part, t.fallback);
+              await decrementStock(t.slug ?? collection.slug, t.part, t.fallback);
             }
           }
         }

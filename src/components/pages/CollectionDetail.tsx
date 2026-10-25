@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
@@ -443,6 +443,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               ? "New Model · In Development"
               : isSoldOut
               ? `The Original · Since ${c.year}`
+              : c.hideEditionSize
+              ? "Limited Editions · No Restocks"
               : `Limited Edition · ${c.maxStock} Pieces`}
           </motion.p>
           <motion.h1
@@ -497,7 +499,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           >
             <span className="h-[7px] w-[7px] animate-pulse rounded-full bg-accent" />
             <span className="text-[13px] tracking-[1px] sm:text-[11px] sm:tracking-[1.5px] uppercase text-accent">
-              {c.inDevelopment ? c.inDevelopment.status : <>Edition of {c.maxStock} &middot; {c.edition}</>}
+              {c.inDevelopment ? c.inDevelopment.status : c.hideEditionSize ? c.edition : <>Edition of {c.maxStock} &middot; {c.edition}</>}
             </span>
           </motion.div>
           {!c.isEnquiryOnly && !isSoldOut && (() => {
@@ -539,7 +541,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               exist at all. This surfaces it right in the hero, either linking
               straight to the sibling's own page (single-variant view) or
               jumping down to the picker (full multi-variant view). */}
-          {hasVariants && c.variants && c.variants.length > 1 && (
+          {hasVariants && c.variants && c.variants.some((v) => v.name !== selectedVariant?.name && v.stock > 0) && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -548,7 +550,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             >
               <span>Also available:</span>
               {c.variants
-                .filter((v) => v.name !== selectedVariant?.name)
+                .filter((v) => v.name !== selectedVariant?.name && v.stock > 0)
                 .map((v) => {
                   const label = `${v.name} — €${(v.price ?? c.price).toLocaleString()}`;
                   return requestedVariant ? (
@@ -726,6 +728,84 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               </h2>
             </motion.div>
 
+            {/* Compact picker — one image window, dial buttons switch it (Maestro) */}
+            {c.variantPicker === "compact" ? (
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="grid items-start gap-8 md:grid-cols-2 md:gap-12"
+              >
+                <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-accent/10 bg-[var(--surface)]">
+                  {selectedVariantImage ? (
+                    <Image
+                      key={selectedVariantImage}
+                      src={selectedVariantImage}
+                      alt={`${c.name} ${selectedVariant?.name ?? ""}`}
+                      fill
+                      className="object-contain"
+                    />
+                  ) : (
+                    <ImagePlaceholder label={c.name} className="h-full w-full" />
+                  )}
+                </div>
+                <div>
+                  {visibleVariants
+                    .filter((v) => v.stock > 0)
+                    .map((v, i, available) => {
+                      const startsGroup = i === 0 || v.group !== available[i - 1]?.group;
+                      const groupItems = startsGroup
+                        ? available.filter((x) => x.group === v.group)
+                        : [];
+                      if (!startsGroup) return null;
+                      return (
+                        <div key={v.group ?? v.name} className={i > 0 ? "mt-7" : ""}>
+                          {v.group && (
+                            <p className="mb-3 text-[12px] font-normal tracking-[2.5px] uppercase text-accent">
+                              {v.group}
+                            </p>
+                          )}
+                          <div className="flex flex-wrap gap-2">
+                            {groupItems.map((g) => {
+                              const isSel = selectedVariant?.name === g.name;
+                              return (
+                                <button
+                                  key={g.name}
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedVariant(g);
+                                    setSelectedNumeral((prev) =>
+                                      prev && g.numeralOptions?.includes(prev) && !g.soldOutNumerals?.includes(prev) ? prev : null
+                                    );
+                                    setUserPickedVariant(true);
+                                  }}
+                                  className={`flex flex-col items-start border px-4 py-2.5 text-[11px] tracking-[2px] uppercase transition-colors ${
+                                    isSel
+                                      ? "border-accent bg-accent text-background"
+                                      : "border-accent/30 text-accent hover:border-accent"
+                                  }`}
+                                >
+                                  {g.name}
+                                  <span className={`mt-0.5 text-[13px] tracking-[0.5px] normal-case font-medium ${isSel ? "text-background/80" : "text-accent/70"}`}>
+                                    {g.stock} remaining
+                                  </span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  {selectedVariant?.description && (
+                    <p className="mt-7 text-[16px] font-light leading-[1.8] text-foreground-muted">
+                      {selectedVariant.description}
+                    </p>
+                  )}
+                </div>
+              </motion.div>
+            ) : (
+              <>
             {/* Available variants */}
             <motion.div
               initial="hidden"
@@ -734,12 +814,21 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               variants={staggerContainer}
               className="grid gap-4 sm:grid-cols-2"
             >
-              {visibleVariants.map((v) => {
+              {visibleVariants.map((v, i) => {
                 const isSelected = selectedVariant?.name === v.name;
                 const isSoldOutVariant = v.stock === 0;
+                const startsGroup = !!v.group && v.group !== visibleVariants[i - 1]?.group;
                 return (
+                  <Fragment key={v.name}>
+                  {startsGroup && (
+                    <motion.p
+                      variants={fadeInUp}
+                      className={`text-[12px] font-normal tracking-[3px] uppercase text-accent sm:col-span-2 ${i > 0 ? "mt-6" : ""}`}
+                    >
+                      {v.group}
+                    </motion.p>
+                  )}
                   <motion.div
-                    key={v.name}
                     variants={fadeInUp}
                     onClick={() => {
                       if (isSoldOutVariant) return;
@@ -846,12 +935,16 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       )}
                     </div>
                   </motion.div>
+                  </Fragment>
                 );
               })}
             </motion.div>
 
+              </>
+            )}
+
             {/* Notify Me — Fully allocated editions */}
-            {visibleVariants.some(v => v.stock === 0) && (
+            {c.variantPicker !== "compact" && visibleVariants.some(v => v.stock === 0) && (
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -1575,7 +1668,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           ) : (
             <>
               <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
-                Edition of {c.maxStock} &middot; {c.edition}
+                {c.hideEditionSize ? c.edition : <>Edition of {c.maxStock} &middot; {c.edition}</>}
               </p>
               <p className="font-serif text-[48px] font-light text-foreground">
                 &euro;{(effectivePrice).toLocaleString()}
@@ -1615,7 +1708,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 </p>
               ) : (
                 <p className="mt-3 text-[16px] font-light tracking-[0.5px] text-foreground-muted">
-                  Pre-order &middot; Full payment secures your allocation &middot; {c.shipsBy ?? "Ships in 4–6 weeks"}
+                  {c.shipsImmediately
+                    ? c.shipsBy ?? "In stock · Ships immediately"
+                    : <>Pre-order &middot; Full payment secures your allocation &middot; {c.shipsBy ?? "Ships in 4–6 weeks"}</>}
                 </p>
               )}
               <div className="mx-auto mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8">

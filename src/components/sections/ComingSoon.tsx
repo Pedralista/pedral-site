@@ -34,11 +34,11 @@ const upcoming = [
     href: "/collections/okapi",
   },
   {
-    label: "Maestro Petite Seconde",
-    title: "Now available. Two dials.",
-    desc: "Soul Blue. Aura Gold. The same tonneau case with a subsidiary seconds at six. Limited pieces remaining. When a dial closes, it does not return.",
-    eta: "Available Now · €1,600",
-    href: "/collections/maestro-petite-seconde",
+    label: "Maestro",
+    title: "One case. Central or small seconds.",
+    desc: "Lapis No.1 with central seconds, or the Petite Seconde — Soul Blue and Aura Gold, with a subsidiary seconds at six. The same tonneau case throughout. When a dial closes, it does not return.",
+    eta: "Available Now · From €1,450",
+    href: "/collections/maestro",
   },
 ];
 

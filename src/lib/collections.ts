@@ -30,6 +30,15 @@ export interface CollectionVariant {
   // auto-cycling hero give a sub-choice (e.g. a gold-case dial) its own
   // hero moment instead of only the parent variant's heroImage.
   numeralHeroImages?: Record<string, string>;
+  // Collection slug this variant's live stock counter lives under, when it
+  // differs from the product's own — e.g. Soul Blue / Aura Gold, carried
+  // over from the former "maestro-petite-seconde" line into Maestro, keep
+  // reading and decrementing their existing Redis counters.
+  stockSlug?: string;
+  // Group heading shown above this variant in the dial picker when it starts
+  // a new group (e.g. Maestro: "Petite Seconde · Small seconds · €1,600").
+  // Keep same-group variants next to each other in the array.
+  group?: string;
 }
 
 export interface Collection {
@@ -94,9 +103,19 @@ export interface Collection {
   depositAmount?: number;
   // Expected dispatch window shown near the buy CTA, e.g. "Ships end of November".
   shipsBy?: string;
+  /** In stock and ready to ship (not a pre-order) — replaces the "Pre-order · Full payment secures your allocation" line with shipsBy. */
+  shipsImmediately?: boolean;
   nonRefundable?: boolean; // true only for custom/made-to-order pieces (EU Art. 16(c) exemption)
   isEnquiryOnly?: boolean;
   hidden?: boolean; // true = not shown publicly, page returns 404
+  /** Previous product names — matched by the Stripe webhook so a checkout started under an old name (before a merge/rename deployed) still decrements stock. */
+  formerNames?: string[];
+  /** Hide the single "Edition of N" / "N left of M" framing — for a line whose dials are separate editions (e.g. merged Maestro), where one total edition size would be misleading. Cards show "N remaining" instead. */
+  hideEditionSize?: boolean;
+  /** "compact" = one image window plus dial buttons (grouped by variant.group) that switch it, sold-out variants left out — instead of one card with its own photo per variant. */
+  variantPicker?: "cards" | "compact";
+  /** Variant featured on the collection/homepage card: its image and its own remaining count are shown instead of the product image and the line's total (e.g. Maestro: Aura Gold — a single dial's count is clearer than a total across dials). */
+  cardVariant?: string;
   standalone?: boolean; // true = fully live (page, sitemap, feed) but excluded from the /collections grid and homepage showcase — e.g. a one-off capsule reached only via its own direct link
   hidePriceOnCard?: boolean;
   variantLabel?: string;
@@ -122,37 +141,53 @@ export interface Collection {
 
 export const collections: Collection[] = [
   {
+    // One Maestro line (Oct 2026, Kevin's request): the former separate
+    // "Maestro Petite Seconde" product is merged in as two more dials, so
+    // the same tonneau case is sold as one product with a dial choice —
+    // each dial card carries its own movement and price (one tap, no
+    // sub-choice). Old /collections/maestro-petite-seconde links redirect
+    // here (next.config.ts); Soul Blue / Aura Gold keep their existing
+    // live stock counters via stockSlug.
     slug: "maestro",
     name: "Maestro",
-    metaTitle: "Pedral Maestro — Swiss Automatic Dress Watch, Limited to 20 | Pedral",
-    metaDescription: "A 37mm tonneau dress watch with a Sellita Swiss automatic movement. Stockholm-designed by an independent Swedish maker. Edition of 20, no restocks.",
+    formerNames: ["Maestro Petite Seconde"],
+    metaTitle: "Pedral Maestro — Swiss Automatic Tonneau Dress Watch, Central or Small Seconds | Pedral",
+    metaDescription: "A 37mm tonneau dress watch with a Sellita Swiss automatic movement — central seconds from €1,450, or the Petite Seconde with small seconds at €1,600. Stockholm-designed by an independent Swedish maker. No restocks.",
     tagline: "Limited Allocation",
     hook: "The person who notices this watch already understands it.",
     description:
-      "At 37mm, the monobloc tonneau case and fluted bezel frame a textured sunburst dial with lumed Roman numerals and a traditional time display. A detail most will pass over.",
+      "At 37mm, the monobloc tonneau case and fluted bezel frame the dial. A detail most will pass over. The same architecture comes in two expressions: the classic Maestro, with a textured sunburst dial, lumed Roman numerals and central seconds — and the Petite Seconde, with a guilloché dial, proprietary Roman numerals and a subsidiary seconds at six o'clock.",
     descriptionExtra:
-      "Hexagonal bracelet links follow the wrist's natural curve. The watch does not announce itself. Earlier editions included a driver's dial variant — a diagonal time display built around a driving watch principle.",
+      "Hexagonal bracelet links follow the wrist's natural curve. The watch does not announce itself. The classic dials run the Sellita SW200-1b; the Petite Seconde runs the Sellita SW260. Earlier editions included a driver's dial — a diagonal time display built around a driving watch principle. When a dial closes, it does not return.",
     designerNote:
-      "Maestro is a dress watch for people who don't need to be told it's a dress watch. The tonneau case, the classic dial, the hexagonal bracelet. Each decision has a reason. None of them are decorative.",
+      "Maestro is a dress watch for people who don't need to be told it's a dress watch. The tonneau case, the classic dial, the hexagonal bracelet. Each decision has a reason. None of them are decorative. The Petite Seconde is the Maestro at its most complete — the small seconds adds a layer of visual depth without disrupting the dial's clarity.",
     year: 2025,
     tier: "signature",
     price: 1450,
-    stock: 3,
+    stock: 19, // static fallback: sum of the variant stocks below (live counts come from Redis)
     maxStock: 20,
-    edition: "Lapis No.1 / Frosted Flex",
+    hideEditionSize: true,
+    variantPicker: "compact",
+    cardVariant: "Aura Gold",
+    heroFit: "contain",
+    shipsImmediately: true, // all Maestro dials in stock (Kevin, Oct 2026)
+    shipsBy: "In stock · Ships immediately · Tracked & insured",
+    edition: "Soul Blue · Aura Gold · Lapis No.1",
     badge: "",
     urgencyTag: "Limited pieces remaining",
+    variantLabel: "Dial",
     specsTitle: "Swiss precision. Stockholm soul.",
     specs: {
-      Movement: "Sellita SW200-1b · Swiss automatic · 38-hour power reserve",
+      Movement: "Classic dials: Sellita SW200-1b · Petite Seconde: Sellita SW260 with small seconds · Swiss automatic · 38-hour power reserve",
       Case: "37mm tonneau · 9.8mm slim · 47.5mm lug-to-lug · 316L stainless steel · HV1200 scratch-resistant coating",
-      Dial: "Classic dial with Roman numerals · Lapis No.1: sunburst guilloché finish · Frosted Flex: architectural frosted finish",
+      Dial: "Lapis No.1: sunburst guilloché, Roman numerals, central seconds · Soul Blue & Aura Gold (Petite Seconde): guilloché, proprietary Roman numerals, small seconds at 6 o'clock",
       Crystal: "Sapphire front & back · 5× internal AR coating · scratch-resistant",
       Bracelet: "Integrated hexagonal links · 22.5mm at lugs, tapers to 18mm · HV1200 coating · quick-release",
       Strap: "Customised Epsom leather strap included · 20mm",
-      Lume: "Swiss Super-LumiNova® BGW9 on hands and indices",
+      Lume: "Swiss Super-LumiNova® BGW9 on hands and indices (classic dials)",
       "Water Resist.": "100 meters / 330 feet",
       Warranty: "24-month international coverage",
+      Edition: "Limited per dial · No restocks · No reissues",
       VAT: "Included for EU orders · Duties and taxes outside EU not included",
     },
     boxContents: [
@@ -164,7 +199,7 @@ export const collections: Collection[] = [
       "Personal note from Kevin",
     ],
     valueAnchor:
-      "Dress watches with Swiss Sellita movements, sapphire crystal, and an integrated bracelet. At the established houses: €2,800+. Without the overhead cost, the showroom, the retail chain, the advertising: €1,450. Edition of 20. The difference didn't disappear. It remains in the watch.",
+      "Dress watches with Swiss Sellita movements, sapphire crystal, and an integrated bracelet. At the established houses: €2,800+. Without the overhead cost, the showroom, the retail chain, the advertising: €1,450 — or €1,600 for the Petite Seconde with its small seconds complication. The difference didn't disappear. It remains in the watch.",
     valueComparePrice: "€2,800+",
     detailStrip: {
       eyebrow: "The Classic Expression",
@@ -178,18 +213,54 @@ export const collections: Collection[] = [
         name: "Adrien L.",
         bio: "Investment Analyst · Lyon",
       },
+      {
+        // Real survey quote (April 2026 customer survey), verbatim — same as
+        // on the homepage. Don't add reworded quotes: only customers' own words.
+        quote:
+          "Not following trends but being a trend setter. For me, I have to connect with the owner of the brand. Then it's the watch.",
+        name: "D.H.",
+        bio: "Watch enthusiast · Maestro owner",
+      },
     ],
     variants: [
+      {
+        name: "Soul Blue",
+        stripePriceId: "price_1TPWFUCfxE1lSBKRrOHlguJc",
+        stock: 7,
+        price: 1600,
+        stockSlug: "maestro-petite-seconde",
+        heroImage: "/images/maestro-ps-celeste-2.png",
+        color: "Blue",
+        group: "Petite Seconde · Small seconds · Sellita SW260 · €1,600",
+        description: "Sky blue guilloché dial with small seconds at six. Light and depth in the same surface. The colour of something just out of reach.",
+        image: "/images/maestro-ps-celeste-2.png",
+      },
+      {
+        name: "Aura Gold",
+        stripePriceId: "price_1TPWI7CfxE1lSBKR6eBgMdJl",
+        stock: 9,
+        price: 1600,
+        stockSlug: "maestro-petite-seconde",
+        heroImage: "/images/maestro-ps-solaire-2.png",
+        color: "Gold",
+        group: "Petite Seconde · Small seconds · Sellita SW260 · €1,600",
+        description: "Gold guilloché dial with small seconds at six. Warmth that commands without asking. The sun caught in a guilloché pattern.",
+        image: "/images/maestro-ps-solaire-2.png",
+      },
       {
         name: "Lapis No.1",
         stripePriceId: "price_1TOwepCfxE1lSBKRI7sNBLcW",
         stock: 3,
+        price: 1450,
+        heroImage: "/images/maestro-lapis.jpg",
         color: "Blue",
+        group: "Classic · Central seconds · Sellita SW200-1b · €1,450",
         description: "Deep lapis lazuli blue. A dial that commands the room. The sunburst guilloché catches the light differently with every angle.",
         image: "/images/maestro-lapis.jpg",
       },
       {
         name: "Frosted Flex",
+        group: "Classic · Central seconds · Sellita SW200-1b · €1,450",
         stripePriceId: "price_1TOwodCfxE1lSBKRaUZJ0s7O",
         stock: 0,
         color: "Silver",
@@ -198,6 +269,7 @@ export const collections: Collection[] = [
       },
       {
         name: "Cosmic Tilt",
+        group: "Classic · Central seconds · Sellita SW200-1b · €1,450",
         stripePriceId: "",
         stock: 0,
         color: "Black",
@@ -206,6 +278,7 @@ export const collections: Collection[] = [
       },
       {
         name: "Laguna View",
+        group: "Classic · Central seconds · Sellita SW200-1b · €1,450",
         stripePriceId: "",
         stock: 0,
         color: "Blue",
@@ -223,12 +296,16 @@ export const collections: Collection[] = [
     },
     newsletterTitle: "Priority access for the next Maestro edition.",
     newsletterSub: "Collectors on the list hear first.",
-    image: "/images/maestro.jpg",
-    heroImage: "/images/maestro-hero2.jpg",
+    image: "/images/maestro-ps-solaire-2.png",
+    // Hero auto-cycles the buyable dials (each variant's heroImage) — the
+    // old lifestyle hero showed a dial no longer for sale.
+    heroImage: "/images/maestro-ps-celeste-2.png",
     detailImage: "/images/maestro-detail.jpg",
     galleryImages: [
       "/images/maestro-angle-1.jpg",
+      "/images/maestro-ps-celeste-2.png",
       "/images/maestro-angle-2.jpg",
+      "/images/maestro-ps-solaire-2.png",
       "/images/maestro-angle-3.jpg",
     ],
     relatedArticleSlugs: ["maestro-boris-pjanic-collab"],
@@ -358,93 +435,6 @@ export const collections: Collection[] = [
     ],
     comingSoonEditions: [],
     relatedArticleSlugs: ["triomphe-numerals-heritage", "triomphe-guilloche-dial", "hand-wound-vs-automatic"],
-  },
-  {
-    slug: "maestro-petite-seconde",
-    name: "Maestro Petite Seconde",
-    metaTitle: "Pedral Maestro Petite Seconde — Swiss Automatic, Small Seconds | Pedral",
-    metaDescription: "A 37mm tonneau dress watch with small seconds and a Sellita Swiss automatic movement. Stockholm-designed by an independent Swedish maker. Edition of 20.",
-    tagline: "Q2 2026",
-    hook: "Maestro, taken one step further.",
-    description:
-      "Same tonneau case, same considered architecture. A guilloché dial, proprietary Roman numerals, and a subsidiary seconds at six o'clock. Powered by the Sellita SW260 automatic movement.",
-    descriptionExtra:
-      "Two dials: Soul Blue, Aura Gold. Limited pieces remaining. When a dial closes, it does not return.",
-    designerNote:
-      "The Petite Seconde is the Maestro at its most complete. The small seconds complication adds a layer of visual depth without disrupting the dial's clarity. Two dials, two characters — the same architecture underneath each one.",
-    year: 2026,
-    tier: "signature",
-    price: 1600,
-    stock: 9,
-    maxStock: 20,
-    edition: "Soul Blue / Aura Gold",
-    badge: "New Release",
-    urgencyTag: "Two dials · Pieces remaining",
-    specsTitle: "Swedish in form. Swiss at heart.",
-    specs: {
-      Movement: "Sellita SW260 · Swiss automatic · 38-hour power reserve",
-      Case: "37mm tonneau · 316L stainless steel · HV1200 scratch-resistant coating",
-      Dial: "Guilloché · Proprietary Roman numerals · Small seconds at 6 o'clock",
-      Crystal: "Sapphire front & back · AR coating",
-      Bracelet: "Integrated hexagonal links · Quick-release",
-      Strap: "Customised Epsom leather strap included",
-      "Water Resist.": "100 meters / 330 feet",
-      Warranty: "24-month international coverage",
-      Edition: "Limited per dial · No restocks · No reissues",
-    },
-    boxContents: [
-      "Maestro Petite Seconde timepiece",
-      "Strap adapter tool",
-      "Polishing cloth",
-      "Butterfly clasp",
-      "24-month warranty card",
-      "Personal note from Kevin",
-    ],
-    valueAnchor:
-      "Swiss automatic dress watches with guilloché dials and small seconds complications. At the established houses: €3,000+. At Pedral: €1,600. Edition of 20. The difference remains in the watch.",
-    valueComparePrice: "€3,000+",
-    detailStrip: {
-      eyebrow: "The Small Seconds",
-      title: "A complication that earns its place.",
-      text: "The subsidiary seconds at six adds visual depth without disturbing the dial's hierarchy. It is there for the people who notice it — and perfectly legible to those who don't.",
-    },
-    testimonials: [],
-    wristFit: {
-      caseDiameter: "37mm",
-      thickness: "9.8mm",
-      lugToLug: "47.5mm",
-      lugWidth: "20mm",
-      wristRange: "15–20cm",
-      note: "The same tonneau case as the Maestro. Owners who typically wear 38–40mm describe it as wearing larger than expected. The integrated bracelet follows the natural curve of the arm.",
-    },
-    newsletterTitle: "Be first when Maestro Petite Seconde opens.",
-    newsletterSub: "Two dials. Limited pieces remaining. Collectors on the list are notified first.",
-    image: "/images/maestro-ps-celeste-2.png",
-    heroImage: "/images/maestro-ps-hero-2.png",
-    heroFit: "contain",
-    detailImage: "/images/maestro-ps-watch-roll.png",
-    galleryImages: [
-      "/images/maestro-ps-celeste-2.png",
-      "/images/maestro-ps-solaire-2.png",
-    ],
-    variants: [
-      {
-        name: "Soul Blue",
-        stripePriceId: "price_1TPWFUCfxE1lSBKRrOHlguJc",
-        stock: 7,
-        color: "Blue",
-        description: "Sky blue guilloché dial. Light and depth in the same surface. The colour of something just out of reach.",
-        image: "/images/maestro-ps-celeste-2.png",
-      },
-      {
-        name: "Aura Gold",
-        stripePriceId: "price_1TPWI7CfxE1lSBKR6eBgMdJl",
-        stock: 9,
-        color: "Gold",
-        description: "Gold and warmth. A dial that commands without asking. The sun caught in a guilloché pattern.",
-        image: "/images/maestro-ps-solaire-2.png",
-      },
-    ],
   },
   {
     slug: "okapi",

@@ -70,6 +70,11 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
 export default function CollectionShowcase() {
   const visible = collections
     .filter((c) => !c.hidden && !c.standalone)
+    .map((c) => {
+      // Featured dial: show its picture and its own remaining count.
+      const featured = c.cardVariant ? c.variants?.find((v) => v.name === c.cardVariant) : undefined;
+      return featured ? { ...c, image: featured.image ?? c.image, stock: featured.stock } : c;
+    })
     .sort((a, b) => (a.slug === "contour" ? -1 : b.slug === "contour" ? 1 : 0));
   const visibleCount = visible.length;
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -190,7 +195,11 @@ export default function CollectionShowcase() {
                         </>
                       )}
                     </div>
-                    {c.stock > 0 && !c.isEnquiryOnly ? (
+                    {c.stock > 0 && c.hideEditionSize && !c.isEnquiryOnly ? (
+              <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
+                {c.stock} remaining
+              </span>
+            ) : c.stock > 0 && !c.isEnquiryOnly ? (
                       <div>
                         <div className="mb-1 mx-auto h-[3px] w-[72px] overflow-hidden rounded-sm bg-accent/[0.12]">
                           <div

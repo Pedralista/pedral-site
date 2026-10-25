@@ -279,7 +279,7 @@ export default function StockholmTimeContent({ locale = "en" }: { locale?: Local
                 <div className="mt-4 flex items-center justify-between border-t border-accent/[0.06] pt-4">
                   <span className="text-[16px] font-light text-foreground">{t.maestroPrice}</span>
                   <Link
-                    href="/collections/maestro-petite-seconde"
+                    href="/collections/maestro"
                     className="text-[11px] font-medium tracking-[1px] uppercase text-accent transition-colors hover:text-accent-hover"
                   >
                     {t.maestroCta}
