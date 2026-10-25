@@ -224,7 +224,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
         href={`/collections/${collection.slug}`}
         className="group relative block cursor-pointer"
       >
-        <BadgeLabel stock={collection.stock} isPreOrder={collection.isPreOrder} isEnquiryOnly={collection.isEnquiryOnly} badge={collection.isEnquiryOnly ? undefined : collection.badge} />
+        <BadgeLabel stock={collection.stock} isPreOrder={collection.isPreOrder} isEnquiryOnly={collection.isEnquiryOnly && !collection.inDevelopment} badge={collection.isEnquiryOnly && !collection.inDevelopment ? undefined : collection.badge} />
 
         <div className="relative aspect-[3/4] overflow-hidden rounded-md bg-[var(--surface)]">
           {collection.image ? (
@@ -258,7 +258,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
                     Pricing
                   </span>
                   <span className="text-[17px] font-medium text-foreground">
-                    Upon request
+                    {collection.inDevelopment ? "To be announced" : "Upon request"}
                   </span>
                 </>
               ) : (
@@ -288,7 +288,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
               </div>
             ) : collection.isEnquiryOnly ? (
               <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
-                Allocation only
+                {collection.inDevelopment ? collection.inDevelopment.cardStatus : "Allocation only"}
               </span>
             ) : (
               <span className="text-[14px] font-normal tracking-[0.5px] text-foreground-muted">

@@ -152,7 +152,7 @@ export default async function CollectionVariantPage({
           { name: variant.name, url: `/collections/${collection.slug}/${variantSlug}` },
         ]}
       />
-      <FaqJsonLd items={[
+      <FaqJsonLd items={collection.inDevelopment ? (collection.extraFaqs ?? []) : [
         { q: "I've never heard of Pedral before.", a: "Kevin has been designing watches in Stockholm since 2015. Over 400 pieces delivered to collectors in 30+ countries. Reviewed by independent watch media and recommended by collectors who own dozens of other watches." },
         { q: "What if it doesn't work on my wrist?", a: "Every piece ships with a 14-day return window after delivery. Case dimensions are listed in full. If you have doubts about sizing, write to Kevin directly — he responds personally." },
         { q: "What about production delays?", a: "Timeline updates are sent directly from Kevin throughout production — not automated emails. If something changes, you hear it from the person responsible." },

@@ -27,6 +27,14 @@ const VALID_PRICE_IDS = new Set([
   "price_1TyJgICfxE1lSBKRRyl9DzAp", // Contour × Seconds Society — Sodalite (€895)
   "price_1UBz4bCfxE1lSBKRxoKbUr0w", // Contour — Hand-Wound 39mm, Aventurine (€2,200)
   "price_1UBz7uCfxE1lSBKRLZGUEFVq", // Contour — Hand-Wound 39mm, Ituri (€5,000)
+  "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Automatic (€1,100)
+  "price_1UUF2bCfxE1lSBKRY27YyEDf", // Étiquette — Soirée · Swiss Hand-Wound (€1,800)
+  "price_1UUF4ACfxE1lSBKRaBgmkl77", // Étiquette — Bourgogne · Automatic (€1,100)
+  "price_1UUF5hCfxE1lSBKRu70dLbhe", // Étiquette — Bourgogne · Swiss Hand-Wound (€1,800)
+  "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Automatic (€1,100)
+  "price_1UUF8YCfxE1lSBKRMREPi5B7", // Étiquette — Nocturne · Swiss Hand-Wound (€1,800)
+  "price_1UUFARCfxE1lSBKREzsyJnrM", // Étiquette — Ambiance · Automatic (€1,100)
+  "price_1UUFCICfxE1lSBKRHBF1I95p", // Étiquette — Ambiance · Swiss Hand-Wound (€1,800)
 ]);
 
 const ALLOWED_ORIGINS = new Set(["https://pedral.eu", "https://www.pedral.eu", "https://pedral.watch", "https://www.pedral.watch"]);

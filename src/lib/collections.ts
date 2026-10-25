@@ -101,7 +101,13 @@ export interface Collection {
   hidePriceOnCard?: boolean;
   variantLabel?: string;
   valuePerspectiveTitle?: string;
-  comingSoonEditions?: { name: string; description: string; image?: string }[];
+  /** Optional heading/intro overrides for the comingSoonEditions section (defaults: "Coming Next" / "The next dial editions." / not-yet-available copy). */
+  comingSoonEditionsHeading?: { eyebrow: string; title: string; text: string; portrait?: boolean };
+  /** Overrides the four-line reassurance strip under the product hero (default mentions a Swiss automatic movement, which isn't true for every product). */
+  reassurance?: string[];
+  comingSoonEditions?: { name: string; description: string; image?: string; badge?: string }[];
+  /** Prototype / in-development model — no price, no checkout yet. Use together with isEnquiryOnly (which already removes price, stock, checkout, feed listing and JSON-LD offers); this additionally swaps edition-size, returns/shipping and "allocation" copy for development-stage copy. `status` shows in the hero and as the closing line; `cardStatus` is the short line under the card on the collections grid. */
+  inDevelopment?: { status: string; cardStatus: string };
   /** Journal article slugs relevant to this product (inverse of Article.relatedCollectionSlug). */
   relatedArticleSlugs?: string[];
   /** Label shown above a variant's sub-choice picker (e.g. dial color). Defaults to "Numeral Style" to preserve existing Triomphe behavior. */
@@ -789,6 +795,195 @@ export const collections: Collection[] = [
       // },
     ],
     relatedArticleSlugs: ["contour-three-drops"],
+  },
+  {
+    // New model, opened for full-payment pre-order Oct 2026 while still at
+    // prototype stage (prototype late Q4 2026 / early Q1 2027, estimated
+    // delivery late Q1 / early Q2 2027, first come first served — confirmed
+    // by Kevin 2026-10-25). Two
+    // movements: Automatic (modified Miyota 9015, €1,100) and Swiss
+    // hand-wound LJP D100 (€1,800) — prices confirmed by Kevin. Group-of-10 prices
+    // (€950 / €1,550) are private and deliberately NOT on the site. The
+    // purple dial (10 pieces) is owners-only and reserved through Kevin
+    // directly, so it's not in the checkout. Copy is Kevin's own launch
+    // text; case dimensions 27 × 43.7mm (golden ratio), 7.7mm max, confirmed
+    // by Kevin 2026-10-25, as is 5 ATM water resistance.
+    //
+    // Structure: the four public dials are the variants (5 pieces each,
+    // shared across movements — Edition of 20, confirmed by Kevin); the
+    // movement is the sub-choice, each dial+movement its own Stripe price
+    // so receipts and Stripe reports name both. (A Triomphe-style
+    // colour → numerals → movement picker was tried and rejected by Kevin
+    // as too complex — keep the purchase flow to two simple choices.) Famille (purple) is sold
+    // via Stripe payment links Kevin sends owners, not this checkout.
+    //
+    // Real live Stripe price IDs wired in (read from Kevin's Stripe
+    // dashboard 2026-10-25), also allow-listed in VALID_PRICE_IDS in
+    // src/app/api/checkout/route.ts.
+    slug: "etiquette",
+    name: "Étiquette",
+    metaTitle: "Pedral Étiquette — Art Deco Rectangular Dress Watch, 27 × 43.7mm | Pedral",
+    metaDescription:
+      "Étiquette: a 27 × 43.7mm golden-ratio rectangular dress watch, 7.7mm max, with concentric CNC-machined grooves and custom distorted Roman numerals. Automatic from €1,100, Swiss hand-wound €1,800. Pre-order now.",
+    tagline: "Pre-order",
+    hook: "Good taste. Questionable manners.",
+    descriptionTitle: "A study in proportion. An exercise in irreverence.",
+    description:
+      "There are certain rules in watchmaking. Rules of proportion, symmetry, restraint and good taste. Étiquette acknowledges them — then politely ignores a few. Drawing from the architectural elegance of the Art Deco era, it reimagines the rectangular dress watch through exaggerated proportions, sculptural detailing and a healthy disregard for convention. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, its silhouette is deliberately unconventional: slim, elegant and slightly eccentric.",
+    descriptionExtra:
+      "Within the case, custom Roman numerals — familiar, yet deliberately distorted — stretch across the dial with theatrical confidence, balanced by Pedral's signature inner dial frame. A faceted geodesic crown provides the finishing touch, while a finely tapered leather strap reinforces the watch's slender, vintage-inspired proportions. Restrained in dimensions, expressive in character. Rooted in tradition, yet entirely uninterested in following it too closely.",
+    designerNote:
+      "Good design, much like good manners, is knowing the rules. And knowing precisely when to break them.",
+    year: 2026,
+    tier: "signature",
+    price: 1100,
+    stock: 20, // sum of the variant (dial) stocks below
+    maxStock: 20, // Edition of 20, consistent with Maestro / Triomphe / Okapi (Kevin, Oct 2026)
+    edition: "Pre-order · First run",
+    badge: "Pre-order",
+    urgencyTag: "Pre-order open",
+    reserveButtonLabel: "Pre-order",
+    shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
+    variantLabel: "Dial",
+    numeralOptionsLabel: "Movement",
+    reassurance: [
+      "Pre-order · Full payment secures your allocation",
+      "Sapphire crystal · 316L steel · Miyota automatic or Swiss LJP D100",
+      "Direct communication with Kevin — not a support team",
+      "Tracked & insured shipping",
+    ],
+    specsTitle: "Not for everyone.",
+    specs: {
+      Price: "€1,100 Automatic · €1,800 Swiss hand-wound",
+      Movement: "Automatic: modified Miyota 9015 — or LJP D100, Swiss hand-wound, 50-hour power reserve · Hours and minutes",
+      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
+      "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
+      Dial: "Pedral signature inner dial frame · Soirée and Bourgogne: custom distorted Roman numerals · Nocturne and Ambiance: musical-note indices · Famille (purple) reserved for existing owners",
+      Hands: "Polished dress-watch hands",
+      Crown: "Pedral signature geodesic crown",
+      Crystal: "Sapphire with anti-reflective coating",
+      Caseback: "Solid stainless steel",
+      "Water Resist.": "5 ATM / 50 metres",
+      Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
+      Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
+    },
+    boxContents: [],
+    valueAnchor: "",
+    valueComparePrice: "",
+    detailStrip: {
+      eyebrow: "The Case",
+      title: "Architecture in miniature.",
+      text: "Multiple concentric grooves are CNC-machined into the stainless steel, following the case's elongated rectangular contours and softly rounded corners. Alternating brushed surfaces and polished bevels create subtle variations in reflection, so the case reveals different details as it moves with the wrist.",
+    },
+    testimonials: [],
+    wristFit: {
+      caseDiameter: "27 × 43.7mm",
+      thickness: "7.7mm max",
+      lugWidth: "20 → 18mm",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+    },
+    extraFaqs: [
+      {
+        q: "What will it cost?",
+        a: "The Automatic, powered by a modified Miyota 9015, is €1,100. The Swiss hand-wound version, powered by the La Joux-Perret LJP D100, is €1,800.",
+      },
+      {
+        q: "When will it be delivered?",
+        a: "Delivery is expected between late Q1 and early Q2 2027, following prototype development in late Q4 2026 / early Q1 2027. Pieces are delivered in the order they were purchased — first come, first served. Final specifications, materials and availability are subject to prototype development.",
+      },
+      {
+        q: "Can I get the purple dial?",
+        a: "Famille, the purple dial, is reserved exclusively for existing Pedral owners — just ten pieces, with no public allocation. If you already own a Pedral, write to Kevin directly to reserve yours.",
+      },
+    ],
+    newsletterTitle: "Follow Étiquette from prototype to wrist.",
+    newsletterSub: "Prototype updates and studio news. No noise.",
+    image: "/images/etiquette-soiree.jpg",
+    heroImage: "/images/etiquette-bourgogne.jpg",
+    heroFit: "contain",
+    detailImage: "/images/etiquette-soiree.jpg",
+    galleryImages: [
+      "/images/etiquette-soiree.jpg",
+      "/images/etiquette-bourgogne.jpg",
+      "/images/etiquette-nocturne.jpg",
+      "/images/etiquette-ambiance.jpg",
+    ],
+    variants: [
+      {
+        name: "Soirée",
+        stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
+        stock: 5,
+        price: 1100,
+        description: "Black dial, custom distorted Roman numerals in silver. The black-tie one.",
+        image: "/images/etiquette-soiree.jpg",
+        heroImage: "/images/etiquette-soiree.jpg",
+        numeralOptions: ["Automatic", "Swiss Hand-Wound"],
+        numeralPrices: { "Swiss Hand-Wound": 1800 },
+        numeralPriceIds: {
+          Automatic: "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Automatic (€1,100)
+          "Swiss Hand-Wound": "price_1UUF2bCfxE1lSBKRY27YyEDf", // Étiquette — Soirée · Swiss Hand-Wound (€1,800)
+        },
+      },
+      {
+        name: "Bourgogne",
+        stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
+        stock: 5,
+        price: 1100,
+        description: "Burgundy dial, custom distorted Roman numerals in silver.",
+        image: "/images/etiquette-bourgogne.jpg",
+        heroImage: "/images/etiquette-bourgogne.jpg",
+        numeralOptions: ["Automatic", "Swiss Hand-Wound"],
+        numeralPrices: { "Swiss Hand-Wound": 1800 },
+        numeralPriceIds: {
+          Automatic: "price_1UUF4ACfxE1lSBKRaBgmkl77", // Étiquette — Bourgogne · Automatic (€1,100)
+          "Swiss Hand-Wound": "price_1UUF5hCfxE1lSBKRu70dLbhe", // Étiquette — Bourgogne · Swiss Hand-Wound (€1,800)
+        },
+      },
+      {
+        name: "Nocturne",
+        stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
+        stock: 5,
+        price: 1100,
+        description: "Black dial with ivory musical-note indices.",
+        image: "/images/etiquette-nocturne.jpg",
+        heroImage: "/images/etiquette-nocturne.jpg",
+        numeralOptions: ["Automatic", "Swiss Hand-Wound"],
+        numeralPrices: { "Swiss Hand-Wound": 1800 },
+        numeralPriceIds: {
+          Automatic: "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Automatic (€1,100)
+          "Swiss Hand-Wound": "price_1UUF8YCfxE1lSBKRMREPi5B7", // Étiquette — Nocturne · Swiss Hand-Wound (€1,800)
+        },
+      },
+      {
+        name: "Ambiance",
+        stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
+        stock: 5,
+        price: 1100,
+        description: "Ivory dial with colourful musical-note indices and blue hands. The one with questionable manners.",
+        image: "/images/etiquette-ambiance.jpg",
+        heroImage: "/images/etiquette-ambiance.jpg",
+        numeralOptions: ["Automatic", "Swiss Hand-Wound"],
+        numeralPrices: { "Swiss Hand-Wound": 1800 },
+        numeralPriceIds: {
+          Automatic: "price_1UUFARCfxE1lSBKREzsyJnrM", // Étiquette — Ambiance · Automatic (€1,100)
+          "Swiss Hand-Wound": "price_1UUFCICfxE1lSBKRHBF1I95p", // Étiquette — Ambiance · Swiss Hand-Wound (€1,800)
+        },
+      },
+    ],
+    comingSoonEditionsHeading: {
+      eyebrow: "Owners Only",
+      title: "One kept in the family.",
+      text: "As a small gesture of appreciation to those who have supported Pedral over the years, the purple Étiquette is reserved exclusively for existing Pedral owners. A quiet thank-you to those who believed in the brand before everyone else.",
+      portrait: true,
+    },
+    comingSoonEditions: [
+      {
+        name: "Famille",
+        description: "Purple dial, custom distorted Roman numerals in silver. Just ten pieces. No public allocation. Existing owners: write to Kevin directly to reserve yours.",
+        image: "/images/etiquette-famille.jpg",
+        badge: "Owners Only · 10 Pieces",
+      },
+    ],
   },
   {
     // Capsule collaboration with Seconds Society (https://www.secondssociety.com/):

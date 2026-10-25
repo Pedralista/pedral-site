@@ -138,7 +138,7 @@ export default function CollectionShowcase() {
                 href={`/collections/${c.slug}`}
                 className="group relative block cursor-pointer"
               >
-                <BadgeLabel stock={c.stock} isPreOrder={c.isPreOrder} isEnquiryOnly={c.isEnquiryOnly} badge={c.isEnquiryOnly ? undefined : c.badge} />
+                <BadgeLabel stock={c.stock} isPreOrder={c.isPreOrder} isEnquiryOnly={c.isEnquiryOnly && !c.inDevelopment} badge={c.isEnquiryOnly && !c.inDevelopment ? undefined : c.badge} />
                 <div className="relative aspect-[3/4] overflow-hidden rounded-md bg-[var(--surface)]">
                   {c.image ? (
                     <Image
@@ -171,7 +171,7 @@ export default function CollectionShowcase() {
                             Pricing
                           </span>
                           <span className="text-[17px] font-medium text-foreground">
-                            Upon request
+                            {c.inDevelopment ? "To be announced" : "Upon request"}
                           </span>
                         </>
                       ) : (
@@ -204,7 +204,7 @@ export default function CollectionShowcase() {
                       </div>
                     ) : c.isEnquiryOnly ? (
                       <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
-                        Allocation only
+                        {c.inDevelopment ? c.inDevelopment.cardStatus : "Allocation only"}
                       </span>
                     ) : (
                       <span className="text-[14px] font-normal tracking-[0.5px] text-foreground-muted">

@@ -98,6 +98,11 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const selectedVariantImage =
     (selectedNumeral && selectedVariant?.numeralImages?.[selectedNumeral]) ||
     selectedVariant?.image;
+  // What the order records (Stripe metadata, cart line, stock decrement),
+  // e.g. "Soirée · Automatic".
+  const selectionLabel = selectedVariant?.numeralOptions
+    ? `${selectedVariant.name} · ${selectedNumeral}`
+    : selectedVariant?.name ?? "";
 
   // ── Checkout add-ons (feature-flagged OFF by default) ──────────────────────
   const addOnsActive = addOnsEnabledFor(c);
@@ -242,9 +247,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     addCartLine({
       slug: c.slug,
       productName: c.name,
-      variantName: selectedVariant.numeralOptions
-        ? `${selectedVariant.name} · ${selectedNumeral}`
-        : selectedVariant.name,
+      variantName: selectionLabel,
       priceId: effectivePriceId,
       unitPrice: price,
       image: selectedVariantImage || c.image,
@@ -263,7 +266,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
       item_name: c.name,
       price,
       quantity: 1,
-      item_variant: selectedVariant.name,
+      item_variant: selectionLabel,
     };
     gaEvent("add_to_cart", { currency: "EUR", value: price, items: [item] });
     fbqTrack("AddToCart", { currency: "EUR", value: price, content_ids: [c.slug], content_type: "product" });
@@ -324,9 +327,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         body: JSON.stringify({
           priceId: effectivePriceId,
           productName: c.name,
-          variantName: selectedVariant.numeralOptions
-            ? `${selectedVariant.name} · ${selectedNumeral}`
-            : selectedVariant.name,
+          variantName: selectionLabel,
           isPreOrder: c.nonRefundable ?? false,
           ...(addOnsActive && (selectedStrapSlug || engravingActive)
             ? {
@@ -438,7 +439,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mb-5 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent"
           >
-            {isSoldOut
+            {c.inDevelopment
+              ? "New Model · In Development"
+              : isSoldOut
               ? `The Original · Since ${c.year}`
               : `Limited Edition · ${c.maxStock} Pieces`}
           </motion.p>
@@ -494,7 +497,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           >
             <span className="h-[7px] w-[7px] animate-pulse rounded-full bg-accent" />
             <span className="text-[13px] tracking-[1px] sm:text-[11px] sm:tracking-[1.5px] uppercase text-accent">
-              Edition of {c.maxStock} &middot; {c.edition}
+              {c.inDevelopment ? c.inDevelopment.status : <>Edition of {c.maxStock} &middot; {c.edition}</>}
             </span>
           </motion.div>
           {!c.isEnquiryOnly && !isSoldOut && (() => {
@@ -541,7 +544,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.05 }}
-              className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[15px] font-light text-foreground-muted/80"
+              className={`mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[15px] font-light text-foreground-muted/80 ${c.heroFit === "contain" ? "justify-center" : ""}`}
             >
               <span>Also available:</span>
               {c.variants
@@ -587,12 +590,12 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   href="/contact"
                   className="inline-block w-full rounded-lg bg-accent px-8 py-4 text-center text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
                 >
-                  Request an Allocation →
+                  {c.inDevelopment ? "Register Interest →" : "Request an Allocation →"}
                 </Link>
               </div>
             ) : (
               <>
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <div className={`flex flex-col gap-3 sm:flex-row sm:items-center ${c.heroFit === "contain" ? "sm:justify-center" : ""}`}>
                   <button
                     onClick={handleReserve}
                     disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
@@ -645,12 +648,20 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             transition={{ duration: 0.6 }}
             className="grid gap-0 divide-y divide-accent/[0.06] sm:grid-cols-4 sm:divide-x sm:divide-y-0"
           >
-            {[
-              "Kevin reviews each request personally. Not all are confirmed.",
-              "Sapphire crystal · Swiss automatic movement · HV1200 steel",
-              "Direct communication with Kevin — not a support team",
-              "Ships tracked & insured from Stockholm",
-            ].map((item) => (
+            {(c.inDevelopment
+              ? [
+                  "Existing Pedral owners receive priority access.",
+                  "Pricing and movement to be announced",
+                  "Direct communication with Kevin — not a support team",
+                  "Final specifications subject to prototype development",
+                ]
+              : c.reassurance ?? [
+                  "Kevin reviews each request personally. Not all are confirmed.",
+                  "Sapphire crystal · Swiss automatic movement · HV1200 steel",
+                  "Direct communication with Kevin — not a support team",
+                  "Ships tracked & insured from Stockholm",
+                ]
+            ).map((item) => (
               <p key={item} className="px-0 py-5 text-[16px] font-light leading-[1.7] text-foreground-muted/60 sm:px-6 sm:py-6 sm:text-[16px]">
                 {item}
               </p>
@@ -730,7 +741,17 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   <motion.div
                     key={v.name}
                     variants={fadeInUp}
-                    onClick={() => { if (!isSoldOutVariant) { setSelectedVariant(v); setSelectedNumeral(null); setUserPickedVariant(true); } }}
+                    onClick={() => {
+                      if (isSoldOutVariant) return;
+                      setSelectedVariant(v);
+                      // Keep the current sub-choice when the new variant offers it too
+                      // (e.g. Étiquette: switching dial keeps "Automatic"), so the
+                      // buy button stays ready instead of demanding a re-pick.
+                      setSelectedNumeral((prev) =>
+                        prev && v.numeralOptions?.includes(prev) && !v.soldOutNumerals?.includes(prev) ? prev : null
+                      );
+                      setUserPickedVariant(true);
+                    }}
                     className={`group relative overflow-hidden rounded-lg border text-left transition-all duration-300 ${
                       isSoldOutVariant
                         ? "cursor-not-allowed opacity-50 border-accent/10"
@@ -1012,7 +1033,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <div>
                 {selectedVariant && (
                   <p className="text-[16px] font-light tracking-[1px] text-foreground-muted">
-                    Selected: <span className="text-foreground">{selectedVariant.name}{selectedNumeral ? ` · ${selectedNumeral}` : ""}</span>
+                    Selected: <span className="text-foreground">{selectionLabel}</span>
                   </p>
                 )}
                 <p className="mt-1 font-serif text-[22px] font-light text-foreground">
@@ -1060,6 +1081,68 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               </div>
             </motion.div>
 
+          </div>
+        </section>
+      )}
+
+      {/* Coming Soon Editions — sits where the dial picker would, so upcoming/in-development dials are seen before the long-form copy */}
+      {c.comingSoonEditions && c.comingSoonEditions.length > 0 && (
+        <section className="bg-background py-16 md:py-24">
+          <div className="mx-auto max-w-[900px] px-6 md:px-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                {c.comingSoonEditionsHeading?.eyebrow ?? "Coming Next"}
+              </p>
+              <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
+                {c.comingSoonEditionsHeading?.title ?? "The next dial editions."}
+              </h2>
+              <div className="mt-6 h-px w-[60px] bg-accent" />
+              <p className="mt-5 text-[16px] font-light leading-[1.85] text-foreground-muted">
+                {c.comingSoonEditionsHeading?.text ?? "These editions are not yet available. The list is notified first. They will not be announced publicly until they have sold through."}
+              </p>
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className={`mt-10 grid gap-4 ${c.comingSoonEditions.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}
+            >
+              {c.comingSoonEditions.map((ed) => (
+                <motion.div
+                  key={ed.name}
+                  variants={fadeInUp}
+                  className="rounded-lg border border-accent/10 bg-background-alt overflow-hidden"
+                >
+                  {ed.image ? (
+                    <div className={`relative w-full ${c.comingSoonEditionsHeading?.portrait ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
+                      <Image
+                        src={ed.image}
+                        alt=""
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <ImagePlaceholder label={ed.name} className="aspect-[4/3] w-full" />
+                  )}
+                  <div className="p-6">
+                    <div className="mb-3 flex items-center gap-3">
+                      <span className="rounded-lg border border-accent/20 px-2.5 py-1 text-[11px] tracking-[2px] uppercase text-accent">
+                        {ed.badge ?? "Coming Soon"}
+                      </span>
+                    </div>
+                    <h3 className="font-serif text-[22px] font-light text-foreground">{ed.name}</h3>
+                    <p className="mt-2 text-[16px] font-light leading-[1.8] text-foreground-muted">{ed.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </section>
       )}
@@ -1326,6 +1409,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
       </section>
 
       {/* What's in the Box */}
+      {c.boxContents.length > 0 && (
       <section className="bg-background py-16 md:py-20">
         <div className="mx-auto max-w-[900px] px-6 md:px-12">
           <motion.div
@@ -1359,6 +1443,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           </motion.div>
         </div>
       </section>
+      )}
 
       {/* Value Perspective */}
       {c.valueAnchor && !c.isEnquiryOnly && (
@@ -1425,6 +1510,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             className="mt-8 divide-y divide-accent/[0.08]"
           >
             {[
+              ...(c.inDevelopment ? [] : [
               {
                 q: "I've never heard of Pedral before.",
                 a: "Kevin has been designing watches in Stockholm since 2015. Over 400 pieces delivered to collectors in 30+ countries. Reviewed by independent watch media and recommended by collectors who own dozens of other watches.",
@@ -1441,6 +1527,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 q: "I can't see it in person before buying.",
                 a: "Most owners say the watch is better in person than in photos. High-resolution images and full specifications are available for every edition. The 14-day return policy exists precisely for this reason.",
               },
+              ]),
               ...(c.extraFaqs ?? []),
             ].map(({ q, a }) => (
               <motion.div key={q} variants={fadeInUp} className="py-4 md:py-5">
@@ -1471,16 +1558,18 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 If you already know — write directly.
               </p>
               <p className="mx-auto mt-4 max-w-[480px] text-[16px] font-light leading-[1.8] text-foreground-muted">
-                Allocations are not guaranteed. Kevin reviews each request and confirms personally. A short note is enough.
+                {c.inDevelopment
+                  ? "Existing Pedral owners have priority access. Pricing and availability will be announced once the prototype is finalised. A short note is enough."
+                  : "Allocations are not guaranteed. Kevin reviews each request and confirms personally. A short note is enough."}
               </p>
               <Link
                 href="/contact"
                 className="mt-8 inline-block rounded-lg bg-accent px-12 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover"
               >
-                Request an Allocation →
+                {c.inDevelopment ? "Register Interest →" : "Request an Allocation →"}
               </Link>
               <p className="mt-4 text-[16px] font-light tracking-[0.5px] text-foreground-muted/50">
-                Edition of {c.maxStock} · No public announcement
+                {c.inDevelopment ? "Priority access · Existing Pedral owners" : `Edition of ${c.maxStock} · No public announcement`}
               </p>
             </>
           ) : (
@@ -1599,68 +1688,6 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         </section>
       )}
 
-      {/* Coming Soon Editions */}
-      {c.comingSoonEditions && c.comingSoonEditions.length > 0 && (
-        <section className="bg-background py-16 md:py-24">
-          <div className="mx-auto max-w-[900px] px-6 md:px-12">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-            >
-              <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
-                Coming Next
-              </p>
-              <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
-                The next dial editions.
-              </h2>
-              <div className="mt-6 h-px w-[60px] bg-accent" />
-              <p className="mt-5 text-[16px] font-light leading-[1.85] text-foreground-muted">
-                These editions are not yet available. The list is notified first. They will not be announced publicly until they have sold through.
-              </p>
-            </motion.div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
-              className="mt-10 grid gap-4 sm:grid-cols-2"
-            >
-              {c.comingSoonEditions.map((ed) => (
-                <motion.div
-                  key={ed.name}
-                  variants={fadeInUp}
-                  className="rounded-lg border border-accent/10 bg-background-alt overflow-hidden"
-                >
-                  {ed.image ? (
-                    <div className="relative aspect-[4/3] w-full">
-                      <Image
-                        src={ed.image}
-                        alt=""
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  ) : (
-                    <ImagePlaceholder label={ed.name} className="aspect-[4/3] w-full" />
-                  )}
-                  <div className="p-6">
-                    <div className="mb-3 flex items-center gap-3">
-                      <span className="rounded-lg border border-accent/20 px-2.5 py-1 text-[11px] tracking-[2px] uppercase text-accent">
-                        Coming Soon
-                      </span>
-                    </div>
-                    <h3 className="font-serif text-[22px] font-light text-foreground">{ed.name}</h3>
-                    <p className="mt-2 text-[16px] font-light leading-[1.8] text-foreground-muted">{ed.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-      )}
-
       {/* Bespoke cross-link + Related reading */}
       <section className="bg-background-alt py-16 md:py-24">
         <div className="mx-auto max-w-[900px] px-6 md:px-12">
@@ -1756,7 +1783,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       {other.hook}
                     </p>
                     <p className="mt-2 text-[14px] font-light tracking-[0.5px] text-foreground-muted/70">
-                      From &euro;{other.price.toLocaleString()}
+                      {other.inDevelopment ? "Pricing to be announced" : other.isEnquiryOnly || other.hidePriceOnCard ? "Pricing upon request" : <>From &euro;{other.price.toLocaleString()}</>}
                     </p>
                   </Link>
                 </motion.div>
