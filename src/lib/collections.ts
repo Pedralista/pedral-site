@@ -35,6 +35,10 @@ export interface CollectionVariant {
   // over from the former "maestro-petite-seconde" line into Maestro, keep
   // reading and decrementing their existing Redis counters.
   stockSlug?: string;
+  // Counter name within stockSlug, when it differs from the variant's own
+  // slugified name — e.g. Silhouette's Aventurine reads Contour's former
+  // "hand-wound-39mm-aventurine" counter so its live count carries over.
+  stockPart?: string;
   // Group heading shown above this variant in the dial picker when it starts
   // a new group (e.g. Maestro: "Petite Seconde · Small seconds · €1,600").
   // Keep same-group variants next to each other in the array.
@@ -550,7 +554,7 @@ export const collections: Collection[] = [
     name: "Contour",
     metaTitle: "Pedral Contour — Integrated Bracelet, Quartz & Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch, now also in 39mm (7.3mm). From €895 quartz, €1,950 hand-wound, €5,000 Ituri cloisonné. Stockholm-designed. Third drop now available.",
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch. €895 quartz, €1,000 Aurum, €1,950 hand-wound Onyx. Stockholm-designed. Third drop now available.",
     tagline: "Third Drop",
     hook: "Not a watch. A presence.",
     descriptionTitle: "Designed as a watch. Built like jewellery.",
@@ -559,11 +563,16 @@ export const collections: Collection[] = [
     descriptionExtra:
       "In the 1970s, a handful of makers understood that a watch could carry itself like jewellery — worn low on the wrist, catching the light before it told you anything about the time. That instinct gradually gave way to decades of tool watch thinking. The Contour brings it back deliberately: 35mm across, 6.9mm thin, close enough to the skin to move like a bracelet, substantial enough to be felt in the room. Available in stainless steel and gold plated stainless steel. It doesn't ask to be noticed. It simply is.",
     designerNote:
-      "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. Onyx keeps it simplest — a single sheet of black, letting the hands do all the talking. Aurum carries its own sky — natural lapis flecked with gold, no two dials alike. For the third drop I let myself go further on a slightly larger 39mm case: Aventurine set with hand-cut moissanite, and Ituri — the studio's own Okapi motif, fired into gold enamel by hand rather than printed, named for the rainforest the animal actually comes from. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed. Call it aura, if you need a word for it — the sense that something walked into the room before you did.",
+      "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. Onyx keeps it simplest — a single sheet of black, letting the hands do all the talking. Aurum carries its own sky — natural lapis flecked with gold, no two dials alike. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed. Call it aura, if you need a word for it — the sense that something walked into the room before you did.",
     year: 2026,
     tier: "limited",
     // Base/entry price (quartz). Hand-wound is €1,950 — see specs.Price below.
     price: 895,
+    // Oct 2026: the 39mm case (Aventurine, Ituri) moved out into its own
+    // product, Silhouette — Contour is the 35mm line only. maxStock drops
+    // by those 20 pieces (140 → 120); their live counters stay under the
+    // "contour" slug and Silhouette reads them via stockSlug/stockPart.
+    //
     // Third drop: Nacre is now fully sold out (was 20 remaining, now 0).
     // Aurum (10) and Onyx (20) carry over unchanged at 35mm on the
     // original integrated scale-bracelet. Two new hand-wound dials join
@@ -576,11 +585,11 @@ export const collections: Collection[] = [
     // edition size across all three drops: 140 total, confirmed by Kevin
     // (up from the 60 documented after the second drop alone — that
     // number undercounted the first drop, not this addition).
-    stock: 50,
-    maxStock: 140,
+    stock: 40,
+    maxStock: 120,
     edition: "Third drop",
     badge: "Third Drop · Now Available",
-    urgencyTag: "Third drop · 50 pieces remaining",
+    urgencyTag: "Third drop · Pieces remaining",
     // Real checkout is live (Stripe variants below), so this is no longer an
     // enquiry-gated product — pricing, stock, and the standard Reserve CTA
     // all show normally now, same as Maestro/Triomphe.
@@ -599,34 +608,22 @@ export const collections: Collection[] = [
         a: "No — it's a gold-plated finish over the same 316L stainless steel case as the rest of the Contour line, not solid gold. The Lapis dial is genuine natural stone, so the gold flecking you see in it is real pyrite, not paint. A solid gold version is planned for the future — write to Kevin directly for pricing.",
       },
       {
-        q: "What's different about the 39mm case?",
-        a: "It's larger than the standard 35mm, on a woven-link bracelet instead of the standard scale-link construction — a larger, more textured take on the same integrated-bracelet idea. It's exclusive to the Aventurine and Ituri dials for now.",
-      },
-      {
-        q: "Is the Ituri dial hand-painted or printed?",
-        a: "Neither — it's genuine cloisonné enamel. Thin gold wire is hand-bent into the outline of the Okapi motif, the resulting cells are filled with enamel powder, and the dial is fired in a kiln multiple times until the colour sets. It's one of the most labour-intensive techniques in watchmaking, which is why no two dials fire identically.",
-      },
-      {
-        q: "Why is it called Ituri?",
-        a: "The Ituri Rainforest, in the Democratic Republic of Congo, is the okapi's actual native habitat — the animal this dial depicts, and the studio's namesake. It felt more honest than naming the dial after the technique alone.",
-      },
-      {
-        q: "Why is the LJP D100 priced the same as the ETA 7001, movement-wise?",
-        a: "Because it's not a step up in grade — the D100 is a modern successor to the same Peseux 7001 architecture as the ETA 7001 already used across Contour, with a longer 50-hour power reserve. The price difference on Aventurine and Ituri comes entirely from the dial work, not the movement.",
+        q: "Where is the 39mm version?",
+        a: "The larger 39mm case is now its own watch: Silhouette — the same integrated idea in a new proportion, on the Nyoka weave bracelet.",
       },
     ],
     specsTitle: "Presence, not permission.",
     specs: {
-      Price: "€895 quartz · €1,950 hand-wound · €2,200 Aventurine (39mm) · €5,000 Ituri (39mm)",
+      Price: "€895 quartz · €1,000 Aurum · €1,950 hand-wound",
       Movement:
-        "Ronda 1063, Swiss-made quartz — ETA 7001, Swiss hand-wound, 2.5mm calibre height — or LJP D100, Swiss hand-wound, 2.5mm calibre height, 50-hour power reserve (39mm dials)",
-      Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel (Aurum: gold-plated 316L stainless steel) — or 39mm · 7.3mm thin · woven-link bracelet (Aventurine: steel · Ituri: gold-plated steel)",
+        "Ronda 1063, Swiss-made quartz — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
+      Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel (Aurum: gold-plated 316L stainless steel)",
       Dial:
-        "Quartz: Aurum, natural lapis lazuli flecked with gold pyrite, no two dials alike. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette. 39mm: Aventurine, natural stone with hand-set moissanite baguette indices — or Ituri, a hand-fired gold cloisonné enamel dial carrying the Okapi motif.",
-      Bracelet: "Fully integrated, hundreds of brushed scales, no visible lugs (39mm: woven-link construction)",
+        "Quartz: Aurum, natural lapis lazuli flecked with gold pyrite, no two dials alike. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette.",
+      Bracelet: "Fully integrated, hundreds of brushed scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "Third drop · Nacre now fully allocated. Aurum and Onyx carry over from the second drop. Aventurine and Ituri are new, exclusive to this drop, on the 39mm case.",
+      Edition: "Third drop · Nacre now fully allocated. Aurum and Onyx carry over from the second drop. The 39mm dials continue as Silhouette.",
     },
     boxContents: [
       "Contour timepiece",
@@ -636,31 +633,28 @@ export const collections: Collection[] = [
     ],
     valuePerspectiveTitle: "Two ways to own it.",
     valueAnchor:
-      "€895 for the Ronda 1063, Swiss-made quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price. The 39mm dials move to the LJP D100 — a modern successor to that same Peseux/ETA 7001 family with a longer 50-hour reserve, not a higher-grade movement — so what separates €2,200 Aventurine and €5,000 Ituri from €1,950 Onyx is the dial: hand-set moissanite stone-setting on one, hand-fired gold cloisonné enamel — the studio's namesake motif — on the other.",
+      "€895 for the Ronda 1063, Swiss-made quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Dials",
       title: "Real stone. No two alike.",
-      text: "Aurum carries natural lapis lazuli, flecked with genuine gold pyrite. Onyx is a single sheet of genuine black stone, cut in the same squarcle silhouette. Aventurine pairs natural stone with hand-set moissanite baguette indices. Ituri is hand-fired gold cloisonné enamel, not printed or cast — every dial across the line is a slice of real material or real craft, so no two pieces ever come out quite the same.",
+      text: "Aurum carries natural lapis lazuli, flecked with genuine gold pyrite. Onyx is a single sheet of genuine black stone, cut in the same squarcle silhouette. Every dial across the line is a slice of real material or real craft, so no two pieces ever come out quite the same.",
     },
     testimonials: [],
     wristFit: {
-      caseDiameter: "35mm (39mm on the Aventurine and Ituri dials)",
-      thickness: "6.9mm (7.3mm on the Aventurine and Ituri dials)",
+      caseDiameter: "35mm",
+      thickness: "6.9mm",
       wristRange: "13.5–20cm (5.3–7.9\")",
-      note: "There are no traditional lugs to measure. The bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than standing off the wrist. The 39mm case follows the same logic at 7.3mm thin, on a woven-link bracelet.",
+      note: "There are no traditional lugs to measure. The bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than standing off the wrist.",
       noteExtra: "The bracelet closes with a slide adjustment clasp. Release the lock, place it exactly where your wrist wants it, and close it again. The fit is continuous rather than stepped, so there are no holes to compromise between and no links to remove. It fits wrists from around 13.5cm to 20cm (5.3\" to 7.9\").",
       image: "/images/contour-wristfit-arch.jpg",
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Contour and future editions. No noise.",
-    image: "/images/contour-ituri-closeup-v2.jpg",
+    image: "/images/contour-aurum-product-v2.jpg",
     heroImage: "/images/contour-wristfit-arch.jpg",
     detailImage: "/images/contour-onyx-product-angle2.jpg",
     galleryImages: [
-      "/images/contour-ituri-closeup-v2.jpg",
-      "/images/contour-ituri-wrist-v1.jpg",
-      "/images/contour-aventurine-closeup-v2.jpg",
       "/images/contour-aurum-product-v2.jpg",
       "/images/contour-onyx-product-angle2.jpg",
       "/images/contour-onyx-product-v2.jpg",
@@ -729,60 +723,128 @@ export const collections: Collection[] = [
           "Onyx": "/images/contour-onyx-hero-v4.jpg",
         },
       },
+    ],
+    relatedArticleSlugs: ["contour-three-drops"],
+  },
+  {
+    // Silhouette (Oct 2026): Contour's former 39mm case, now its own watch —
+    // same prices, same live Stripe prices, same stock. Aventurine's live
+    // counter is the one it had under Contour (stock:contour:
+    // hand-wound-39mm-aventurine), read via stockSlug + stockPart. Ituri is
+    // fully allocated for now (Kevin), so it deliberately has no carried-over
+    // counter — its old one still holds a stale 10.
+    //
+    // Held back (from the Contour days): an Aventurine quartz version at
+    // €1,150 (Ronda 1063, same case) — needs a real Stripe price + stock
+    // before it can be added as a variant.
+    slug: "silhouette",
+    name: "Silhouette",
+    metaTitle: "Pedral Silhouette — 39mm Integrated Bracelet, Swiss Hand-Wound | Pedral",
+    metaDescription:
+      "Silhouette: a 39mm integrated-bracelet watch on the Nyoka weave, 7.3mm thin, La Joux-Perret LJP D100 Swiss hand-wound. Aventurine with hand-set moissanite, €2,200. Stockholm-designed.",
+    tagline: "New",
+    hook: "The line, reshaped.",
+    descriptionTitle: "One continuous form.",
+    description:
+      "Silhouette carries the same idea as Contour: a case and bracelet built as one continuous form, with no break in the line from lug to crown. Here it comes in a new proportion and a new weave. 39mm in diameter and 47.5mm lug to lug, it has a larger, more present footprint than Contour, and at 7.3mm thin the slimness that defines the line carries over. Built in 316L stainless steel, with the same integrated collar fusing case to bracelet.",
+    descriptionExtra:
+      "Where Contour wears articulated scales, Silhouette moves in Nyoka, a tighter, more fluid link that catches the light in a single continuous ripple rather than a grid. The name comes from nyoka, the Lingala word for snake. The resemblance is intentional: the same logic that drew the integrated-bracelet watches of the 1970s toward reptilian textures, reworked for how we build today.",
+    designerNote:
+      "I let myself go further on a slightly larger case: Aventurine set with hand-cut moissanite, and Ituri — the studio's own Okapi motif, fired into gold enamel by hand rather than printed, named for the rainforest the animal actually comes from.",
+    year: 2026,
+    tier: "limited",
+    price: 2200,
+    stock: 10, // static fallback — live count comes from the carried-over counter
+    maxStock: 20, // 10 Aventurine + 10 Ituri, as confirmed for the third drop
+    edition: "Aventurine · Ituri",
+    badge: "New",
+    urgencyTag: "Aventurine · Pieces remaining",
+    variantLabel: "Dial",
+    reserveButtonLabel: "Pre-Order Now",
+    shipsBy: "Ships end of November",
+    extraFaqs: [
       {
-        // Third drop: new 39mm case on a woven-link bracelet, exclusive
-        // to these two dials. LJP D100 hand-wound (a modern successor to
-        // the Peseux/ETA 7001 family, not a higher grade — see
-        // valueAnchor). Each dial has its own price, same pattern as
-        // Quartz's Nacre/Aurum split. Deliberately not branded "Grande" —
-        // Kevin felt that read as too loud next to the rest of the line's
-        // understated naming (Nacre/Aurum/Onyx); plain size instead.
-        // Both dials' real Stripe price IDs are wired in. 10 pieces each,
-        // confirmed by Kevin.
-        name: "Hand-Wound — 39mm",
+        q: "How is Silhouette different from Contour?",
+        a: "Same idea — case and bracelet as one continuous form — in a larger 39mm case, 47.5mm lug to lug, on the Nyoka weave bracelet instead of Contour's articulated scales. At 7.3mm thin, it's only a touch thicker than Contour's 6.9mm.",
+      },
+      {
+        q: "Is the Ituri dial hand-painted or printed?",
+        a: "Neither — it's genuine cloisonné enamel. Thin gold wire is hand-bent into the outline of the Okapi motif, the resulting cells are filled with enamel powder, and the dial is fired in a kiln multiple times until the colour sets. It's one of the most labour-intensive techniques in watchmaking, which is why no two dials fire identically.",
+      },
+      {
+        q: "Why is it called Ituri?",
+        a: "The Ituri Rainforest, in the Democratic Republic of Congo, is the okapi's actual native habitat — the animal this dial depicts, and the studio's namesake. It felt more honest than naming the dial after the technique alone.",
+      },
+      {
+        q: "Why is it called Nyoka?",
+        a: "Nyoka is the Lingala word for snake. The weave catches the light in a single continuous ripple, the way a snake's scales do — the same instinct that drew the integrated-bracelet watches of the 1970s toward reptilian textures.",
+      },
+    ],
+    specsTitle: "The line, reshaped.",
+    specs: {
+      Price: "€2,200 Aventurine · €5,000 Ituri (fully allocated)",
+      Movement: "La Joux-Perret LJP D100 · Swiss hand-wound · 50-hour power reserve",
+      Case: "39mm · 47.5mm lug to lug · 7.3mm thin · 316L stainless steel (Ituri: gold-plated) · integrated collar fusing case to bracelet",
+      Bracelet: "Integrated, Nyoka weave",
+      Dial: "Aventurine: natural stone with hand-set moissanite baguette indices · Ituri: hand-fired gold cloisonné enamel carrying the Okapi motif",
+      Crystal: "Sapphire",
+      "Water Resist.": "5 ATM / 50 meters",
+      Warranty: "24-month international coverage",
+    },
+    boxContents: [
+      "Silhouette timepiece",
+      "Polishing cloth",
+      "24-month warranty card",
+      "A note from Kevin",
+    ],
+    valuePerspectiveTitle: "Where the price goes.",
+    valueAnchor:
+      "The LJP D100 is a modern successor to the Peseux/ETA 7001 family with a longer 50-hour reserve, not a higher-grade movement. So what sets the price is the dial: hand-set moissanite stone-setting on Aventurine, and hand-fired gold cloisonné enamel — the studio's namesake motif — on Ituri.",
+    valueComparePrice: "",
+    detailStrip: {
+      eyebrow: "The Bracelet",
+      title: "Nyoka weave.",
+      text: "A tighter, more fluid link that catches the light in a single continuous ripple rather than a grid. Named for nyoka, the Lingala word for snake — the reptilian texture the integrated-bracelet watches of the 1970s reached for, reworked for how we build today.",
+    },
+    testimonials: [],
+    wristFit: {
+      caseDiameter: "39mm",
+      thickness: "7.3mm",
+      lugToLug: "47.5mm",
+      note: "39mm in diameter and 47.5mm lug to lug: a larger, more present footprint than Contour, and at 7.3mm thin the slimness that defines the line carries over. The Nyoka weave is integrated into the case, so it follows the wrist as one continuous form.",
+    },
+    newsletterTitle: "Stay close to the studio.",
+    newsletterSub: "Updates on Silhouette and future editions. No noise.",
+    image: "/images/contour-aventurine-closeup-v2.jpg",
+    heroImage: "/images/contour-aventurine-closeup-v2.jpg",
+    heroFit: "contain",
+    detailImage: "/images/contour-ituri-wrist-v1.jpg",
+    galleryImages: [
+      "/images/contour-aventurine-closeup-v2.jpg",
+      "/images/contour-ituri-closeup-v2.jpg",
+      "/images/contour-ituri-wrist-v1.jpg",
+    ],
+    variants: [
+      {
+        name: "Aventurine",
         stripePriceId: "price_1UBz4bCfxE1lSBKRxoKbUr0w",
         stock: 10,
-        color: "Blue",
         price: 2200,
-        description: "LJP D100, Swiss hand-wound, 39mm case on a woven-link bracelet. Aventurine, natural stone with hand-set moissanite baguette indices — or Ituri, a hand-fired gold cloisonné enamel dial carrying the Okapi motif.",
+        stockSlug: "contour",
+        stockPart: "hand-wound-39mm-aventurine",
+        color: "Blue",
+        description: "Natural aventurine stone with hand-set moissanite baguette indices. LJP D100, Swiss hand-wound.",
         image: "/images/contour-aventurine-closeup-v2.jpg",
-        heroImage: "/images/contour-aventurine-closeup-v2.jpg",
-        numeralOptions: ["Aventurine", "Ituri"],
-        soldOutNumerals: ["Ituri"],
-        numeralStock: { "Aventurine": 10, "Ituri": 0 },
-        numeralImages: {
-          "Aventurine": "/images/contour-aventurine-closeup-v2.jpg",
-          "Ituri": "/images/contour-ituri-closeup-v2.jpg",
-        },
-        numeralPriceIds: {
-          "Aventurine": "price_1UBz4bCfxE1lSBKRxoKbUr0w",
-          "Ituri": "price_1UBz7uCfxE1lSBKRLZGUEFVq",
-        },
-        numeralPrices: {
-          "Ituri": 5000,
-        },
       },
-      // Aventurine also comes in Ronda 1063 quartz — same 39mm/7.3mm case
-      // and moissanite-set dial as the hand-wound version, just the
-      // simpler movement. Ituri stays hand-wound-only (Kevin's call —
-      // cloisonné enamel doesn't get a quartz option). Priced by
-      // subtracting the line's standing quartz-vs-hand-wound movement
-      // premium (€1,055, from Onyx €1,950 vs Nacre €895) off the
-      // hand-wound Aventurine price: €2,200 − €1,055 ≈ €1,145, rounded
-      // to €1,150. Held back from this push — Kevin wants hand-wound
-      // live first — and still needs a real Stripe price ID + confirmed
-      // stock count before it ships. Re-add this object to the variants
-      // array above to bring it live:
-      // {
-      //   name: "Quartz — 39mm",
-      //   stripePriceId: "price_TODO_CONTOUR_39MM_QUARTZ_AVENTURINE",
-      //   stock: 10,
-      //   color: "Blue",
-      //   price: 1150,
-      //   description: "Ronda 1063, Swiss-made quartz, 39mm case on a woven-link bracelet. Aventurine, natural stone with hand-set moissanite baguette indices.",
-      //   image: "/images/contour-aventurine-closeup-v2.jpg",
-      //   heroImage: "/images/contour-aventurine-closeup-v2.jpg",
-      // },
+      {
+        name: "Ituri",
+        stripePriceId: "price_1UBz7uCfxE1lSBKRLZGUEFVq",
+        stock: 0, // fully allocated for now (Kevin, Oct 2026)
+        price: 5000,
+        color: "Gold",
+        description: "Hand-fired gold cloisonné enamel carrying the studio's Okapi motif, on a gold-plated case. Named for the Ituri Rainforest, the okapi's native habitat.",
+        image: "/images/contour-ituri-closeup-v2.jpg",
+      },
     ],
     relatedArticleSlugs: ["contour-three-drops"],
   },

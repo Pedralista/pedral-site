@@ -107,13 +107,14 @@ export function resolveStockTargets(
   );
   if (!variant) return targets;
 
-  targets.push({ part: slugifyPart(variant.name), fallback: variant.stock, slug: variant.stockSlug });
+  const variantPart = variant.stockPart ?? slugifyPart(variant.name);
+  targets.push({ part: variantPart, fallback: variant.stock, slug: variant.stockSlug });
 
   if (variant.numeralOptions && variant.numeralStock) {
     const dial = variant.numeralOptions.find((opt) => variantName.endsWith(opt));
     if (dial && variant.numeralStock[dial] !== undefined) {
       targets.push({
-        part: `${slugifyPart(variant.name)}-${slugifyPart(dial)}`,
+        part: `${variantPart}-${slugifyPart(dial)}`,
         fallback: variant.numeralStock[dial],
         slug: variant.stockSlug,
       });

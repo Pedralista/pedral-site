@@ -65,6 +65,12 @@ const nextConfig: NextConfig = {
         destination: "/collections/maestro/:variant",
         permanent: true,
       },
+      // Contour's 39mm variant became Silhouette (Oct 2026).
+      {
+        source: "/collections/contour/hand-wound-%E2%80%94-39mm",
+        destination: "/collections/silhouette",
+        permanent: true,
+      },
     ];
   },
   async headers() {

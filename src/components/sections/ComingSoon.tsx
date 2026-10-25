@@ -13,11 +13,11 @@ const upcoming = [
     href: "/collections/etiquette",
   },
   {
-    label: "Contour",
-    title: "A larger case. New craft.",
-    desc: "Contour continues — same integrated-bracelet idea, now also in 39mm. Aventurine, hand-set with moissanite. Ituri, hand-fired gold cloisonné. 140 pieces, across three drops.",
-    eta: "Available Now · From €2,200",
-    href: "/collections/contour",
+    label: "Silhouette · New",
+    title: "The line, reshaped.",
+    desc: "Contour's idea in a new proportion: 39mm, 7.3mm thin, on the Nyoka weave. Aventurine, hand-set with moissanite. LJP D100, Swiss hand-wound.",
+    eta: "Available Now · €2,200",
+    href: "/collections/silhouette",
   },
   {
     label: "Triomphe",
