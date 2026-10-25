@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { rateLimit, getIp } from "@/lib/rateLimit";
 import { collections } from "@/lib/collections";
+import { findCommunityCode } from "@/lib/community-codes";
 import {
   addOnsEnabledFor,
   getStrapAddon,
@@ -55,6 +56,14 @@ const PROMO_CODE_PRICE_IDS = new Set([
   "price_1UUPTrCfxE1lSBKRy4L1h1fg", // Ekushey
   "price_1UUPNOCfxE1lSBKR7Zr4TfjN", // Sondhya
 ]);
+
+// Stripe coupon per community code (keyed by the code's hash — see
+// src/lib/community-codes.ts). Applied server-side as `discounts`.
+const COMMUNITY_COUPONS: Record<string, string> = {
+  "8b7d8690eff4cbfafd8934a5c5e3e5d824511b75cbdc9ea501637abf27cefb34": "2Y0NU7KX", // Hebrew · Japanese, €150 off
+  "67076ba311b797ce5bccb86dd16ee65580df2996a2c6c8eab44d60f329bcc854": "o6bSjdo1", // Hebrew · Swiss, €300 off
+  "2e20d2dd7e7a19389cc7f6d8d985bb739fd1b9736de5da981737a99aeea576ea": "dS6NsWUL", // Bangla, €150 off
+};
 
 const ALLOWED_ORIGINS = new Set(["https://pedral.eu", "https://www.pedral.eu", "https://pedral.watch", "https://www.pedral.watch"]);
 // Generous ceilings for a low-SKU microbrand catalogue — just abuse guards,
@@ -222,7 +231,7 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Legacy single-item checkout (unchanged) ─────────────────────────────────
-  const { priceId, productName, variantName, isPreOrder, addOns } = body;
+  const { priceId, productName, variantName, isPreOrder, addOns, communityCode } = body;
 
   if (!priceId || !productName) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -233,6 +242,17 @@ export async function POST(req: NextRequest) {
   }
 
   const addOnLineItems = buildAddOnLineItems(productName, addOns);
+
+  // Community code typed on the product page — re-checked here (expiry and
+  // which watch it's for) before the coupon is applied.
+  let communityCoupon: string | undefined;
+  if (typeof communityCode === "string" && communityCode.trim()) {
+    const entry = await findCommunityCode(communityCode);
+    if (!entry || !entry.priceIds.includes(priceId)) {
+      return NextResponse.json({ error: "This code isn't valid for this watch." }, { status: 400 });
+    }
+    communityCoupon = COMMUNITY_COUPONS[entry.hash];
+  }
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
@@ -253,7 +273,11 @@ export async function POST(req: NextRequest) {
         "US", "CA", "AU", "JP", "SG", "AE", "SA",
       ],
     },
-    ...((priceId === "price_1TEVYOCfxE1lSBKRdzi2pJsj" || PROMO_CODE_PRICE_IDS.has(priceId)) && { allow_promotion_codes: true }),
+    // A community code applies its coupon directly; otherwise show Stripe's
+    // own code box (the two can't be combined).
+    ...(communityCoupon
+      ? { discounts: [{ coupon: communityCoupon }] }
+      : (priceId === "price_1TEVYOCfxE1lSBKRdzi2pJsj" || PROMO_CODE_PRICE_IDS.has(priceId)) && { allow_promotion_codes: true }),
     // See the cart branch: codes only validate with the session kept in EUR.
     ...(PROMO_CODE_PRICE_IDS.has(priceId) && { adaptive_pricing: { enabled: false } }),
     phone_number_collection: { enabled: true },

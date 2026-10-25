@@ -123,6 +123,8 @@ export interface Collection {
   standalone?: boolean; // true = fully live (page, sitemap, feed) but excluded from the /collections grid and homepage showcase — e.g. a one-off capsule reached only via its own direct link
   /** Keep out of /feed.xml (Meta / Google Shopping catalogue) — e.g. the Étiquette numeral editions, reachable only by direct link. */
   excludeFromFeed?: boolean;
+  /** Show a "Community code" box by the buy button (see src/lib/community-codes.ts). */
+  communityCodes?: boolean;
   hidePriceOnCard?: boolean;
   variantLabel?: string;
   valuePerspectiveTitle?: string;
@@ -1074,6 +1076,7 @@ export const collections: Collection[] = [
     variantLabel: "Dial",
     numeralOptionsLabel: "Movement",
     standalone: true,
+    communityCodes: true,
     excludeFromFeed: true, // Kevin: not in the Instagram/Google catalogue
     nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
     reassurance: [
@@ -1327,6 +1330,7 @@ export const collections: Collection[] = [
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
     standalone: true,
+    communityCodes: true,
     excludeFromFeed: true, // Kevin: not in the Instagram/Google catalogue
     nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
     reassurance: [

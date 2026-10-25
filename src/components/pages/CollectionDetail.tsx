@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
+import { findCommunityCode, normalizeCode, type CommunityCode } from "@/lib/community-codes";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
@@ -91,10 +92,30 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   // The price actually shown/charged: a numeral/dial choice with its own
   // numeralPrices entry overrides the variant's base price (e.g. Aurum's
   // gold-plated case costs more than Nacre despite sharing the Quartz variant).
-  const effectivePrice =
+  const listPrice =
     (selectedNumeral ? selectedVariant?.numeralPrices?.[selectedNumeral] : undefined) ??
     selectedVariant?.price ??
     c.price;
+  // Community code (Hebrew / Bangla pages): the discount only counts when the
+  // code is for the selected watch — the checkout route re-checks it.
+  const [codeInput, setCodeInput] = useState("");
+  const [codeOpen, setCodeOpen] = useState(false);
+  const [appliedCode, setAppliedCode] = useState<{ code: string; entry: CommunityCode } | null>(null);
+  const [codeError, setCodeError] = useState<string | null>(null);
+  const codeDiscount =
+    appliedCode && effectivePriceId && appliedCode.entry.priceIds.includes(effectivePriceId)
+      ? appliedCode.entry.amountOff
+      : 0;
+  const effectivePrice = listPrice - codeDiscount;
+  async function applyCode() {
+    setCodeError(null);
+    const entry = await findCommunityCode(codeInput);
+    if (!entry) {
+      setCodeError("This code isn't valid.");
+      return;
+    }
+    setAppliedCode({ code: normalizeCode(codeInput), entry });
+  }
   const selectedVariantImage =
     (selectedNumeral && selectedVariant?.numeralImages?.[selectedNumeral]) ||
     selectedVariant?.image;
@@ -234,6 +255,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   // deposit rather than the item's real price, which doesn't compose with a
   // multi-item Stripe session the way a normal priced line item does.
   const canAddToCart =
+    !codeDiscount &&
     !c.isEnquiryOnly &&
     !c.isPreOrder &&
     !isSoldOut &&
@@ -329,6 +351,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           productName: c.name,
           variantName: selectionLabel,
           isPreOrder: c.nonRefundable ?? false,
+          ...(codeDiscount && appliedCode ? { communityCode: appliedCode.code } : {}),
           ...(addOnsActive && (selectedStrapSlug || engravingActive)
             ? {
                 addOns: {
@@ -1131,7 +1154,58 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 )}
                 <p className="mt-1 font-serif text-[22px] font-light text-foreground">
                   &euro;{runningTotal.toLocaleString()}
+                  {codeDiscount > 0 && (
+                    <span className="ml-3 text-[16px] text-foreground-muted/50 line-through">
+                      &euro;{(listPrice + addOnsTotal).toLocaleString()}
+                    </span>
+                  )}
                 </p>
+                {c.communityCodes && (
+                  <div className="mt-3">
+                    {appliedCode ? (
+                      <p className="text-[15px] font-light tracking-[0.5px] text-accent">
+                        {codeDiscount > 0
+                          ? `Code ${appliedCode.code} applied · €${codeDiscount.toLocaleString()} off`
+                          : `Code ${appliedCode.code} doesn't apply to this selection`}
+                        <button
+                          type="button"
+                          onClick={() => { setAppliedCode(null); setCodeInput(""); }}
+                          className="ml-3 text-foreground-muted/60 underline underline-offset-4 hover:text-foreground"
+                        >
+                          Remove
+                        </button>
+                      </p>
+                    ) : codeOpen ? (
+                      <form
+                        onSubmit={(e) => { e.preventDefault(); applyCode(); }}
+                        className="flex max-w-[320px] gap-2"
+                      >
+                        <input
+                          value={codeInput}
+                          onChange={(e) => setCodeInput(e.target.value)}
+                          placeholder="Community code"
+                          autoCapitalize="characters"
+                          className="min-w-0 flex-1 rounded-lg border border-accent/20 bg-transparent px-3 py-2 text-[14px] tracking-[1px] text-foreground placeholder:text-foreground-muted/40 focus:border-accent focus:outline-none"
+                        />
+                        <button
+                          type="submit"
+                          className="rounded-lg border border-accent/30 px-4 py-2 text-[11px] font-medium tracking-[2px] uppercase text-accent transition-colors hover:bg-accent hover:text-background"
+                        >
+                          Apply
+                        </button>
+                      </form>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setCodeOpen(true)}
+                        className="text-[14px] font-light tracking-[0.5px] text-foreground-muted/70 underline underline-offset-4 hover:text-accent"
+                      >
+                        Have a community code?
+                      </button>
+                    )}
+                    {codeError && <p className="mt-1.5 text-[14px] text-red-400/90">{codeError}</p>}
+                  </div>
+                )}
                 {addOnsActive && addOnsTotal > 0 && (
                   <p className="mt-1 text-[15px] font-light tracking-[0.5px] text-foreground-muted/60 sm:text-[15px]">
                     €{(effectivePrice).toLocaleString()} watch
