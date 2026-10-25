@@ -99,7 +99,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     (selectedNumeral && selectedVariant?.numeralImages?.[selectedNumeral]) ||
     selectedVariant?.image;
   // What the order records (Stripe metadata, cart line, stock decrement),
-  // e.g. "Soirée · Automatic".
+  // e.g. "Soirée · Japanese Hand-Wound".
   const selectionLabel = selectedVariant?.numeralOptions
     ? `${selectedVariant.name} · ${selectedNumeral}`
     : selectedVariant?.name ?? "";
@@ -1443,12 +1443,19 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
       {(() => {
         const images = c.galleryImages && c.galleryImages.length > 0 ? c.galleryImages : [null, null, null];
         const cols = images.length;
+        // On "contain" products (studio renders on black), show the watch
+        // renders whole instead of cropping off the top/bottom of the case;
+        // other shots (e.g. the movement photo) still fill their panel.
+        const productShots = new Set(
+          [c.image, c.heroImage, ...(c.variants ?? []).flatMap((v) => [v.image, v.heroImage])].filter(Boolean)
+        );
+        const containShot = (src: string) => c.heroFit === "contain" && productShots.has(src);
         return (
           <>
             {/* Mobile: horizontal scroll */}
             <section className="flex gap-[2px] overflow-x-auto snap-x snap-mandatory scrollbar-none md:hidden">
               {images.map((src, i) => {
-                const isWide = false;
+                const isWide = !!src && containShot(src);
                 return (
                   <div key={i} className="relative h-[280px] w-[80vw] shrink-0 snap-start overflow-hidden bg-[#060a0b]">
                     {src ? (
@@ -1465,7 +1472,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             {/* Desktop: 5-panel grid */}
             <section className="hidden gap-[2px] md:grid" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
               {images.map((src, i) => {
-                const isWide = false;
+                const isWide = !!src && containShot(src);
                 return (
                   <div key={i} className="relative h-[380px] w-full overflow-hidden group bg-[#060a0b]">
                     {src ? (

@@ -31,11 +31,21 @@ export function generateStaticParams() {
     );
 }
 
+// Accented dial names (Soirée, Émeraude Vert) arrive percent-encoded
+// ("soir%C3%A9e"), so decode before comparing — otherwise those links 404.
+function decodeVariantSlug(raw: string) {
+  try {
+    return decodeURIComponent(raw).normalize("NFC");
+  } catch {
+    return raw;
+  }
+}
+
 function findVariant(slug: string, variantSlug: string) {
   const collection = getCollection(slug);
   if (!collection) return null;
   const variant = collection.variants?.find(
-    (v) => v.name.toLowerCase().replace(/\s+/g, "-") === variantSlug
+    (v) => v.name.toLowerCase().replace(/\s+/g, "-").normalize("NFC") === variantSlug
   );
   if (!variant) return null;
   return { collection, variant };
@@ -46,7 +56,8 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string; variant: string }>;
 }): Promise<Metadata> {
-  const { slug, variant: variantSlug } = await params;
+  const { slug, variant: rawVariantSlug } = await params;
+  const variantSlug = decodeVariantSlug(rawVariantSlug);
   const match = findVariant(slug, variantSlug);
   if (!match) return { title: "Not Found" };
   const { collection, variant } = match;
@@ -81,7 +92,8 @@ export default async function CollectionVariantPage({
 }: {
   params: Promise<{ slug: string; variant: string }>;
 }) {
-  const { slug, variant: variantSlug } = await params;
+  const { slug, variant: rawVariantSlug } = await params;
+  const variantSlug = decodeVariantSlug(rawVariantSlug);
   const staticMatch = findVariant(slug, variantSlug);
   if (!staticMatch || isHidden(staticMatch.collection)) notFound();
   const { collection: staticCollection } = staticMatch;
@@ -116,7 +128,7 @@ export default async function CollectionVariantPage({
   const liveBase = liveVariants.reduce((sum, v) => sum + v.stock, 0);
   const collection = { ...staticCollection, stock: liveBase, variants: liveVariants };
   const variant = collection.variants!.find(
-    (v) => v.name.toLowerCase().replace(/\s+/g, "-") === variantSlug
+    (v) => v.name.toLowerCase().replace(/\s+/g, "-").normalize("NFC") === variantSlug
   )!;
 
   return (

@@ -912,7 +912,7 @@ export const collections: Collection[] = [
       Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D100, 50-hour power reserve",
       Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
-      Dial: "Pedral signature inner dial frame · Soirée (black onyx) and Bourgogne: custom distorted Roman numerals · Nocturne (black onyx) and Ambiance: musical-note indices · Famille (purple) reserved for existing owners",
+      Dial: "Pedral signature inner dial frame · Soirée (black onyx, gold numerals) and Bourgogne: custom distorted Roman numerals · Nocturne (black onyx) and Ambiance: musical-note indices · Famille (purple) reserved for existing owners",
       Hands: "Polished dress-watch hands",
       Crown: "Pedral signature geodesic crown",
       Crystal: "Sapphire with anti-reflective coating",
@@ -952,12 +952,12 @@ export const collections: Collection[] = [
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
     newsletterSub: "Prototype updates and studio news. No noise.",
-    image: "/images/etiquette-soiree.jpg",
+    image: "/images/etiquette-soiree-gold.jpg",
     heroImage: "/images/etiquette-bourgogne.jpg",
     heroFit: "contain",
-    detailImage: "/images/etiquette-soiree.jpg",
+    detailImage: "/images/etiquette-soiree-gold.jpg",
     galleryImages: [
-      "/images/etiquette-soiree.jpg",
+      "/images/etiquette-soiree-gold.jpg",
       "/images/etiquette-bourgogne.jpg",
       "/images/etiquette-nocturne.jpg",
       "/images/etiquette-ambiance.jpg",
@@ -968,9 +968,9 @@ export const collections: Collection[] = [
         stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
         stock: 5,
         price: 1100,
-        description: "Black onyx dial, custom distorted Roman numerals in silver. The black-tie one.",
-        image: "/images/etiquette-soiree.jpg",
-        heroImage: "/images/etiquette-soiree.jpg",
+        description: "Black onyx dial, custom distorted Roman numerals and hands in gold. The black-tie one.",
+        image: "/images/etiquette-soiree-gold.jpg",
+        heroImage: "/images/etiquette-soiree-gold.jpg",
         numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {
@@ -1293,12 +1293,12 @@ export const collections: Collection[] = [
     name: "Étiquette Bangla",
     metaTitle: "Pedral Étiquette Bangla — Bangla (Bengali) Numeral Dress Watch, Edition of 10 | Pedral",
     metaDescription:
-      "Étiquette Bangla: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Bangla (Bengali) numerals on a lacquered dial in green and red, or saffron and green. For Bangladesh, India and beyond. Edition of 10, made to order. Modified Miyota 9015, hand-wound, €1,100.",
+      "Étiquette Bangla: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Bangla (Bengali) numerals on a lacquered dial in green and red, or black onyx and gold. For Bangladesh, India and beyond. Edition of 10, made to order. Modified Miyota 9015, hand-wound, €1,100.",
     tagline: "Pre-order · Made to order",
     hook: "Good taste. Spoken in Bangla.",
     descriptionTitle: "The same rules. A different alphabet.",
     description:
-      "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition tells the time in Bangla (Bengali) numerals. Custom numerals, familiar yet deliberately distorted, sweep in silver across a lacquered dial — green with a red centre, or saffron with a green centre — held by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, the case is slim, elegant and slightly eccentric.",
+      "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition tells the time in Bangla (Bengali) numerals. Custom numerals, familiar yet deliberately distorted, sweep across a lacquered dial — in silver on green with a red centre, or in gold on black onyx — held by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, the case is slim, elegant and slightly eccentric.",
     descriptionExtra:
       "Ten pieces, made to order. For those who grew up counting in Bangla — in Bangladesh, in West Bengal, Tripura and Assam, or a long way from any of them. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
     designerNote:
@@ -1306,7 +1306,7 @@ export const collections: Collection[] = [
     year: 2026,
     tier: "limited",
     price: 1100,
-    stock: 10, // 5 Ekushey + 5 Unishe
+    stock: 10, // 5 Ekushey + 5 Sondhya
     maxStock: 10,
     edition: "Bangla numerals",
     badge: "Edition of 10",
@@ -1323,13 +1323,13 @@ export const collections: Collection[] = [
       "Tracked & insured shipping",
     ],
     story: {
-      eyebrow: "The Script",
+      eyebrow: "The Story",
       title: "Counted in Bangla.",
       paragraphs: [
+        "Across several releases, some of Pedral's most loyal support has come from the Indian and Bengali community — in India, in Bangladesh and far beyond. After the Triomphe found its audience in Eastern Arabic and Hebrew numerals, the same question started arriving from them: when would there be one in Bangla? I've always been fascinated by Bengal — its language, its literature, its art — so the answer was never really in doubt. This watch is for the people who asked for it.",
         "Bangla is spoken by more than 250 million people — in Bangladesh, where it is the national language, and across India, where it is an official language of West Bengal and Tripura, is spoken throughout Assam's Barak Valley, and is one of the country's 22 scheduled languages. Few scripts are read by more people every day. Almost none of them have ever appeared on a fine watch.",
-        "It is a language that has shaped the world's culture. Rabindranath Tagore wrote in Bangla, became the first non-European to win the Nobel Prize in Literature in 1913, and wrote the national anthems of both India and Bangladesh. Kolkata gave the world the films of Satyajit Ray, generations of poets, painters and musicians, and Durga Puja — now recognised by UNESCO as intangible cultural heritage.",
-        "And it is a language people have fought to keep. On 21 February 1952 — Ekushey, the twenty-first — students in Dhaka gave their lives defending the right to speak it; that day is now marked around the world as International Mother Language Day. On 19 May 1961 — Unishe, the nineteenth — eleven people were killed in Silchar, in Assam's Barak Valley, demanding that Bengali be recognised there too. They won. Both days are remembered every year.",
-        "The numerals themselves descend from the same ancient Indian numerals that gave the world the decimal place-value system — the counting every watch dial quietly relies on. Étiquette Bangla brings them back to the dial, in two editions named for those two days: Ekushey, in green and red, and Unishe, in saffron and green. One script, shared across a border. Ten pieces, made to order.",
+        "It is a language that has shaped the world's culture. Rabindranath Tagore wrote in Bangla, became the first non-European to win the Nobel Prize in Literature in 1913, and wrote the songs that became the national anthems of both India and Bangladesh. Kolkata gave the world the films of Satyajit Ray, generations of poets, painters and musicians, and Durga Puja — now recognised by UNESCO as intangible cultural heritage. And every 21 February — Ekushey — the whole world celebrates International Mother Language Day, a day that began with Bangla.",
+        "The numerals themselves descend from the same ancient Indian numerals that gave the world the decimal place-value system — the counting every watch dial quietly relies on. Étiquette Bangla brings them back to the dial, in two versions: Ekushey, in green and red, and Sondhya — evening — in black onyx and gold. Ten pieces, made to order.",
       ],
     },
     specsTitle: "Not for everyone.",
@@ -1338,7 +1338,7 @@ export const collections: Collection[] = [
       Movement: "Pedral-modified Miyota 9015 · Converted from automatic to hand-wound · Rectangular movement, 27 × 20.6 × 3.5mm · Hours and minutes",
       Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
-      Dial: "Lacquered · Green with a red centre, or saffron with a green centre · Custom distorted Bangla numerals in silver · Pedral signature inner dial frame",
+      Dial: "Lacquered · Ekushey: green with a red centre, Bangla numerals in silver · Sondhya: black onyx, Bangla numerals and hands in gold · Custom distorted numerals · Pedral signature inner dial frame",
       Hands: "Polished dress-watch hands",
       Crown: "Pedral signature geodesic crown",
       Crystal: "Sapphire with anti-reflective coating",
@@ -1379,7 +1379,7 @@ export const collections: Collection[] = [
       },
       {
         q: "Why Bangla numerals?",
-        a: "Because the numerals on a dial can carry something of who you are. Bangla numerals — also called Bengali numerals — are read every day by hundreds of millions of people in Bangladesh and India, from Dhaka to Kolkata, Agartala and Assam, and across the diaspora. Yet they almost never appear on a fine watch. Ten pieces only, made to order.",
+        a: "Because you asked. The Indian and Bengali community has supported Pedral across several releases, and after the Triomphe's Eastern Arabic and Hebrew numeral editions, many of you asked for a watch in your own numerals. Bangla numerals — also called Bengali numerals — are read every day by hundreds of millions of people in Bangladesh and India, from Dhaka to Kolkata, Agartala and Assam, and across the diaspora. Yet they almost never appear on a fine watch. Ten pieces only, made to order.",
       },
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
@@ -1388,25 +1388,25 @@ export const collections: Collection[] = [
     heroImage: "/images/etiquette-bangla.jpg",
     heroFit: "contain",
     detailImage: "/images/etiquette-movement.jpg",
-    galleryImages: ["/images/etiquette-bangla.jpg", "/images/etiquette-movement.jpg", "/images/etiquette-bangla-saffron.jpg"],
+    galleryImages: ["/images/etiquette-bangla.jpg", "/images/etiquette-movement.jpg", "/images/etiquette-bangla-unishe.jpg"],
     variants: [
       {
         name: "Ekushey",
         stripePriceId: "", // TODO: Stripe price (€1,100) — Pre-order stays disabled until filled
         stock: 5,
         price: 1100,
-        description: "Ekushey — the twenty-first: 21 February 1952, Dhaka. Lacquered green dial with a red centre and custom distorted Bangla numerals in silver.",
+        description: "Ekushey — twenty-one, in Bangla. Lacquered green dial with a red centre and custom distorted Bangla numerals in silver.",
         image: "/images/etiquette-bangla.jpg",
         heroImage: "/images/etiquette-bangla.jpg",
       },
       {
-        name: "Unishe",
+        name: "Sondhya",
         stripePriceId: "", // TODO: Stripe price (€1,100) — Pre-order stays disabled until filled
         stock: 5,
         price: 1100,
-        description: "Unishe — the nineteenth: 19 May 1961, Silchar. Lacquered saffron dial with a green centre and custom distorted Bangla numerals in silver.",
-        image: "/images/etiquette-bangla-saffron.jpg",
-        heroImage: "/images/etiquette-bangla-saffron.jpg",
+        description: "Sondhya — evening, in Bangla. Lacquered black onyx dial with custom distorted Bangla numerals and hands in gold.",
+        image: "/images/etiquette-bangla-unishe.jpg",
+        heroImage: "/images/etiquette-bangla-unishe.jpg",
       },
     ],
   },
