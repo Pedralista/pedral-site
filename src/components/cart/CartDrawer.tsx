@@ -230,7 +230,6 @@ export default function CartDrawer() {
         <PreOrderModal
           clientSecret={clientSecret}
           collectionName={count === 1 ? lines[0]?.productName ?? "Your order" : `Your order · ${count} items`}
-          price={subtotal}
           onClose={() => setClientSecret(null)}
         />
       )}

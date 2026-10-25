@@ -2060,7 +2060,6 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           collectionName={c.name}
           isPreOrder={c.isPreOrder}
           depositAmount={c.depositAmount ?? 500}
-          price={runningTotal}
           onClose={() => setClientSecret(null)}
         />
       )}

@@ -10,7 +10,6 @@ interface PreOrderModalProps {
   clientSecret: string;
   collectionName: string;
   depositAmount?: number;
-  price?: number;
   isPreOrder?: boolean;
   onClose: () => void;
 }
@@ -19,7 +18,6 @@ export default function PreOrderModal({
   clientSecret,
   collectionName,
   depositAmount,
-  price,
   isPreOrder = false,
   onClose,
 }: PreOrderModalProps) {
@@ -55,7 +53,9 @@ export default function PreOrderModal({
               {isPreOrder ? "Reserve your place" : "Complete your order"}
             </p>
             <p className="text-[16px] font-medium text-gray-800">
-              {collectionName} — {isPreOrder ? `€${depositAmount} deposit` : `€${price?.toLocaleString()}`}
+              {/* No price for normal orders: a discount code entered in Stripe below
+                  changes the total, and this line can't follow it. */}
+              {isPreOrder ? `${collectionName} — €${depositAmount} deposit` : collectionName}
             </p>
           </div>
           <button
