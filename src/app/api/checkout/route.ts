@@ -27,13 +27,13 @@ const VALID_PRICE_IDS = new Set([
   "price_1TyJgICfxE1lSBKRRyl9DzAp", // Contour × Seconds Society — Sodalite (€895)
   "price_1UBz4bCfxE1lSBKRxoKbUr0w", // Silhouette — Aventurine (€2,200), formerly Contour 39mm
   "price_1UBz7uCfxE1lSBKRLZGUEFVq", // Silhouette — Ituri (€5,000), formerly Contour 39mm
-  "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Automatic (€1,100)
+  "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Japanese Hand-Wound (€1,100)
   "price_1UUF2bCfxE1lSBKRY27YyEDf", // Étiquette — Soirée · Swiss Hand-Wound (€1,800)
-  "price_1UUF4ACfxE1lSBKRaBgmkl77", // Étiquette — Bourgogne · Automatic (€1,100)
+  "price_1UUF4ACfxE1lSBKRaBgmkl77", // Étiquette — Bourgogne · Japanese Hand-Wound (€1,100)
   "price_1UUF5hCfxE1lSBKRu70dLbhe", // Étiquette — Bourgogne · Swiss Hand-Wound (€1,800)
-  "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Automatic (€1,100)
+  "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Japanese Hand-Wound (€1,100)
   "price_1UUF8YCfxE1lSBKRMREPi5B7", // Étiquette — Nocturne · Swiss Hand-Wound (€1,800)
-  "price_1UUFARCfxE1lSBKREzsyJnrM", // Étiquette — Ambiance · Automatic (€1,100)
+  "price_1UUFARCfxE1lSBKREzsyJnrM", // Étiquette — Ambiance · Japanese Hand-Wound (€1,100)
   "price_1UUFCICfxE1lSBKRHBF1I95p", // Étiquette — Ambiance · Swiss Hand-Wound (€1,800)
 ]);
 

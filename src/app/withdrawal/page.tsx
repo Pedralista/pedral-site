@@ -71,7 +71,8 @@ export default function WithdrawalPage() {
       <h2>Exceptions</h2>
       <p>
         The right of withdrawal does <strong>NOT</strong> apply to: made-to-order Triomphe Hebrew
-        and Eastern Arabic numeral editions produced specifically for the buyer (Art. 16(c) — goods
+        and Eastern Arabic numeral editions, and Étiquette Hebrew, Eastern Arabic and Bangla numeral
+        editions, produced specifically for the buyer (Art. 16(c) — goods
         made to the consumer&apos;s specifications). You will be clearly informed at checkout
         before purchase if this exception applies.
       </p>

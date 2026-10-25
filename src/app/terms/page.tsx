@@ -137,7 +137,8 @@ export default function TermsPage() {
       <p>
         Goods made to your personal specifications are exempt from the right of withdrawal under
         Art. 16(c) of the Consumer Rights Directive. This applies only to: Triomphe custom Hebrew
-        and Eastern Arabic numeral editions produced specifically for the buyer. You will be
+        and Eastern Arabic numeral editions, and Étiquette Hebrew, Eastern Arabic and Bangla
+        numeral editions, produced specifically for the buyer. You will be
         clearly informed at checkout if this exception applies to your order.
       </p>
       <p>

@@ -38,6 +38,8 @@ export async function GET() {
   for (const c of collections.filter((col) => !isHidden(col) && !col.isEnquiryOnly)) {
     if (c.variants && c.variants.length > 0) {
       for (const v of c.variants) {
+        // Skip dials that can't be bought yet (no Stripe price filled in).
+        if (!v.stripePriceId && !Object.values(v.numeralPriceIds ?? {}).some(Boolean)) continue;
         const variantSlug = v.name.toLowerCase().replace(/\s+/g, "-");
         const id = `${c.slug}-${variantSlug}`;
         const price = v.price ?? c.price;

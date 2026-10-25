@@ -8,7 +8,7 @@ const upcoming = [
   {
     label: "Étiquette · New Model",
     title: "Good taste. Questionable manners.",
-    desc: "The rectangular dress watch, reimagined — 27 × 43.7mm on the golden ratio, 7.7mm max, concentric CNC-machined grooves, Roman numerals or musical notes. Miyota automatic or Swiss LJP D100 hand-wound. The purple dial is reserved for existing owners: ten pieces, no public allocation.",
+    desc: "The rectangular dress watch, reimagined — 27 × 43.7mm on the golden ratio, 7.7mm max, concentric CNC-machined grooves, Roman numerals or musical notes. Hand-wound — a modified Japanese Miyota or the Swiss LJP D100. The purple dial is reserved for existing owners: ten pieces, no public allocation.",
     eta: "Pre-order Open · From €1,100",
     href: "/collections/etiquette",
   },

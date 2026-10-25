@@ -39,7 +39,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "What's the return policy?",
-    a: "Standard editions can be returned within 14 days of delivery, no questions asked, with a prepaid return label. Made-to-order variants — the Triomphe Hebrew and Eastern Arabic numeral editions — are produced to individual specification and cannot be returned, per the EU Consumer Rights Directive's custom-goods exemption.",
+    a: "Standard editions can be returned within 14 days of delivery, no questions asked, with a prepaid return label. Made-to-order variants — the Triomphe Hebrew and Eastern Arabic numeral editions, and the Étiquette Hebrew, Eastern Arabic and Bangla numeral editions — are produced to individual specification and cannot be returned, per the EU Consumer Rights Directive's custom-goods exemption.",
   },
   {
     q: "What warranty comes with a Pedral watch?",
@@ -111,8 +111,8 @@ export default function FaqPage() {
           free.
         </p>
         <p>
-          Made-to-order variants — the Triomphe Hebrew and Eastern Arabic numeral editions — are
-          produced to your individual specification and cannot be returned, under the EU
+          Made-to-order variants — the Triomphe Hebrew and Eastern Arabic numeral editions, and the
+          Étiquette Hebrew, Eastern Arabic and Bangla numeral editions — are produced to your individual specification and cannot be returned, under the EU
           Consumer Rights Directive&apos;s custom-goods exemption. You&apos;ll always be told
           before purchase if this exception applies. Full policy on the{" "}
           <a href="/returns">Returns &amp; Refunds</a> page.

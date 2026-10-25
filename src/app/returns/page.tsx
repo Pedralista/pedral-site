@@ -63,6 +63,9 @@ export default function ReturnsPage() {
       <ul>
         <li>Triomphe Hebrew numeral edition (made-to-order)</li>
         <li>Triomphe Eastern Arabic numeral edition (made-to-order)</li>
+        <li>Étiquette Hebrew numeral edition (made-to-order)</li>
+        <li>Étiquette Eastern Arabic numeral edition (made-to-order)</li>
+        <li>Étiquette Bangla numeral edition (made-to-order)</li>
       </ul>
       <p>
         You will be clearly informed before purchase if this exception applies. All other editions —

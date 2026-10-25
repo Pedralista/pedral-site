@@ -600,7 +600,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 <div className={`flex flex-col gap-3 sm:flex-row sm:items-center ${c.heroFit === "contain" ? "sm:justify-center" : ""}`}>
                   <button
                     onClick={handleReserve}
-                    disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                    disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                     className="w-full rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
                   >
                     {loading
@@ -834,7 +834,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       if (isSoldOutVariant) return;
                       setSelectedVariant(v);
                       // Keep the current sub-choice when the new variant offers it too
-                      // (e.g. Étiquette: switching dial keeps "Automatic"), so the
+                      // (e.g. Étiquette: switching dial keeps "Japanese Hand-Wound"), so the
                       // buy button stays ready instead of demanding a re-pick.
                       setSelectedNumeral((prev) =>
                         prev && v.numeralOptions?.includes(prev) && !v.soldOutNumerals?.includes(prev) ? prev : null
@@ -1158,7 +1158,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <div className="flex flex-col gap-2">
                 <button
                   onClick={handleReserve}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
                   {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `${c.reserveButtonLabel ?? "Reserve Allocation"} · €${runningTotal.toLocaleString()}`}
@@ -1267,6 +1267,33 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           </motion.div>
         </div>
       </section>
+
+      {/* Story — optional heritage/cultural background */}
+      {c.story && (
+        <section className="bg-background py-20 md:py-28">
+          <div className="mx-auto max-w-[900px] px-6 md:px-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                {c.story.eyebrow}
+              </p>
+              <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
+                {c.story.title}
+              </h2>
+              <div className="mt-6 h-px w-[60px] bg-accent" />
+              {c.story.paragraphs.map((para, i) => (
+                <p key={i} className={`${i === 0 ? "mt-6" : "mt-5"} text-[16px] font-light leading-[1.9] text-foreground-muted`}>
+                  {para}
+                </p>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* How it Wears */}
       {c.wristFit && (
@@ -1608,17 +1635,20 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 q: "I've never heard of Pedral before.",
                 a: "Kevin has been designing watches in Stockholm since 2015. Over 400 pieces delivered to collectors in 30+ countries. Reviewed by independent watch media and recommended by collectors who own dozens of other watches.",
               },
-              {
+              // Made-to-order pieces can't be returned, so skip the 14-day promise.
+              ...(c.nonRefundable ? [] : [{
                 q: "What if it doesn't work on my wrist?",
                 a: "Every piece ships with a 14-day return window after delivery. Case dimensions are listed in full in the specifications above. If you have doubts about sizing, write to Kevin directly — he responds personally.",
-              },
+              }]),
               {
                 q: "What about production delays?",
                 a: "Timeline updates are sent directly from Kevin throughout production — not automated emails. If something changes, you hear it from the person responsible.",
               },
               {
                 q: "I can't see it in person before buying.",
-                a: "Most owners say the watch is better in person than in photos. High-resolution images and full specifications are available for every edition. The 14-day return policy exists precisely for this reason.",
+                a: c.nonRefundable
+                  ? "Most owners say the watch is better in person than in photos. High-resolution images and full specifications are available for every edition, and Kevin answers questions personally before you order."
+                  : "Most owners say the watch is better in person than in photos. High-resolution images and full specifications are available for every edition. The 14-day return policy exists precisely for this reason.",
               },
               ]),
               ...(c.extraFaqs ?? []),
@@ -1682,7 +1712,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <button
                   onClick={handleReserve}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full max-w-[300px] rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
                 >
                   {loading
@@ -1932,7 +1962,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 )}
                 <button
                   onClick={handleReserve}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:px-8 sm:text-[11px] sm:tracking-[2px]"
                 >
                   {loading ? "…" : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Reserve"}

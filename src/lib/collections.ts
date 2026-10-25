@@ -139,6 +139,8 @@ export interface Collection {
   reserveButtonLabel?: string;
   /** Capsule/collab credit shown near the hero — e.g. a partner boutique co-releasing a limited run. `bio` (optional) renders a full section about the partner further down the page. */
   collaboration?: { name: string; url: string; bio?: string };
+  /** Optional story section shown right after the description — cultural/heritage background for an edition (e.g. Étiquette Bangla). */
+  story?: { eyebrow: string; title: string; paragraphs: string[] };
   /** Appended to the generic "Before You Commit" FAQ list — for product-specific questions (materials, sizing quirks) that don't apply to every collection. */
   extraFaqs?: { q: string; a: string }[];
 }
@@ -876,7 +878,7 @@ export const collections: Collection[] = [
     name: "Étiquette",
     metaTitle: "Pedral Étiquette — Art Deco Rectangular Dress Watch, 27 × 43.7mm | Pedral",
     metaDescription:
-      "Étiquette: a 27 × 43.7mm golden-ratio rectangular dress watch, 7.7mm max, with concentric CNC-machined grooves and custom distorted Roman numerals. Automatic from €1,100, Swiss hand-wound €1,800. Pre-order now.",
+      "Étiquette: a 27 × 43.7mm golden-ratio rectangular dress watch, 7.7mm max, with concentric CNC-machined grooves and custom distorted Roman numerals. Hand-wound: Japanese €1,100, Swiss €1,800. Pre-order now.",
     tagline: "Pre-order",
     hook: "Good taste. Questionable manners.",
     descriptionTitle: "A study in proportion. An exercise in irreverence.",
@@ -900,14 +902,14 @@ export const collections: Collection[] = [
     numeralOptionsLabel: "Movement",
     reassurance: [
       "Pre-order · Full payment secures your allocation",
-      "Sapphire crystal · 316L steel · Miyota automatic or Swiss LJP D100",
+      "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D100",
       "Direct communication with Kevin — not a support team",
       "Tracked & insured shipping",
     ],
     specsTitle: "Not for everyone.",
     specs: {
-      Price: "€1,100 Automatic · €1,800 Swiss hand-wound",
-      Movement: "Automatic: modified Miyota 9015 — or LJP D100, Swiss hand-wound, 50-hour power reserve · Hours and minutes",
+      Price: "€1,100 Japanese hand-wound · €1,800 Swiss hand-wound",
+      Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D100, 50-hour power reserve",
       Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Pedral signature inner dial frame · Soirée (black onyx) and Bourgogne: custom distorted Roman numerals · Nocturne (black onyx) and Ambiance: musical-note indices · Famille (purple) reserved for existing owners",
@@ -937,7 +939,7 @@ export const collections: Collection[] = [
     extraFaqs: [
       {
         q: "What will it cost?",
-        a: "The Automatic, powered by a modified Miyota 9015, is €1,100. The Swiss hand-wound version, powered by the La Joux-Perret LJP D100, is €1,800.",
+        a: "Both versions are hand-wound. The Japanese version, powered by a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement (27 × 20.6 × 3.5 mm), is €1,100. The Swiss version, powered by the La Joux-Perret LJP D100, is €1,800.",
       },
       {
         q: "When will it be delivered?",
@@ -969,10 +971,10 @@ export const collections: Collection[] = [
         description: "Black onyx dial, custom distorted Roman numerals in silver. The black-tie one.",
         image: "/images/etiquette-soiree.jpg",
         heroImage: "/images/etiquette-soiree.jpg",
-        numeralOptions: ["Automatic", "Swiss Hand-Wound"],
+        numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {
-          Automatic: "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Automatic (€1,100)
+          "Japanese Hand-Wound": "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Japanese Hand-Wound (€1,100)
           "Swiss Hand-Wound": "price_1UUF2bCfxE1lSBKRY27YyEDf", // Étiquette — Soirée · Swiss Hand-Wound (€1,800)
         },
       },
@@ -984,10 +986,10 @@ export const collections: Collection[] = [
         description: "Burgundy dial, custom distorted Roman numerals in silver.",
         image: "/images/etiquette-bourgogne.jpg",
         heroImage: "/images/etiquette-bourgogne.jpg",
-        numeralOptions: ["Automatic", "Swiss Hand-Wound"],
+        numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {
-          Automatic: "price_1UUF4ACfxE1lSBKRaBgmkl77", // Étiquette — Bourgogne · Automatic (€1,100)
+          "Japanese Hand-Wound": "price_1UUF4ACfxE1lSBKRaBgmkl77", // Étiquette — Bourgogne · Japanese Hand-Wound (€1,100)
           "Swiss Hand-Wound": "price_1UUF5hCfxE1lSBKRu70dLbhe", // Étiquette — Bourgogne · Swiss Hand-Wound (€1,800)
         },
       },
@@ -999,10 +1001,10 @@ export const collections: Collection[] = [
         description: "Black onyx dial with ivory musical-note indices.",
         image: "/images/etiquette-nocturne.jpg",
         heroImage: "/images/etiquette-nocturne.jpg",
-        numeralOptions: ["Automatic", "Swiss Hand-Wound"],
+        numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {
-          Automatic: "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Automatic (€1,100)
+          "Japanese Hand-Wound": "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Japanese Hand-Wound (€1,100)
           "Swiss Hand-Wound": "price_1UUF8YCfxE1lSBKRMREPi5B7", // Étiquette — Nocturne · Swiss Hand-Wound (€1,800)
         },
       },
@@ -1014,10 +1016,10 @@ export const collections: Collection[] = [
         description: "Ivory dial with colourful musical-note indices and blue hands. The one with questionable manners.",
         image: "/images/etiquette-ambiance.jpg",
         heroImage: "/images/etiquette-ambiance.jpg",
-        numeralOptions: ["Automatic", "Swiss Hand-Wound"],
+        numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {
-          Automatic: "price_1UUFARCfxE1lSBKREzsyJnrM", // Étiquette — Ambiance · Automatic (€1,100)
+          "Japanese Hand-Wound": "price_1UUFARCfxE1lSBKREzsyJnrM", // Étiquette — Ambiance · Japanese Hand-Wound (€1,100)
           "Swiss Hand-Wound": "price_1UUFCICfxE1lSBKRHBF1I95p", // Étiquette — Ambiance · Swiss Hand-Wound (€1,800)
         },
       },
@@ -1034,6 +1036,377 @@ export const collections: Collection[] = [
         description: "Purple dial, custom distorted Roman numerals in silver. Just ten pieces. No public allocation. Existing owners: write to Kevin directly to reserve yours.",
         image: "/images/etiquette-famille.jpg",
         badge: "Owners Only · 10 Pieces",
+      },
+    ],
+  },
+  {
+    // Étiquette numeral edition (Oct 2026, Kevin's request): its own
+    // standalone landing page — live by direct link only, never listed on
+    // /collections, the homepage carousel or the nav. Same case, movements,
+    // prices and delivery as Étiquette; edition of 10, made to order.
+    // TODO: Stripe price IDs (one per movement) — until they're filled in
+    // (and added to VALID_PRICE_IDS) the Pre-order button stays disabled.
+    slug: "etiquette-hebrew",
+    name: "Étiquette Hebrew",
+    metaTitle: "Pedral Étiquette Hebrew — Hebrew Numeral Dress Watch, Edition of 10 | Pedral",
+    metaDescription:
+      "Étiquette Hebrew: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Hebrew numerals, in ivory or blue. Edition of 10, made to order. Hand-wound: Japanese €1,100, Swiss €1,800.",
+    tagline: "Pre-order · Made to order",
+    hook: "Good taste. Spoken in Hebrew.",
+    descriptionTitle: "The same rules. A different alphabet.",
+    description:
+      "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition goes one step further and tells the time in Hebrew. Custom Hebrew numerals, familiar yet deliberately distorted, stretch across the lacquered dial — blue on ivory, or ivory on deep blue — balanced by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, the case is slim, elegant and slightly eccentric.",
+    descriptionExtra:
+      "Ten pieces, made to order. For a Bar or Bat Mitzvah, a wedding, a parent, a child — or for yourself, after years of wearing watches that spoke only in someone else's tradition. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
+    designerNote:
+      "Some people have spent years wearing watches that were beautiful, but not entirely theirs. A numeral is the first thing you read on a dial. It should be able to speak your language.",
+    year: 2026,
+    tier: "limited",
+    price: 1100,
+    stock: 10, // 5 Tchelet + 5 Layla
+    maxStock: 10,
+    edition: "Hebrew numerals",
+    badge: "Edition of 10",
+    urgencyTag: "Made to order · 10 pieces",
+    reserveButtonLabel: "Pre-order",
+    shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
+    variantLabel: "Dial",
+    numeralOptionsLabel: "Movement",
+    standalone: true,
+    nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
+    reassurance: [
+      "Made to order · Full payment secures your piece",
+      "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D100",
+      "Direct communication with Kevin — not a support team",
+      "Tracked & insured shipping",
+    ],
+    specsTitle: "Not for everyone.",
+    specs: {
+      Price: "€1,100 Japanese hand-wound · €1,800 Swiss hand-wound",
+      Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to hand-wound, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D100, 50-hour power reserve",
+      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
+      "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
+      Dial: "Lacquered · Ivory with custom distorted Hebrew numerals in blue, or blue with ivory numerals · Pedral signature inner dial frame",
+      Hands: "Polished dress-watch hands",
+      Crown: "Pedral signature geodesic crown",
+      Crystal: "Sapphire with anti-reflective coating",
+      Caseback: "Solid stainless steel",
+      "Water Resist.": "5 ATM / 50 metres",
+      Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
+      Edition: "10 pieces · Made to order · Not part of the standard Étiquette run",
+      Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
+    },
+    boxContents: [],
+    valueAnchor: "",
+    valueComparePrice: "",
+    detailStrip: {
+      eyebrow: "The Movement",
+      title: "Shaped for the case.",
+      text: "Inside is a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays at 7.7 mm. You wind it by the crown — the small ritual that comes with a hand-wound watch. Prefer Swiss? Tchelet and Layla are also available with the La Joux-Perret LJP D100, Swiss hand-wound, with a 50-hour power reserve.",
+    },
+    testimonials: [],
+    wristFit: {
+      caseDiameter: "27 × 43.7mm",
+      thickness: "7.7mm max",
+      lugWidth: "20 → 18mm",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      image: "/images/etiquette-hebrew.jpg",
+    },
+    extraFaqs: [
+      {
+        q: "What will it cost?",
+        a: "Both versions are hand-wound. The Japanese version, powered by a Miyota 9015 that Pedral has converted to manual winding and reworked into a rectangular movement (27 × 20.6 × 3.5 mm), is €1,100. The Swiss version, powered by the La Joux-Perret LJP D100, is €1,800.",
+      },
+      {
+        q: "When will it be delivered?",
+        a: "Delivery is expected between late Q1 and early Q2 2027, following prototype development in late Q4 2026 / early Q1 2027. Pieces are delivered in the order they were purchased — first come, first served. Final specifications, materials and availability are subject to prototype development.",
+      },
+      {
+        q: "Can I return it?",
+        a: "The Hebrew edition is made to order for each buyer, so it can't be returned under the EU custom-goods exemption (Art. 16(c) of the Consumer Rights Directive). Your statutory warranty still applies in full. If you have any doubts about size or dial before ordering, write to Kevin directly — he responds personally.",
+      },
+      {
+        q: "Why Hebrew numerals?",
+        a: "Because the numerals on a dial can carry something of who you are. The Hebrew edition grew out of conversations with collectors looking for a watch that held their heritage — often as a gift, for a moment that matters. Ten pieces only, made to order.",
+      },
+    ],
+    newsletterTitle: "Follow Étiquette from prototype to wrist.",
+    newsletterSub: "Prototype updates and studio news. No noise.",
+    image: "/images/etiquette-hebrew.jpg",
+    heroImage: "/images/etiquette-hebrew.jpg",
+    heroFit: "contain",
+    detailImage: "/images/etiquette-movement.jpg",
+    galleryImages: ["/images/etiquette-hebrew.jpg", "/images/etiquette-movement.jpg", "/images/etiquette-hebrew-blue.jpg"],
+    variants: [
+      {
+        name: "Tchelet",
+        stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
+        stock: 5,
+        price: 1100,
+        description: "Tchelet — Hebrew for sky blue. Lacquered ivory dial with custom distorted Hebrew numerals and hands in blue.",
+        image: "/images/etiquette-hebrew.jpg",
+        heroImage: "/images/etiquette-hebrew.jpg",
+        numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
+        numeralPrices: { "Swiss Hand-Wound": 1800 },
+        numeralPriceIds: {
+          "Japanese Hand-Wound": "", // TODO: Étiquette Hebrew — Tchelet · Japanese Hand-Wound (€1,100)
+          "Swiss Hand-Wound": "", // TODO: Étiquette Hebrew — Tchelet · Swiss Hand-Wound (€1,800)
+        },
+      },
+      {
+        name: "Layla",
+        stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
+        stock: 5,
+        price: 1100,
+        description: "Layla — Hebrew for night. Lacquered deep blue dial with custom distorted Hebrew numerals in ivory.",
+        image: "/images/etiquette-hebrew-blue.jpg",
+        heroImage: "/images/etiquette-hebrew-blue.jpg",
+        numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
+        numeralPrices: { "Swiss Hand-Wound": 1800 },
+        numeralPriceIds: {
+          "Japanese Hand-Wound": "", // TODO: Étiquette Hebrew — Layla · Japanese Hand-Wound (€1,100)
+          "Swiss Hand-Wound": "", // TODO: Étiquette Hebrew — Layla · Swiss Hand-Wound (€1,800)
+        },
+      },
+    ],
+  },
+  {
+    // Étiquette numeral edition (Oct 2026, Kevin's request): its own
+    // standalone landing page — live by direct link only, never listed on
+    // /collections, the homepage carousel or the nav. Same case, movements,
+    // delivery as Étiquette, but hand-wound: Japanese (Pedral-modified Miyota 9015, rectangular, €1,100)
+    // or Swiss LJP D100 (€1,800, Hebrew only — Kevin, Oct 2026), with
+    // a lacquered dial (Kevin, Oct 2026); edition of 10, made to order.
+    // TODO: one Stripe price per dial — until filled in (and added to
+    // VALID_PRICE_IDS) the Pre-order button stays disabled.
+    slug: "etiquette-eastern-arabic",
+    name: "Étiquette Eastern Arabic",
+    metaTitle: "Pedral Étiquette Eastern Arabic — Eastern Arabic Numeral Dress Watch, Edition of 10 | Pedral",
+    metaDescription:
+      "Étiquette Eastern Arabic: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Eastern Arabic numerals in gold on black onyx. Edition of 10, made to order. Modified Miyota 9015, hand-wound, €1,100.",
+    tagline: "Pre-order · Made to order",
+    hook: "Good taste. Spoken in Eastern Arabic.",
+    descriptionTitle: "The same rules. A different alphabet.",
+    description:
+      "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition tells the time in Eastern Arabic numerals. Custom numerals, familiar yet deliberately distorted, stretch in gold across a lacquered black onyx dial, framed by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, the case is slim, elegant and slightly eccentric.",
+    descriptionExtra:
+      "Ten pieces, made to order. For those whose families counted in this script — across the Arab world and, in a closely related form, across Persian-speaking countries. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
+    designerNote:
+      "A numeral is the first thing you read on a dial. It should be able to speak your language.",
+    year: 2026,
+    tier: "limited",
+    price: 1100,
+    stock: 10,
+    maxStock: 10,
+    edition: "Eastern Arabic numerals",
+    badge: "Edition of 10",
+    urgencyTag: "Made to order · 10 pieces",
+    reserveButtonLabel: "Pre-order",
+    shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
+    variantLabel: "Dial",
+    standalone: true,
+    nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
+    reassurance: [
+      "Made to order · Full payment secures your piece",
+      "Sapphire crystal · 316L steel · Modified Miyota 9015, hand-wound",
+      "Direct communication with Kevin — not a support team",
+      "Tracked & insured shipping",
+    ],
+    specsTitle: "Not for everyone.",
+    specs: {
+      Price: "€1,100",
+      Movement: "Pedral-modified Miyota 9015 · Converted from automatic to hand-wound · Rectangular movement, 27 × 20.6 × 3.5mm · Hours and minutes",
+      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
+      "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
+      Dial: "Lacquered · Black onyx with custom distorted Eastern Arabic numerals in gold · Pedral signature inner dial frame",
+      Hands: "Polished dress-watch hands",
+      Crown: "Pedral signature geodesic crown",
+      Crystal: "Sapphire with anti-reflective coating",
+      Caseback: "Solid stainless steel",
+      "Water Resist.": "5 ATM / 50 metres",
+      Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
+      Edition: "10 pieces · Made to order · Not part of the standard Étiquette run",
+      Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
+    },
+    boxContents: [],
+    valueAnchor: "",
+    valueComparePrice: "",
+    detailStrip: {
+      eyebrow: "The Movement",
+      title: "Shaped for the case.",
+      text: "Inside is a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays at 7.7 mm. You wind it by the crown — the small ritual that comes with a hand-wound watch.",
+    },
+    testimonials: [],
+    wristFit: {
+      caseDiameter: "27 × 43.7mm",
+      thickness: "7.7mm max",
+      lugWidth: "20 → 18mm",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      image: "/images/etiquette-eastern-arabic.jpg",
+    },
+    extraFaqs: [
+      {
+        q: "What will it cost?",
+        a: "€1,100. This edition is hand-wound only, powered by a Pedral-modified Miyota 9015 — reworked into a rectangular movement (27 × 20.6 × 3.5 mm) that follows the shape of the case.",
+      },
+      {
+        q: "When will it be delivered?",
+        a: "Delivery is expected between late Q1 and early Q2 2027, following prototype development in late Q4 2026 / early Q1 2027. Pieces are delivered in the order they were purchased — first come, first served. Final specifications, materials and availability are subject to prototype development.",
+      },
+      {
+        q: "Can I return it?",
+        a: "The Eastern Arabic edition is made to order for each buyer, so it can't be returned under the EU custom-goods exemption (Art. 16(c) of the Consumer Rights Directive). Your statutory warranty still applies in full. If you have any doubts about size or dial before ordering, write to Kevin directly — he responds personally.",
+      },
+      {
+        q: "Why Eastern Arabic numerals?",
+        a: "Because the numerals on a dial can carry something of who you are. Eastern Arabic is the script many families across the Arab world counted in — and, in a closely related form, across Persian-speaking countries. Ten pieces only, made to order.",
+      },
+    ],
+    newsletterTitle: "Follow Étiquette from prototype to wrist.",
+    newsletterSub: "Prototype updates and studio news. No noise.",
+    image: "/images/etiquette-eastern-arabic.jpg",
+    heroImage: "/images/etiquette-eastern-arabic.jpg",
+    heroFit: "contain",
+    detailImage: "/images/etiquette-movement.jpg",
+    galleryImages: ["/images/etiquette-eastern-arabic.jpg", "/images/etiquette-movement.jpg"],
+    variants: [
+      {
+        name: "Noor",
+        stripePriceId: "", // TODO: Stripe price (€1,100) — Pre-order stays disabled until filled
+        stock: 10,
+        price: 1100,
+        description: "Noor — light, in Arabic, Persian and Urdu. Lacquered black onyx dial with custom distorted Eastern Arabic numerals and hands in gold.",
+        image: "/images/etiquette-eastern-arabic.jpg",
+        heroImage: "/images/etiquette-eastern-arabic.jpg",
+      },
+    ],
+  },
+  {
+    // Étiquette numeral edition (Oct 2026, Kevin's request): its own
+    // standalone landing page — live by direct link only, never listed on
+    // /collections, the homepage carousel or the nav. Same case, movements,
+    // delivery as Étiquette, but hand-wound only (Pedral-modified Miyota 9015, rectangular, €1,100) with
+    // a lacquered dial (Kevin, Oct 2026); edition of 10, made to order.
+    // TODO: one Stripe price per dial — until filled in (and added to
+    // VALID_PRICE_IDS) the Pre-order button stays disabled.
+    slug: "etiquette-bangla",
+    name: "Étiquette Bangla",
+    metaTitle: "Pedral Étiquette Bangla — Bangla (Bengali) Numeral Dress Watch, Edition of 10 | Pedral",
+    metaDescription:
+      "Étiquette Bangla: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Bangla (Bengali) numerals on a lacquered dial in green and red, or saffron and green. For Bangladesh, India and beyond. Edition of 10, made to order. Modified Miyota 9015, hand-wound, €1,100.",
+    tagline: "Pre-order · Made to order",
+    hook: "Good taste. Spoken in Bangla.",
+    descriptionTitle: "The same rules. A different alphabet.",
+    description:
+      "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition tells the time in Bangla (Bengali) numerals. Custom numerals, familiar yet deliberately distorted, sweep in silver across a lacquered dial — green with a red centre, or saffron with a green centre — held by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, the case is slim, elegant and slightly eccentric.",
+    descriptionExtra:
+      "Ten pieces, made to order. For those who grew up counting in Bangla — in Bangladesh, in West Bengal, Tripura and Assam, or a long way from any of them. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
+    designerNote:
+      "A numeral is the first thing you read on a dial. It should be able to speak your language.",
+    year: 2026,
+    tier: "limited",
+    price: 1100,
+    stock: 10, // 5 Ekushey + 5 Unishe
+    maxStock: 10,
+    edition: "Bangla numerals",
+    badge: "Edition of 10",
+    urgencyTag: "Made to order · 10 pieces",
+    reserveButtonLabel: "Pre-order",
+    shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
+    variantLabel: "Dial",
+    standalone: true,
+    nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
+    reassurance: [
+      "Made to order · Full payment secures your piece",
+      "Sapphire crystal · 316L steel · Modified Miyota 9015, hand-wound",
+      "Direct communication with Kevin — not a support team",
+      "Tracked & insured shipping",
+    ],
+    story: {
+      eyebrow: "The Script",
+      title: "Counted in Bangla.",
+      paragraphs: [
+        "Bangla is spoken by more than 250 million people — in Bangladesh, where it is the national language, and across India, where it is an official language of West Bengal and Tripura, is spoken throughout Assam's Barak Valley, and is one of the country's 22 scheduled languages. Few scripts are read by more people every day. Almost none of them have ever appeared on a fine watch.",
+        "It is a language that has shaped the world's culture. Rabindranath Tagore wrote in Bangla, became the first non-European to win the Nobel Prize in Literature in 1913, and wrote the national anthems of both India and Bangladesh. Kolkata gave the world the films of Satyajit Ray, generations of poets, painters and musicians, and Durga Puja — now recognised by UNESCO as intangible cultural heritage.",
+        "And it is a language people have fought to keep. On 21 February 1952 — Ekushey, the twenty-first — students in Dhaka gave their lives defending the right to speak it; that day is now marked around the world as International Mother Language Day. On 19 May 1961 — Unishe, the nineteenth — eleven people were killed in Silchar, in Assam's Barak Valley, demanding that Bengali be recognised there too. They won. Both days are remembered every year.",
+        "The numerals themselves descend from the same ancient Indian numerals that gave the world the decimal place-value system — the counting every watch dial quietly relies on. Étiquette Bangla brings them back to the dial, in two editions named for those two days: Ekushey, in green and red, and Unishe, in saffron and green. One script, shared across a border. Ten pieces, made to order.",
+      ],
+    },
+    specsTitle: "Not for everyone.",
+    specs: {
+      Price: "€1,100",
+      Movement: "Pedral-modified Miyota 9015 · Converted from automatic to hand-wound · Rectangular movement, 27 × 20.6 × 3.5mm · Hours and minutes",
+      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
+      "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
+      Dial: "Lacquered · Green with a red centre, or saffron with a green centre · Custom distorted Bangla numerals in silver · Pedral signature inner dial frame",
+      Hands: "Polished dress-watch hands",
+      Crown: "Pedral signature geodesic crown",
+      Crystal: "Sapphire with anti-reflective coating",
+      Caseback: "Solid stainless steel",
+      "Water Resist.": "5 ATM / 50 metres",
+      Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
+      Edition: "10 pieces · Made to order · Not part of the standard Étiquette run",
+      Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
+    },
+    boxContents: [],
+    valueAnchor: "",
+    valueComparePrice: "",
+    detailStrip: {
+      eyebrow: "The Movement",
+      title: "Shaped for the case.",
+      text: "Inside is a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays at 7.7 mm. You wind it by the crown — the small ritual that comes with a hand-wound watch.",
+    },
+    testimonials: [],
+    wristFit: {
+      caseDiameter: "27 × 43.7mm",
+      thickness: "7.7mm max",
+      lugWidth: "20 → 18mm",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      image: "/images/etiquette-bangla.jpg",
+    },
+    extraFaqs: [
+      {
+        q: "What will it cost?",
+        a: "€1,100. This edition is hand-wound only, powered by a Pedral-modified Miyota 9015 — reworked into a rectangular movement (27 × 20.6 × 3.5 mm) that follows the shape of the case.",
+      },
+      {
+        q: "When will it be delivered?",
+        a: "Delivery is expected between late Q1 and early Q2 2027, following prototype development in late Q4 2026 / early Q1 2027. Pieces are delivered in the order they were purchased — first come, first served. Final specifications, materials and availability are subject to prototype development.",
+      },
+      {
+        q: "Can I return it?",
+        a: "The Bangla edition is made to order for each buyer, so it can't be returned under the EU custom-goods exemption (Art. 16(c) of the Consumer Rights Directive). Your statutory warranty still applies in full. If you have any doubts about size or dial before ordering, write to Kevin directly — he responds personally.",
+      },
+      {
+        q: "Why Bangla numerals?",
+        a: "Because the numerals on a dial can carry something of who you are. Bangla numerals — also called Bengali numerals — are read every day by hundreds of millions of people in Bangladesh and India, from Dhaka to Kolkata, Agartala and Assam, and across the diaspora. Yet they almost never appear on a fine watch. Ten pieces only, made to order.",
+      },
+    ],
+    newsletterTitle: "Follow Étiquette from prototype to wrist.",
+    newsletterSub: "Prototype updates and studio news. No noise.",
+    image: "/images/etiquette-bangla.jpg",
+    heroImage: "/images/etiquette-bangla.jpg",
+    heroFit: "contain",
+    detailImage: "/images/etiquette-movement.jpg",
+    galleryImages: ["/images/etiquette-bangla.jpg", "/images/etiquette-movement.jpg", "/images/etiquette-bangla-saffron.jpg"],
+    variants: [
+      {
+        name: "Ekushey",
+        stripePriceId: "", // TODO: Stripe price (€1,100) — Pre-order stays disabled until filled
+        stock: 5,
+        price: 1100,
+        description: "Ekushey — the twenty-first: 21 February 1952, Dhaka. Lacquered green dial with a red centre and custom distorted Bangla numerals in silver.",
+        image: "/images/etiquette-bangla.jpg",
+        heroImage: "/images/etiquette-bangla.jpg",
+      },
+      {
+        name: "Unishe",
+        stripePriceId: "", // TODO: Stripe price (€1,100) — Pre-order stays disabled until filled
+        stock: 5,
+        price: 1100,
+        description: "Unishe — the nineteenth: 19 May 1961, Silchar. Lacquered saffron dial with a green centre and custom distorted Bangla numerals in silver.",
+        image: "/images/etiquette-bangla-saffron.jpg",
+        heroImage: "/images/etiquette-bangla-saffron.jpg",
       },
     ],
   },
