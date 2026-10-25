@@ -35,7 +35,7 @@ export async function GET() {
   // Each variant needs to exist as a fully independent catalog product to be
   // individually taggable.
 
-  for (const c of collections.filter((col) => !isHidden(col) && !col.isEnquiryOnly)) {
+  for (const c of collections.filter((col) => !isHidden(col) && !col.isEnquiryOnly && !col.excludeFromFeed)) {
     if (c.variants && c.variants.length > 0) {
       for (const v of c.variants) {
         // Skip dials that can't be bought yet (no Stripe price filled in).

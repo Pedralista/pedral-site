@@ -121,6 +121,8 @@ export interface Collection {
   /** Variant featured on the collection/homepage card: its image and its own remaining count are shown instead of the product image and the line's total (e.g. Maestro: Aura Gold — a single dial's count is clearer than a total across dials). */
   cardVariant?: string;
   standalone?: boolean; // true = fully live (page, sitemap, feed) but excluded from the /collections grid and homepage showcase — e.g. a one-off capsule reached only via its own direct link
+  /** Keep out of /feed.xml (Meta / Google Shopping catalogue) — e.g. the Étiquette numeral editions, reachable only by direct link. */
+  excludeFromFeed?: boolean;
   hidePriceOnCard?: boolean;
   variantLabel?: string;
   valuePerspectiveTitle?: string;
@@ -1072,6 +1074,7 @@ export const collections: Collection[] = [
     variantLabel: "Dial",
     numeralOptionsLabel: "Movement",
     standalone: true,
+    excludeFromFeed: true, // Kevin: not in the Instagram/Google catalogue
     nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
     reassurance: [
       "Made to order · Full payment secures your piece",
@@ -1214,6 +1217,7 @@ export const collections: Collection[] = [
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
     standalone: true,
+    excludeFromFeed: true, // Kevin: not in the Instagram/Google catalogue
     nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
     reassurance: [
       "Made to order · Full payment secures your piece",
@@ -1323,6 +1327,7 @@ export const collections: Collection[] = [
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
     standalone: true,
+    excludeFromFeed: true, // Kevin: not in the Instagram/Google catalogue
     nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
     reassurance: [
       "Made to order · Full payment secures your piece",
