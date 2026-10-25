@@ -1305,26 +1305,26 @@ export const collections: Collection[] = [
     // Live Stripe prices wired in 2026-10-25.
     slug: "etiquette-bangla",
     name: "Étiquette Bangla",
-    metaTitle: "Pedral Étiquette Bangla — Bangla (Bengali) Numeral Dress Watch, Edition of 10 | Pedral",
+    metaTitle: "Pedral Étiquette Bangla — Bangla (Bengali) Numeral Dress Watch, Ten of Each Dial | Pedral",
     metaDescription:
-      "Étiquette Bangla: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Bangla (Bengali) numerals on a lacquered dial in green and red, or black onyx and gold. For Bangladesh, India and beyond. Edition of 10, made to order. Modified Miyota 9015, hand-wound, €1,100.",
+      "Étiquette Bangla: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Bangla (Bengali) numerals on a lacquered dial in green and red, or black onyx and gold. For Bangladesh, India and beyond. Ten of each dial, made to order. Modified Miyota 9015, hand-wound, €1,100.",
     tagline: "Pre-order · Made to order",
     hook: "Good taste. Spoken in Bangla.",
     descriptionTitle: "The same rules. A different alphabet.",
     description:
       "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition tells the time in Bangla (Bengali) numerals. Custom numerals, familiar yet deliberately distorted, sweep across a lacquered dial — in silver on green with a red centre, or in gold on black onyx — held by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, the case is slim, elegant and slightly eccentric.",
     descriptionExtra:
-      "Ten pieces, made to order. For those who grew up counting in Bangla — in Bangladesh, in West Bengal, Tripura and Assam, or a long way from any of them. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
+      "Ten of each dial, made to order. For those who grew up counting in Bangla — in Bangladesh, in West Bengal, Tripura and Assam, or a long way from any of them. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
     designerNote:
       "A numeral is the first thing you read on a dial. It should be able to speak your language.",
     year: 2026,
     tier: "limited",
     price: 1100,
-    stock: 10, // 5 Ekushey + 5 Sondhya
-    maxStock: 10,
+    stock: 20, // 10 Ekushey + 10 Sondhya (Kevin, Oct 2026)
+    maxStock: 20, // ten of each dial
     edition: "Bangla numerals",
-    badge: "Edition of 10",
-    urgencyTag: "Made to order · 10 pieces",
+    badge: "Ten of Each Dial",
+    urgencyTag: "Made to order · Ten of each dial",
     reserveButtonLabel: "Pre-order",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
@@ -1344,7 +1344,7 @@ export const collections: Collection[] = [
         "Across several releases, some of Pedral's most loyal support has come from the Indian and Bengali community — in India, in Bangladesh and far beyond. After the Triomphe found its audience in Eastern Arabic and Hebrew numerals, the same question started arriving from them: when would there be one in Bangla? I've always been fascinated by Bengal — its language, its literature, its art — so the answer was never really in doubt. This watch is for the people who asked for it.",
         "Bangla is spoken by more than 250 million people — in Bangladesh, where it is the national language, and across India, where it is an official language of West Bengal and Tripura, is spoken throughout Assam's Barak Valley, and is one of the country's 22 scheduled languages. Few scripts are read by more people every day. Almost none of them have ever appeared on a fine watch.",
         "It is a language that has shaped the world's culture. Rabindranath Tagore wrote in Bangla, became the first non-European to win the Nobel Prize in Literature in 1913, and wrote the songs that became the national anthems of both India and Bangladesh. Kolkata gave the world the films of Satyajit Ray, generations of poets, painters and musicians, and Durga Puja — now recognised by UNESCO as intangible cultural heritage. And every 21 February — Ekushey — the whole world celebrates International Mother Language Day, a day that began with Bangla.",
-        "The numerals themselves descend from the same ancient Indian numerals that gave the world the decimal place-value system — the counting every watch dial quietly relies on. Étiquette Bangla brings them back to the dial, in two versions: Ekushey, in green and red, and Sondhya — evening — in black onyx and gold. Ten pieces, made to order.",
+        "The numerals themselves descend from the same ancient Indian numerals that gave the world the decimal place-value system — the counting every watch dial quietly relies on. Étiquette Bangla brings them back to the dial, in two versions: Ekushey, in green and red, and Sondhya — evening — in black onyx and gold. Ten of each, made to order.",
       ],
     },
     specsTitle: "Not for everyone.",
@@ -1360,7 +1360,7 @@ export const collections: Collection[] = [
       Caseback: "Solid stainless steel",
       "Water Resist.": "5 ATM / 50 metres",
       Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
-      Edition: "10 pieces · Made to order · Not part of the standard Étiquette run",
+      Edition: "Ten of each dial · Made to order · Not part of the standard Étiquette run",
       Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
     },
     boxContents: [],
@@ -1394,7 +1394,7 @@ export const collections: Collection[] = [
       },
       {
         q: "Why Bangla numerals?",
-        a: "Because you asked. The Indian and Bengali community has supported Pedral across several releases, and after the Triomphe's Eastern Arabic and Hebrew numeral editions, many of you asked for a watch in your own numerals. Bangla numerals — also called Bengali numerals — are read every day by hundreds of millions of people in Bangladesh and India, from Dhaka to Kolkata, Agartala and Assam, and across the diaspora. Yet they almost never appear on a fine watch. Ten pieces only, made to order.",
+        a: "Because you asked. The Indian and Bengali community has supported Pedral across several releases, and after the Triomphe's Eastern Arabic and Hebrew numeral editions, many of you asked for a watch in your own numerals. Bangla numerals — also called Bengali numerals — are read every day by hundreds of millions of people in Bangladesh and India, from Dhaka to Kolkata, Agartala and Assam, and across the diaspora. Yet they almost never appear on a fine watch. Ten of each dial, made to order.",
       },
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
@@ -1408,7 +1408,7 @@ export const collections: Collection[] = [
       {
         name: "Ekushey",
         stripePriceId: "price_1UUPTrCfxE1lSBKRy4L1h1fg", // Étiquette Bangla — Ekushey (€1,100)
-        stock: 5,
+        stock: 10,
         price: 1100,
         description: "Ekushey — twenty-one, in Bangla. Lacquered green dial with a red centre and custom distorted Bangla numerals in silver.",
         image: "/images/etiquette-bangla.jpg",
@@ -1417,7 +1417,7 @@ export const collections: Collection[] = [
       {
         name: "Sondhya",
         stripePriceId: "price_1UUPNOCfxE1lSBKR7Zr4TfjN", // Étiquette Bangla — Sondhya (€1,100)
-        stock: 5,
+        stock: 10,
         price: 1100,
         description: "Sondhya — evening, in Bangla. Lacquered black onyx dial with custom distorted Bangla numerals and hands in gold.",
         image: "/images/etiquette-bangla-unishe.jpg",
