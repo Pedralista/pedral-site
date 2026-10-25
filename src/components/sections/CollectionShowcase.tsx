@@ -27,44 +27,51 @@ function ChevronIcon({ direction }: { direction: "left" | "right" }) {
 function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number; isPreOrder?: boolean; isEnquiryOnly?: boolean; badge?: string }) {
   if (isEnquiryOnly) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
+      <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-accent/40 bg-background/80 px-2 py-1 text-[9px] font-medium tracking-[1px] sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
         By Enquiry Only
       </span>
     );
   }
   if (badge) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
+      <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-accent/40 bg-background/80 px-2 py-1 text-[9px] font-medium tracking-[1px] sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
         {badge}
       </span>
     );
   }
   if (stock === 0 && isPreOrder) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
+      <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-accent/40 bg-background/80 px-2 py-1 text-[9px] font-medium tracking-[1px] sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
         Pre-order Opens Soon
       </span>
     );
   }
   if (stock === 0) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-white/15 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-white/50 backdrop-blur-sm">
+      <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-white/15 bg-background/80 px-2 py-1 text-[9px] font-medium tracking-[1px] sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] uppercase text-white/50 backdrop-blur-sm">
         Fully Allocated
       </span>
     );
   }
   if (stock <= 2) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-red-500/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-red-400/90 backdrop-blur-sm">
+      <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-red-500/40 bg-background/80 px-2 py-1 text-[9px] font-medium tracking-[1px] sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] uppercase text-red-400/90 backdrop-blur-sm">
         Almost Gone
       </span>
     );
   }
   return (
-    <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
+    <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-accent/40 bg-background/80 px-2 py-1 text-[9px] font-medium tracking-[1px] sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
       {stock} Remaining
     </span>
   );
+}
+
+// Homepage carousel order (Kevin, Oct 2026). Anything not listed goes last.
+const CAROUSEL_ORDER = ["contour", "etiquette", "maestro", "triomphe", "silhouette", "okapi"];
+function carouselRank(slug: string) {
+  const i = CAROUSEL_ORDER.indexOf(slug);
+  return i === -1 ? CAROUSEL_ORDER.length : i;
 }
 
 export default function CollectionShowcase() {
@@ -75,7 +82,7 @@ export default function CollectionShowcase() {
       const featured = c.cardVariant ? c.variants?.find((v) => v.name === c.cardVariant) : undefined;
       return featured ? { ...c, image: featured.image ?? c.image, stock: featured.stock } : c;
     })
-    .sort((a, b) => (a.slug === "contour" ? -1 : b.slug === "contour" ? 1 : 0));
+    .sort((a, b) => carouselRank(a.slug) - carouselRank(b.slug));
   const visibleCount = visible.length;
   const scrollerRef = useRef<HTMLDivElement>(null);
 
@@ -123,21 +130,21 @@ export default function CollectionShowcase() {
         </div>
 
         <div className="relative">
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background-alt to-transparent md:w-24" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-16 bg-gradient-to-l from-background-alt to-transparent sm:block md:w-24" />
           <motion.div
             ref={scrollerRef}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer}
-          className="horizontal-scroll -mx-6 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 md:-mx-12 md:gap-5 md:px-12"
+          className="horizontal-scroll mt-8 grid grid-cols-2 gap-x-3 gap-y-10 pb-4 sm:-mx-6 sm:flex sm:snap-x sm:snap-mandatory sm:gap-4 sm:overflow-x-auto sm:px-6 md:-mx-12 md:gap-5 md:px-12"
         >
           {visible.map((c) => (
             <motion.div
               key={c.slug}
               variants={fadeInUp}
               data-carousel-card
-              className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[24%]"
+              className="w-full sm:w-[46%] sm:shrink-0 sm:snap-start lg:w-[24%]"
             >
               <Link
                 href={`/collections/${c.slug}`}
@@ -162,10 +169,10 @@ export default function CollectionShowcase() {
                 </div>
 
                 <div className="pt-5 text-center">
-                  <h3 className="font-serif text-2xl font-normal text-foreground">
+                  <h3 className="font-serif text-[20px] font-normal text-foreground sm:text-2xl">
                     {c.name}
                   </h3>
-                  <p className="mx-auto mt-1.5 mb-4 max-w-[85%] min-h-[2.8rem] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[16px]">
+                  <p className="mx-auto mt-1.5 mb-4 min-h-[3.6rem] max-w-full text-[13px] font-light italic leading-snug text-foreground-muted sm:min-h-[2.8rem] sm:max-w-[85%] sm:text-[16px]">
                     &ldquo;{c.hook}&rdquo;
                   </p>
                   <div className="flex flex-col items-center gap-2">
