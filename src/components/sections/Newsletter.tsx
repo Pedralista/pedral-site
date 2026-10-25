@@ -73,7 +73,7 @@ export default function Newsletter({
                 You&apos;re on the list.
               </p>
               <p className="mt-2 text-[16px] font-light text-foreground-muted">
-                Maestro Petite Seconde drops Q2 2026 — you&apos;ll hear before anyone else. No noise in between.
+                New editions and new dials — you&apos;ll hear before anyone else. No noise in between.
               </p>
             </div>
           ) : status === "exists" ? (
@@ -82,7 +82,7 @@ export default function Newsletter({
                 You&apos;re already on the list.
               </p>
               <p className="mt-2 text-[16px] font-light text-foreground-muted/60">
-                Maestro Petite Seconde · Q2 2026. We&apos;ll be in touch.
+                We&apos;ll be in touch before the next edition opens.
               </p>
             </div>
           ) : (
