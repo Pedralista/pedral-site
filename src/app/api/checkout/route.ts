@@ -190,7 +190,12 @@ export async function POST(req: NextRequest) {
       // customers can log in but still see nothing under Order History.
       invoice_creation: { enabled: true },
       line_items: lineItems,
-      ...(lineItems.some((li) => !!li.price && PROMO_CODE_PRICE_IDS.has(li.price)) && { allow_promotion_codes: true }),
+      ...(lineItems.some((li) => !!li.price && PROMO_CODE_PRICE_IDS.has(li.price)) && {
+        allow_promotion_codes: true,
+        // Fixed-amount EUR codes are rejected as "invalid" while Adaptive
+        // Pricing localises the currency, so keep these sessions in EUR.
+        adaptive_pricing: { enabled: false },
+      }),
       return_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
       metadata: {
         cartItems: cartMetadataJson,
@@ -249,6 +254,8 @@ export async function POST(req: NextRequest) {
       ],
     },
     ...((priceId === "price_1TEVYOCfxE1lSBKRdzi2pJsj" || PROMO_CODE_PRICE_IDS.has(priceId)) && { allow_promotion_codes: true }),
+    // See the cart branch: codes only validate with the session kept in EUR.
+    ...(PROMO_CODE_PRICE_IDS.has(priceId) && { adaptive_pricing: { enabled: false } }),
     phone_number_collection: { enabled: true },
     billing_address_collection: "required",
     custom_text: {
