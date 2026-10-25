@@ -848,7 +848,7 @@ export const collections: Collection[] = [
       Movement: "Automatic: modified Miyota 9015 — or LJP D100, Swiss hand-wound, 50-hour power reserve · Hours and minutes",
       Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
-      Dial: "Pedral signature inner dial frame · Soirée and Bourgogne: custom distorted Roman numerals · Nocturne and Ambiance: musical-note indices · Famille (purple) reserved for existing owners",
+      Dial: "Pedral signature inner dial frame · Soirée (black onyx) and Bourgogne: custom distorted Roman numerals · Nocturne (black onyx) and Ambiance: musical-note indices · Famille (purple) reserved for existing owners",
       Hands: "Polished dress-watch hands",
       Crown: "Pedral signature geodesic crown",
       Crystal: "Sapphire with anti-reflective coating",
@@ -904,7 +904,7 @@ export const collections: Collection[] = [
         stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
         stock: 5,
         price: 1100,
-        description: "Black dial, custom distorted Roman numerals in silver. The black-tie one.",
+        description: "Black onyx dial, custom distorted Roman numerals in silver. The black-tie one.",
         image: "/images/etiquette-soiree.jpg",
         heroImage: "/images/etiquette-soiree.jpg",
         numeralOptions: ["Automatic", "Swiss Hand-Wound"],
@@ -934,7 +934,7 @@ export const collections: Collection[] = [
         stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
         stock: 5,
         price: 1100,
-        description: "Black dial with ivory musical-note indices.",
+        description: "Black onyx dial with ivory musical-note indices.",
         image: "/images/etiquette-nocturne.jpg",
         heroImage: "/images/etiquette-nocturne.jpg",
         numeralOptions: ["Automatic", "Swiss Hand-Wound"],
