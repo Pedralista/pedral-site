@@ -5,9 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const HERO_IMAGES = [
+// `contain`: studio renders on black (portrait) are shown whole on a black
+// ground instead of cropped, so the case is never cut off.
+const HERO_IMAGES: { src: string; alt: string; contain?: boolean }[] = [
   { src: "/images/hero-contour-onyx.png", alt: "Pedral Contour Onyx" },
   { src: "/images/hero-contour-gold-lapis.png", alt: "Pedral Contour gold lapis" },
+  { src: "/images/etiquette-soiree-gold.jpg", alt: "Pedral Étiquette Soirée, black onyx with gold Roman numerals", contain: true },
+  { src: "/images/etiquette-ambiance.jpg", alt: "Pedral Étiquette Ambiance, ivory with colourful musical notes", contain: true },
   { src: "/images/hero-maestro-founders-lapis.png", alt: "Pedral Maestro Founders lapis" },
   { src: "/images/hero-pedral-blue.jpeg", alt: "Pedral watch, blue dial" },
   { src: "/images/okapi-hero.jpg", alt: "Pedral Okapi" },
@@ -36,13 +40,13 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute inset-0"
+            className={`absolute inset-0 ${HERO_IMAGES[index].contain ? "bg-black" : ""}`}
           >
             <Image
               src={HERO_IMAGES[index].src}
               alt={HERO_IMAGES[index].alt}
               fill
-              className="object-cover"
+              className={HERO_IMAGES[index].contain ? "object-contain py-16 md:py-20" : "object-cover"}
               priority={index === 0}
             />
           </motion.div>
