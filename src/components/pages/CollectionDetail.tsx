@@ -23,6 +23,19 @@ import PreOrderModal from "@/components/ui/PreOrderModal";
 import { gaEvent, fbqTrack, type AnalyticsItem } from "@/lib/analytics";
 import { useCart } from "@/lib/cart-context";
 
+// Minimal inline formatting for story copy: **bold** and *italic*.
+function renderInline(text: string) {
+  return text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).map((part, i) =>
+    part.startsWith("**") ? (
+      <strong key={i} className="font-normal text-foreground">{part.slice(2, -2)}</strong>
+    ) : part.startsWith("*") && part.length > 2 ? (
+      <em key={i}>{part.slice(1, -1)}</em>
+    ) : (
+      part
+    )
+  );
+}
+
 function ImagePlaceholder({ label, className = "" }: { label: string; className?: string }) {
   return (
     <div
@@ -121,9 +134,30 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     selectedVariant?.image;
   // What the order records (Stripe metadata, cart line, stock decrement),
   // e.g. "Soirée · Japanese Hand-Wound".
-  const selectionLabel = selectedVariant?.numeralOptions
+  // Numbered edition (e.g. Famille Royale): the buyer picks their number from a grid.
+  const [editionNumber, setEditionNumber] = useState<number | null>(null);
+  // Identifies this visitor's number hold, so reopening checkout keeps it.
+  const [holdToken] = useState(() => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Math.random()).slice(2)));
+  const [soldNumbers, setSoldNumbers] = useState<number[]>([]);
+  const [reservedNumbers, setReservedNumbers] = useState<number[]>([]);
+  useEffect(() => {
+    if (!c.editionNumbers) return;
+    fetch(`/api/edition-numbers?slug=${encodeURIComponent(c.slug)}`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d) => {
+        if (Array.isArray(d.sold)) setSoldNumbers(d.sold);
+        if (Array.isArray(d.reserved)) setReservedNumbers(d.reserved);
+      })
+      .catch(() => {});
+  }, [c.editionNumbers, c.slug, preOrderError]);
+  const pad2 = (n: number) => String(n).padStart(2, "0");
+  const baseSelectionLabel = selectedVariant?.numeralOptions
     ? `${selectedVariant.name} · ${selectedNumeral}`
     : selectedVariant?.name ?? "";
+  const selectionLabel =
+    c.editionNumbers && editionNumber
+      ? `${baseSelectionLabel} · No. ${pad2(editionNumber)} of ${c.editionNumbers}`
+      : baseSelectionLabel;
 
   // ── Checkout add-ons (feature-flagged OFF by default) ──────────────────────
   const addOnsActive = addOnsEnabledFor(c);
@@ -352,6 +386,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           variantName: selectionLabel,
           isPreOrder: c.nonRefundable ?? false,
           ...(codeDiscount && appliedCode ? { communityCode: appliedCode.code } : {}),
+          ...(c.editionNumbers && editionNumber ? { editionNumber, holdToken } : {}),
           ...(addOnsActive && (selectedStrapSlug || engravingActive)
             ? {
                 addOns: {
@@ -367,6 +402,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         setClientSecret(data.clientSecret);
         setLoading(false);
       } else {
+        if (res.status === 409) setEditionNumber(null);
         setPreOrderError(data.error ?? "Could not load checkout. Please try again.");
         setLoading(false);
       }
@@ -623,7 +659,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 <div className={`flex flex-col gap-3 sm:flex-row sm:items-center ${c.heroFit === "contain" ? "sm:justify-center" : ""}`}>
                   <button
                     onClick={handleReserve}
-                    disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                    disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                     className="w-full rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
                   >
                     {loading
@@ -1138,6 +1174,69 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               </motion.div>
             )}
 
+            {/* Edition number grid (numbered editions, e.g. Famille Royale) */}
+            {c.editionNumbers && (
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="mt-10"
+              >
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="text-[13px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[3px] uppercase text-accent">
+                    Choose your number
+                  </p>
+                  <p className="font-serif text-[18px] font-light italic text-foreground-muted sm:text-[20px]">
+                    {c.editionNumbers - soldNumbers.length - reservedNumbers.length} of {c.editionNumbers} still available
+                  </p>
+                </div>
+                <div className="mt-4 grid grid-cols-7 border-l border-t border-accent/25">
+                  {Array.from({ length: c.editionNumbers }, (_, i) => i + 1).map((n) => {
+                    const sold = soldNumbers.includes(n);
+                    const reserved = !sold && reservedNumbers.includes(n);
+                    const taken = sold || reserved;
+                    const selected = editionNumber === n;
+                    return (
+                      <button
+                        key={n}
+                        type="button"
+                        disabled={taken}
+                        onClick={() => { setEditionNumber(n); setPreOrderError(null); }}
+                        aria-label={sold ? `No. ${pad2(n)}, sold` : reserved ? `No. ${pad2(n)}, reserved` : `Choose No. ${pad2(n)}`}
+                        aria-pressed={selected}
+                        className={`relative flex aspect-square items-center justify-center border-b border-r border-accent/25 font-serif text-[18px] font-light transition-colors sm:text-[26px] ${
+                          sold
+                            ? "cursor-not-allowed text-foreground-muted/30"
+                            : reserved
+                            ? "cursor-not-allowed bg-accent/[0.06] text-foreground-muted/45"
+                            : selected
+                            ? "bg-accent text-background"
+                            : "text-foreground hover:bg-accent/10"
+                        }`}
+                      >
+                        {pad2(n)}
+                        {sold && (
+                          <span aria-hidden className="pointer-events-none absolute left-[18%] right-[18%] top-1/2 h-px -rotate-[24deg] bg-foreground-muted/40" />
+                        )}
+                        {reserved && (
+                          <span className="absolute bottom-[10%] left-0 right-0 text-center font-sans text-[7px] tracking-[1px] uppercase text-accent/70 sm:text-[9px] sm:tracking-[2px]">
+                            Reserved
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+                <p className="mt-3 text-[15px] font-light text-foreground-muted/70">
+                  {editionNumber
+                    ? `No. ${pad2(editionNumber)} of ${c.editionNumbers} is yours to claim. It's held for you for 30 minutes once you continue to checkout.`
+                    : "Pick a birthday, a lucky number, or simply the one that feels right. Each number exists once. Reserved numbers are being paid for right now; crossed-out numbers are taken."}
+                </p>
+                {preOrderError && <p className="mt-2 text-[15px] text-red-400">{preOrderError}</p>}
+              </motion.div>
+            )}
+
             {/* CTA */}
             <motion.div
               initial="hidden"
@@ -1232,7 +1331,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <div className="flex flex-col gap-2">
                 <button
                   onClick={handleReserve}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
                   {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `${c.reserveButtonLabel ?? "Reserve Allocation"} · €${runningTotal.toLocaleString()}`}
@@ -1359,11 +1458,17 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 {c.story.title}
               </h2>
               <div className="mt-6 h-px w-[60px] bg-accent" />
-              {c.story.paragraphs.map((para, i) => (
-                <p key={i} className={`${i === 0 ? "mt-6" : "mt-5"} text-[16px] font-light leading-[1.9] text-foreground-muted`}>
-                  {para}
-                </p>
-              ))}
+              {c.story.paragraphs.map((para, i) =>
+                typeof para === "string" ? (
+                  <p key={i} className={`${i === 0 ? "mt-6" : "mt-5"} text-[16px] font-light leading-[1.9] text-foreground-muted`}>
+                    {renderInline(para)}
+                  </p>
+                ) : (
+                  <h3 key={i} className="mt-10 font-serif text-[22px] font-light text-foreground md:text-[26px]">
+                    {para.heading}
+                  </h3>
+                )
+              )}
             </motion.div>
           </div>
         </section>
@@ -1446,8 +1551,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         </section>
       )}
 
-      {/* Detail Strip — Image + Text */}
-      <section className="grid md:grid-cols-2">
+      {/* Detail Strip — Image + Text. overflow-hidden keeps the slide-in
+          offset from widening the page on phones. */}
+      <section className="grid overflow-hidden md:grid-cols-2">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -1793,7 +1899,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <button
                   onClick={handleReserve}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full max-w-[300px] rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
                 >
                   {loading
@@ -2026,7 +2132,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <div className="min-w-0 flex-1">
                 <p className="truncate font-serif text-[15px] font-normal text-foreground sm:text-[16px]">
                   {c.name}
-                  {hasVariants && selectedVariant ? ` — ${selectedVariant.name}` : ""}
+                  {hasVariants && selectedVariant && !c.name.includes(selectedVariant.name) ? ` — ${selectedVariant.name}` : ""}
                 </p>
                 <p className="text-[16px] font-light text-foreground-muted">
                   &euro;{runningTotal.toLocaleString()}
@@ -2043,7 +2149,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 )}
                 <button
                   onClick={handleReserve}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:px-8 sm:text-[11px] sm:tracking-[2px]"
                 >
                   {loading ? "…" : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Reserve"}

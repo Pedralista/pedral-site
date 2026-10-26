@@ -3,6 +3,7 @@ import Stripe from "stripe";
 import { rateLimit, getIp } from "@/lib/rateLimit";
 import { collections } from "@/lib/collections";
 import { findCommunityCode } from "@/lib/community-codes";
+import { holdNumber } from "@/lib/edition-numbers";
 import {
   addOnsEnabledFor,
   getStrapAddon,
@@ -43,10 +44,12 @@ const VALID_PRICE_IDS = new Set([
   "price_1UUOtmCfxE1lSBKRpwNV6Bpc", // Étiquette Hebrew — Layla · Swiss Hand-Wound (€1,800)
   "price_1UUPTrCfxE1lSBKRy4L1h1fg", // Étiquette Bangla — Ekushey (€1,100)
   "price_1UUPNOCfxE1lSBKR7Zr4TfjN", // Étiquette Bangla — Sondhya (€1,100)
+  "price_1UUl4sCfxE1lSBKREY3afrAq", // Étiquette Famille Royale · Japanese Hand-Wound (€1,100)
+  "price_1UUl5lCfxE1lSBKRRJDXaq90", // Étiquette Famille Royale · Swiss Hand-Wound (€1,800)
 ]);
 
-// Étiquette Hebrew / Bangla prices: the checkout shows a discount-code box so
-// community members can use the codes Kevin shared in the groups (codes and
+// Étiquette Hebrew / Bangla / Famille Royale prices: the checkout shows a
+// discount-code box so community members and owners can use the codes Kevin shared (codes and
 // their expiry, 3 Nov 2026, live in Stripe — nothing about them is on the site).
 const PROMO_CODE_PRICE_IDS = new Set([
   "price_1UUOovCfxE1lSBKRZltUibsZ", // Tchelet · Japanese
@@ -55,6 +58,8 @@ const PROMO_CODE_PRICE_IDS = new Set([
   "price_1UUOtmCfxE1lSBKRpwNV6Bpc", // Layla · Swiss
   "price_1UUPTrCfxE1lSBKRy4L1h1fg", // Ekushey
   "price_1UUPNOCfxE1lSBKR7Zr4TfjN", // Sondhya
+  "price_1UUl4sCfxE1lSBKREY3afrAq", // Famille Royale · Japanese (owners: ROYALE950)
+  "price_1UUl5lCfxE1lSBKRRJDXaq90", // Famille Royale · Swiss (owners: ROYALE1500)
 ]);
 
 // Stripe coupon per community code (keyed by the code's hash — see
@@ -231,7 +236,7 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Legacy single-item checkout (unchanged) ─────────────────────────────────
-  const { priceId, productName, variantName, isPreOrder, addOns, communityCode } = body;
+  const { priceId, productName, variantName, isPreOrder, addOns, communityCode, editionNumber, holdToken } = body;
 
   if (!priceId || !productName) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -242,6 +247,22 @@ export async function POST(req: NextRequest) {
   }
 
   const addOnLineItems = buildAddOnLineItems(productName, addOns);
+
+  // Numbered edition (e.g. Étiquette Famille Royale): the buyer's chosen number is
+  // held for 30 minutes while they pay, so nobody else can take it.
+  const numbered = collections.find((c) => c.name === productName && c.editionNumbers);
+  let chosenNumber: number | undefined;
+  if (numbered?.editionNumbers) {
+    const n = Number(editionNumber);
+    if (!Number.isInteger(n) || n < 1 || n > numbered.editionNumbers) {
+      return NextResponse.json({ error: "Please choose your number." }, { status: 400 });
+    }
+    const holder = typeof holdToken === "string" && holdToken.length <= 64 ? holdToken : crypto.randomUUID();
+    if (!(await holdNumber(numbered.slug, n, holder))) {
+      return NextResponse.json({ error: `No. ${String(n).padStart(2, "0")} was just taken — please choose another number.` }, { status: 409 });
+    }
+    chosenNumber = n;
+  }
 
   // Community code typed on the product page — re-checked here (expiry and
   // which watch it's for) before the coupon is applied.
@@ -265,7 +286,9 @@ export async function POST(req: NextRequest) {
     metadata: {
       product: productName,
       variant: variantName ?? "",
+      ...(chosenNumber ? { editionNumber: String(chosenNumber) } : {}),
     },
+
     shipping_address_collection: {
       allowed_countries: [
         "SE", "NO", "DK", "FI", "DE", "NL", "BE", "FR", "IT", "ES",
@@ -284,7 +307,9 @@ export async function POST(req: NextRequest) {
     billing_address_collection: "required",
     custom_text: {
       submit: {
-        message: isPreOrder
+        message: chosenNumber && numbered?.editionNumbers
+          ? `Edition number ${String(chosenNumber).padStart(2, "0")} of ${numbered.editionNumbers} is held for you for 30 minutes. Kevin will confirm your piece within 24 hours.`
+          : isPreOrder
           ? "Pre-order · Non-refundable · Delivery in 3–6 months. Kevin will confirm your allocation within 24 hours."
           : "Your order is allocation-based. Kevin will confirm your piece within 24 hours.",
       },

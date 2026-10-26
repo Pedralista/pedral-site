@@ -23,7 +23,8 @@ function articleLastModified(date: string): string {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const collectionRoutes = collections.filter((c) => !isHidden(c)).map((c) => ({
+  // Direct-link-only pages (owners / community editions) stay out of the sitemap.
+  const collectionRoutes = collections.filter((c) => !isHidden(c) && !c.excludeFromFeed).map((c) => ({
     url: `${siteUrl}/collections/${c.slug}`,
     // No per-product "updated" field exists — use the manually-maintained date.
     lastModified: SITE_CONTENT_UPDATED,

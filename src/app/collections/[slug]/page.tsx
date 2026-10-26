@@ -38,6 +38,8 @@ export async function generateMetadata({
   return {
     title: { absolute: metaTitle },
     description: metaDescription,
+    // Direct-link-only pages (owners / community editions): keep out of search.
+    ...(collection.excludeFromFeed ? { robots: { index: false, follow: false } } : {}),
     alternates: {
       canonical,
       languages: { en: canonical, "x-default": canonical },

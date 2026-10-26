@@ -3,6 +3,7 @@ import Stripe from "stripe";
 import { sendMetaCapiPurchase } from "@/lib/metaCapi";
 import { collections } from "@/lib/collections";
 import { decrementStock, resolveStockTargets } from "@/lib/stock";
+import { markNumberSold } from "@/lib/edition-numbers";
 
 export async function POST(req: NextRequest) {
   if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
@@ -67,6 +68,11 @@ export async function POST(req: NextRequest) {
                 (c) => c.name === session.metadata?.product || c.formerNames?.includes(session.metadata?.product ?? "")
               );
           if (collection) {
+            // Numbered edition: the buyer's chosen number is now sold.
+            const n = Number(session.metadata?.editionNumber);
+            if (collection.editionNumbers && Number.isInteger(n) && n > 0) {
+              await markNumberSold(collection.slug, n);
+            }
             const targets = resolveStockTargets(collection, session.metadata?.variant);
             for (const t of targets) {
               await decrementStock(t.slug ?? collection.slug, t.part, t.fallback);

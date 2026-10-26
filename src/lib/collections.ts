@@ -125,6 +125,8 @@ export interface Collection {
   excludeFromFeed?: boolean;
   /** Show a "Community code" box by the buy button (see src/lib/community-codes.ts). */
   communityCodes?: boolean;
+  /** Numbered edition where the buyer picks their own number (1…N) from a grid before checkout — e.g. Étiquette Famille Royale, 21. */
+  editionNumbers?: number;
   hidePriceOnCard?: boolean;
   variantLabel?: string;
   valuePerspectiveTitle?: string;
@@ -144,7 +146,8 @@ export interface Collection {
   /** Capsule/collab credit shown near the hero — e.g. a partner boutique co-releasing a limited run. `bio` (optional) renders a full section about the partner further down the page. */
   collaboration?: { name: string; url: string; bio?: string };
   /** Optional story section shown right after the description — cultural/heritage background for an edition (e.g. Étiquette Bangla). */
-  story?: { eyebrow: string; title: string; paragraphs: string[] };
+  /** Paragraph strings support **bold** and *italic*; a `{ heading }` entry starts a sub-section (e.g. "Why only twenty-one"). */
+  story?: { eyebrow: string; title: string; paragraphs: (string | { heading: string })[] };
   /** Appended to the generic "Before You Commit" FAQ list — for product-specific questions (materials, sizing quirks) that don't apply to every collection. */
   extraFaqs?: { q: string; a: string }[];
 }
@@ -872,7 +875,7 @@ export const collections: Collection[] = [
     // movement is the sub-choice, each dial+movement its own Stripe price
     // so receipts and Stripe reports name both. (A Triomphe-style
     // colour → numerals → movement picker was tried and rejected by Kevin
-    // as too complex — keep the purchase flow to two simple choices.) Famille (purple) is sold
+    // as too complex — keep the purchase flow to two simple choices.) Famille Royale (purple) is sold
     // via Stripe payment links Kevin sends owners, not this checkout.
     //
     // Real live Stripe price IDs wired in (read from Kevin's Stripe
@@ -916,7 +919,7 @@ export const collections: Collection[] = [
       Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D100, 50-hour power reserve",
       Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
-      Dial: "Pedral signature inner dial frame · Soirée (black onyx, gold numerals) and Bourgogne: custom distorted Roman numerals · Nocturne (black onyx) and Ambiance: musical-note indices · Famille (purple) reserved for existing owners",
+      Dial: "Pedral signature inner dial frame · Soirée (black onyx, gold numerals) and Bourgogne: custom distorted Roman numerals · Nocturne (black onyx) and Ambiance: musical-note indices · Famille Royale (purple) reserved for existing owners",
       Hands: "Polished dress-watch hands",
       Crown: "Pedral signature geodesic crown",
       Crystal: "Sapphire with anti-reflective coating",
@@ -951,7 +954,7 @@ export const collections: Collection[] = [
       },
       {
         q: "Can I get the purple dial?",
-        a: "Famille, the purple dial, is reserved exclusively for existing Pedral owners — just ten pieces, with no public allocation. If you already own a Pedral, write to Kevin directly to reserve yours.",
+        a: "Famille Royale, the purple dial, is reserved exclusively for existing Pedral owners — just 21 numbered pieces, with no public allocation, and owners choose their own number. If you already own a Pedral, write to Kevin directly to reserve yours.",
       },
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
@@ -1036,10 +1039,134 @@ export const collections: Collection[] = [
     },
     comingSoonEditions: [
       {
-        name: "Famille",
-        description: "Purple dial, custom distorted Roman numerals in silver. Just ten pieces. No public allocation. Existing owners: write to Kevin directly to reserve yours.",
+        name: "Famille Royale",
+        description: "Purple dial, custom distorted Roman numerals in silver. Just 21 numbered pieces — owners choose their own number. No public allocation. Existing owners: write to Kevin directly to reserve yours.",
         image: "/images/etiquette-famille.jpg",
-        badge: "Owners Only · 10 Pieces",
+        badge: "Owners Only · 21 Pieces",
+      },
+    ],
+  },
+  {
+    // Étiquette Famille Royale (Oct 2026, Kevin's request): the purple dial, for
+    // existing Pedral owners only — a standalone page reached by the link
+    // Kevin sends owners, never listed on the site or in the feed. 21
+    // numbered pieces; the buyer picks their number from a grid
+    // (editionNumbers — held during checkout, marked sold by the webhook).
+    // Live Stripe prices (2026-10-26); owners' codes ROYALE950 / ROYALE1500
+    // (€150 / €300 off, until 3 Nov) are entered at Stripe checkout.
+    slug: "etiquette-famille-royale",
+    name: "Étiquette Famille Royale",
+    metaTitle: "Pedral Étiquette Famille Royale — For Pedral Owners, 21 Numbered Pieces | Pedral",
+    metaDescription:
+      "Étiquette Famille Royale: the purple Étiquette, reserved for existing Pedral owners. 21 numbered pieces — choose your own number.",
+    tagline: "Owners Only",
+    hook: "One kept in the family.",
+    descriptionTitle: "For the Pedral Owners Club.",
+    description:
+      "Étiquette Famille Royale is the one dial that will never be sold publicly. It is reserved for existing Pedral owners — the Pedral Owners Club — as a thank-you to the people who believed in the studio before anyone else did. A deep purple dial with custom Roman numerals, familiar yet deliberately distorted, stretching across it in silver. Inside a 27 × 43.7 mm case built on the golden ratio, no more than 7.7 mm thick.",
+    designerNote:
+      "Every Pedral owner took a chance on an independent studio before there was a reason to. This one is for them. Good design, much like good manners, is knowing the rules — and knowing whom to thank.",
+    year: 2026,
+    tier: "limited",
+    price: 1100,
+    stock: 21,
+    maxStock: 21,
+    edition: "Owners only · Choose your number",
+    badge: "Owners Only · 21 Pieces",
+    urgencyTag: "Owners only · Choose your number",
+    reserveButtonLabel: "Pre-order",
+    shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
+    variantLabel: "Dial",
+    numeralOptionsLabel: "Movement",
+    standalone: true,
+    excludeFromFeed: true, // owners only — not in the Instagram/Google catalogue
+    editionNumbers: 21,
+    reassurance: [
+      "Owners only · 21 numbered pieces · Choose your number",
+      "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D100",
+      "Direct communication with Kevin — not a support team",
+      "Tracked & insured shipping",
+    ],
+    story: {
+      eyebrow: "Famille Royale",
+      title: "Kept in the family.",
+      paragraphs: [
+        "Famille Royale exists for one reason: **to thank the people who were here first.** Every Pedral owner took a chance on an independent studio in Stockholm before there was a waiting list, a press page or a reason to. This dial is reserved for them — the Pedral Owners Club — and it will never be sold publicly.",
+        { heading: "Why purple" },
+        "For most of history, purple was the colour you couldn't simply buy. **Tyrian purple** took thousands of sea snails to dye a single garment, and Roman emperors kept it for themselves; in Byzantium, a child born to a reigning emperor was said to be *born in the purple*. A colour that had to be earned.",
+        "On Étiquette, that purple runs deep and calm across the dial, with **custom distorted Roman numerals in silver** stretching over it — the same theatrical numerals as the rest of the collection, in a colour kept for family.",
+        { heading: "Why only twenty-one" },
+        "**Twenty-one watches. Twenty-one numbers.** Each piece is individually numbered, and **you choose yours** — a birthday, an anniversary, the year you bought your first Pedral, or simply the number that feels right. Once a number is taken, it is gone.",
+        "When all twenty-one are spoken for, Famille Royale is closed. **There will be no second batch.**",
+        "More than a dial, Famille Royale is a thank-you — **from the studio, to the people who made it possible.**",
+      ],
+    },
+    specsTitle: "Kept in the family.",
+    specs: {
+      Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D100, 50-hour power reserve",
+      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
+      "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
+      Dial: "Famille Royale · Deep purple with custom distorted Roman numerals in silver · Pedral signature inner dial frame",
+      Hands: "Polished dress-watch hands",
+      Crown: "Pedral signature geodesic crown",
+      Crystal: "Sapphire with anti-reflective coating",
+      Caseback: "Solid stainless steel",
+      "Water Resist.": "5 ATM / 50 metres",
+      Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
+      Edition: "21 numbered pieces · Your choice of number · Reserved for existing Pedral owners",
+      Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
+    },
+    boxContents: [],
+    valueAnchor: "",
+    valueComparePrice: "",
+    detailStrip: {
+      eyebrow: "The Case",
+      title: "Architecture in miniature.",
+      text: "Multiple concentric grooves are CNC-machined into the stainless steel, following the case's elongated rectangular contours and softly rounded corners. Alternating brushed surfaces and polished bevels create subtle variations in reflection, so the case reveals different details as it moves with the wrist.",
+    },
+    testimonials: [],
+    wristFit: {
+      caseDiameter: "27 × 43.7mm",
+      thickness: "7.7mm max",
+      lugWidth: "20 → 18mm",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+    },
+    extraFaqs: [
+      {
+        q: "Who can order Famille Royale?",
+        a: "Famille Royale is reserved for existing Pedral owners — it will never be sold publicly. If you've received this page, it's because you're part of the family.",
+      },
+      {
+        q: "How does choosing my number work?",
+        a: "There are 21 pieces, numbered 01 to 21. Pick any number that's still available; once you continue to checkout it's held for you for 30 minutes, and when your order is paid it's yours. Taken numbers are crossed out.",
+      },
+      {
+        q: "When will it be delivered?",
+        a: "Delivery is expected between late Q1 and early Q2 2027. Pieces are delivered in the order they were purchased. Final specifications are subject to prototype development.",
+      },
+    ],
+    newsletterTitle: "Follow Étiquette from prototype to wrist.",
+    newsletterSub: "Prototype updates and studio news. No noise.",
+    image: "/images/etiquette-famille.jpg",
+    heroImage: "/images/etiquette-famille.jpg",
+    heroFit: "contain",
+    detailImage: "/images/etiquette-famille.jpg",
+    galleryImages: ["/images/etiquette-famille.jpg", "/images/etiquette-movement.jpg"],
+    variants: [
+      {
+        name: "Famille Royale",
+        stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
+        stock: 21,
+        price: 1100,
+        description: "Deep purple dial with custom distorted Roman numerals in silver. For existing Pedral owners only.",
+        image: "/images/etiquette-famille.jpg",
+        heroImage: "/images/etiquette-famille.jpg",
+        numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
+        numeralPrices: { "Swiss Hand-Wound": 1800 },
+        numeralPriceIds: {
+          "Japanese Hand-Wound": "price_1UUl4sCfxE1lSBKREY3afrAq", // Étiquette Famille Royale · Japanese Hand-Wound (€1,100)
+          "Swiss Hand-Wound": "price_1UUl5lCfxE1lSBKRRJDXaq90", // Étiquette Famille Royale · Swiss Hand-Wound (€1,800)
+        },
       },
     ],
   },
