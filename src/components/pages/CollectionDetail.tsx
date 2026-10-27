@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
+import { OWNERS_CLUB_WHATSAPP_URL } from "@/lib/owners-club";
 import { findCommunityCode, normalizeCode, type CommunityCode } from "@/lib/community-codes";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -289,6 +290,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   // deposit rather than the item's real price, which doesn't compose with a
   // multi-item Stripe session the way a normal priced line item does.
   const canAddToCart =
+    // Numbered editions go straight to checkout so the chosen number is held.
+    !c.editionNumbers &&
     !codeDiscount &&
     !c.isEnquiryOnly &&
     !c.isPreOrder &&
@@ -1471,6 +1474,37 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               )}
             </motion.div>
           </div>
+        </section>
+      )}
+
+      {/* Pedral Owners Club WhatsApp invite (owners-only pages) */}
+      {c.ownersClubInvite && (
+        <section className="bg-background-alt py-16 md:py-20">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="mx-auto max-w-[700px] px-6 text-center md:px-12"
+          >
+            <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+              Pedral Owners Club
+            </p>
+            <h2 className="font-serif text-[clamp(26px,3vw,36px)] font-light text-foreground">
+              Join the conversation.
+            </h2>
+            <p className="mx-auto mt-5 max-w-[520px] text-[16px] font-light leading-[1.85] text-foreground-muted">
+              A private WhatsApp group for Pedral owners — first looks at new editions, behind-the-scenes from the studio, and a direct line to Kevin.
+            </p>
+            <a
+              href={OWNERS_CLUB_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-block rounded-lg border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-accent transition-colors hover:bg-accent hover:text-background"
+            >
+              Join on WhatsApp
+            </a>
+          </motion.div>
         </section>
       )}
 

@@ -127,6 +127,8 @@ export interface Collection {
   communityCodes?: boolean;
   /** Numbered edition where the buyer picks their own number (1…N) from a grid before checkout — e.g. Étiquette Famille Royale, 21. */
   editionNumbers?: number;
+  /** Show the Pedral Owners Club WhatsApp invite (owners-only pages). */
+  ownersClubInvite?: boolean;
   hidePriceOnCard?: boolean;
   variantLabel?: string;
   valuePerspectiveTitle?: string;
@@ -1080,6 +1082,7 @@ export const collections: Collection[] = [
     numeralOptionsLabel: "Movement",
     standalone: true,
     excludeFromFeed: true, // owners only — not in the Instagram/Google catalogue
+    ownersClubInvite: true,
     editionNumbers: 21,
     reassurance: [
       "Owners only · 21 numbered pieces · Choose your number",

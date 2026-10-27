@@ -4,6 +4,7 @@ import Stripe from "stripe";
 import PurchaseTracker from "@/components/analytics/PurchaseTracker";
 import ClearCartOnSuccess from "@/components/cart/ClearCartOnSuccess";
 import type { AnalyticsItem } from "@/lib/analytics";
+import { OWNERS_CLUB_WHATSAPP_URL } from "@/lib/owners-club";
 
 export const metadata: Metadata = {
   title: "Order Confirmed",
@@ -83,6 +84,23 @@ export default async function OrderSuccessPage({
           ? "Your deposit has been received. You're in the production queue for the Okapi Classique. Kevin will be in touch personally before the remaining balance is due — ahead of your piece being built."
           : "A confirmation has been sent to your email. Kevin will personally confirm your allocation within 24 hours. Every Pedral is built to order — thank you for your patience."}
       </p>
+      {/* Only after a paid order — every buyer is now an owner. */}
+      {purchase && (
+        <div className="mt-10 max-w-[480px] rounded-lg border border-accent/15 px-6 py-6">
+          <p className="text-[11px] font-normal tracking-[3px] uppercase text-accent">Pedral Owners Club</p>
+          <p className="mt-3 text-[15px] font-light leading-[1.8] text-foreground-muted">
+            You&apos;re now part of it. Join the private WhatsApp group for owners — first looks at new editions and a direct line to Kevin.
+          </p>
+          <a
+            href={OWNERS_CLUB_WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-block rounded-lg bg-accent px-8 py-3 text-[11px] font-medium tracking-[2.5px] uppercase text-background transition-colors hover:bg-accent-hover"
+          >
+            Join on WhatsApp
+          </a>
+        </div>
+      )}
       <Link
         href="/collections"
         className="mt-10 inline-block rounded-lg border border-accent/30 px-8 py-3 text-[11px] font-normal tracking-[2.5px] uppercase text-accent transition-colors hover:bg-accent hover:text-background"
