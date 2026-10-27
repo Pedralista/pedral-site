@@ -917,7 +917,7 @@ export const collections: Collection[] = [
     specs: {
       Price: "€1,100 Japanese hand-wound · €1,800 Swiss hand-wound",
       Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D100, 50-hour power reserve",
-      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
+      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Pedral signature inner dial frame · Soirée (black onyx, gold numerals) and Bourgogne: custom distorted Roman numerals · Nocturne (black onyx) and Ambiance: musical-note indices · Famille Royale (Royal Aubergine lacquer, champagne-gold numerals) reserved for existing owners",
       Hands: "Polished dress-watch hands",
@@ -934,14 +934,14 @@ export const collections: Collection[] = [
     detailStrip: {
       eyebrow: "The Case",
       title: "Architecture in miniature.",
-      text: "Multiple concentric grooves are CNC-machined into the stainless steel, following the case's elongated rectangular contours and softly rounded corners. Alternating brushed surfaces and polished bevels create subtle variations in reflection, so the case reveals different details as it moves with the wrist.",
+      text: "The case is gently curved, so it follows the line of the wrist instead of sitting flat on top of it. Multiple concentric grooves are CNC-machined into the stainless steel, following its elongated rectangular contours and softly rounded corners. Alternating brushed surfaces and polished bevels create subtle variations in reflection, so the case reveals different details as it moves with the wrist.",
     },
     testimonials: [],
     wristFit: {
       caseDiameter: "27 × 43.7mm",
       thickness: "7.7mm max",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
     },
     extraFaqs: [
       {
@@ -1104,7 +1104,7 @@ export const collections: Collection[] = [
     specsTitle: "Kept in the family.",
     specs: {
       Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D100, 50-hour power reserve",
-      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
+      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Famille Royale · Royal Aubergine lacquer · Custom distorted Roman numerals as champagne-gold appliqués, matching hands · Pedral signature inner dial frame",
       Hands: "Polished dress-watch hands",
@@ -1122,14 +1122,14 @@ export const collections: Collection[] = [
     detailStrip: {
       eyebrow: "The Case",
       title: "Architecture in miniature.",
-      text: "Multiple concentric grooves are CNC-machined into the stainless steel, following the case's elongated rectangular contours and softly rounded corners. Alternating brushed surfaces and polished bevels create subtle variations in reflection, so the case reveals different details as it moves with the wrist.",
+      text: "The case is gently curved, so it follows the line of the wrist instead of sitting flat on top of it. Multiple concentric grooves are CNC-machined into the stainless steel, following its elongated rectangular contours and softly rounded corners. Alternating brushed surfaces and polished bevels create subtle variations in reflection, so the case reveals different details as it moves with the wrist.",
     },
     testimonials: [],
     wristFit: {
       caseDiameter: "27 × 43.7mm",
       thickness: "7.7mm max",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
     },
     extraFaqs: [
       {
@@ -1225,7 +1225,7 @@ export const collections: Collection[] = [
     specs: {
       Price: "€1,100 Japanese hand-wound · €1,800 Swiss hand-wound",
       Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to hand-wound, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D100, 50-hour power reserve",
-      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
+      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Lacquered · Ivory with custom distorted Hebrew numerals in blue, or blue with ivory numerals · Pedral signature inner dial frame",
       Hands: "Polished dress-watch hands",
@@ -1250,7 +1250,7 @@ export const collections: Collection[] = [
       caseDiameter: "27 × 43.7mm",
       thickness: "7.7mm max",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
       image: "/images/etiquette-hebrew.jpg",
     },
     extraFaqs: [
@@ -1358,7 +1358,7 @@ export const collections: Collection[] = [
     specs: {
       Price: "€1,100",
       Movement: "Pedral-modified Miyota 9015 · Converted from automatic to hand-wound · Rectangular movement, 27 × 20.6 × 3.5mm · Hours and minutes",
-      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
+      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Lacquered · Black onyx with custom distorted Eastern Arabic numerals in gold · Pedral signature inner dial frame",
       Hands: "Polished dress-watch hands",
@@ -1383,7 +1383,7 @@ export const collections: Collection[] = [
       caseDiameter: "27 × 43.7mm",
       thickness: "7.7mm max",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
       image: "/images/etiquette-eastern-arabic.jpg",
     },
     extraFaqs: [
@@ -1478,7 +1478,7 @@ export const collections: Collection[] = [
     specs: {
       Price: "€1,100",
       Movement: "Pedral-modified Miyota 9015 · Converted from automatic to hand-wound · Rectangular movement, 27 × 20.6 × 3.5mm · Hours and minutes",
-      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Subtly asymmetrical rectangle · 316L stainless steel",
+      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Lacquered · Ekushey: green with a red centre, Bangla numerals in silver · Sondhya: black onyx, Bangla numerals and hands in gold · Custom distorted numerals · Pedral signature inner dial frame",
       Hands: "Polished dress-watch hands",
@@ -1503,7 +1503,7 @@ export const collections: Collection[] = [
       caseDiameter: "27 × 43.7mm",
       thickness: "7.7mm max",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
       image: "/images/etiquette-bangla.jpg",
     },
     extraFaqs: [
