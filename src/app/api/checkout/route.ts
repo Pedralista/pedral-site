@@ -275,12 +275,35 @@ export async function POST(req: NextRequest) {
     communityCoupon = COMMUNITY_COUPONS[entry.hash];
   }
 
+  // What was ordered, in one line — shown on the Stripe payment and on the
+  // customer's invoice, so Kevin sees the exact dial / movement / number
+  // without digging into metadata. The number is the server-checked one.
+  const editionLabel =
+    chosenNumber && numbered?.editionNumbers
+      ? `No. ${String(chosenNumber).padStart(2, "0")} of ${numbered.editionNumbers}`
+      : undefined;
+  const orderLabel = String(`${productName}${variantName ? ` — ${variantName}` : ""}`).slice(0, 300);
+
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     ui_mode: "embedded",
     // See the cart branch above for why both of these are needed.
     customer_creation: "always",
-    invoice_creation: { enabled: true },
+    invoice_creation: {
+      enabled: true,
+      invoice_data: {
+        description: orderLabel,
+        ...(editionLabel ? { custom_fields: [{ name: "Edition number", value: editionLabel }] } : {}),
+      },
+    },
+    payment_intent_data: {
+      description: orderLabel,
+      metadata: {
+        product: String(productName).slice(0, 200),
+        variant: String(variantName ?? "").slice(0, 200),
+        ...(chosenNumber ? { editionNumber: String(chosenNumber) } : {}),
+      },
+    },
     line_items: [{ price: priceId, quantity: 1 }, ...addOnLineItems],
     return_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
     metadata: {
