@@ -79,9 +79,15 @@ export async function POST(req: NextRequest) {
         };
       });
 
+  // Shown as the payment's description in Stripe (see src/app/api/checkout/route.ts).
+  const orderLabel = isBundle
+    ? BUNDLE_NAME
+    : (items as ItemKey[]).map((key) => STOCKHOLM_ITEMS[key].name).join(" + ");
+
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     payment_method_types: ["swish"],
+    payment_intent_data: { description: orderLabel },
     line_items: lineItems,
     success_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/stockholm-time/pay`,

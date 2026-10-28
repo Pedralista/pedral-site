@@ -190,6 +190,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Cart too large" }, { status: 400 });
     }
 
+    // What was ordered, in one line — same as the single-item branch below, so
+    // cart orders also show the watch / dial / movement on the Stripe payment
+    // and invoice instead of a blank description.
+    const cartOrderLabel = cartMetadata
+      .map(({ p, v, q }) => `${p}${v ? ` — ${v}` : ""}${q > 1 ? ` ×${q}` : ""}`)
+      .join(" + ")
+      .slice(0, 300);
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       ui_mode: "embedded",
@@ -202,7 +210,11 @@ export async function POST(req: NextRequest) {
       // "order history" is really invoice history, and "payment" mode
       // sessions don't generate an invoice by default — so without this,
       // customers can log in but still see nothing under Order History.
-      invoice_creation: { enabled: true },
+      invoice_creation: { enabled: true, invoice_data: { description: cartOrderLabel } },
+      payment_intent_data: {
+        description: cartOrderLabel,
+        metadata: { cartItems: cartMetadataJson },
+      },
       line_items: lineItems,
       ...(lineItems.some((li) => !!li.price && PROMO_CODE_PRICE_IDS.has(li.price)) && {
         allow_promotion_codes: true,

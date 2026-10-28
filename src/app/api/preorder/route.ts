@@ -63,7 +63,13 @@ export async function POST(req: NextRequest) {
       // Same reasoning as the main checkout route (see src/app/api/checkout/route.ts):
       // without this, a Customer exists but has no invoice, so the Billing
       // Portal's "My Account" order history stays empty for genuine deposit payers.
-      invoice_creation: { enabled: true },
+      invoice_creation: { enabled: true, invoice_data: { description: `${collectionName} — Reservation Deposit` } },
+      // Shown as the payment's description in Stripe, so Kevin can see which
+      // watch a deposit is for without opening the Checkout session.
+      payment_intent_data: {
+        description: `${collectionName} — Reservation Deposit`,
+        metadata: { type: "preorder", collection: collectionSlug },
+      },
       line_items: [
         {
           quantity: 1,
