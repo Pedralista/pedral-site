@@ -589,7 +589,7 @@ export const collections: Collection[] = [
     // original integrated scale-bracelet. Two new hand-wound dials join
     // at a larger 39mm case with a woven bracelet pattern:
     // Aventurine + moissanite baguette indices, and an Okapi cloisonné
-    // enamel dial on a gold-plated case — both on the LJP D100 (a modern,
+    // enamel dial on a gold-plated case — both on the LJP D101 (a modern,
     // 50h-power-reserve successor to the Peseux 7001/ETA 7001, not a
     // higher grade than it — see valueAnchor). 10 pieces each, confirmed
     // by Kevin (20 total for the third drop). maxStock is the cumulative
@@ -752,7 +752,7 @@ export const collections: Collection[] = [
     name: "Silhouette",
     metaTitle: "Pedral Silhouette — 39mm Integrated Bracelet, Swiss Hand-Wound | Pedral",
     metaDescription:
-      "Silhouette: a 39mm integrated-bracelet watch on the Nyoka weave, 7.3mm thin, La Joux-Perret LJP D100 Swiss hand-wound. Aventurine with hand-set moissanite, €2,200. Stockholm-designed.",
+      "Silhouette: a 39mm integrated-bracelet watch on the Nyoka weave, 7.3mm thin, La Joux-Perret LJP D101 Swiss hand-wound. Aventurine with hand-set moissanite, €2,200. Stockholm-designed.",
     tagline: "New",
     hook: "The line, reshaped.",
     descriptionTitle: "One continuous form.",
@@ -794,7 +794,7 @@ export const collections: Collection[] = [
     specsTitle: "The line, reshaped.",
     specs: {
       Price: "€2,200 Aventurine · €5,000 Ituri (fully allocated)",
-      Movement: "La Joux-Perret LJP D100 · Swiss hand-wound · 50-hour power reserve",
+      Movement: "La Joux-Perret LJP D101 · Swiss hand-wound · 50-hour power reserve",
       Case: "39mm · 47.5mm lug to lug · 7.3mm thin · 316L stainless steel (Ituri: gold-plated) · integrated collar fusing case to bracelet",
       Bracelet: "Integrated, Nyoka weave",
       Dial: "Aventurine: natural stone with hand-set moissanite baguette indices · Ituri: hand-fired gold cloisonné enamel carrying the Okapi motif",
@@ -810,7 +810,7 @@ export const collections: Collection[] = [
     ],
     valuePerspectiveTitle: "Where the price goes.",
     valueAnchor:
-      "The LJP D100 is a modern successor to the Peseux/ETA 7001 family with a longer 50-hour reserve, not a higher-grade movement. So what sets the price is the dial: hand-set moissanite stone-setting on Aventurine, and hand-fired gold cloisonné enamel — the studio's namesake motif — on Ituri.",
+      "The LJP D101 is a modern successor to the Peseux/ETA 7001 family with a longer 50-hour reserve, not a higher-grade movement. So what sets the price is the dial: hand-set moissanite stone-setting on Aventurine, and hand-fired gold cloisonné enamel — the studio's namesake motif — on Ituri.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Bracelet",
@@ -844,7 +844,7 @@ export const collections: Collection[] = [
         stockSlug: "contour",
         stockPart: "hand-wound-39mm-aventurine",
         color: "Blue",
-        description: "Natural aventurine stone with hand-set moissanite baguette indices. LJP D100, Swiss hand-wound.",
+        description: "Natural aventurine stone with hand-set moissanite baguette indices. LJP D101, Swiss hand-wound.",
         image: "/images/contour-aventurine-closeup-v2.jpg",
       },
       {
@@ -865,7 +865,7 @@ export const collections: Collection[] = [
     // delivery late Q1 / early Q2 2027, first come first served — confirmed
     // by Kevin 2026-10-25). Two
     // movements: Automatic (modified Miyota 9015, €1,100) and Swiss
-    // hand-wound LJP D100 (€1,800) — prices confirmed by Kevin. Group-of-10 prices
+    // hand-wound LJP D101 (€1,800) — prices confirmed by Kevin. Group-of-10 prices
     // (€950 / €1,550) are private and deliberately NOT on the site. The
     // purple dial (10 pieces) is owners-only and reserved through Kevin
     // directly, so it's not in the checkout. Copy is Kevin's own launch
@@ -911,14 +911,14 @@ export const collections: Collection[] = [
     numeralOptionsLabel: "Movement",
     reassurance: [
       "Pre-order · Full payment secures your allocation",
-      "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D100",
+      "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D101",
       "Direct communication with Kevin — not a support team",
       "Tracked & insured shipping",
     ],
     specsTitle: "Not for everyone.",
     specs: {
       Price: "€1,100 Japanese hand-wound · €1,800 Swiss hand-wound",
-      Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D100, 50-hour power reserve",
+      Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D101, 50-hour power reserve",
       Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Pedral signature inner dial frame · Soirée (black onyx, gold numerals) and Bourgogne: custom distorted Roman numerals · Nocturne (black onyx) and Ambiance: musical-note indices · Famille Royale (Royal Aubergine lacquer, champagne-gold numerals) reserved for existing owners",
@@ -948,7 +948,7 @@ export const collections: Collection[] = [
     extraFaqs: [
       {
         q: "What will it cost?",
-        a: "Both versions are hand-wound. The Japanese version, powered by a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement (27 × 20.6 × 3.5 mm), is €1,100. The Swiss version, powered by the La Joux-Perret LJP D100, is €1,800.",
+        a: "Both versions are hand-wound. The Japanese version, powered by a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement (27 × 20.6 × 3.5 mm), is €1,100. The Swiss version, powered by the La Joux-Perret LJP D101, is €1,800.",
       },
       {
         q: "When will it be delivered?",
@@ -1086,7 +1086,7 @@ export const collections: Collection[] = [
     editionNumbers: 21,
     reassurance: [
       "Owners only · 21 numbered pieces · Choose your number",
-      "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D100",
+      "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D101",
       "Direct communication with Kevin — not a support team",
       "Tracked & insured shipping",
     ],
@@ -1106,7 +1106,7 @@ export const collections: Collection[] = [
     },
     specsTitle: "Kept in the family.",
     specs: {
-      Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D100, 50-hour power reserve",
+      Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D101, 50-hour power reserve",
       Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Famille Royale · Royal Aubergine lacquer · Custom distorted Roman numerals as champagne-gold appliqués, matching hands · Pedral signature inner dial frame",
@@ -1210,7 +1210,7 @@ export const collections: Collection[] = [
     nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
     reassurance: [
       "Made to order · Full payment secures your piece",
-      "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D100",
+      "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D101",
       "Direct communication with Kevin — not a support team",
       "Tracked & insured shipping",
     ],
@@ -1227,7 +1227,7 @@ export const collections: Collection[] = [
     specsTitle: "Not for everyone.",
     specs: {
       Price: "€1,100 Japanese hand-wound · €1,800 Swiss hand-wound",
-      Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to hand-wound, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D100, 50-hour power reserve",
+      Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to hand-wound, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D101, 50-hour power reserve",
       Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Lacquered · Ivory with custom distorted Hebrew numerals in blue, or blue with ivory numerals · Pedral signature inner dial frame",
@@ -1246,7 +1246,7 @@ export const collections: Collection[] = [
     detailStrip: {
       eyebrow: "The Movement",
       title: "Shaped for the case.",
-      text: "The Japanese version runs on a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays at 7.7 mm. You wind it by the crown — the small ritual that comes with a hand-wound watch. Only the Japanese movement is shaped to the case. Prefer Swiss? Tchelet and Layla are also available with the La Joux-Perret LJP D100 — a conventional Swiss hand-wound calibre with a 50-hour power reserve.",
+      text: "The Japanese version runs on a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays at 7.7 mm. You wind it by the crown — the small ritual that comes with a hand-wound watch. Only the Japanese movement is shaped to the case. Prefer Swiss? Tchelet and Layla are also available with the La Joux-Perret LJP D101 — a conventional Swiss hand-wound calibre with a 50-hour power reserve.",
     },
     testimonials: [],
     wristFit: {
@@ -1259,7 +1259,7 @@ export const collections: Collection[] = [
     extraFaqs: [
       {
         q: "What will it cost?",
-        a: "Both versions are hand-wound. The Japanese version, powered by a Miyota 9015 that Pedral has converted to manual winding and reworked into a rectangular movement (27 × 20.6 × 3.5 mm), is €1,100. The Swiss version, powered by the La Joux-Perret LJP D100, is €1,800.",
+        a: "Both versions are hand-wound. The Japanese version, powered by a Miyota 9015 that Pedral has converted to manual winding and reworked into a rectangular movement (27 × 20.6 × 3.5 mm), is €1,100. The Swiss version, powered by the La Joux-Perret LJP D101, is €1,800.",
       },
       {
         q: "When will it be delivered?",
@@ -1319,7 +1319,7 @@ export const collections: Collection[] = [
     // standalone landing page — live by direct link only, never listed on
     // /collections, the homepage carousel or the nav. Same case, movements,
     // delivery as Étiquette, but hand-wound: Japanese (Pedral-modified Miyota 9015, rectangular, €1,100)
-    // or Swiss LJP D100 (€1,800, Hebrew only — Kevin, Oct 2026), with
+    // or Swiss LJP D101 (€1,800, Hebrew only — Kevin, Oct 2026), with
     // a lacquered dial (Kevin, Oct 2026); edition of 10, made to order.
     // TODO: one Stripe price per dial — until filled in (and added to
     // VALID_PRICE_IDS) the Pre-order button stays disabled.
