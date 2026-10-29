@@ -615,7 +615,7 @@ export const collections: Collection[] = [
     // edition size across all three drops: 140 total, confirmed by Kevin
     // (up from the 60 documented after the second drop alone — that
     // number undercounted the first drop, not this addition).
-    stock: 40,
+    stock: 25,
     maxStock: 120,
     edition: "Third drop",
     badge: "Available Now",

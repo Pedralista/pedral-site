@@ -6,7 +6,7 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
 import { collections, collectionCountWord } from "@/lib/collections";
 import TrustIcons from "@/components/sections/TrustIcons";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   return (
@@ -75,12 +75,27 @@ function carouselRank(slug: string) {
 }
 
 export default function CollectionShowcase() {
+  const [liveStock, setLiveStock] = useState<Record<string, { stock: number; variants?: Record<string, number> }> | null>(null);
+
+  useEffect(() => {
+    fetch("/api/stock")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => data && setLiveStock(data))
+      .catch(() => {
+        // Live stock is a progressive enhancement — the static numbers already
+        // rendered server-side stay correct if this fetch fails.
+      });
+  }, []);
+
   const visible = collections
     .filter((c) => !c.hidden && !c.standalone)
+    .map((c) => (liveStock?.[c.slug] ? { ...c, stock: liveStock[c.slug].stock } : c))
     .map((c) => {
       // Featured dial: show its picture and its own remaining count.
       const featured = c.cardVariant ? c.variants?.find((v) => v.name === c.cardVariant) : undefined;
-      return featured ? { ...c, image: featured.image ?? c.image, stock: featured.stock } : c;
+      if (!featured) return c;
+      const liveCount = liveStock?.[c.slug]?.variants?.[featured.name];
+      return { ...c, image: featured.image ?? c.image, stock: liveCount ?? featured.stock };
     })
     .sort((a, b) => carouselRank(a.slug) - carouselRank(b.slug));
   const visibleCount = visible.length;
