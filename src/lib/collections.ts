@@ -618,7 +618,7 @@ export const collections: Collection[] = [
     stock: 40,
     maxStock: 120,
     edition: "Third drop",
-    badge: "",
+    badge: "Available Now",
     urgencyTag: "Third drop · Pieces remaining",
     // Real checkout is live (Stripe variants below), so this is no longer an
     // enquiry-gated product — pricing, stock, and the standard Reserve CTA
