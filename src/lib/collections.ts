@@ -131,7 +131,7 @@ export interface Collection {
   communityCodes?: boolean;
   /** Numbered edition where the buyer picks their own number (1…N) from a grid before checkout — e.g. Étiquette Famille Royale, 21. */
   editionNumbers?: number;
-  /** Show the Pedral Owners Club WhatsApp invite (owners-only pages). */
+  /** Show the Pedral Watch Club WhatsApp invite (owners-only pages). */
   ownersClubInvite?: boolean;
   hidePriceOnCard?: boolean;
   variantLabel?: string;
@@ -1124,9 +1124,9 @@ export const collections: Collection[] = [
       "Étiquette Famille Royale: Royal Aubergine lacquer with champagne-gold appliqués, reserved for existing Pedral owners. 21 numbered pieces — choose your own number.",
     tagline: "Owners Only",
     hook: "One kept in the family.",
-    descriptionTitle: "For the Pedral Owners Club.",
+    descriptionTitle: "For the Pedral Watch Club.",
     description:
-      "Étiquette Famille Royale is the one dial that will never be sold publicly. It is reserved for existing Pedral owners — the Pedral Owners Club — as a thank-you to the people who believed in the studio before anyone else did. A Royal Aubergine lacquer dial, with custom Roman numerals — familiar yet deliberately distorted — as champagne-gold appliqués. Inside a 27 × 43.7 mm case built on the golden ratio, no more than 7.7 mm thick.",
+      "Étiquette Famille Royale is the one dial that will never be sold publicly. It is reserved for existing Pedral owners — the Pedral Watch Club — as a thank-you to the people who believed in the studio before anyone else did. A Royal Aubergine lacquer dial, with custom Roman numerals — familiar yet deliberately distorted — as champagne-gold appliqués. Inside a 27 × 43.7 mm case built on the golden ratio, no more than 7.7 mm thick.",
     designerNote:
       "Every Pedral owner took a chance on an independent studio before there was a reason to. This one is for them. Good design, much like good manners, is knowing the rules — and knowing whom to thank.",
     year: 2026,
@@ -1155,7 +1155,7 @@ export const collections: Collection[] = [
       eyebrow: "Famille Royale",
       title: "Kept in the family.",
       paragraphs: [
-        "Famille Royale exists for one reason: **to thank the people who were here first.** Every Pedral owner took a chance on an independent studio in Stockholm before there was a waiting list, a press page or a reason to. This dial is reserved for them — the Pedral Owners Club — and it will never be sold publicly.",
+        "Famille Royale exists for one reason: **to thank the people who were here first.** Every Pedral owner took a chance on an independent studio in Stockholm before there was a waiting list, a press page or a reason to. This dial is reserved for them — the Pedral Watch Club — and it will never be sold publicly.",
         { heading: "Why purple" },
         "For most of history, purple was the colour you couldn't simply buy. **Tyrian purple** took thousands of sea snails to dye a single garment, and Roman emperors kept it for themselves; in Byzantium, a child born to a reigning emperor was said to be *born in the purple*. A colour that had to be earned.",
         "On Étiquette, that purple deepens into **Royal Aubergine lacquer**, with **custom distorted Roman numerals as champagne-gold appliqués** — more understated and regal than bright violet and saturated gold. The same theatrical numerals as the rest of the collection, in a colour kept for family.",

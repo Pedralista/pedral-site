@@ -1546,7 +1546,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         </section>
       )}
 
-      {/* Pedral Owners Club WhatsApp invite (owners-only pages) */}
+      {/* Pedral Watch Club WhatsApp invite (owners-only pages) */}
       {c.ownersClubInvite && (
         <section className="bg-background-alt py-16 md:py-20">
           <motion.div
@@ -1557,7 +1557,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             className="mx-auto max-w-[700px] px-6 text-center md:px-12"
           >
             <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
-              Pedral Owners Club
+              Pedral Watch Club
             </p>
             <h2 className="font-serif text-[clamp(26px,3vw,36px)] font-light text-foreground">
               Join the conversation.

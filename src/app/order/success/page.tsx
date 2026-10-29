@@ -87,7 +87,7 @@ export default async function OrderSuccessPage({
       {/* Only after a paid order — every buyer is now an owner. */}
       {purchase && (
         <div className="mt-10 max-w-[480px] rounded-lg border border-accent/15 px-6 py-6">
-          <p className="text-[11px] font-normal tracking-[3px] uppercase text-accent">Pedral Owners Club</p>
+          <p className="text-[11px] font-normal tracking-[3px] uppercase text-accent">Pedral Watch Club</p>
           <p className="mt-3 text-[15px] font-light leading-[1.8] text-foreground-muted">
             You&apos;re now part of it. Join the private WhatsApp group for owners — first looks at new editions and a direct line to Kevin.
           </p>
