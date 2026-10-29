@@ -818,6 +818,14 @@ export const collections: Collection[] = [
         a: "Both are hand-wound, and the case stays 7.3mm thin either way. The Japanese version (€1,500) runs on a Miyota 9015 that Pedral converts from automatic to hand-winding. The Swiss version (€2,200) runs on the La Joux-Perret LJP D101, with a 50-hour power reserve. The twenty pieces are shared between the two movements, first come, first served.",
       },
       {
+        q: "Is the Ophion weave real relief, or an optical effect?",
+        a: "Real relief. The dial is pressed, so the weave has genuinely raised and recessed areas, and the sunburst finish makes the light move across it as you turn your wrist.",
+      },
+      {
+        q: "Will Silhouette fit my wrist?",
+        a: "The Nyoka bracelet fits wrists from 13.5 to 20 cm. At 47.5mm lug to lug and 7.3mm thin, it sits flat on most wrists in that range.",
+      },
+      {
         q: "How is Silhouette different from Contour?",
         a: "Same idea — case and bracelet as one continuous form — in a larger 39mm case, 47.5mm lug to lug, on the Nyoka weave bracelet instead of Contour's articulated scales. At 7.3mm thin, it's only a touch thicker than Contour's 6.9mm.",
       },
@@ -840,8 +848,9 @@ export const collections: Collection[] = [
       Movement: "Hand-wound · Swiss: La Joux-Perret LJP D101, 50-hour power reserve · Japanese (Ophion only): Miyota 9015 converted by Pedral from automatic to hand-winding",
       Case: "39mm · 47.5mm lug to lug · 7.3mm thin · 316L stainless steel (Ituri: gold-plated) · integrated collar fusing case to bracelet",
       Bracelet: "Integrated, Nyoka weave",
-      Dial: "Ophion (purple): the Nyoka weave carried across the dial, no indices, no logo · Aventurine: natural stone with hand-set moissanite baguette indices · Ituri: hand-fired gold cloisonné enamel carrying the Okapi motif",
+      Dial: "Ophion (purple): the Nyoka weave carried across the dial, pressed in real raised and recessed relief with a sunburst finish, no indices, no logo · Aventurine: natural stone with hand-set moissanite baguette indices · Ituri: hand-fired gold cloisonné enamel carrying the Okapi motif",
       Crystal: "Sapphire",
+      Caseback: "Sapphire display caseback",
       "Water Resist.": "5 ATM / 50 meters",
       Warranty: "24-month international coverage",
     },
@@ -865,6 +874,7 @@ export const collections: Collection[] = [
       caseDiameter: "39mm",
       thickness: "7.3mm",
       lugToLug: "47.5mm",
+      wristRange: "13.5–20cm (5.3–7.9\")",
       note: "39mm in diameter and 47.5mm lug to lug: a larger, more present footprint than Contour, and at 7.3mm thin the slimness that defines the line carries over. The Nyoka weave is integrated into the case, so it follows the wrist as one continuous form.",
     },
     newsletterTitle: "Stay close to the studio.",
@@ -885,7 +895,7 @@ export const collections: Collection[] = [
         stock: 20, // shared between both movements
         price: 1500,
         color: "Purple",
-        description: "Purple woven dial carrying the Nyoka pattern across the face, no indices, no logo.",
+        description: "Purple dial carrying the Nyoka weave across the face, pressed in real relief with a sunburst finish. No indices, no logo.",
         image: "/images/silhouette-ophion-v1.jpg",
         heroImage: "/images/silhouette-ophion-v1.jpg",
         numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
