@@ -30,7 +30,7 @@ const upcoming = [
     label: "Okapi Classique · Available Now",
     title: "The watch that started everything. Reimagined.",
     desc: "Okapi is back — new movement, refined case, the lessons of every collection that followed. Same soul. Higher standard. Twenty pieces, by allocation.",
-    eta: "Available now · Allocation only",
+    eta: "Pre-order open · From €2,800",
     href: "/collections/okapi",
   },
   {

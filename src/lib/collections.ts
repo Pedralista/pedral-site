@@ -485,16 +485,17 @@ export const collections: Collection[] = [
     year: 2018,
     tier: "signature",
     price: 2800,
-    stock: 20,
+    stock: 4, // static fallback (3 ETA 7001 + 1 LJP7380) — live counts come from Redis
     maxStock: 20,
-    edition: "20 pieces · Allocation only",
-    badge: "Allocation Only",
-    urgencyTag: "20 pieces · First run now open",
-    hidePriceOnCard: true,
-    isEnquiryOnly: true,
+    edition: "ETA 7001 · LJP7380",
+    badge: "Available Now",
+    urgencyTag: "Pieces remaining",
+    // Buyable online since 2026-10-29 (Kevin); still made to order, 3–6 months.
+    reserveButtonLabel: "Pre-Order Now",
+    shipsBy: "Made to order · Delivery in 3–6 months",
     nonRefundable: true, // made-to-order pre-order — qualifies under EU Art. 16(c)
     variantLabel: "Movement",
-    valuePerspectiveTitle: "What this specification tends to represent elsewhere.",
+    valuePerspectiveTitle: "Where the price goes.",
     specsTitle: "Built to outlast everything.",
     specs: {
       Movement: "ETA 7001 or La Joux-Perret LJP7380 · Swiss hand-wound · La Chaux-de-Fonds manufacture · Choice of calibre at reservation",
@@ -517,7 +518,7 @@ export const collections: Collection[] = [
       "Handwritten note from Kevin",
     ],
     valueAnchor:
-      "The LJP7380 is set at €3,900. A high-grade, decorated calibre from La Chaux-de-Fonds, typically found in watches positioned significantly higher. The ETA 7001 is set at €2,800. A classic, proven movement, executed here with the same level of care. Both sit below where the conventional pricing structure would place them. The difference isn't in the watch. It's in everything built around it elsewhere. This is simply where it felt right to place them.",
+      "The LJP7380 is set at €3,900: a high-grade, decorated calibre from La Chaux-de-Fonds. The ETA 7001 is set at €2,800: a classic, proven movement, executed here with the same level of care. Same case, same dial, same twenty-piece edition. The choice is the movement you want to wind every morning.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Dial",
