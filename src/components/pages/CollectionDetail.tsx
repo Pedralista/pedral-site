@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
-import { collections, type Collection, type CollectionVariant } from "@/lib/collections";
+import { collections, collectionCountWord, type Collection, type CollectionVariant } from "@/lib/collections";
 import {
   addOnsEnabledFor,
   strapsForCollection,
@@ -471,7 +471,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               : isSoldOut
               ? `The Original · Since ${c.year}`
               : c.hideEditionSize
-              ? "Limited Editions · No Restocks"
+              ? "Limited Editions · Never Reissued"
               : `Limited Edition · ${c.maxStock} Pieces`}
           </motion.p>
           <motion.h1
@@ -536,9 +536,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.0 }}
-                className="mt-3 text-[15px] font-medium tracking-[1px] sm:text-[13px] sm:tracking-[1.5px] uppercase text-red-400/80"
+                className="mt-3 text-[15px] font-medium tracking-[1px] sm:text-[13px] sm:tracking-[1.5px] uppercase text-accent"
               >
-                Only {stockToShow} {stockToShow === 1 ? "piece" : "pieces"} remaining
+                {collectionCountWord(stockToShow)} {stockToShow === 1 ? "piece remains" : "pieces remain"}
               </motion.p>
             ) : (
               <motion.p
@@ -636,7 +636,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                       : isSoldOut
                       ? "Join Waitlist"
-                      : `${c.reserveButtonLabel ?? "Order Now"} · €${(effectivePrice).toLocaleString()}`}
+                      : `${c.reserveButtonLabel ?? "Acquire"} · €${(effectivePrice).toLocaleString()}`}
                   </button>
                 </div>
                 {c.isPreOrder && (
@@ -679,7 +679,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               : c.reassurance ?? [
                   "Sapphire crystal · 24-month warranty",
                   "Direct communication with Kevin — not a support team",
-                  "Free insured express shipping",
+                  SHIPPING_LINE,
                   "Designed in Stockholm · Twenty pieces per dial at most",
                 ]
             ).map((item) => (
@@ -807,7 +807,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                                 >
                                   {g.name}
                                   <span className={`mt-0.5 text-[13px] tracking-[0.5px] normal-case font-medium ${isSel ? "text-background/80" : "text-accent/70"}`}>
-                                    {g.stock} remaining
+                                    {g.stock} {g.stock === 1 ? "remains" : "remain"}
                                   </span>
                                 </button>
                               );
@@ -895,7 +895,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                         {!isSoldOutVariant && <div className={`mt-1 h-5 w-5 shrink-0 rounded-full border-2 transition-colors ${isSelected ? "border-accent bg-accent" : "border-accent/30"}`} />}
                       </div>
                       <p className="mt-3 text-[13px] tracking-[0.5px] sm:text-[11px] sm:tracking-[1px] uppercase text-accent/60">
-                        {isSoldOutVariant ? "Fully Allocated" : `${v.stock} ${v.stock === 1 ? "piece" : "pieces"} remaining`}
+                        {isSoldOutVariant ? "Fully Allocated" : `${collectionCountWord(v.stock)} ${v.stock === 1 ? "piece remains" : "pieces remain"}`}
                       </p>
                       {isSoldOutVariant && (() => {
                         const inStockSibling = visibleVariants.find((sibling) => sibling.name !== v.name && sibling.stock > 0);
@@ -911,7 +911,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                             }}
                             className="mt-2 text-[14px] font-light text-accent underline-offset-4 hover:underline"
                           >
-                            Try {inStockSibling.name} instead →
+                            Discover {inStockSibling.name} →
                           </button>
                         );
                       })()}
@@ -976,8 +976,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 </p>
                 <p className="mt-2 text-[16px] font-light leading-[1.8] text-foreground-muted">
                   {isSoldOut
-                    ? "The first run is fully allocated. Join the list to hear first when the next drop opens."
-                    : "Some editions above are closed. Join the list to be notified when a new expression opens — or if a fully allocated edition ever returns."}
+                    ? "The first run is fully allocated. Join the private list to hear first when the next drop opens."
+                    : "Some editions above are closed. Join the private list to hear when a new expression opens — or if a fully allocated edition ever returns."}
                 </p>
                 {notifyStatus === "success" ? (
                   <p className="mt-4 text-[16px] font-light text-accent">
@@ -1284,7 +1284,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 )}
                 {c.nonRefundable && (
                   <p className="mt-2 text-[16px] font-light leading-[1.7] text-foreground-muted/60 sm:text-[15px]">
-                    Pre-order · 3–6 months delivery · Non-refundable · Full payment upfront
+                    Made to order · Delivery in 3–6 months · Non-refundable · Payment in full at reservation
                   </p>
                 )}
               </div>
@@ -1294,7 +1294,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
-                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `${c.reserveButtonLabel ?? "Order Now"} · €${runningTotal.toLocaleString()}`}
+                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `${c.reserveButtonLabel ?? "Acquire"} · €${runningTotal.toLocaleString()}`}
                 </button>
               </div>
             </motion.div>
@@ -1737,7 +1737,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               ))}
             </div>
             <p className="mt-6 border-t border-accent/[0.08] pt-5 text-[15px] font-light leading-[1.8] text-foreground-muted/50">
-              Tracked &amp; insured delivery included. Price is final — no hidden fees, no import charges within the EU.
+              Insured delivery is included. Within the EU, the price shown is the price you pay: VAT included, no import charges.
             </p>
           </motion.div>
         </div>
@@ -1900,7 +1900,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                     : isSoldOut
                     ? "Join Waitlist"
-                    : `${c.reserveButtonLabel ?? "Order Now"} · €${(effectivePrice).toLocaleString()}`}
+                    : `${c.reserveButtonLabel ?? "Acquire"} · €${(effectivePrice).toLocaleString()}`}
                 </button>
               </div>
               {c.isPreOrder ? (
@@ -1910,16 +1910,16 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               ) : (
                 <p className="mt-3 text-[16px] font-light tracking-[0.5px] text-foreground-muted">
                   {c.shipsImmediately
-                    ? c.shipsBy ?? "In stock · Ships immediately"
-                    : <>Pre-order &middot; Full payment secures your allocation &middot; {c.shipsBy ?? "Ships in 4–6 weeks"}</>}
+                    ? c.shipsBy ?? "Ready for delivery"
+                    : <>By reservation &middot; Payment in full secures your piece &middot; {c.shipsBy ?? "Ships in 4–6 weeks"}</>}
                 </p>
               )}
               <div className="mx-auto mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8">
                 {[
                   { label: "24-month warranty", href: "/warranty" },
-                  { label: "14-day return after delivery", href: "/returns" },
-                  { label: "Secure payment · Klarna", href: undefined },
-                  { label: "Insured express shipping", href: undefined },
+                  { label: "14-day returns", href: "/returns" },
+                  { label: "Instalments with Klarna", href: undefined },
+                  { label: "Complimentary insured delivery", href: undefined },
                 ].map(({ label, href }) => {
                   const inner = (
                     <>
@@ -2128,7 +2128,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:px-8 sm:text-[11px] sm:tracking-[2px]"
                 >
-                  {loading ? "…" : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Order Now"}
+                  {loading ? "…" : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Acquire"}
                 </button>
               </div>
             </div>

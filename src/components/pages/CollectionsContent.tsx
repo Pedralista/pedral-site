@@ -65,13 +65,13 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
   if (stock <= 5) {
     return (
       <span className="absolute left-3 top-3 z-10 border border-red-500/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-red-400/90 backdrop-blur-sm">
-        Almost Gone
+        Final Pieces
       </span>
     );
   }
   return (
     <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
-      {stock} Remaining
+      {stock} Remain
     </span>
   );
 }
@@ -281,7 +281,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
             </div>
             {collection.stock > 0 && collection.hideEditionSize && !collection.isEnquiryOnly ? (
               <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
-                {collection.stock} remaining
+                {collection.stock} {collection.stock === 1 ? "remains" : "remain"}
               </span>
             ) : collection.stock > 0 && !collection.isEnquiryOnly ? (
               <div>
@@ -294,7 +294,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
                   />
                 </div>
                 <p className="text-center text-[14px] font-normal tracking-[0.5px] text-accent">
-                  {collection.stock} left of {collection.maxStock}
+                  {collection.stock} of {collection.maxStock} {collection.stock === 1 ? "remains" : "remain"}
                 </p>
               </div>
             ) : collection.isEnquiryOnly ? (

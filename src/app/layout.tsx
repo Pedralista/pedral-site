@@ -24,7 +24,7 @@ const outfit = Outfit({
 
 const siteUrl = "https://www.pedral.eu";
 const siteDescription =
-  "Independent Swedish watchmaker in Stockholm. Dress watches in the rounded square, twenty pieces per dial at most, no restocks. Worn in 30+ countries. Not for everyone.";
+  "Independent Swedish watchmaker in Stockholm. Dress watches in the rounded square, twenty pieces per dial at most, never reissued. Worn in 30+ countries. Not for everyone.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

@@ -14,13 +14,18 @@ const timeline = [
   },
   {
     year: "2015",
-    title: "The rejection",
-    text: "I applied to Sweden's only watchmaking school. They said no. So I taught myself — obsessive research, hundreds of failed prototypes, three years of evenings nobody saw. In 2017 I nearly stopped. I didn't.",
+    title: "Self-taught",
+    text: "I begin teaching myself watch design: obsessive research, hundreds of prototypes, three years of evenings. In 2017 I nearly stopped. I didn't.",
   },
   {
     year: "2018",
     title: "Okapi sells out",
     text: "The first watch went live on Kickstarter. Every piece spoken for. Collectors in 12 countries. Proof that the obsession wasn't just mine.",
+  },
+  {
+    year: "2023",
+    title: "Okapi GMT",
+    text: "The Okapi case, now tracking two cities at once with a 24-hour hand and a bidirectional bezel. Twenty pieces. Fully allocated.",
   },
   {
     year: "2024",
@@ -48,9 +53,29 @@ const timeline = [
     text: "SW260 automatic movement, guilloché dial, proprietary Roman numerals, small seconds at six. Two dials: Soul Blue and Aura Gold. The most considered Maestro yet.",
   },
   {
+    year: "2026",
+    title: "Contour",
+    text: "35mm, 6.9mm thin, an integrated bracelet of hundreds of brushed scales that moves like fabric. A watch that carries itself like jewellery. Three drops, one instinct.",
+  },
+  {
+    year: "Aug 2026",
+    title: "Contour × Seconds Society",
+    text: "A fifteen-piece capsule with Seconds Society: a sodalite dial with moissanite baguette indices. Made once.",
+  },
+  {
+    year: "Oct 2026",
+    title: "Étiquette",
+    text: "The rectangular dress watch, reimagined on the golden ratio. 7.7mm, gently curved, hand-wound. Famille Royale, 21 numbered pieces, reserved for existing owners.",
+  },
+  {
+    year: "Oct 2026",
+    title: "Silhouette",
+    text: "Contour's idea in a new proportion: 39mm, 7.3mm thin, on the Nyoka weave. Ophion carries the weave onto the dial; Aventurine is hand-set with moissanite.",
+  },
+  {
     year: "Now",
     title: "Okapi returns",
-    text: "The watch that started everything — reimagined with a new movement, a better case, and the lessons of every collection that came after it. Same soul. Higher standard. Available now as Okapi Classique.",
+    text: "The watch that started everything — reimagined with a new movement, a better case, and the lessons of every collection that came after it. Same soul. Higher standard. Made to order as Okapi Classique.",
   },
 ];
 
@@ -198,14 +223,14 @@ export default function StoryContent() {
           >
             <div>
               <p className="mb-3 text-[11px] font-normal tracking-[4px] uppercase text-accent">
-                Now Available
+                The Current Collection
               </p>
               <h2 className="font-serif text-[clamp(24px,3vw,34px)] font-light text-foreground">
-                Every watch in this story is fully allocated. A few pieces remain.
+                The earlier editions are fully allocated. The current ones are not, yet.
               </h2>
               <div className="mt-5 h-px w-[60px] bg-accent" />
               <p className="mt-5 text-[15px] font-light leading-[1.85] text-foreground-muted">
-                The current collection follows the same rule — 20 pieces, no reissue. When it closes, it joins the archive permanently.
+                The current collection follows the same rule: twenty pieces per dial at most, never reissued. When an edition closes, it joins the archive permanently.
               </p>
             </div>
             <div className="flex flex-col justify-center gap-4">
@@ -213,7 +238,7 @@ export default function StoryContent() {
                 href="/collections"
                 className="inline-block rounded-lg bg-accent px-8 py-4 text-center text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover"
               >
-                See what&apos;s still available →
+                View the current editions →
               </Link>
               <Link
                 href="/archive"
@@ -222,7 +247,7 @@ export default function StoryContent() {
                 Browse the archive →
               </Link>
               <p className="text-[14px] font-light text-foreground-muted/40">
-                Maestro · Triomphe · Okapi Classique — limited pieces remaining
+                Contour · Étiquette · Maestro · Triomphe · Silhouette · Okapi Classique
               </p>
             </div>
           </motion.div>

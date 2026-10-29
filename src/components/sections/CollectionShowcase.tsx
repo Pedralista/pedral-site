@@ -56,13 +56,13 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
   if (stock <= 2) {
     return (
       <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-red-500/40 bg-background/80 px-2 py-1 text-[9px] font-medium tracking-[1px] sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] uppercase text-red-400/90 backdrop-blur-sm">
-        Almost Gone
+        Final Pieces
       </span>
     );
   }
   return (
     <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-accent/40 bg-background/80 px-2 py-1 text-[9px] font-medium tracking-[1px] sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
-      {stock} Remaining
+      {stock} Remain
     </span>
   );
 }
@@ -219,7 +219,7 @@ export default function CollectionShowcase() {
                     </div>
                     {c.stock > 0 && c.hideEditionSize && !c.isEnquiryOnly ? (
               <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
-                {c.stock} remaining
+                {c.stock} {c.stock === 1 ? "remains" : "remain"}
               </span>
             ) : c.stock > 0 && !c.isEnquiryOnly ? (
                       <div>
@@ -230,7 +230,7 @@ export default function CollectionShowcase() {
                           />
                         </div>
                         <p className="text-center text-[14px] font-normal tracking-[0.5px] text-accent">
-                          {c.stock} left of {c.maxStock}
+                          {c.stock} of {c.maxStock} {c.stock === 1 ? "remains" : "remain"}
                         </p>
                       </div>
                     ) : c.isEnquiryOnly ? (

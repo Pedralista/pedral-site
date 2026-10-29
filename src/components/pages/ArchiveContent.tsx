@@ -224,10 +224,10 @@ export default function ArchiveContent() {
               href="/collections"
               className="mt-7 inline-block rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover"
             >
-              See what&apos;s still available →
+              View the current editions →
             </Link>
             <p className="mt-4 text-[14px] font-light text-foreground-muted/40">
-              Maestro · Triomphe · Okapi Classique — limited pieces remaining
+              Contour · Étiquette · Maestro · Triomphe · Silhouette · Okapi Classique
             </p>
           </motion.div>
         </div>
@@ -237,7 +237,7 @@ export default function ArchiveContent() {
       <Newsletter
         title="If it ever returns, you'll know first."
         subtitle="These editions won't reopen — but new ones do. Leave your email and you'll hear before anyone else. Nothing else."
-        buttonText="Join the List"
+        buttonText="Join the Private List"
       />
     </>
   );

@@ -140,7 +140,7 @@ export default function ArchiveDetailContent({ watch }: { watch: ArchivedWatch }
               href="/collections"
               className="mt-7 inline-block rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover"
             >
-              See what&apos;s still available →
+              View the current editions →
             </Link>
           </motion.div>
         </div>
@@ -150,7 +150,7 @@ export default function ArchiveDetailContent({ watch }: { watch: ArchivedWatch }
       <Newsletter
         title="If it ever returns, you'll know first."
         subtitle="It won't reopen — but new editions do. Leave your email and you'll hear before anyone else. Nothing else."
-        buttonText="Join the List"
+        buttonText="Join the Private List"
       />
     </>
   );

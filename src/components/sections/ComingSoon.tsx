@@ -9,35 +9,35 @@ const upcoming = [
     label: "Étiquette · New Model",
     title: "Good taste. Questionable manners.",
     desc: "The rectangular dress watch, reimagined — 27 × 43.7mm on the golden ratio, 7.7mm max, concentric CNC-machined grooves, Roman numerals or musical notes. Hand-wound — a modified Japanese Miyota or the Swiss LJP D101. Famille Royale, in Royal Aubergine lacquer with champagne-gold numerals, is reserved for existing owners: 21 numbered pieces, no public allocation.",
-    eta: "Pre-order Open · From €1,100",
+    eta: "By reservation · From €1,100",
     href: "/collections/etiquette",
   },
   {
     label: "Silhouette · New",
     title: "The line, reshaped.",
     desc: "Contour's idea in a new proportion: 39mm, 7.3mm thin, on the Nyoka weave. New: Ophion, the weave carried onto the dial, hand-wound Japanese or Swiss. Aventurine, hand-set with moissanite.",
-    eta: "Available Now · From €1,500",
+    eta: "Reservations open · From €1,500",
     href: "/collections/silhouette",
   },
   {
     label: "Triomphe",
     title: "A new dial. The same architecture.",
-    desc: "The Triomphe continues — same 8.8mm case, new expression. Each edition closes when it closes. No restocks, no second run. Friends of the brand hear before any public announcement. Allocation-based, as always.",
-    eta: "Available Now",
+    desc: "The Triomphe continues — same 8.8mm case, new expression. Each edition closes when it closes, and is never reissued. Friends of the brand hear before any public announcement. Allocation-based, as always.",
+    eta: "Available · From €1,750",
     href: "/collections/triomphe",
   },
   {
-    label: "Okapi Classique · Available Now",
+    label: "Okapi Classique · Made to Order",
     title: "The watch that started everything. Reimagined.",
     desc: "Okapi is back — new movement, refined case, the lessons of every collection that followed. Same soul. Higher standard. Twenty pieces, by allocation.",
-    eta: "Pre-order open · From €2,800",
+    eta: "Made to order · From €2,800",
     href: "/collections/okapi",
   },
   {
     label: "Maestro",
     title: "One case. Central or small seconds.",
     desc: "Lapis No.1 with central seconds, or the Petite Seconde — Soul Blue and Aura Gold, with a subsidiary seconds at six. The same tonneau case throughout. When a dial closes, it does not return.",
-    eta: "Available Now · From €1,450",
+    eta: "Ready for delivery · From €1,450",
     href: "/collections/maestro",
   },
 ];
@@ -117,7 +117,7 @@ export default function ComingSoon() {
               href="/#newsletter"
               className="mt-5 inline-flex items-center gap-2 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-colors hover:text-accent-hover"
             >
-              Join the list &rarr;
+              Join the private list &rarr;
             </Link>
           </motion.div>
         </motion.div>

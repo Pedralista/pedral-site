@@ -94,10 +94,10 @@ export default function Hero() {
               href="/collections"
               className="inline-block w-fit rounded-lg border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors duration-300 hover:border-accent hover:text-accent"
             >
-              See what&apos;s available now
+              Discover the collection
             </Link>
             <p className="text-[14px] font-light tracking-[0.5px] text-foreground-muted/40">
-              Worn by collectors in 30+ countries &middot; Max 20 pieces per dial &middot; No restocks
+              Worn by collectors in over thirty countries &middot; Twenty pieces per dial, at most &middot; Never reissued
             </p>
           </div>
 

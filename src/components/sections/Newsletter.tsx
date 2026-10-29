@@ -13,7 +13,7 @@ interface NewsletterProps {
 export default function Newsletter({
   title = "Friends of the brand see new editions first.",
   subtitle = "Priority access. No noise. An email when a new edition opens. Nothing else.",
-  buttonText = "Get Priority Access",
+  buttonText = "Join the Private List",
 }: NewsletterProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "exists" | "error">("idle");

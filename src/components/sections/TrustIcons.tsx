@@ -17,12 +17,11 @@ const items = [
     ),
   },
   {
-    label: "Secure Payment",
+    label: "Personal Service",
     icon: (
       <>
-        <rect x="10" y="20" width="24" height="16" rx="2" />
-        <path d="M15 20v-5a7 7 0 0114 0v5" />
-        <circle cx="22" cy="28" r="2" />
+        <circle cx="22" cy="15" r="7" />
+        <path d="M8 38c0-7.7 6.3-14 14-14s14 6.3 14 14" />
       </>
     ),
   },

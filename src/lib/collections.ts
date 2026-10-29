@@ -195,13 +195,13 @@ export const collections: Collection[] = [
       "Each piece individually numbered",
       "Sapphire crystal · Swiss automatic movement · 24-month warranty",
       "Direct communication with Kevin — not a support team",
-      "Free insured express shipping",
+      "Complimentary insured express delivery",
     ],
     shipsImmediately: true, // all Maestro dials in stock (Kevin, Oct 2026)
-    shipsBy: "In stock · Ships immediately · Tracked & insured",
+    shipsBy: "Ready for delivery · Tracked and insured",
     edition: "Soul Blue · Aura Gold · Lapis No.1",
     badge: "Ready for Delivery",
-    urgencyTag: "Limited pieces remaining",
+    urgencyTag: "A few pieces remain",
     variantLabel: "Dial",
     specsTitle: "Swiss precision. Stockholm soul.",
     specs: {
@@ -214,7 +214,7 @@ export const collections: Collection[] = [
       Lume: "Swiss Super-LumiNova® BGW9 on hands and indices (classic dials)",
       "Water Resist.": "100 meters / 330 feet",
       Warranty: "24-month international coverage",
-      Edition: "Limited per dial · Each piece individually numbered · No restocks · No reissues",
+      Edition: "Limited per dial · Each piece individually numbered · Never reissued",
       VAT: "Included for EU orders · Duties and taxes outside EU not included",
     },
     boxContents: [
@@ -362,7 +362,7 @@ export const collections: Collection[] = [
     stock: 3,
     maxStock: 20,
     edition: "Saphir Azur / Ember Stone",
-    badge: "Ready for Delivery",
+    badge: "Available",
     urgencyTag: "New editions · 5 pieces each",
     specsTitle: "8.8mm. Considered restraint.",
     specs: {
@@ -372,7 +372,7 @@ export const collections: Collection[] = [
       Crystal: "Sapphire with Super-AR coating",
       Strap: "Hand-stitched Epsom leather · 20mm quick-swap",
       Hands: "Diamond-cut · Applied Roman numerals · Hebrew & Eastern Arabic numerals available made to order",
-      Edition: "20 pieces per dial variant · No restocks · Allocation-based",
+      Edition: "20 pieces per dial variant · Never reissued · By allocation",
     },
     boxContents: [
       "Triomphe timepiece (current dial edition)",
@@ -489,9 +489,9 @@ export const collections: Collection[] = [
     maxStock: 20,
     edition: "ETA 7001 · LJP7380",
     badge: "Made to Order",
-    urgencyTag: "Pieces remaining",
+    urgencyTag: "A few pieces remain",
     // Buyable online since 2026-10-29 (Kevin); still made to order, 3–6 months.
-    reserveButtonLabel: "Pre-Order Now",
+    reserveButtonLabel: "Reserve Yours",
     shipsBy: "Made to order · Delivery in 3–6 months",
     nonRefundable: true, // made-to-order pre-order — qualifies under EU Art. 16(c)
     variantLabel: "Movement",
@@ -619,14 +619,14 @@ export const collections: Collection[] = [
     maxStock: 120,
     edition: "Third drop",
     badge: "Reservations Open",
-    urgencyTag: "Third drop · Pieces remaining",
+    urgencyTag: "Third drop · Pieces remain",
     // Real checkout is live (Stripe variants below), so this is no longer an
     // enquiry-gated product — pricing, stock, and the standard Reserve CTA
     // all show normally now, same as Maestro/Triomphe.
     variantLabel: "Movement",
     numeralOptionsLabel: "Dial",
     // First-come-first-served pre-order, not a curated/reviewed allocation.
-    reserveButtonLabel: "Pre-Order Now",
+    reserveButtonLabel: "Reserve Yours",
     shipsBy: "Ships end of Q1 2027",
     extraFaqs: [
       {
@@ -796,10 +796,10 @@ export const collections: Collection[] = [
     maxStock: 40, // 10 Aventurine + 10 Ituri + 20 Ophion
     edition: "Ophion · Aventurine · Ituri",
     badge: "New · Reserve Yours",
-    urgencyTag: "Pieces remaining",
+    urgencyTag: "A few pieces remain",
     variantLabel: "Dial",
     numeralOptionsLabel: "Movement",
-    reserveButtonLabel: "Pre-Order Now",
+    reserveButtonLabel: "Reserve Yours",
     shipsBy: "Ships end of Q1 2027",
     story: {
       eyebrow: "Ophion",
@@ -965,13 +965,13 @@ export const collections: Collection[] = [
     maxStock: 20, // Edition of 20, consistent with Maestro / Triomphe / Okapi (Kevin, Oct 2026)
     edition: "Pre-order · First run",
     badge: "By Reservation",
-    urgencyTag: "Pre-order open",
-    reserveButtonLabel: "Pre-order",
+    urgencyTag: "By reservation",
+    reserveButtonLabel: "Reserve Yours",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
     numeralOptionsLabel: "Movement",
     reassurance: [
-      "Pre-order · Full payment secures your allocation",
+      "By reservation · Payment in full secures your piece",
       "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D101",
       "Direct communication with Kevin — not a support team",
       "Tracked & insured shipping",
@@ -1137,7 +1137,7 @@ export const collections: Collection[] = [
     edition: "Owners only · Choose your number",
     badge: "Owners Only · 21 Pieces",
     urgencyTag: "Owners only · Choose your number",
-    reserveButtonLabel: "Pre-order",
+    reserveButtonLabel: "Reserve Yours",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
     numeralOptionsLabel: "Movement",
@@ -1262,7 +1262,7 @@ export const collections: Collection[] = [
     edition: "Hebrew numerals",
     badge: "Ten of Each Dial",
     urgencyTag: "Made to order · Ten of each dial",
-    reserveButtonLabel: "Pre-order",
+    reserveButtonLabel: "Reserve Yours",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
     numeralOptionsLabel: "Movement",
@@ -1406,7 +1406,7 @@ export const collections: Collection[] = [
     edition: "Eastern Arabic numerals",
     badge: "Edition of 10",
     urgencyTag: "Made to order · 10 pieces",
-    reserveButtonLabel: "Pre-order",
+    reserveButtonLabel: "Reserve Yours",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
     standalone: true,
@@ -1516,7 +1516,7 @@ export const collections: Collection[] = [
     edition: "Bangla numerals",
     badge: "Ten of Each Dial",
     urgencyTag: "Made to order · Ten of each dial",
-    reserveButtonLabel: "Pre-order",
+    reserveButtonLabel: "Reserve Yours",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
     standalone: true,
@@ -1642,7 +1642,7 @@ export const collections: Collection[] = [
     edition: "15 pieces only",
     badge: "Capsule · 15 Pieces",
     urgencyTag: "Capsule release · 15 pieces only",
-    reserveButtonLabel: "Reserve Now",
+    reserveButtonLabel: "Reserve Yours",
     specsTitle: "Presence, not permission.",
     specs: {
       Price: "€895",

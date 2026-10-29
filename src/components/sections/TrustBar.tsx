@@ -5,7 +5,7 @@ import { fadeInUp } from "@/lib/animations";
 
 const stats = [
   { label: "Since 2018", sub1: "Independent", sub2: "Stockholm" },
-  { label: "Max 20", sub1: "Pieces per dial", sub2: "No restocks" },
+  { label: "Twenty", sub1: "Pieces per dial, at most", sub2: "Never reissued" },
   { label: "Sapphire", sub1: "On every watch", sub2: "Swiss & Japanese movements" },
 ];
 

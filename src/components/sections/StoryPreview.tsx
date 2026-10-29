@@ -36,14 +36,14 @@ export default function StoryPreview() {
             variants={fadeInUp}
             className="max-w-[560px] font-serif text-[clamp(26px,3.5vw,44px)] font-light leading-[1.2] text-foreground"
           >
-            In 2015, Sweden&apos;s only watchmaking school said no.<br />I taught myself instead.
+            A self-taught designer.<br />Answerable only to the watch.
           </motion.h2>
 
           {/* Body + CTA */}
           <motion.div variants={fadeInUp} className="mt-8 max-w-[560px]">
             <p className="text-[15px] font-light leading-[1.85] text-foreground-muted">
-              Born in the Democratic Republic of Congo, raised in Stockholm. Hundreds of failed
-              prototypes and three years of evenings nobody saw, then the first Pedral in 2018.
+              Born in the Democratic Republic of Congo, raised in Stockholm. Hundreds of
+              prototypes and three years of evenings, then the first Pedral in 2018.
               Every design since starts from the rounded square, a shape found nowhere else in
               watchmaking, and stops at twenty pieces per dial. Not everyone gets a design like
               this in their collection.
