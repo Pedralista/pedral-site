@@ -1116,7 +1116,7 @@ export const collections: Collection[] = [
     // numbered pieces; the buyer picks their number from a grid
     // (editionNumbers — held during checkout, marked sold by the webhook).
     // Live Stripe prices (2026-10-26); owners' codes ROYALE950 / ROYALE1500
-    // (€150 / €300 off, until 3 Nov) are entered at Stripe checkout.
+    // (€150 / €300 off, until 6 Nov 23:59 UTC; extended from 3 Nov on 2026-10-29) are entered at Stripe checkout.
     slug: "etiquette-famille-royale",
     name: "Étiquette Famille Royale",
     metaTitle: "Pedral Étiquette Famille Royale — For Pedral Owners, 21 Numbered Pieces | Pedral",

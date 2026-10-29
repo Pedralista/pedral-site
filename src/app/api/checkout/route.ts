@@ -52,7 +52,7 @@ const VALID_PRICE_IDS = new Set([
 
 // Étiquette Hebrew / Bangla / Famille Royale prices: the checkout shows a
 // discount-code box so community members and owners can use the codes Kevin shared (codes and
-// their expiry, 3 Nov 2026, live in Stripe — nothing about them is on the site).
+// their expiry, 6 Nov 2026 for ROYALE codes (extended 2026-10-29) and 3 Nov for community codes, live in Stripe — nothing about them is on the site).
 const PROMO_CODE_PRICE_IDS = new Set([
   "price_1UUOovCfxE1lSBKRZltUibsZ", // Tchelet · Japanese
   "price_1UUOqaCfxE1lSBKRZ0PFXRKD", // Tchelet · Swiss
