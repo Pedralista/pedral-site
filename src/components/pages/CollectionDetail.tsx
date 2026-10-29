@@ -1671,7 +1671,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               {images.map((src, i) => {
                 const isWide = !!src && containShot(src);
                 return (
-                  <div key={i} className="relative h-[280px] w-[80vw] shrink-0 snap-start overflow-hidden bg-[#060a0b]">
+                  <div key={i} className={`relative ${c.galleryAspect ? "" : "h-[280px] "}w-[80vw] shrink-0 snap-start overflow-hidden bg-[#060a0b]`} style={c.galleryAspect ? { aspectRatio: c.galleryAspect } : undefined}>
                     {src ? (
                       <Image src={src} alt={`${c.name} angle ${i + 1}`} fill className={isWide ? "object-contain" : "object-cover"} style={{ filter: "contrast(1.06) saturate(0.92) brightness(0.97) sepia(0.05)" }} />
                     ) : (
@@ -1688,7 +1688,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               {images.map((src, i) => {
                 const isWide = !!src && containShot(src);
                 return (
-                  <div key={i} className="relative h-[380px] w-full overflow-hidden group bg-[#060a0b]">
+                  <div key={i} className={`relative ${c.galleryAspect ? "" : "h-[380px] "}w-full overflow-hidden group bg-[#060a0b]`} style={c.galleryAspect ? { aspectRatio: c.galleryAspect } : undefined}>
                     {src ? (
                       <Image src={src} alt={`${c.name} angle ${i + 1}`} fill className={`${isWide ? "object-contain" : "object-cover"} transition-transform duration-700 group-hover:scale-[1.04]`} style={{ filter: "contrast(1.06) saturate(0.92) brightness(0.97) sepia(0.05)" }} />
                     ) : (

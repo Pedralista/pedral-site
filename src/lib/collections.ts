@@ -100,6 +100,10 @@ export interface Collection {
   heroFit?: "cover" | "contain";
   detailImage?: string;
   galleryImages?: string[];
+  // Shape of each gallery panel (CSS aspect-ratio, e.g. "16 / 9") when the
+  // gallery shots share one shape — shows them whole instead of cropping
+  // them into the default fixed-height strip.
+  galleryAspect?: string;
   variants?: CollectionVariant[];
   isPreOrder?: boolean;
   /** Per-product opt-in for checkout add-ons (straps / engraving). Gated together with ADDONS_ENABLED in src/lib/addons.ts. Defaults off. */
@@ -608,7 +612,7 @@ export const collections: Collection[] = [
     numeralOptionsLabel: "Dial",
     // First-come-first-served pre-order, not a curated/reviewed allocation.
     reserveButtonLabel: "Pre-Order Now",
-    shipsBy: "Ships end of November",
+    shipsBy: "Ships end of Q1 2027",
     extraFaqs: [
       {
         q: "Is the Onyx dial real stone, or glass?",
@@ -748,11 +752,19 @@ export const collections: Collection[] = [
     // Held back (from the Contour days): an Aventurine quartz version at
     // €1,150 (Ronda 1063, same case) — needs a real Stripe price + stock
     // before it can be added as a variant.
+    //
+    // Ophion (purple) added 2026-10-28: woven dial echoing the Nyoka
+    // bracelet, with a movement choice like Étiquette — Swiss LJP D101 €2,200
+    // or Japanese Miyota 9015 converted to hand-wound €1,500. 20 pieces,
+    // shared between the two movements. Name, prices, stock and case
+    // thickness (unchanged at 7.3mm) confirmed by Kevin. A gold sister dial,
+    // Ladon, was dropped before launch (Kevin, 2026-10-29); its Stripe
+    // prices exist but aren't wired in.
     slug: "silhouette",
     name: "Silhouette",
     metaTitle: "Pedral Silhouette — 39mm Integrated Bracelet, Swiss Hand-Wound | Pedral",
     metaDescription:
-      "Silhouette: a 39mm integrated-bracelet watch on the Nyoka weave, 7.3mm thin, La Joux-Perret LJP D101 Swiss hand-wound. Aventurine with hand-set moissanite, €2,200. Stockholm-designed.",
+      "Silhouette: a 39mm integrated-bracelet watch on the Nyoka weave, 7.3mm thin. New woven dial Ophion, hand-wound — Japanese €1,500, Swiss LJP D101 €2,200. Aventurine with hand-set moissanite, €2,200. Stockholm-designed.",
     tagline: "New",
     hook: "The line, reshaped.",
     descriptionTitle: "One continuous form.",
@@ -761,19 +773,35 @@ export const collections: Collection[] = [
     descriptionExtra:
       "Where Contour wears articulated scales, Silhouette moves in Nyoka, a tighter, more fluid link that catches the light in a single continuous ripple rather than a grid. The name comes from nyoka, the Lingala word for snake. The resemblance is intentional: the same logic that drew the integrated-bracelet watches of the 1970s toward reptilian textures, reworked for how we build today.",
     designerNote:
-      "I let myself go further on a slightly larger case: Aventurine set with hand-cut moissanite, and Ituri — the studio's own Okapi motif, fired into gold enamel by hand rather than printed, named for the rainforest the animal actually comes from.",
+      "I let myself go further on a slightly larger case: Aventurine set with hand-cut moissanite, and Ituri — the studio's own Okapi motif, fired into gold enamel by hand rather than printed, named for the rainforest the animal actually comes from. Then I wanted the weave itself on the dial. Ophion carries the Nyoka pattern from the bracelet straight across the face, with nothing else on it — no indices, no logo.",
     year: 2026,
     tier: "limited",
-    price: 2200,
-    stock: 10, // static fallback — live count comes from the carried-over counter
-    maxStock: 20, // 10 Aventurine + 10 Ituri, as confirmed for the third drop
-    edition: "Aventurine · Ituri",
+    price: 1500, // "From" price on cards: Ophion with the Japanese movement
+    stock: 24, // static fallback (sum of variant fallbacks) — live counts come from Redis
+    maxStock: 40, // 10 Aventurine + 10 Ituri + 20 Ophion
+    edition: "Ophion · Aventurine · Ituri",
     badge: "New",
-    urgencyTag: "Aventurine · Pieces remaining",
+    urgencyTag: "Pieces remaining",
     variantLabel: "Dial",
+    numeralOptionsLabel: "Movement",
     reserveButtonLabel: "Pre-Order Now",
-    shipsBy: "Ships end of November",
+    shipsBy: "Ships end of Q1 2027",
+    story: {
+      eyebrow: "Ophion",
+      title: "Unmistakable from across a room.",
+      paragraphs: [
+        "I wanted Ophion to sit closer to high jewellery than to watchmaking as usual. The pieces I keep coming back to are the ones you recognise from across a room before you can make out a single detail: a bracelet, a texture, a colour. I wanted something unmistakable in that way, a watch you know by its silhouette alone.",
+        { heading: "One surface, wrist to dial" },
+        "So the weave doesn't stop at the case. The Nyoka pattern runs from the bracelet straight across the dial, in a deep **purple** that falls to near-black where the weave turns into shadow. No indices, no logo, only two slender hands, so case, bracelet and dial read as one continuous surface.",
+        { heading: "Worn like jewellery, built like a watch" },
+        "Underneath, it is still a proper hand-wound watch: the Swiss La Joux-Perret LJP D101, or a Japanese Miyota 9015 that Pedral converts from automatic to hand-winding. Twenty pieces.",
+      ],
+    },
     extraFaqs: [
+      {
+        q: "Which movement should I choose for Ophion?",
+        a: "Both are hand-wound, and the case stays 7.3mm thin either way. The Japanese version (€1,500) runs on a Miyota 9015 that Pedral converts from automatic to hand-winding. The Swiss version (€2,200) runs on the La Joux-Perret LJP D101, with a 50-hour power reserve. The twenty pieces are shared between the two movements, first come, first served.",
+      },
       {
         q: "How is Silhouette different from Contour?",
         a: "Same idea — case and bracelet as one continuous form — in a larger 39mm case, 47.5mm lug to lug, on the Nyoka weave bracelet instead of Contour's articulated scales. At 7.3mm thin, it's only a touch thicker than Contour's 6.9mm.",
@@ -793,11 +821,11 @@ export const collections: Collection[] = [
     ],
     specsTitle: "The line, reshaped.",
     specs: {
-      Price: "€2,200 Aventurine · €5,000 Ituri (fully allocated)",
-      Movement: "La Joux-Perret LJP D101 · Swiss hand-wound · 50-hour power reserve",
+      Price: "Ophion: €1,500 Japanese · €2,200 Swiss · €2,200 Aventurine · €5,000 Ituri (fully allocated)",
+      Movement: "Hand-wound · Swiss: La Joux-Perret LJP D101, 50-hour power reserve · Japanese (Ophion only): Miyota 9015 converted by Pedral from automatic to hand-winding",
       Case: "39mm · 47.5mm lug to lug · 7.3mm thin · 316L stainless steel (Ituri: gold-plated) · integrated collar fusing case to bracelet",
       Bracelet: "Integrated, Nyoka weave",
-      Dial: "Aventurine: natural stone with hand-set moissanite baguette indices · Ituri: hand-fired gold cloisonné enamel carrying the Okapi motif",
+      Dial: "Ophion (purple): the Nyoka weave carried across the dial, no indices, no logo · Aventurine: natural stone with hand-set moissanite baguette indices · Ituri: hand-fired gold cloisonné enamel carrying the Okapi motif",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
       Warranty: "24-month international coverage",
@@ -810,7 +838,7 @@ export const collections: Collection[] = [
     ],
     valuePerspectiveTitle: "Where the price goes.",
     valueAnchor:
-      "The LJP D101 is a modern successor to the Peseux/ETA 7001 family with a longer 50-hour reserve, not a higher-grade movement. So what sets the price is the dial: hand-set moissanite stone-setting on Aventurine, and hand-fired gold cloisonné enamel — the studio's namesake motif — on Ituri.",
+      "The LJP D101 is a modern successor to the Peseux/ETA 7001 family with a longer 50-hour reserve, not a higher-grade movement. So what sets the price is the dial: hand-set moissanite stone-setting on Aventurine, and hand-fired gold cloisonné enamel — the studio's namesake motif — on Ituri. On Ophion you choose the movement: the Swiss D101, or the Japanese Miyota 9015 converted to hand-winding, which brings the same case, bracelet and dial in at €1,500.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Bracelet",
@@ -826,26 +854,43 @@ export const collections: Collection[] = [
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Silhouette and future editions. No noise.",
-    image: "/images/contour-aventurine-closeup-v2.jpg",
-    heroImage: "/images/contour-aventurine-closeup-v2.jpg",
+    image: "/images/silhouette-ophion-v1.jpg",
+    heroImage: "/images/silhouette-aventurine-v1.jpg",
     heroFit: "contain",
     detailImage: "/images/contour-ituri-wrist-v1.jpg",
     galleryImages: [
-      "/images/contour-aventurine-closeup-v2.jpg",
-      "/images/contour-ituri-closeup-v2.jpg",
-      "/images/contour-ituri-wrist-v1.jpg",
+      "/images/silhouette-ophion-leather-v1.jpg",
+      "/images/silhouette-ophion-flatlay-v1.jpg",
     ],
+    galleryAspect: "16 / 9", // landscape leather shots, shown whole (Kevin)
     variants: [
+      {
+        name: "Ophion",
+        stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
+        stock: 20, // shared between both movements
+        price: 1500,
+        color: "Purple",
+        description: "Purple woven dial carrying the Nyoka pattern across the face, no indices, no logo.",
+        image: "/images/silhouette-ophion-v1.jpg",
+        heroImage: "/images/silhouette-ophion-v1.jpg",
+        numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
+        numeralPrices: { "Swiss Hand-Wound": 2200 },
+        numeralPriceIds: {
+          "Japanese Hand-Wound": "price_1UVadbCfxE1lSBKRn5qrUnUI", // Silhouette — Ophion · Japanese Hand-Wound (€1,500)
+          "Swiss Hand-Wound": "price_1UVaclCfxE1lSBKRrfhLXk3D", // Silhouette — Ophion · Swiss Hand-Wound (€2,200)
+        },
+      },
       {
         name: "Aventurine",
         stripePriceId: "price_1UBz4bCfxE1lSBKRxoKbUr0w",
-        stock: 10,
+        stock: 4, // 4 left (Kevin, Oct 2026) — live count in Redis
         price: 2200,
         stockSlug: "contour",
         stockPart: "hand-wound-39mm-aventurine",
         color: "Blue",
         description: "Natural aventurine stone with hand-set moissanite baguette indices. LJP D101, Swiss hand-wound.",
-        image: "/images/contour-aventurine-closeup-v2.jpg",
+        image: "/images/silhouette-aventurine-v1.jpg",
+        heroImage: "/images/silhouette-aventurine-v1.jpg",
       },
       {
         name: "Ituri",
@@ -854,7 +899,8 @@ export const collections: Collection[] = [
         price: 5000,
         color: "Gold",
         description: "Hand-fired gold cloisonné enamel carrying the studio's Okapi motif, on a gold-plated case. Named for the Ituri Rainforest, the okapi's native habitat.",
-        image: "/images/contour-ituri-closeup-v2.jpg",
+        image: "/images/silhouette-ituri-v1.jpg",
+        heroImage: "/images/silhouette-ituri-v1.jpg",
       },
     ],
     relatedArticleSlugs: ["contour-three-drops"],

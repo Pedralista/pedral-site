@@ -29,6 +29,8 @@ const VALID_PRICE_IDS = new Set([
   "price_1TyJgICfxE1lSBKRRyl9DzAp", // Contour × Seconds Society — Sodalite (€895)
   "price_1UBz4bCfxE1lSBKRxoKbUr0w", // Silhouette — Aventurine (€2,200), formerly Contour 39mm
   "price_1UBz7uCfxE1lSBKRLZGUEFVq", // Silhouette — Ituri (€5,000), formerly Contour 39mm
+  "price_1UVaclCfxE1lSBKRrfhLXk3D", // Silhouette — Ophion · Swiss Hand-Wound (€2,200)
+  "price_1UVadbCfxE1lSBKRn5qrUnUI", // Silhouette — Ophion · Japanese Hand-Wound (€1,500)
   "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Japanese Hand-Wound (€1,100)
   "price_1UUF2bCfxE1lSBKRY27YyEDf", // Étiquette — Soirée · Swiss Hand-Wound (€1,800)
   "price_1UUF4ACfxE1lSBKRaBgmkl77", // Étiquette — Bourgogne · Japanese Hand-Wound (€1,100)

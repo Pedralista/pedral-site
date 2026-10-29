@@ -15,8 +15,8 @@ const upcoming = [
   {
     label: "Silhouette · New",
     title: "The line, reshaped.",
-    desc: "Contour's idea in a new proportion: 39mm, 7.3mm thin, on the Nyoka weave. Aventurine, hand-set with moissanite. LJP D101, Swiss hand-wound.",
-    eta: "Available Now · €2,200",
+    desc: "Contour's idea in a new proportion: 39mm, 7.3mm thin, on the Nyoka weave. New: Ophion, the weave carried onto the dial, hand-wound Japanese or Swiss. Aventurine, hand-set with moissanite.",
+    eta: "Available Now · From €1,500",
     href: "/collections/silhouette",
   },
   {
