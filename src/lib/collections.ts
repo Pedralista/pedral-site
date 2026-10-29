@@ -795,7 +795,7 @@ export const collections: Collection[] = [
     stock: 24, // static fallback (sum of variant fallbacks) — live counts come from Redis
     maxStock: 40, // 10 Aventurine + 10 Ituri + 20 Ophion
     edition: "Ophion · Aventurine · Ituri",
-    badge: "New · Now on Pre-Order",
+    badge: "New · On Pre-Order",
     urgencyTag: "Pieces remaining",
     variantLabel: "Dial",
     numeralOptionsLabel: "Movement",
