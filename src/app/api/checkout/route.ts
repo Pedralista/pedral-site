@@ -52,7 +52,7 @@ const VALID_PRICE_IDS = new Set([
 
 // Étiquette Hebrew / Bangla / Famille Royale prices: the checkout shows a
 // discount-code box so community members and owners can use the codes Kevin shared (codes and
-// their expiry, 6 Nov 2026 for ROYALE codes (extended 2026-10-29) and 3 Nov for community codes, live in Stripe — nothing about them is on the site).
+// their expiry, 6 Nov 2026 23:59 UTC for ROYALE and community codes (all extended from 3 Nov on 2026-10-29), live in Stripe — nothing about them is on the site).
 const PROMO_CODE_PRICE_IDS = new Set([
   "price_1UUOovCfxE1lSBKRZltUibsZ", // Tchelet · Japanese
   "price_1UUOqaCfxE1lSBKRZ0PFXRKD", // Tchelet · Swiss
@@ -67,9 +67,9 @@ const PROMO_CODE_PRICE_IDS = new Set([
 // Stripe coupon per community code (keyed by the code's hash — see
 // src/lib/community-codes.ts). Applied server-side as `discounts`.
 const COMMUNITY_COUPONS: Record<string, string> = {
-  "8b7d8690eff4cbfafd8934a5c5e3e5d824511b75cbdc9ea501637abf27cefb34": "2Y0NU7KX", // Hebrew · Japanese, €150 off
-  "67076ba311b797ce5bccb86dd16ee65580df2996a2c6c8eab44d60f329bcc854": "o6bSjdo1", // Hebrew · Swiss, €300 off
-  "2e20d2dd7e7a19389cc7f6d8d985bb739fd1b9736de5da981737a99aeea576ea": "dS6NsWUL", // Bangla, €150 off
+  "8b7d8690eff4cbfafd8934a5c5e3e5d824511b75cbdc9ea501637abf27cefb34": "hkaTDjCy", // Hebrew · Japanese, €150 off (6 Nov coupon; was 2Y0NU7KX)
+  "67076ba311b797ce5bccb86dd16ee65580df2996a2c6c8eab44d60f329bcc854": "Ech5tJMi", // Hebrew · Swiss, €300 off (6 Nov coupon; was o6bSjdo1)
+  "2e20d2dd7e7a19389cc7f6d8d985bb739fd1b9736de5da981737a99aeea576ea": "jUFyHoY9", // Bangla, €150 off (6 Nov coupon; was dS6NsWUL)
 };
 
 const ALLOWED_ORIGINS = new Set(["https://pedral.eu", "https://www.pedral.eu", "https://pedral.watch", "https://www.pedral.watch"]);

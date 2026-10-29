@@ -141,6 +141,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const [holdToken] = useState(() => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Math.random()).slice(2)));
   const [soldNumbers, setSoldNumbers] = useState<number[]>([]);
   const [reservedNumbers, setReservedNumbers] = useState<number[]>([]);
+  const editionGridRef = useRef<HTMLDivElement>(null);
+  const [gridNudge, setGridNudge] = useState(false);
   useEffect(() => {
     if (!c.editionNumbers) return;
     fetch(`/api/edition-numbers?slug=${encodeURIComponent(c.slug)}`, { cache: "no-store" })
@@ -730,6 +732,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
       {hasVariants && (
         <section id="dial-variants" className="bg-background py-14 md:py-20">
           <div className="mx-auto max-w-[1200px] px-6 md:px-12">
+            {!c.editionNumbers && (
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -746,9 +749,186 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   : c.variantLabel === "Movement" ? "Choose your calibre." : "Choose your expression."}
               </h2>
             </motion.div>
+            )}
 
-            {/* Compact picker — one image window, dial buttons switch it (Maestro) */}
-            {c.variantPicker === "compact" ? (
+            {/* Numbered edition (Famille Royale) — image left; title, movement and
+                number grid side by side on the right, so the only choices are
+                the movement and the number. */}
+            {c.editionNumbers && selectedVariant ? (
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="grid items-start gap-10 md:grid-cols-2 md:gap-14"
+              >
+                <div className="md:sticky md:top-28">
+                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg border border-accent/10 bg-[var(--surface)]">
+                    {selectedVariantImage ? (
+                      <Image
+                        src={selectedVariantImage}
+                        alt={`${c.name} ${selectedVariant.name}`}
+                        fill
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <ImagePlaceholder label={c.name} className="h-full w-full" />
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-[12px] font-normal tracking-[2.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                    Limited edition · {c.editionNumbers} pieces
+                  </p>
+                  <h2 className="mt-4 font-serif text-[clamp(36px,4.6vw,54px)] font-light italic leading-[1.05] text-foreground">
+                    {selectedVariant.name}
+                  </h2>
+                  <p className="mt-4 font-serif text-[24px] font-light text-foreground">
+                    &euro;{listPrice.toLocaleString()}
+                  </p>
+                  {selectedVariant.description && (
+                    <p className="mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted">
+                      {selectedVariant.description}
+                    </p>
+                  )}
+
+                  {/* Movement */}
+                  {selectedVariant.numeralOptions && selectedVariant.numeralOptions.length > 0 && (
+                    <div className="mt-8 border-t border-accent/15 pt-6">
+                      <p className="text-[12px] font-normal tracking-[2.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                        {c.numeralOptionsLabel ?? "Movement"}
+                      </p>
+                      <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                        {selectedVariant.numeralOptions.map((opt) => {
+                          const isSel = selectedNumeral === opt;
+                          const optPrice = selectedVariant.numeralPrices?.[opt] ?? selectedVariant.price ?? c.price;
+                          return (
+                            <button
+                              key={opt}
+                              type="button"
+                              aria-pressed={isSel}
+                              onClick={() => { setSelectedNumeral(opt); setUserPickedVariant(true); }}
+                              className={`flex items-center justify-between gap-3 rounded-lg border px-4 py-3.5 text-left transition-colors ${
+                                isSel ? "border-accent bg-accent/[0.08]" : "border-accent/20 hover:border-accent/50"
+                              }`}
+                            >
+                              <span className="flex items-center gap-3">
+                                <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${isSel ? "border-accent" : "border-accent/40"}`}>
+                                  {isSel && <span className="h-2 w-2 rounded-full bg-accent" />}
+                                </span>
+                                <span className="flex flex-col">
+                                  <span className="text-[15px] font-light text-foreground">{opt.replace(/ Hand-Wound$/i, "")}</span>
+                                  {/ Hand-Wound$/i.test(opt) && (
+                                    <span className="text-[12px] font-light tracking-[0.5px] text-foreground-muted/70">Hand-wound</span>
+                                  )}
+                                </span>
+                              </span>
+                              <span className="font-serif text-[17px] font-light text-foreground-muted">
+                                &euro;{optPrice.toLocaleString()}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Edition number grid */}
+                  <div className="mt-8 border-t border-accent/15 pt-6">
+                    <div className="flex items-baseline justify-between gap-4">
+                      <p className="text-[12px] font-normal tracking-[2.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                        Edition
+                      </p>
+                      <p className="font-serif text-[18px] font-light italic text-foreground-muted sm:text-[20px]">
+                        {c.editionNumbers - soldNumbers.length - reservedNumbers.length} of {c.editionNumbers} still available
+                      </p>
+                    </div>
+                    <div ref={editionGridRef} className={`mt-4 grid grid-cols-7 border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
+                      {Array.from({ length: c.editionNumbers }, (_, i) => i + 1).map((n) => {
+                        const sold = soldNumbers.includes(n);
+                        const reserved = !sold && reservedNumbers.includes(n);
+                        const taken = sold || reserved;
+                        const selected = editionNumber === n;
+                        return (
+                          <button
+                            key={n}
+                            type="button"
+                            disabled={taken}
+                            onClick={() => { setEditionNumber(n); setPreOrderError(null); }}
+                            aria-label={sold ? `No. ${pad2(n)}, sold` : reserved ? `No. ${pad2(n)}, reserved` : `Choose No. ${pad2(n)}`}
+                            aria-pressed={selected}
+                            className={`relative flex aspect-square items-center justify-center border-b border-r border-accent/20 font-serif text-[19px] font-light italic transition-colors sm:text-[24px] ${
+                              sold
+                                ? "cursor-not-allowed text-foreground-muted/25"
+                                : reserved
+                                ? "cursor-not-allowed text-foreground-muted/35"
+                                : selected
+                                ? "bg-[#3d1d38] text-[#f1dca6] shadow-[inset_0_0_0_1px_var(--accent)]"
+                                : "text-foreground hover:bg-accent/[0.07]"
+                            }`}
+                          >
+                            {n}
+                            {taken && (
+                              <span aria-hidden className="pointer-events-none absolute left-[22%] right-[22%] top-1/2 h-px -rotate-[24deg] bg-foreground-muted/35" />
+                            )}
+                            {reserved && (
+                              <span className="absolute bottom-[8%] left-0 right-0 text-center font-sans text-[7px] not-italic tracking-[1px] uppercase text-foreground-muted/50 sm:text-[8px] sm:tracking-[1.5px]">
+                                Reserved
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <p className="mt-4 text-[15px] font-light leading-[1.7] text-foreground-muted/80">
+                      {editionNumber ? (
+                        <>
+                          <span className="text-foreground">No. {pad2(editionNumber)} of {c.editionNumbers}</span>
+                          {selectedNumeral ? ` · ${selectedNumeral}` : ""}. Held for you for 30 minutes once you continue to checkout.
+                        </>
+                      ) : (
+                        "Pick a birthday, a lucky number, or simply the one that feels right. Each number exists once; crossed-out numbers are taken."
+                      )}
+                    </p>
+                    {preOrderError && <p className="mt-2 text-[15px] text-red-400">{preOrderError}</p>}
+                  </div>
+
+                  {/* Buy — right under the grid, so the choice and the button
+                      sit together. With no number picked it points back to
+                      the grid instead of sitting there disabled. */}
+                  <div className="mt-8 border-t border-accent/15 pt-6">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (!editionNumber) {
+                          editionGridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+                          setGridNudge(true);
+                          window.setTimeout(() => setGridNudge(false), 1400);
+                          return;
+                        }
+                        handleReserve();
+                      }}
+                      disabled={loading || (!!selectedVariant.numeralOptions && !selectedNumeral)}
+                      className="w-full rounded-lg bg-accent px-6 py-5 text-[12px] font-medium tracking-[3px] uppercase text-background shadow-[0_8px_30px_-10px_var(--accent)] transition-colors hover:bg-accent-hover disabled:opacity-60"
+                    >
+                      {loading
+                        ? "Loading…"
+                        : editionNumber
+                        ? `Reserve No. ${pad2(editionNumber)} · €${runningTotal.toLocaleString()}`
+                        : `Choose your number · €${runningTotal.toLocaleString()}`}
+                    </button>
+                    <ul className="mt-4 space-y-1.5 text-[14px] font-light tracking-[0.3px] text-foreground-muted/70">
+                      <li>{SHIPPING_LINE}</li>
+                      <li>{klarnaLine(effectivePrice)}</li>
+                      {c.shipsBy && <li>{c.shipsBy}</li>}
+                      <li>Owners&apos; code? Enter it at checkout under &ldquo;Add promotion code&rdquo;.</li>
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+            ) : c.variantPicker === "compact" ? (
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -1134,70 +1314,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               </motion.div>
             )}
 
-            {/* Edition number grid (numbered editions, e.g. Famille Royale) */}
-            {c.editionNumbers && (
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                className="mt-10"
-              >
-                <div className="flex items-baseline justify-between gap-4">
-                  <p className="text-[13px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[3px] uppercase text-accent">
-                    Choose your number
-                  </p>
-                  <p className="font-serif text-[18px] font-light italic text-foreground-muted sm:text-[20px]">
-                    {c.editionNumbers - soldNumbers.length - reservedNumbers.length} of {c.editionNumbers} still available
-                  </p>
-                </div>
-                <div className="mt-4 grid grid-cols-7 border-l border-t border-accent/25">
-                  {Array.from({ length: c.editionNumbers }, (_, i) => i + 1).map((n) => {
-                    const sold = soldNumbers.includes(n);
-                    const reserved = !sold && reservedNumbers.includes(n);
-                    const taken = sold || reserved;
-                    const selected = editionNumber === n;
-                    return (
-                      <button
-                        key={n}
-                        type="button"
-                        disabled={taken}
-                        onClick={() => { setEditionNumber(n); setPreOrderError(null); }}
-                        aria-label={sold ? `No. ${pad2(n)}, sold` : reserved ? `No. ${pad2(n)}, reserved` : `Choose No. ${pad2(n)}`}
-                        aria-pressed={selected}
-                        className={`relative flex aspect-square items-center justify-center border-b border-r border-accent/25 font-serif text-[18px] font-light transition-colors sm:text-[26px] ${
-                          sold
-                            ? "cursor-not-allowed text-foreground-muted/30"
-                            : reserved
-                            ? "cursor-not-allowed bg-accent/[0.06] text-foreground-muted/45"
-                            : selected
-                            ? "bg-accent text-background"
-                            : "text-foreground hover:bg-accent/10"
-                        }`}
-                      >
-                        {pad2(n)}
-                        {sold && (
-                          <span aria-hidden className="pointer-events-none absolute left-[18%] right-[18%] top-1/2 h-px -rotate-[24deg] bg-foreground-muted/40" />
-                        )}
-                        {reserved && (
-                          <span className="absolute bottom-[10%] left-0 right-0 text-center font-sans text-[7px] tracking-[1px] uppercase text-accent/70 sm:text-[9px] sm:tracking-[2px]">
-                            Reserved
-                          </span>
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-                <p className="mt-3 text-[15px] font-light text-foreground-muted/70">
-                  {editionNumber
-                    ? `No. ${pad2(editionNumber)} of ${c.editionNumbers} is yours to claim. It's held for you for 30 minutes once you continue to checkout.`
-                    : "Pick a birthday, a lucky number, or simply the one that feels right. Each number exists once. Reserved numbers are being paid for right now; crossed-out numbers are taken."}
-                </p>
-                {preOrderError && <p className="mt-2 text-[15px] text-red-400">{preOrderError}</p>}
-              </motion.div>
-            )}
 
-            {/* CTA */}
+            {/* CTA — numbered editions have their own buy button beside the grid */}
+            {!c.editionNumbers && (
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -1298,6 +1417,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 </button>
               </div>
             </motion.div>
+            )}
 
           </div>
         </section>
@@ -2124,11 +2244,20 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               </div>
               <div className="flex shrink-0 items-center gap-2">
                 <button
-                  onClick={handleReserve}
-                  disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  onClick={() => {
+                    // Numbered edition with no number yet: take them to the grid.
+                    if (c.editionNumbers && !editionNumber) {
+                      editionGridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+                      setGridNudge(true);
+                      window.setTimeout(() => setGridNudge(false), 1400);
+                      return;
+                    }
+                    handleReserve();
+                  }}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:px-8 sm:text-[11px] sm:tracking-[2px]"
                 >
-                  {loading ? "…" : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Acquire"}
+                  {loading ? "…" : c.editionNumbers ? (editionNumber ? `Reserve No. ${pad2(editionNumber)}` : "Choose your number") : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Acquire"}
                 </button>
               </div>
             </div>

@@ -8,7 +8,7 @@
 // Codes are stored only as SHA-256 hashes, so they can't be read from the
 // page source. The plain codes are the promotion codes in Kevin's Stripe.
 
-export const COMMUNITY_CODES_EXPIRE_AT = Date.parse("2026-11-03T23:59:59Z");
+export const COMMUNITY_CODES_EXPIRE_AT = Date.parse("2026-11-06T23:59:59Z");
 
 export type CommunityCode = {
   /** SHA-256 hex of the upper-cased code */
