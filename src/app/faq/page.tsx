@@ -39,7 +39,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "What's the return policy?",
-    a: "Standard editions can be returned within 14 days of delivery, no questions asked, with a prepaid return label. Made-to-order variants — the Triomphe Hebrew and Eastern Arabic numeral editions, and the Étiquette Hebrew, Eastern Arabic and Bangla numeral editions — are produced to individual specification and cannot be returned, per the EU Consumer Rights Directive's custom-goods exemption.",
+    a: "In the EU and EEA, standard editions can be returned within 14 days of delivery, unworn and at your own shipping cost. Outside the EU and EEA, sales are final unless the watch arrives faulty, damaged or incorrect. Okapi Classique, bespoke commissions and made-to-order variants — the Triomphe Hebrew and Eastern Arabic numeral editions, and the Étiquette Hebrew, Eastern Arabic and Bangla numeral editions — are produced to individual specification and cannot be returned, per the EU Consumer Rights Directive's custom-goods exemption.",
   },
   {
     q: "What warranty comes with a Pedral watch?",
@@ -105,10 +105,12 @@ export default function FaqPage() {
 
         <h2>Returns</h2>
         <p>
-          Standard editions can be returned within <strong>14 days</strong> of delivery, no
-          questions asked. Email <a href="mailto:info@pedral.watch">info@pedral.watch</a> with
-          your order number and we&apos;ll send a prepaid return label — return shipping is
-          free.
+          In the EU and EEA, standard editions can be returned within <strong>14 days</strong> of
+          delivery, unworn and at your own shipping cost. Outside the EU and EEA, sales are final
+          unless the watch arrives faulty, damaged or incorrect. Email{" "}
+          <a href="mailto:info@pedral.watch">info@pedral.watch</a> with your order number and
+          we&apos;ll send the next steps. Full details are on the{" "}
+          <a href="/returns">Returns</a> page.
         </p>
         <p>
           Made-to-order variants — the Triomphe Hebrew and Eastern Arabic numeral editions, and the

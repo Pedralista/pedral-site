@@ -20,7 +20,7 @@ export default function WithdrawalPage() {
         withdrawal period expires <strong>14 days from the day you acquire physical possession of
         the goods</strong>. If you are ordering from outside the EU/EEA, see &quot;Customers
         Outside the EU/EEA&quot; below instead — the statutory right described on this page does
-        not apply to your order, though we offer a comparable goodwill policy.
+        not apply to your order.
       </p>
       <p>
         To exercise, notify: Pedral Design Studio AB, Sveavägen 117A, 113 49 Stockholm,
@@ -60,7 +60,7 @@ export default function WithdrawalPage() {
         reimbursement until goods are received or proof of return provided.
       </p>
       <p>
-        Return shipping is free of charge — we provide a prepaid return label covering all costs.
+        You will bear the direct cost of returning the goods. Please send them tracked and insured.
         See our <a href="/returns">Returns</a> page for the step-by-step process.
       </p>
       <p>
@@ -70,9 +70,9 @@ export default function WithdrawalPage() {
 
       <h2>Exceptions</h2>
       <p>
-        The right of withdrawal does <strong>NOT</strong> apply to: made-to-order Triomphe Hebrew
-        and Eastern Arabic numeral editions, and Étiquette Hebrew, Eastern Arabic and Bangla numeral
-        editions, produced specifically for the buyer (Art. 16(c) — goods
+        The right of withdrawal does <strong>NOT</strong> apply to: Okapi Classique (made to order),
+        made-to-order Triomphe Hebrew and Eastern Arabic numeral editions, Étiquette Hebrew, Eastern
+        Arabic and Bangla numeral editions, and bespoke commissions, produced specifically for the buyer (Art. 16(c) — goods
         made to the consumer&apos;s specifications). You will be clearly informed at checkout
         before purchase if this exception applies.
       </p>
@@ -86,13 +86,10 @@ export default function WithdrawalPage() {
       <h2>Customers Outside the EU/EEA</h2>
       <p>
         The statutory 14-day right of withdrawal described above is an EU/EEA consumer right and
-        does not extend to orders shipping outside the EU/EEA. As a goodwill policy — not a legal
-        entitlement in your jurisdiction — we will cancel a pre-order before dispatch or accept a
-        return of a delivered watch, refunding <strong>70% of the amount paid</strong>. The
-        remaining 30% is retained to cover tooling, materials, and low-volume production costs
-        already committed against your order. Contact{" "}
-        <a href="mailto:info@pedral.watch">info@pedral.watch</a> with your order number to
-        request this.
+        does not extend to orders shipping outside the EU/EEA. Outside the EU/EEA, all sales are
+        final: we do not offer refunds or cancellations for a change of mind or for the time a
+        watch takes to produce. Watches that arrive faulty, damaged or incorrect are always put
+        right; see our <a href="/returns">Returns</a> page.
       </p>
 
       <h2>Model Withdrawal Form</h2>

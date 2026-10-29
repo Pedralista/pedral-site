@@ -151,11 +151,10 @@ export default function TermsPage() {
       <h3>Pre-Orders: Customers Outside the EU/EEA</h3>
       <p>
         The 14-day statutory withdrawal right above is an EU/EEA consumer right and does not
-        apply to orders shipping outside the EU/EEA. As a goodwill policy — not a legal
-        entitlement in your jurisdiction — we will cancel a pre-order before dispatch or accept a
-        return of a delivered watch, refunding <strong>70% of the amount paid</strong>, with the
-        remaining 30% retained to cover tooling, materials, and low-volume production costs
-        already committed against your order.
+        apply to orders shipping outside the EU/EEA. Outside the EU/EEA, all sales are final: we
+        do not offer refunds or cancellations for a change of mind or for the time a watch takes
+        to produce. Watches that arrive faulty, damaged or incorrect are always put right, as set
+        out on our <a href="/returns">Returns</a> page.
       </p>
 
       <h2>7. Warranty &amp; Conformity</h2>

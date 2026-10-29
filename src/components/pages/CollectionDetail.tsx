@@ -1817,7 +1817,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               // Made-to-order pieces can't be returned, so skip the 14-day promise.
               ...(c.nonRefundable ? [] : [{
                 q: "What if it doesn't work on my wrist?",
-                a: "Every piece ships with a 14-day return window after delivery. Case dimensions are listed in full in the specifications above. If you have doubts about sizing, write to Kevin directly — he responds personally.",
+                a: "In the EU and EEA, you have 14 days after delivery to return a standard edition, unworn. Case dimensions are listed in full in the specifications above. If you have doubts about sizing, write to Kevin directly — he responds personally.",
               }]),
               {
                 q: "What about production delays?",
@@ -1827,7 +1827,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 q: "I can't see it in person before buying.",
                 a: c.nonRefundable
                   ? "Most owners say the watch is better in person than in photos. High-resolution images and full specifications are available for every edition, and Kevin answers questions personally before you order."
-                  : "Most owners say the watch is better in person than in photos. High-resolution images and full specifications are available for every edition. The 14-day return policy exists precisely for this reason.",
+                  : "Most owners say the watch is better in person than in photos. High-resolution images and full specifications are available for every edition. The 14-day EU return right exists precisely for this reason.",
               },
               ]),
               ...(c.extraFaqs ?? []),
@@ -1917,7 +1917,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <div className="mx-auto mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-8">
                 {[
                   { label: "24-month warranty", href: "/warranty" },
-                  { label: "14-day returns", href: "/returns" },
+                  { label: "14-day EU returns", href: "/returns" },
                   { label: "Instalments with Klarna", href: undefined },
                   { label: "Complimentary insured delivery", href: undefined },
                 ].map(({ label, href }) => {
