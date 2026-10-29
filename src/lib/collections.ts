@@ -211,6 +211,7 @@ export const collections: Collection[] = [
     },
     boxContents: [
       "Maestro timepiece",
+      "Customised Epsom leather strap (20mm)",
       "Strap adapter tool",
       "Polishing cloth",
       "Butterfly clasp",
