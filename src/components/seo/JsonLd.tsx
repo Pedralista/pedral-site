@@ -7,7 +7,7 @@ export function OrganizationJsonLd() {
     logo: "https://www.pedral.eu/images/pedral-logo.png",
     description:
       "Stockholm-based watch microbrand blending retro-futurism with Scandinavian design. Limited editions, unlimited conviction.",
-    foundingDate: "2015",
+    foundingDate: "2018",
     founder: {
       "@type": "Person",
       name: "Kevin Pedral",

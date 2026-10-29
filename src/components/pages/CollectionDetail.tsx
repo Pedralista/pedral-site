@@ -21,8 +21,8 @@ import { SHIPPING_LINE, klarnaLine } from "@/lib/shipping";
 import Newsletter from "@/components/sections/Newsletter";
 import TrustIcons from "@/components/sections/TrustIcons";
 import PreOrderModal from "@/components/ui/PreOrderModal";
+import { getStripe } from "@/lib/stripe-client";
 import { gaEvent, fbqTrack, type AnalyticsItem } from "@/lib/analytics";
-import { useCart } from "@/lib/cart-context";
 
 // Minimal inline formatting for story copy: **bold** and *italic*.
 function renderInline(text: string) {
@@ -172,7 +172,6 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const addOnsTotal =
     (selectedStrap?.price ?? 0) + (engravingActive ? engravingAddon.price : 0);
   const runningTotal = (effectivePrice) + addOnsTotal;
-  const { addLine: addCartLine } = useCart();
 
   // Auto-cycles the hero through every "frame" that defines its own hero
   // image — a plain variant with heroImage, or (for a variant with dial
@@ -210,7 +209,17 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         return next.variant;
       });
     }, 7000);
-    return () => clearInterval(interval);
+    // Once the shopper scrolls past the hero they're reading the dial picker
+    // and description below, which also follow the selection: stop rotating
+    // so the text doesn't change under them.
+    const stopOnScroll = () => {
+      if (window.scrollY > window.innerHeight * 0.6) setUserPickedVariant(true);
+    };
+    window.addEventListener("scroll", stopOnScroll, { passive: true });
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("scroll", stopOnScroll);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userPickedVariant, heroFrames.length]);
 
@@ -285,52 +294,6 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     };
   }, []);
 
-  // Add to Cart shares the same "is this selection actually purchasable" gate
-  // as Reserve, minus the deposit pre-order flow — that one charges a fixed
-  // deposit rather than the item's real price, which doesn't compose with a
-  // multi-item Stripe session the way a normal priced line item does.
-  const canAddToCart =
-    // Numbered editions go straight to checkout so the chosen number is held.
-    !c.editionNumbers &&
-    !codeDiscount &&
-    !c.isEnquiryOnly &&
-    !c.isPreOrder &&
-    !isSoldOut &&
-    !!effectivePriceId &&
-    !(selectedVariant?.numeralOptions && !selectedNumeral) &&
-    !(selectedNumeral && selectedVariant?.soldOutNumerals?.includes(selectedNumeral));
-
-  function handleAddToCart() {
-    if (!effectivePriceId) return;
-    const price = effectivePrice;
-    addCartLine({
-      slug: c.slug,
-      productName: c.name,
-      variantName: selectionLabel,
-      priceId: effectivePriceId,
-      unitPrice: price,
-      image: selectedVariantImage || c.image,
-      nonRefundable: c.nonRefundable ?? false,
-      ...(addOnsActive && (selectedStrapSlug || engravingActive)
-        ? {
-            addOns: {
-              ...(selectedStrap ? { strapSlug: selectedStrap.slug, strapName: selectedStrap.name, strapPrice: selectedStrap.price } : {}),
-              ...(engravingActive ? { engravingText: engravingClean, engravingPrice: engravingAddon.price } : {}),
-            },
-          }
-        : {}),
-    });
-    const item: AnalyticsItem = {
-      item_id: c.slug,
-      item_name: c.name,
-      price,
-      quantity: 1,
-      item_variant: selectionLabel,
-    };
-    gaEvent("add_to_cart", { currency: "EUR", value: price, items: [item] });
-    fbqTrack("AddToCart", { currency: "EUR", value: price, content_ids: [c.slug], content_type: "product" });
-  }
-
   function trackReserveIntent() {
     const price = effectivePrice;
     const item: AnalyticsItem = {
@@ -348,6 +311,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   }
 
   async function handleReserve() {
+    // Start fetching Stripe.js now, in parallel with creating the session.
+    void getStripe();
     trackReserveIntent();
     if (c.isPreOrder) {
       setLoading(true);
@@ -671,16 +636,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                       : isSoldOut
                       ? "Join Waitlist"
-                      : `${c.reserveButtonLabel ?? "Reserve Allocation"} · €${(effectivePrice).toLocaleString()}`}
+                      : `${c.reserveButtonLabel ?? "Order Now"} · €${(effectivePrice).toLocaleString()}`}
                   </button>
-                  {canAddToCart && (
-                    <button
-                      onClick={handleAddToCart}
-                      className="w-full rounded-lg border border-accent/30 px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-colors hover:bg-accent hover:text-background sm:w-auto sm:px-10 sm:text-[11px] sm:tracking-[3px]"
-                    >
-                      Add to Bag
-                    </button>
-                  )}
                 </div>
                 {c.isPreOrder && (
                   <p className="mt-3 text-[16px] font-light leading-[1.7] text-foreground-muted/60">
@@ -720,10 +677,10 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   "Final specifications subject to prototype development",
                 ]
               : c.reassurance ?? [
-                  "Kevin reviews each request personally. Not all are confirmed.",
-                  "Sapphire crystal · Swiss automatic movement · HV1200 steel",
+                  "Sapphire crystal · 24-month warranty",
                   "Direct communication with Kevin — not a support team",
-                  "Ships tracked & insured from Stockholm",
+                  "Free insured express shipping",
+                  "Designed in Stockholm · Twenty pieces per dial at most",
                 ]
             ).map((item) => (
               <p key={item} className="px-0 py-5 text-[16px] font-light leading-[1.7] text-foreground-muted/60 sm:px-6 sm:py-6 sm:text-[16px]">
@@ -1337,16 +1294,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
-                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `${c.reserveButtonLabel ?? "Reserve Allocation"} · €${runningTotal.toLocaleString()}`}
+                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `${c.reserveButtonLabel ?? "Order Now"} · €${runningTotal.toLocaleString()}`}
                 </button>
-                {canAddToCart && (
-                  <button
-                    onClick={handleAddToCart}
-                    className="w-full rounded-lg border border-accent/30 px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-accent transition-colors hover:bg-accent hover:text-background sm:w-auto"
-                  >
-                    Add to Bag
-                  </button>
-                )}
               </div>
             </motion.div>
 
@@ -1646,9 +1595,18 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             <p className="mt-6 border-l-2 border-accent/30 pl-6 font-serif text-[22px] font-light italic leading-[1.6] text-foreground">
               &ldquo;{c.designerNote}&rdquo;
             </p>
-            <p className="mt-4 pl-6 text-[15px] tracking-[2px] text-foreground-muted">
-              Kevin Pedral, Stockholm
-            </p>
+            <div className="mt-5 flex items-center gap-4 pl-6">
+              <Image
+                src="/images/kevin-portrait.jpeg"
+                alt="Kevin Pedral"
+                width={56}
+                height={56}
+                className="h-14 w-14 rounded-full object-cover"
+              />
+              <p className="text-[15px] tracking-[2px] text-foreground-muted">
+                Kevin Pedral, Stockholm
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -1800,7 +1758,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 Value Perspective
               </p>
               <h2 className="font-serif text-[clamp(28px,3vw,40px)] font-light text-foreground">
-                {c.valuePerspectiveTitle ?? "What this specification actually costs elsewhere."}
+                {c.valuePerspectiveTitle ?? "Where the price goes."}
               </h2>
               <div className="mt-6 h-px w-[60px] bg-accent" />
               <p className="mt-6 text-[16px] font-light italic leading-[1.85] text-foreground-muted">
@@ -1854,7 +1812,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               ...(c.inDevelopment ? [] : [
               {
                 q: "I've never heard of Pedral before.",
-                a: "Kevin has been designing watches in Stockholm since 2015. Over 400 pieces delivered to collectors in 30+ countries. Reviewed by independent watch media and recommended by collectors who own dozens of other watches.",
+                a: "The idea for Pedral began in 2010; the first watch was released in 2018. Over 400 pieces delivered to collectors in 30+ countries. Reviewed by independent watch media and recommended by collectors who own dozens of other watches.",
               },
               // Made-to-order pieces can't be returned, so skip the 14-day promise.
               ...(c.nonRefundable ? [] : [{
@@ -1942,16 +1900,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                     : isSoldOut
                     ? "Join Waitlist"
-                    : `Reserve · €${(effectivePrice).toLocaleString()}`}
+                    : `${c.reserveButtonLabel ?? "Order Now"} · €${(effectivePrice).toLocaleString()}`}
                 </button>
-                {canAddToCart && (
-                  <button
-                    onClick={handleAddToCart}
-                    className="w-full max-w-[300px] rounded-lg border border-accent/30 px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-accent transition-colors hover:bg-accent hover:text-background sm:w-auto sm:px-10 sm:text-[11px] sm:tracking-[3px]"
-                  >
-                    Add to Bag
-                  </button>
-                )}
               </div>
               {c.isPreOrder ? (
                 <p className="mt-3 text-[16px] font-light leading-[1.7] text-foreground-muted/60">
@@ -2173,20 +2123,12 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 </p>
               </div>
               <div className="flex shrink-0 items-center gap-2">
-                {canAddToCart && (
-                  <button
-                    onClick={handleAddToCart}
-                    className="rounded-lg border border-accent/30 px-4 py-2.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent transition-colors hover:bg-accent hover:text-background sm:px-6 sm:text-[11px] sm:tracking-[2px]"
-                  >
-                    Add to Bag
-                  </button>
-                )}
                 <button
                   onClick={handleReserve}
                   disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:px-8 sm:text-[11px] sm:tracking-[2px]"
                 >
-                  {loading ? "…" : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Reserve"}
+                  {loading ? "…" : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Order Now"}
                 </button>
               </div>
             </div>

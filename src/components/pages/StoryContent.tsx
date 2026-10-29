@@ -8,6 +8,11 @@ import Newsletter from "@/components/sections/Newsletter";
 
 const timeline = [
   {
+    year: "2010",
+    title: "The idea",
+    text: "The idea for Pedral begins, eight years before the first watch is released.",
+  },
+  {
     year: "2015",
     title: "The rejection",
     text: "I applied to Sweden's only watchmaking school. They said no. So I taught myself — obsessive research, hundreds of failed prototypes, three years of evenings nobody saw. In 2017 I nearly stopped. I didn't.",

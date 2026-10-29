@@ -86,9 +86,9 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.95 }}
             className="mt-8 max-w-[420px] text-[15px] font-light leading-[1.9] text-foreground-muted/70"
           >
-            Swiss automatic calibre.<br />
-            Sapphire crystal.<br />
-            Crafted from exceptional materials.
+            The rounded square, a shape found nowhere else.<br />
+            Twenty pieces per dial, at most.<br />
+            Designed by one person in Stockholm.
           </motion.p>
 
           {/* 5. CTA */}
@@ -105,7 +105,7 @@ export default function Hero() {
               See what&apos;s available now
             </Link>
             <p className="text-[14px] font-light tracking-[0.5px] text-foreground-muted/40">
-              Worn by collectors in 30+ countries &middot; Max 20 pieces per edition &middot; No restocks
+              Worn by collectors in 30+ countries &middot; Max 20 pieces per dial &middot; No restocks
             </p>
           </motion.div>
 

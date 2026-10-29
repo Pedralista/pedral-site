@@ -2,45 +2,9 @@
 
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
+import Link from "next/link";
+import { OWNER_TESTIMONIALS as testimonials } from "@/lib/reviews";
 
-const testimonials = [
-  {
-    quote:
-      "Somehow, the watch feels alive. It's incredibly elegant and feels like a part of me. Kevin simply cannot help but do what is in his heart and mind.",
-    author: "R.C.",
-    detail: "Writer · Switzerland · Okapi owner",
-  },
-  {
-    quote:
-      "Your designs stand out. They have an understated elegance and exude quality far above the price point. The combination was unbelievable.",
-    author: "M.S.",
-    detail: "Collector · Triomphe owner",
-  },
-  {
-    quote:
-      "Not following trends but being a trend setter. For me, I have to connect with the owner of the brand. Then it's the watch.",
-    author: "D.H.",
-    detail: "Watch enthusiast · Maestro owner",
-  },
-  {
-    quote:
-      "I've got watches people recognise immediately. This one they don't. That's what starts the conversation.",
-    author: "Swen A.",
-    detail: "Architect · Hamburg · Collector since 2022",
-  },
-  {
-    quote:
-      "I emailed Kevin and he called me back the same afternoon. We ended up talking for half an hour. Try getting that from Tissot or Longines.",
-    author: "David M.",
-    detail: "Creative Director · Brussels · Triomphe owner",
-  },
-  {
-    quote:
-      "I own blue dials from the usual names. The Émeraude Vert is different. On the wrist, in actual light, it has this depth that surprised me.",
-    author: "Anthony A.",
-    detail: "Artist · France",
-  },
-];
 
 export default function Testimonials() {
   return (
@@ -80,6 +44,14 @@ export default function Testimonials() {
             </motion.div>
           ))}
         </motion.div>
+        <div className="mt-12 text-center">
+          <Link
+            href="/reviews"
+            className="text-[12px] font-medium tracking-[2px] uppercase text-accent transition-colors hover:text-accent-hover"
+          >
+            All reviews &amp; media &rarr;
+          </Link>
+        </div>
       </div>
     </section>
   );

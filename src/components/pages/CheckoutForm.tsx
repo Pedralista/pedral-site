@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { loadStripe } from "@stripe/stripe-js";
+import { getStripe } from "@/lib/stripe-client";
 import {
   Elements,
   PaymentElement,
@@ -10,7 +10,6 @@ import {
 } from "@stripe/react-stripe-js";
 import type { Collection, CollectionVariant } from "@/lib/collections";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 function PaymentForm({
   collection,
@@ -163,7 +162,7 @@ export default function CheckoutForm({
 
   return (
     <Elements
-      stripe={stripePromise}
+      stripe={getStripe()}
       options={{
         clientSecret,
         appearance: {

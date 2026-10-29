@@ -106,7 +106,7 @@ export default function CollectionShowcase() {
               {collectionCountWord(visibleCount)} watches. One designer.
             </h2>
             <p className="mt-4 max-w-[600px] text-[15px] font-light leading-[1.85] text-foreground-muted">
-              Each edition is limited to 20 pieces. When it sells out, it stays gone. Not a strategy. One person behind every decision.
+              Each dial is limited to twenty pieces or fewer. When it sells out, it stays gone. Not a strategy. One person behind every decision.
             </p>
           </div>
           <div className="hidden shrink-0 gap-2 sm:flex">

@@ -138,7 +138,7 @@ export interface Collection {
   valuePerspectiveTitle?: string;
   /** Optional heading/intro overrides for the comingSoonEditions section (defaults: "Coming Next" / "The next dial editions." / not-yet-available copy). */
   comingSoonEditionsHeading?: { eyebrow: string; title: string; text: string; portrait?: boolean };
-  /** Overrides the four-line reassurance strip under the product hero (default mentions a Swiss automatic movement, which isn't true for every product). */
+  /** Overrides the four-line reassurance strip under the product hero (the default is product-neutral: sapphire, warranty, direct contact, shipping). */
   reassurance?: string[];
   comingSoonEditions?: { name: string; description: string; image?: string; badge?: string }[];
   /** Prototype / in-development model — no price, no checkout yet. Use together with isEnquiryOnly (which already removes price, stock, checkout, feed listing and JSON-LD offers); this additionally swaps edition-size, returns/shipping and "allocation" copy for development-stage copy. `status` shows in the hero and as the closing line; `cardStatus` is the short line under the card on the collections grid. */
@@ -176,6 +176,7 @@ export const collections: Collection[] = [
     hook: "The person who notices this watch already understands it.",
     description:
       "At 37mm, the monobloc tonneau case and fluted bezel frame the dial. A detail most will pass over. The same architecture comes in two expressions: the classic Maestro, with a textured sunburst dial, lumed Roman numerals and central seconds — and the Petite Seconde, with a guilloché dial, proprietary Roman numerals and a subsidiary seconds at six o'clock.",
+    descriptionTitle: "One case, two expressions.",
     descriptionExtra:
       "Hexagonal bracelet links follow the wrist's natural curve. The watch does not announce itself. The classic dials run the Sellita SW200-1b; the Petite Seconde runs the Sellita SW260. Earlier editions included a driver's dial — a diagonal time display built around a driving watch principle. When a dial closes, it does not return.",
     designerNote:
@@ -189,6 +190,13 @@ export const collections: Collection[] = [
     variantPicker: "compact",
     cardVariant: "Aura Gold",
     heroFit: "contain",
+    // Maestro pieces are numbered; Triomphe's are not (Kevin, 2026-10-29).
+    reassurance: [
+      "Each piece individually numbered",
+      "Sapphire crystal · Swiss automatic movement · 24-month warranty",
+      "Direct communication with Kevin — not a support team",
+      "Free insured express shipping",
+    ],
     shipsImmediately: true, // all Maestro dials in stock (Kevin, Oct 2026)
     shipsBy: "In stock · Ships immediately · Tracked & insured",
     edition: "Soul Blue · Aura Gold · Lapis No.1",
@@ -206,7 +214,7 @@ export const collections: Collection[] = [
       Lume: "Swiss Super-LumiNova® BGW9 on hands and indices (classic dials)",
       "Water Resist.": "100 meters / 330 feet",
       Warranty: "24-month international coverage",
-      Edition: "Limited per dial · No restocks · No reissues",
+      Edition: "Limited per dial · Each piece individually numbered · No restocks · No reissues",
       VAT: "Included for EU orders · Duties and taxes outside EU not included",
     },
     boxContents: [
@@ -217,15 +225,21 @@ export const collections: Collection[] = [
       "24-month warranty card",
       "Personal note from Kevin",
     ],
-    valueAnchor:
-      "Dress watches with Swiss Sellita movements, sapphire crystal, and an integrated bracelet. At the established houses: €2,800+. Without the overhead cost, the showroom, the retail chain, the advertising: €1,450 — or €1,600 for the Petite Seconde with its small seconds complication. The difference didn't disappear. It remains in the watch.",
-    valueComparePrice: "€2,800+",
+    // No price comparison with other brands (Kevin, 2026-10-29: it reads as cheap).
+    valueAnchor: "",
+    valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Classic Expression",
       title: "Everything in its place.",
       text: "The Maestro's tonneau case and hexagonal bracelet are designed to disappear when worn and reappear when noticed. The classic dial keeps the time readable. Nothing more, nothing less.",
     },
     testimonials: [
+      {
+        quote:
+          "In retrospect, I would have been willing to pay significantly more.",
+        name: "Erik",
+        bio: "Maestro Petite Seconde owner · Wisconsin, USA · WatchCrunch review, 4.2 / 5",
+      },
       {
         quote:
           "I wasn't sure about 37mm. I usually wear 40. But the tonneau shape carries the size differently. It wears bigger than you'd expect. The whole thing is more considered than the price suggests.",
@@ -368,9 +382,9 @@ export const collections: Collection[] = [
       "Edition certificate with serial number",
       "Personal note from Kevin",
     ],
-    valueAnchor:
-      "Hand-wound dress watches under 9mm with multi-layer guilloché dials. At the established houses: €3,500+. Without the overhead cost: €1,750. Edition of 20. The difference isn't absorbed. It remains in the materials, the movement, and the finishing.",
-    valueComparePrice: "€3,500+",
+    // No price comparison with other brands (Kevin, 2026-10-29: it reads as cheap).
+    valueAnchor: "",
+    valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Dial",
       title: "Layers that take time to see.",
@@ -468,7 +482,7 @@ export const collections: Collection[] = [
       "The frosted blue dial sits behind a coin-edge fluted flange. A slim chapter ring with lacquer-filled markings, guilloché small seconds at six, spear-shaped hands. Powered by the LJP7380. Nothing placed without reason. Nothing removed that should remain.",
     designerNote:
       "Okapi was not my first prototype. It was the first that felt inevitable. A balance of curve and edge, softness held in precision. The language wasn't planned — it surfaced. Ten years later, I understand it better. The new version doesn't transform it. It clarifies what was always there.",
-    year: 2015,
+    year: 2018,
     tier: "signature",
     price: 2800,
     stock: 20,

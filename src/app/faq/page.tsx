@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     q: "I've never heard of Pedral before.",
-    a: "Kevin has been designing watches in Stockholm since 2015. Over 400 pieces delivered to collectors in 30+ countries. Reviewed by independent watch media and recommended by collectors who own dozens of other watches.",
+    a: "The idea for Pedral began in 2010; the first watch was released in 2018. Over 400 pieces delivered to collectors in 30+ countries. Reviewed by independent watch media and recommended by collectors who own dozens of other watches.",
   },
   {
     q: "What if it doesn't work on my wrist?",
@@ -63,7 +63,7 @@ export default function FaqPage() {
       <LegalPage eyebrow="Help" title="Frequently Asked Questions" updated="Ordering, shipping, returns, warranty, sizing">
         <h2>About Pedral</h2>
         <p>
-          Kevin has been designing watches in Stockholm since 2015. Over 400 pieces delivered to
+          The idea for Pedral began in 2010; the first watch was released in 2018. Over 400 pieces delivered to
           collectors in 30+ countries. Reviewed by independent watch media and recommended by
           collectors who own dozens of other watches. Most owners say the watch reads better in
           person than in photos — high-resolution images and full specifications are published

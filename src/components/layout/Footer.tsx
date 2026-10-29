@@ -119,6 +119,12 @@ export default function Footer() {
             Warranty
           </Link>
           <Link
+            href="/reviews"
+            className="text-[11px] font-normal tracking-[1px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
+          >
+            Reviews
+          </Link>
+          <Link
             href="/faq"
             className="text-[11px] font-normal tracking-[1px] uppercase text-foreground-muted/60 transition-colors hover:text-accent"
           >

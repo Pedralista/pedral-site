@@ -12,12 +12,12 @@ const reasons = [
   {
     num: "02",
     title: "No Shortcuts",
-    desc: "Swiss automatic movement. Sapphire crystal. Surface-hardened steel (HV1200).\n\nFull quality focus. No compromise on materials, no compromise on execution.",
+    desc: "Swiss or Japanese movements, chosen for each design. Sapphire crystal on every watch.\n\nFull quality focus. No compromise on materials, no compromise on execution.",
   },
   {
     num: "03",
     title: "The Watch Finds Its Buyer",
-    desc: "Each variant is produced in twenty pieces only. When an edition closes, it is never produced again.\n\nThese are not watches you stumble into. They find the people they belong to.",
+    desc: "Each dial is made in twenty pieces or fewer. When an edition closes, it is never produced again.\n\nThese are not watches you stumble into. They find the people they belong to.",
   },
 ];
 

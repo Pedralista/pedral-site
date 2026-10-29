@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { loadStripe } from "@stripe/stripe-js";
+import { getStripe } from "@/lib/stripe-client";
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe-js";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 interface PreOrderModalProps {
   clientSecret: string;
@@ -71,7 +70,7 @@ export default function PreOrderModal({
 
         {/* Stripe Embedded Checkout */}
         <div className="p-2">
-          <EmbeddedCheckoutProvider stripe={stripePromise} options={{ clientSecret }}>
+          <EmbeddedCheckoutProvider stripe={getStripe()} options={{ clientSecret }}>
             <EmbeddedCheckout />
           </EmbeddedCheckoutProvider>
         </div>

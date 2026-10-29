@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 
 const stats = [
-  { label: "Since 2015", sub1: "Independent", sub2: "Stockholm" },
+  { label: "Since 2018", sub1: "Independent", sub2: "Stockholm" },
   { label: "Max 20", sub1: "Pieces per dial", sub2: "No restocks" },
-  { label: "Swiss", sub1: "Automatic movements", sub2: "Sapphire crystal" },
+  { label: "Sapphire", sub1: "On every watch", sub2: "Swiss & Japanese movements" },
 ];
 
 export default function TrustBar() {

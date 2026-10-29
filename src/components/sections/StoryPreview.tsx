@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function StoryPreview() {
@@ -19,20 +20,33 @@ export default function StoryPreview() {
             The Story
           </motion.p>
 
-          {/* Headline — full width */}
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-14">
+          <motion.div variants={fadeInUp} className="shrink-0">
+            <Image
+              src="/images/kevin-portrait.jpeg"
+              alt="Kevin Pedral in Stockholm"
+              width={220}
+              height={275}
+              className="h-[150px] w-[120px] rounded-lg object-cover md:h-[275px] md:w-[220px]"
+            />
+          </motion.div>
+          <div>
+          {/* Headline */}
           <motion.h2
             variants={fadeInUp}
             className="max-w-[560px] font-serif text-[clamp(26px,3.5vw,44px)] font-light leading-[1.2] text-foreground"
           >
-            Watches today are designed in boardrooms, built to please the widest possible audience.<br />I went the other way.
+            In 2015, Sweden&apos;s only watchmaking school said no.<br />I taught myself instead.
           </motion.h2>
 
           {/* Body + CTA */}
           <motion.div variants={fadeInUp} className="mt-8 max-w-[560px]">
             <p className="text-[15px] font-light leading-[1.85] text-foreground-muted">
-              Every Pedral is designed for one person, whoever is going to wear it. The squarcle
-              is its signature, a shape found nowhere else in watchmaking and the quiet mark of an
-              edition capped at twenty. Not everyone gets a design like this in their collection.
+              Born in the Democratic Republic of Congo, raised in Stockholm. Hundreds of failed
+              prototypes and three years of evenings nobody saw, then the first Pedral in 2018.
+              Every design since starts from the rounded square, a shape found nowhere else in
+              watchmaking, and stops at twenty pieces per dial. Not everyone gets a design like
+              this in their collection.
             </p>
             <Link
               href="/story"
@@ -41,6 +55,8 @@ export default function StoryPreview() {
               Read the full story &rarr;
             </Link>
           </motion.div>
+          </div>
+          </div>
         </motion.div>
       </div>
     </section>

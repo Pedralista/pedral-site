@@ -126,6 +126,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
     {
+      url: `${siteUrl}/reviews`,
+      lastModified: SITE_CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
       url: `${siteUrl}/privacy`,
       lastModified: SITE_CONTENT_UPDATED,
       changeFrequency: "yearly",

@@ -72,7 +72,7 @@ export const archivedWatches: ArchivedWatch[] = [
   {
     slug: "okapi",
     name: "Okapi",
-    year: 2015,
+    year: 2018,
     soldYear: 2020,
     price: 1100,
     editionSize: 20,

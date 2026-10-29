@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCart } from "@/lib/cart-context";
 import PreOrderModal from "@/components/ui/PreOrderModal";
+import { getStripe } from "@/lib/stripe-client";
 import { gaEvent, fbqTrack, type AnalyticsItem } from "@/lib/analytics";
 import { SHIPPING_LINE } from "@/lib/shipping";
 
@@ -29,6 +30,8 @@ export default function CartDrawer() {
   }, [isOpen, closeCart]);
 
   async function handleCheckout() {
+    // Start fetching Stripe.js now, in parallel with creating the session.
+    void getStripe();
     setLoading(true);
     setError(null);
 
