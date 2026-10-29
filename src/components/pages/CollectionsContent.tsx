@@ -76,6 +76,15 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
   );
 }
 
+// Closed dials shown after the current editions, so visitors see what has
+// already found its owners (Kevin, Oct 2026).
+const SOLD_OUT_CARDS: { slug: string; dial: string }[] = [
+  { slug: "silhouette", dial: "Ituri" },
+  { slug: "triomphe", dial: "Émeraude Vert" },
+  { slug: "maestro", dial: "Laguna View" },
+  { slug: "triomphe", dial: "Ember Stone" },
+];
+
 export default function CollectionsContent() {
   const [active, setActive] = useState<Filter>("all");
   const [liveStock, setLiveStock] = useState<Record<string, { stock: number; variants?: Record<string, number> }> | null>(null);
@@ -104,6 +113,12 @@ export default function CollectionsContent() {
     .sort((a, b) => (a.slug === "contour" ? -1 : b.slug === "contour" ? 1 : 0));
   const filtered =
     active === "all" ? visible : visible.filter((c) => c.tier === active);
+  const soldOutCards = SOLD_OUT_CARDS.flatMap(({ slug, dial }) => {
+    const c = collections.find((x) => x.slug === slug);
+    const v = c?.variants?.find((x) => x.name === dial);
+    if (!c || !v?.image || (active !== "all" && c.tier !== active)) return [];
+    return [{ collection: c, dial: v.name, image: v.image }];
+  });
   const scrollerRef = useRef<HTMLDivElement>(null);
 
   const scrollByCard = (direction: "left" | "right") => {
@@ -210,6 +225,15 @@ export default function CollectionsContent() {
                     <CollectionCard collection={collection} />
                   </div>
                 ))}
+                {soldOutCards.map((s) => (
+                  <div
+                    key={`${s.collection.slug}-${s.dial}`}
+                    data-carousel-card
+                    className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[24%]"
+                  >
+                    <SoldOutCard collection={s.collection} dial={s.dial} image={s.image} />
+                  </div>
+                ))}
               </motion.div>
             </AnimatePresence>
           </div>
@@ -221,6 +245,33 @@ export default function CollectionsContent() {
         subtitle="Collectors on the list are notified before any public announcement. New editions, closed dials, studio releases."
       />
     </>
+  );
+}
+
+function SoldOutCard({ collection, dial, image }: { collection: Collection; dial: string; image: string }) {
+  return (
+    <motion.div variants={fadeInUp}>
+      <Link href={`/collections/${collection.slug}`} className="group relative block cursor-pointer">
+        <BadgeLabel stock={0} />
+        <div className="relative aspect-[3/4] overflow-hidden rounded-md bg-[var(--surface)]">
+          <Image
+            src={image}
+            alt={`${collection.name} ${dial}`}
+            fill
+            className="object-cover opacity-80 transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </div>
+        <div className="pt-5 text-center">
+          <h3 className="font-serif text-2xl font-normal text-foreground">{dial}</h3>
+          <p className="mx-auto mt-1.5 mb-4 max-w-[85%] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[16px]">
+            {collection.name}
+          </p>
+          <span className="text-[14px] font-normal tracking-[0.5px] text-foreground-muted">
+            Found its owners
+          </span>
+        </div>
+      </Link>
+    </motion.div>
   );
 }
 

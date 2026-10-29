@@ -3,17 +3,17 @@ import UniquePiecesContent from "@/components/pages/UniquePiecesContent";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Bespoke Pieces",
+  title: "Bespoke Commissions",
   description:
-    "Designs and prototypes by Kevin Pedral. Not for sale — for the right conversation.",
+    "Bespoke watch commissions designed by Kevin Pedral in Stockholm: stone dials, custom numerals, gold or tantalum cases, engraving, gem setting and your choice of movement. In steel from €7,000. Made once, never repeated.",
   alternates: {
     canonical: "/bespoke-pieces",
     languages: { en: "/bespoke-pieces", "x-default": "/bespoke-pieces" },
   },
   openGraph: {
-    title: "Bespoke Pieces — Pedral",
+    title: "Bespoke Commissions — Pedral",
     description:
-      "Designs and prototypes by Kevin Pedral. Not for sale — for the right conversation.",
+      "Bespoke watch commissions designed by Kevin Pedral in Stockholm: stone dials, custom numerals, gold or tantalum cases, engraving, gem setting and your choice of movement. In steel from €7,000. Made once, never repeated.",
     url: "/bespoke-pieces",
   },
 };
