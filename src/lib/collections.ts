@@ -200,7 +200,7 @@ export const collections: Collection[] = [
     shipsImmediately: true, // all Maestro dials in stock (Kevin, Oct 2026)
     shipsBy: "In stock · Ships immediately · Tracked & insured",
     edition: "Soul Blue · Aura Gold · Lapis No.1",
-    badge: "Available Now",
+    badge: "Ready for Delivery",
     urgencyTag: "Limited pieces remaining",
     variantLabel: "Dial",
     specsTitle: "Swiss precision. Stockholm soul.",
@@ -362,7 +362,7 @@ export const collections: Collection[] = [
     stock: 3,
     maxStock: 20,
     edition: "Saphir Azur / Ember Stone",
-    badge: "Available Now",
+    badge: "Ready for Delivery",
     urgencyTag: "New editions · 5 pieces each",
     specsTitle: "8.8mm. Considered restraint.",
     specs: {
@@ -488,7 +488,7 @@ export const collections: Collection[] = [
     stock: 3, // static fallback (3 ETA 7001 + 0 LJP7380, last piece sold privately Oct 2026) — live counts come from Redis
     maxStock: 20,
     edition: "ETA 7001 · LJP7380",
-    badge: "Available Now",
+    badge: "Made to Order",
     urgencyTag: "Pieces remaining",
     // Buyable online since 2026-10-29 (Kevin); still made to order, 3–6 months.
     reserveButtonLabel: "Pre-Order Now",
@@ -618,7 +618,7 @@ export const collections: Collection[] = [
     stock: 25,
     maxStock: 120,
     edition: "Third drop",
-    badge: "New · Pre-Order Open",
+    badge: "Reservations Open",
     urgencyTag: "Third drop · Pieces remaining",
     // Real checkout is live (Stripe variants below), so this is no longer an
     // enquiry-gated product — pricing, stock, and the standard Reserve CTA
@@ -795,7 +795,7 @@ export const collections: Collection[] = [
     stock: 24, // static fallback (sum of variant fallbacks) — live counts come from Redis
     maxStock: 40, // 10 Aventurine + 10 Ituri + 20 Ophion
     edition: "Ophion · Aventurine · Ituri",
-    badge: "New · On Pre-Order",
+    badge: "New · Reserve Yours",
     urgencyTag: "Pieces remaining",
     variantLabel: "Dial",
     numeralOptionsLabel: "Movement",
@@ -964,7 +964,7 @@ export const collections: Collection[] = [
     stock: 20, // sum of the variant (dial) stocks below
     maxStock: 20, // Edition of 20, consistent with Maestro / Triomphe / Okapi (Kevin, Oct 2026)
     edition: "Pre-order · First run",
-    badge: "New · Reserve Yours",
+    badge: "By Reservation",
     urgencyTag: "Pre-order open",
     reserveButtonLabel: "Pre-order",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
