@@ -43,14 +43,14 @@ const timeline = [
     text: "Ultra-thin at 8.8mm, Swiss hand-wound, guilloché dials. Each edition capped at 20. When a dial closes, it does not return.",
   },
   {
-    year: "Now",
+    year: "2026",
     title: "Maestro Petite Seconde",
     text: "SW260 automatic movement, guilloché dial, proprietary Roman numerals, small seconds at six. Two dials: Soul Blue and Aura Gold. The most considered Maestro yet.",
   },
   {
-    year: "Late 2026",
+    year: "Now",
     title: "Okapi returns",
-    text: "The watch that started everything — reimagined with a new movement, a better case, and the lessons of every collection that came after it. Same soul. Higher standard.",
+    text: "The watch that started everything — reimagined with a new movement, a better case, and the lessons of every collection that came after it. Same soul. Higher standard. Available now as Okapi Classique.",
   },
 ];
 

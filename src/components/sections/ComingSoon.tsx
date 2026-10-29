@@ -27,10 +27,10 @@ const upcoming = [
     href: "/collections/triomphe",
   },
   {
-    label: "Okapi · Returns",
+    label: "Okapi Classique · Available Now",
     title: "The watch that started everything. Reimagined.",
-    desc: "Okapi is coming back — new movement, refined case, the lessons of every collection that followed. Same soul. Higher standard. Those on the list are considered first.",
-    eta: "Late 2026 · Allocation only",
+    desc: "Okapi is back — new movement, refined case, the lessons of every collection that followed. Same soul. Higher standard. Twenty pieces, by allocation.",
+    eta: "Available now · Allocation only",
     href: "/collections/okapi",
   },
   {
