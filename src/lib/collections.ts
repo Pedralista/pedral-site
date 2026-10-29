@@ -485,7 +485,7 @@ export const collections: Collection[] = [
     year: 2018,
     tier: "signature",
     price: 2800,
-    stock: 4, // static fallback (3 ETA 7001 + 1 LJP7380) — live counts come from Redis
+    stock: 3, // static fallback (3 ETA 7001 + 0 LJP7380, last piece sold privately Oct 2026) — live counts come from Redis
     maxStock: 20,
     edition: "ETA 7001 · LJP7380",
     badge: "Available Now",
@@ -570,7 +570,7 @@ export const collections: Collection[] = [
       {
         name: "LJP7380",
         stripePriceId: "price_1TKw7wCfxE1lSBKRcFLiQiu6",
-        stock: 1,
+        stock: 0,
         color: "Blue",
         price: 3900,
         description: "La Joux-Perret LJP7380. High-grade decorated. La Chaux-de-Fonds manufacture. The movement independent watchmakers choose when they refuse to compromise.",
