@@ -618,7 +618,7 @@ export const collections: Collection[] = [
     stock: 25,
     maxStock: 120,
     edition: "Third drop",
-    badge: "Available Now",
+    badge: "New · Pre-Order Open",
     urgencyTag: "Third drop · Pieces remaining",
     // Real checkout is live (Stripe variants below), so this is no longer an
     // enquiry-gated product — pricing, stock, and the standard Reserve CTA
@@ -795,7 +795,7 @@ export const collections: Collection[] = [
     stock: 24, // static fallback (sum of variant fallbacks) — live counts come from Redis
     maxStock: 40, // 10 Aventurine + 10 Ituri + 20 Ophion
     edition: "Ophion · Aventurine · Ituri",
-    badge: "New",
+    badge: "New · Now on Pre-Order",
     urgencyTag: "Pieces remaining",
     variantLabel: "Dial",
     numeralOptionsLabel: "Movement",
@@ -964,7 +964,7 @@ export const collections: Collection[] = [
     stock: 20, // sum of the variant (dial) stocks below
     maxStock: 20, // Edition of 20, consistent with Maestro / Triomphe / Okapi (Kevin, Oct 2026)
     edition: "Pre-order · First run",
-    badge: "New",
+    badge: "New · Reserve Yours",
     urgencyTag: "Pre-order open",
     reserveButtonLabel: "Pre-order",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
