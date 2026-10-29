@@ -200,7 +200,7 @@ export const collections: Collection[] = [
     shipsImmediately: true, // all Maestro dials in stock (Kevin, Oct 2026)
     shipsBy: "In stock · Ships immediately · Tracked & insured",
     edition: "Soul Blue · Aura Gold · Lapis No.1",
-    badge: "",
+    badge: "Available Now",
     urgencyTag: "Limited pieces remaining",
     variantLabel: "Dial",
     specsTitle: "Swiss precision. Stockholm soul.",
@@ -362,7 +362,7 @@ export const collections: Collection[] = [
     stock: 3,
     maxStock: 20,
     edition: "Saphir Azur / Ember Stone",
-    badge: "",
+    badge: "Available Now",
     urgencyTag: "New editions · 5 pieces each",
     specsTitle: "8.8mm. Considered restraint.",
     specs: {
