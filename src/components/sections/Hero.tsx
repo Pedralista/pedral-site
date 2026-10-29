@@ -58,46 +58,38 @@ export default function Hero() {
         <div className="max-w-[600px]">
 
           {/* 1. Origin */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-6 text-[11px] font-normal tracking-[4px] uppercase text-accent"
+          {/* Entrance animations are plain CSS (globals.css .hero-in) so the text
+              paints with the HTML instead of waiting for JS to hydrate — that
+              wait pushed the homepage's main paint past 4s on mid-range phones. */}
+          <p
+            className="hero-in mb-6 text-[11px] font-normal tracking-[4px] uppercase text-accent"
+            style={{ animationDelay: "0.1s" }}
           >
             Designed in Stockholm
-          </motion.p>
+          </p>
 
           {/* 2. Headline */}
           <div className="overflow-hidden">
-            <motion.h1
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="font-serif text-[clamp(40px,8vw,88px)] font-light leading-[1.0] tracking-[-0.5px] text-foreground"
+            <h1
+              className="hero-rise font-serif text-[clamp(40px,8vw,88px)] font-light leading-[1.0] tracking-[-0.5px] text-foreground"
+              style={{ animationDelay: "0.2s" }}
             >
               Not for everyone.
-            </motion.h1>
+            </h1>
           </div>
 
           {/* 4. Craft proof */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.95 }}
-            className="mt-8 max-w-[420px] text-[15px] font-light leading-[1.9] text-foreground-muted/70"
+          <p
+            className="hero-in mt-8 max-w-[420px] text-[15px] font-light leading-[1.9] text-foreground-muted/70"
+            style={{ animationDelay: "0.35s" }}
           >
             The rounded square, a shape found nowhere else.<br />
             Twenty pieces per dial, at most.<br />
             Designed by one person in Stockholm.
-          </motion.p>
+          </p>
 
           {/* 5. CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.1 }}
-            className="mt-10 flex flex-col gap-4"
-          >
+          <div className="hero-in mt-10 flex flex-col gap-4" style={{ animationDelay: "0.5s" }}>
             <Link
               href="/collections"
               className="inline-block w-fit rounded-lg border border-accent/30 px-8 py-3.5 text-[11px] font-medium tracking-[3px] uppercase text-foreground-muted transition-colors duration-300 hover:border-accent hover:text-accent"
@@ -107,7 +99,7 @@ export default function Hero() {
             <p className="text-[14px] font-light tracking-[0.5px] text-foreground-muted/40">
               Worn by collectors in 30+ countries &middot; Max 20 pieces per dial &middot; No restocks
             </p>
-          </motion.div>
+          </div>
 
 
         </div>

@@ -101,3 +101,20 @@ body {
   pointer-events: none;
   z-index: 1;
 }
+
+/* Homepage hero entrance — CSS rather than framer-motion so the text paints
+   with the server HTML (see Hero.tsx). `both` keeps it hidden only during its
+   own short delay. */
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-rise {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+.hero-in { animation: hero-in 0.7s ease-out both; }
+.hero-rise { animation: hero-rise 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-in, .hero-rise { animation: none; }
+}
