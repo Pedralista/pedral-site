@@ -1521,7 +1521,7 @@ export const collections: Collection[] = [
     year: 2026,
     tier: "limited",
     price: 1100,
-    stock: 20, // 10 Ekushey + 10 Sondhya (Kevin, Oct 2026)
+    stock: 19, // 9 Ekushey (1 sold by payment link, 26 Oct) + 10 Sondhya
     maxStock: 20, // ten of each dial
     edition: "Bangla numerals",
     badge: "Ten of Each Dial",
@@ -1609,7 +1609,7 @@ export const collections: Collection[] = [
       {
         name: "Ekushey",
         stripePriceId: "price_1UUPTrCfxE1lSBKRy4L1h1fg", // Étiquette Bangla — Ekushey (€1,100)
-        stock: 10,
+        stock: 9,
         price: 1100,
         description: "Ekushey — twenty-one, in Bangla. Lacquered green dial with a red centre and custom distorted Bangla numerals in silver.",
         image: "/images/etiquette-bangla.jpg",
