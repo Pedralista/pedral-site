@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import Stripe from "stripe";
 import { rateLimit, getIp } from "@/lib/rateLimit";
 import { collections } from "@/lib/collections";
@@ -10,6 +10,7 @@ import {
   engravingAddon,
   sanitizeEngraving,
 } from "@/lib/addons";
+import { cleanKx, trackKlaviyoEvent } from "@/lib/klaviyo";
 
 const VALID_PRICE_IDS = new Set([
   "price_1TOwepCfxE1lSBKRI7sNBLcW", // Maestro — Lapis No.1 (€1,450)
@@ -141,6 +142,10 @@ export async function POST(req: NextRequest) {
 
   const requestOrigin = req.headers.get("origin") ?? "";
   const origin = ALLOWED_ORIGINS.has(requestOrigin) ? requestOrigin : "https://pedral.eu";
+  // Klaviyo subscriber who came from an email (and accepted cookies): kept on
+  // the session so the webhook can mark the order placed, and reported as
+  // "Started Checkout" for the abandoned-checkout email flow.
+  const kx = cleanKx(body.kx);
 
   // ── Cart checkout: multiple line items in one session ──────────────────────
   if (Array.isArray(body.items)) {
@@ -227,6 +232,7 @@ export async function POST(req: NextRequest) {
       return_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
       metadata: {
         cartItems: cartMetadataJson,
+        ...(kx && { kx }),
       },
       shipping_address_collection: {
         allowed_countries: [
@@ -245,6 +251,22 @@ export async function POST(req: NextRequest) {
         },
       },
     });
+
+    if (kx) {
+      const first = collections.find((c) => c.name === cartMetadata[0].p);
+      after(() =>
+        trackKlaviyoEvent("Started Checkout", kx, {
+          properties: {
+            ProductName: cartOrderLabel,
+            ItemNames: cartMetadata.map((i) => i.p),
+            CheckoutURL: first ? `${origin}/collections/${first.slug}` : origin,
+            ...(first?.image && { ImageURL: new URL(first.image, origin).href }),
+          },
+          value: (session.amount_total ?? 0) / 100,
+          uniqueId: session.id,
+        })
+      );
+    }
 
     return NextResponse.json({ clientSecret: session.client_secret });
   }
@@ -324,6 +346,7 @@ export async function POST(req: NextRequest) {
       product: productName,
       variant: variantName ?? "",
       ...(chosenNumber ? { editionNumber: String(chosenNumber) } : {}),
+      ...(kx && { kx }),
     },
 
     shipping_address_collection: {
@@ -356,6 +379,24 @@ export async function POST(req: NextRequest) {
       },
     },
   });
+
+  if (kx) {
+    const collection = collections.find((c) => c.name === productName);
+    after(() =>
+      trackKlaviyoEvent("Started Checkout", kx, {
+        properties: {
+          ProductName: orderLabel,
+          ItemNames: [String(productName)],
+          ...(variantName && { Variant: String(variantName) }),
+          ...(editionLabel && { EditionNumber: editionLabel }),
+          CheckoutURL: collection ? `${origin}/collections/${collection.slug}` : origin,
+          ...(collection?.image && { ImageURL: new URL(collection.image, origin).href }),
+        },
+        value: (session.amount_total ?? 0) / 100,
+        uniqueId: session.id,
+      })
+    );
+  }
 
   return NextResponse.json({ clientSecret: session.client_secret });
 }

@@ -23,6 +23,7 @@ import TrustIcons from "@/components/sections/TrustIcons";
 import PreOrderModal from "@/components/ui/PreOrderModal";
 import { getStripe } from "@/lib/stripe-client";
 import { gaEvent, fbqTrack, type AnalyticsItem } from "@/lib/analytics";
+import { getKx } from "@/lib/klaviyo-kx";
 
 // Minimal inline formatting for story copy: **bold** and *italic*.
 function renderInline(text: string) {
@@ -355,6 +356,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           productName: c.name,
           variantName: selectionLabel,
           isPreOrder: c.nonRefundable ?? false,
+          kx: getKx(),
           ...(codeDiscount && appliedCode ? { communityCode: appliedCode.code } : {}),
           ...(c.editionNumbers && editionNumber ? { editionNumber, holdToken } : {}),
           ...(addOnsActive && (selectedStrapSlug || engravingActive)

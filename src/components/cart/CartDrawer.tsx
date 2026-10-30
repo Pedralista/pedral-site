@@ -8,6 +8,7 @@ import { useCart } from "@/lib/cart-context";
 import PreOrderModal from "@/components/ui/PreOrderModal";
 import { getStripe } from "@/lib/stripe-client";
 import { gaEvent, fbqTrack, type AnalyticsItem } from "@/lib/analytics";
+import { getKx } from "@/lib/klaviyo-kx";
 import { SHIPPING_LINE } from "@/lib/shipping";
 
 export default function CartDrawer() {
@@ -70,6 +71,7 @@ export default function CartDrawer() {
                 }
               : {}),
           })),
+          kx: getKx(),
         }),
       });
       const data = await res.json();

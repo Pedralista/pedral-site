@@ -4,6 +4,7 @@ import { sendMetaCapiPurchase } from "@/lib/metaCapi";
 import { collections } from "@/lib/collections";
 import { decrementStock, resolveStockTargets } from "@/lib/stock";
 import { markNumberSold } from "@/lib/edition-numbers";
+import { cleanKx, trackKlaviyoEvent } from "@/lib/klaviyo";
 
 export async function POST(req: NextRequest) {
   if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
@@ -86,6 +87,22 @@ export async function POST(req: NextRequest) {
       // Server-side Meta Conversions API Purchase. No-ops if unconfigured and
       // never throws — the webhook's 200 to Stripe is unaffected.
       await sendMetaCapiPurchase(session);
+
+      // Klaviyo: this subscriber's checkout was paid, so the
+      // abandoned-checkout flow won't email them. Only for sessions started
+      // from a Klaviyo email click (see /api/checkout).
+      const kx = cleanKx(session.metadata?.kx);
+      if (kx) {
+        await trackKlaviyoEvent("Placed Order", kx, {
+          properties: {
+            ProductName: session.metadata?.product ?? session.metadata?.cartItems ?? "Pedral",
+            ...(session.metadata?.variant && { Variant: session.metadata.variant }),
+            ...(session.metadata?.editionNumber && { EditionNumber: session.metadata.editionNumber }),
+          },
+          value: (session.amount_total ?? 0) / 100,
+          uniqueId: session.id,
+        });
+      }
       break;
     }
 

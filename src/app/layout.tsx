@@ -6,6 +6,7 @@ import CookieBanner from "@/components/layout/CookieBanner";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import MetaPixel from "@/components/analytics/MetaPixel";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import KlaviyoIdentity from "@/components/analytics/KlaviyoIdentity";
 import { CartProvider } from "@/lib/cart-context";
 
 const cormorant = Cormorant_Garamond({
@@ -103,6 +104,7 @@ export default function RootLayout({
         <CookieBanner />
         <GoogleAnalytics />
         <MetaPixel />
+        <KlaviyoIdentity />
       </body>
     </html>
   );

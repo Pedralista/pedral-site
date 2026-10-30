@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function CookiePolicyPage() {
   return (
-    <LegalPage eyebrow="Legal" title="Cookie Policy" updated="Last updated: September 2026">
+    <LegalPage eyebrow="Legal" title="Cookie Policy" updated="Last updated: October 2026">
       <h2>What Are Cookies</h2>
       <p>
         Cookies are small text files placed on your device when you visit a website. They help the
@@ -45,9 +45,24 @@ export default function CookiePolicyPage() {
         for details on how Google handles this data.
       </p>
 
+      <h2>Email Follow-Up (Requires Consent)</h2>
+      <p>
+        Links in our newsletter emails (sent with <strong>Klaviyo</strong>) carry a coded
+        subscriber id. If you arrive through such a link and accept cookies, we keep that id as{" "}
+        <strong>pedral-kx</strong> in your browser&apos;s local storage. When you then start a
+        checkout, we tell Klaviyo, so that if the order isn&apos;t completed we can send you one
+        short follow-up email. No Klaviyo script is loaded on this site, and if you decline cookies
+        nothing is kept or sent. Duration: until you clear your browser data. See{" "}
+        <a href="https://www.klaviyo.com/legal/privacy" target="_blank" rel="noopener noreferrer">
+          Klaviyo&apos;s Privacy Policy
+        </a>
+        .
+      </p>
+
       <h2>Marketing &amp; Advertising Cookies (Require Consent)</h2>
       <p>
-        We do not currently use marketing or advertising cookies. No Facebook/Meta pixel, Google
+        Apart from the email follow-up above, we do not currently use marketing or advertising
+        cookies. No Facebook/Meta pixel, Google
         Ads tag, or similar advertising tracking is loaded on this site. If this changes, this
         policy will be updated and consent obtained before any such cookies are set.
       </p>
