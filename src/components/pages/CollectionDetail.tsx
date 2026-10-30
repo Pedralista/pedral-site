@@ -38,6 +38,21 @@ function renderInline(text: string) {
   );
 }
 
+type NumberStatus = { sold: number[]; reserved: number[] };
+
+// Sold and reserved numbers of a numbered edition. `dial` is empty when the whole
+// edition shares one set of numbers. On failure nothing is marked taken: the
+// checkout route still refuses a number that has gone.
+async function fetchNumberStatus(slug: string, dial: string): Promise<NumberStatus> {
+  try {
+    const query = dial ? `&dial=${encodeURIComponent(dial)}` : "";
+    const d = await (await fetch(`/api/edition-numbers?slug=${encodeURIComponent(slug)}${query}`, { cache: "no-store" })).json();
+    return { sold: Array.isArray(d.sold) ? d.sold : [], reserved: Array.isArray(d.reserved) ? d.reserved : [] };
+  } catch {
+    return { sold: [], reserved: [] };
+  }
+}
+
 function ImagePlaceholder({ label, className = "" }: { label: string; className?: string }) {
   return (
     <div
@@ -144,26 +159,25 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     setEditionPick(n === null ? null : { dial: selectedVariant?.name ?? "", n });
   // Identifies this visitor's number hold, so reopening checkout keeps it.
   const [holdToken] = useState(() => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Math.random()).slice(2)));
-  const [soldNumbers, setSoldNumbers] = useState<number[]>([]);
-  const [reservedNumbers, setReservedNumbers] = useState<number[]>([]);
+  // Kept per dial, so switching dial shows that dial's numbers straight away.
+  const [numberStatus, setNumberStatus] = useState<Record<string, NumberStatus>>({});
+  const numberDial = c.editionNumbersPerDial ? selectedVariant?.name ?? "" : "";
+  const numbersLoaded = !!numberStatus[numberDial];
+  const soldNumbers = numberStatus[numberDial]?.sold ?? [];
+  const reservedNumbers = numberStatus[numberDial]?.reserved ?? [];
   const editionGridRef = useRef<HTMLDivElement>(null);
   const [gridNudge, setGridNudge] = useState(false);
+  // Every dial up front, then the selected one again whenever it changes.
+  useEffect(() => {
+    if (!c.editionNumbers || !c.editionNumbersPerDial) return;
+    for (const v of c.variants ?? []) {
+      fetchNumberStatus(c.slug, v.name).then((s) => setNumberStatus((prev) => ({ ...prev, [v.name]: s })));
+    }
+  }, [c.editionNumbers, c.editionNumbersPerDial, c.slug, c.variants]);
   useEffect(() => {
     if (!c.editionNumbers) return;
-    let stale = false;
-    const dial = c.editionNumbersPerDial && selectedVariant ? `&dial=${encodeURIComponent(selectedVariant.name)}` : "";
-    fetch(`/api/edition-numbers?slug=${encodeURIComponent(c.slug)}${dial}`, { cache: "no-store" })
-      .then((r) => r.json())
-      .then((d) => {
-        if (stale) return;
-        setSoldNumbers(Array.isArray(d.sold) ? d.sold : []);
-        setReservedNumbers(Array.isArray(d.reserved) ? d.reserved : []);
-      })
-      .catch(() => {});
-    return () => {
-      stale = true;
-    };
-  }, [c.editionNumbers, c.editionNumbersPerDial, c.slug, selectedVariant, preOrderError]);
+    fetchNumberStatus(c.slug, numberDial).then((s) => setNumberStatus((prev) => ({ ...prev, [numberDial]: s })));
+  }, [c.editionNumbers, c.slug, numberDial, preOrderError]);
   const pad2 = (n: number) => String(n).padStart(2, "0");
   const baseSelectionLabel = selectedVariant?.numeralOptions
     ? `${selectedVariant.name} · ${selectedNumeral}`
@@ -214,11 +228,15 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     if (userPickedVariant || heroFrames.length < 2) return;
     const interval = setInterval(() => {
       setSelectedVariant((current) => {
+        const numeral = selectedNumeralRef.current;
         const currentIndex = heroFrames.findIndex(
-          (f) => f.variant.name === current?.name && f.numeral === selectedNumeralRef.current
+          (f) => f.variant.name === current?.name && (f.numeral === null || f.numeral === numeral)
         );
         const next = heroFrames[(currentIndex + 1) % heroFrames.length];
-        setSelectedNumeral(next.numeral);
+        // A frame without its own numeral (one hero image per dial) keeps the
+        // movement chosen, so rotating the hero never disables the buy buttons.
+        const options = next.variant.numeralOptions;
+        setSelectedNumeral(next.numeral ?? (numeral && options?.includes(numeral) ? numeral : options?.[0] ?? null));
         return next.variant;
       });
     }, 7000);
@@ -895,11 +913,12 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       <p className="text-[12px] font-normal tracking-[2.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
                         Edition
                       </p>
-                      <p className="font-serif text-[18px] font-light italic text-foreground-muted sm:text-[20px]">
-                        {c.editionNumbers - soldNumbers.length - reservedNumbers.length} of {c.editionNumbers} still available
+                      {/* Never above the dial's stock: a buyer who hasn't chosen yet still has a piece. */}
+                      <p className={`font-serif text-[18px] font-light italic text-foreground-muted sm:text-[20px] ${numbersLoaded ? "" : "invisible"}`}>
+                        {Math.min(c.editionNumbers - soldNumbers.length - reservedNumbers.length, selectedVariant.stock)} of {c.editionNumbers} still available
                       </p>
                     </div>
-                    <div ref={editionGridRef} className={`mt-4 grid ${c.editionNumbersPerDial ? "grid-cols-5" : "grid-cols-7"} border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
+                    <div ref={editionGridRef} className={`mt-4 grid ${c.editionNumbers === 9 ? "grid-cols-3" : c.editionNumbersPerDial ? "grid-cols-5" : "grid-cols-7"} border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
                       {Array.from({ length: c.editionNumbers }, (_, i) => i + 1).map((n) => {
                         const sold = soldNumbers.includes(n);
                         const reserved = !sold && reservedNumbers.includes(n);
@@ -909,11 +928,11 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                           <button
                             key={n}
                             type="button"
-                            disabled={taken}
-                            onClick={() => { setEditionNumber(n); setPreOrderError(null); }}
+                            disabled={taken || !numbersLoaded}
+                            onClick={() => { setEditionNumber(n); setUserPickedVariant(true); setPreOrderError(null); }}
                             aria-label={sold ? `No. ${pad2(n)}, sold` : reserved ? `No. ${pad2(n)}, reserved` : `Choose No. ${pad2(n)}`}
                             aria-pressed={selected}
-                            className={`relative flex aspect-square items-center justify-center border-b border-r border-accent/20 font-serif text-[19px] font-light italic transition-colors sm:text-[24px] ${
+                            className={`relative flex ${c.editionNumbers === 9 ? "aspect-[2/1]" : "aspect-square"} items-center justify-center border-b border-r border-accent/20 font-serif text-[19px] font-light italic transition-colors sm:text-[24px] ${
                               sold
                                 ? "cursor-not-allowed text-foreground-muted/25"
                                 : reserved
@@ -975,6 +994,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       <li>{SHIPPING_LINE}</li>
                       <li>{klarnaLine(effectivePrice)}</li>
                       {c.shipsBy && <li>{c.shipsBy}</li>}
+                      {c.nonRefundable && <li>Made to order · Non-refundable · Payment in full at reservation</li>}
                       {!c.editionNumbersPerDial && (
                         <li>Owners&apos; code? Enter it at checkout under &ldquo;Add promotion code&rdquo;.</li>
                       )}

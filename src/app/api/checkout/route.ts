@@ -372,7 +372,7 @@ export async function POST(req: NextRequest) {
     custom_text: {
       submit: {
         message: chosenNumber && numbered?.editionNumbers
-          ? `Edition number ${String(chosenNumber).padStart(2, "0")} of ${numbered.editionNumbers} is held for you for 30 minutes. Kevin will confirm your piece within 24 hours.`
+          ? `Edition number ${String(chosenNumber).padStart(2, "0")} of ${numbered.editionNumbers} is held for you for 30 minutes.${isPreOrder ? " Pre-order · Non-refundable." : ""} Kevin will confirm your piece within 24 hours.`
           : isPreOrder
           ? "Pre-order · Non-refundable · Delivery in 3–6 months. Kevin will confirm your allocation within 24 hours."
           : "Your order is allocation-based. Kevin will confirm your piece within 24 hours.",
