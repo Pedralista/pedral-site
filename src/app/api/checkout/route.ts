@@ -236,16 +236,6 @@ export async function POST(req: NextRequest) {
         ],
       },
       phone_number_collection: { enabled: true },
-      // Abandoned-checkout follow-up: the consent box lets Stripe hand us the
-      // email and a 30-day "come back" link when the session expires (see the
-      // checkout.session.expired webhook, which passes it to Klaviyo).
-      consent_collection: { promotions: "auto" },
-      after_expiration: {
-        recovery: {
-          enabled: true,
-          allow_promotion_codes: lineItems.some((li) => !!li.price && PROMO_CODE_PRICE_IDS.has(li.price)),
-        },
-      },
       billing_address_collection: "required",
       custom_text: {
         submit: {
@@ -351,21 +341,6 @@ export async function POST(req: NextRequest) {
     // See the cart branch: codes only validate with the session kept in EUR.
     ...(PROMO_CODE_PRICE_IDS.has(priceId) && { adaptive_pricing: { enabled: false } }),
     phone_number_collection: { enabled: true },
-    // Numbered editions: the session ends when the number hold does, and no
-    // "come back" link — a recovered checkout would copy the old number,
-    // which someone else may have bought in the meantime. Everything else
-    // gets the abandoned-checkout follow-up (see the cart branch above).
-    ...(chosenNumber
-      ? { expires_at: Math.floor(Date.now() / 1000) + 30 * 60 + 30 }
-      : {
-          consent_collection: { promotions: "auto" as const },
-          after_expiration: {
-            recovery: {
-              enabled: true,
-              allow_promotion_codes: !communityCoupon && (priceId === "price_1TEVYOCfxE1lSBKRdzi2pJsj" || PROMO_CODE_PRICE_IDS.has(priceId)),
-            },
-          },
-        }),
     billing_address_collection: "required",
     custom_text: {
       submit: {

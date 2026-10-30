@@ -5,9 +5,7 @@ import { Redis } from "@upstash/redis";
 // checkout — so two people can't pay for the same one — and becomes "sold"
 // for good when the Stripe webhook confirms payment.
 
-// A little longer than the 30-minute checkout session, so the hold never
-// lapses while the session can still be paid.
-const HOLD_SECONDS = 32 * 60;
+const HOLD_SECONDS = 30 * 60;
 
 let redis: Redis | null = null;
 function getRedis(): Redis | null {

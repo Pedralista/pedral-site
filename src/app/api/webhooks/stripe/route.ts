@@ -4,7 +4,6 @@ import { sendMetaCapiPurchase } from "@/lib/metaCapi";
 import { collections } from "@/lib/collections";
 import { decrementStock, resolveStockTargets } from "@/lib/stock";
 import { markNumberSold } from "@/lib/edition-numbers";
-import { sendAbandonedCheckout } from "@/lib/klaviyoAbandoned";
 
 export async function POST(req: NextRequest) {
   if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
@@ -87,12 +86,6 @@ export async function POST(req: NextRequest) {
       // Server-side Meta Conversions API Purchase. No-ops if unconfigured and
       // never throws — the webhook's 200 to Stripe is unaffected.
       await sendMetaCapiPurchase(session);
-      break;
-    }
-
-    case "checkout.session.expired": {
-      // Left checkout without paying — hand the "come back" link to Klaviyo.
-      await sendAbandonedCheckout(stripe, event.data.object as Stripe.Checkout.Session);
       break;
     }
 
