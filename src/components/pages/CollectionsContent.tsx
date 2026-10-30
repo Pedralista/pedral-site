@@ -332,7 +332,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
             </div>
             {collection.stock > 0 && collection.hideEditionSize && !collection.isEnquiryOnly ? (
               <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
-                {collection.stock} {collection.stock === 1 ? "remains" : "remain"}
+                {collection.cardEditionLabel ?? `${collection.stock} ${collection.stock === 1 ? "remains" : "remain"}`}
               </span>
             ) : collection.stock > 0 && !collection.isEnquiryOnly ? (
               <div>

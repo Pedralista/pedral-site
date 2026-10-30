@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import { rateLimit, getIp } from "@/lib/rateLimit";
 import { collections } from "@/lib/collections";
 import { findCommunityCode } from "@/lib/community-codes";
-import { holdNumber } from "@/lib/edition-numbers";
+import { holdNumber, numberPool } from "@/lib/edition-numbers";
 import {
   addOnsEnabledFor,
   getStrapAddon,
@@ -289,8 +289,12 @@ export async function POST(req: NextRequest) {
     if (!Number.isInteger(n) || n < 1 || n > numbered.editionNumbers) {
       return NextResponse.json({ error: "Please choose your number." }, { status: 400 });
     }
+    const pool = numberPool(numbered, typeof variantName === "string" ? variantName : undefined);
+    if (!pool) {
+      return NextResponse.json({ error: "Please choose your dial." }, { status: 400 });
+    }
     const holder = typeof holdToken === "string" && holdToken.length <= 64 ? holdToken : crypto.randomUUID();
-    if (!(await holdNumber(numbered.slug, n, holder))) {
+    if (!(await holdNumber(pool, n, holder))) {
       return NextResponse.json({ error: `No. ${String(n).padStart(2, "0")} was just taken — please choose another number.` }, { status: 409 });
     }
     chosenNumber = n;

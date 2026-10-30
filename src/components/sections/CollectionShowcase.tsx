@@ -219,7 +219,7 @@ export default function CollectionShowcase() {
                     </div>
                     {c.stock > 0 && c.hideEditionSize && !c.isEnquiryOnly ? (
               <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
-                {c.stock} {c.stock === 1 ? "remains" : "remain"}
+                {c.cardEditionLabel ?? `${c.stock} ${c.stock === 1 ? "remains" : "remain"}`}
               </span>
             ) : c.stock > 0 && !c.isEnquiryOnly ? (
                       <div>

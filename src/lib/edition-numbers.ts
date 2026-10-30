@@ -1,4 +1,6 @@
 import { Redis } from "@upstash/redis";
+import type { Collection } from "@/lib/collections";
+import { slugifyPart } from "@/lib/stock";
 
 // Numbered editions where the buyer picks their own number (e.g. Étiquette
 // Famille Royale, 01–21). A number is "held" for 30 minutes while someone is in
@@ -16,6 +18,17 @@ function getRedis(): Redis | null {
   if (!url || !token) return null;
   if (!redis) redis = new Redis({ url, token });
   return redis;
+}
+
+/**
+ * Which set of numbers a purchase draws from: the whole edition, or one dial
+ * when each dial has its own 1…N. `variantName` is the dial, or the recorded
+ * selection ("Soirée · No. 03 of 10"). Null if the dial isn't recognised.
+ */
+export function numberPool(collection: Collection, variantName: string | undefined): string | null {
+  if (!collection.editionNumbersPerDial) return collection.slug;
+  const dial = collection.variants?.find((v) => variantName === v.name || variantName?.startsWith(`${v.name} ·`));
+  return dial ? `${collection.slug}:${slugifyPart(dial.name)}` : null;
 }
 
 const soldKey = (slug: string) => `edition:${slug}:sold`;

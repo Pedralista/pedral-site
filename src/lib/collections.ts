@@ -120,6 +120,8 @@ export interface Collection {
   formerNames?: string[];
   /** Hide the single "Edition of N" / "N left of M" framing — for a line whose dials are separate editions (e.g. merged Maestro), where one total edition size would be misleading. Cards show "N remaining" instead. */
   hideEditionSize?: boolean;
+  /** With hideEditionSize: replaces the total "N remain" on homepage and collection cards (e.g. "10 per dial"). */
+  cardEditionLabel?: string;
   /** "compact" = one image window plus dial buttons (grouped by variant.group) that switch it, sold-out variants left out — instead of one card with its own photo per variant. */
   variantPicker?: "cards" | "compact";
   /** Variant featured on the collection/homepage card: its image and its own remaining count are shown instead of the product image and the line's total (e.g. Maestro: Aura Gold — a single dial's count is clearer than a total across dials). */
@@ -131,6 +133,8 @@ export interface Collection {
   communityCodes?: boolean;
   /** Numbered edition where the buyer picks their own number (1…N) from a grid before checkout — e.g. Étiquette Famille Royale, 21. */
   editionNumbers?: number;
+  /** With editionNumbers: each dial has its own 1…N, picked on a per-dial grid — e.g. Étiquette, 10 of each dial. */
+  editionNumbersPerDial?: boolean;
   /** Show the Pedral Watch Club WhatsApp invite (owners-only pages). */
   ownersClubInvite?: boolean;
   hidePriceOnCard?: boolean;
@@ -943,8 +947,8 @@ export const collections: Collection[] = [
     // text; case dimensions 27 × 43.7mm (golden ratio), 7.7mm max, confirmed
     // by Kevin 2026-10-25, as is 5 ATM water resistance.
     //
-    // Structure: the four public dials are the variants (5 pieces each,
-    // Edition of 20, confirmed by Kevin), each with its own Swiss Stripe
+    // Structure: the four public dials are the variants (10 Swiss pieces
+    // each, Kevin 2026-10-30), each with its own Swiss Stripe
     // price. (A Triomphe-style colour → numerals → movement picker was tried
     // and rejected by Kevin as too complex.) Famille Royale (purple) is sold
     // via Stripe payment links Kevin sends owners, not this checkout.
@@ -969,9 +973,13 @@ export const collections: Collection[] = [
     year: 2026,
     tier: "signature",
     price: 1800,
-    stock: 20, // sum of the variant (dial) stocks below
-    maxStock: 20, // Edition of 20, consistent with Maestro / Triomphe / Okapi (Kevin, Oct 2026)
-    edition: "Pre-order · First run",
+    stock: 40, // sum of the variant (dial) stocks below
+    maxStock: 40, // 10 Swiss pieces of each dial (Kevin, 2026-10-30)
+    edition: "10 per dial · Pre-order · First run",
+    hideEditionSize: true,
+    cardEditionLabel: "10 per dial",
+    editionNumbers: 10,
+    editionNumbersPerDial: true,
     badge: "By Reservation",
     urgencyTag: "By reservation",
     reserveButtonLabel: "Reserve Yours",
@@ -1043,7 +1051,7 @@ export const collections: Collection[] = [
       {
         name: "Soirée",
         stripePriceId: "price_1UUF2bCfxE1lSBKRY27YyEDf", // Étiquette — Soirée · Swiss Hand-Wound (€1,800)
-        stock: 5,
+        stock: 10,
         price: 1800,
         description: "Black onyx dial, custom distorted Roman numerals and hands in gold. The black-tie one.",
         image: "/images/etiquette-soiree-gold.jpg",
@@ -1052,7 +1060,7 @@ export const collections: Collection[] = [
       {
         name: "Bourgogne",
         stripePriceId: "price_1UUF5hCfxE1lSBKRu70dLbhe", // Étiquette — Bourgogne · Swiss Hand-Wound (€1,800)
-        stock: 5,
+        stock: 10,
         price: 1800,
         description: "Burgundy dial, custom distorted Roman numerals in silver.",
         image: "/images/etiquette-bourgogne.jpg",
@@ -1061,7 +1069,7 @@ export const collections: Collection[] = [
       {
         name: "Nocturne",
         stripePriceId: "price_1UUF8YCfxE1lSBKRMREPi5B7", // Étiquette — Nocturne · Swiss Hand-Wound (€1,800)
-        stock: 5,
+        stock: 10,
         price: 1800,
         description: "Black onyx dial with ivory musical-note indices.",
         image: "/images/etiquette-nocturne.jpg",
@@ -1070,7 +1078,7 @@ export const collections: Collection[] = [
       {
         name: "Ambiance",
         stripePriceId: "price_1UUFCICfxE1lSBKRHBF1I95p", // Étiquette — Ambiance · Swiss Hand-Wound (€1,800)
-        stock: 5,
+        stock: 10,
         price: 1800,
         description: "Ivory dial with colourful musical-note indices and blue hands. The one with questionable manners.",
         image: "/images/etiquette-ambiance.jpg",

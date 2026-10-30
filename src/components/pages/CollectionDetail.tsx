@@ -137,7 +137,11 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   // What the order records (Stripe metadata, cart line, stock decrement),
   // e.g. "Soirée · Japanese Hand-Wound".
   // Numbered edition (e.g. Famille Royale): the buyer picks their number from a grid.
-  const [editionNumber, setEditionNumber] = useState<number | null>(null);
+  // A number belongs to the dial it was picked on, so switching dial clears it.
+  const [editionPick, setEditionPick] = useState<{ dial: string; n: number } | null>(null);
+  const editionNumber = editionPick?.dial === selectedVariant?.name ? editionPick?.n ?? null : null;
+  const setEditionNumber = (n: number | null) =>
+    setEditionPick(n === null ? null : { dial: selectedVariant?.name ?? "", n });
   // Identifies this visitor's number hold, so reopening checkout keeps it.
   const [holdToken] = useState(() => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Math.random()).slice(2)));
   const [soldNumbers, setSoldNumbers] = useState<number[]>([]);
@@ -146,14 +150,20 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   const [gridNudge, setGridNudge] = useState(false);
   useEffect(() => {
     if (!c.editionNumbers) return;
-    fetch(`/api/edition-numbers?slug=${encodeURIComponent(c.slug)}`, { cache: "no-store" })
+    let stale = false;
+    const dial = c.editionNumbersPerDial && selectedVariant ? `&dial=${encodeURIComponent(selectedVariant.name)}` : "";
+    fetch(`/api/edition-numbers?slug=${encodeURIComponent(c.slug)}${dial}`, { cache: "no-store" })
       .then((r) => r.json())
       .then((d) => {
-        if (Array.isArray(d.sold)) setSoldNumbers(d.sold);
-        if (Array.isArray(d.reserved)) setReservedNumbers(d.reserved);
+        if (stale) return;
+        setSoldNumbers(Array.isArray(d.sold) ? d.sold : []);
+        setReservedNumbers(Array.isArray(d.reserved) ? d.reserved : []);
       })
       .catch(() => {});
-  }, [c.editionNumbers, c.slug, preOrderError]);
+    return () => {
+      stale = true;
+    };
+  }, [c.editionNumbers, c.editionNumbersPerDial, c.slug, selectedVariant, preOrderError]);
   const pad2 = (n: number) => String(n).padStart(2, "0");
   const baseSelectionLabel = selectedVariant?.numeralOptions
     ? `${selectedVariant.name} · ${selectedNumeral}`
@@ -311,6 +321,18 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     gaEvent("begin_checkout", { currency: "EUR", value, items: [item] });
     fbqTrack("AddToCart", { currency: "EUR", value, content_ids: [c.slug], content_type: "product" });
     fbqTrack("InitiateCheckout", { currency: "EUR", value, content_ids: [c.slug], content_type: "product" });
+  }
+
+  // Numbered edition with no number yet: take them to the grid.
+  function goToGrid() {
+    editionGridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    setGridNudge(true);
+    window.setTimeout(() => setGridNudge(false), 1400);
+  }
+
+  function reserveOrChoose() {
+    if (c.editionNumbers && !editionNumber) goToGrid();
+    else handleReserve();
   }
 
   async function handleReserve() {
@@ -630,8 +652,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <>
                 <div className={`flex flex-col gap-3 sm:flex-row sm:items-center ${c.heroFit === "contain" ? "sm:justify-center" : ""}`}>
                   <button
-                    onClick={handleReserve}
-                    disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                    onClick={reserveOrChoose}
+                    disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                     className="w-full rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
                   >
                     {loading
@@ -640,6 +662,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                       : isSoldOut
                       ? "Join Waitlist"
+                      : c.editionNumbers
+                      ? `${editionNumber ? `Reserve No. ${pad2(editionNumber)}` : "Choose your number"} · €${(effectivePrice).toLocaleString()}`
                       : `${c.reserveButtonLabel ?? "Acquire"} · €${(effectivePrice).toLocaleString()}`}
                   </button>
                 </div>
@@ -782,7 +806,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
 
                 <div>
                   <p className="text-[12px] font-normal tracking-[2.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
-                    Limited edition · {c.editionNumbers} pieces
+                    {c.editionNumbersPerDial ? `${c.editionNumbers} pieces per dial` : `Limited edition · ${c.editionNumbers} pieces`}
                   </p>
                   <h2 className="mt-4 font-serif text-[clamp(36px,4.6vw,54px)] font-light italic leading-[1.05] text-foreground">
                     {selectedVariant.name}
@@ -794,6 +818,34 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     <p className="mt-4 text-[16px] font-light leading-[1.8] text-foreground-muted">
                       {selectedVariant.description}
                     </p>
+                  )}
+
+                  {/* Dial — when each dial has its own numbers */}
+                  {c.editionNumbersPerDial && visibleVariants.length > 1 && (
+                    <div className="mt-8 border-t border-accent/15 pt-6">
+                      <p className="text-[12px] font-normal tracking-[2.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
+                        Dial
+                      </p>
+                      <div className="mt-4 grid grid-cols-2 gap-2">
+                        {visibleVariants.map((v) => {
+                          const isSel = selectedVariant.name === v.name;
+                          return (
+                            <button
+                              key={v.name}
+                              type="button"
+                              disabled={v.stock === 0}
+                              aria-pressed={isSel}
+                              onClick={() => { setSelectedVariant(v); setUserPickedVariant(true); setPreOrderError(null); }}
+                              className={`rounded-lg border px-4 py-3.5 text-left font-serif text-[18px] font-light transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
+                                isSel ? "border-accent bg-accent/[0.08] text-foreground" : "border-accent/20 text-foreground-muted hover:border-accent/50"
+                              }`}
+                            >
+                              {v.name}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
                   )}
 
                   {/* Movement */}
@@ -847,7 +899,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                         {c.editionNumbers - soldNumbers.length - reservedNumbers.length} of {c.editionNumbers} still available
                       </p>
                     </div>
-                    <div ref={editionGridRef} className={`mt-4 grid grid-cols-7 border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
+                    <div ref={editionGridRef} className={`mt-4 grid ${c.editionNumbersPerDial ? "grid-cols-5" : "grid-cols-7"} border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
                       {Array.from({ length: c.editionNumbers }, (_, i) => i + 1).map((n) => {
                         const sold = soldNumbers.includes(n);
                         const reserved = !sold && reservedNumbers.includes(n);
@@ -867,7 +919,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                                 : reserved
                                 ? "cursor-not-allowed text-foreground-muted/35"
                                 : selected
-                                ? "bg-[#3d1d38] text-[#f1dca6] shadow-[inset_0_0_0_1px_var(--accent)]"
+                                ? c.editionNumbersPerDial
+                                  ? "bg-accent text-background"
+                                  : "bg-[#3d1d38] text-[#f1dca6] shadow-[inset_0_0_0_1px_var(--accent)]"
                                 : "text-foreground hover:bg-accent/[0.07]"
                             }`}
                           >
@@ -888,8 +942,10 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       {editionNumber ? (
                         <>
                           <span className="text-foreground">No. {pad2(editionNumber)} of {c.editionNumbers}</span>
-                          {selectedNumeral ? ` · ${selectedNumeral}` : ""}. Held for you for 30 minutes once you continue to checkout.
+                          {selectedNumeral ? ` · ${selectedNumeral}` : c.editionNumbersPerDial ? ` · ${selectedVariant.name}` : ""}. Held for you for 30 minutes once you continue to checkout.
                         </>
+                      ) : c.editionNumbersPerDial ? (
+                        "Pick a lucky number, or simply the one that feels right. Each number exists once per dial; crossed-out numbers are taken."
                       ) : (
                         "Pick a birthday, a lucky number, or simply the one that feels right. Each number exists once; crossed-out numbers are taken."
                       )}
@@ -904,13 +960,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     <button
                       type="button"
                       onClick={() => {
-                        if (!editionNumber) {
-                          editionGridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-                          setGridNudge(true);
-                          window.setTimeout(() => setGridNudge(false), 1400);
-                          return;
-                        }
-                        handleReserve();
+                        reserveOrChoose();
                       }}
                       disabled={loading || (!!selectedVariant.numeralOptions && !selectedNumeral)}
                       className="w-full rounded-lg bg-accent px-6 py-5 text-[12px] font-medium tracking-[3px] uppercase text-background shadow-[0_8px_30px_-10px_var(--accent)] transition-colors hover:bg-accent-hover disabled:opacity-60"
@@ -925,7 +975,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       <li>{SHIPPING_LINE}</li>
                       <li>{klarnaLine(effectivePrice)}</li>
                       {c.shipsBy && <li>{c.shipsBy}</li>}
-                      <li>Owners&apos; code? Enter it at checkout under &ldquo;Add promotion code&rdquo;.</li>
+                      {!c.editionNumbersPerDial && (
+                        <li>Owners&apos; code? Enter it at checkout under &ldquo;Add promotion code&rdquo;.</li>
+                      )}
                     </ul>
                   </div>
                 </div>
@@ -1411,8 +1463,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               </div>
               <div className="flex flex-col gap-2">
                 <button
-                  onClick={handleReserve}
-                  disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  onClick={reserveOrChoose}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
                   {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `${c.reserveButtonLabel ?? "Acquire"} · €${runningTotal.toLocaleString()}`}
@@ -2012,8 +2064,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               </p>
               <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <button
-                  onClick={handleReserve}
-                  disabled={loading || (!!c.editionNumbers && !editionNumber) || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  onClick={reserveOrChoose}
+                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full max-w-[300px] rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
                 >
                   {loading
@@ -2022,6 +2074,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                     : isSoldOut
                     ? "Join Waitlist"
+                    : c.editionNumbers
+                    ? `${editionNumber ? `Reserve No. ${pad2(editionNumber)}` : "Choose your number"} · €${(effectivePrice).toLocaleString()}`
                     : `${c.reserveButtonLabel ?? "Acquire"} · €${(effectivePrice).toLocaleString()}`}
                 </button>
               </div>
@@ -2246,16 +2300,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               </div>
               <div className="flex shrink-0 items-center gap-2">
                 <button
-                  onClick={() => {
-                    // Numbered edition with no number yet: take them to the grid.
-                    if (c.editionNumbers && !editionNumber) {
-                      editionGridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-                      setGridNudge(true);
-                      window.setTimeout(() => setGridNudge(false), 1400);
-                      return;
-                    }
-                    handleReserve();
-                  }}
+                  onClick={reserveOrChoose}
                   disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:px-8 sm:text-[11px] sm:tracking-[2px]"
                 >
