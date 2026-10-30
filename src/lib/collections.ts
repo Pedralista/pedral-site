@@ -1233,26 +1233,26 @@ export const collections: Collection[] = [
     // of 10, made to order. Live Stripe prices wired in 2026-10-25.
     slug: "etiquette-hebrew",
     name: "Étiquette Hebrew",
-    metaTitle: "Pedral Étiquette Hebrew — Hebrew Numeral Dress Watch, Ten of Each Dial | Pedral",
+    metaTitle: "Pedral Étiquette Hebrew — Hebrew Numeral Dress Watch, Nine of Each Dial | Pedral",
     metaDescription:
-      "Étiquette Hebrew: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Hebrew numerals, in ivory or blue. Ten of each dial, made to order. Hand-wound: Japanese €1,100, Swiss €1,800.",
+      "Étiquette Hebrew: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Hebrew numerals, in ivory or blue. Nine of each dial, made to order. Hand-wound: Japanese €1,100, Swiss €1,800.",
     tagline: "Pre-order · Made to order",
     hook: "Good taste. Spoken in Hebrew.",
     descriptionTitle: "The same rules. A different alphabet.",
     description:
       "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition goes one step further and tells the time in Hebrew. Custom Hebrew numerals, familiar yet deliberately distorted, stretch across the lacquered dial — blue on ivory, or ivory on deep blue — balanced by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, the case is slim, elegant and slightly eccentric.",
     descriptionExtra:
-      "Ten of each dial, made to order. For a Bar or Bat Mitzvah, a wedding, a parent, a child — or for yourself, after years of wearing watches that spoke only in someone else's tradition. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
+      "Nine of each dial, made to order. For a Bar or Bat Mitzvah, a wedding, a parent, a child — or for yourself, after years of wearing watches that spoke only in someone else's tradition. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
     designerNote:
       "Some people have spent years wearing watches that were beautiful, but not entirely theirs. A numeral is the first thing you read on a dial. It should be able to speak your language.",
     year: 2026,
     tier: "limited",
     price: 1100,
     stock: 18, // 9 Tchelet + 9 Layla remaining (Kevin, Oct 2026)
-    maxStock: 20, // ten of each dial
+    maxStock: 18, // nine of each dial (Kevin, 2026-10-30)
     edition: "Hebrew numerals",
-    badge: "Ten of Each Dial",
-    urgencyTag: "Made to order · Ten of each dial",
+    badge: "Nine of Each Dial",
+    urgencyTag: "Made to order · Nine of each dial",
     reserveButtonLabel: "Reserve Yours",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
@@ -1273,7 +1273,7 @@ export const collections: Collection[] = [
         "Hebrew is one of the oldest written languages still read every day, and its letters have always doubled as numbers. Aleph is one, Bet is two, Yud is ten. The same letters counted the years on coins struck in Jerusalem two thousand years ago, and they still number the days of the Hebrew calendar today. Watches with Hebrew dials have existed for well over a century, made for families who wanted to read the hours in their own script.",
         "The Jewish community has been an integral part of Pedral's evolution. Some of the most personal commissions I have ever made came from it — a father looking for something to give his son at his Bar Mitzvah, a daughter wanting a watch that held something of her mother, collectors who had spent years wearing watches that spoke only in someone else's tradition. The Triomphe in Hebrew numerals grew out of those conversations, and it has sold out. Much of what Pedral is today was shaped by them.",
         "A script this old deserves care. Distort it carelessly and a numeral turns into a costume — a caricature of a culture rather than a tribute to it. That was never going to happen here. These numerals weren't drawn in Stockholm alone: they were developed together with members of the Jewish Enthusiasts Watch Society (J.E.W.S), a global community of watchmakers and collectors, who reviewed and refined them with me until every letter was right — playful in the Étiquette way, but never at the expense of what it means.",
-        "Two dials — Tchelet, sky blue on ivory, and Layla, ivory on night blue. Japanese or Swiss hand-wound. Ten of each, made to order. Thank you to everyone who helped make it.",
+        "Two dials — Tchelet, sky blue on ivory, and Layla, ivory on night blue. Japanese or Swiss hand-wound. Nine of each, made to order. Thank you to everyone who helped make it.",
       ],
     },
     specsTitle: "Not for everyone.",
@@ -1289,7 +1289,7 @@ export const collections: Collection[] = [
       Caseback: "Solid stainless steel",
       "Water Resist.": "5 ATM / 50 metres",
       Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
-      Edition: "Ten of each dial · Made to order · Not part of the standard Étiquette run",
+      Edition: "Nine of each dial · Made to order · Not part of the standard Étiquette run",
       Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
     },
     boxContents: [],
