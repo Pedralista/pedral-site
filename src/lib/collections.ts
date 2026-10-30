@@ -1323,7 +1323,7 @@ export const collections: Collection[] = [
       },
       {
         q: "Why Hebrew numerals?",
-        a: "Because the numerals on a dial can carry something of who you are. The Hebrew edition grew out of conversations with collectors looking for a watch that held their heritage — often as a gift, for a moment that matters — and its numerals were developed together with members of the Jewish Enthusiasts Watch Society (J.E.W.S). Ten of each dial only, made to order.",
+        a: "Because the numerals on a dial can carry something of who you are. The Hebrew edition grew out of conversations with collectors looking for a watch that held their heritage — often as a gift, for a moment that matters — and its numerals were developed together with members of the Jewish Enthusiasts Watch Society (J.E.W.S). Nine of each dial only, made to order.",
       },
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
