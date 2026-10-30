@@ -341,6 +341,10 @@ export async function POST(req: NextRequest) {
     // See the cart branch: codes only validate with the session kept in EUR.
     ...(PROMO_CODE_PRICE_IDS.has(priceId) && { adaptive_pricing: { enabled: false } }),
     phone_number_collection: { enabled: true },
+    // Numbered editions: the session ends with the number hold (Stripe's
+    // minimum is 30 minutes), so nobody can pay for a number after its hold
+    // has lapsed and someone else may have bought it.
+    ...(chosenNumber && { expires_at: Math.floor(Date.now() / 1000) + 30 * 60 + 30 }),
     billing_address_collection: "required",
     custom_text: {
       submit: {
