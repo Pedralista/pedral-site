@@ -823,7 +823,7 @@ export const collections: Collection[] = [
       },
       {
         q: "Will Silhouette fit my wrist?",
-        a: "The Nyoka bracelet fits wrists from 13.5 to 20 cm. At 47.5mm lug to lug and 7.3mm thin, it sits flat on most wrists in that range.",
+        a: "The Nyoka bracelet fits wrists from 13.5 to 20 cm. The case is 39mm across, 47.5mm lug to lug and 7.3mm thin.",
       },
       {
         q: "How is Silhouette different from Contour?",
