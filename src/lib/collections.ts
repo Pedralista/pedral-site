@@ -1479,7 +1479,7 @@ export const collections: Collection[] = [
     variants: [
       {
         name: "Noor",
-        stripePriceId: "", // TODO: Stripe price (€1,100) — Pre-order stays disabled until filled
+        stripePriceId: "price_1UWa1JCfxE1lSBKR42mXohEr", // Étiquette Eastern Arabic — Noor (€1,100)
         stock: 10,
         price: 1100,
         description: "Noor — light, in Arabic, Persian and Urdu. Lacquered black onyx dial with custom distorted Eastern Arabic numerals and hands in gold.",

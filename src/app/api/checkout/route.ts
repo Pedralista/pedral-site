@@ -43,6 +43,7 @@ const VALID_PRICE_IDS = new Set([
   "price_1UUOtmCfxE1lSBKRpwNV6Bpc", // Étiquette Hebrew — Layla · Swiss Hand-Wound (€1,800)
   "price_1UUPTrCfxE1lSBKRy4L1h1fg", // Étiquette Bangla — Ekushey (€1,100)
   "price_1UUPNOCfxE1lSBKR7Zr4TfjN", // Étiquette Bangla — Sondhya (€1,100)
+  "price_1UWa1JCfxE1lSBKR42mXohEr", // Étiquette Eastern Arabic — Noor (€1,100)
   "price_1UUl4sCfxE1lSBKREY3afrAq", // Étiquette Famille Royale · Japanese Hand-Wound (€1,100)
   "price_1UUl5lCfxE1lSBKRRJDXaq90", // Étiquette Famille Royale · Swiss Hand-Wound (€1,800)
 ]);
