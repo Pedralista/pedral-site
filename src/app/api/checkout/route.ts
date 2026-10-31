@@ -289,6 +289,9 @@ export async function POST(req: NextRequest) {
     if (!Number.isInteger(n) || n < 1 || n > numbered.editionNumbers) {
       return NextResponse.json({ error: "Please choose your number." }, { status: 400 });
     }
+    if (numbered.editionNumbersHeld?.includes(n)) {
+      return NextResponse.json({ error: "Please choose another number." }, { status: 409 });
+    }
     const pool = numberPool(numbered, typeof variantName === "string" ? variantName : undefined);
     if (!pool) {
       return NextResponse.json({ error: "Please choose your dial." }, { status: 400 });

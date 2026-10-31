@@ -915,27 +915,28 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       </p>
                       {/* Never above the dial's stock: a buyer who hasn't chosen yet still has a piece. */}
                       <p className={`font-serif text-[18px] font-light italic text-foreground-muted sm:text-[20px] ${numbersLoaded ? "" : "invisible"}`}>
-                        {Math.min(c.editionNumbers - soldNumbers.length - reservedNumbers.length, selectedVariant.stock)} of {c.editionNumbers} still available
+                        {Math.min(c.editionNumbers - soldNumbers.length - reservedNumbers.length - (c.editionNumbersHeld?.length ?? 0), selectedVariant.stock)} of {c.editionNumbers} still available
                       </p>
                     </div>
                     <div ref={editionGridRef} className={`mt-4 grid ${c.editionNumbers === 9 ? "grid-cols-3" : c.editionNumbers === 21 ? "grid-cols-7" : "grid-cols-5"} border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
                       {Array.from({ length: c.editionNumbers }, (_, i) => i + 1).map((n) => {
                         const sold = soldNumbers.includes(n);
                         const reserved = !sold && reservedNumbers.includes(n);
+                        const held = !sold && !!c.editionNumbersHeld?.includes(n);
                         const taken = sold || reserved;
                         const selected = editionNumber === n;
                         return (
                           <button
                             key={n}
                             type="button"
-                            disabled={taken || !numbersLoaded || selectedVariant.stock === 0}
+                            disabled={taken || held || !numbersLoaded || selectedVariant.stock === 0}
                             onClick={() => { setEditionNumber(n); setUserPickedVariant(true); setPreOrderError(null); }}
-                            aria-label={sold ? `No. ${pad2(n)}, sold` : reserved ? `No. ${pad2(n)}, reserved` : `Choose No. ${pad2(n)}`}
+                            aria-label={sold ? `No. ${pad2(n)}, sold` : held ? `No. ${pad2(n)}, kept by the studio` : reserved ? `No. ${pad2(n)}, reserved` : `Choose No. ${pad2(n)}`}
                             aria-pressed={selected}
                             className={`relative flex ${c.editionNumbers === 9 ? "aspect-[2/1]" : "aspect-square"} items-center justify-center border-b border-r border-accent/20 font-serif text-[19px] font-light italic transition-colors sm:text-[24px] ${
                               sold
                                 ? "cursor-not-allowed text-foreground-muted/25"
-                                : reserved
+                                : reserved || held
                                 ? "cursor-not-allowed text-foreground-muted/35"
                                 : selected
                                 ? c.ownersClubInvite
@@ -948,9 +949,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                             {taken && (
                               <span aria-hidden className="pointer-events-none absolute left-[22%] right-[22%] top-1/2 h-px -rotate-[24deg] bg-foreground-muted/35" />
                             )}
-                            {reserved && (
+                            {(reserved || held) && (
                               <span className="absolute bottom-[8%] left-0 right-0 text-center font-sans text-[7px] not-italic tracking-[1px] uppercase text-foreground-muted/50 sm:text-[8px] sm:tracking-[1.5px]">
-                                Reserved
+                                {held ? "Studio" : "Reserved"}
                               </span>
                             )}
                           </button>
