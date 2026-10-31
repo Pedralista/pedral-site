@@ -65,7 +65,7 @@ const timeline = [
   {
     year: "Oct 2026",
     title: "Étiquette",
-    text: "The rectangular dress watch, reimagined on the golden ratio. 7.7mm, gently curved, hand-wound. Famille Royale, 21 numbered pieces, reserved for existing owners.",
+    text: "The rectangular dress watch, reimagined on the golden ratio. 6.9–7.3mm (preliminary), gently curved, hand-wound. Famille Royale, 21 numbered pieces, reserved for existing owners.",
   },
   {
     year: "Oct 2026",

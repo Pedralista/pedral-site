@@ -948,7 +948,7 @@ export const collections: Collection[] = [
     // (€950 / €1,550) are private and deliberately NOT on the site. The
     // purple dial (10 pieces) is owners-only and reserved through Kevin
     // directly, so it's not in the checkout. Copy is Kevin's own launch
-    // text; case dimensions 27 × 43.7mm (golden ratio), 7.7mm max, confirmed
+    // text; case dimensions 27 × 43.7mm (golden ratio) confirmed; thickness 6.9–7.3mm preliminary (Kevin, 2026-10-31),
     // by Kevin 2026-10-25, as is 5 ATM water resistance.
     //
     // Structure: the four public dials are the variants (10 Swiss pieces
@@ -964,12 +964,12 @@ export const collections: Collection[] = [
     name: "Étiquette",
     metaTitle: "Pedral Étiquette — Art Deco Rectangular Dress Watch, 27 × 43.7mm | Pedral",
     metaDescription:
-      "Étiquette: a 27 × 43.7mm golden-ratio rectangular dress watch, 7.7mm max, with concentric CNC-machined grooves and custom distorted Roman numerals. Swiss hand-wound LJP D101, €1,800. Pre-order now.",
+      "Étiquette: a 27 × 43.7mm golden-ratio rectangular dress watch, 6.9–7.3mm (preliminary), with concentric CNC-machined grooves and custom distorted Roman numerals. Swiss hand-wound LJP D101, €1,800. Pre-order now.",
     tagline: "Pre-order",
     hook: "Good taste. Questionable manners.",
     descriptionTitle: "A study in proportion. An exercise in irreverence.",
     description:
-      "There are certain rules in watchmaking. Rules of proportion, symmetry, restraint and good taste. Étiquette acknowledges them — then politely ignores a few. Drawing from the architectural elegance of the Art Deco era, it reimagines the rectangular dress watch through exaggerated proportions, sculptural detailing and a healthy disregard for convention. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, its silhouette is deliberately unconventional: slim, elegant and slightly eccentric.",
+      "There are certain rules in watchmaking. Rules of proportion, symmetry, restraint and good taste. Étiquette acknowledges them — then politely ignores a few. Drawing from the architectural elegance of the Art Deco era, it reimagines the rectangular dress watch through exaggerated proportions, sculptural detailing and a healthy disregard for convention. At 27 × 43.7 mm, built on the golden ratio, and 6.9–7.3 mm thick (preliminary), its silhouette is deliberately unconventional: slim, elegant and slightly eccentric.",
     descriptionExtra:
       "Within the case, custom Roman numerals — familiar, yet deliberately distorted — stretch across the dial with theatrical confidence, balanced by Pedral's signature inner dial frame. A faceted geodesic crown provides the finishing touch, while a finely tapered leather strap reinforces the watch's slender, vintage-inspired proportions. Restrained in dimensions, expressive in character. Rooted in tradition, yet entirely uninterested in following it too closely.",
     designerNote:
@@ -999,7 +999,7 @@ export const collections: Collection[] = [
     specs: {
       Price: "€1,800",
       Movement: "La Joux-Perret LJP D101 · Swiss hand-wound · Hours and minutes · 50-hour power reserve",
-      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
+      Case: "27 × 43.7mm · Golden ratio proportions · 6.9–7.3mm thick (preliminary) · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Pedral signature inner dial frame · Soirée (black onyx, gold numerals) and Bourgogne: custom distorted Roman numerals · Nocturne (black onyx) and Ambiance: musical-note indices · Famille Royale (Royal Aubergine lacquer, champagne-gold numerals) reserved for existing owners",
       Hands: "Polished dress-watch hands",
@@ -1021,9 +1021,9 @@ export const collections: Collection[] = [
     testimonials: [],
     wristFit: {
       caseDiameter: "27 × 43.7mm",
-      thickness: "7.7mm max",
+      thickness: "6.9–7.3mm (preliminary)",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, 6.9–7.3 mm (preliminary), sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
     },
     extraFaqs: [
       {
@@ -1121,7 +1121,7 @@ export const collections: Collection[] = [
     hook: "One kept in the family.",
     descriptionTitle: "For the Pedral Watch Club.",
     description:
-      "Étiquette Famille Royale is the one dial that will never be sold publicly. It is reserved for existing Pedral owners — the Pedral Watch Club — as a thank-you to the people who believed in the studio before anyone else did. A Royal Aubergine lacquer dial, with custom Roman numerals — familiar yet deliberately distorted — as champagne-gold appliqués. Inside a 27 × 43.7 mm case built on the golden ratio, no more than 7.7 mm thick.",
+      "Étiquette Famille Royale is the one dial that will never be sold publicly. It is reserved for existing Pedral owners — the Pedral Watch Club — as a thank-you to the people who believed in the studio before anyone else did. A Royal Aubergine lacquer dial, with custom Roman numerals — familiar yet deliberately distorted — as champagne-gold appliqués. Inside a 27 × 43.7 mm case built on the golden ratio, 6.9–7.3 mm thick (preliminary).",
     designerNote:
       "Every Pedral owner took a chance on an independent studio before there was a reason to. This one is for them. Good design, much like good manners, is knowing the rules — and knowing whom to thank.",
     year: 2026,
@@ -1163,7 +1163,7 @@ export const collections: Collection[] = [
     specsTitle: "Kept in the family.",
     specs: {
       Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D101, 50-hour power reserve",
-      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
+      Case: "27 × 43.7mm · Golden ratio proportions · 6.9–7.3mm thick (preliminary) · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Famille Royale · Royal Aubergine lacquer · Custom distorted Roman numerals as champagne-gold appliqués, matching hands · Pedral signature inner dial frame",
       Hands: "Polished dress-watch hands",
@@ -1186,9 +1186,9 @@ export const collections: Collection[] = [
     testimonials: [],
     wristFit: {
       caseDiameter: "27 × 43.7mm",
-      thickness: "7.7mm max",
+      thickness: "6.9–7.3mm (preliminary)",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, 6.9–7.3 mm (preliminary), sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
     },
     extraFaqs: [
       {
@@ -1239,12 +1239,12 @@ export const collections: Collection[] = [
     name: "Étiquette Hebrew",
     metaTitle: "Pedral Étiquette Hebrew — Hebrew Numeral Dress Watch, Nine of Each Dial | Pedral",
     metaDescription:
-      "Étiquette Hebrew: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Hebrew numerals, in ivory or blue. Nine of each dial, made to order. Hand-wound: Japanese €1,100, Swiss €1,800.",
+      "Étiquette Hebrew: a 27 × 43.7mm golden-ratio rectangular case, 6.9–7.3mm (preliminary), with custom distorted Hebrew numerals, in ivory or blue. Nine of each dial, made to order. Hand-wound: Japanese €1,100, Swiss €1,800.",
     tagline: "Pre-order · Made to order",
     hook: "Good taste. Spoken in Hebrew.",
     descriptionTitle: "The same rules. A different alphabet.",
     description:
-      "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition goes one step further and tells the time in Hebrew. Custom Hebrew numerals, familiar yet deliberately distorted, stretch across the lacquered dial — blue on ivory, or ivory on deep blue — balanced by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, the case is slim, elegant and slightly eccentric.",
+      "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition goes one step further and tells the time in Hebrew. Custom Hebrew numerals, familiar yet deliberately distorted, stretch across the lacquered dial — blue on ivory, or ivory on deep blue — balanced by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and 6.9–7.3 mm thick (preliminary), the case is slim, elegant and slightly eccentric.",
     descriptionExtra:
       "Nine of each dial, made to order. For a Bar or Bat Mitzvah, a wedding, a parent, a child — or for yourself, after years of wearing watches that spoke only in someone else's tradition. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
     designerNote:
@@ -1286,7 +1286,7 @@ export const collections: Collection[] = [
     specs: {
       Price: "€1,100 Japanese hand-wound · €1,800 Swiss hand-wound",
       Movement: "Hand-wound · Hours and minutes · Japanese: Pedral-modified Miyota 9015, converted from automatic to hand-wound, rectangular 27 × 20.6 × 3.5mm · Swiss: La Joux-Perret LJP D101, 50-hour power reserve",
-      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
+      Case: "27 × 43.7mm · Golden ratio proportions · 6.9–7.3mm thick (preliminary) · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Lacquered · Ivory with custom distorted Hebrew numerals in blue, or blue with ivory numerals · Pedral signature inner dial frame",
       Hands: "Polished dress-watch hands",
@@ -1304,14 +1304,14 @@ export const collections: Collection[] = [
     detailStrip: {
       eyebrow: "The Movement",
       title: "Shaped for the case.",
-      text: "The Japanese version runs on a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays at 7.7 mm. You wind it by the crown — the small ritual that comes with a hand-wound watch. Only the Japanese movement is shaped to the case. Prefer Swiss? Tchelet and Layla are also available with the La Joux-Perret LJP D101 — a conventional Swiss hand-wound calibre with a 50-hour power reserve.",
+      text: "The Japanese version runs on a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays so slim. You wind it by the crown — the small ritual that comes with a hand-wound watch. Only the Japanese movement is shaped to the case. Prefer Swiss? Tchelet and Layla are also available with the La Joux-Perret LJP D101 — a conventional Swiss hand-wound calibre with a 50-hour power reserve.",
     },
     testimonials: [],
     wristFit: {
       caseDiameter: "27 × 43.7mm",
-      thickness: "7.7mm max",
+      thickness: "6.9–7.3mm (preliminary)",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, 6.9–7.3 mm (preliminary), sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
       image: "/images/etiquette-hebrew.jpg",
     },
     extraFaqs: [
@@ -1389,12 +1389,12 @@ export const collections: Collection[] = [
     name: "Étiquette Eastern Arabic",
     metaTitle: "Pedral Étiquette Eastern Arabic — Eastern Arabic Numeral Dress Watch, Edition of 10 | Pedral",
     metaDescription:
-      "Étiquette Eastern Arabic: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Eastern Arabic numerals in gold on black onyx. Edition of 10, made to order. Modified Miyota 9015, hand-wound, €1,100.",
+      "Étiquette Eastern Arabic: a 27 × 43.7mm golden-ratio rectangular case, 6.9–7.3mm (preliminary), with custom distorted Eastern Arabic numerals in gold on black onyx. Edition of 10, made to order. Modified Miyota 9015, hand-wound, €1,100.",
     tagline: "Pre-order · Made to order",
     hook: "Good taste. Spoken in Eastern Arabic.",
     descriptionTitle: "The same rules. A different alphabet.",
     description:
-      "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition tells the time in Eastern Arabic numerals. Custom numerals, familiar yet deliberately distorted, stretch in gold across a lacquered black onyx dial, framed by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, the case is slim, elegant and slightly eccentric.",
+      "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition tells the time in Eastern Arabic numerals. Custom numerals, familiar yet deliberately distorted, stretch in gold across a lacquered black onyx dial, framed by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and 6.9–7.3 mm thick (preliminary), the case is slim, elegant and slightly eccentric.",
     descriptionExtra:
       "Ten pieces, made to order. For those whose families counted in this script — across the Arab world and, in a closely related form, across Persian-speaking countries. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
     designerNote:
@@ -1424,7 +1424,7 @@ export const collections: Collection[] = [
     specs: {
       Price: "€1,100",
       Movement: "Pedral-modified Miyota 9015 · Converted from automatic to hand-wound · Rectangular movement, 27 × 20.6 × 3.5mm · Hours and minutes",
-      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
+      Case: "27 × 43.7mm · Golden ratio proportions · 6.9–7.3mm thick (preliminary) · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Lacquered · Black onyx with custom distorted Eastern Arabic numerals in gold · Pedral signature inner dial frame",
       Hands: "Polished dress-watch hands",
@@ -1442,14 +1442,14 @@ export const collections: Collection[] = [
     detailStrip: {
       eyebrow: "The Movement",
       title: "Shaped for the case.",
-      text: "Inside is a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays at 7.7 mm. You wind it by the crown — the small ritual that comes with a hand-wound watch.",
+      text: "Inside is a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays so slim. You wind it by the crown — the small ritual that comes with a hand-wound watch.",
     },
     testimonials: [],
     wristFit: {
       caseDiameter: "27 × 43.7mm",
-      thickness: "7.7mm max",
+      thickness: "6.9–7.3mm (preliminary)",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, 6.9–7.3 mm (preliminary), sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
       image: "/images/etiquette-eastern-arabic.jpg",
     },
     extraFaqs: [
@@ -1504,12 +1504,12 @@ export const collections: Collection[] = [
     name: "Étiquette Bangla",
     metaTitle: "Pedral Étiquette Bangla — Bangla (Bengali) Numeral Dress Watch, Five of Each Dial | Pedral",
     metaDescription:
-      "Étiquette Bangla: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Bangla (Bengali) numerals on a lacquered dial in green and red, or black onyx and gold. For Bangladesh, India and beyond. Five of each dial, made to order. Modified Miyota 9015, hand-wound, €1,100.",
+      "Étiquette Bangla: a 27 × 43.7mm golden-ratio rectangular case, 6.9–7.3mm (preliminary), with custom distorted Bangla (Bengali) numerals on a lacquered dial in green and red, or black onyx and gold. For Bangladesh, India and beyond. Five of each dial, made to order. Modified Miyota 9015, hand-wound, €1,100.",
     tagline: "Pre-order · Made to order",
     hook: "Good taste. Spoken in Bangla.",
     descriptionTitle: "The same rules. A different alphabet.",
     description:
-      "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition tells the time in Bangla (Bengali) numerals. Custom numerals, familiar yet deliberately distorted, sweep across a lacquered dial — in silver on green with a red centre, or in gold on black onyx — held by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, the case is slim, elegant and slightly eccentric.",
+      "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition tells the time in Bangla (Bengali) numerals. Custom numerals, familiar yet deliberately distorted, sweep across a lacquered dial — in silver on green with a red centre, or in gold on black onyx — held by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and 6.9–7.3 mm thick (preliminary), the case is slim, elegant and slightly eccentric.",
     descriptionExtra:
       "Five of each dial, made to order. For those who grew up counting in Bangla — in Bangladesh, in West Bengal, Tripura and Assam, or a long way from any of them. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
     designerNote:
@@ -1550,7 +1550,7 @@ export const collections: Collection[] = [
     specs: {
       Price: "€1,100",
       Movement: "Pedral-modified Miyota 9015 · Converted from automatic to hand-wound · Rectangular movement, 27 × 20.6 × 3.5mm · Hours and minutes",
-      Case: "27 × 43.7mm · Golden ratio proportions · 7.7mm maximum thickness · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
+      Case: "27 × 43.7mm · Golden ratio proportions · 6.9–7.3mm thick (preliminary) · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Lacquered · Ekushey: green with a red centre, Bangla numerals in silver · Sondhya: black onyx, Bangla numerals and hands in gold · Custom distorted numerals · Pedral signature inner dial frame",
       Hands: "Polished dress-watch hands",
@@ -1568,14 +1568,14 @@ export const collections: Collection[] = [
     detailStrip: {
       eyebrow: "The Movement",
       title: "Shaped for the case.",
-      text: "Inside is a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays at 7.7 mm. You wind it by the crown — the small ritual that comes with a hand-wound watch.",
+      text: "Inside is a Miyota 9015 that Pedral has converted from automatic to manual winding and reworked into a rectangular movement measuring 27 × 20.6 × 3.5 mm. A round movement in a rectangular case leaves empty space; this one follows the shape of the watch. Without a rotor it stays at 3.5 mm, which is part of how the case stays so slim. You wind it by the crown — the small ritual that comes with a hand-wound watch.",
     },
     testimonials: [],
     wristFit: {
       caseDiameter: "27 × 43.7mm",
-      thickness: "7.7mm max",
+      thickness: "6.9–7.3mm (preliminary)",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, no more than 7.7 mm, sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, 6.9–7.3 mm (preliminary), sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
       image: "/images/etiquette-bangla.jpg",
     },
     extraFaqs: [
