@@ -489,12 +489,12 @@ export const collections: Collection[] = [
     year: 2018,
     tier: "signature",
     price: 2800,
-    stock: 3, // static fallback (3 ETA 7001 + 0 LJP7380, last piece sold privately Oct 2026) — live counts come from Redis
+    stock: 12, // static fallback (12 ETA 7001 + 0 LJP7380, last piece sold privately Oct 2026; Kevin, 2026-10-31) — live counts come from Redis
     maxStock: 20,
     editionNumbers: 20, // numbers already taken are set by hand in Redis (Kevin, 2026-10-31)
     edition: "ETA 7001 · LJP7380",
     badge: "Made to Order",
-    urgencyTag: "A few pieces remain",
+    urgencyTag: "Limited to 20",
     // Buyable online since 2026-10-29 (Kevin); still made to order, 3–6 months.
     reserveButtonLabel: "Reserve Yours",
     shipsBy: "Made to order · Delivery in 3–6 months",
@@ -566,7 +566,7 @@ export const collections: Collection[] = [
       {
         name: "ETA 7001",
         stripePriceId: "price_1TKw2kCfxE1lSBKRLqfS1Lvb",
-        stock: 3,
+        stock: 12,
         color: "Blue",
         price: 2800,
         description: "Swiss hand-wound. Slim, direct, reliable. The honest choice — everything in its right place.",
