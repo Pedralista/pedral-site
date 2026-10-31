@@ -1404,6 +1404,7 @@ export const collections: Collection[] = [
     price: 1100,
     stock: 10,
     maxStock: 10,
+    editionNumbers: 10,
     edition: "Eastern Arabic numerals",
     badge: "Edition of 10",
     urgencyTag: "Made to order · 10 pieces",
@@ -1463,6 +1464,10 @@ export const collections: Collection[] = [
       {
         q: "Can I return it?",
         a: "The Eastern Arabic edition is made to order for each buyer, so it can't be returned under the EU custom-goods exemption (Art. 16(c) of the Consumer Rights Directive). Your statutory warranty still applies in full. If you have any doubts about size or dial before ordering, write to Kevin directly — he responds personally.",
+      },
+      {
+        q: "How does choosing my number work?",
+        a: "There are 10 pieces, numbered 1 to 10. Pick any number that's still available; once you continue to checkout it's held for you for 30 minutes, and when your order is paid it's yours. Taken numbers are crossed out.",
       },
       {
         q: "Why Eastern Arabic numerals?",

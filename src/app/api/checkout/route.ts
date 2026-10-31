@@ -48,7 +48,7 @@ const VALID_PRICE_IDS = new Set([
   "price_1UUl5lCfxE1lSBKRRJDXaq90", // Étiquette Famille Royale · Swiss Hand-Wound (€1,800)
 ]);
 
-// Étiquette Hebrew / Bangla / Famille Royale prices: the checkout shows a
+// Étiquette Hebrew / Bangla / Eastern Arabic / Famille Royale prices: the checkout shows a
 // discount-code box so community members and owners can use the codes Kevin shared (codes and
 // their expiry, 6 Nov 2026 23:59 UTC for ROYALE and community codes (all extended from 3 Nov on 2026-10-29), live in Stripe — nothing about them is on the site).
 const PROMO_CODE_PRICE_IDS = new Set([
@@ -58,6 +58,7 @@ const PROMO_CODE_PRICE_IDS = new Set([
   "price_1UUOtmCfxE1lSBKRpwNV6Bpc", // Layla · Swiss
   "price_1UUPTrCfxE1lSBKRy4L1h1fg", // Ekushey
   "price_1UUPNOCfxE1lSBKR7Zr4TfjN", // Sondhya
+  "price_1UWa1JCfxE1lSBKR42mXohEr", // Noor
   "price_1UUl4sCfxE1lSBKREY3afrAq", // Famille Royale · Japanese (owners: ROYALE950)
   "price_1UUl5lCfxE1lSBKRRJDXaq90", // Famille Royale · Swiss (owners: ROYALE1500)
 ]);
