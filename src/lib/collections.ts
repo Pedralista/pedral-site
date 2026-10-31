@@ -1497,26 +1497,28 @@ export const collections: Collection[] = [
     // Live Stripe prices wired in 2026-10-25.
     slug: "etiquette-bangla",
     name: "Étiquette Bangla",
-    metaTitle: "Pedral Étiquette Bangla — Bangla (Bengali) Numeral Dress Watch, Ten of Each Dial | Pedral",
+    metaTitle: "Pedral Étiquette Bangla — Bangla (Bengali) Numeral Dress Watch, Five of Each Dial | Pedral",
     metaDescription:
-      "Étiquette Bangla: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Bangla (Bengali) numerals on a lacquered dial in green and red, or black onyx and gold. For Bangladesh, India and beyond. Ten of each dial, made to order. Modified Miyota 9015, hand-wound, €1,100.",
+      "Étiquette Bangla: a 27 × 43.7mm golden-ratio rectangular case, 7.7mm max, with custom distorted Bangla (Bengali) numerals on a lacquered dial in green and red, or black onyx and gold. For Bangladesh, India and beyond. Five of each dial, made to order. Modified Miyota 9015, hand-wound, €1,100.",
     tagline: "Pre-order · Made to order",
     hook: "Good taste. Spoken in Bangla.",
     descriptionTitle: "The same rules. A different alphabet.",
     description:
       "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition tells the time in Bangla (Bengali) numerals. Custom numerals, familiar yet deliberately distorted, sweep across a lacquered dial — in silver on green with a red centre, or in gold on black onyx — held by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and no more than 7.7 mm thick, the case is slim, elegant and slightly eccentric.",
     descriptionExtra:
-      "Ten of each dial, made to order. For those who grew up counting in Bangla — in Bangladesh, in West Bengal, Tripura and Assam, or a long way from any of them. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
+      "Five of each dial, made to order. For those who grew up counting in Bangla — in Bangladesh, in West Bengal, Tripura and Assam, or a long way from any of them. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
     designerNote:
       "A numeral is the first thing you read on a dial. It should be able to speak your language.",
     year: 2026,
     tier: "limited",
     price: 1100,
-    stock: 19, // 9 Ekushey (1 sold by payment link, 26 Oct) + 10 Sondhya
-    maxStock: 20, // ten of each dial
+    stock: 9, // 4 Ekushey (1 sold by payment link, 26 Oct) + 5 Sondhya
+    maxStock: 10, // five of each dial (Kevin, 2026-10-31)
+    editionNumbers: 5,
+    editionNumbersPerDial: true,
     edition: "Bangla numerals",
-    badge: "Ten of Each Dial",
-    urgencyTag: "Made to order · Ten of each dial",
+    badge: "Five of Each Dial",
+    urgencyTag: "Made to order · Five of each dial",
     reserveButtonLabel: "Reserve Yours",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
@@ -1552,7 +1554,7 @@ export const collections: Collection[] = [
       Caseback: "Solid stainless steel",
       "Water Resist.": "5 ATM / 50 metres",
       Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
-      Edition: "Ten of each dial · Made to order · Not part of the standard Étiquette run",
+      Edition: "Five of each dial · Made to order · Not part of the standard Étiquette run",
       Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
     },
     boxContents: [],
@@ -1585,8 +1587,12 @@ export const collections: Collection[] = [
         a: "The Bangla edition is made to order for each buyer, so it can't be returned under the EU custom-goods exemption (Art. 16(c) of the Consumer Rights Directive). Your statutory warranty still applies in full. If you have any doubts about size or dial before ordering, write to Kevin directly — he responds personally.",
       },
       {
+        q: "How does choosing my number work?",
+        a: "Each dial is numbered 1 to 5. Pick any number that's still available; once you continue to checkout it's held for you for 30 minutes, and when your order is paid it's yours. Taken numbers are crossed out.",
+      },
+      {
         q: "Why Bangla numerals?",
-        a: "Because you asked. The Indian and Bengali community has supported Pedral across several releases, and after the Triomphe's Eastern Arabic and Hebrew numeral editions, many of you asked for a watch in your own numerals. Bangla numerals — also called Bengali numerals — are read every day by hundreds of millions of people in Bangladesh and India, from Dhaka to Kolkata, Agartala and Assam, and across the diaspora. Yet they almost never appear on a fine watch. Ten of each dial, made to order.",
+        a: "Because you asked. The Indian and Bengali community has supported Pedral across several releases, and after the Triomphe's Eastern Arabic and Hebrew numeral editions, many of you asked for a watch in your own numerals. Bangla numerals — also called Bengali numerals — are read every day by hundreds of millions of people in Bangladesh and India, from Dhaka to Kolkata, Agartala and Assam, and across the diaspora. Yet they almost never appear on a fine watch. Five of each dial, made to order.",
       },
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
@@ -1600,7 +1606,7 @@ export const collections: Collection[] = [
       {
         name: "Ekushey",
         stripePriceId: "price_1UUPTrCfxE1lSBKRy4L1h1fg", // Étiquette Bangla — Ekushey (€1,100)
-        stock: 9,
+        stock: 4,
         price: 1100,
         description: "Ekushey — twenty-one, in Bangla. Lacquered green dial with a red centre and custom distorted Bangla numerals in silver.",
         image: "/images/etiquette-bangla.jpg",
@@ -1609,7 +1615,7 @@ export const collections: Collection[] = [
       {
         name: "Sondhya",
         stripePriceId: "price_1UUPNOCfxE1lSBKR7Zr4TfjN", // Étiquette Bangla — Sondhya (€1,100)
-        stock: 10,
+        stock: 5,
         price: 1100,
         description: "Sondhya — evening, in Bangla. Lacquered black onyx dial with custom distorted Bangla numerals and hands in gold.",
         image: "/images/etiquette-bangla-unishe.jpg",
