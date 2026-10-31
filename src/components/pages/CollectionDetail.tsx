@@ -918,7 +918,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                         {Math.min(c.editionNumbers - soldNumbers.length - reservedNumbers.length, selectedVariant.stock)} of {c.editionNumbers} still available
                       </p>
                     </div>
-                    <div ref={editionGridRef} className={`mt-4 grid ${c.editionNumbers === 9 ? "grid-cols-3" : c.editionNumbersPerDial ? "grid-cols-5" : "grid-cols-7"} border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
+                    <div ref={editionGridRef} className={`mt-4 grid ${c.editionNumbers === 9 ? "grid-cols-3" : c.editionNumbers === 21 ? "grid-cols-7" : "grid-cols-5"} border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
                       {Array.from({ length: c.editionNumbers }, (_, i) => i + 1).map((n) => {
                         const sold = soldNumbers.includes(n);
                         const reserved = !sold && reservedNumbers.includes(n);
@@ -928,7 +928,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                           <button
                             key={n}
                             type="button"
-                            disabled={taken || !numbersLoaded}
+                            disabled={taken || !numbersLoaded || selectedVariant.stock === 0}
                             onClick={() => { setEditionNumber(n); setUserPickedVariant(true); setPreOrderError(null); }}
                             aria-label={sold ? `No. ${pad2(n)}, sold` : reserved ? `No. ${pad2(n)}, reserved` : `Choose No. ${pad2(n)}`}
                             aria-pressed={selected}
@@ -938,9 +938,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                                 : reserved
                                 ? "cursor-not-allowed text-foreground-muted/35"
                                 : selected
-                                ? c.editionNumbersPerDial
-                                  ? "bg-accent text-background"
-                                  : "bg-[#3d1d38] text-[#f1dca6] shadow-[inset_0_0_0_1px_var(--accent)]"
+                                ? c.ownersClubInvite
+                                  ? "bg-[#3d1d38] text-[#f1dca6] shadow-[inset_0_0_0_1px_var(--accent)]"
+                                  : "bg-accent text-background"
                                 : "text-foreground hover:bg-accent/[0.07]"
                             }`}
                           >
@@ -995,7 +995,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       <li>{klarnaLine(effectivePrice)}</li>
                       {c.shipsBy && <li>{c.shipsBy}</li>}
                       {c.nonRefundable && <li>Made to order · Non-refundable · Payment in full at reservation</li>}
-                      {!c.editionNumbersPerDial && (
+                      {c.ownersClubInvite && (
                         <li>Owners&apos; code? Enter it at checkout under &ldquo;Add promotion code&rdquo;.</li>
                       )}
                     </ul>

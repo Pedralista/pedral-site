@@ -491,6 +491,7 @@ export const collections: Collection[] = [
     price: 2800,
     stock: 3, // static fallback (3 ETA 7001 + 0 LJP7380, last piece sold privately Oct 2026) — live counts come from Redis
     maxStock: 20,
+    editionNumbers: 20, // numbers already taken are set by hand in Redis (Kevin, 2026-10-31)
     edition: "ETA 7001 · LJP7380",
     badge: "Made to Order",
     urgencyTag: "A few pieces remain",
