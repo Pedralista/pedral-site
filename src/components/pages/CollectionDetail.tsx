@@ -854,11 +854,20 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                               disabled={v.stock === 0}
                               aria-pressed={isSel}
                               onClick={() => { setSelectedVariant(v); setUserPickedVariant(true); setPreOrderError(null); }}
-                              className={`rounded-lg border px-4 py-3.5 text-left font-serif text-[18px] font-light transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
-                                isSel ? "border-accent bg-accent/[0.08] text-foreground" : "border-accent/20 text-foreground-muted hover:border-accent/50"
+                              className={`rounded-lg border px-4 py-3.5 text-left font-serif text-[18px] font-light transition-colors disabled:cursor-not-allowed ${
+                                v.stock === 0
+                                  ? "border-accent/10 text-foreground-muted/50"
+                                  : isSel ? "border-accent bg-accent/[0.08] text-foreground" : "border-accent/20 text-foreground-muted hover:border-accent/50"
                               }`}
                             >
-                              {v.name}
+                              {/* A sold-out dial says so: a plain grey button read as a
+                                  broken link (feedback from the Hebrew group, 2026-11-03). */}
+                              <span className={v.stock === 0 ? "line-through decoration-1" : undefined}>{v.name}</span>
+                              {v.stock === 0 && (
+                                <span className="mt-1 block font-sans text-[11px] font-normal uppercase tracking-[2px] text-accent/70 no-underline">
+                                  Sold out
+                                </span>
+                              )}
                             </button>
                           );
                         })}
