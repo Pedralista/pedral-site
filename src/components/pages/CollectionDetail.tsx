@@ -96,6 +96,10 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     if (!hasVariants) return null;
     return requestedVariant ?? c.variants!.find((v) => v.stock > 0) ?? c.variants![0];
   });
+  // A sold-out dial can still be opened to look at (Kevin, 2026-11-04), but
+  // every buy button says "Sold out" and stays off while it's selected.
+  // (A fully sold-out collection keeps its own waitlist button instead.)
+  const dialSoldOut = !isSoldOut && !!selectedVariant && selectedVariant.stock === 0;
   const [loading, setLoading] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [preOrderError, setPreOrderError] = useState<string | null>(null);
@@ -351,6 +355,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   }
 
   function reserveOrChoose() {
+    if (dialSoldOut) return;
     if (c.editionNumbers && !editionNumber) goToGrid();
     else handleReserve();
   }
@@ -673,7 +678,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 <div className={`flex flex-col gap-3 sm:flex-row sm:items-center ${c.heroFit === "contain" ? "sm:justify-center" : ""}`}>
                   <button
                     onClick={reserveOrChoose}
-                    disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                    disabled={loading || dialSoldOut || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                     className="w-full rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
                   >
                     {loading
@@ -682,6 +687,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                       : isSoldOut
                       ? "Join Waitlist"
+                      : dialSoldOut
+                      ? `${selectedVariant?.name} · Sold out`
                       : c.editionNumbers
                       ? `${editionNumber ? `Reserve No. ${pad2(editionNumber)}` : "Choose your number"} · €${(effectivePrice).toLocaleString()}`
                       : `${c.reserveButtonLabel ?? "Acquire"} · €${(effectivePrice).toLocaleString()}`}
@@ -853,12 +860,11 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                             <button
                               key={v.name}
                               type="button"
-                              disabled={v.stock === 0}
                               aria-pressed={isSel}
                               onClick={() => { setSelectedVariant(v); setUserPickedVariant(true); setPreOrderError(null); }}
-                              className={`rounded-lg border px-4 py-3.5 text-left font-serif text-[18px] font-light transition-colors disabled:cursor-not-allowed ${
+                              className={`rounded-lg border px-4 py-3.5 text-left font-serif text-[18px] font-light transition-colors ${
                                 v.stock === 0
-                                  ? "border-accent/10 text-foreground-muted/50"
+                                  ? isSel ? "border-accent/50 bg-accent/[0.05] text-foreground-muted" : "border-accent/10 text-foreground-muted/50 hover:border-accent/30"
                                   : isSel ? "border-accent bg-accent/[0.08] text-foreground" : "border-accent/20 text-foreground-muted hover:border-accent/50"
                               }`}
                             >
@@ -926,7 +932,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       </p>
                       {/* Never above the dial's stock: a buyer who hasn't chosen yet still has a piece. */}
                       <p className={`font-serif text-[18px] font-light italic text-foreground-muted sm:text-[20px] ${numbersLoaded ? "" : "invisible"}`}>
-                        {Math.min(c.editionNumbers - soldNumbers.length - reservedNumbers.length - (c.editionNumbersHeld?.length ?? 0), selectedVariant.stock)} of {c.editionNumbers} still available
+                        {selectedVariant.stock === 0
+                          ? "Sold out"
+                          : `${Math.min(c.editionNumbers - soldNumbers.length - reservedNumbers.length - (c.editionNumbersHeld?.length ?? 0), selectedVariant.stock)} of ${c.editionNumbers} still available`}
                       </p>
                     </div>
                     <div ref={editionGridRef} className={`mt-4 grid ${c.editionNumbers === 9 ? "grid-cols-3" : c.editionNumbers === 21 ? "grid-cols-7" : "grid-cols-5"} border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
@@ -993,11 +1001,13 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       onClick={() => {
                         reserveOrChoose();
                       }}
-                      disabled={loading || (!!selectedVariant.numeralOptions && !selectedNumeral)}
+                      disabled={loading || dialSoldOut || (!!selectedVariant.numeralOptions && !selectedNumeral)}
                       className="w-full rounded-lg bg-accent px-6 py-5 text-[12px] font-medium tracking-[3px] uppercase text-background shadow-[0_8px_30px_-10px_var(--accent)] transition-colors hover:bg-accent-hover disabled:opacity-60"
                     >
                       {loading
                         ? "Loading…"
+                        : dialSoldOut
+                        ? `${selectedVariant.name} · Sold out`
                         : editionNumber
                         ? `Reserve No. ${pad2(editionNumber)} · €${runningTotal.toLocaleString()}`
                         : `Choose your number · €${runningTotal.toLocaleString()}`}
@@ -1496,10 +1506,10 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <div className="flex flex-col gap-2">
                 <button
                   onClick={reserveOrChoose}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  disabled={loading || dialSoldOut || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
-                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : `${c.reserveButtonLabel ?? "Acquire"} · €${runningTotal.toLocaleString()}`}
+                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : dialSoldOut ? "Sold out" : `${c.reserveButtonLabel ?? "Acquire"} · €${runningTotal.toLocaleString()}`}
                 </button>
               </div>
             </motion.div>
@@ -2097,7 +2107,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <button
                   onClick={reserveOrChoose}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  disabled={loading || dialSoldOut || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full max-w-[300px] rounded-lg bg-accent px-8 py-4 text-[12px] font-medium tracking-[2px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[3px]"
                 >
                   {loading
@@ -2106,6 +2116,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     ? `Reserve your allocation · €${c.depositAmount ?? 500} deposit`
                     : isSoldOut
                     ? "Join Waitlist"
+                    : dialSoldOut
+                    ? `${selectedVariant?.name} · Sold out`
                     : c.editionNumbers
                     ? `${editionNumber ? `Reserve No. ${pad2(editionNumber)}` : "Choose your number"} · €${(effectivePrice).toLocaleString()}`
                     : `${c.reserveButtonLabel ?? "Acquire"} · €${(effectivePrice).toLocaleString()}`}
@@ -2333,10 +2345,10 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <div className="flex shrink-0 items-center gap-2">
                 <button
                   onClick={reserveOrChoose}
-                  disabled={loading || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
+                  disabled={loading || dialSoldOut || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:px-8 sm:text-[11px] sm:tracking-[2px]"
                 >
-                  {loading ? "…" : c.editionNumbers ? (editionNumber ? `Reserve No. ${pad2(editionNumber)}` : "Choose your number") : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Acquire"}
+                  {loading ? "…" : dialSoldOut ? "Sold out" : c.editionNumbers ? (editionNumber ? `Reserve No. ${pad2(editionNumber)}` : "Choose your number") : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Acquire"}
                 </button>
               </div>
             </div>
