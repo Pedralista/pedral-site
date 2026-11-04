@@ -1343,13 +1343,13 @@ export const collections: Collection[] = [
     heroFit: "contain",
     detailImage: "/images/etiquette-movement.jpg",
     // New renders (Kevin, 2026-11-04). The older Tchelet/Layla studio renders
-    // stay on the hero and the dial picker.
+    // stay on the hero and the dial picker; the movement photo is already
+    // further up the page, so it's not repeated here.
     galleryImages: [
       "/images/etiquette-hebrew-tchelet-strap.jpg",
       "/images/etiquette-hebrew-tchelet-angle.jpg",
       "/images/etiquette-hebrew-profile.jpg",
       "/images/etiquette-hebrew-layla-angle.jpg",
-      "/images/etiquette-movement.jpg",
     ],
     variants: [
       {
