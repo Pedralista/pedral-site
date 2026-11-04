@@ -208,7 +208,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   // Stops permanently the moment the shopper interacts themselves, so it
   // never fights their choice.
   type HeroFrame = { variant: CollectionVariant; numeral: string | null; heroImage: string };
-  const heroFrames: HeroFrame[] = (c.variants ?? []).flatMap((v): HeroFrame[] => {
+  // Sold-out dials are left out: rotating onto one showed a buy button for a
+  // watch nobody can buy (Étiquette Hebrew Layla, 2026-11-04).
+  const heroFrames: HeroFrame[] = (c.variants ?? []).filter((v) => v.stock > 0).flatMap((v): HeroFrame[] => {
     if (v.numeralOptions && v.numeralOptions.length > 0 && v.numeralHeroImages) {
       return v.numeralOptions
         .filter((opt) => v.numeralHeroImages?.[opt])
