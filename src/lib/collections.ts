@@ -1342,7 +1342,15 @@ export const collections: Collection[] = [
     heroImage: "/images/etiquette-hebrew.jpg",
     heroFit: "contain",
     detailImage: "/images/etiquette-movement.jpg",
-    galleryImages: ["/images/etiquette-hebrew.jpg", "/images/etiquette-movement.jpg", "/images/etiquette-hebrew-blue.jpg"],
+    // New renders (Kevin, 2026-11-04). The older Tchelet/Layla studio renders
+    // stay on the hero and the dial picker.
+    galleryImages: [
+      "/images/etiquette-hebrew-tchelet-strap.jpg",
+      "/images/etiquette-hebrew-tchelet-angle.jpg",
+      "/images/etiquette-hebrew-profile.jpg",
+      "/images/etiquette-hebrew-layla-angle.jpg",
+      "/images/etiquette-movement.jpg",
+    ],
     variants: [
       {
         name: "Tchelet",
