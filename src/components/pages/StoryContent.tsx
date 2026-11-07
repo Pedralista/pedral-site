@@ -70,7 +70,7 @@ const timeline = [
   {
     year: "Oct 2026",
     title: "Silhouette",
-    text: "Contour's idea in a new proportion: 39mm, 7.3mm thin, on the Nyoka weave. Ophion carries the weave onto the dial; Aventurine is hand-set with moissanite.",
+    text: "Contour's idea in a new proportion: 39mm, from 7.3mm thin, on the Nyoka weave. Ophion carries the weave onto the dial; Aventurine is hand-set with moissanite.",
   },
   {
     year: "Now",

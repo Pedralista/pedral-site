@@ -792,12 +792,12 @@ export const collections: Collection[] = [
     name: "Silhouette",
     metaTitle: "Pedral Silhouette — 39mm Integrated Bracelet, Swiss Hand-Wound | Pedral",
     metaDescription:
-      "Silhouette: a 39mm integrated-bracelet watch on the Nyoka weave, 7.3mm thin. New woven dial Ophion, Japanese hand-wound, €1,500. Aventurine with hand-set moissanite, €2,200. Stockholm-designed.",
+      "Silhouette: a 39mm integrated-bracelet watch on the Nyoka weave, from 7.3mm thin. New woven dial Ophion, Japanese hand-wound, €1,500. Aventurine with hand-set moissanite, €2,200. Stockholm-designed.",
     tagline: "New",
     hook: "The line, reshaped.",
     descriptionTitle: "One continuous form.",
     description:
-      "Silhouette carries the same idea as Contour: a case and bracelet built as one continuous form, with no break in the line from lug to crown. Here it comes in a new proportion and a new weave. 39mm in diameter and 47.5mm lug to lug, it has a larger, more present footprint than Contour, and at 7.3mm thin the slimness that defines the line carries over. Built in 316L stainless steel, with the same integrated collar fusing case to bracelet.",
+      "Silhouette carries the same idea as Contour: a case and bracelet built as one continuous form, with no break in the line from lug to crown. Here it comes in a new proportion and a new weave. 39mm in diameter and 47.5mm lug to lug, it has a larger, more present footprint than Contour, and at 7.3mm thin (8.5mm for Ophion) the slimness that defines the line carries over. Built in 316L stainless steel, with the same integrated collar fusing case to bracelet.",
     descriptionExtra:
       "Where Contour wears articulated scales, Silhouette moves in Nyoka, a tighter, more fluid link that catches the light in a single continuous ripple rather than a grid. The name comes from nyoka, the Lingala word for snake. The resemblance is intentional: the same logic that drew the integrated-bracelet watches of the 1970s toward reptilian textures, reworked for how we build today.",
     designerNote:
@@ -832,7 +832,7 @@ export const collections: Collection[] = [
     extraFaqs: [
       {
         q: "Which movement is in Ophion?",
-        a: "A Japanese Miyota 9015 that Pedral converts from automatic to hand-winding, so the case stays 7.3mm thin. Ophion is €1,500, twenty pieces, first come, first served.",
+        a: "A Japanese Miyota 9015 that Pedral converts from automatic to hand-winding. With it the case is 8.5mm thick (Aventurine and Ituri, on the Swiss LJP D101, are 7.3mm). Ophion is €1,500, twenty pieces, first come, first served.",
       },
       {
         q: "Is the Ophion weave real relief, or an optical effect?",
@@ -840,11 +840,11 @@ export const collections: Collection[] = [
       },
       {
         q: "Will Silhouette fit my wrist?",
-        a: "The Nyoka bracelet fits wrists from 13.5 to 20 cm. The case is 39mm across, 47.5mm lug to lug and 7.3mm thin.",
+        a: "The Nyoka bracelet fits wrists from 13.5 to 20 cm. The case is 39mm across, 47.5mm lug to lug and 7.3mm thin (Ophion: 8.5mm).",
       },
       {
         q: "How is Silhouette different from Contour?",
-        a: "Same idea — case and bracelet as one continuous form — in a larger 39mm case, 47.5mm lug to lug, on the Nyoka weave bracelet instead of Contour's articulated scales. At 7.3mm thin, it's only a touch thicker than Contour's 6.9mm.",
+        a: "Same idea — case and bracelet as one continuous form — in a larger 39mm case, 47.5mm lug to lug, on the Nyoka weave bracelet instead of Contour's articulated scales. At 7.3mm thin on Aventurine and Ituri, it's only a touch thicker than Contour's 6.9mm; Ophion, with its Japanese movement, is 8.5mm.",
       },
       {
         q: "Is the Ituri dial hand-painted or printed?",
@@ -863,7 +863,7 @@ export const collections: Collection[] = [
     specs: {
       Price: "Ophion: €1,500 · Aventurine: €2,200 · Ituri: €5,000 (fully allocated)",
       Movement: "Hand-wound · Ophion: Japanese Miyota 9015 converted by Pedral from automatic to hand-winding · Aventurine and Ituri: Swiss La Joux-Perret LJP D101, 50-hour power reserve",
-      Case: "39mm · 47.5mm lug to lug · 7.3mm thin · 316L stainless steel (Ituri: gold-plated) · integrated collar fusing case to bracelet",
+      Case: "39mm · 47.5mm lug to lug · 7.3mm thin (Ophion: 8.5mm) · 316L stainless steel (Ituri: gold-plated) · integrated collar fusing case to bracelet",
       Bracelet: "Integrated, Nyoka weave",
       Dial: "Ophion (purple): the Nyoka weave carried across the dial, pressed in real raised and recessed relief with a sunburst finish, no indices, no logo · Aventurine: natural stone with hand-set moissanite baguette indices · Ituri: hand-fired gold cloisonné enamel carrying the Okapi motif",
       Crystal: "Sapphire",
@@ -889,10 +889,10 @@ export const collections: Collection[] = [
     testimonials: [],
     wristFit: {
       caseDiameter: "39mm",
-      thickness: "7.3mm",
+      thickness: "7.3mm (Ophion 8.5mm)",
       lugToLug: "47.5mm",
       wristRange: "13.5–20cm (5.3–7.9\")",
-      note: "39mm in diameter and 47.5mm lug to lug: a larger, more present footprint than Contour, and at 7.3mm thin the slimness that defines the line carries over. The Nyoka weave is integrated into the case, so it follows the wrist as one continuous form.",
+      note: "39mm in diameter and 47.5mm lug to lug: a larger, more present footprint than Contour, and at 7.3mm thin (Ophion 8.5mm) the slimness that defines the line carries over. The Nyoka weave is integrated into the case, so it follows the wrist as one continuous form.",
     },
     newsletterTitle: "Stay close to the studio.",
     newsletterSub: "Updates on Silhouette and future editions. No noise.",

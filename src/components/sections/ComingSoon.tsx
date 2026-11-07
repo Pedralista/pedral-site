@@ -15,7 +15,7 @@ const upcoming = [
   {
     label: "Silhouette · New",
     title: "The line, reshaped.",
-    desc: "Contour's idea in a new proportion: 39mm, 7.3mm thin, on the Nyoka weave. New: Ophion, the weave carried onto the dial, Japanese hand-wound. Aventurine, hand-set with moissanite.",
+    desc: "Contour's idea in a new proportion: 39mm, from 7.3mm thin, on the Nyoka weave. New: Ophion, the weave carried onto the dial, Japanese hand-wound. Aventurine, hand-set with moissanite.",
     eta: "Reservations open · From €1,500",
     href: "/collections/silhouette",
   },
