@@ -7,6 +7,7 @@ import Link from "next/link";
 import { collections, collectionCountWord } from "@/lib/collections";
 import TrustIcons from "@/components/sections/TrustIcons";
 import { useEffect, useRef, useState } from "react";
+import { cardStockLabel } from "@/lib/card-stock-label";
 
 function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   return (
@@ -217,23 +218,11 @@ export default function CollectionShowcase() {
                         </>
                       )}
                     </div>
-                    {c.stock > 0 && c.hideEditionSize && !c.isEnquiryOnly ? (
+                    {c.stock > 0 && !c.isEnquiryOnly ? (
               <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
-                {c.cardEditionLabel ?? `${c.stock} ${c.stock === 1 ? "remains" : "remain"}`}
+                {cardStockLabel(c.stock)}
               </span>
-            ) : c.stock > 0 && !c.isEnquiryOnly ? (
-                      <div>
-                        <div className="mb-1 mx-auto h-[3px] w-[72px] overflow-hidden rounded-sm bg-accent/[0.12]">
-                          <div
-                            className="h-full rounded-sm bg-accent"
-                            style={{ width: `${((c.maxStock - c.stock) / c.maxStock) * 100}%` }}
-                          />
-                        </div>
-                        <p className="text-center text-[14px] font-normal tracking-[0.5px] text-accent">
-                          {c.stock} of {c.maxStock} {c.stock === 1 ? "remains" : "remain"}
-                        </p>
-                      </div>
-                    ) : c.isEnquiryOnly ? (
+            ) : c.isEnquiryOnly ? (
                       <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
                         {c.inDevelopment ? c.inDevelopment.cardStatus : "Allocation only"}
                       </span>

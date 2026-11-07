@@ -8,6 +8,7 @@ import { collections, collectionCountWord, Collection } from "@/lib/collections"
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import ComingSoon from "@/components/sections/ComingSoon";
 import Newsletter from "@/components/sections/Newsletter";
+import { cardStockLabel } from "@/lib/card-stock-label";
 
 function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   return (
@@ -330,24 +331,10 @@ function CollectionCard({ collection }: { collection: Collection }) {
                 </>
               )}
             </div>
-            {collection.stock > 0 && collection.hideEditionSize && !collection.isEnquiryOnly ? (
+            {collection.stock > 0 && !collection.isEnquiryOnly ? (
               <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
-                {collection.cardEditionLabel ?? `${collection.stock} ${collection.stock === 1 ? "remains" : "remain"}`}
+                {cardStockLabel(collection.stock)}
               </span>
-            ) : collection.stock > 0 && !collection.isEnquiryOnly ? (
-              <div>
-                <div className="mb-1 mx-auto h-[3px] w-[72px] overflow-hidden rounded-sm bg-accent/[0.12]">
-                  <div
-                    className="h-full rounded-sm bg-accent"
-                    style={{
-                      width: `${((collection.maxStock - collection.stock) / collection.maxStock) * 100}%`,
-                    }}
-                  />
-                </div>
-                <p className="text-center text-[14px] font-normal tracking-[0.5px] text-accent">
-                  {collection.stock} of {collection.maxStock} {collection.stock === 1 ? "remains" : "remain"}
-                </p>
-              </div>
             ) : collection.isEnquiryOnly ? (
               <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
                 {collection.inDevelopment ? collection.inDevelopment.cardStatus : "Allocation only"}
