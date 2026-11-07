@@ -43,6 +43,10 @@ export interface CollectionVariant {
   // a new group (e.g. Maestro: "Petite Seconde · Small seconds · €1,600").
   // Keep same-group variants next to each other in the array.
   group?: string;
+  // With the collection's editionNumbers + editionNumbersPerDial: this dial's
+  // own edition size, when dials differ (e.g. Silhouette: Ophion 20,
+  // Aventurine 10). Falls back to the collection's editionNumbers.
+  editionNumbers?: number;
 }
 
 export interface Collection {
@@ -809,6 +813,10 @@ export const collections: Collection[] = [
     numeralOptionsLabel: "Movement",
     reserveButtonLabel: "Reserve Yours",
     shipsBy: "Ships end of Q1 2027",
+    // Every dial individually numbered, buyer picks the number (Kevin,
+    // 2026-11-07). Ophion 1–20; Aventurine and Ituri 1–10 (variant overrides).
+    editionNumbers: 20,
+    editionNumbersPerDial: true,
     story: {
       eyebrow: "Ophion",
       title: "Unmistakable from across a room.",
@@ -920,6 +928,7 @@ export const collections: Collection[] = [
         price: 2200,
         stockSlug: "contour",
         stockPart: "hand-wound-39mm-aventurine",
+        editionNumbers: 10,
         color: "Blue",
         description: "Natural aventurine stone with hand-set moissanite baguette indices. LJP D101, Swiss hand-wound.",
         image: "/images/silhouette-aventurine-v1.jpg",
@@ -929,6 +938,7 @@ export const collections: Collection[] = [
         name: "Ituri",
         stripePriceId: "price_1UBz7uCfxE1lSBKRLZGUEFVq",
         stock: 0, // fully allocated for now (Kevin, Oct 2026)
+        editionNumbers: 10,
         price: 5000,
         color: "Gold",
         description: "Hand-fired gold cloisonné enamel carrying the studio's Okapi motif, on a gold-plated case. Named for the Ituri Rainforest, the okapi's native habitat.",

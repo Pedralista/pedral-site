@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import { rateLimit, getIp } from "@/lib/rateLimit";
 import { collections } from "@/lib/collections";
 import { findCommunityCode } from "@/lib/community-codes";
-import { holdNumber, numberPool } from "@/lib/edition-numbers";
+import { editionSize, holdNumber, numberPool } from "@/lib/edition-numbers";
 import {
   addOnsEnabledFor,
   getStrapAddon,
@@ -286,9 +286,10 @@ export async function POST(req: NextRequest) {
   // held for 30 minutes while they pay, so nobody else can take it.
   const numbered = collections.find((c) => c.name === productName && c.editionNumbers);
   let chosenNumber: number | undefined;
+  const numberedSize = numbered ? editionSize(numbered, typeof variantName === "string" ? variantName : undefined) : 0;
   if (numbered?.editionNumbers) {
     const n = Number(editionNumber);
-    if (!Number.isInteger(n) || n < 1 || n > numbered.editionNumbers) {
+    if (!Number.isInteger(n) || n < 1 || n > numberedSize) {
       return NextResponse.json({ error: "Please choose your number." }, { status: 400 });
     }
     if (numbered.editionNumbersHeld?.includes(n)) {
@@ -321,7 +322,7 @@ export async function POST(req: NextRequest) {
   // without digging into metadata. The number is the server-checked one.
   const editionLabel =
     chosenNumber && numbered?.editionNumbers
-      ? `No. ${String(chosenNumber).padStart(2, "0")} of ${numbered.editionNumbers}`
+      ? `No. ${String(chosenNumber).padStart(2, "0")} of ${numberedSize}`
       : undefined;
   const orderLabel = String(`${productName}${variantName ? ` — ${variantName}` : ""}`).slice(0, 300);
 
@@ -377,7 +378,7 @@ export async function POST(req: NextRequest) {
     custom_text: {
       submit: {
         message: chosenNumber && numbered?.editionNumbers
-          ? `Edition number ${String(chosenNumber).padStart(2, "0")} of ${numbered.editionNumbers} is held for you for 30 minutes.${isPreOrder ? " Pre-order · Non-refundable." : ""} Kevin will confirm your piece within 24 hours.`
+          ? `Edition number ${String(chosenNumber).padStart(2, "0")} of ${numberedSize} is held for you for 30 minutes.${isPreOrder ? " Pre-order · Non-refundable." : ""} Kevin will confirm your piece within 24 hours.`
           : isPreOrder
           ? "Pre-order · Non-refundable · Delivery in 3–6 months. Kevin will confirm your allocation within 24 hours."
           : "Your order is allocation-based. Kevin will confirm your piece within 24 hours.",

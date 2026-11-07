@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { collections } from "@/lib/collections";
-import { getNumberStatus, numberPool } from "@/lib/edition-numbers";
+import { editionSize, getNumberStatus, numberPool } from "@/lib/edition-numbers";
 
 // Which numbers of a numbered edition are sold (paid) or reserved (in checkout).
 export async function GET(req: NextRequest) {
@@ -9,10 +9,12 @@ export async function GET(req: NextRequest) {
   if (!collection?.editionNumbers) {
     return NextResponse.json({ error: "Unknown edition" }, { status: 404 });
   }
-  const pool = numberPool(collection, req.nextUrl.searchParams.get("dial") ?? undefined);
+  const dial = req.nextUrl.searchParams.get("dial") ?? undefined;
+  const pool = numberPool(collection, dial);
   if (!pool) {
     return NextResponse.json({ error: "Unknown dial" }, { status: 404 });
   }
-  const { sold, reserved } = await getNumberStatus(pool, collection.editionNumbers);
-  return NextResponse.json({ total: collection.editionNumbers, sold, reserved }, { headers: { "Cache-Control": "no-store" } });
+  const total = editionSize(collection, dial);
+  const { sold, reserved } = await getNumberStatus(pool, total);
+  return NextResponse.json({ total, sold, reserved }, { headers: { "Cache-Control": "no-store" } });
 }

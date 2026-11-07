@@ -31,6 +31,12 @@ export function numberPool(collection: Collection, variantName: string | undefin
   return dial ? `${collection.slug}:${slugifyPart(dial.name)}` : null;
 }
 
+/** How many numbers a dial has: its own size when set, else the collection's. */
+export function editionSize(collection: Collection, variantName: string | undefined): number {
+  const dial = collection.variants?.find((v) => variantName === v.name || variantName?.startsWith(`${v.name} ·`));
+  return dial?.editionNumbers ?? collection.editionNumbers ?? 0;
+}
+
 const soldKey = (slug: string) => `edition:${slug}:sold`;
 const holdKey = (slug: string, n: number) => `edition:${slug}:hold:${n}`;
 

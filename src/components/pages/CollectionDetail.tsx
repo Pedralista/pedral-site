@@ -183,12 +183,15 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     fetchNumberStatus(c.slug, numberDial).then((s) => setNumberStatus((prev) => ({ ...prev, [numberDial]: s })));
   }, [c.editionNumbers, c.slug, numberDial, preOrderError]);
   const pad2 = (n: number) => String(n).padStart(2, "0");
+  // Numbers on the selected dial: its own size when dials differ (Silhouette), else the collection's.
+  const editionTotal = selectedVariant?.editionNumbers ?? c.editionNumbers ?? 0;
+  const dialSizesDiffer = !!c.variants?.some((v) => v.editionNumbers && v.editionNumbers !== c.editionNumbers);
   const baseSelectionLabel = selectedVariant?.numeralOptions
     ? `${selectedVariant.name} · ${selectedNumeral}`
     : selectedVariant?.name ?? "";
   const selectionLabel =
     c.editionNumbers && editionNumber
-      ? `${baseSelectionLabel} · No. ${pad2(editionNumber)} of ${c.editionNumbers}`
+      ? `${baseSelectionLabel} · No. ${pad2(editionNumber)} of ${editionTotal}`
       : baseSelectionLabel;
 
   // ── Checkout add-ons (feature-flagged OFF by default) ──────────────────────
@@ -833,7 +836,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
 
                 <div>
                   <p className="text-[12px] font-normal tracking-[2.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
-                    {c.editionNumbersPerDial ? `${c.editionNumbers} pieces per dial` : `Limited edition · ${c.editionNumbers} pieces`}
+                    {c.editionNumbersPerDial && !dialSizesDiffer ? `${editionTotal} pieces per dial` : `Limited edition · ${editionTotal} pieces`}
                   </p>
                   <h2 className="mt-4 font-serif text-[clamp(36px,4.6vw,54px)] font-light italic leading-[1.05] text-foreground">
                     {selectedVariant.name}
@@ -934,11 +937,11 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       <p className={`font-serif text-[18px] font-light italic text-foreground-muted sm:text-[20px] ${numbersLoaded ? "" : "invisible"}`}>
                         {selectedVariant.stock === 0
                           ? "Sold out"
-                          : `${Math.min(c.editionNumbers - soldNumbers.length - reservedNumbers.length - (c.editionNumbersHeld?.length ?? 0), selectedVariant.stock)} of ${c.editionNumbers} still available`}
+                          : `${Math.min(editionTotal - soldNumbers.length - reservedNumbers.length - (c.editionNumbersHeld?.length ?? 0), selectedVariant.stock)} of ${editionTotal} still available`}
                       </p>
                     </div>
-                    <div ref={editionGridRef} className={`mt-4 grid ${c.editionNumbers === 9 ? "grid-cols-3" : c.editionNumbers === 21 ? "grid-cols-7" : "grid-cols-5"} border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
-                      {Array.from({ length: c.editionNumbers }, (_, i) => i + 1).map((n) => {
+                    <div ref={editionGridRef} className={`mt-4 grid ${editionTotal === 9 ? "grid-cols-3" : editionTotal === 21 ? "grid-cols-7" : "grid-cols-5"} border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
+                      {Array.from({ length: editionTotal }, (_, i) => i + 1).map((n) => {
                         const sold = soldNumbers.includes(n);
                         const reserved = !sold && reservedNumbers.includes(n);
                         const held = !sold && !!c.editionNumbersHeld?.includes(n);
@@ -952,7 +955,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                             onClick={() => { setEditionNumber(n); setUserPickedVariant(true); setPreOrderError(null); }}
                             aria-label={sold ? `No. ${pad2(n)}, sold` : held ? `No. ${pad2(n)}, kept by the studio` : reserved ? `No. ${pad2(n)}, reserved` : `Choose No. ${pad2(n)}`}
                             aria-pressed={selected}
-                            className={`relative flex ${c.editionNumbers === 9 ? "aspect-[2/1]" : "aspect-square"} items-center justify-center border-b border-r border-accent/20 font-serif text-[19px] font-light italic transition-colors sm:text-[24px] ${
+                            className={`relative flex ${editionTotal === 9 ? "aspect-[2/1]" : "aspect-square"} items-center justify-center border-b border-r border-accent/20 font-serif text-[19px] font-light italic transition-colors sm:text-[24px] ${
                               sold
                                 ? "cursor-not-allowed text-foreground-muted/25"
                                 : reserved || held
@@ -980,7 +983,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     <p className="mt-4 text-[15px] font-light leading-[1.7] text-foreground-muted/80">
                       {editionNumber ? (
                         <>
-                          <span className="text-foreground">No. {pad2(editionNumber)} of {c.editionNumbers}</span>
+                          <span className="text-foreground">No. {pad2(editionNumber)} of {editionTotal}</span>
                           {selectedNumeral ? ` · ${selectedNumeral}` : c.editionNumbersPerDial ? ` · ${selectedVariant.name}` : ""}. Held for you for 30 minutes once you continue to checkout.
                         </>
                       ) : c.editionNumbersPerDial ? (
