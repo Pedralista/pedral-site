@@ -31,9 +31,9 @@ const VALID_PRICE_IDS = new Set([
   "price_1UBz4bCfxE1lSBKRxoKbUr0w", // Silhouette — Aventurine (€2,200), formerly Contour 39mm
   "price_1UBz7uCfxE1lSBKRLZGUEFVq", // Silhouette — Ituri (€5,000), formerly Contour 39mm
   "price_1UVadbCfxE1lSBKRn5qrUnUI", // Silhouette — Ophion · Japanese Hand-Wound (€1,500)
-  "price_1UUF2bCfxE1lSBKRY27YyEDf", // Étiquette — Soirée · Swiss Hand-Wound (€1,800)
+  "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Japanese Hand-Wound (€1,100)
   "price_1UUF5hCfxE1lSBKRu70dLbhe", // Étiquette — Bourgogne · Swiss Hand-Wound (€1,800)
-  "price_1UUF8YCfxE1lSBKRMREPi5B7", // Étiquette — Nocturne · Swiss Hand-Wound (€1,800)
+  "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Japanese Hand-Wound (€1,100)
   "price_1UUFCICfxE1lSBKRHBF1I95p", // Étiquette — Ambiance · Swiss Hand-Wound (€1,800)
   // Étiquette numeral editions (standalone pages)
   "price_1UUOovCfxE1lSBKRZltUibsZ", // Étiquette Hebrew — Tchelet · Japanese Hand-Wound (€1,100)

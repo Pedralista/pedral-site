@@ -951,9 +951,10 @@ export const collections: Collection[] = [
     // New model, opened for full-payment pre-order Oct 2026 while still at
     // prototype stage (prototype late Q4 2026 / early Q1 2027, estimated
     // delivery late Q1 / early Q2 2027, first come first served — confirmed
-    // by Kevin 2026-10-25). Main line is Swiss hand-wound LJP D101 only,
-    // €1,800 (Kevin, 2026-10-30; the Miyota option was removed, the numeral
-    // and owners' editions below keep it). Group-of-10 prices
+    // by Kevin 2026-10-25). Main line: Bourgogne and Ambiance are Swiss
+    // hand-wound LJP D101, €1,800; Soirée and Nocturne are Japanese
+    // hand-wound (Pedral-modified Miyota 9015), €1,100 (Kevin, 2026-11-07;
+    // one movement per dial, shown as a single Movement option). Group-of-10 prices
     // (€950 / €1,550) are private and deliberately NOT on the site. The
     // purple dial (10 pieces) is owners-only and reserved through Kevin
     // directly, so it's not in the checkout. Copy is Kevin's own launch
@@ -973,7 +974,7 @@ export const collections: Collection[] = [
     name: "Étiquette",
     metaTitle: "Pedral Étiquette — Art Deco Rectangular Dress Watch, 27 × 43.7mm | Pedral",
     metaDescription:
-      "Étiquette: a 27 × 43.7mm golden-ratio rectangular dress watch, 6.9–7.3mm (preliminary), with concentric CNC-machined grooves and custom distorted Roman numerals. Swiss hand-wound LJP D101, €1,800. Pre-order now.",
+      "Étiquette: a 27 × 43.7mm golden-ratio rectangular dress watch, 6.9–7.3mm (preliminary), with concentric CNC-machined grooves and custom distorted Roman numerals. Hand-wound: Soirée and Nocturne Japanese, €1,100; Bourgogne and Ambiance Swiss LJP D101, €1,800. Pre-order now.",
     tagline: "Pre-order",
     hook: "Good taste. Questionable manners.",
     descriptionTitle: "A study in proportion. An exercise in irreverence.",
@@ -985,9 +986,9 @@ export const collections: Collection[] = [
       "Good design, much like good manners, is knowing the rules. And knowing precisely when to break them.",
     year: 2026,
     tier: "signature",
-    price: 1800,
+    price: 1100, // "From" price: Soirée / Nocturne (Japanese)
     stock: 40, // sum of the variant (dial) stocks below
-    maxStock: 40, // 10 Swiss pieces of each dial (Kevin, 2026-10-30)
+    maxStock: 40, // 10 pieces of each dial (Kevin, 2026-10-30)
     edition: "10 per dial · Pre-order · First run",
     hideEditionSize: true,
     cardEditionLabel: "10 per dial",
@@ -998,16 +999,17 @@ export const collections: Collection[] = [
     reserveButtonLabel: "Reserve Yours",
     shipsBy: "Estimated delivery: late Q1 / early Q2 2027 · Delivered in order of purchase",
     variantLabel: "Dial",
+    numeralOptionsLabel: "Movement",
     reassurance: [
       "By reservation · Payment in full secures your piece",
-      "Sapphire crystal · 316L steel · Swiss hand-wound LJP D101",
+      "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D101",
       "Direct communication with Kevin — not a support team",
       "Tracked & insured shipping",
     ],
     specsTitle: "Not for everyone.",
     specs: {
-      Price: "€1,800",
-      Movement: "La Joux-Perret LJP D101 · Swiss hand-wound · Hours and minutes · 50-hour power reserve",
+      Price: "Soirée and Nocturne: €1,100 (Japanese hand-wound) · Bourgogne and Ambiance: €1,800 (Swiss hand-wound)",
+      Movement: "Hand-wound · Hours and minutes · Soirée and Nocturne: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Bourgogne and Ambiance: La Joux-Perret LJP D101, Swiss, 50-hour power reserve",
       Case: "27 × 43.7mm · Golden ratio proportions · 6.9–7.3mm thick (preliminary) · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
       Dial: "Pedral signature inner dial frame · Soirée (black onyx, gold numerals) and Bourgogne: custom distorted Roman numerals · Nocturne (black onyx) and Ambiance: musical-note indices · Famille Royale (Royal Aubergine lacquer, champagne-gold numerals) reserved for existing owners",
@@ -1037,7 +1039,7 @@ export const collections: Collection[] = [
     extraFaqs: [
       {
         q: "What will it cost?",
-        a: "€1,800. Étiquette is hand-wound, powered by the Swiss La Joux-Perret LJP D101.",
+        a: "Every Étiquette is hand-wound, and each dial comes with one movement. Soirée and Nocturne are €1,100, powered by a Miyota 9015 that Pedral converts from automatic to manual winding and reworks into a rectangular movement (27 × 20.6 × 3.5 mm). Bourgogne and Ambiance are €1,800, powered by the Swiss La Joux-Perret LJP D101.",
       },
       {
         q: "When will it be delivered?",
@@ -1063,9 +1065,13 @@ export const collections: Collection[] = [
     variants: [
       {
         name: "Soirée",
-        stripePriceId: "price_1UUF2bCfxE1lSBKRY27YyEDf", // Étiquette — Soirée · Swiss Hand-Wound (€1,800)
+        stripePriceId: "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Japanese Hand-Wound (€1,100), Japanese only since 2026-11-07 (Kevin)
         stock: 10,
-        price: 1800,
+        price: 1100,
+        numeralOptions: ["Japanese Hand-Wound"],
+        numeralPriceIds: {
+          "Japanese Hand-Wound": "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Japanese Hand-Wound (€1,100)
+        },
         description: "Black onyx dial, custom distorted Roman numerals and hands in gold. The black-tie one.",
         image: "/images/etiquette-soiree-gold.jpg",
         heroImage: "/images/etiquette-soiree-gold.jpg",
@@ -1075,15 +1081,20 @@ export const collections: Collection[] = [
         stripePriceId: "price_1UUF5hCfxE1lSBKRu70dLbhe", // Étiquette — Bourgogne · Swiss Hand-Wound (€1,800)
         stock: 10,
         price: 1800,
+        numeralOptions: ["Swiss Hand-Wound"],
         description: "Burgundy dial, custom distorted Roman numerals in silver.",
         image: "/images/etiquette-bourgogne.jpg",
         heroImage: "/images/etiquette-bourgogne.jpg",
       },
       {
         name: "Nocturne",
-        stripePriceId: "price_1UUF8YCfxE1lSBKRMREPi5B7", // Étiquette — Nocturne · Swiss Hand-Wound (€1,800)
+        stripePriceId: "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Japanese Hand-Wound (€1,100), Japanese only since 2026-11-07 (Kevin)
         stock: 10,
-        price: 1800,
+        price: 1100,
+        numeralOptions: ["Japanese Hand-Wound"],
+        numeralPriceIds: {
+          "Japanese Hand-Wound": "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Japanese Hand-Wound (€1,100)
+        },
         description: "Black onyx dial with ivory musical-note indices.",
         image: "/images/etiquette-nocturne.jpg",
         heroImage: "/images/etiquette-nocturne.jpg",
@@ -1093,6 +1104,7 @@ export const collections: Collection[] = [
         stripePriceId: "price_1UUFCICfxE1lSBKRHBF1I95p", // Étiquette — Ambiance · Swiss Hand-Wound (€1,800)
         stock: 10,
         price: 1800,
+        numeralOptions: ["Swiss Hand-Wound"],
         description: "Ivory dial with colourful musical-note indices and blue hands. The one with questionable manners.",
         image: "/images/etiquette-ambiance.jpg",
         heroImage: "/images/etiquette-ambiance.jpg",
