@@ -864,7 +864,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                               key={v.name}
                               type="button"
                               aria-pressed={isSel}
-                              onClick={() => { setSelectedVariant(v); setUserPickedVariant(true); setPreOrderError(null); }}
+                              onClick={() => { setSelectedVariant(v); setSelectedNumeral((prev) => (prev && v.numeralOptions?.includes(prev) ? prev : v.numeralOptions?.[0] ?? null)); setUserPickedVariant(true); setPreOrderError(null); }}
                               className={`rounded-lg border px-4 py-3.5 text-left font-serif text-[18px] font-light transition-colors ${
                                 v.stock === 0
                                   ? isSel ? "border-accent/50 bg-accent/[0.05] text-foreground-muted" : "border-accent/10 text-foreground-muted/50 hover:border-accent/30"
