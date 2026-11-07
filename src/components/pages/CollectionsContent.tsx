@@ -333,7 +333,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
             </div>
             {collection.stock > 0 && !collection.isEnquiryOnly ? (
               <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
-                {cardStockLabel(collection.stock)}
+                {cardStockLabel(collection.stock, collection.cardScarcity)}
               </span>
             ) : collection.isEnquiryOnly ? (
               <span className="text-[14px] font-normal tracking-[0.5px] text-accent">

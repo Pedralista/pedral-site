@@ -220,7 +220,7 @@ export default function CollectionShowcase() {
                     </div>
                     {c.stock > 0 && !c.isEnquiryOnly ? (
               <span className="text-[14px] font-normal tracking-[0.5px] text-accent">
-                {cardStockLabel(c.stock)}
+                {cardStockLabel(c.stock, c.cardScarcity)}
               </span>
             ) : c.isEnquiryOnly ? (
                       <span className="text-[14px] font-normal tracking-[0.5px] text-accent">

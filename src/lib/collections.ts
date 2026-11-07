@@ -126,6 +126,8 @@ export interface Collection {
   hideEditionSize?: boolean;
   /** With hideEditionSize: replaces the total "N remain" on homepage and collection cards (e.g. "10 per dial"). */
   cardEditionLabel?: string;
+  /** Card stock line in elevated wording, unique per collection (Kevin, 2026-11-07). At 3 or fewer pieces the card says "The final pieces" instead. */
+  cardScarcity?: string;
   /** "compact" = one image window plus dial buttons (grouped by variant.group) that switch it, sold-out variants left out — instead of one card with its own photo per variant. */
   variantPicker?: "cards" | "compact";
   /** Variant featured on the collection/homepage card: its image and its own remaining count are shown instead of the product image and the line's total (e.g. Maestro: Aura Gold — a single dial's count is clearer than a total across dials). */
@@ -178,6 +180,7 @@ export const collections: Collection[] = [
     // here (next.config.ts); Soul Blue / Aura Gold keep their existing
     // live stock counters via stockSlug.
     slug: "maestro",
+    cardScarcity: "A handful remain",
     name: "Maestro",
     formerNames: ["Maestro Petite Seconde"],
     metaTitle: "Pedral Maestro — Swiss Automatic Tonneau Dress Watch, Central or Small Seconds | Pedral",
@@ -355,6 +358,7 @@ export const collections: Collection[] = [
   },
   {
     slug: "triomphe",
+    cardScarcity: "The final pieces",
     name: "Triomphe",
     metaTitle: "Pedral Triomphe — Ultra-Thin Swiss Hand-Wound, Limited to 20 | Pedral",
     metaDescription: "An 8.8mm ultra-thin dress watch with a Sellita Swiss hand-wound movement. Stockholm-designed by an independent Swedish maker. Editions of 20, no restocks.",
@@ -481,6 +485,7 @@ export const collections: Collection[] = [
   },
   {
     slug: "okapi",
+    cardScarcity: "Never to be repeated",
     name: "Okapi Classique",
     metaTitle: "Pedral Okapi Classique — Swiss Hand-Wound, Limited to 20 | Pedral",
     metaDescription: "A 37mm cushion dress watch. ETA 7001 or La Joux-Perret LJP7380 Swiss hand-wound. Stockholm-designed, independent Swedish maker. Edition of 20.",
@@ -593,6 +598,7 @@ export const collections: Collection[] = [
   },
   {
     slug: "contour",
+    cardScarcity: "Offered sparingly",
     name: "Contour",
     metaTitle: "Pedral Contour — Integrated Bracelet, Quartz & Hand-Wound | Pedral",
     metaDescription:
@@ -789,6 +795,7 @@ export const collections: Collection[] = [
     // Ladon, was dropped before launch (Kevin, 2026-10-29); its Stripe
     // prices exist but aren't wired in.
     slug: "silhouette",
+    cardScarcity: "By allocation",
     name: "Silhouette",
     metaTitle: "Pedral Silhouette — 39mm Integrated Bracelet, Swiss Hand-Wound | Pedral",
     metaDescription:
@@ -971,6 +978,7 @@ export const collections: Collection[] = [
     // dashboard 2026-10-25), also allow-listed in VALID_PRICE_IDS in
     // src/app/api/checkout/route.ts.
     slug: "etiquette",
+    cardScarcity: "Ten per dial. Never more.",
     name: "Étiquette",
     metaTitle: "Pedral Étiquette — Art Deco Rectangular Dress Watch, 27 × 43.7mm | Pedral",
     metaDescription:

@@ -8,7 +8,7 @@ const upcoming = [
   {
     label: "Étiquette · New Model",
     title: "Good taste. Questionable manners.",
-    desc: "The rectangular dress watch, reimagined — 27 × 43.7mm on the golden ratio, 6.9–7.3mm (preliminary), concentric CNC-machined grooves, Roman numerals or musical notes. Swiss hand-wound LJP D101. Famille Royale, in Royal Aubergine lacquer with champagne-gold numerals, is reserved for existing owners: 21 numbered pieces, no public allocation.",
+    desc: "The rectangular dress watch, reimagined — 27 × 43.7mm on the golden ratio, 6.9–7.3mm (preliminary), concentric CNC-machined grooves, Roman numerals or musical notes. Hand-wound, Japanese or Swiss LJP D101 depending on the dial. Famille Royale, in Royal Aubergine lacquer with champagne-gold numerals, is reserved for existing owners: 21 numbered pieces, no public allocation.",
     eta: "By reservation · €1,800",
     href: "/collections/etiquette",
   },
