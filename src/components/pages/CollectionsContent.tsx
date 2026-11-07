@@ -22,41 +22,41 @@ const filters: { key: Filter; label: string }[] = [
 function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number; isPreOrder?: boolean; isEnquiryOnly?: boolean; badge?: string }) {
   if (isEnquiryOnly) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
+      <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-accent/40 bg-background/80 whitespace-nowrap px-2 py-1 text-[9px] font-medium tracking-[1px] uppercase sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] text-accent backdrop-blur-sm">
         By Enquiry Only
       </span>
     );
   }
   if (badge) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
+      <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-accent/40 bg-background/80 whitespace-nowrap px-2 py-1 text-[9px] font-medium tracking-[1px] uppercase sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] text-accent backdrop-blur-sm">
         {badge}
       </span>
     );
   }
   if (stock === 0 && isPreOrder) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
+      <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-accent/40 bg-background/80 whitespace-nowrap px-2 py-1 text-[9px] font-medium tracking-[1px] uppercase sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] text-accent backdrop-blur-sm">
         Pre-order Opens Soon
       </span>
     );
   }
   if (stock === 0) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-white/15 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-white/50 backdrop-blur-sm">
+      <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-white/15 bg-background/80 whitespace-nowrap px-2 py-1 text-[9px] font-medium tracking-[1px] uppercase sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] text-white/50 backdrop-blur-sm">
         Fully Allocated
       </span>
     );
   }
   if (stock <= 5) {
     return (
-      <span className="absolute left-3 top-3 z-10 border border-red-500/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-red-400/90 backdrop-blur-sm">
+      <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-red-500/40 bg-background/80 whitespace-nowrap px-2 py-1 text-[9px] font-medium tracking-[1px] uppercase sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] text-red-400/90 backdrop-blur-sm">
         Final Pieces
       </span>
     );
   }
   return (
-    <span className="absolute left-3 top-3 z-10 border border-accent/40 bg-background/80 px-3 py-1.5 text-[11px] font-medium tracking-[1.5px] uppercase text-accent backdrop-blur-sm">
+    <span className="absolute left-2 top-2 z-10 sm:left-3 sm:top-3 border border-accent/40 bg-background/80 whitespace-nowrap px-2 py-1 text-[9px] font-medium tracking-[1px] uppercase sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[1.5px] text-accent backdrop-blur-sm">
       {stock} Remain
     </span>
   );
@@ -227,7 +227,6 @@ function SoldOutCard({ href, dial, model, image }: { href: string; dial: string;
   return (
     <motion.div variants={fadeInUp}>
       <Link href={href} className="group relative block cursor-pointer">
-        <BadgeLabel stock={0} />
         <div className="relative aspect-[3/4] overflow-hidden rounded-md bg-[var(--surface)]">
           <Image
             src={image}
@@ -238,13 +237,10 @@ function SoldOutCard({ href, dial, model, image }: { href: string; dial: string;
           />
         </div>
         <div className="pt-5 text-center">
-          <h3 className="font-serif text-2xl font-normal text-foreground">{dial}</h3>
-          <p className="mx-auto mt-1.5 mb-4 max-w-[85%] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[16px]">
+          <h3 className="font-serif text-xl font-normal text-foreground sm:text-2xl">{dial}</h3>
+          <p className="mx-auto mt-1 max-w-[85%] text-[14px] font-light italic leading-snug text-foreground-muted sm:text-[15px]">
             {model}
           </p>
-          <span className="text-[14px] font-normal tracking-[0.5px] text-foreground-muted">
-            Found its owners
-          </span>
         </div>
       </Link>
     </motion.div>
@@ -281,7 +277,7 @@ function CollectionCard({ collection }: { collection: Collection }) {
           <h3 className="font-serif text-2xl font-normal text-foreground">
             {collection.name}
           </h3>
-          <p className="mx-auto mt-1.5 mb-4 max-w-[85%] min-h-[2.8rem] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[16px]">
+          <p className="mx-auto mt-1.5 mb-4 hidden max-w-[85%] min-h-[2.8rem] text-[15px] font-light italic leading-snug text-foreground-muted sm:block sm:text-[16px]">
             &ldquo;{collection.hook}&rdquo;
           </p>
           <div className="flex flex-col items-center gap-2">
