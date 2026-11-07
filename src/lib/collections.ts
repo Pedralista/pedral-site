@@ -782,8 +782,9 @@ export const collections: Collection[] = [
     //
     // Ophion (purple) added 2026-10-28: woven dial echoing the Nyoka
     // bracelet, with a movement choice like Étiquette — Swiss LJP D101 €2,200
-    // or Japanese Miyota 9015 converted to hand-wound €1,500. 20 pieces,
-    // shared between the two movements. Name, prices, stock and case
+    // or Japanese Miyota 9015 converted to hand-wound €1,500. 20 pieces.
+    // Japanese only since 2026-11-07 (Kevin): the Swiss price is off the
+    // page and the checkout allow-list (still in Stripe). Name, prices, stock and case
     // thickness (unchanged at 7.3mm) confirmed by Kevin. A gold sister dial,
     // Ladon, was dropped before launch (Kevin, 2026-10-29); its Stripe
     // prices exist but aren't wired in.
@@ -791,7 +792,7 @@ export const collections: Collection[] = [
     name: "Silhouette",
     metaTitle: "Pedral Silhouette — 39mm Integrated Bracelet, Swiss Hand-Wound | Pedral",
     metaDescription:
-      "Silhouette: a 39mm integrated-bracelet watch on the Nyoka weave, 7.3mm thin. New woven dial Ophion, hand-wound — Japanese €1,500, Swiss LJP D101 €2,200. Aventurine with hand-set moissanite, €2,200. Stockholm-designed.",
+      "Silhouette: a 39mm integrated-bracelet watch on the Nyoka weave, 7.3mm thin. New woven dial Ophion, Japanese hand-wound, €1,500. Aventurine with hand-set moissanite, €2,200. Stockholm-designed.",
     tagline: "New",
     hook: "The line, reshaped.",
     descriptionTitle: "One continuous form.",
@@ -825,13 +826,13 @@ export const collections: Collection[] = [
         { heading: "One surface, wrist to dial" },
         "So the weave doesn't stop at the case. The Nyoka pattern runs from the bracelet straight across the dial, in a deep **purple** that falls to near-black where the weave turns into shadow. No indices, no logo, only two slender hands, so case, bracelet and dial read as one continuous surface.",
         { heading: "Worn like jewellery, built like a watch" },
-        "Underneath, it is still a proper hand-wound watch: the Swiss La Joux-Perret LJP D101, or a Japanese Miyota 9015 that Pedral converts from automatic to hand-winding. Twenty pieces.",
+        "Underneath, it is still a proper hand-wound watch: a Japanese Miyota 9015 that Pedral converts from automatic to hand-winding. Twenty pieces.",
       ],
     },
     extraFaqs: [
       {
-        q: "Which movement should I choose for Ophion?",
-        a: "Both are hand-wound, and the case stays 7.3mm thin either way. The Japanese version (€1,500) runs on a Miyota 9015 that Pedral converts from automatic to hand-winding. The Swiss version (€2,200) runs on the La Joux-Perret LJP D101, with a 50-hour power reserve. The twenty pieces are shared between the two movements, first come, first served.",
+        q: "Which movement is in Ophion?",
+        a: "A Japanese Miyota 9015 that Pedral converts from automatic to hand-winding, so the case stays 7.3mm thin. Ophion is €1,500, twenty pieces, first come, first served.",
       },
       {
         q: "Is the Ophion weave real relief, or an optical effect?",
@@ -860,8 +861,8 @@ export const collections: Collection[] = [
     ],
     specsTitle: "The line, reshaped.",
     specs: {
-      Price: "Ophion: €1,500 Japanese · €2,200 Swiss · €2,200 Aventurine · €5,000 Ituri (fully allocated)",
-      Movement: "Hand-wound · Swiss: La Joux-Perret LJP D101, 50-hour power reserve · Japanese (Ophion only): Miyota 9015 converted by Pedral from automatic to hand-winding",
+      Price: "Ophion: €1,500 · Aventurine: €2,200 · Ituri: €5,000 (fully allocated)",
+      Movement: "Hand-wound · Ophion: Japanese Miyota 9015 converted by Pedral from automatic to hand-winding · Aventurine and Ituri: Swiss La Joux-Perret LJP D101, 50-hour power reserve",
       Case: "39mm · 47.5mm lug to lug · 7.3mm thin · 316L stainless steel (Ituri: gold-plated) · integrated collar fusing case to bracelet",
       Bracelet: "Integrated, Nyoka weave",
       Dial: "Ophion (purple): the Nyoka weave carried across the dial, pressed in real raised and recessed relief with a sunburst finish, no indices, no logo · Aventurine: natural stone with hand-set moissanite baguette indices · Ituri: hand-fired gold cloisonné enamel carrying the Okapi motif",
@@ -878,7 +879,7 @@ export const collections: Collection[] = [
     ],
     valuePerspectiveTitle: "Where the price goes.",
     valueAnchor:
-      "The LJP D101 is a modern successor to the Peseux/ETA 7001 family with a longer 50-hour reserve, not a higher-grade movement. So what sets the price is the dial: hand-set moissanite stone-setting on Aventurine, and hand-fired gold cloisonné enamel — the studio's namesake motif — on Ituri. On Ophion you choose the movement: the Swiss D101, or the Japanese Miyota 9015 converted to hand-winding, which brings the same case, bracelet and dial in at €1,500.",
+      "The LJP D101 is a modern successor to the Peseux/ETA 7001 family with a longer 50-hour reserve, not a higher-grade movement. So what sets the price is the dial: hand-set moissanite stone-setting on Aventurine, and hand-fired gold cloisonné enamel — the studio's namesake motif — on Ituri. Ophion uses the Japanese Miyota 9015 converted to hand-winding, which brings the same case, bracelet and dial in at €1,500.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Bracelet",
@@ -908,17 +909,15 @@ export const collections: Collection[] = [
       {
         name: "Ophion",
         stripePriceId: "", // unused — every movement choice has its own ID in numeralPriceIds
-        stock: 20, // shared between both movements
+        stock: 20, // Japanese movement only (Kevin, 2026-11-07)
         price: 1500,
         color: "Purple",
         description: "Purple dial carrying the Nyoka weave across the face, pressed in real relief with a sunburst finish. No indices, no logo.",
         image: "/images/silhouette-ophion-v1.jpg",
         heroImage: "/images/silhouette-ophion-v1.jpg",
-        numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
-        numeralPrices: { "Swiss Hand-Wound": 2200 },
+        numeralOptions: ["Japanese Hand-Wound"],
         numeralPriceIds: {
           "Japanese Hand-Wound": "price_1UVadbCfxE1lSBKRn5qrUnUI", // Silhouette — Ophion · Japanese Hand-Wound (€1,500)
-          "Swiss Hand-Wound": "price_1UVaclCfxE1lSBKRrfhLXk3D", // Silhouette — Ophion · Swiss Hand-Wound (€2,200)
         },
       },
       {
