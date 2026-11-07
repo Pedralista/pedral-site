@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,22 +9,7 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 import ComingSoon from "@/components/sections/ComingSoon";
 import Newsletter from "@/components/sections/Newsletter";
 import { cardStockLabel } from "@/lib/card-stock-label";
-
-function ChevronIcon({ direction }: { direction: "left" | "right" }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-4 w-4"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.75}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d={direction === "left" ? "M15 18l-6-6 6-6" : "M9 18l6-6-6-6"} />
-    </svg>
-  );
-}
+import { archivedWatches } from "@/lib/archive";
 
 type Filter = "all" | "signature" | "limited";
 
@@ -79,12 +64,20 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
 
 // Closed dials shown after the current editions, so visitors see what has
 // already found its owners (Kevin, Oct 2026).
+// Eight sold-out dials, two rows of four (Kevin, 2026-11-07). `dial` is a
+// variant name, or a dial option inside one (Contour's Solaire etc.).
 const SOLD_OUT_CARDS: { slug: string; dial: string }[] = [
+  { slug: "contour", dial: "Solaire" },
+  { slug: "contour", dial: "Nébuleuse" },
+  { slug: "contour", dial: "Lumière" },
   { slug: "silhouette", dial: "Ituri" },
   { slug: "triomphe", dial: "Émeraude Vert" },
   { slug: "maestro", dial: "Laguna View" },
   { slug: "triomphe", dial: "Ember Stone" },
+  { slug: "maestro", dial: "Cosmic Tilt" },
 ];
+// Closed archive editions can be listed here too (they link to /archive).
+const ARCHIVE_SOLD_OUT: { slug: string; dial: string }[] = [];
 
 export default function CollectionsContent() {
   const [active, setActive] = useState<Filter>("all");
@@ -114,22 +107,23 @@ export default function CollectionsContent() {
     .sort((a, b) => (a.slug === "contour" ? -1 : b.slug === "contour" ? 1 : 0));
   const filtered =
     active === "all" ? visible : visible.filter((c) => c.tier === active);
-  const soldOutCards = SOLD_OUT_CARDS.flatMap(({ slug, dial }) => {
-    const c = collections.find((x) => x.slug === slug);
-    const v = c?.variants?.find((x) => x.name === dial);
-    if (!c || !v?.image || (active !== "all" && c.tier !== active)) return [];
-    return [{ collection: c, dial: v.name, image: v.image }];
-  });
-  const scrollerRef = useRef<HTMLDivElement>(null);
-
-  const scrollByCard = (direction: "left" | "right") => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-carousel-card]");
-    const amount = (card?.offsetWidth ?? el.clientWidth * 0.7) + 16;
-    el.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
-  };
-
+  const soldOutCards = [
+    ...SOLD_OUT_CARDS.flatMap(({ slug, dial }) => {
+      const c = collections.find((x) => x.slug === slug);
+      const v = c?.variants?.find((x) => x.name === dial);
+      const image = v?.image ?? c?.variants?.map((x) => x.numeralImages?.[dial]).find(Boolean);
+      if (!c || !image || (active !== "all" && c.tier !== active)) return [];
+      return [{ key: `${c.slug}-${dial}`, href: `/collections/${c.slug}`, dial, model: c.name, image }];
+    }),
+    ...(active === "all"
+      ? ARCHIVE_SOLD_OUT.flatMap(({ slug, dial }) => {
+          const w = archivedWatches.find((x) => x.slug === slug);
+          const i = w?.dialNames?.indexOf(dial) ?? -1;
+          const image = w && i >= 0 ? w.images[i] : undefined;
+          return w && image ? [{ key: `${slug}-${dial}`, href: "/archive", dial, model: w.name, image }] : [];
+        })
+      : []),
+  ];
   return (
     <>
       {/* Hero */}
@@ -185,59 +179,39 @@ export default function CollectionsContent() {
             </Link>
           </div>
 
-          <div className="mb-4 hidden justify-end gap-2 sm:flex">
-            <button
-              type="button"
-              aria-label="Previous"
-              onClick={() => scrollByCard("left")}
-              className="flex h-9 w-9 items-center justify-center border border-foreground-muted/20 text-foreground-muted transition-colors hover:border-accent hover:text-accent"
+          {/* Available watches: a grid, two rows of three on desktop (Kevin, 2026-11-07) */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={staggerContainer}
+              className="grid grid-cols-2 gap-x-4 gap-y-12 md:gap-x-6 md:gap-y-16 lg:grid-cols-3 lg:gap-x-8"
             >
-              <ChevronIcon direction="left" />
-            </button>
-            <button
-              type="button"
-              aria-label="Next"
-              onClick={() => scrollByCard("right")}
-              className="flex h-9 w-9 items-center justify-center border border-foreground-muted/20 text-foreground-muted transition-colors hover:border-accent hover:text-accent"
-            >
-              <ChevronIcon direction="right" />
-            </button>
-          </div>
+              {filtered.map((collection) => (
+                <div key={collection.slug}>
+                  <CollectionCard collection={collection} />
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
 
-          {/* Carousel */}
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background-alt to-transparent md:w-24" />
-            <AnimatePresence mode="wait">
-              <motion.div
-                ref={scrollerRef}
-                key={active}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                variants={staggerContainer}
-                className="horizontal-scroll -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 md:-mx-12 md:gap-5 md:px-12"
-              >
-                {filtered.map((collection) => (
-                  <div
-                    key={collection.slug}
-                    data-carousel-card
-                    className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[24%]"
-                  >
-                    <CollectionCard collection={collection} />
-                  </div>
-                ))}
+          {/* Sold-out dials, kept below the available watches */}
+          {soldOutCards.length > 0 && (
+            <div className="mt-20 border-t border-accent/10 pt-14 md:mt-28 md:pt-20">
+              <p className="mb-10 text-center text-[11px] font-normal tracking-[4px] uppercase text-accent">
+                Found their owners
+              </p>
+              <div className="flex flex-wrap justify-center gap-x-4 gap-y-12 md:gap-x-6 lg:gap-x-8">
                 {soldOutCards.map((s) => (
-                  <div
-                    key={`${s.collection.slug}-${s.dial}`}
-                    data-carousel-card
-                    className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[24%]"
-                  >
-                    <SoldOutCard collection={s.collection} dial={s.dial} image={s.image} />
+                  <div key={s.key} className="w-[calc(50%-8px)] md:w-[calc(50%-12px)] lg:w-[calc(25%-24px)]">
+                    <SoldOutCard href={s.href} dial={s.dial} model={s.model} image={s.image} />
                   </div>
                 ))}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
       <ComingSoon />
@@ -249,23 +223,24 @@ export default function CollectionsContent() {
   );
 }
 
-function SoldOutCard({ collection, dial, image }: { collection: Collection; dial: string; image: string }) {
+function SoldOutCard({ href, dial, model, image }: { href: string; dial: string; model: string; image: string }) {
   return (
     <motion.div variants={fadeInUp}>
-      <Link href={`/collections/${collection.slug}`} className="group relative block cursor-pointer">
+      <Link href={href} className="group relative block cursor-pointer">
         <BadgeLabel stock={0} />
         <div className="relative aspect-[3/4] overflow-hidden rounded-md bg-[var(--surface)]">
           <Image
             src={image}
-            alt={`${collection.name} ${dial}`}
+            alt={`${model} ${dial}`}
             fill
+            sizes="(min-width: 1024px) 25vw, 50vw"
             className="object-cover opacity-80 transition-transform duration-500 group-hover:scale-[1.03]"
           />
         </div>
         <div className="pt-5 text-center">
           <h3 className="font-serif text-2xl font-normal text-foreground">{dial}</h3>
           <p className="mx-auto mt-1.5 mb-4 max-w-[85%] text-[15px] font-light italic leading-snug text-foreground-muted sm:text-[16px]">
-            {collection.name}
+            {model}
           </p>
           <span className="text-[14px] font-normal tracking-[0.5px] text-foreground-muted">
             Found its owners
