@@ -95,8 +95,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${cormorant.variable} ${outfit.variable} antialiased`}>
+    // Font variables go on <html>: Tailwind defines --font-sans at :root, so
+    // --font-outfit must exist there too or every page falls back to the system font.
+    <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
+      <body className="antialiased">
         <OrganizationJsonLd />
         <CartProvider>
           <ClientLayout>{children}</ClientLayout>
