@@ -2031,7 +2031,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               ...(c.inDevelopment ? [] : [
               {
                 q: "I've never heard of Pedral before.",
-                a: "The idea for Pedral began in 2010; the first watch was released in 2018. Over 300 pieces sold. Worn by collectors in 38 countries. Reviewed by independent watch media and recommended by collectors who own dozens of other watches.",
+                a: "The idea for Pedral began in 2010; the first watch was released in 2018. Over 300 pieces sold. Worn by collectors in 42 countries. Reviewed by independent watch media and recommended by collectors who own dozens of other watches.",
               },
               // Made-to-order pieces can't be returned, so skip the 14-day promise.
               ...(c.nonRefundable ? [] : [{

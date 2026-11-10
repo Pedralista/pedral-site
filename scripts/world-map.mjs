@@ -14,7 +14,7 @@ const load = (r) => {
 const all = load("110m"); // shapes: light enough for a web page
 const fine = load("50m"); // only to place dots on places too small for 110m
 
-// ISO 3166 numeric codes of the 38 delivery countries (warehouse export + Kickstarter
+// ISO 3166 numeric codes of the delivery countries (warehouse export + Kickstarter
 // 'Shipped' + the two resent Maestros), Nov 2026.
 const DELIVERED = {
   US: "840", GB: "826", SE: "752", AU: "036", FR: "250", CH: "756", CA: "124", DE: "276",
@@ -22,6 +22,8 @@ const DELIVERED = {
   FI: "246", NO: "578", IS: "352", BE: "056", GE: "268", UA: "804", IL: "376", AE: "784",
   QA: "634", ZA: "710", JP: "392", HK: "344", SG: "702", MY: "458", PH: "608", TH: "764",
   ID: "360", IN: "356", MX: "484", PR: "630", CW: "531", SA: "682",
+  // Shipped by Kevin directly (2026-11-10):
+  CD: "180", GH: "288", NG: "566", MA: "504",
 };
 const ids = new Set(Object.values(DELIVERED));
 const found = new Set(fine.map((f) => f.id));

@@ -5,7 +5,7 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Collections",
   description:
-    "Explore all Pedral watch collections — Contour, Silhouette, Maestro, Triomphe, Okapi Classique, and the new Étiquette. Six watches. One independent designer. Worn in 38 countries.",
+    "Explore all Pedral watch collections — Contour, Silhouette, Maestro, Triomphe, Okapi Classique, and the new Étiquette. Six watches. One independent designer. Worn in 42 countries.",
   alternates: {
     canonical: "/collections",
     languages: { en: "/collections", "x-default": "/collections" },

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     q: "I've never heard of Pedral before.",
-    a: "The idea for Pedral began in 2010; the first watch was released in 2018. Over 300 pieces sold. Worn by collectors in 38 countries. Reviewed by independent watch media and recommended by collectors who own dozens of other watches.",
+    a: "The idea for Pedral began in 2010; the first watch was released in 2018. Over 300 pieces sold. Worn by collectors in 42 countries. Reviewed by independent watch media and recommended by collectors who own dozens of other watches.",
   },
   {
     q: "What if it doesn't work on my wrist?",
@@ -64,7 +64,7 @@ export default function FaqPage() {
         <h2>About Pedral</h2>
         <p>
           The idea for Pedral began in 2010; the first watch was released in 2018. Over 300 pieces sold. Worn by
-          collectors in 38 countries. Reviewed by independent watch media and recommended by
+          collectors in 42 countries. Reviewed by independent watch media and recommended by
           collectors who own dozens of other watches. Most owners say the watch reads better in
           person than in photos — high-resolution images and full specifications are published
           for every edition, and the 14-day return policy exists precisely for the cases where

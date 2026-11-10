@@ -21,12 +21,12 @@ export default function TrustBar() {
         className="mx-auto max-w-[1400px] text-center"
       >
         <p className="mb-10 text-[11px] font-normal tracking-[3px] uppercase text-accent">
-          Worn by collectors in 38 countries
+          Worn by collectors in 42 countries
         </p>
         {/* Natural Earth outlines, Equal Earth projection; gold = delivered to. Regenerate if the country count changes. */}
         <Image
           src="/images/world-delivered.svg"
-          alt="World map with the 38 countries Pedral watches have been delivered to highlighted in gold"
+          alt="World map with the 42 countries Pedral watches have been delivered to highlighted in gold"
           width={1000}
           height={444}
           unoptimized

@@ -256,7 +256,7 @@ export default function StoryContent() {
 
       <Newsletter
         title="Be part of the story."
-        subtitle="Join collectors in 38 countries. First access to new editions — before any public announcement."
+        subtitle="Join collectors in 42 countries. First access to new editions — before any public announcement."
       />
     </>
   );
