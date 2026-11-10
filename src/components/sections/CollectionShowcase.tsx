@@ -6,24 +6,8 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
 import { collections, collectionCountWord } from "@/lib/collections";
 import TrustIcons from "@/components/sections/TrustIcons";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { cardStockLabel } from "@/lib/card-stock-label";
-
-function ChevronIcon({ direction }: { direction: "left" | "right" }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-4 w-4"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.75}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d={direction === "left" ? "M15 18l-6-6 6-6" : "M9 18l6-6-6-6"} />
-    </svg>
-  );
-}
 
 function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number; isPreOrder?: boolean; isEnquiryOnly?: boolean; badge?: string }) {
   if (isEnquiryOnly) {
@@ -68,7 +52,7 @@ function BadgeLabel({ stock, isPreOrder, isEnquiryOnly, badge }: { stock: number
   );
 }
 
-// Homepage carousel order (Kevin, Oct 2026). Anything not listed goes last.
+// Homepage grid order (Kevin, Oct 2026). Anything not listed goes last.
 const CAROUSEL_ORDER = ["contour", "etiquette", "maestro", "triomphe", "silhouette", "okapi"];
 function carouselRank(slug: string) {
   const i = CAROUSEL_ORDER.indexOf(slug);
@@ -100,15 +84,6 @@ export default function CollectionShowcase() {
     })
     .sort((a, b) => carouselRank(a.slug) - carouselRank(b.slug));
   const visibleCount = visible.length;
-  const scrollerRef = useRef<HTMLDivElement>(null);
-
-  const scrollByCard = (direction: "left" | "right") => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-carousel-card]");
-    const amount = (card?.offsetWidth ?? el.clientWidth * 0.7) + 16;
-    el.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
-  };
 
   return (
     <section className="bg-background-alt py-16 md:py-24 lg:py-[120px]">
@@ -125,42 +100,20 @@ export default function CollectionShowcase() {
               Each dial is limited to twenty pieces or fewer. When it sells out, it stays gone. Not a strategy. One person behind every decision.
             </p>
           </div>
-          <div className="hidden shrink-0 gap-2 sm:flex">
-            <button
-              type="button"
-              aria-label="Previous"
-              onClick={() => scrollByCard("left")}
-              className="flex h-9 w-9 items-center justify-center border border-foreground-muted/20 text-foreground-muted transition-colors hover:border-accent hover:text-accent"
-            >
-              <ChevronIcon direction="left" />
-            </button>
-            <button
-              type="button"
-              aria-label="Next"
-              onClick={() => scrollByCard("right")}
-              className="flex h-9 w-9 items-center justify-center border border-foreground-muted/20 text-foreground-muted transition-colors hover:border-accent hover:text-accent"
-            >
-              <ChevronIcon direction="right" />
-            </button>
-          </div>
         </div>
 
-        <div className="relative">
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-16 bg-gradient-to-l from-background-alt to-transparent sm:block md:w-24" />
-          <motion.div
-            ref={scrollerRef}
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer}
-          className="horizontal-scroll mt-8 grid grid-cols-2 gap-x-3 gap-y-10 pb-4 sm:-mx-6 sm:flex sm:snap-x sm:snap-mandatory sm:gap-4 sm:overflow-x-auto sm:px-6 md:-mx-12 md:gap-5 md:px-12"
+          className="mt-8 grid grid-cols-2 gap-x-4 gap-y-12 md:gap-x-6 md:gap-y-16 lg:grid-cols-3 lg:gap-x-8"
         >
           {visible.map((c) => (
             <motion.div
               key={c.slug}
               variants={fadeInUp}
-              data-carousel-card
-              className="w-full sm:w-[46%] sm:shrink-0 sm:snap-start lg:w-[24%]"
+              className="w-full"
             >
               <Link
                 href={`/collections/${c.slug}`}
@@ -236,8 +189,7 @@ export default function CollectionShowcase() {
               </Link>
             </motion.div>
           ))}
-          </motion.div>
-        </div>
+        </motion.div>
 
         <p className="mt-8 text-center text-[16px] tracking-[0.5px] leading-[1.7] text-foreground-muted">
           Earlier editions are fully allocated and won&apos;t return.
