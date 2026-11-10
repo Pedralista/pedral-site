@@ -85,7 +85,7 @@ const cutY = projection([-10, 27 + 40 / 60])[1].toFixed(1);
 // 50m feature for each code (largest area), so no stray islands sharing a code.
 const main = new Map();
 for (const f of fine) if (ids.has(f.id) && (!main.has(f.id) || path.area(f) > path.area(main.get(f.id)))) main.set(f.id, f);
-const small = [...main.values()].filter((f) => !inShapes.has(f.id) || path.area(f) < 12);
+const small = [...main.values()].filter((f) => !inShapes.has(f.id) || path.area(f) < 40);
 const dots = small
   .map((f) => {
     const [x, y] = projection(geoCentroid(f));
@@ -99,7 +99,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" rol
 <defs><clipPath id="ma"><rect x="0" y="0" width="${W}" height="${cutY}"/></clipPath></defs>
 <path d="${lit}" fill="#c9a84c" fill-opacity="0.8" stroke="#111d20" stroke-width="0.4"/>
 <path d="${morocco}" clip-path="url(#ma)" fill="#c9a84c" fill-opacity="0.8" stroke="#111d20" stroke-width="0.4"/>
-<g fill="#c9a84c">${dots}</g>
+<g fill="#c9a84c" stroke="#111d20" stroke-width="1.2">${dots}</g>
 </svg>
 `;
 fs.writeFileSync(out, svg);
