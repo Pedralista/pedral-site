@@ -5,7 +5,7 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Our Story",
   description:
-    "The story of Kevin Pedral — a self-taught watchmaker from Stockholm who turned rejection into a brand worn in 42 countries.",
+    "The story of Kevin Pedral — a self-taught watchmaker from Stockholm who turned rejection into a brand worn in 38 countries.",
   alternates: {
     canonical: "/story",
     languages: { en: "/story", "x-default": "/story" },
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Our Story — Pedral",
     description:
-      "The story of Kevin Pedral — a self-taught watchmaker from Stockholm who turned rejection into a brand worn in 42 countries.",
+      "The story of Kevin Pedral — a self-taught watchmaker from Stockholm who turned rejection into a brand worn in 38 countries.",
     url: "/story",
     images: [{ url: "/images/kevin-portrait.jpeg", width: 1200, height: 630, alt: "Kevin Pedral — The Story" }],
   },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Our Story — Pedral",
     description:
-      "The story of Kevin Pedral — a self-taught watchmaker from Stockholm who turned rejection into a brand worn in 42 countries.",
+      "The story of Kevin Pedral — a self-taught watchmaker from Stockholm who turned rejection into a brand worn in 38 countries.",
     images: ["/images/kevin-portrait.jpeg"],
   },
 };

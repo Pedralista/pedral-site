@@ -55,7 +55,7 @@ const dots = small
   .join("");
 const dotted = small.map((f) => f.properties.name);
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="World map of the ${ids.size} countries Pedral watches have been delivered to">
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="World map of the countries Pedral watches have been delivered to">
 <path d="${rest}" fill="#f5f2eb" fill-opacity="0.07" stroke="#111d20" stroke-width="0.4"/>
 <path d="${lit}" fill="#c9a84c" fill-opacity="0.8" stroke="#111d20" stroke-width="0.4"/>
 <g fill="#c9a84c">${dots}</g>
