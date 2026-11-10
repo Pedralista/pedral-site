@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { fadeInUp } from "@/lib/animations";
 
 const stats = [
@@ -22,6 +23,15 @@ export default function TrustBar() {
         <p className="mb-10 text-[11px] font-normal tracking-[3px] uppercase text-accent">
           Worn by collectors in 38 countries
         </p>
+        {/* Natural Earth outlines, Equal Earth projection; gold = delivered to. Regenerate if the country count changes. */}
+        <Image
+          src="/images/world-delivered.svg"
+          alt="World map with the 38 countries Pedral watches have been delivered to highlighted in gold"
+          width={1000}
+          height={444}
+          unoptimized
+          className="mx-auto mb-12 h-auto w-full max-w-[960px]"
+        />
         <div className="grid grid-cols-3 gap-4 md:gap-10 lg:gap-16 md:max-w-[700px] mx-auto">
           {stats.map((s) => (
             <div key={s.label}>
