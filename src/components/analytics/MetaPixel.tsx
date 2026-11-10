@@ -26,6 +26,7 @@ export default function MetaPixel() {
         fbq('track','PageView');
       `}</Script>
       <noscript>
+        {/* eslint-disable-next-line @next/next/no-img-element -- Meta Pixel noscript tracking beacon, not a content image */}
         <img
           height="1"
           width="1"
