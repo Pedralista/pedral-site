@@ -20,7 +20,7 @@ export default function TrustBar() {
         className="mx-auto max-w-[1400px] text-center"
       >
         <p className="mb-10 text-[11px] font-normal tracking-[3px] uppercase text-accent">
-          Worn by collectors in 30+ countries
+          Worn by collectors in 38 countries
         </p>
         <div className="grid grid-cols-3 gap-4 md:gap-10 lg:gap-16 md:max-w-[700px] mx-auto">
           {stats.map((s) => (

@@ -97,7 +97,7 @@ export default function Hero() {
               Discover the collection
             </Link>
             <p className="text-[14px] font-light tracking-[0.5px] text-foreground-muted/40">
-              Worn by collectors in over thirty countries &middot; Twenty pieces per dial, at most &middot; Never reissued
+              Worn by collectors in 38 countries &middot; Twenty pieces per dial, at most &middot; Never reissued
             </p>
           </div>
 
