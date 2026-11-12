@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse, after } from "next/server";
 import Stripe from "stripe";
 import { rateLimit, getIp } from "@/lib/rateLimit";
+import { checkOwnerDiscount, isOwnerCode, OWNER_COUPON_ID } from "@/lib/owner-discount";
 import { collections } from "@/lib/collections";
 import { findCommunityCode } from "@/lib/community-codes";
 import { editionSize, holdNumber, numberPool } from "@/lib/edition-numbers";
@@ -220,10 +221,8 @@ export async function POST(req: NextRequest) {
         metadata: { cartItems: cartMetadataJson },
       },
       line_items: lineItems,
-      // Code box on every checkout (Contour owners' lifetime CONTOUR7, a percentage
-      // code, works with localised currencies).
-      allow_promotion_codes: true,
       ...(lineItems.some((li) => !!li.price && PROMO_CODE_PRICE_IDS.has(li.price)) && {
+        allow_promotion_codes: true,
         // Fixed-amount EUR codes are rejected as "invalid" while Adaptive
         // Pricing localises the currency, so keep these sessions in EUR.
         adaptive_pricing: { enabled: false },
@@ -271,7 +270,7 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Legacy single-item checkout (unchanged) ─────────────────────────────────
-  const { priceId, productName, variantName, isPreOrder, addOns, communityCode, editionNumber, holdToken } = body;
+  const { priceId, productName, variantName, isPreOrder, addOns, communityCode, ownerEmail, editionNumber, holdToken } = body;
 
   if (!priceId || !productName) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -310,7 +309,17 @@ export async function POST(req: NextRequest) {
   // Community code typed on the product page — re-checked here (expiry and
   // which watch it's for) before the coupon is applied.
   let communityCoupon: string | undefined;
-  if (typeof communityCode === "string" && communityCode.trim()) {
+  // Lifetime owner code (7%, any watch): only with the buyer's own email, and
+  // the Stripe checkout is then locked to that email.
+  let lockedEmail: string | undefined;
+  if (isOwnerCode(communityCode)) {
+    const owner = checkOwnerDiscount(communityCode, ownerEmail);
+    if (!owner.ok) {
+      return NextResponse.json({ error: "This code doesn't match that email." }, { status: 400 });
+    }
+    communityCoupon = OWNER_COUPON_ID;
+    lockedEmail = owner.email;
+  } else if (typeof communityCode === "string" && communityCode.trim()) {
     const entry = await findCommunityCode(communityCode);
     if (!entry || !entry.priceIds.includes(priceId)) {
       return NextResponse.json({ error: "This code isn't valid for this watch." }, { status: 400 });
@@ -332,6 +341,7 @@ export async function POST(req: NextRequest) {
     ui_mode: "embedded",
     // See the cart branch above for why both of these are needed.
     customer_creation: "always",
+    ...(lockedEmail && { customer_email: lockedEmail }),
     invoice_creation: {
       enabled: true,
       invoice_data: {
@@ -367,7 +377,7 @@ export async function POST(req: NextRequest) {
     // own code box (the two can't be combined).
     ...(communityCoupon
       ? { discounts: [{ coupon: communityCoupon }] }
-      : { allow_promotion_codes: true }), // every watch (CONTOUR7 lifetime code, 2026-11-12)
+      : (priceId === "price_1TEVYOCfxE1lSBKRdzi2pJsj" || PROMO_CODE_PRICE_IDS.has(priceId)) && { allow_promotion_codes: true }),
     // See the cart branch: codes only validate with the session kept in EUR.
     ...(PROMO_CODE_PRICE_IDS.has(priceId) && { adaptive_pricing: { enabled: false } }),
     phone_number_collection: { enabled: true },

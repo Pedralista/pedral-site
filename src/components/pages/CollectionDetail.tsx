@@ -134,21 +134,50 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   // code is for the selected watch — the checkout route re-checks it.
   const [codeInput, setCodeInput] = useState("");
   const [codeOpen, setCodeOpen] = useState(false);
-  const [appliedCode, setAppliedCode] = useState<{ code: string; entry: CommunityCode } | null>(null);
+  // A community code (fixed € off, specific watches) or the lifetime owner code
+  // (7% off any watch, only with the buyer's own email — checked server-side).
+  const [appliedCode, setAppliedCode] = useState<
+    { code: string; entry: CommunityCode; ownerEmail?: undefined } | { code: string; entry?: undefined; ownerEmail: string; percentOff: number } | null
+  >(null);
   const [codeError, setCodeError] = useState<string | null>(null);
-  const codeDiscount =
-    appliedCode && effectivePriceId && appliedCode.entry.priceIds.includes(effectivePriceId)
-      ? appliedCode.entry.amountOff
-      : 0;
+  const [codeNeedsEmail, setCodeNeedsEmail] = useState(false);
+  const [codeEmail, setCodeEmail] = useState("");
+  const codeDiscount = !appliedCode
+    ? 0
+    : appliedCode.ownerEmail
+      ? Math.round((listPrice * appliedCode.percentOff) / 100)
+      : effectivePriceId && appliedCode.entry?.priceIds.includes(effectivePriceId)
+        ? appliedCode.entry.amountOff
+        : 0;
   const effectivePrice = listPrice - codeDiscount;
   async function applyCode() {
     setCodeError(null);
     const entry = await findCommunityCode(codeInput);
-    if (!entry) {
-      setCodeError("This code isn't valid.");
+    if (entry) {
+      setAppliedCode({ code: normalizeCode(codeInput), entry });
       return;
     }
-    setAppliedCode({ code: normalizeCode(codeInput), entry });
+    // Not a community code: it may be the lifetime owner code, which needs the
+    // email the buyer ordered with.
+    if (!codeNeedsEmail) {
+      setCodeNeedsEmail(true);
+      return;
+    }
+    try {
+      const res = await fetch("/api/owner-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: codeInput, email: codeEmail }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setCodeError(data.error ?? "This code isn't valid.");
+        return;
+      }
+      setAppliedCode({ code: normalizeCode(codeInput), ownerEmail: codeEmail.trim(), percentOff: data.percentOff });
+    } catch {
+      setCodeError("Couldn't check the code — please try again.");
+    }
   }
   const selectedVariantImage =
     (selectedNumeral && selectedVariant?.numeralImages?.[selectedNumeral]) ||
@@ -407,7 +436,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           variantName: selectionLabel,
           isPreOrder: c.nonRefundable ?? false,
           kx: getKx(),
-          ...(codeDiscount && appliedCode ? { communityCode: appliedCode.code } : {}),
+          ...(codeDiscount && appliedCode
+            ? { communityCode: appliedCode.code, ...(appliedCode.ownerEmail ? { ownerEmail: appliedCode.ownerEmail } : {}) }
+            : {}),
           ...(c.editionNumbers && editionNumber ? { editionNumber, holdToken } : {}),
           ...(addOnsActive && (selectedStrapSlug || engravingActive)
             ? {
@@ -1437,16 +1468,18 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     </span>
                   )}
                 </p>
-                {c.communityCodes && (
+                {!c.isEnquiryOnly && (
                   <div className="mt-3">
                     {appliedCode ? (
                       <p className="text-[15px] font-light tracking-[0.5px] text-accent">
                         {codeDiscount > 0
-                          ? `Code ${appliedCode.code} applied · €${codeDiscount.toLocaleString()} off`
+                          ? appliedCode.ownerEmail
+                            ? `Code ${appliedCode.code} applied · ${appliedCode.percentOff}% off`
+                            : `Code ${appliedCode.code} applied · €${codeDiscount.toLocaleString()} off`
                           : `Code ${appliedCode.code} doesn't apply to this selection`}
                         <button
                           type="button"
-                          onClick={() => { setAppliedCode(null); setCodeInput(""); }}
+                          onClick={() => { setAppliedCode(null); setCodeInput(""); setCodeNeedsEmail(false); setCodeEmail(""); }}
                           className="ml-3 text-foreground-muted/60 underline underline-offset-4 hover:text-foreground"
                         >
                           Remove
@@ -1455,12 +1488,27 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     ) : codeOpen ? (
                       <form
                         onSubmit={(e) => { e.preventDefault(); applyCode(); }}
-                        className="flex max-w-[320px] gap-2"
+                        className="flex max-w-[320px] flex-wrap gap-2"
                       >
+                        {codeNeedsEmail && (
+                          <>
+                            <p className="w-full text-[14px] font-light text-foreground-muted/70">
+                              Enter the email address you ordered your Pedral with.
+                            </p>
+                            <input
+                              type="email"
+                              value={codeEmail}
+                              onChange={(e) => setCodeEmail(e.target.value)}
+                              placeholder="Your order email"
+                              autoComplete="email"
+                              className="w-full rounded-lg border border-accent/20 bg-transparent px-3 py-2 text-[14px] text-foreground placeholder:text-foreground-muted/40 focus:border-accent focus:outline-none"
+                            />
+                          </>
+                        )}
                         <input
                           value={codeInput}
                           onChange={(e) => setCodeInput(e.target.value)}
-                          placeholder="Community code"
+                          placeholder="Code"
                           autoCapitalize="characters"
                           className="min-w-0 flex-1 rounded-lg border border-accent/20 bg-transparent px-3 py-2 text-[14px] tracking-[1px] text-foreground placeholder:text-foreground-muted/40 focus:border-accent focus:outline-none"
                         />
@@ -1477,7 +1525,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                         onClick={() => setCodeOpen(true)}
                         className="text-[14px] font-light tracking-[0.5px] text-foreground-muted/70 underline underline-offset-4 hover:text-accent"
                       >
-                        Have a community code?
+                        Have a code?
                       </button>
                     )}
                     {codeError && <p className="mt-1.5 text-[14px] text-red-400/90">{codeError}</p>}
