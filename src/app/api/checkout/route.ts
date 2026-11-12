@@ -220,8 +220,10 @@ export async function POST(req: NextRequest) {
         metadata: { cartItems: cartMetadataJson },
       },
       line_items: lineItems,
+      // Code box on every checkout (Contour owners' lifetime CONTOUR7, a percentage
+      // code, works with localised currencies).
+      allow_promotion_codes: true,
       ...(lineItems.some((li) => !!li.price && PROMO_CODE_PRICE_IDS.has(li.price)) && {
-        allow_promotion_codes: true,
         // Fixed-amount EUR codes are rejected as "invalid" while Adaptive
         // Pricing localises the currency, so keep these sessions in EUR.
         adaptive_pricing: { enabled: false },
@@ -365,7 +367,7 @@ export async function POST(req: NextRequest) {
     // own code box (the two can't be combined).
     ...(communityCoupon
       ? { discounts: [{ coupon: communityCoupon }] }
-      : (priceId === "price_1TEVYOCfxE1lSBKRdzi2pJsj" || PROMO_CODE_PRICE_IDS.has(priceId)) && { allow_promotion_codes: true }),
+      : { allow_promotion_codes: true }), // every watch (CONTOUR7 lifetime code, 2026-11-12)
     // See the cart branch: codes only validate with the session kept in EUR.
     ...(PROMO_CODE_PRICE_IDS.has(priceId) && { adaptive_pricing: { enabled: false } }),
     phone_number_collection: { enabled: true },
