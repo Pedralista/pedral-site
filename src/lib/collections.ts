@@ -105,6 +105,10 @@ export interface Collection {
   image: string;
   heroImage?: string;
   heroFit?: "cover" | "contain";
+  // Hero images that alternate on a timer (crossfade), e.g. the same pose
+  // on strap and bracelet. Image only: name, price and buttons don't change.
+  heroImages?: string[];
+  heroIntervalMs?: number; // default 1000
   detailImage?: string;
   galleryImages?: string[];
   // Shape of each gallery panel (CSS aspect-ratio, e.g. "16 / 9") when the
@@ -1255,6 +1259,9 @@ export const collections: Collection[] = [
     // gallery = 3 × 2, tap to enlarge (see the list below).
     image: "/images/etiquette-fr-portrait-angle-bracelet.jpg",
     heroImage: "/images/etiquette-fr-portrait.jpg",
+    // Pose 1 alternates strap ↔ bracelet every second (Kevin, 2026-11-16).
+    heroImages: ["/images/etiquette-fr-portrait.jpg", "/images/etiquette-fr-portrait-bracelet.jpg"],
+    heroIntervalMs: 1000,
     heroFit: "contain",
     detailImage: "/images/etiquette-fr-dial-macro.jpg",
     galleryImages: [

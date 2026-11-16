@@ -102,7 +102,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   // (A fully sold-out collection keeps its own waitlist button instead.)
   const dialSoldOut = !isSoldOut && !!selectedVariant && selectedVariant.stock === 0;
   const [loading, setLoading] = useState(false);
-  // Gallery tile opened full screen (index into galleryImages), or null.
+  // Photo opened full screen (index into zoomImages), or null.
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [preOrderError, setPreOrderError] = useState<string | null>(null);
@@ -295,11 +295,33 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userPickedVariant, heroFrames.length]);
 
-  const heroSrc =
-    (selectedNumeral && selectedVariant?.numeralHeroImages?.[selectedNumeral]) ??
-    selectedVariant?.heroImage ??
-    c.heroImage ??
-    c.image;
+  // Timed hero alternation (c.heroImages), e.g. strap ↔ bracelet. Image
+  // only, so unlike the variant rotation above it keeps running on scroll.
+  const heroCycle = c.heroImages && c.heroImages.length > 1 ? c.heroImages : null;
+  const [heroCycleIndex, setHeroCycleIndex] = useState(0);
+  useEffect(() => {
+    if (!heroCycle) return;
+    const t = setInterval(() => setHeroCycleIndex((i) => (i + 1) % heroCycle.length), c.heroIntervalMs ?? 1000);
+    return () => clearInterval(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [heroCycle?.length, c.heroIntervalMs]);
+
+  const heroSrc = heroCycle
+    ? heroCycle[heroCycleIndex]
+    : (selectedNumeral && selectedVariant?.numeralHeroImages?.[selectedNumeral]) ??
+      selectedVariant?.heroImage ??
+      c.heroImage ??
+      c.image;
+  // Every photo on the page that can be opened full screen, in page order
+  // (hero, picker, detail, gallery), so the viewer's arrows run through all.
+  const zoomImages = Array.from(
+    new Set([...(heroCycle ?? [heroSrc]), selectedVariantImage, c.detailImage, ...(c.galleryImages ?? [])].filter((s): s is string => !!s))
+  );
+  const openZoom = (src: string | undefined | null) => {
+    if (!src) return;
+    const i = zoomImages.indexOf(src);
+    if (i >= 0) setLightboxIndex(i);
+  };
   // Two persistent image layers that never mount/unmount — only their src
   // and opacity change. AnimatePresence's enter/exit sequencing (mode=
   // "wait") could get stuck showing a stale image if a new heroSrc arrived
@@ -492,9 +514,12 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         ref={heroRef}
         className={`relative flex items-end sm:items-center overflow-hidden ${c.heroFit === "contain" ? "min-h-[85vh] sm:min-h-screen justify-center" : "min-h-[60vh] sm:min-h-screen"}`}
       >
-        <div className="absolute inset-0">
+        <div
+          className={`absolute inset-0 ${heroSrc ? "cursor-zoom-in" : ""}`}
+          onClick={heroSrc ? () => openZoom(heroSrc) : undefined}
+        >
           {heroSrc ? (
-            heroFrames.length > 1 ? (
+            heroFrames.length > 1 || heroCycle ? (
               <>
                 <motion.div
                   animate={{ opacity: heroCrossfade.showA ? 1 : 0 }}
@@ -547,6 +572,18 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(5,10,12,0.88)_0%,rgba(5,10,12,0.35)_50%,rgba(5,10,12,0.7)_100%)]" />
           )}
         </div>
+        {heroSrc && (
+          <button
+            type="button"
+            onClick={() => openZoom(heroSrc)}
+            aria-label={`Enlarge ${c.name} image`}
+            className="absolute right-4 top-20 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white/80 backdrop-blur-sm transition-colors hover:bg-black/70 hover:text-white sm:bottom-8 sm:right-8 sm:top-auto"
+          >
+            <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+            </svg>
+          </button>
+        )}
         <div className={`relative z-10 py-10 sm:py-24 md:py-32 ${c.heroFit === "contain" ? "mx-auto max-w-[560px] px-6 text-center" : "max-w-[700px] px-6 md:px-24"}`}>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -853,7 +890,10 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 className="grid items-start gap-10 md:grid-cols-2 md:gap-14"
               >
                 <div className="md:sticky md:top-28">
-                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg border border-accent/10 bg-[var(--surface)]">
+                  <div
+                    className={`relative aspect-[4/5] w-full overflow-hidden rounded-lg border border-accent/10 bg-[var(--surface)] ${selectedVariantImage ? "cursor-zoom-in" : ""}`}
+                    onClick={selectedVariantImage ? () => openZoom(selectedVariantImage) : undefined}
+                  >
                     {selectedVariantImage ? (
                       <Image
                         src={selectedVariantImage}
@@ -1069,7 +1109,10 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 variants={fadeInUp}
                 className="grid items-start gap-8 md:grid-cols-2 md:gap-12"
               >
-                <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-accent/10 bg-[var(--surface)]">
+                <div
+                  className={`relative aspect-square w-full overflow-hidden rounded-lg border border-accent/10 bg-[var(--surface)] ${selectedVariantImage ? "cursor-zoom-in" : ""}`}
+                  onClick={selectedVariantImage ? () => openZoom(selectedVariantImage) : undefined}
+                >
                   {selectedVariantImage ? (
                     <Image
                       key={selectedVariantImage}
@@ -1814,7 +1857,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           whileInView="visible"
           viewport={{ once: true }}
           variants={slideInLeft}
-          className="relative h-[400px] w-full md:h-[500px]"
+          className={`relative h-[400px] w-full md:h-[500px] ${c.detailImage ? "cursor-zoom-in" : ""}`}
+          onClick={c.detailImage ? () => openZoom(c.detailImage) : undefined}
         >
           {c.detailImage ? (
             <Image
@@ -1901,7 +1945,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               {images.map((src, i) => {
                 const isWide = !!src && containShot(src);
                 return (
-                  <div key={i} className={`relative ${c.galleryAspect ? "" : "h-[280px] "}w-[80vw] shrink-0 snap-start overflow-hidden bg-[#060a0b] ${src ? "cursor-zoom-in" : ""}`} style={c.galleryAspect ? { aspectRatio: c.galleryAspect } : undefined} onClick={src ? () => setLightboxIndex(i) : undefined} role={src ? "button" : undefined} aria-label={src ? `Enlarge ${c.name} image ${i + 1}` : undefined}>
+                  <div key={i} className={`relative ${c.galleryAspect ? "" : "h-[280px] "}w-[80vw] shrink-0 snap-start overflow-hidden bg-[#060a0b] ${src ? "cursor-zoom-in" : ""}`} style={c.galleryAspect ? { aspectRatio: c.galleryAspect } : undefined} onClick={src ? () => openZoom(src) : undefined} role={src ? "button" : undefined} aria-label={src ? `Enlarge ${c.name} image ${i + 1}` : undefined}>
                     {src ? (
                       <Image src={src} alt={`${c.name} angle ${i + 1}`} fill className={isWide ? "object-contain" : "object-cover"} style={{ filter: "contrast(1.06) saturate(0.92) brightness(0.97) sepia(0.05)" }} />
                     ) : (
@@ -1918,7 +1962,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               {images.map((src, i) => {
                 const isWide = !!src && containShot(src);
                 return (
-                  <div key={i} className={`relative ${c.galleryAspect ? "" : "h-[380px] "}w-full overflow-hidden group bg-[#060a0b] ${src ? "cursor-zoom-in" : ""}`} style={c.galleryAspect ? { aspectRatio: c.galleryAspect } : undefined} onClick={src ? () => setLightboxIndex(i) : undefined} role={src ? "button" : undefined} aria-label={src ? `Enlarge ${c.name} image ${i + 1}` : undefined}>
+                  <div key={i} className={`relative ${c.galleryAspect ? "" : "h-[380px] "}w-full overflow-hidden group bg-[#060a0b] ${src ? "cursor-zoom-in" : ""}`} style={c.galleryAspect ? { aspectRatio: c.galleryAspect } : undefined} onClick={src ? () => openZoom(src) : undefined} role={src ? "button" : undefined} aria-label={src ? `Enlarge ${c.name} image ${i + 1}` : undefined}>
                     {src ? (
                       <Image src={src} alt={`${c.name} angle ${i + 1}`} fill className={`${isWide ? "object-contain" : "object-cover"} transition-transform duration-700 group-hover:scale-[1.04]`} style={{ filter: "contrast(1.06) saturate(0.92) brightness(0.97) sepia(0.05)" }} />
                     ) : (
@@ -1930,9 +1974,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 );
               })}
             </section>
-            {c.galleryImages && c.galleryImages.length > 0 && (
+            {zoomImages.length > 0 && (
               <ImageLightbox
-                images={c.galleryImages}
+                images={zoomImages}
                 index={lightboxIndex}
                 alt={c.name}
                 onClose={() => setLightboxIndex(null)}
