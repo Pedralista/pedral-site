@@ -1074,15 +1074,15 @@ export const collections: Collection[] = [
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
     newsletterSub: "Prototype updates and studio news. No noise.",
-    image: "/images/etiquette-soiree-gold.jpg",
-    heroImage: "/images/etiquette-bourgogne.jpg",
+    image: "/images/etiquette-soiree-gold-v2.jpg",
+    heroImage: "/images/etiquette-bourgogne-v2.jpg",
     heroFit: "contain",
-    detailImage: "/images/etiquette-soiree-gold.jpg",
+    detailImage: "/images/etiquette-soiree-gold-v2.jpg",
     galleryImages: [
-      "/images/etiquette-soiree-gold.jpg",
-      "/images/etiquette-bourgogne.jpg",
-      "/images/etiquette-nocturne.jpg",
-      "/images/etiquette-ambiance.jpg",
+      "/images/etiquette-soiree-gold-v2.jpg",
+      "/images/etiquette-bourgogne-v2.jpg",
+      "/images/etiquette-nocturne-v2.jpg",
+      "/images/etiquette-ambiance-v2.jpg",
     ],
     variants: [
       {
@@ -1095,8 +1095,8 @@ export const collections: Collection[] = [
           "Japanese Hand-Wound": "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Japanese Hand-Wound (€1,100)
         },
         description: "Black onyx dial, custom distorted Roman numerals and hands in gold. The black-tie one.",
-        image: "/images/etiquette-soiree-gold.jpg",
-        heroImage: "/images/etiquette-soiree-gold.jpg",
+        image: "/images/etiquette-soiree-gold-v2.jpg",
+        heroImage: "/images/etiquette-soiree-gold-v2.jpg",
       },
       {
         name: "Bourgogne",
@@ -1105,8 +1105,8 @@ export const collections: Collection[] = [
         price: 1800,
         numeralOptions: ["Swiss Hand-Wound"],
         description: "Burgundy dial, custom distorted Roman numerals in silver.",
-        image: "/images/etiquette-bourgogne.jpg",
-        heroImage: "/images/etiquette-bourgogne.jpg",
+        image: "/images/etiquette-bourgogne-v2.jpg",
+        heroImage: "/images/etiquette-bourgogne-v2.jpg",
       },
       {
         name: "Nocturne",
@@ -1118,8 +1118,8 @@ export const collections: Collection[] = [
           "Japanese Hand-Wound": "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Japanese Hand-Wound (€1,100)
         },
         description: "Black onyx dial with ivory musical-note indices.",
-        image: "/images/etiquette-nocturne.jpg",
-        heroImage: "/images/etiquette-nocturne.jpg",
+        image: "/images/etiquette-nocturne-v2.jpg",
+        heroImage: "/images/etiquette-nocturne-v2.jpg",
       },
       {
         name: "Ambiance",
@@ -1128,8 +1128,8 @@ export const collections: Collection[] = [
         price: 1800,
         numeralOptions: ["Swiss Hand-Wound"],
         description: "Ivory dial with colourful musical-note indices and blue hands. The one with questionable manners.",
-        image: "/images/etiquette-ambiance.jpg",
-        heroImage: "/images/etiquette-ambiance.jpg",
+        image: "/images/etiquette-ambiance-v2.jpg",
+        heroImage: "/images/etiquette-ambiance-v2.jpg",
       },
     ],
     comingSoonEditionsHeading: {

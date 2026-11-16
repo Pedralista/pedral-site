@@ -10,8 +10,8 @@ import { useEffect, useState } from "react";
 const HERO_IMAGES: { src: string; alt: string; contain?: boolean }[] = [
   { src: "/images/hero-contour-onyx.png", alt: "Pedral Contour Onyx" },
   { src: "/images/hero-contour-gold-lapis.png", alt: "Pedral Contour gold lapis" },
-  { src: "/images/etiquette-soiree-gold.jpg", alt: "Pedral Étiquette Soirée, black onyx with gold Roman numerals", contain: true },
-  { src: "/images/etiquette-ambiance.jpg", alt: "Pedral Étiquette Ambiance, ivory with colourful musical notes", contain: true },
+  { src: "/images/etiquette-soiree-gold-v2.jpg", alt: "Pedral Étiquette Soirée, black onyx with gold Roman numerals", contain: true },
+  { src: "/images/etiquette-ambiance-v2.jpg", alt: "Pedral Étiquette Ambiance, ivory with colourful musical notes", contain: true },
   { src: "/images/hero-maestro-founders-lapis.png", alt: "Pedral Maestro Founders lapis" },
   { src: "/images/hero-pedral-blue.jpeg", alt: "Pedral watch, blue dial" },
   { src: "/images/okapi-hero.jpg", alt: "Pedral Okapi" },
