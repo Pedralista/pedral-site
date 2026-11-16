@@ -1077,13 +1077,17 @@ export const collections: Collection[] = [
     image: "/images/etiquette-soiree-gold-v2.jpg",
     heroImage: "/images/etiquette-bourgogne-v2.jpg",
     heroFit: "contain",
-    detailImage: "/images/etiquette-soiree-gold-v2.jpg",
+    // Kevin 2026-11-16: "choose the best pictures, not too many". One pose = one
+    // picture; strap and bracelet mixed; dials spread so each appears once.
+    detailImage: "/images/etiquette-bourgogne-macro.jpg", // Pose 2 D
     galleryImages: [
-      "/images/etiquette-soiree-gold-v2.jpg",
-      "/images/etiquette-bourgogne-v2.jpg",
-      "/images/etiquette-nocturne-v2.jpg",
-      "/images/etiquette-ambiance-v2.jpg",
+      "/images/etiquette-nocturne-angle-bracelet.jpg", // Pose 8 F bracelet
+      "/images/etiquette-ambiance-flat-strap.jpg", // Pose 5 G strap
+      "/images/etiquette-profile-strap.jpg", // Pose 4 strap
+      "/images/etiquette-caseback-bracelet.jpg", // Pose 3 bracelet, open caseback
     ],
+    galleryAspect: "16 / 9",
+    galleryColumns: 2,
     variants: [
       {
         name: "Soirée",
