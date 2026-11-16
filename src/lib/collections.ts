@@ -1208,7 +1208,7 @@ export const collections: Collection[] = [
       Caseback: "Sapphire display caseback · Shows the movement",
       "Water Resist.": "5 ATM / 50 metres",
       Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
-      Bracelet: "Included · Custom-designed stainless steel bracelet · 20mm tapering to 18mm · Grooved links echoing the case · Removable links for sizing · Folding clasp",
+      Bracelet: "Included · Custom-designed stainless steel bracelet · 20mm tapering to 18mm · Grooved links echoing the case · Removable links for sizing · Butterfly clasp with quick-adjust",
       Edition: "21 numbered pieces · Your choice of number · Reserved for existing Pedral owners",
       Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
     },
@@ -1239,7 +1239,7 @@ export const collections: Collection[] = [
       },
       {
         q: "Does it come with the bracelet?",
-        a: "Yes. Every Famille Royale comes with both the custom-fitted leather strap and the custom-designed steel bracelet shown here, at no extra cost. Like the strap, the bracelet tapers from 20 mm to 18 mm, and its links are removable so it can be sized to your wrist. Final specifications are subject to prototype development.",
+        a: "Yes. Every Famille Royale comes with both the custom-fitted leather strap and the custom-designed steel bracelet shown here, at no extra cost. Like the strap, the bracelet tapers from 20 mm to 18 mm, its links are removable so it can be sized to your wrist, and the butterfly clasp has a quick-adjust function for fine-tuning the fit. Final specifications are subject to prototype development.",
       },
       {
         q: "When will it be delivered?",
