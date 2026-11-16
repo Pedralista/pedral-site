@@ -96,6 +96,9 @@ export interface Collection {
     // Dedicated arching background shot for the "How it wears" section.
     // Falls back to detailImage/heroImage/image when unset.
     image?: string;
+    // Skip the background shot entirely (e.g. when every photo of the
+    // product is already used elsewhere on the page and must not repeat).
+    noImage?: boolean;
   };
   newsletterTitle: string;
   newsletterSub: string;
@@ -1131,7 +1134,7 @@ export const collections: Collection[] = [
       {
         name: "Famille Royale",
         description: "Royal Aubergine lacquer, custom distorted Roman numerals as champagne-gold appliqués. Just 21 numbered pieces — owners choose their own number. No public allocation. Existing owners: write to Kevin directly to reserve yours.",
-        image: "/images/etiquette-fr-portrait.jpg",
+        image: "/images/etiquette-fr-portrait-low-strap.jpg",
         badge: "Owners Only · 21 Pieces",
       },
     ],
@@ -1153,7 +1156,7 @@ export const collections: Collection[] = [
     hook: "One kept in the family.",
     descriptionTitle: "For the Pedral Watch Club.",
     description:
-      "Étiquette Famille Royale is the one dial that will never be sold publicly. It is reserved for existing Pedral owners — the Pedral Watch Club — as a thank-you to the people who believed in the studio before anyone else did. A Royal Aubergine lacquer dial, with custom Roman numerals — familiar yet deliberately distorted — as champagne-gold appliqués. Inside a 27 × 43.7 mm case built on the golden ratio, 6.9–7.3 mm thick (preliminary).",
+      "Étiquette Famille Royale is the one dial that will never be sold publicly. It is reserved for existing Pedral owners — the Pedral Watch Club — as a thank-you to the people who believed in the studio before anyone else did. A Royal Aubergine lacquer dial, with custom Roman numerals — familiar yet deliberately distorted — as champagne-gold appliqués. Inside a 27 × 43.7 mm case built on the golden ratio, 6.9–7.3 mm thick (preliminary). Each piece comes with both a leather strap and a matching steel bracelet, its grooved links echoing the case.",
     designerNote:
       "Every Pedral owner took a chance on an independent studio before there was a reason to. This one is for them. Good design, much like good manners, is knowing the rules — and knowing whom to thank.",
     year: 2026,
@@ -1174,6 +1177,7 @@ export const collections: Collection[] = [
     editionNumbers: 21,
     reassurance: [
       "Owners only · 21 numbered pieces · Choose your number",
+      "Leather strap and steel bracelet, both included",
       "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D101",
       "Direct communication with Kevin — not a support team",
       "Tracked & insured shipping",
@@ -1204,6 +1208,7 @@ export const collections: Collection[] = [
       Caseback: "Solid stainless steel",
       "Water Resist.": "5 ATM / 50 metres",
       Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
+      Bracelet: "Included · Stainless steel · Grooved links echoing the case · Folding clasp",
       Edition: "21 numbered pieces · Your choice of number · Reserved for existing Pedral owners",
       Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
     },
@@ -1220,7 +1225,8 @@ export const collections: Collection[] = [
       caseDiameter: "27 × 43.7mm",
       thickness: "6.9–7.3mm (preliminary)",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, 6.9–7.3 mm (preliminary), sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
+      noImage: true, // each render appears once on the page (Kevin, 2026-11-16)
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, 6.9–7.3 mm (preliminary), sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette. A matching steel bracelet is included as well.",
     },
     extraFaqs: [
       {
@@ -1232,35 +1238,33 @@ export const collections: Collection[] = [
         a: "There are 21 pieces, numbered 01 to 21. Pick any number that's still available; once you continue to checkout it's held for you for 30 minutes, and when your order is paid it's yours. Taken numbers are crossed out.",
       },
       {
+        q: "Does it come with the bracelet?",
+        a: "Yes. Every Famille Royale comes with both the custom-fitted leather strap and the steel bracelet shown here, at no extra cost. Final specifications are subject to prototype development.",
+      },
+      {
         q: "When will it be delivered?",
         a: "Delivery is expected between late Q1 and early Q2 2027. Pieces are delivered in the order they were purchased. Final specifications are subject to prototype development.",
       },
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
     newsletterSub: "Prototype updates and studio news. No noise.",
-    // New renders (Kevin, 2026-11-16): 13 shots, strap and bracelet. The
-    // portrait crop of the front strap shot fills the 4:5 picker panel; the
-    // 12 landscape shots run as a 3-column 16:9 gallery.
-    image: "/images/etiquette-fr-portrait.jpg",
+    // New renders (Kevin, 2026-11-16). Each pose appears once on the site
+    // (Kevin: "no picture should be seen twice"), strap and bracelet versions
+    // mixed across poses: hero = front/strap, picker = angled/bracelet,
+    // detail = dial macro, Étiquette page card = low/strap (portrait crops),
+    // gallery = the remaining four poses in one row.
+    image: "/images/etiquette-fr-portrait-angle-bracelet.jpg",
     heroImage: "/images/etiquette-fr-portrait.jpg",
     heroFit: "contain",
     detailImage: "/images/etiquette-fr-dial-macro.jpg",
     galleryImages: [
-      "/images/etiquette-fr-front-strap.jpg",
-      "/images/etiquette-fr-front-bracelet.jpg",
       "/images/etiquette-fr-profile.jpg",
-      "/images/etiquette-fr-low-strap.jpg",
-      "/images/etiquette-fr-low-bracelet.jpg",
-      "/images/etiquette-fr-caseback-strap.jpg",
-      "/images/etiquette-fr-angle-strap.jpg",
-      "/images/etiquette-fr-angle-bracelet.jpg",
       "/images/etiquette-fr-caseback-bracelet.jpg",
       "/images/etiquette-fr-flat-strap.jpg",
-      "/images/etiquette-fr-flat-bracelet.jpg",
       "/images/etiquette-fr-bracelet-top.jpg",
     ],
     galleryAspect: "16 / 9",
-    galleryColumns: 3,
+    galleryColumns: 4,
     variants: [
       {
         name: "Famille Royale",
@@ -1268,7 +1272,7 @@ export const collections: Collection[] = [
         stock: 21,
         price: 1100,
         description: "Royal Aubergine lacquer dial with custom distorted Roman numerals as champagne-gold appliqués. For existing Pedral owners only.",
-        image: "/images/etiquette-fr-portrait.jpg",
+        image: "/images/etiquette-fr-portrait-angle-bracelet.jpg",
         heroImage: "/images/etiquette-fr-portrait.jpg",
         numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },

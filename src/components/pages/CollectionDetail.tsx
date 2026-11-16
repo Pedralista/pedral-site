@@ -1744,6 +1744,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             </motion.div>
           </div>
 
+          {!c.wristFit.noImage && (
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -1761,8 +1762,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
             )}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
           </motion.div>
+          )}
 
-          <div className="relative z-10 mx-auto -mt-[80px] max-w-[900px] px-6 sm:-mt-[110px] md:-mt-[195px] md:px-12">
+          <div className={`relative z-10 mx-auto max-w-[900px] px-6 md:px-12 ${c.wristFit.noImage ? "mt-10" : "-mt-[80px] sm:-mt-[110px] md:-mt-[195px]"}`}>
             <motion.div
               initial="hidden"
               whileInView="visible"
