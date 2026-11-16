@@ -1146,7 +1146,7 @@ export const collections: Collection[] = [
       {
         name: "Famille Royale",
         description: "Royal Aubergine lacquer, custom distorted Roman numerals as champagne-gold appliqués. Just 21 numbered pieces — owners choose their own number. No public allocation. Existing owners: write to Kevin directly to reserve yours.",
-        image: "/images/etiquette-fr-portrait-low-strap.jpg",
+        image: "/images/etiquette-fr-portrait-bracelet.jpg", // Pose 1 bracelet (Kevin 2026-11-16: "choose another")
         badge: "Owners Only · 21 Pieces",
       },
     ],
