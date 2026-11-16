@@ -11,6 +11,9 @@ export interface CollectionVariant {
   // selectedVariant. Falls back to the collection-level heroImage/image when
   // unset.
   heroImage?: string;
+  // Hero images that alternate on a timer while this dial is selected (e.g.
+  // strap ↔ bracelet); overrides the collection-level heroImages.
+  heroImages?: string[];
   color?: string;
   numeralOptions?: string[];
   numeralImages?: Record<string, string>;
@@ -109,6 +112,7 @@ export interface Collection {
   // on strap and bracelet. Image only: name, price and buttons don't change.
   heroImages?: string[];
   heroIntervalMs?: number; // default 1000
+  heroFadeMs?: number; // hero crossfade length, default 600
   detailImage?: string;
   galleryImages?: string[];
   // Shape of each gallery panel (CSS aspect-ratio, e.g. "16 / 9") when the
@@ -1259,9 +1263,10 @@ export const collections: Collection[] = [
     // gallery = 3 × 2, tap to enlarge (see the list below).
     image: "/images/etiquette-fr-portrait-angle-bracelet.jpg",
     heroImage: "/images/etiquette-fr-portrait.jpg",
-    // Pose 1 alternates strap ↔ bracelet every second (Kevin, 2026-11-16).
+    // Pose 1 alternates strap ↔ bracelet (Kevin, 2026-11-16).
     heroImages: ["/images/etiquette-fr-portrait.jpg", "/images/etiquette-fr-portrait-bracelet.jpg"],
-    heroIntervalMs: 1000,
+    heroIntervalMs: 3000, // Kevin asked for longer transitions (2026-11-16)
+    heroFadeMs: 1500,
     heroFit: "contain",
     detailImage: "/images/etiquette-fr-dial-macro.jpg",
     galleryImages: [
@@ -1311,7 +1316,7 @@ export const collections: Collection[] = [
     description:
       "Étiquette takes the rules of the rectangular dress watch — proportion, symmetry, restraint — and politely ignores a few. This edition goes one step further and tells the time in Hebrew. Custom Hebrew numerals, familiar yet deliberately distorted, stretch across the lacquered dial — blue on ivory, or ivory on deep blue — balanced by Pedral's signature inner dial frame. At 27 × 43.7 mm, built on the golden ratio, and 6.9–7.3 mm thick (preliminary), the case is slim, elegant and slightly eccentric.",
     descriptionExtra:
-      "Nine of each dial, made to order. For a Bar or Bat Mitzvah, a wedding, a parent, a child — or for yourself, after years of wearing watches that spoke only in someone else's tradition. A faceted geodesic crown and a finely tapered leather strap finish it. Restrained in dimensions, expressive in character.",
+      "Nine of each dial, made to order. For a Bar or Bat Mitzvah, a wedding, a parent, a child — or for yourself, after years of wearing watches that spoke only in someone else's tradition. A faceted geodesic crown and a finely tapered leather strap finish it, with a matching steel bracelet included as well. Restrained in dimensions, expressive in character.",
     designerNote:
       "Some people have spent years wearing watches that were beautiful, but not entirely theirs. A numeral is the first thing you read on a dial. It should be able to speak your language.",
     year: 2026,
@@ -1333,6 +1338,7 @@ export const collections: Collection[] = [
     nonRefundable: true, // made to order — EU Art. 16(c), like the Triomphe numeral editions
     reassurance: [
       "Made to order · Full payment secures your piece",
+      "Leather strap and steel bracelet, both included",
       "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D101",
       "Direct communication with Kevin — not a support team",
       "Tracked & insured shipping",
@@ -1360,6 +1366,7 @@ export const collections: Collection[] = [
       Caseback: "Sapphire display caseback · Shows the movement",
       "Water Resist.": "5 ATM / 50 metres",
       Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
+      Bracelet: "Included · Custom-designed stainless steel bracelet · 20mm tapering to 18mm · Grooved links echoing the case · Removable links for sizing · Butterfly clasp with quick-adjust",
       Edition: "Nine of each dial · Made to order · Not part of the standard Étiquette run",
       Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
     },
@@ -1376,13 +1383,17 @@ export const collections: Collection[] = [
       caseDiameter: "27 × 43.7mm",
       thickness: "6.9–7.3mm (preliminary)",
       lugWidth: "20 → 18mm",
-      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, 6.9–7.3 mm (preliminary), sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette.",
-      image: "/images/etiquette-hebrew.jpg",
+      note: "At 27 mm wide and 43.7 mm long, Étiquette is built on the golden ratio, giving the case a balance that feels right before you know why. Curved to follow the wrist, its slender profile, 6.9–7.3 mm (preliminary), sits discreetly beneath a cuff, while a custom-fitted leather strap tapering from 20 mm to 18 mm completes its refined silhouette. A matching steel bracelet is included as well.",
+      noImage: true, // every photo is used elsewhere on the page (Kevin: no repeats)
     },
     extraFaqs: [
       {
         q: "What will it cost?",
         a: "Both versions are hand-wound. The Japanese version, powered by a Miyota 9015 that Pedral has converted to manual winding and reworked into a rectangular movement (27 × 20.6 × 3.5 mm), is €1,100. The Swiss version, powered by the La Joux-Perret LJP D101, is €1,800.",
+      },
+      {
+        q: "Does it come with the bracelet?",
+        a: "Yes. Every Étiquette Hebrew comes with both the custom-fitted leather strap and the custom-designed steel bracelet shown here, at no extra cost. Like the strap, the bracelet tapers from 20 mm to 18 mm, its links are removable so it can be sized to your wrist, and the butterfly clasp has a quick-adjust function for fine-tuning the fit. Final specifications are subject to prototype development.",
       },
       {
         q: "When will it be delivered?",
@@ -1403,19 +1414,29 @@ export const collections: Collection[] = [
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
     newsletterSub: "Prototype updates and studio news. No noise.",
-    image: "/images/etiquette-hebrew.jpg",
-    heroImage: "/images/etiquette-hebrew.jpg",
+    // New renders (Kevin, 2026-11-16), set up like Famille Royale: the hero
+    // alternates strap ↔ bracelet for the selected dial, the
+    // picker shows the angled bracelet shot, detail = Tchelet dial macro,
+    // and a 3 × 2 gallery mixes dials and bands with no pose side by side.
+    // Every photo can be enlarged.
+    image: "/images/etiquette-hebrew-tchelet-portrait-angle.jpg",
+    heroImage: "/images/etiquette-hebrew-tchelet-front-strap.jpg",
+    heroIntervalMs: 3000, // Kevin asked for longer transitions (2026-11-16)
+    heroFadeMs: 1500,
     heroFit: "contain",
-    detailImage: "/images/etiquette-movement.jpg",
-    // New renders (Kevin, 2026-11-04). The older Tchelet/Layla studio renders
-    // stay on the hero and the dial picker; the movement photo is already
-    // further up the page, so it's not repeated here.
+    detailImage: "/images/etiquette-hebrew-tchelet-macro.jpg",
     galleryImages: [
-      "/images/etiquette-hebrew-tchelet-strap.jpg",
-      "/images/etiquette-hebrew-tchelet-angle.jpg",
-      "/images/etiquette-hebrew-profile.jpg",
-      "/images/etiquette-hebrew-layla-angle.jpg",
+      // Layla's front shot stays out: it's Layla's hero when that dial is
+      // clicked, and it mustn't repeat.
+      "/images/etiquette-hebrew-tchelet-flat-bracelet.jpg",
+      "/images/etiquette-hebrew-layla-angle-strap.jpg",
+      "/images/etiquette-hebrew-layla-flat-strap.jpg",
+      "/images/etiquette-hebrew-tchelet-angle-strap.jpg",
+      "/images/etiquette-hebrew-layla-flat-bracelet.jpg",
+      "/images/etiquette-hebrew-layla-macro.jpg",
     ],
+    galleryAspect: "16 / 9",
+    galleryColumns: 3,
     variants: [
       {
         name: "Tchelet",
@@ -1423,8 +1444,9 @@ export const collections: Collection[] = [
         stock: 9,
         price: 1100,
         description: "Tchelet — Hebrew for sky blue. Lacquered ivory dial with custom distorted Hebrew numerals and hands in blue.",
-        image: "/images/etiquette-hebrew.jpg",
-        heroImage: "/images/etiquette-hebrew.jpg",
+        image: "/images/etiquette-hebrew-tchelet-portrait-angle.jpg",
+        heroImage: "/images/etiquette-hebrew-tchelet-front-strap.jpg",
+        heroImages: ["/images/etiquette-hebrew-tchelet-front-strap.jpg", "/images/etiquette-hebrew-tchelet-front-bracelet.jpg"],
         numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {
@@ -1438,8 +1460,9 @@ export const collections: Collection[] = [
         stock: 9,
         price: 1100,
         description: "Layla — Hebrew for night. Lacquered deep blue dial with custom distorted Hebrew numerals in ivory.",
-        image: "/images/etiquette-hebrew-blue.jpg",
-        heroImage: "/images/etiquette-hebrew-blue.jpg",
+        image: "/images/etiquette-hebrew-layla-portrait-angle.jpg",
+        heroImage: "/images/etiquette-hebrew-layla-front-strap.jpg",
+        heroImages: ["/images/etiquette-hebrew-layla-front-strap.jpg", "/images/etiquette-hebrew-layla-front-bracelet.jpg"],
         numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {

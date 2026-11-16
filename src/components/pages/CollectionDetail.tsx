@@ -297,7 +297,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
 
   // Timed hero alternation (c.heroImages), e.g. strap ↔ bracelet. Image
   // only, so unlike the variant rotation above it keeps running on scroll.
-  const heroCycle = c.heroImages && c.heroImages.length > 1 ? c.heroImages : null;
+  const heroCycleList = selectedVariant?.heroImages ?? c.heroImages;
+  const heroCycle = heroCycleList && heroCycleList.length > 1 ? heroCycleList : null;
   const [heroCycleIndex, setHeroCycleIndex] = useState(0);
   useEffect(() => {
     if (!heroCycle) return;
@@ -307,7 +308,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   }, [heroCycle?.length, c.heroIntervalMs]);
 
   const heroSrc = heroCycle
-    ? heroCycle[heroCycleIndex]
+    ? heroCycle[heroCycleIndex % heroCycle.length]
     : (selectedNumeral && selectedVariant?.numeralHeroImages?.[selectedNumeral]) ??
       selectedVariant?.heroImage ??
       c.heroImage ??
@@ -523,7 +524,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               <>
                 <motion.div
                   animate={{ opacity: heroCrossfade.showA ? 1 : 0 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  transition={{ duration: (c.heroFadeMs ?? 600) / 1000, ease: "easeInOut" }}
                   className="absolute inset-0"
                 >
                   <Image
@@ -536,7 +537,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 </motion.div>
                 <motion.div
                   animate={{ opacity: heroCrossfade.showA ? 0 : 1 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  transition={{ duration: (c.heroFadeMs ?? 600) / 1000, ease: "easeInOut" }}
                   className="absolute inset-0"
                 >
                   <Image
