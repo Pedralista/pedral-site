@@ -1252,7 +1252,7 @@ export const collections: Collection[] = [
     // (Kevin: "no picture should be seen twice"), strap and bracelet versions
     // mixed across poses: hero = front/strap, picker = angled/bracelet,
     // detail = dial macro, Étiquette page card = low/strap (portrait crops),
-    // gallery = the remaining four poses in one row.
+    // gallery = the remaining four poses + Pose 8 on the strap, one row of 5.
     image: "/images/etiquette-fr-portrait-angle-bracelet.jpg",
     heroImage: "/images/etiquette-fr-portrait.jpg",
     heroFit: "contain",
@@ -1260,11 +1260,14 @@ export const collections: Collection[] = [
     galleryImages: [
       "/images/etiquette-fr-profile.jpg",
       "/images/etiquette-fr-caseback-bracelet.jpg",
-      "/images/etiquette-fr-flat-strap.jpg",
+      // Pose 8 on the strap, alongside the bracelet version in the picker
+      // (Kevin asked for both, 2026-11-16).
+      "/images/etiquette-fr-angle-strap.jpg",
       "/images/etiquette-fr-bracelet-top.jpg",
+      "/images/etiquette-fr-flat-strap.jpg",
     ],
     galleryAspect: "16 / 9",
-    galleryColumns: 4,
+    galleryColumns: 5,
     variants: [
       {
         name: "Famille Royale",
