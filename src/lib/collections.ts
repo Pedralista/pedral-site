@@ -108,6 +108,9 @@ export interface Collection {
   // gallery shots share one shape — shows them whole instead of cropping
   // them into the default fixed-height strip.
   galleryAspect?: string;
+  // Desktop gallery columns; more images than this wrap onto extra rows.
+  // Default: every image in one row.
+  galleryColumns?: number;
   variants?: CollectionVariant[];
   isPreOrder?: boolean;
   /** Per-product opt-in for checkout add-ons (straps / engraving). Gated together with ADDONS_ENABLED in src/lib/addons.ts. Defaults off. */
@@ -1128,7 +1131,7 @@ export const collections: Collection[] = [
       {
         name: "Famille Royale",
         description: "Royal Aubergine lacquer, custom distorted Roman numerals as champagne-gold appliqués. Just 21 numbered pieces — owners choose their own number. No public allocation. Existing owners: write to Kevin directly to reserve yours.",
-        image: "/images/etiquette-famille-royale.jpg",
+        image: "/images/etiquette-fr-portrait.jpg",
         badge: "Owners Only · 21 Pieces",
       },
     ],
@@ -1235,11 +1238,29 @@ export const collections: Collection[] = [
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
     newsletterSub: "Prototype updates and studio news. No noise.",
-    image: "/images/etiquette-famille-royale.jpg",
-    heroImage: "/images/etiquette-famille-royale.jpg",
+    // New renders (Kevin, 2026-11-16): 13 shots, strap and bracelet. The
+    // portrait crop of the front strap shot fills the 4:5 picker panel; the
+    // 12 landscape shots run as a 3-column 16:9 gallery.
+    image: "/images/etiquette-fr-portrait.jpg",
+    heroImage: "/images/etiquette-fr-portrait.jpg",
     heroFit: "contain",
-    detailImage: "/images/etiquette-famille-royale.jpg",
-    galleryImages: ["/images/etiquette-famille-royale.jpg", "/images/etiquette-movement.jpg"],
+    detailImage: "/images/etiquette-fr-dial-macro.jpg",
+    galleryImages: [
+      "/images/etiquette-fr-front-strap.jpg",
+      "/images/etiquette-fr-front-bracelet.jpg",
+      "/images/etiquette-fr-profile.jpg",
+      "/images/etiquette-fr-low-strap.jpg",
+      "/images/etiquette-fr-low-bracelet.jpg",
+      "/images/etiquette-fr-caseback-strap.jpg",
+      "/images/etiquette-fr-angle-strap.jpg",
+      "/images/etiquette-fr-angle-bracelet.jpg",
+      "/images/etiquette-fr-caseback-bracelet.jpg",
+      "/images/etiquette-fr-flat-strap.jpg",
+      "/images/etiquette-fr-flat-bracelet.jpg",
+      "/images/etiquette-fr-bracelet-top.jpg",
+    ],
+    galleryAspect: "16 / 9",
+    galleryColumns: 3,
     variants: [
       {
         name: "Famille Royale",
@@ -1247,8 +1268,8 @@ export const collections: Collection[] = [
         stock: 21,
         price: 1100,
         description: "Royal Aubergine lacquer dial with custom distorted Roman numerals as champagne-gold appliqués. For existing Pedral owners only.",
-        image: "/images/etiquette-famille-royale.jpg",
-        heroImage: "/images/etiquette-famille-royale.jpg",
+        image: "/images/etiquette-fr-portrait.jpg",
+        heroImage: "/images/etiquette-fr-portrait.jpg",
         numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {

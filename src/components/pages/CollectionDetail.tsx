@@ -1881,7 +1881,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
       {/* Gallery Strip */}
       {(() => {
         const images = c.galleryImages && c.galleryImages.length > 0 ? c.galleryImages : [null, null, null];
-        const cols = images.length;
+        const cols = Math.min(images.length, c.galleryColumns ?? images.length);
         // On "contain" products (studio renders on black), show the watch
         // renders whole instead of cropping off the top/bottom of the case;
         // other shots (e.g. the movement photo) still fill their panel.
