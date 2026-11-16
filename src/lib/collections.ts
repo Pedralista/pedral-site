@@ -1436,8 +1436,8 @@ export const collections: Collection[] = [
     // picker shows the angled bracelet shot, detail = Tchelet dial macro,
     // and a 3 × 2 gallery mixes dials and bands with no pose side by side.
     // Every photo can be enlarged.
-    image: "/images/etiquette-hebrew-tchelet-portrait-angle.jpg",
-    heroImage: "/images/etiquette-hebrew-tchelet-front-strap.jpg",
+    image: "/images/etiquette-hebrew-tchelet-portrait-angle-v2.jpg",
+    heroImage: "/images/etiquette-hebrew-tchelet-front-strap-v2.jpg",
     heroIntervalMs: 3000, // Kevin asked for longer transitions (2026-11-16)
     heroFadeMs: 1500,
     heroFit: "contain",
@@ -1467,9 +1467,9 @@ export const collections: Collection[] = [
         stock: 9,
         price: 1100,
         description: "Tchelet — Hebrew for sky blue. Lacquered ivory dial with custom distorted Hebrew numerals and hands in blue.",
-        image: "/images/etiquette-hebrew-tchelet-portrait-angle.jpg",
-        heroImage: "/images/etiquette-hebrew-tchelet-front-strap.jpg",
-        heroImages: ["/images/etiquette-hebrew-tchelet-front-strap.jpg", "/images/etiquette-hebrew-tchelet-front-bracelet.jpg"],
+        image: "/images/etiquette-hebrew-tchelet-portrait-angle-v2.jpg",
+        heroImage: "/images/etiquette-hebrew-tchelet-front-strap-v2.jpg",
+        heroImages: ["/images/etiquette-hebrew-tchelet-front-strap-v2.jpg", "/images/etiquette-hebrew-tchelet-front-bracelet-v2.jpg"],
         numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {
@@ -1483,9 +1483,9 @@ export const collections: Collection[] = [
         stock: 9,
         price: 1100,
         description: "Layla — Hebrew for night. Lacquered deep blue dial with custom distorted Hebrew numerals in ivory.",
-        image: "/images/etiquette-hebrew-layla-portrait-angle.jpg",
-        heroImage: "/images/etiquette-hebrew-layla-front-strap.jpg",
-        heroImages: ["/images/etiquette-hebrew-layla-front-strap.jpg", "/images/etiquette-hebrew-layla-front-bracelet.jpg"],
+        image: "/images/etiquette-hebrew-layla-portrait-angle-v2.jpg",
+        heroImage: "/images/etiquette-hebrew-layla-front-strap-v2.jpg",
+        heroImages: ["/images/etiquette-hebrew-layla-front-strap-v2.jpg", "/images/etiquette-hebrew-layla-front-bracelet-v2.jpg"],
         numeralOptions: ["Japanese Hand-Wound", "Swiss Hand-Wound"],
         numeralPrices: { "Swiss Hand-Wound": 1800 },
         numeralPriceIds: {
