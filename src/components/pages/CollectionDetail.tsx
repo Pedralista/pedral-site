@@ -313,10 +313,21 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
       selectedVariant?.heroImage ??
       c.heroImage ??
       c.image;
+  // "The case" section: several dial close-ups crossfade on a timer.
+  const detailList = c.detailImages && c.detailImages.length > 1 ? c.detailImages : null;
+  const [detailIndex, setDetailIndex] = useState(0);
+  useEffect(() => {
+    if (!detailList) return;
+    const t = setInterval(() => setDetailIndex((i) => (i + 1) % detailList.length), c.detailIntervalMs ?? 3000);
+    return () => clearInterval(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [detailList?.length, c.detailIntervalMs]);
+  const detailSrc = detailList ? detailList[detailIndex % detailList.length] : c.detailImage;
+
   // Every photo on the page that can be opened full screen, in page order
   // (hero, picker, detail, gallery), so the viewer's arrows run through all.
   const zoomImages = Array.from(
-    new Set([...(heroCycle ?? [heroSrc]), selectedVariantImage, c.detailImage, ...(c.galleryImages ?? [])].filter((s): s is string => !!s))
+    new Set([...(heroCycle ?? [heroSrc]), selectedVariantImage, ...(detailList ?? [c.detailImage]), ...(c.galleryImages ?? [])].filter((s): s is string => !!s))
   );
   const openZoom = (src: string | undefined | null) => {
     if (!src) return;
@@ -1643,13 +1654,15 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
-              className={`mt-10 grid gap-4 ${c.comingSoonEditions.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}
+              className={`mt-10 grid gap-4 ${c.comingSoonEditions.length === 1 ? "" : c.comingSoonEditions.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}
             >
               {c.comingSoonEditions.map((ed) => (
                 <motion.div
                   key={ed.name}
                   variants={fadeInUp}
-                  className="rounded-lg border border-accent/10 bg-background-alt overflow-hidden"
+                  // A single edition sits as one wide card: photo left, text
+                  // right (Kevin, 2026-11-16: "put the text to the right").
+                  className={`rounded-lg border border-accent/10 bg-background-alt overflow-hidden ${c.comingSoonEditions!.length === 1 ? "sm:grid sm:grid-cols-2 sm:items-center" : ""}`}
                 >
                   {ed.image ? (
                     <div className={`relative w-full ${c.comingSoonEditionsHeading?.portrait ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
@@ -1663,7 +1676,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   ) : (
                     <ImagePlaceholder label={ed.name} className="aspect-[4/3] w-full" />
                   )}
-                  <div className="p-6">
+                  <div className={c.comingSoonEditions!.length === 1 ? "p-6 sm:p-10" : "p-6"}>
                     <div className="mb-3 flex items-center gap-3">
                       <span className="rounded-lg border border-accent/20 px-2.5 py-1 text-[11px] tracking-[2px] uppercase text-accent">
                         {ed.badge ?? "Coming Soon"}
@@ -1858,10 +1871,22 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
           whileInView="visible"
           viewport={{ once: true }}
           variants={slideInLeft}
-          className={`relative h-[400px] w-full md:h-[500px] ${c.detailImage ? "cursor-zoom-in" : ""}`}
-          onClick={c.detailImage ? () => openZoom(c.detailImage) : undefined}
+          className={`relative h-[400px] w-full md:h-[500px] ${detailSrc ? "cursor-zoom-in" : ""}`}
+          onClick={detailSrc ? () => openZoom(detailSrc) : undefined}
         >
-          {c.detailImage ? (
+          {detailList ? (
+            detailList.map((src, i) => (
+              <motion.div
+                key={src}
+                initial={false}
+                animate={{ opacity: i === detailIndex % detailList.length ? 1 : 0 }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <Image src={src} alt={`${c.name} dial detail ${i + 1}`} fill className="object-cover" />
+              </motion.div>
+            ))
+          ) : c.detailImage ? (
             <Image
               src={c.detailImage}
               alt={`${c.name} detail`}

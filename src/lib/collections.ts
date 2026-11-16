@@ -114,6 +114,11 @@ export interface Collection {
   heroIntervalMs?: number; // default 1000
   heroFadeMs?: number; // hero crossfade length, default 600
   detailImage?: string;
+  // Several dial close-ups for "The case" section, crossfading on a timer so
+  // every dial on offer is shown (Kevin, 2026-11-16). detailImage stays the
+  // fallback for places that take a single picture.
+  detailImages?: string[];
+  detailIntervalMs?: number; // default 3000
   galleryImages?: string[];
   // Shape of each gallery panel (CSS aspect-ratio, e.g. "16 / 9") when the
   // gallery shots share one shape — shows them whole instead of cropping
@@ -1053,6 +1058,7 @@ export const collections: Collection[] = [
     },
     testimonials: [],
     wristFit: {
+      noImage: true, // the dial close-ups now cycle in "The case"; no repeat here
       caseDiameter: "27 × 43.7mm",
       thickness: "6.9–7.3mm (preliminary)",
       lugWidth: "20 → 18mm",
@@ -1080,6 +1086,13 @@ export const collections: Collection[] = [
     // Kevin 2026-11-16: "choose the best pictures, not too many". One pose = one
     // picture; strap and bracelet mixed; dials spread so each appears once.
     detailImage: "/images/etiquette-bourgogne-macro.jpg", // Pose 2 D
+    // "The case" section cycles through every dial on offer (Pose 2 macros).
+    detailImages: [
+      "/images/etiquette-soiree-macro.jpg", // Pose 2 C
+      "/images/etiquette-bourgogne-macro.jpg", // Pose 2 D
+      "/images/etiquette-nocturne-macro.jpg", // Pose 2 F
+      "/images/etiquette-ambiance-macro.jpg", // Pose 2 G
+    ],
     galleryImages: [
       "/images/etiquette-nocturne-angle-bracelet.jpg", // Pose 8 F bracelet
       "/images/etiquette-ambiance-flat-strap.jpg", // Pose 5 G strap
@@ -1429,6 +1442,11 @@ export const collections: Collection[] = [
     heroFadeMs: 1500,
     heroFit: "contain",
     detailImage: "/images/etiquette-hebrew-tchelet-macro.jpg",
+    // "The case" section cycles through both dials (Kevin, 2026-11-16).
+    detailImages: [
+      "/images/etiquette-hebrew-tchelet-macro.jpg",
+      "/images/etiquette-hebrew-layla-macro.jpg",
+    ],
     galleryImages: [
       // Layla's front shot stays out: it's Layla's hero when that dial is
       // clicked, and it mustn't repeat.
@@ -1437,7 +1455,8 @@ export const collections: Collection[] = [
       "/images/etiquette-hebrew-layla-flat-strap.jpg",
       "/images/etiquette-hebrew-tchelet-angle-strap.jpg",
       "/images/etiquette-hebrew-layla-flat-bracelet.jpg",
-      "/images/etiquette-hebrew-layla-macro.jpg",
+      // Layla's macro moved to "The case" section; open caseback instead.
+      "/images/etiquette-hebrew-caseback-strap.jpg", // Pose 3, round movement, strap
     ],
     galleryAspect: "16 / 9",
     galleryColumns: 3,
