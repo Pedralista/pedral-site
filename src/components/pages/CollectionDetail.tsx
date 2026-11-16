@@ -21,6 +21,7 @@ import { SHIPPING_LINE, klarnaLine } from "@/lib/shipping";
 import Newsletter from "@/components/sections/Newsletter";
 import TrustIcons from "@/components/sections/TrustIcons";
 import PreOrderModal from "@/components/ui/PreOrderModal";
+import ImageLightbox from "@/components/ui/ImageLightbox";
 import { getStripe } from "@/lib/stripe-client";
 import { gaEvent, fbqTrack, type AnalyticsItem } from "@/lib/analytics";
 import { getKx } from "@/lib/klaviyo-kx";
@@ -101,6 +102,8 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   // (A fully sold-out collection keeps its own waitlist button instead.)
   const dialSoldOut = !isSoldOut && !!selectedVariant && selectedVariant.stock === 0;
   const [loading, setLoading] = useState(false);
+  // Gallery tile opened full screen (index into galleryImages), or null.
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [preOrderError, setPreOrderError] = useState<string | null>(null);
   const [notifyEmail, setNotifyEmail] = useState("");
@@ -1898,7 +1901,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               {images.map((src, i) => {
                 const isWide = !!src && containShot(src);
                 return (
-                  <div key={i} className={`relative ${c.galleryAspect ? "" : "h-[280px] "}w-[80vw] shrink-0 snap-start overflow-hidden bg-[#060a0b]`} style={c.galleryAspect ? { aspectRatio: c.galleryAspect } : undefined}>
+                  <div key={i} className={`relative ${c.galleryAspect ? "" : "h-[280px] "}w-[80vw] shrink-0 snap-start overflow-hidden bg-[#060a0b] ${src ? "cursor-zoom-in" : ""}`} style={c.galleryAspect ? { aspectRatio: c.galleryAspect } : undefined} onClick={src ? () => setLightboxIndex(i) : undefined} role={src ? "button" : undefined} aria-label={src ? `Enlarge ${c.name} image ${i + 1}` : undefined}>
                     {src ? (
                       <Image src={src} alt={`${c.name} angle ${i + 1}`} fill className={isWide ? "object-contain" : "object-cover"} style={{ filter: "contrast(1.06) saturate(0.92) brightness(0.97) sepia(0.05)" }} />
                     ) : (
@@ -1915,7 +1918,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               {images.map((src, i) => {
                 const isWide = !!src && containShot(src);
                 return (
-                  <div key={i} className={`relative ${c.galleryAspect ? "" : "h-[380px] "}w-full overflow-hidden group bg-[#060a0b]`} style={c.galleryAspect ? { aspectRatio: c.galleryAspect } : undefined}>
+                  <div key={i} className={`relative ${c.galleryAspect ? "" : "h-[380px] "}w-full overflow-hidden group bg-[#060a0b] ${src ? "cursor-zoom-in" : ""}`} style={c.galleryAspect ? { aspectRatio: c.galleryAspect } : undefined} onClick={src ? () => setLightboxIndex(i) : undefined} role={src ? "button" : undefined} aria-label={src ? `Enlarge ${c.name} image ${i + 1}` : undefined}>
                     {src ? (
                       <Image src={src} alt={`${c.name} angle ${i + 1}`} fill className={`${isWide ? "object-contain" : "object-cover"} transition-transform duration-700 group-hover:scale-[1.04]`} style={{ filter: "contrast(1.06) saturate(0.92) brightness(0.97) sepia(0.05)" }} />
                     ) : (
@@ -1927,6 +1930,15 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                 );
               })}
             </section>
+            {c.galleryImages && c.galleryImages.length > 0 && (
+              <ImageLightbox
+                images={c.galleryImages}
+                index={lightboxIndex}
+                alt={c.name}
+                onClose={() => setLightboxIndex(null)}
+                onIndex={setLightboxIndex}
+              />
+            )}
           </>
         );
       })()}
