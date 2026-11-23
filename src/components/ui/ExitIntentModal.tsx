@@ -34,7 +34,7 @@ export default function ExitIntentModal() {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source: "Exit-intent pop-up" }),
       });
       const data = await res.json();
       setStatus(data.success || data.alreadySubscribed ? "success" : "error");

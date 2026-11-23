@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { hasKlaviyoPrivateKey, lookupKlaviyoSubscriber } from "@/lib/klaviyo";
 import Stripe from "stripe";
 import crypto from "crypto";
 import { rateLimit, getIp } from "@/lib/rateLimit";
@@ -43,6 +44,8 @@ export async function POST(req: NextRequest) {
     })(),
 
     (async () => {
+      // Klaviyo once KLAVIYO_PRIVATE_API_KEY is set in Vercel; Mailchimp until then.
+      if (hasKlaviyoPrivateKey()) return lookupKlaviyoSubscriber(email);
       if (!API_KEY || !AUDIENCE_ID || !DC) return null;
       const hash = mailchimpHash(email);
       const res = await fetch(

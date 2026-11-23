@@ -45,7 +45,7 @@ export default function PrivacyPage() {
 
       <h2>3. Who We Share Data With</h2>
       <p>
-        Payment processor (Stripe/Klarna), Shipping courier, Email platform (e.g. Mailchimp/Klaviyo),
+        Payment processor (Stripe/Klarna), Shipping courier, Email platform (Klaviyo),
         Analytics (Google Analytics), and infrastructure providers (e.g. Upstash, for rate-limiting
         and stock-tracking — processes IP addresses only, no personal profile). No data is sold.
         Processors are bound by data processing agreements.

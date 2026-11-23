@@ -30,7 +30,7 @@ export default function Newsletter({
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, website: honeypot }),
+        body: JSON.stringify({ source: "Footer newsletter", email, website: honeypot }),
       });
       const data = await res.json();
 
@@ -40,7 +40,7 @@ export default function Newsletter({
       } else if (data.alreadySubscribed) {
         setStatus("exists");
       } else {
-        // Surface Mailchimp's actual reason (e.g. a flagged/disposable
+        // Surface the email platform's actual reason (e.g. a flagged/disposable
         // address) instead of a generic message that leaves a real
         // customer with no idea what to try differently.
         setErrorMessage(typeof data.error === "string" ? data.error : null);

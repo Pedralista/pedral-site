@@ -542,7 +542,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: notifyEmail, website: "" }),
+        body: JSON.stringify({ email: notifyEmail, website: "", source: "Notify me" }),
       });
       const data = await res.json();
       setNotifyStatus(data.success || data.alreadySubscribed ? "success" : "error");

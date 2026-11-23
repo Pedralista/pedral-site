@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { rateLimit, getIp } from "@/lib/rateLimit";
+import { hasKlaviyoPrivateKey, unsubscribeFromKlaviyo } from "@/lib/klaviyo";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -23,6 +24,14 @@ export async function POST(req: NextRequest) {
 
   if (!action) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+  }
+
+  // Klaviyo once KLAVIYO_PRIVATE_API_KEY is set in Vercel; Mailchimp until then.
+  if (action === "unsubscribe" && hasKlaviyoPrivateKey()) {
+    const ok = await unsubscribeFromKlaviyo(email);
+    return ok
+      ? NextResponse.json({ success: true })
+      : NextResponse.json({ error: "Failed to unsubscribe" }, { status: 500 });
   }
 
   const API_KEY = process.env.MAILCHIMP_API_KEY;
