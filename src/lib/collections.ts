@@ -112,6 +112,8 @@ export interface Collection {
   // on strap and bracelet. Image only: name, price and buttons don't change.
   heroImages?: string[];
   heroIntervalMs?: number; // default 1000
+  // Label for a dial with no stock left, instead of "Sold out" (e.g. "Fully allocated").
+  soldOutLabel?: string;
   heroFadeMs?: number; // hero crossfade length, default 600
   detailImage?: string;
   // Several dial close-ups for "The case" section, crossfading on a timer so
@@ -1001,7 +1003,7 @@ export const collections: Collection[] = [
     name: "Étiquette",
     metaTitle: "Pedral Étiquette — Art Deco Rectangular Dress Watch, 27 × 43.7mm | Pedral",
     metaDescription:
-      "Étiquette: a 27 × 43.7mm golden-ratio rectangular dress watch, 6.9–7.3mm (preliminary), with concentric CNC-machined grooves and custom distorted Roman numerals. Hand-wound: Soirée and Nocturne Japanese, €1,100; Bourgogne and Ambiance Swiss LJP D101, €1,800. Pre-order now.",
+      "Étiquette: a 27 × 43.7mm golden-ratio rectangular dress watch, 6.9–7.3mm (preliminary), with concentric CNC-machined grooves. Two new mosaic dials, ten of each: Vermaïque in a rose-gold-plated case, Japanese hand-wound, €1,400; Mopao in steel with custom Roman numerals, Swiss LJP D101, €2,000. Also Nocturne (Japanese, €1,100) and Ambiance (Swiss, €1,800). Pre-order now.",
     tagline: "Pre-order",
     hook: "Good taste. Questionable manners.",
     descriptionTitle: "A study in proportion. An exercise in irreverence.",
@@ -1013,9 +1015,13 @@ export const collections: Collection[] = [
       "Good design, much like good manners, is knowing the rules. And knowing precisely when to break them.",
     year: 2026,
     tier: "signature",
-    price: 1100, // "From" price: Soirée / Nocturne (Japanese)
-    stock: 40, // sum of the variant (dial) stocks below
-    maxStock: 40, // 10 pieces of each dial (Kevin, 2026-10-30)
+    price: 1100, // "From" price: Nocturne (Japanese)
+    stock: 39, // sum of the variant (dial) stocks below: Vermaïque 10 + Mopao 10 + Nocturne 10 + Ambiance 9
+    maxStock: 60, // 10 pieces of each dial (Kevin, 2026-10-30); 6 dials since the mosaics (2026-11-23)
+    // Soirée and Bourgogne are fully allocated; Nocturne and Ambiance stay on
+    // sale next to the mosaics (Kevin, 2026-11-23). Sold-out dials say this
+    // instead of "Sold out".
+    soldOutLabel: "Fully allocated",
     edition: "10 per dial · Pre-order · First run",
     hideEditionSize: true,
     cardEditionLabel: "10 per dial",
@@ -1029,23 +1035,25 @@ export const collections: Collection[] = [
     numeralOptionsLabel: "Movement",
     reassurance: [
       "By reservation · Payment in full secures your piece",
+      "Leather strap and bracelet, both included",
       "Sapphire crystal · 316L steel · Hand-wound: modified Miyota 9015 or Swiss LJP D101",
       "Direct communication with Kevin — not a support team",
       "Tracked & insured shipping",
     ],
     specsTitle: "Not for everyone.",
     specs: {
-      Price: "Soirée and Nocturne: €1,100 (Japanese hand-wound) · Bourgogne and Ambiance: €1,800 (Swiss hand-wound)",
-      Movement: "Hand-wound · Hours and minutes · Soirée and Nocturne: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Bourgogne and Ambiance: La Joux-Perret LJP D101, Swiss, 50-hour power reserve",
-      Case: "27 × 43.7mm · Golden ratio proportions · 6.9–7.3mm thick (preliminary) · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel",
+      Price: "Vermaïque: €1,400 (Japanese hand-wound) · Mopao: €2,000 (Swiss hand-wound) · Nocturne: €1,100 (Japanese hand-wound) · Ambiance: €1,800 (Swiss hand-wound)",
+      Movement: "Hand-wound · Hours and minutes · Vermaïque and Nocturne: Pedral-modified Miyota 9015, converted from automatic to manual winding, rectangular 27 × 20.6 × 3.5mm · Mopao and Ambiance: La Joux-Perret LJP D101, Swiss, 50-hour power reserve",
+      Case: "27 × 43.7mm · Golden ratio proportions · 6.9–7.3mm thick (preliminary) · Curved to follow the wrist · Subtly asymmetrical rectangle · 316L stainless steel · Vermaïque: rose-gold plated",
       "Case Detail": "Concentric CNC-machined grooves · Brushed surfaces, polished bevels",
-      Dial: "Pedral signature inner dial frame · Soirée (black onyx, gold numerals) and Bourgogne: custom distorted Roman numerals · Nocturne (black onyx) and Ambiance: musical-note indices · Famille Royale (Royal Aubergine lacquer, champagne-gold numerals) reserved for existing owners",
+      Dial: "Mosaic of small square tiles shading from silver through gold to rose · Vermaïque: no numerals, only the Pedral name · Mopao: custom distorted Roman numerals and Pedral's signature inner dial frame · Nocturne: black onyx with ivory musical-note indices · Ambiance: ivory with colourful musical-note indices · Soirée and Bourgogne: fully allocated · Famille Royale (Royal Aubergine lacquer, champagne-gold numerals) reserved for existing owners",
       Hands: "Polished dress-watch hands",
       Crown: "Pedral signature geodesic crown",
       Crystal: "Sapphire with anti-reflective coating",
       Caseback: "Sapphire display caseback · Shows the movement",
       "Water Resist.": "5 ATM / 50 metres",
       Strap: "Premium leather, lizard-pattern or Epsom · 20mm tapering to 18mm · Custom-fitted concealed lugs · Polished pin buckle",
+      Bracelet: "Included · Custom-designed stainless steel bracelet, rose-gold plated on Vermaïque · 20mm tapering to 18mm · Grooved links echoing the case · Removable links for sizing · Butterfly clasp with quick-adjust",
       Status: "Pre-order · Estimated delivery late Q1 / early Q2 2027, in order of purchase · Final specifications subject to prototype development",
     },
     boxContents: [],
@@ -1067,7 +1075,11 @@ export const collections: Collection[] = [
     extraFaqs: [
       {
         q: "What will it cost?",
-        a: "Every Étiquette is hand-wound, and each dial comes with one movement. Soirée and Nocturne are €1,100, powered by a Miyota 9015 that Pedral converts from automatic to manual winding and reworks into a rectangular movement (27 × 20.6 × 3.5 mm). Bourgogne and Ambiance are €1,800, powered by the Swiss La Joux-Perret LJP D101.",
+        a: "Every Étiquette is hand-wound, and each dial comes with one movement. Vermaïque is €1,400, powered by a Miyota 9015 that Pedral converts from automatic to manual winding and reworks into a rectangular movement (27 × 20.6 × 3.5 mm). Mopao is €2,000, powered by the Swiss La Joux-Perret LJP D101. Ten of each. Nocturne (€1,100, Japanese) and Ambiance (€1,800, Swiss) are still available. Soirée and Bourgogne are fully allocated.",
+      },
+      {
+        q: "Does it come with the bracelet?",
+        a: "Yes. Vermaïque, Mopao, Nocturne and Ambiance each come with both the custom-fitted leather strap and the custom-designed bracelet shown here, at no extra cost; on Vermaïque the bracelet is rose-gold plated to match the case. Like the strap, the bracelet tapers from 20 mm to 18 mm, its links are removable so it can be sized to your wrist, and the butterfly clasp has a quick-adjust function for fine-tuning the fit. Final specifications are subject to prototype development.",
       },
       {
         q: "When will it be delivered?",
@@ -1080,32 +1092,87 @@ export const collections: Collection[] = [
     ],
     newsletterTitle: "Follow Étiquette from prototype to wrist.",
     newsletterSub: "Prototype updates and studio news. No noise.",
-    image: "/images/etiquette-soiree-gold-v3.jpg",
-    heroImage: "/images/etiquette-bourgogne-v3.jpg",
+    image: "/images/etiquette-vermaique-front-v2.jpg",
+    heroImage: "/images/etiquette-vermaique-front-v2.jpg",
     heroFit: "contain",
-    // Kevin 2026-11-16: "choose the best pictures, not too many". One pose = one
-    // picture; strap and bracelet mixed; dials spread so each appears once.
-    detailImage: "/images/etiquette-bourgogne-macro.jpg", // Pose 2 D
-    // "The case" section cycles through every dial on offer (Pose 2 macros).
+    // Mosaic dials (Kevin, 2026-11-23), one pose = one picture per dial:
+    // hero Pose 1 alternating strap ↔ bracelet, picker Pose 8 bracelet,
+    // "The case" Pose 2 macros, 4 × 2 gallery mixing strap and bracelet
+    // (Poses 5 and 7 once per dial, Pose 4 profile, Pose 3 caseback).
+    // Nocturne and Ambiance get the same treatment (Kevin: showcase them).
+    heroIntervalMs: 3000,
+    heroFadeMs: 1500,
+    detailImage: "/images/etiquette-vermaique-macro.jpg", // Pose 2 mosaic gold
     detailImages: [
-      "/images/etiquette-soiree-macro.jpg", // Pose 2 C
-      "/images/etiquette-bourgogne-macro.jpg", // Pose 2 D
+      "/images/etiquette-vermaique-macro.jpg", // Pose 2 mosaic gold
+      "/images/etiquette-mopao-macro.jpg", // Pose 2 mosaic steel
       "/images/etiquette-nocturne-macro.jpg", // Pose 2 F
       "/images/etiquette-ambiance-macro.jpg", // Pose 2 G
     ],
     galleryImages: [
-      "/images/etiquette-nocturne-angle-bracelet.jpg", // Pose 8 F bracelet
-      "/images/etiquette-ambiance-flat-strap.jpg", // Pose 5 G strap
-      "/images/etiquette-profile-strap.jpg", // Pose 4 strap
-      "/images/etiquette-caseback-bracelet.jpg", // Pose 3 bracelet, open caseback
+      "/images/etiquette-mopao-flat-strap.jpg", // Pose 5 strap mosaic steel
+      "/images/etiquette-vermaique-front-strap-wide.jpg", // Pose 7 strap mosaic gold
+      "/images/etiquette-nocturne-flat-bracelet.jpg", // Pose 5 bracelet F
+      "/images/etiquette-gold-profile.jpg", // Pose 4 gold
+      "/images/etiquette-mopao-front-bracelet.jpg", // Pose 7 bracelet mosaic steel
+      "/images/etiquette-ambiance-flat-strap.jpg", // Pose 5 strap G
+      "/images/etiquette-gold-caseback.jpg", // Pose 3 gold, open caseback
+      "/images/etiquette-vermaique-flat.jpg", // Pose 5 bracelet mosaic gold
     ],
     galleryAspect: "16 / 9",
-    galleryColumns: 2,
+    galleryColumns: 4, // 4 × 2: mosaics + Nocturne/Ambiance (Kevin 2026-11-23: showcase them too)
     variants: [
+      {
+        name: "Vermaïque",
+        stripePriceId: "price_1UeutrCfxE1lSBKRIfSEMB9z", // Étiquette — Vermaïque · Japanese Hand-Wound (€1,400)
+        stock: 10,
+        price: 1400,
+        numeralOptions: ["Japanese Hand-Wound"],
+        description: "Vermeil and mosaïque, run together. A mosaic of small square tiles shading from silver through gold to rose, with no numerals, only the Pedral name. Rose-gold-plated case.",
+        image: "/images/etiquette-vermaique-angle-v2.jpg", // Pose 8 mosaic gold
+        heroImage: "/images/etiquette-vermaique-front-v2.jpg", // Pose 1 mosaic gold
+        heroImages: ["/images/etiquette-vermaique-front-strap-v2.jpg", "/images/etiquette-vermaique-front-v2.jpg"], // Pose 1 strap ↔ bracelet
+      },
+      {
+        name: "Mopao",
+        stripePriceId: "price_1UeuucCfxE1lSBKRkZtMLelR", // Étiquette — Mopao · Swiss Hand-Wound (€2,000)
+        stock: 10,
+        price: 2000,
+        numeralOptions: ["Swiss Hand-Wound"],
+        description: "Mopao is Lingala for the boss. The same mosaic, silver to gold to rose, beneath custom distorted Roman numerals and Pedral's signature inner dial frame. Steel case.",
+        image: "/images/etiquette-mopao-angle-v2.jpg", // Pose 8 mosaic steel
+        heroImage: "/images/etiquette-mopao-front-v2.jpg", // Pose 1 mosaic steel
+        heroImages: ["/images/etiquette-mopao-front-strap-v2.jpg", "/images/etiquette-mopao-front-v2.jpg"], // Pose 1 strap ↔ bracelet
+      },
+      {
+        name: "Nocturne",
+        stripePriceId: "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Japanese Hand-Wound (€1,100), Japanese only since 2026-11-07 (Kevin)
+        stock: 10, // still available (Kevin, 2026-11-23)
+        price: 1100,
+        numeralOptions: ["Japanese Hand-Wound"],
+        numeralPriceIds: {
+          "Japanese Hand-Wound": "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Japanese Hand-Wound (€1,100)
+        },
+        description: "Black onyx dial with ivory musical-note indices.",
+        image: "/images/etiquette-nocturne-angle-v2.jpg", // Pose 8 bracelet
+        heroImage: "/images/etiquette-nocturne-front-strap-v2.jpg", // Pose 1 strap
+        heroImages: ["/images/etiquette-nocturne-front-strap-v2.jpg", "/images/etiquette-nocturne-front-bracelet-v2.jpg"], // Pose 1 strap ↔ bracelet
+      },
+      {
+        name: "Ambiance",
+        stripePriceId: "price_1UUFCICfxE1lSBKRHBF1I95p", // Étiquette — Ambiance · Swiss Hand-Wound (€1,800)
+        stock: 9, // still available (Kevin, 2026-11-23); No. 06 sold (Josh)
+        price: 1800,
+        numeralOptions: ["Swiss Hand-Wound"],
+        description: "Ivory dial with colourful musical-note indices and blue hands. The one with questionable manners.",
+        image: "/images/etiquette-ambiance-angle-v2.jpg", // Pose 8 bracelet
+        heroImage: "/images/etiquette-ambiance-front-strap-v2.jpg", // Pose 1 strap
+        heroImages: ["/images/etiquette-ambiance-front-strap-v2.jpg", "/images/etiquette-ambiance-front-bracelet-v2.jpg"], // Pose 1 strap ↔ bracelet
+      },
       {
         name: "Soirée",
         stripePriceId: "price_1UUF1JCfxE1lSBKRMKslTe28", // Étiquette — Soirée · Japanese Hand-Wound (€1,100), Japanese only since 2026-11-07 (Kevin)
-        stock: 10,
+        stock: 0, // fully allocated (Kevin, 2026-11-23)
         price: 1100,
         numeralOptions: ["Japanese Hand-Wound"],
         numeralPriceIds: {
@@ -1118,35 +1185,12 @@ export const collections: Collection[] = [
       {
         name: "Bourgogne",
         stripePriceId: "price_1UUF5hCfxE1lSBKRu70dLbhe", // Étiquette — Bourgogne · Swiss Hand-Wound (€1,800)
-        stock: 10,
+        stock: 0, // fully allocated (Kevin, 2026-11-23)
         price: 1800,
         numeralOptions: ["Swiss Hand-Wound"],
         description: "Burgundy dial, custom distorted Roman numerals in silver.",
         image: "/images/etiquette-bourgogne-v3.jpg",
         heroImage: "/images/etiquette-bourgogne-v3.jpg",
-      },
-      {
-        name: "Nocturne",
-        stripePriceId: "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Japanese Hand-Wound (€1,100), Japanese only since 2026-11-07 (Kevin)
-        stock: 10,
-        price: 1100,
-        numeralOptions: ["Japanese Hand-Wound"],
-        numeralPriceIds: {
-          "Japanese Hand-Wound": "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Japanese Hand-Wound (€1,100)
-        },
-        description: "Black onyx dial with ivory musical-note indices.",
-        image: "/images/etiquette-nocturne-v3.jpg",
-        heroImage: "/images/etiquette-nocturne-v3.jpg",
-      },
-      {
-        name: "Ambiance",
-        stripePriceId: "price_1UUFCICfxE1lSBKRHBF1I95p", // Étiquette — Ambiance · Swiss Hand-Wound (€1,800)
-        stock: 10,
-        price: 1800,
-        numeralOptions: ["Swiss Hand-Wound"],
-        description: "Ivory dial with colourful musical-note indices and blue hands. The one with questionable manners.",
-        image: "/images/etiquette-ambiance-v3.jpg",
-        heroImage: "/images/etiquette-ambiance-v3.jpg",
       },
     ],
     comingSoonEditionsHeading: {

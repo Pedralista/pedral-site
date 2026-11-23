@@ -774,7 +774,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       : isSoldOut
                       ? "Join Waitlist"
                       : dialSoldOut
-                      ? `${selectedVariant?.name} · Sold out`
+                      ? `${selectedVariant?.name} · ${c.soldOutLabel ?? "Sold out"}`
                       : c.editionNumbers
                       ? `${editionNumber ? `Reserve No. ${pad2(editionNumber)}` : "Choose your number"} · €${(effectivePrice).toLocaleString()}`
                       : `${c.reserveButtonLabel ?? "Acquire"} · €${(effectivePrice).toLocaleString()}`}
@@ -962,7 +962,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                               <span className={v.stock === 0 ? "line-through decoration-1" : undefined}>{v.name}</span>
                               {v.stock === 0 && (
                                 <span className="mt-1 block font-sans text-[11px] font-normal uppercase tracking-[2px] text-accent/70 no-underline">
-                                  Sold out
+                                  {c.soldOutLabel ?? "Sold out"}
                                 </span>
                               )}
                             </button>
@@ -1022,7 +1022,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       {/* Never above the dial's stock: a buyer who hasn't chosen yet still has a piece. */}
                       <p className={`font-serif text-[18px] font-light italic text-foreground-muted sm:text-[20px] ${numbersLoaded ? "" : "invisible"}`}>
                         {selectedVariant.stock === 0
-                          ? "Sold out"
+                          ? (c.soldOutLabel ?? "Sold out")
                           : `${Math.min(editionTotal - soldNumbers.length - reservedNumbers.length - (c.editionNumbersHeld?.length ?? 0), selectedVariant.stock)} of ${editionTotal} still available`}
                       </p>
                     </div>
@@ -1096,7 +1096,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       {loading
                         ? "Loading…"
                         : dialSoldOut
-                        ? `${selectedVariant.name} · Sold out`
+                        ? `${selectedVariant.name} · ${c.soldOutLabel ?? "Sold out"}`
                         : editionNumber
                         ? `Reserve No. ${pad2(editionNumber)} · €${runningTotal.toLocaleString()}`
                         : `Choose your number · €${runningTotal.toLocaleString()}`}
@@ -1618,7 +1618,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   disabled={loading || dialSoldOut || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="w-full rounded-lg bg-accent px-10 py-4 text-[11px] font-medium tracking-[3px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:w-auto"
                 >
-                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : dialSoldOut ? "Sold out" : `${c.reserveButtonLabel ?? "Acquire"} · €${runningTotal.toLocaleString()}`}
+                  {loading ? "Loading…" : c.isPreOrder ? `Reserve · €${c.depositAmount ?? 500}` : isSoldOut ? "Join Waitlist" : dialSoldOut ? (c.soldOutLabel ?? "Sold out") : `${c.reserveButtonLabel ?? "Acquire"} · €${runningTotal.toLocaleString()}`}
                 </button>
               </div>
             </motion.div>
@@ -2252,7 +2252,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     : isSoldOut
                     ? "Join Waitlist"
                     : dialSoldOut
-                    ? `${selectedVariant?.name} · Sold out`
+                    ? `${selectedVariant?.name} · ${c.soldOutLabel ?? "Sold out"}`
                     : c.editionNumbers
                     ? `${editionNumber ? `Reserve No. ${pad2(editionNumber)}` : "Choose your number"} · €${(effectivePrice).toLocaleString()}`
                     : `${c.reserveButtonLabel ?? "Acquire"} · €${(effectivePrice).toLocaleString()}`}
@@ -2483,7 +2483,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   disabled={loading || dialSoldOut || (!c.isPreOrder && !selectedVariant) || (!c.isPreOrder && !effectivePriceId) || (!!selectedVariant?.numeralOptions && !selectedNumeral) || (!!selectedNumeral && !!selectedVariant?.soldOutNumerals?.includes(selectedNumeral))}
                   className="rounded-lg bg-accent px-4 py-2.5 text-[11px] font-medium tracking-[1.5px] uppercase text-background transition-colors hover:bg-accent-hover disabled:opacity-60 sm:px-8 sm:text-[11px] sm:tracking-[2px]"
                 >
-                  {loading ? "…" : dialSoldOut ? "Sold out" : c.editionNumbers ? (editionNumber ? `Reserve No. ${pad2(editionNumber)}` : "Choose your number") : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Acquire"}
+                  {loading ? "…" : dialSoldOut ? (c.soldOutLabel ?? "Sold out") : c.editionNumbers ? (editionNumber ? `Reserve No. ${pad2(editionNumber)}` : "Choose your number") : isSoldOut ? "Waitlist" : c.isPreOrder ? "Reserve" : c.reserveButtonLabel ?? "Acquire"}
                 </button>
               </div>
             </div>

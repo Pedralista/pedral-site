@@ -36,6 +36,8 @@ const VALID_PRICE_IDS = new Set([
   "price_1UUF5hCfxE1lSBKRu70dLbhe", // Étiquette — Bourgogne · Swiss Hand-Wound (€1,800)
   "price_1UUF7cCfxE1lSBKRNbpTOgfk", // Étiquette — Nocturne · Japanese Hand-Wound (€1,100)
   "price_1UUFCICfxE1lSBKRHBF1I95p", // Étiquette — Ambiance · Swiss Hand-Wound (€1,800)
+  "price_1UeutrCfxE1lSBKRIfSEMB9z", // Étiquette — Vermaïque · Japanese Hand-Wound (€1,400)
+  "price_1UeuucCfxE1lSBKRkZtMLelR", // Étiquette — Mopao · Swiss Hand-Wound (€2,000)
   // Étiquette numeral editions (standalone pages)
   "price_1UUOovCfxE1lSBKRZltUibsZ", // Étiquette Hebrew — Tchelet · Japanese Hand-Wound (€1,100)
   "price_1UUOqaCfxE1lSBKRZ0PFXRKD", // Étiquette Hebrew — Tchelet · Swiss Hand-Wound (€1,800)
