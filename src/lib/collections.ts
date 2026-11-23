@@ -112,6 +112,11 @@ export interface Collection {
   // on strap and bracelet. Image only: name, price and buttons don't change.
   heroImages?: string[];
   heroIntervalMs?: number; // default 1000
+  // Hero walks through every in-stock dial's heroImages (e.g. strap then
+  // bracelet of each dial) on one heroIntervalMs timer, the dial name and
+  // price following along, instead of a 7 s dial timer plus a separate
+  // strap ↔ bracelet timer (Kevin 2026-11-23: show all available watches).
+  heroAllFrames?: boolean;
   // Label for a dial with no stock left, instead of "Sold out" (e.g. "Fully allocated").
   soldOutLabel?: string;
   heroFadeMs?: number; // hero crossfade length, default 600
@@ -1102,6 +1107,7 @@ export const collections: Collection[] = [
     // Nocturne and Ambiance get the same treatment (Kevin: showcase them).
     heroIntervalMs: 3000,
     heroFadeMs: 1500,
+    heroAllFrames: true,
     detailImage: "/images/etiquette-vermaique-macro.jpg", // Pose 2 mosaic gold
     detailImages: [
       "/images/etiquette-vermaique-macro.jpg", // Pose 2 mosaic gold

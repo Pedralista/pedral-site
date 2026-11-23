@@ -255,8 +255,16 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         .filter((opt) => v.numeralHeroImages?.[opt])
         .map((opt) => ({ variant: v, numeral: opt, heroImage: v.numeralHeroImages![opt] }));
     }
+    if (c.heroAllFrames && v.heroImages && v.heroImages.length > 0) {
+      return v.heroImages.map((img) => ({ variant: v, numeral: null, heroImage: img }));
+    }
     return v.heroImage ? [{ variant: v, numeral: null, heroImage: v.heroImage }] : [];
   });
+  // heroAllFrames: one timer steps through every frame (each dial's strap
+  // and bracelet shots); heroFrameIndex says which frame is showing.
+  const [heroFrameIndex, setHeroFrameIndex] = useState(() =>
+    Math.max(0, heroFrames.findIndex((f) => f.variant.name === selectedVariant?.name))
+  );
   const [userPickedVariant, setUserPickedVariant] = useState(false);
   // setInterval's closure only sees selectedNumeral as it was when the
   // effect last (re)ran — a ref keeps it live across ticks without having
@@ -267,6 +275,27 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   }, [selectedNumeral]);
   useEffect(() => {
     if (userPickedVariant || heroFrames.length < 2) return;
+    if (c.heroAllFrames) {
+      const t = setInterval(() => {
+        setHeroFrameIndex((i) => {
+          const next = (i + 1) % heroFrames.length;
+          const f = heroFrames[next];
+          const numeral = selectedNumeralRef.current;
+          const options = f.variant.numeralOptions;
+          setSelectedVariant(f.variant);
+          setSelectedNumeral(numeral && options?.includes(numeral) ? numeral : options?.[0] ?? null);
+          return next;
+        });
+      }, c.heroIntervalMs ?? 3000);
+      const stop = () => {
+        if (window.scrollY > window.innerHeight * 0.6) setUserPickedVariant(true);
+      };
+      window.addEventListener("scroll", stop, { passive: true });
+      return () => {
+        clearInterval(t);
+        window.removeEventListener("scroll", stop);
+      };
+    }
     const interval = setInterval(() => {
       setSelectedVariant((current) => {
         const numeral = selectedNumeralRef.current;
@@ -307,7 +336,10 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [heroCycle?.length, c.heroIntervalMs]);
 
-  const heroSrc = heroCycle
+  const allFramesActive = !!c.heroAllFrames && !userPickedVariant && heroFrames.length > 1;
+  const heroSrc = allFramesActive
+    ? heroFrames[heroFrameIndex % heroFrames.length].heroImage
+    : heroCycle
     ? heroCycle[heroCycleIndex % heroCycle.length]
     : (selectedNumeral && selectedVariant?.numeralHeroImages?.[selectedNumeral]) ??
       selectedVariant?.heroImage ??
