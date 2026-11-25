@@ -189,15 +189,20 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   // e.g. "Soirée · Japanese Hand-Wound".
   // Numbered edition (e.g. Famille Royale): the buyer picks their number from a grid.
   // A number belongs to the dial it was picked on, so switching dial clears it.
+  // Contour (editionNumbersPerNumeral): the dial is the numeral option, so
+  // numbers are kept per movement + dial ("Hand-Wound · Onyx").
+  const numberDial = c.editionNumbersPerNumeral
+    ? selectedVariant && selectedNumeral ? `${selectedVariant.name} · ${selectedNumeral}` : ""
+    : c.editionNumbersPerDial ? selectedVariant?.name ?? "" : "";
   const [editionPick, setEditionPick] = useState<{ dial: string; n: number } | null>(null);
-  const editionNumber = editionPick?.dial === selectedVariant?.name ? editionPick?.n ?? null : null;
+  const pickKey = c.editionNumbersPerNumeral ? numberDial : selectedVariant?.name ?? "";
+  const editionNumber = editionPick?.dial === pickKey ? editionPick?.n ?? null : null;
   const setEditionNumber = (n: number | null) =>
-    setEditionPick(n === null ? null : { dial: selectedVariant?.name ?? "", n });
+    setEditionPick(n === null ? null : { dial: pickKey, n });
   // Identifies this visitor's number hold, so reopening checkout keeps it.
   const [holdToken] = useState(() => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Math.random()).slice(2)));
   // Kept per dial, so switching dial shows that dial's numbers straight away.
   const [numberStatus, setNumberStatus] = useState<Record<string, NumberStatus>>({});
-  const numberDial = c.editionNumbersPerDial ? selectedVariant?.name ?? "" : "";
   const numbersLoaded = !!numberStatus[numberDial];
   const soldNumbers = numberStatus[numberDial]?.sold ?? [];
   const reservedNumbers = numberStatus[numberDial]?.reserved ?? [];
@@ -207,17 +212,32 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
   useEffect(() => {
     if (!c.editionNumbers || !c.editionNumbersPerDial) return;
     for (const v of c.variants ?? []) {
-      fetchNumberStatus(c.slug, v.name).then((s) => setNumberStatus((prev) => ({ ...prev, [v.name]: s })));
+      const dials = c.editionNumbersPerNumeral
+        ? (v.numeralOptions ?? []).filter((o) => !v.soldOutNumerals?.includes(o)).map((o) => `${v.name} · ${o}`)
+        : [v.name];
+      for (const d of dials) {
+        fetchNumberStatus(c.slug, d).then((s) => setNumberStatus((prev) => ({ ...prev, [d]: s })));
+      }
     }
   }, [c.editionNumbers, c.editionNumbersPerDial, c.slug, c.variants]);
   useEffect(() => {
-    if (!c.editionNumbers) return;
+    if (!c.editionNumbers || (c.editionNumbersPerNumeral && !numberDial)) return;
     fetchNumberStatus(c.slug, numberDial).then((s) => setNumberStatus((prev) => ({ ...prev, [numberDial]: s })));
   }, [c.editionNumbers, c.slug, numberDial, preOrderError]);
   const pad2 = (n: number) => String(n).padStart(2, "0");
   // Numbers on the selected dial: its own size when dials differ (Silhouette), else the collection's.
-  const editionTotal = selectedVariant?.editionNumbers ?? c.editionNumbers ?? 0;
-  const dialSizesDiffer = !!c.variants?.some((v) => v.editionNumbers && v.editionNumbers !== c.editionNumbers);
+  const editionTotal =
+    (c.editionNumbersPerNumeral && selectedNumeral && selectedVariant?.numeralEditionNumbers?.[selectedNumeral]) ||
+    (selectedVariant?.editionNumbers ?? c.editionNumbers ?? 0);
+  const dialSizesDiffer = !!c.variants?.some(
+    (v) =>
+      (v.editionNumbers && v.editionNumbers !== c.editionNumbers) ||
+      Object.values(v.numeralEditionNumbers ?? {}).some((n) => n !== c.editionNumbers)
+  );
+  // Pieces left on the selected dial (Contour: the numeral's own stock).
+  const numberedStock =
+    (c.editionNumbersPerNumeral && selectedNumeral ? selectedVariant?.numeralStock?.[selectedNumeral] : undefined) ??
+    selectedVariant?.stock ?? 0;
   const baseSelectionLabel = selectedVariant?.numeralOptions
     ? `${selectedVariant.name} · ${selectedNumeral}`
     : selectedVariant?.name ?? "";
@@ -957,7 +977,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                     {c.editionNumbersPerDial && !dialSizesDiffer ? `${editionTotal} pieces per dial` : `Limited edition · ${editionTotal} pieces`}
                   </p>
                   <h2 className="mt-4 font-serif text-[clamp(36px,4.6vw,54px)] font-light italic leading-[1.05] text-foreground">
-                    {selectedVariant.name}
+                    {c.editionNumbersPerNumeral && selectedNumeral ? selectedNumeral : selectedVariant.name}
                   </h2>
                   <p className="mt-4 font-serif text-[24px] font-light text-foreground">
                     &euro;{listPrice.toLocaleString()}
@@ -972,7 +992,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                   {c.editionNumbersPerDial && visibleVariants.length > 1 && (
                     <div className="mt-8 border-t border-accent/15 pt-6">
                       <p className="text-[12px] font-normal tracking-[2.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
-                        Dial
+                        {c.editionNumbersPerNumeral ? c.variantLabel ?? "Movement" : "Dial"}
                       </p>
                       <div className="mt-4 grid grid-cols-2 gap-2">
                         {visibleVariants.map((v) => {
@@ -982,7 +1002,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                               key={v.name}
                               type="button"
                               aria-pressed={isSel}
-                              onClick={() => { setSelectedVariant(v); setSelectedNumeral((prev) => (prev && v.numeralOptions?.includes(prev) ? prev : v.numeralOptions?.[0] ?? null)); setUserPickedVariant(true); setPreOrderError(null); }}
+                              onClick={() => { setSelectedVariant(v); setSelectedNumeral((prev) => (prev && v.numeralOptions?.includes(prev) && !v.soldOutNumerals?.includes(prev) ? prev : v.numeralOptions?.find((o) => !v.soldOutNumerals?.includes(o)) ?? null)); setUserPickedVariant(true); setPreOrderError(null); }}
                               className={`rounded-lg border px-4 py-3.5 text-left font-serif text-[18px] font-light transition-colors ${
                                 v.stock === 0
                                   ? isSel ? "border-accent/50 bg-accent/[0.05] text-foreground-muted" : "border-accent/10 text-foreground-muted/50 hover:border-accent/30"
@@ -1011,7 +1031,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                         {c.numeralOptionsLabel ?? "Movement"}
                       </p>
                       <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                        {selectedVariant.numeralOptions.map((opt) => {
+                        {selectedVariant.numeralOptions.filter((opt) => !c.editionNumbersPerNumeral || !selectedVariant.soldOutNumerals?.includes(opt)).map((opt) => {
                           const isSel = selectedNumeral === opt;
                           const optPrice = selectedVariant.numeralPrices?.[opt] ?? selectedVariant.price ?? c.price;
                           return (
@@ -1053,9 +1073,9 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                       </p>
                       {/* Never above the dial's stock: a buyer who hasn't chosen yet still has a piece. */}
                       <p className={`font-serif text-[18px] font-light italic text-foreground-muted sm:text-[20px] ${numbersLoaded ? "" : "invisible"}`}>
-                        {selectedVariant.stock === 0
+                        {numberedStock === 0
                           ? (c.soldOutLabel ?? "Sold out")
-                          : `${Math.min(editionTotal - soldNumbers.length - reservedNumbers.length - (c.editionNumbersHeld?.length ?? 0), selectedVariant.stock)} of ${editionTotal} still available`}
+                          : `${Math.min(editionTotal - soldNumbers.length - reservedNumbers.length - (c.editionNumbersHeld?.length ?? 0), numberedStock)} of ${editionTotal} still available`}
                       </p>
                     </div>
                     <div ref={editionGridRef} className={`mt-4 grid ${editionTotal === 9 ? "grid-cols-3" : editionTotal === 21 ? "grid-cols-7" : "grid-cols-5"} border-l border-t transition-colors ${gridNudge ? "border-accent" : "border-accent/20"}`}>
@@ -1069,7 +1089,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
                           <button
                             key={n}
                             type="button"
-                            disabled={taken || held || !numbersLoaded || selectedVariant.stock === 0}
+                            disabled={taken || held || !numbersLoaded || numberedStock === 0}
                             onClick={() => { setEditionNumber(n); setUserPickedVariant(true); setPreOrderError(null); }}
                             aria-label={sold ? `No. ${pad2(n)}, sold` : held ? `No. ${pad2(n)}, kept by the studio` : reserved ? `No. ${pad2(n)}, reserved` : `Choose No. ${pad2(n)}`}
                             aria-pressed={selected}

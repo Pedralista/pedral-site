@@ -25,7 +25,18 @@ function getRedis(): Redis | null {
  * when each dial has its own 1…N. `variantName` is the dial, or the recorded
  * selection ("Soirée · No. 03 of 10"). Null if the dial isn't recognised.
  */
+/** Contour-style selection "Hand-Wound · Onyx · No. 03 of 20" → the variant and its dial. */
+function variantAndNumeral(collection: Collection, variantName: string | undefined) {
+  const [vName, numeral] = (variantName ?? "").split(" · ");
+  const v = collection.variants?.find((x) => x.name === vName);
+  return { v, numeral: numeral && v?.numeralOptions?.includes(numeral) ? numeral : undefined };
+}
+
 export function numberPool(collection: Collection, variantName: string | undefined): string | null {
+  if (collection.editionNumbersPerNumeral) {
+    const { v, numeral } = variantAndNumeral(collection, variantName);
+    return v && numeral ? `${collection.slug}:${slugifyPart(v.name)}-${slugifyPart(numeral)}` : null;
+  }
   if (!collection.editionNumbersPerDial) return collection.slug;
   const dial = collection.variants?.find((v) => variantName === v.name || variantName?.startsWith(`${v.name} ·`));
   return dial ? `${collection.slug}:${slugifyPart(dial.name)}` : null;
@@ -33,6 +44,10 @@ export function numberPool(collection: Collection, variantName: string | undefin
 
 /** How many numbers a dial has: its own size when set, else the collection's. */
 export function editionSize(collection: Collection, variantName: string | undefined): number {
+  if (collection.editionNumbersPerNumeral) {
+    const { v, numeral } = variantAndNumeral(collection, variantName);
+    return (numeral && v?.numeralEditionNumbers?.[numeral]) || v?.editionNumbers || collection.editionNumbers || 0;
+  }
   const dial = collection.variants?.find((v) => variantName === v.name || variantName?.startsWith(`${v.name} ·`));
   return dial?.editionNumbers ?? collection.editionNumbers ?? 0;
 }

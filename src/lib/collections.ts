@@ -50,6 +50,9 @@ export interface CollectionVariant {
   // own edition size, when dials differ (e.g. Silhouette: Ophion 20,
   // Aventurine 10). Falls back to the collection's editionNumbers.
   editionNumbers?: number;
+  // With editionNumbersPerNumeral: each dial's (numeral option's) own edition
+  // size, e.g. Contour Quartz { Aurum: 10 }. Falls back to editionNumbers.
+  numeralEditionNumbers?: Record<string, number>;
 }
 
 export interface Collection {
@@ -169,6 +172,8 @@ export interface Collection {
   editionNumbersHeld?: number[];
   /** With editionNumbers: each dial has its own 1…N, picked on a per-dial grid — e.g. Étiquette, 10 of each dial. */
   editionNumbersPerDial?: boolean;
+  /** With editionNumbersPerDial: the dials are the variants' numeral options (Contour: variant = movement, numeral = dial), so each movement + dial pair has its own 1…N. */
+  editionNumbersPerNumeral?: boolean;
   /** Show the Pedral Watch Club WhatsApp invite (owners-only pages). */
   ownersClubInvite?: boolean;
   hidePriceOnCard?: boolean;
@@ -669,6 +674,13 @@ export const collections: Collection[] = [
     // all show normally now, same as Maestro/Triomphe.
     variantLabel: "Movement",
     numeralOptionsLabel: "Dial",
+    // Number picker per dial (Kevin, 2026-11-25). Numbers already owned are
+    // marked sold by hand in Redis (edition:contour:<movement>-<dial>:sold):
+    // 5 Onyx + 8 Aurum numbers picked at random (Kevin: owners' real
+    // choices come later, then swap them in).
+    editionNumbers: 20,
+    editionNumbersPerDial: true,
+    editionNumbersPerNumeral: true,
     // First-come-first-served pre-order, not a curated/reviewed allocation.
     reserveButtonLabel: "Reserve Yours",
     shipsBy: "Ships end of Q1 2027",
@@ -757,6 +769,7 @@ export const collections: Collection[] = [
         numeralOptions: ["Nacre", "Aurum", "Solaire"],
         soldOutNumerals: ["Nacre", "Solaire"],
         numeralStock: { "Nacre": 0, "Aurum": 10, "Solaire": 0 },
+        numeralEditionNumbers: { "Aurum": 10 },
         numeralImages: {
           "Nacre": "/images/contour-nacre-product-v2.jpg",
           "Aurum": "/images/contour-aurum-product-v2.jpg",
