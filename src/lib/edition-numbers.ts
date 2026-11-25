@@ -59,10 +59,11 @@ export async function getNumberStatus(slug: string, total: number): Promise<{ so
 /**
  * Holds a number for a checkout. Returns false if it's sold or already held
  * by someone else (`holder` is a random id per visitor, so reopening your own
- * checkout keeps your hold). Fails open (true) if Redis is unavailable, so a storage
- * hiccup never blocks a sale — Kevin can sort a rare clash by hand.
+ * checkout keeps your hold). Returns "unavailable" if Redis errors: while it's
+ * down the picker shows every number as free, so letting the sale through
+ * could sell a number twice (2026-11-25 Upstash outage).
  */
-export async function holdNumber(slug: string, n: number, holder: string): Promise<boolean> {
+export async function holdNumber(slug: string, n: number, holder: string): Promise<boolean | "unavailable"> {
   const r = getRedis();
   if (!r) return true;
   try {
@@ -76,8 +77,9 @@ export async function holdNumber(slug: string, n: number, holder: string): Promi
       return true;
     }
     return false;
-  } catch {
-    return true;
+  } catch (err) {
+    console.error("holdNumber: Redis unavailable", err);
+    return "unavailable";
   }
 }
 

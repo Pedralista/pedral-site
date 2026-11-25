@@ -302,7 +302,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Please choose your dial." }, { status: 400 });
     }
     const holder = typeof holdToken === "string" && holdToken.length <= 64 ? holdToken : crypto.randomUUID();
-    if (!(await holdNumber(pool, n, holder))) {
+    const held = await holdNumber(pool, n, holder);
+    if (held === "unavailable") {
+      return NextResponse.json({ error: "Numbered pieces can't be reserved for a few minutes — please try again shortly, or email info@pedral.watch." }, { status: 503 });
+    }
+    if (!held) {
       return NextResponse.json({ error: `No. ${String(n).padStart(2, "0")} was just taken — please choose another number.` }, { status: 409 });
     }
     chosenNumber = n;

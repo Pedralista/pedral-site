@@ -66,9 +66,17 @@ export async function rateLimit(
   if (!useUpstash) {
     return memRateLimit(identifier, limit, windowMs);
   }
-  const limiter = getUpstashLimiter(limit, windowMs);
-  const result = await limiter.limit(identifier);
-  return { allowed: result.success, remaining: result.remaining };
+  // Fails open to the in-memory limiter if Upstash errors (2026-11-25: the
+  // free plan's 500k monthly request cap was hit and every checkout and
+  // newsletter sign-up returned 500 until this fallback existed).
+  try {
+    const limiter = getUpstashLimiter(limit, windowMs);
+    const result = await limiter.limit(identifier);
+    return { allowed: result.success, remaining: result.remaining };
+  } catch (err) {
+    console.error("rateLimit: Upstash unavailable, using in-memory fallback", err);
+    return memRateLimit(identifier, limit, windowMs);
+  }
 }
 
 export function getIp(req: Request): string {
