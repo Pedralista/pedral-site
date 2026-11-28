@@ -55,7 +55,7 @@ const timeline = [
   {
     year: "2026",
     title: "Contour",
-    text: "35mm, 6.9mm thin, an integrated bracelet of hundreds of brushed scales that moves like fabric. A watch that carries itself like jewellery. Three drops, one instinct.",
+    text: "35mm, 7.3mm thin, an integrated bracelet of hundreds of brushed scales that moves like fabric. A watch that carries itself like jewellery. Three drops, one instinct.",
   },
   {
     year: "Aug 2026",

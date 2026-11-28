@@ -634,14 +634,14 @@ export const collections: Collection[] = [
     name: "Contour",
     metaTitle: "Pedral Contour — Integrated Bracelet, Quartz & Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch. €895 Nacre quartz, €1,000 Aurum, €1,950 hand-wound Onyx. Stockholm-designed. Third drop now available.",
+      "Contour: a 35mm, 7.3mm integrated-bracelet watch. €895 Nacre quartz, €1,000 Aurum, €1,950 hand-wound Onyx. Stockholm-designed. Third drop now available.",
     tagline: "Third Drop",
     hook: "Not a watch. A presence.",
     descriptionTitle: "Designed as a watch. Built like jewellery.",
     description:
       "The Contour doesn't sit on the wrist. It wraps it. Hundreds of articulated links move like fabric, finished with the care of a fine bracelet and shaped to form one continuous line from clasp to dial. Something meant to be touched as much as read.",
     descriptionExtra:
-      "In the 1970s, a handful of makers understood that a watch could carry itself like jewellery — worn low on the wrist, catching the light before it told you anything about the time. That instinct gradually gave way to decades of tool watch thinking. The Contour brings it back deliberately: 35mm across, 6.9mm thin, close enough to the skin to move like a bracelet, substantial enough to be felt in the room. Available in stainless steel and gold plated stainless steel. It doesn't ask to be noticed. It simply is.",
+      "In the 1970s, a handful of makers understood that a watch could carry itself like jewellery — worn low on the wrist, catching the light before it told you anything about the time. That instinct gradually gave way to decades of tool watch thinking. The Contour brings it back deliberately: 35mm across, 7.3mm thin, close enough to the skin to move like a bracelet, substantial enough to be felt in the room. Available in stainless steel and gold plated stainless steel. It doesn't ask to be noticed. It simply is.",
     designerNote:
       "I didn't want to build another watch that behaved like a tool. I wanted the quiet confidence of good jewelry — weight, warmth, a presence that doesn't need explaining. Onyx keeps it simplest — a single sheet of black, letting the hands do all the talking. Aurum carries its own sky — natural lapis flecked with gold, no two dials alike. Wear it on either wrist, crown in or out. It was built for people who don't ask permission to be noticed. Call it aura, if you need a word for it — the sense that something walked into the room before you did.",
     year: 2026,
@@ -707,11 +707,12 @@ export const collections: Collection[] = [
       Price: "€895 quartz · €1,000 Aurum · €1,950 hand-wound",
       Movement:
         "Ronda 1063, Swiss-made quartz — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
-      Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel (Aurum: gold-plated 316L stainless steel)",
+      Case: "35mm · 42mm lug to lug · 7.3mm thin (quartz) · 7.4mm (hand-wound) · fully integrated scale-bracelet construction · 316L stainless steel (Aurum: gold-plated 316L stainless steel)",
+      Caseback: "Quartz: solid steel · Hand-wound: sapphire display caseback",
       Dial:
         "Quartz: Nacre, natural mother-of-pearl, or Aurum, natural lapis lazuli flecked with gold pyrite, no two dials alike. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette.",
       Bracelet: "Fully integrated, hundreds of brushed scales, no visible lugs",
-      Crystal: "Sapphire",
+      Crystal: "Sapphire, anti-reflective coated underside",
       "Water Resist.": "5 ATM / 50 meters",
       Edition: "Third drop · Nacre, Aurum and Onyx, each individually numbered. The 39mm dials continue as Silhouette.",
     },
@@ -733,9 +734,10 @@ export const collections: Collection[] = [
     testimonials: [],
     wristFit: {
       caseDiameter: "35mm",
-      thickness: "6.9mm",
+      thickness: "7.3mm (hand-wound: 7.4mm)",
+      lugToLug: "42mm",
       wristRange: "13.5–20cm (5.3–7.9\")",
-      note: "There are no traditional lugs to measure. The bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than standing off the wrist.",
+      note: "It measures 42mm lug to lug, but the bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case proportion. At 35mm across and 7.3mm thin (hand-wound: 7.4mm), it sits close and settles flat rather than standing off the wrist.",
       noteExtra: "The bracelet closes with a slide adjustment clasp. Release the lock, place it exactly where your wrist wants it, and close it again. The fit is continuous rather than stepped, so there are no holes to compromise between and no links to remove. It fits wrists from around 13.5cm to 20cm (5.3\" to 7.9\").",
       image: "/images/contour-wristfit-arch.jpg",
     },
@@ -894,7 +896,7 @@ export const collections: Collection[] = [
       },
       {
         q: "How is Silhouette different from Contour?",
-        a: "Same idea — case and bracelet as one continuous form — in a larger 39mm case, 47.5mm lug to lug, on the Nyoka weave bracelet instead of Contour's articulated scales. At 7.3mm thin on Aventurine and Ituri, it's only a touch thicker than Contour's 6.9mm; Ophion, with its Japanese movement, is 8.5mm.",
+        a: "Same idea — case and bracelet as one continuous form — in a larger 39mm case, 47.5mm lug to lug, on the Nyoka weave bracelet instead of Contour's articulated scales. At 7.3mm thin on Aventurine and Ituri, it's as slim as Contour (7.3mm quartz, 7.4mm hand-wound); Ophion, with its Japanese movement, is 8.5mm.",
       },
       {
         q: "Is the Ituri dial hand-painted or printed?",
@@ -1831,7 +1833,7 @@ export const collections: Collection[] = [
     tagline: "Dial developed with Seconds Society",
     hook: "The same presence. A different stone.",
     description:
-      "Sodalite reads almost black until the light finds it — then it opens into a royal blue, mottled with white calcite the way marble is veined. Ruby-red synthetic moissanite baguettes mark the hours, cut and set rather than printed. No two dials cut from this stone carry the same pattern. It sits inside the same Contour case: 35mm across, 6.9mm thin, the bracelet fully integrated so the watch moves like fabric rather than sitting bolted to a strap. A different stone, the same instinct — jewelry that happens to tell time.",
+      "Sodalite reads almost black until the light finds it — then it opens into a royal blue, mottled with white calcite the way marble is veined. Ruby-red synthetic moissanite baguettes mark the hours, cut and set rather than printed. No two dials cut from this stone carry the same pattern. It sits inside the same Contour case: 35mm across, 7.3mm thin, the bracelet fully integrated so the watch moves like fabric rather than sitting bolted to a strap. A different stone, the same instinct — jewelry that happens to tell time.",
     descriptionExtra:
       "The watch is Pedral's Contour; the Sodalite dial was developed with Seconds Society. Fifteen pieces, no more. When they're gone, this dial doesn't come back — not as a restock, not as a future Contour expression. It exists once, for the people who see it in time.",
     designerNote:
@@ -1859,10 +1861,11 @@ export const collections: Collection[] = [
     specs: {
       Price: "€895",
       Movement: "Ronda 1063, Swiss-made quartz",
-      Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
+      Case: "35mm · 42mm lug to lug · 7.3mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
+      Caseback: "Solid steel",
       Dial: "Sodalite natural stone — royal blue, mottled with white calcite veining — with ruby-red synthetic moissanite baguette indices. Each dial is unrepeatable.",
       Bracelet: "Fully integrated, hundreds of brushed scales, no visible lugs",
-      Crystal: "Sapphire",
+      Crystal: "Sapphire, anti-reflective coated underside",
       "Water Resist.": "5 ATM / 50 meters",
       Warranty: "24-month international coverage",
       Edition: "15 pieces total · Sodalite dial developed with Seconds Society, not part of the standard Contour run.",
@@ -1885,9 +1888,10 @@ export const collections: Collection[] = [
     testimonials: [],
     wristFit: {
       caseDiameter: "35mm",
-      thickness: "6.9mm",
+      thickness: "7.3mm",
+      lugToLug: "42mm",
       wristRange: "13.5–20cm (5.3–7.9\")",
-      note: "There are no traditional lugs to measure — the bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case-to-wrist proportion. At 35mm across and 6.9mm thin, it sits close and settles flat rather than sitting high off the wrist.",
+      note: "It measures 42mm lug to lug, but the bracelet is fully integrated into the case, so fit comes down to bracelet length rather than case-to-wrist proportion. At 35mm across and 7.3mm thin, it sits close and settles flat rather than sitting high off the wrist.",
       noteExtra: "The bracelet closes with a slide adjustment clasp. Release the lock, place it exactly where your wrist wants it, and close it again. The fit is continuous rather than stepped, so there are no holes to compromise between and no links to remove. It fits wrists from around 13.5cm to 20cm (5.3\" to 7.9\").",
     },
     newsletterTitle: "Stay close to the studio.",
