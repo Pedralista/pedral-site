@@ -655,8 +655,8 @@ export const collections: Collection[] = [
     //
     // Third drop: Nacre was closed (sold out). Reopened 2026-11-28 (Kevin):
     // Nacre is numbered 01–20 (edition:contour:quartz-nacre:sold): No. 01 sold
-    // on 27 Nov; the three Aug 2026 buyers hold 12, 16 and 19 (low-demand
-    // numbers, so the popular ones stay on sale). The other 16 are on sale.
+    // on 27 Nov; the three Aug 2026 buyers hold 7 (their pick), 12 and 16.
+    // The other 16 are on sale.
     // Aurum (10) and Onyx (20) carry over unchanged at 35mm on the
     // original integrated scale-bracelet. Two new hand-wound dials join
     // at a larger 39mm case with a woven bracelet pattern:
