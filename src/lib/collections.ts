@@ -687,7 +687,7 @@ export const collections: Collection[] = [
     editionNumbersPerNumeral: true,
     // First-come-first-served pre-order, not a curated/reviewed allocation.
     reserveButtonLabel: "Reserve Yours",
-    shipsBy: "Ships end of Q1 2027",
+    shipsBy: "Shipping starts by 15 February 2027",
     extraFaqs: [
       {
         q: "Is the Onyx dial real stone, or glass?",
@@ -1851,6 +1851,7 @@ export const collections: Collection[] = [
     badge: "Capsule · 15 Pieces",
     urgencyTag: "Capsule release · 15 pieces only",
     reserveButtonLabel: "Reserve Yours",
+    shipsBy: "Shipping starts by 15 February 2027",
     reassurance: [
       "Sapphire crystal · 24-month warranty",
       "Direct communication with Kevin — not a support team",
