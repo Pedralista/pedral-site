@@ -865,7 +865,7 @@ export const collections: Collection[] = [
     variantLabel: "Dial",
     numeralOptionsLabel: "Movement",
     reserveButtonLabel: "Reserve Yours",
-    shipsBy: "Ships end of Q1 2027",
+    shipsBy: "Shipping starts by 15 February 2027",
     // Every dial individually numbered, buyer picks the number (Kevin,
     // 2026-11-07). Ophion 1–20; Aventurine and Ituri 1–10 (variant overrides).
     editionNumbers: 20,
