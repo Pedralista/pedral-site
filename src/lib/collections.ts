@@ -1837,8 +1837,8 @@ export const collections: Collection[] = [
     stock: 15,
     maxStock: 15,
     // Number picker 1–15 (Kevin, 2026-11-26). The one Sodalite sold before the
-    // picker holds a random placeholder number in Redis
-    // (edition:contour-seconds-society:sold) until the buyer picks theirs.
+    // picker chose No. 01 (2026-11-28), held in Redis
+    // (edition:contour-seconds-society:sold).
     editionNumbers: 15,
     edition: "15 pieces only",
     badge: "Capsule · 15 Pieces",
