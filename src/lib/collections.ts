@@ -633,7 +633,7 @@ export const collections: Collection[] = [
     name: "Contour",
     metaTitle: "Pedral Contour — Integrated Bracelet, Quartz & Hand-Wound | Pedral",
     metaDescription:
-      "Contour: a 35mm, 6.9mm integrated-bracelet watch. €895 quartz, €1,000 Aurum, €1,950 hand-wound Onyx. Stockholm-designed. Third drop now available.",
+      "Contour: a 35mm, 6.9mm integrated-bracelet watch. €895 Nacre quartz, €1,000 Aurum, €1,950 hand-wound Onyx. Stockholm-designed. Third drop now available.",
     tagline: "Third Drop",
     hook: "Not a watch. A presence.",
     descriptionTitle: "Designed as a watch. Built like jewellery.",
@@ -652,7 +652,10 @@ export const collections: Collection[] = [
     // by those 20 pieces (140 → 120); their live counters stay under the
     // "contour" slug and Silhouette reads them via stockSlug/stockPart.
     //
-    // Third drop: Nacre is now fully sold out (was 20 remaining, now 0).
+    // Third drop: Nacre was closed (sold out). Reopened 2026-11-28 (Kevin):
+    // Nacre is numbered 01–20 (edition:contour:quartz-nacre:sold): No. 01 sold
+    // on 27 Nov, Nos. 02–04 given to the three Aug 2026 buyers by purchase
+    // date. The other 16 are on sale.
     // Aurum (10) and Onyx (20) carry over unchanged at 35mm on the
     // original integrated scale-bracelet. Two new hand-wound dials join
     // at a larger 39mm case with a woven bracelet pattern:
@@ -705,11 +708,11 @@ export const collections: Collection[] = [
         "Ronda 1063, Swiss-made quartz — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
       Case: "35mm · 6.9mm thin · fully integrated scale-bracelet construction · 316L stainless steel (Aurum: gold-plated 316L stainless steel)",
       Dial:
-        "Quartz: Aurum, natural lapis lazuli flecked with gold pyrite, no two dials alike. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette.",
+        "Quartz: Nacre, natural mother-of-pearl, or Aurum, natural lapis lazuli flecked with gold pyrite, no two dials alike. Hand-Wound: Onyx — a single sheet of genuine black onyx stone, cut in the same squarcle silhouette.",
       Bracelet: "Fully integrated, hundreds of brushed scales, no visible lugs",
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
-      Edition: "Third drop · Nacre now fully allocated. Aurum and Onyx carry over from the second drop. The 39mm dials continue as Silhouette.",
+      Edition: "Third drop · Nacre, Aurum and Onyx, each individually numbered. The 39mm dials continue as Silhouette.",
     },
     boxContents: [
       "Contour timepiece",
@@ -763,12 +766,12 @@ export const collections: Collection[] = [
         stock: 30,
         color: "Black/White",
         price: 895,
-        description: "Ronda 1063, Swiss-made quartz. Aurum, natural lapis lazuli flecked with genuine gold pyrite. Nacre is now fully allocated.",
+        description: "Ronda 1063, Swiss-made quartz. Nacre, natural mother-of-pearl, or Aurum, natural lapis lazuli flecked with genuine gold pyrite.",
         image: "/images/contour-aurum-product-v2.jpg",
         heroImage: "/images/contour-aurum-hero-v4.jpg",
         numeralOptions: ["Nacre", "Aurum", "Solaire"],
-        soldOutNumerals: ["Nacre", "Solaire"],
-        numeralStock: { "Nacre": 0, "Aurum": 10, "Solaire": 0 },
+        soldOutNumerals: ["Solaire"],
+        numeralStock: { "Nacre": 16, "Aurum": 10, "Solaire": 0 },
         numeralEditionNumbers: { "Aurum": 10 },
         numeralImages: {
           "Nacre": "/images/contour-nacre-product-v2.jpg",

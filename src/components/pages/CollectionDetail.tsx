@@ -219,11 +219,11 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
         fetchNumberStatus(c.slug, d).then((s) => setNumberStatus((prev) => ({ ...prev, [d]: s })));
       }
     }
-  }, [c.editionNumbers, c.editionNumbersPerDial, c.slug, c.variants]);
+  }, [c.editionNumbers, c.editionNumbersPerDial, c.editionNumbersPerNumeral, c.slug, c.variants]);
   useEffect(() => {
     if (!c.editionNumbers || (c.editionNumbersPerNumeral && !numberDial)) return;
     fetchNumberStatus(c.slug, numberDial).then((s) => setNumberStatus((prev) => ({ ...prev, [numberDial]: s })));
-  }, [c.editionNumbers, c.slug, numberDial, preOrderError]);
+  }, [c.editionNumbers, c.editionNumbersPerNumeral, c.slug, numberDial, preOrderError]);
   const pad2 = (n: number) => String(n).padStart(2, "0");
   // Numbers on the selected dial: its own size when dials differ (Silhouette), else the collection's.
   const editionTotal =
