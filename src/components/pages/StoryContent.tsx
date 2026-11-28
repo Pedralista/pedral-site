@@ -59,8 +59,8 @@ const timeline = [
   },
   {
     year: "Aug 2026",
-    title: "Contour, designed by Seconds Society",
-    text: "A fifteen-piece Contour designed by Seconds Society: a sodalite dial with moissanite baguette indices. Made once.",
+    title: "Contour Sodalite",
+    text: "A fifteen-piece Contour with moissanite baguette indices and a sodalite dial developed with Seconds Society. Made once.",
   },
   {
     year: "Oct 2026",

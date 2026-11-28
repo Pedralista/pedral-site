@@ -28,7 +28,7 @@ const VALID_PRICE_IDS = new Set([
   "price_1U16isCfxE1lSBKRSMBWzhCO", // Contour — Swiss Quartz, Nacre (€895)
   "price_1U0sqHCfxE1lSBKRl7VPZnh7", // Contour — Hand-Wound, Onyx (€1,950)
   "price_1U3blkCfxE1lSBKR3ZwxlQ60", // Contour — Contour Aurum, Lapis (€1,000)
-  "price_1TyJgICfxE1lSBKRRyl9DzAp", // Contour, designed by Seconds Society — Sodalite (€895)
+  "price_1TyJgICfxE1lSBKRRyl9DzAp", // Contour Sodalite (dial developed with Seconds Society, €895)
   "price_1UBz4bCfxE1lSBKRxoKbUr0w", // Silhouette — Aventurine (€2,200), formerly Contour 39mm
   "price_1UBz7uCfxE1lSBKRLZGUEFVq", // Silhouette — Ituri (€5,000), formerly Contour 39mm
   "price_1UVadbCfxE1lSBKRn5qrUnUI", // Silhouette — Ophion · Japanese Hand-Wound (€1,500)

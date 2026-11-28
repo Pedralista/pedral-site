@@ -1815,26 +1815,27 @@ export const collections: Collection[] = [
     ],
   },
   {
-    // A Pedral Contour designed by Seconds Society (https://www.secondssociety.com/).
-    // Not a collaboration: Seconds Society asked (2026-11-28) for it to be
-    // framed as "designed by", as their collab slate is booked to 2028.
+    // A Pedral Contour whose Sodalite dial was developed with Seconds Society
+    // (https://www.secondssociety.com/). Not billed as a collaboration
+    // (Seconds Society, 2026-11-28), and not "designed by" them either: Pedral
+    // designed the watch, the dial was developed with them (Kevin, 2026-11-28).
     // The Contour Quartz platform in a Sodalite dial, 15 pieces only, €895
     // (same price as the standard Contour Quartz — confirmed by Kevin, not a
     // typo). Live as of launch — real Stripe price wired in.
     slug: "contour-seconds-society",
-    name: "Contour, designed by Seconds Society",
-    formerNames: ["Contour × Seconds Society"],
-    metaTitle: "Pedral Contour, designed by Seconds Society — Sodalite, 15 Pieces | Pedral",
+    name: "Contour Sodalite",
+    formerNames: ["Contour × Seconds Society", "Contour, designed by Seconds Society"],
+    metaTitle: "Pedral Contour Sodalite — Dial Developed with Seconds Society, 15 Pieces | Pedral",
     metaDescription:
-      "A 15-piece Pedral Contour designed by Seconds Society. Contour's integrated-bracelet quartz platform in a Sodalite dial. €895.",
-    tagline: "Designed by Seconds Society",
+      "A 15-piece Pedral Contour with a Sodalite dial developed with Seconds Society, on Contour's integrated-bracelet quartz platform. €895.",
+    tagline: "Dial developed with Seconds Society",
     hook: "The same presence. A different stone.",
     description:
       "Sodalite reads almost black until the light finds it — then it opens into a royal blue, mottled with white calcite the way marble is veined. Ruby-red synthetic moissanite baguettes mark the hours, cut and set rather than printed. No two dials cut from this stone carry the same pattern. It sits inside the same Contour case: 35mm across, 6.9mm thin, the bracelet fully integrated so the watch moves like fabric rather than sitting bolted to a strap. A different stone, the same instinct — jewelry that happens to tell time.",
     descriptionExtra:
-      "This one was designed by Seconds Society and made by Pedral. Fifteen pieces, no more. When they're gone, this dial doesn't come back — not as a restock, not as a future Contour expression. It exists once, for the people who see it in time.",
+      "The watch is Pedral's Contour; the Sodalite dial was developed with Seconds Society. Fifteen pieces, no more. When they're gone, this dial doesn't come back — not as a restock, not as a future Contour expression. It exists once, for the people who see it in time.",
     designerNote:
-      "Every so often a stone shows up that changes how you think about a case you already know well. Sodalite did that. Seconds Society saw the same thing in it I did and designed this dial around it. A fifteen-piece run felt like the right size for something this specific — small enough to stay rare, real enough to actually make.",
+      "Every so often a stone shows up that changes how you think about a case you already know well. Sodalite did that. Seconds Society saw the same thing in it I did, and we developed this dial together. A fifteen-piece run felt like the right size for something this specific — small enough to stay rare, real enough to actually make.",
     year: 2026,
     tier: "limited",
     price: 895,
@@ -1852,7 +1853,7 @@ export const collections: Collection[] = [
       "Sapphire crystal · 24-month warranty",
       "Direct communication with Kevin — not a support team",
       "Complimentary insured express delivery",
-      "Designed by Seconds Society · Made by Pedral · 15 pieces",
+      "Designed in Stockholm · 15 pieces only",
     ],
     specsTitle: "Presence, not permission.",
     specs: {
@@ -1864,7 +1865,7 @@ export const collections: Collection[] = [
       Crystal: "Sapphire",
       "Water Resist.": "5 ATM / 50 meters",
       Warranty: "24-month international coverage",
-      Edition: "15 pieces total · designed by Seconds Society, not part of the standard Contour run.",
+      Edition: "15 pieces total · Sodalite dial developed with Seconds Society, not part of the standard Contour run.",
     },
     boxContents: [
       "Contour timepiece",
@@ -1874,7 +1875,7 @@ export const collections: Collection[] = [
     ],
     valuePerspectiveTitle: "Same price. Rarer stone.",
     valueAnchor:
-      "€895 — the same as the standard Contour Quartz. No premium for the rarer material; Seconds Society wanted this capsule priced like the line it comes from, not gated behind a markup. What's different is scarcity: fifteen pieces, each dial genuinely one of one, designed by Seconds Society and made once.",
+      "€895 — the same as the standard Contour Quartz. No premium for the rarer material; Seconds Society wanted this capsule priced like the line it comes from, not gated behind a markup. What's different is scarcity: fifteen pieces, each dial genuinely one of one, made once.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Stone",
@@ -1894,8 +1895,8 @@ export const collections: Collection[] = [
     collaboration: {
       name: "Seconds Society",
       url: "https://www.secondssociety.com/",
-      label: "Designed by",
-      eyebrow: "The Designers",
+      label: "Dial developed with",
+      eyebrow: "The Dial",
       bio: "Seconds Society is a collector-led watch studio founded by Wahhaj, Ash, and Ray, built on a simple idea: some of the best watches come from collectors working directly with independent makers, not from a boardroom. Past releases include a Mercury-inspired sector dial with Isotope, the Brunswick 40.5 Jump Hour reimagined in blue with FEARS, a one-of-one piece with independent watchmaker Boyu Tang, and The Twelve: Watch Collectors Edition with Christopher Ward. This Contour runs on the same instinct that carries through both studios — small, collector-facing, and more interested in making fifteen pieces once than a thousand pieces twice.",
     },
     image: "/images/contour-seconds-society-sodalite.jpg",
