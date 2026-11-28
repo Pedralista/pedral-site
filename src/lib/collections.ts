@@ -706,7 +706,7 @@ export const collections: Collection[] = [
     specs: {
       Price: "€895 quartz · €1,000 Aurum · €1,950 hand-wound",
       Movement:
-        "Ronda 1063, Swiss-made quartz — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
+        "Ronda 1062, Swiss-made quartz — or ETA 7001, Swiss hand-wound, 2.5mm calibre height",
       Case: "35mm · 42mm lug to lug · 7.3mm thin (quartz) · 7.4mm (hand-wound) · fully integrated scale-bracelet construction · 316L stainless steel (Aurum: gold-plated 316L stainless steel)",
       Caseback: "Quartz: solid steel · Hand-wound: sapphire display caseback",
       Dial:
@@ -724,7 +724,7 @@ export const collections: Collection[] = [
     ],
     valuePerspectiveTitle: "Two ways to own it.",
     valueAnchor:
-      "€895 for the Ronda 1063, Swiss-made quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price.",
+      "€895 for the Ronda 1062, Swiss-made quartz — the same silhouette, nothing to think about. €1,950 for the ETA 7001 hand-wound — a 2.5mm calibre chosen to stay honest to the case's height. The same ETA 7001 also powers Okapi Classique, at a higher price there — a larger case, built around a separate strap. Here it sits inside a fully integrated, hand-finished bracelet in a smaller case. Different construction. Different price.",
     valueComparePrice: "",
     detailStrip: {
       eyebrow: "The Dials",
@@ -754,7 +754,7 @@ export const collections: Collection[] = [
     heroFit: "contain",
     variants: [
       {
-        // Second drop: same Ronda quartz platform, updated to the 1063.
+        // Second drop: same Ronda quartz platform, updated to the 1062.
         // Restructured to a single "Quartz" variant with a dial picker
         // (Nacre / Aurum), matching Triomphe's numeral-style pattern —
         // plus the first run's sold-out Solaire for anyone curious
@@ -769,7 +769,7 @@ export const collections: Collection[] = [
         stock: 30,
         color: "Black/White",
         price: 895,
-        description: "Ronda 1063, Swiss-made quartz. Nacre, natural mother-of-pearl, or Aurum, natural lapis lazuli flecked with genuine gold pyrite.",
+        description: "Ronda 1062, Swiss-made quartz. Nacre, natural mother-of-pearl, or Aurum, natural lapis lazuli flecked with genuine gold pyrite.",
         image: "/images/contour-aurum-product-v2.jpg",
         heroImage: "/images/contour-aurum-hero-v4.jpg",
         numeralOptions: ["Nacre", "Aurum", "Solaire"],
@@ -1860,7 +1860,7 @@ export const collections: Collection[] = [
     specsTitle: "Presence, not permission.",
     specs: {
       Price: "€895",
-      Movement: "Ronda 1063, Swiss-made quartz",
+      Movement: "Ronda 1062, Swiss-made quartz",
       Case: "35mm · 42mm lug to lug · 7.3mm thin · fully integrated scale-bracelet construction · 316L stainless steel",
       Caseback: "Solid steel",
       Dial: "Sodalite natural stone — royal blue, mottled with white calcite veining — with ruby-red synthetic moissanite baguette indices. Each dial is unrepeatable.",
@@ -1924,7 +1924,7 @@ export const collections: Collection[] = [
         stock: 15,
         color: "Blue",
         price: 895,
-        description: "Ronda 1063, Swiss-made quartz. Sodalite dial — royal blue, mottled with white calcite — with ruby-red synthetic moissanite baguette indices.",
+        description: "Ronda 1062, Swiss-made quartz. Sodalite dial — royal blue, mottled with white calcite — with ruby-red synthetic moissanite baguette indices.",
         image: "/images/contour-seconds-society-angle.png",
       },
     ],
