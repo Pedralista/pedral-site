@@ -193,8 +193,8 @@ export interface Collection {
   /** Overrides the "Reserve Allocation" checkout button label for products that aren't a curated/reviewed allocation (e.g. plain first-come-first-served pre-order). Defaults to "Reserve Allocation". */
   reserveButtonLabel?: string;
   /** Capsule/collab credit shown near the hero — e.g. a partner boutique co-releasing a limited run. `bio` (optional) renders a full section about the partner further down the page. */
-  /** `label` replaces "In collaboration with" in the hero credit (e.g. "Designed by"). */
-  collaboration?: { name: string; url: string; bio?: string; label?: string };
+  /** `label` replaces "In collaboration with" in the hero credit (e.g. "Designed by"); `eyebrow` replaces "The Collaboration" above the About section. */
+  collaboration?: { name: string; url: string; bio?: string; label?: string; eyebrow?: string };
   /** Optional story section shown right after the description — cultural/heritage background for an edition (e.g. Étiquette Bangla). */
   /** Paragraph strings support **bold** and *italic*; a `{ heading }` entry starts a sub-section (e.g. "Why only twenty-one"). */
   story?: { eyebrow: string; title: string; paragraphs: (string | { heading: string })[] };
@@ -1848,6 +1848,12 @@ export const collections: Collection[] = [
     badge: "Capsule · 15 Pieces",
     urgencyTag: "Capsule release · 15 pieces only",
     reserveButtonLabel: "Reserve Yours",
+    reassurance: [
+      "Sapphire crystal · 24-month warranty",
+      "Direct communication with Kevin — not a support team",
+      "Complimentary insured express delivery",
+      "Designed by Seconds Society · Made by Pedral · 15 pieces",
+    ],
     specsTitle: "Presence, not permission.",
     specs: {
       Price: "€895",
@@ -1889,6 +1895,7 @@ export const collections: Collection[] = [
       name: "Seconds Society",
       url: "https://www.secondssociety.com/",
       label: "Designed by",
+      eyebrow: "The Designers",
       bio: "Seconds Society is a collector-led watch studio founded by Wahhaj, Ash, and Ray, built on a simple idea: some of the best watches come from collectors working directly with independent makers, not from a boardroom. Past releases include a Mercury-inspired sector dial with Isotope, the Brunswick 40.5 Jump Hour reimagined in blue with FEARS, a one-of-one piece with independent watchmaker Boyu Tang, and The Twelve: Watch Collectors Edition with Christopher Ward. This Contour runs on the same instinct that carries through both studios — small, collector-facing, and more interested in making fifteen pieces once than a thousand pieces twice.",
     },
     image: "/images/contour-seconds-society-sodalite.jpg",

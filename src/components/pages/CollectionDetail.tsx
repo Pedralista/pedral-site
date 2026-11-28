@@ -897,7 +897,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               variants={fadeInUp}
             >
               <p className="mb-3 text-[14px] font-normal tracking-[1.5px] sm:text-[11px] sm:tracking-[4px] uppercase text-accent">
-                The Collaboration
+                {c.collaboration.eyebrow ?? "The Collaboration"}
               </p>
               <h2 className="font-serif text-[clamp(24px,3vw,36px)] font-light text-foreground">
                 About {c.collaboration.name}.
