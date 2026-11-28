@@ -686,7 +686,7 @@ export default function CollectionDetail({ collection, initialVariantSlug }: { c
               transition={{ duration: 0.8, delay: 0.75 }}
               className="mt-3 text-[15px] font-light tracking-[1px] text-foreground-muted"
             >
-              In collaboration with{" "}
+              {c.collaboration.label ?? "In collaboration with"}{" "}
               <a
                 href={c.collaboration.url}
                 target="_blank"

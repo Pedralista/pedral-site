@@ -28,7 +28,7 @@ const VALID_PRICE_IDS = new Set([
   "price_1U16isCfxE1lSBKRSMBWzhCO", // Contour — Swiss Quartz, Nacre (€895)
   "price_1U0sqHCfxE1lSBKRl7VPZnh7", // Contour — Hand-Wound, Onyx (€1,950)
   "price_1U3blkCfxE1lSBKR3ZwxlQ60", // Contour — Contour Aurum, Lapis (€1,000)
-  "price_1TyJgICfxE1lSBKRRyl9DzAp", // Contour × Seconds Society — Sodalite (€895)
+  "price_1TyJgICfxE1lSBKRRyl9DzAp", // Contour, designed by Seconds Society — Sodalite (€895)
   "price_1UBz4bCfxE1lSBKRxoKbUr0w", // Silhouette — Aventurine (€2,200), formerly Contour 39mm
   "price_1UBz7uCfxE1lSBKRLZGUEFVq", // Silhouette — Ituri (€5,000), formerly Contour 39mm
   "price_1UVadbCfxE1lSBKRn5qrUnUI", // Silhouette — Ophion · Japanese Hand-Wound (€1,500)
@@ -94,7 +94,7 @@ function buildAddOnLineItems(
   addOns: AddOnsInput | undefined
 ): Stripe.Checkout.SessionCreateParams.LineItem[] {
   const items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
-  const collection = collections.find((c) => c.name === productName);
+  const collection = collections.find((c) => (c.name === productName || c.formerNames?.includes(productName)));
   if (!addOns || !collection || !addOnsEnabledFor(collection)) return items;
 
   const strapSlug = typeof addOns.strapSlug === "string" ? addOns.strapSlug : undefined;
@@ -253,7 +253,7 @@ export async function POST(req: NextRequest) {
     });
 
     if (kx) {
-      const first = collections.find((c) => c.name === cartMetadata[0].p);
+      const first = collections.find((c) => (c.name === cartMetadata[0].p || c.formerNames?.includes(cartMetadata[0].p)));
       after(() =>
         trackKlaviyoEvent("Started Checkout", kx, {
           properties: {
@@ -286,7 +286,7 @@ export async function POST(req: NextRequest) {
 
   // Numbered edition (e.g. Étiquette Famille Royale): the buyer's chosen number is
   // held for 30 minutes while they pay, so nobody else can take it.
-  const numbered = collections.find((c) => c.name === productName && c.editionNumbers);
+  const numbered = collections.find((c) => (c.name === productName || c.formerNames?.includes(productName)) && c.editionNumbers);
   let chosenNumber: number | undefined;
   const numberedSize = numbered ? editionSize(numbered, typeof variantName === "string" ? variantName : undefined) : 0;
   if (numbered?.editionNumbers) {
@@ -404,7 +404,7 @@ export async function POST(req: NextRequest) {
   });
 
   if (kx) {
-    const collection = collections.find((c) => c.name === productName);
+    const collection = collections.find((c) => (c.name === productName || c.formerNames?.includes(productName)));
     after(() =>
       trackKlaviyoEvent("Started Checkout", kx, {
         properties: {
